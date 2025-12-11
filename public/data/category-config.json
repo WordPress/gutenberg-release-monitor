@@ -1,0 +1,123 @@
+{
+  "aggregations": [
+    {
+      "id": "features",
+      "label": "Features",
+      "color": "#4CAF50",
+      "rawCategories": [
+        "Enhancements",
+        "Enhancement",
+        "**Enhancements**",
+        "Features",
+        "**Features**",
+        "New Features",
+        "New features",
+        "Experiments",
+        "**Experiments**",
+        "Experimental",
+        "**New APIs**",
+        "New APIs",
+        "New APIs:",
+        "APIs",
+        "APIs:",
+        "New blocks ✨"
+      ],
+      "includeByDefault": true
+    },
+    {
+      "id": "bugs",
+      "label": "Bug Fixes",
+      "color": "#F44336",
+      "rawCategories": [
+        "Bug Fixes",
+        "**Bug Fixes**",
+        "Bug Fixes:",
+        "Bug fixes",
+        "Bugfixes",
+        "Bugs",
+        "Bugs:",
+        "Fixes"
+      ],
+      "includeByDefault": true
+    },
+    {
+      "id": "a11y",
+      "label": "Accessibility",
+      "color": "#9C27B0",
+      "rawCategories": ["Accessibility"],
+      "includeByDefault": true
+    },
+    {
+      "id": "performance",
+      "label": "Performance",
+      "color": "#FF9800",
+      "rawCategories": [
+        "Performance",
+        "**Performance**",
+        "Performance:"
+      ],
+      "includeByDefault": true
+    },
+    {
+      "id": "codeQuality",
+      "label": "Code Quality",
+      "color": "#2196F3",
+      "rawCategories": [
+        "Code Quality",
+        "**Code Quality**",
+        "Tools",
+        "**Tools**",
+        "Build Tooling",
+        "Tooling",
+        "Chore",
+        "Deprecations",
+        "Security"
+      ],
+      "includeByDefault": false
+    },
+    {
+      "id": "documentation",
+      "label": "Documentation",
+      "color": "#607D8B",
+      "rawCategories": [
+        "Documentation",
+        "**Documentation**"
+      ],
+      "includeByDefault": false
+    },
+    {
+      "id": "other",
+      "label": "Other",
+      "color": "#9E9E9E",
+      "rawCategories": [
+        "Various",
+        "Uncategorized",
+        "Miscellaneous",
+        "Other Changes",
+        "Divers",
+        "Copy",
+        "Block Editor",
+        "Block Library",
+        "Block Themes",
+        "Components",
+        "Developer Experience",
+        "Developer experience",
+        "Font Library",
+        "Icons",
+        "Mobile",
+        "Mobile App",
+        "Plugin",
+        "Post actions",
+        "Project Management",
+        "Site Editor",
+        "Styles",
+        "WordPress Core compatibility",
+        "API Changes",
+        "Breaking Change",
+        "People"
+      ],
+      "includeByDefault": false
+    }
+  ],
+  "version": "1.0.0"
+}
