@@ -84,13 +84,15 @@ export function ReleasesTable({ releases }: ReleasesTableProps) {
         enableHiding: false,
         enableGlobalSearch: true,
         render: ({ item }: { item: Release }) => (
-          <a
-            href={item.changelogUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ fontWeight: 500, color: '#0073aa' }}
-          >
-            {item.gbVersion}
+          <>
+            <a
+              href={item.changelogUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ fontWeight: 500, color: '#0073aa' }}
+            >
+              {item.gbVersion}
+            </a>
             {item.isLastBeforeWPBeta && (
               <span
                 style={{
@@ -106,7 +108,7 @@ export function ReleasesTable({ releases }: ReleasesTableProps) {
                 Beta Cutoff
               </span>
             )}
-          </a>
+          </>
         ),
       },
       {
