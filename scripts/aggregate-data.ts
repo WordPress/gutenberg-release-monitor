@@ -148,6 +148,25 @@ function loadExistingSummary(): Summary | null {
 }
 
 /**
+ * Load unique contributors count from meta file.
+ */
+function loadUniqueContributors(): number {
+  const metaPath = 'data/contributors-meta.json';
+  if (!existsSync(metaPath)) {
+    console.warn('Warning: contributors-meta.json not found, using 0');
+    return 0;
+  }
+  try {
+    const content = readFileSync(metaPath, 'utf-8');
+    const data = JSON.parse(content);
+    return data.uniqueCount ?? 0;
+  } catch {
+    console.warn('Warning: Could not parse contributors-meta.json');
+    return 0;
+  }
+}
+
+/**
  * Generate summary statistics.
  * Only updates timestamp if data actually changed.
  */
@@ -157,6 +176,14 @@ function generateSummary(releases: Release[], existingSummary: Summary | null): 
   const totalReleases = releases.length;
   const totalPRs = releases.reduce((sum, r) => sum + r.totalPRs, 0);
   const latestRelease = sortedReleases[0]?.gbVersion ?? '';
+
+  // Load unique contributors from meta file (calculated during parse)
+  const uniqueContributors = loadUniqueContributors();
+
+  // Calculate average PRs from last 10 releases
+  const recentReleases = sortedReleases.slice(0, 10);
+  const recentTotalPRs = recentReleases.reduce((sum, r) => sum + r.totalPRs, 0);
+  const recentAvgPRsPerRelease = Math.round(recentTotalPRs / recentReleases.length);
 
   // Check if data actually changed
   const dataChanged =
@@ -168,8 +195,8 @@ function generateSummary(releases: Release[], existingSummary: Summary | null): 
   return {
     totalReleases,
     totalPRs,
-    totalContributors: releases.reduce((sum, r) => sum + r.contributors, 0),
-    avgPRsPerRelease: Math.round(totalPRs / releases.length),
+    uniqueContributors,
+    recentAvgPRsPerRelease,
     latestRelease,
     oldestRelease: sortedReleases[sortedReleases.length - 1]?.gbVersion ?? '',
     lastUpdated: dataChanged ? new Date().toISOString() : existingSummary.lastUpdated,

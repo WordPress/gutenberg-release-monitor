@@ -108,8 +108,8 @@ export interface TimeSeriesPoint {
 export interface Summary {
   totalReleases: number;
   totalPRs: number;
-  totalContributors: number;
-  avgPRsPerRelease: number;
+  uniqueContributors: number;
+  recentAvgPRsPerRelease: number;
   latestRelease: string;
   oldestRelease: string;
   lastUpdated: string;
