@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "prebuild": "cp -r data public/",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
