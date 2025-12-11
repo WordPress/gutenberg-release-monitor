@@ -13,7 +13,7 @@
   {
     "gbVersion": "3.1.1",
     "date": "2018-06-28",
-    "totalPRs": 0,
+    "totalPRs": 2,
     "featurePRs": 0,
     "bugPRs": 0,
     "a11yPRs": 0,
@@ -24,7 +24,7 @@
   {
     "gbVersion": "3.3.0",
     "date": "2018-07-20",
-    "totalPRs": 0,
+    "totalPRs": 92,
     "featurePRs": 0,
     "bugPRs": 0,
     "a11yPRs": 0,
@@ -35,7 +35,7 @@
   {
     "gbVersion": "3.4.0",
     "date": "2018-07-31",
-    "totalPRs": 0,
+    "totalPRs": 60,
     "featurePRs": 0,
     "bugPRs": 0,
     "a11yPRs": 0,
@@ -46,7 +46,7 @@
   {
     "gbVersion": "3.5.0",
     "date": "2018-08-15",
-    "totalPRs": 0,
+    "totalPRs": 106,
     "featurePRs": 0,
     "bugPRs": 0,
     "a11yPRs": 0,
@@ -57,7 +57,7 @@
   {
     "gbVersion": "3.8.0",
     "date": "2018-09-12",
-    "totalPRs": 0,
+    "totalPRs": 40,
     "featurePRs": 0,
     "bugPRs": 0,
     "a11yPRs": 0,
@@ -68,7 +68,7 @@
   {
     "gbVersion": "3.9.0",
     "date": "2018-09-21",
-    "totalPRs": 0,
+    "totalPRs": 74,
     "featurePRs": 0,
     "bugPRs": 0,
     "a11yPRs": 0,
@@ -79,7 +79,7 @@
   {
     "gbVersion": "4.0.0",
     "date": "2018-10-17",
-    "totalPRs": 141,
+    "totalPRs": 142,
     "featurePRs": 57,
     "bugPRs": 44,
     "a11yPRs": 0,
@@ -90,7 +90,7 @@
   {
     "gbVersion": "4.1.0",
     "date": "2018-10-24",
-    "totalPRs": 0,
+    "totalPRs": 114,
     "featurePRs": 0,
     "bugPRs": 0,
     "a11yPRs": 0,
@@ -101,7 +101,7 @@
   {
     "gbVersion": "3.7.1",
     "date": "2018-11-01",
-    "totalPRs": 0,
+    "totalPRs": 1,
     "featurePRs": 0,
     "bugPRs": 0,
     "a11yPRs": 0,
@@ -112,7 +112,7 @@
   {
     "gbVersion": "3.6.3",
     "date": "2018-11-01",
-    "totalPRs": 0,
+    "totalPRs": 1,
     "featurePRs": 0,
     "bugPRs": 0,
     "a11yPRs": 0,
@@ -123,7 +123,7 @@
   {
     "gbVersion": "4.2.0",
     "date": "2018-11-06",
-    "totalPRs": 0,
+    "totalPRs": 3,
     "featurePRs": 0,
     "bugPRs": 0,
     "a11yPRs": 0,
@@ -134,7 +134,7 @@
   {
     "gbVersion": "4.3.0",
     "date": "2018-11-12",
-    "totalPRs": 0,
+    "totalPRs": 133,
     "featurePRs": 0,
     "bugPRs": 0,
     "a11yPRs": 0,
@@ -145,7 +145,7 @@
   {
     "gbVersion": "4.4.0",
     "date": "2018-11-15",
-    "totalPRs": 0,
+    "totalPRs": 67,
     "featurePRs": 0,
     "bugPRs": 0,
     "a11yPRs": 0,
@@ -156,7 +156,7 @@
   {
     "gbVersion": "4.5.0",
     "date": "2018-11-20",
-    "totalPRs": 0,
+    "totalPRs": 83,
     "featurePRs": 0,
     "bugPRs": 0,
     "a11yPRs": 0,
@@ -167,7 +167,7 @@
   {
     "gbVersion": "4.6.0",
     "date": "2018-11-30",
-    "totalPRs": 0,
+    "totalPRs": 28,
     "featurePRs": 0,
     "bugPRs": 0,
     "a11yPRs": 0,
@@ -178,7 +178,7 @@
   {
     "gbVersion": "4.7.0",
     "date": "2018-12-12",
-    "totalPRs": 0,
+    "totalPRs": 46,
     "featurePRs": 0,
     "bugPRs": 0,
     "a11yPRs": 0,
@@ -189,7 +189,7 @@
   {
     "gbVersion": "4.8.0",
     "date": "2019-01-07",
-    "totalPRs": 0,
+    "totalPRs": 62,
     "featurePRs": 0,
     "bugPRs": 0,
     "a11yPRs": 0,
@@ -200,7 +200,7 @@
   {
     "gbVersion": "4.9.0",
     "date": "2019-01-23",
-    "totalPRs": 0,
+    "totalPRs": 73,
     "featurePRs": 0,
     "bugPRs": 0,
     "a11yPRs": 0,
@@ -222,7 +222,7 @@
   {
     "gbVersion": "5.1.0",
     "date": "2019-02-20",
-    "totalPRs": 0,
+    "totalPRs": 1,
     "featurePRs": 0,
     "bugPRs": 0,
     "a11yPRs": 0,
@@ -244,7 +244,7 @@
   {
     "gbVersion": "5.3.0",
     "date": "2019-03-20",
-    "totalPRs": 0,
+    "totalPRs": 127,
     "featurePRs": 0,
     "bugPRs": 0,
     "a11yPRs": 0,
@@ -266,7 +266,7 @@
   {
     "gbVersion": "5.5.0",
     "date": "2019-04-17",
-    "totalPRs": 0,
+    "totalPRs": 91,
     "featurePRs": 0,
     "bugPRs": 0,
     "a11yPRs": 0,
@@ -277,7 +277,7 @@
   {
     "gbVersion": "5.6.0",
     "date": "2019-05-01",
-    "totalPRs": 1,
+    "totalPRs": 57,
     "featurePRs": 0,
     "bugPRs": 0,
     "a11yPRs": 0,
@@ -464,7 +464,7 @@
   {
     "gbVersion": "7.3.0",
     "date": "2020-01-22",
-    "totalPRs": 0,
+    "totalPRs": 137,
     "featurePRs": 0,
     "bugPRs": 0,
     "a11yPRs": 0,
@@ -486,7 +486,7 @@
   {
     "gbVersion": "7.5.0",
     "date": "2020-02-12",
-    "totalPRs": 0,
+    "totalPRs": 86,
     "featurePRs": 0,
     "bugPRs": 0,
     "a11yPRs": 0,
@@ -497,7 +497,7 @@
   {
     "gbVersion": "7.6.0",
     "date": "2020-02-26",
-    "totalPRs": 0,
+    "totalPRs": 58,
     "featurePRs": 0,
     "bugPRs": 0,
     "a11yPRs": 0,
@@ -519,7 +519,7 @@
   {
     "gbVersion": "7.8.0",
     "date": "2020-03-25",
-    "totalPRs": 0,
+    "totalPRs": 110,
     "featurePRs": 0,
     "bugPRs": 0,
     "a11yPRs": 0,
@@ -574,7 +574,7 @@
   {
     "gbVersion": "8.3.0",
     "date": "2020-06-11",
-    "totalPRs": 0,
+    "totalPRs": 140,
     "featurePRs": 0,
     "bugPRs": 0,
     "a11yPRs": 0,
@@ -695,7 +695,7 @@
   {
     "gbVersion": "9.4.0",
     "date": "2020-11-18",
-    "totalPRs": 179,
+    "totalPRs": 181,
     "featurePRs": 23,
     "bugPRs": 23,
     "a11yPRs": 0,
@@ -816,7 +816,7 @@
   {
     "gbVersion": "10.5.0",
     "date": "2021-04-28",
-    "totalPRs": 171,
+    "totalPRs": 173,
     "featurePRs": 44,
     "bugPRs": 25,
     "a11yPRs": 0,
@@ -1399,7 +1399,7 @@
   {
     "gbVersion": "15.8.0",
     "date": "2023-05-17",
-    "totalPRs": 0,
+    "totalPRs": 1,
     "featurePRs": 0,
     "bugPRs": 0,
     "a11yPRs": 0,
@@ -1652,7 +1652,7 @@
   {
     "gbVersion": "18.1.0",
     "date": "2024-04-10",
-    "totalPRs": 149,
+    "totalPRs": 153,
     "featurePRs": 58,
     "bugPRs": 32,
     "a11yPRs": 6,
@@ -1663,7 +1663,7 @@
   {
     "gbVersion": "18.2.0",
     "date": "2024-04-24",
-    "totalPRs": 225,
+    "totalPRs": 226,
     "featurePRs": 60,
     "bugPRs": 70,
     "a11yPRs": 4,
@@ -1806,7 +1806,7 @@
   {
     "gbVersion": "19.5.0",
     "date": "2024-10-23",
-    "totalPRs": 116,
+    "totalPRs": 117,
     "featurePRs": 12,
     "bugPRs": 52,
     "a11yPRs": 8,
@@ -1817,7 +1817,7 @@
   {
     "gbVersion": "19.6.0",
     "date": "2024-11-06",
-    "totalPRs": 190,
+    "totalPRs": 193,
     "featurePRs": 37,
     "bugPRs": 59,
     "a11yPRs": 9,
