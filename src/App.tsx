@@ -1,5 +1,13 @@
 import '@wordpress/components/build-style/style.css';
-import { Spinner } from '@wordpress/components';
+import {
+  Card,
+  CardBody,
+  ExternalLink,
+  Notice,
+  Spinner,
+  __experimentalText as Text,
+  __experimentalHeading as Heading,
+} from '@wordpress/components';
 import { useReleases, useSummary, useWPVersionStats } from './hooks/useReleases';
 import { ReleasesTable } from './components/ReleasesTable';
 import { SummaryStats } from './components/SummaryStats';
@@ -27,25 +35,20 @@ function App() {
   return (
     <div className="app">
       <header className="app-header">
-        <h1>Gutenberg Release Monitor</h1>
-        <p>
+        <Heading level={1}>Gutenberg Release Monitor</Heading>
+        <Text>
           Track Gutenberg release statistics and changelog data
           <span className="header-separator">·</span>
-          <a
-            href="https://github.com/WordPress/gutenberg"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="header-link"
-          >
+          <ExternalLink href="https://github.com/WordPress/gutenberg">
             View Repository
-          </a>
-        </p>
+          </ExternalLink>
+        </Text>
       </header>
 
       {error && (
-        <div className="app-error">
+        <Notice status="error" isDismissible={false}>
           Failed to load data: {error.message}
-        </div>
+        </Notice>
       )}
 
       {isLoading && (
@@ -60,9 +63,13 @@ function App() {
       )}
 
       <main className="app-main">
-        {!isLoading && !error && releases && (
-          <ReleasesTable releases={releases} />
-        )}
+        <Card>
+          <CardBody>
+            {!isLoading && !error && releases && (
+              <ReleasesTable releases={releases} />
+            )}
+          </CardBody>
+        </Card>
       </main>
     </div>
   );

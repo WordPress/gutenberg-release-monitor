@@ -1,5 +1,14 @@
 import { useState, useEffect, useCallback } from 'react';
-import { Button } from '@wordpress/components';
+import {
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+  SelectControl,
+  __experimentalText as Text,
+} from '@wordpress/components';
+import { chevronLeft, chevronRight } from '@wordpress/icons';
 import type { Summary, WPVersionStats } from '../data/types';
 
 interface SummaryStatsProps {
@@ -167,68 +176,51 @@ export function SummaryStats({ summary, wpVersionStats }: SummaryStatsProps) {
     ? parseVersionRange(selectedStats.gbVersionRange)
     : null;
 
-  const getReleaseRangeText = () => {
-    if (!selectedStats || !versionRange) return '';
-
-    if (isCurrentCycle) {
-      return `${selectedStats.releaseCount} releases since ${versionRange.start}, included`;
-    }
-
-    return `${selectedStats.releaseCount} releases between ${versionRange.start} and ${versionRange.end}, included`;
-  };
-
   return (
-    <div className="summary-section">
-      <div className="summary-disclaimer">
-        Data is an estimation based on parsing release changelogs.
-      </div>
-
-      <div className="summary-version-selector">
-        <label htmlFor="wp-version-select" className="summary-version-label">
-          WordPress Version
-        </label>
+    <Card className="summary-section">
+      <CardHeader className="summary-card-header">
+        <Text className="summary-disclaimer">
+          Data is an estimation based on parsing release changelogs.
+        </Text>
         <div className="summary-version-nav">
           <Button
             variant="secondary"
             size="small"
+            icon={chevronLeft}
             onClick={goToPrevious}
             disabled={!hasPrevious}
-            aria-label="Previous WordPress version"
-          >
-            «
-          </Button>
-          <select
-            id="wp-version-select"
+            label="Previous WordPress version"
+          />
+          <SelectControl
+            __nextHasNoMarginBottom
+            label="WordPress Version"
+            hideLabelFromVision
             value={selectedVersion}
-            onChange={(e) => setSelectedVersion(e.target.value)}
+            options={versionOptions}
+            onChange={(value) => setSelectedVersion(value)}
             className="summary-version-select"
-          >
-            {versionOptions.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
+          />
           <Button
             variant="secondary"
             size="small"
+            icon={chevronRight}
             onClick={goToNext}
             disabled={!hasNext}
-            aria-label="Next WordPress version"
-          >
-            »
-          </Button>
+            label="Next WordPress version"
+          />
         </div>
-      </div>
+      </CardHeader>
 
       {selectedStats && (
-        <>
+        <CardBody className="summary-card-body">
           <div className="summary-version-info">
             <div className="summary-version-title">
               WordPress {selectedVersion}
               {isCurrentCycle && <span className="summary-version-current">(current)</span>}
             </div>
-            <div className="summary-version-range">{getReleaseRangeText()}</div>
+            <Text className="summary-version-range">
+              {selectedStats.releaseCount} releases included, from {versionRange?.start} to {versionRange?.end}
+            </Text>
           </div>
 
           <div className="summary-stats">
@@ -259,7 +251,7 @@ export function SummaryStats({ summary, wpVersionStats }: SummaryStatsProps) {
           </div>
 
           <div className="summary-stats summary-stats-totals">
-            <div className="summary-stats-header">Totals in all Gutenberg releases</div>
+            <div className="summary-stats-header">Totals</div>
             {totalStats.map((stat) => (
               <div key={stat.label} className="summary-stat">
                 <div className="summary-stat-label">{stat.label}</div>
@@ -269,22 +261,22 @@ export function SummaryStats({ summary, wpVersionStats }: SummaryStatsProps) {
               </div>
             ))}
           </div>
-        </>
+        </CardBody>
       )}
 
-      <div className="summary-meta">
-        <span>
+      <CardFooter className="summary-meta">
+        <Text>
           {summary.totalReleases} releases: {summary.oldestRelease} – {summary.latestRelease}
-        </span>
-        <span>
+        </Text>
+        <Text>
           Last updated:{' '}
           {new Date(summary.lastUpdated).toLocaleDateString('en-US', {
             year: 'numeric',
             month: 'short',
             day: 'numeric',
           })}
-        </span>
-      </div>
-    </div>
+        </Text>
+      </CardFooter>
+    </Card>
   );
 }

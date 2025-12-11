@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react';
 import { DataViews } from '@wordpress/dataviews';
+import { ExternalLink, Tooltip } from '@wordpress/components';
 import type { Release } from '../data/types';
 
 import '@wordpress/dataviews/build-style/style.css';
@@ -30,25 +31,22 @@ const defaultLayouts = {
   table: {},
 };
 
-const wpVersionOptions = [
-  { value: '7.0', label: 'WP 7.0' },
-  { value: '6.9', label: 'WP 6.9' },
-  { value: '6.8', label: 'WP 6.8' },
-  { value: '6.7', label: 'WP 6.7' },
-  { value: '6.6', label: 'WP 6.6' },
-  { value: '6.5', label: 'WP 6.5' },
-  { value: '6.4', label: 'WP 6.4' },
-  { value: '6.3', label: 'WP 6.3' },
-  { value: '6.2', label: 'WP 6.2' },
-  { value: '6.1', label: 'WP 6.1' },
-  { value: '6.0', label: 'WP 6.0' },
-  { value: '5.9', label: 'WP 5.9' },
-  { value: '5.8', label: 'WP 5.8' },
-  { value: '5.7', label: 'WP 5.7' },
-  { value: '5.6', label: 'WP 5.6' },
-];
-
 export function ReleasesTable({ releases }: ReleasesTableProps) {
+  // Derive WP version options from releases data
+  const wpVersionOptions = useMemo(() => {
+    const versions = new Set<string>();
+    releases.forEach((r) => {
+      if (r.wpVersion) versions.add(r.wpVersion);
+    });
+    return Array.from(versions)
+      .sort((a, b) => {
+        const [aMajor, aMinor] = a.split('.').map(Number);
+        const [bMajor, bMinor] = b.split('.').map(Number);
+        if (bMajor !== aMajor) return bMajor - aMajor;
+        return bMinor - aMinor;
+      })
+      .map((v) => ({ value: v, label: `WP ${v}` }));
+  }, [releases]);
   const [view, setView] = useState<View>({
     type: 'table',
     perPage: 25,
@@ -83,28 +81,16 @@ export function ReleasesTable({ releases }: ReleasesTableProps) {
         enableGlobalSearch: true,
         render: ({ item }: { item: Release }) => (
           <>
-            <a
+            <ExternalLink
               href={item.changelogUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ fontWeight: 500, color: '#0073aa' }}
+              className="release-version-link"
             >
               {item.gbVersion}
-            </a>
+            </ExternalLink>
             {item.isLastBeforeWPBeta && (
-              <span
-                style={{
-                  marginLeft: '0.5em',
-                  fontSize: '0.75em',
-                  background: '#d63638',
-                  color: 'white',
-                  padding: '2px 6px',
-                  borderRadius: '3px',
-                }}
-                title="Last Gutenberg version before WordPress beta freeze"
-              >
-                Beta Cutoff
-              </span>
+              <Tooltip text="Last Gutenberg version before WordPress beta freeze">
+                <span className="release-badge-cutoff">Beta Cutoff</span>
+              </Tooltip>
             )}
           </>
         ),
@@ -135,7 +121,7 @@ export function ReleasesTable({ releases }: ReleasesTableProps) {
         label: 'Total PRs',
         enableSorting: true,
         render: ({ item }: { item: Release }) => (
-          <span style={{ fontWeight: 600 }}>{item.totalPRs}</span>
+          <span className="release-total-prs">{item.totalPRs}</span>
         ),
       },
       {
@@ -143,7 +129,7 @@ export function ReleasesTable({ releases }: ReleasesTableProps) {
         label: 'Features',
         enableSorting: true,
         render: ({ item }: { item: Release }) => (
-          <span style={{ color: '#00a32a' }}>
+          <span className="release-features">
             {item.featurePRs} ({item.enhancementPercent}%)
           </span>
         ),
@@ -153,7 +139,7 @@ export function ReleasesTable({ releases }: ReleasesTableProps) {
         label: 'Bug Fixes',
         enableSorting: true,
         render: ({ item }: { item: Release }) => (
-          <span style={{ color: '#d63638' }}>
+          <span className="release-bugs">
             {item.bugPRs} ({item.bugfixPercent}%)
           </span>
         ),
@@ -163,7 +149,7 @@ export function ReleasesTable({ releases }: ReleasesTableProps) {
         label: 'A11y',
         enableSorting: true,
         render: ({ item }: { item: Release }) => (
-          <span style={{ color: '#2271b1' }}>{item.a11yPRs}</span>
+          <span className="release-a11y">{item.a11yPRs}</span>
         ),
       },
       {
@@ -171,7 +157,7 @@ export function ReleasesTable({ releases }: ReleasesTableProps) {
         label: 'Perf',
         enableSorting: true,
         render: ({ item }: { item: Release }) => (
-          <span style={{ color: '#996800' }}>{item.performancePRs}</span>
+          <span className="release-perf">{item.performancePRs}</span>
         ),
       },
       {
@@ -185,13 +171,13 @@ export function ReleasesTable({ releases }: ReleasesTableProps) {
         enableSorting: true,
         render: ({ item }: { item: Release }) =>
           item.newContributors > 0 ? (
-            <span style={{ color: '#00a32a' }}>+{item.newContributors}</span>
+            <span className="release-new-contributors">+{item.newContributors}</span>
           ) : (
             '0'
           ),
       },
     ],
-    []
+    [wpVersionOptions]
   );
 
   // Filter and sort data based on view state
