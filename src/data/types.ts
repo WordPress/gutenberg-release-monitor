@@ -106,11 +106,32 @@ export interface TimeSeriesPoint {
  * Summary statistics across all releases.
  */
 export interface Summary {
-  totalReleases: number;
-  totalPRs: number;
-  uniqueContributors: number;
-  recentAvgPRsPerRelease: number;
+  // Current cycle info
+  currentWPCycle: string;
+  lastCutoffVersion: string;
+  releasesSinceCutoff: number;
+
+  // Averages in current WP cycle
+  avgPRsSinceCutoff: number;
+  avgFeaturesSinceCutoff: number;
+  avgBugsSinceCutoff: number;
+  avgA11ySinceCutoff: number;
+  avgPerfSinceCutoff: number;
+  avgContributorsSinceCutoff: number;
+  avgNewContributorsSinceCutoff: number;
+
+  // Total averages (all-time)
+  avgPRsTotal: number;
+  avgFeaturesTotal: number;
+  avgBugsTotal: number;
+  avgA11yTotal: number;
+  avgPerfTotal: number;
+  avgContributorsTotal: number;
+  avgNewContributorsTotal: number;
+
+  // Other stats
   latestRelease: string;
   oldestRelease: string;
+  totalReleases: number;
   lastUpdated: string;
 }

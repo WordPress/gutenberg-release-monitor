@@ -4,45 +4,90 @@ interface SummaryStatsProps {
   summary: Summary;
 }
 
+function formatDiff(current: number, total: number): string {
+  if (total === 0) return '';
+  const diff = Math.round(((current - total) / total) * 100);
+  if (diff === 0) return '';
+  return diff > 0 ? `+${diff}%` : `${diff}%`;
+}
+
+function getDiffClass(current: number, total: number): string {
+  if (total === 0) return 'neutral';
+  const diff = current - total;
+  if (diff > 0) return 'positive';
+  if (diff < 0) return 'negative';
+  return 'neutral';
+}
+
 export function SummaryStats({ summary }: SummaryStatsProps) {
   const stats = [
     {
-      label: 'Minor Releases',
-      value: summary.totalReleases.toLocaleString(),
-      tooltip: 'Number of minor releases (x.y.0). Patch releases are aggregated into their minor version.',
+      label: 'PRs',
+      value: summary.avgPRsSinceCutoff,
+      total: summary.avgPRsTotal,
     },
     {
-      label: 'Total PRs',
-      value: summary.totalPRs.toLocaleString(),
-      tooltip: 'Total pull requests merged across all releases, parsed from release changelogs.',
+      label: 'Features',
+      value: summary.avgFeaturesSinceCutoff,
+      total: summary.avgFeaturesTotal,
     },
     {
-      label: 'Avg PRs/Release',
-      value: summary.recentAvgPRsPerRelease.toLocaleString(),
-      tooltip: 'Average PRs per release, calculated from the last 10 releases.',
+      label: 'Bug Fixes',
+      value: summary.avgBugsSinceCutoff,
+      total: summary.avgBugsTotal,
     },
     {
-      label: 'Unique Contributors',
-      value: summary.uniqueContributors.toLocaleString(),
-      tooltip: 'Unique contributors mentioned in release changelogs (deduplicated across releases).',
+      label: 'Accessibility',
+      value: summary.avgA11ySinceCutoff,
+      total: summary.avgA11yTotal,
+    },
+    {
+      label: 'Performance',
+      value: summary.avgPerfSinceCutoff,
+      total: summary.avgPerfTotal,
+    },
+    {
+      label: 'Contributors',
+      value: summary.avgContributorsSinceCutoff,
+      total: summary.avgContributorsTotal,
+    },
+    {
+      label: 'New Contributors',
+      value: summary.avgNewContributorsSinceCutoff,
+      total: summary.avgNewContributorsTotal,
     },
   ];
 
   return (
-    <div className="summary-stats">
+    <div className="summary-section">
       <div className="summary-disclaimer">
-        This data is an estimation based on parsing release changelogs.
-        Numbers may not match exact GitHub statistics.
+        Data is an estimation based on parsing release changelogs.
       </div>
-      {stats.map((stat) => (
-        <div key={stat.label} className="summary-stat" title={stat.tooltip}>
-          <div className="summary-stat-value">{stat.value}</div>
-          <div className="summary-stat-label">{stat.label}</div>
+
+      <div className="summary-stats">
+        <div className="summary-stats-header">
+          Averages per Gutenberg release in the current WordPress {summary.currentWPCycle} cycle ({summary.releasesSinceCutoff} releases since {summary.lastCutoffVersion})
         </div>
-      ))}
+        {stats.map((stat) => {
+          const diff = formatDiff(stat.value, stat.total);
+          const diffClass = getDiffClass(stat.value, stat.total);
+          return (
+            <div key={stat.label} className="summary-stat">
+              <div className="summary-stat-label">{stat.label}</div>
+              <div className="summary-stat-value">
+                {stat.value.toLocaleString()}
+              </div>
+              <div className="summary-stat-comparison">
+                (vs {stat.total}{diff && <>, <span className={`summary-stat-diff ${diffClass}`}>{diff}</span></>})
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
       <div className="summary-meta">
         <span>
-          Versions {summary.oldestRelease} – {summary.latestRelease}
+          {summary.totalReleases} releases: {summary.oldestRelease} – {summary.latestRelease}
         </span>
         <span>
           Last updated:{' '}

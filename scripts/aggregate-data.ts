@@ -148,57 +148,122 @@ function loadExistingSummary(): Summary | null {
 }
 
 /**
- * Load unique contributors count from meta file.
+ * Find the current WP cycle based on the cutoff version.
  */
-function loadUniqueContributors(): number {
-  const metaPath = 'data/contributors-meta.json';
-  if (!existsSync(metaPath)) {
-    console.warn('Warning: contributors-meta.json not found, using 0');
-    return 0;
-  }
-  try {
-    const content = readFileSync(metaPath, 'utf-8');
-    const data = JSON.parse(content);
-    return data.uniqueCount ?? 0;
-  } catch {
-    console.warn('Warning: Could not parse contributors-meta.json');
-    return 0;
-  }
+function findCurrentWPCycle(cutoffVersion: string, wpSchedule: WPRelease[]): string {
+  // Find the WP release where this cutoff belongs
+  const cutoffWP = wpSchedule.find((wp) => wp.lastGBVersion === cutoffVersion.replace('.0', ''));
+  if (!cutoffWP) return '';
+
+  // The current cycle is the next WP version after the cutoff
+  const sortedSchedule = [...wpSchedule].sort((a, b) => compareVersions(b.wpVersion, a.wpVersion));
+  const cutoffIndex = sortedSchedule.findIndex((wp) => wp.wpVersion === cutoffWP.wpVersion);
+
+  // Return the WP version before the cutoff in the sorted list (which is the next/current cycle)
+  return cutoffIndex > 0 ? sortedSchedule[cutoffIndex - 1].wpVersion : '';
 }
 
 /**
  * Generate summary statistics.
  * Only updates timestamp if data actually changed.
  */
-function generateSummary(releases: Release[], existingSummary: Summary | null): Summary {
+function generateSummary(releases: Release[], wpSchedule: WPRelease[], existingSummary: Summary | null): Summary {
   const sortedReleases = [...releases].sort((a, b) => compareVersions(b.gbVersion, a.gbVersion));
 
   const totalReleases = releases.length;
-  const totalPRs = releases.reduce((sum, r) => sum + r.totalPRs, 0);
   const latestRelease = sortedReleases[0]?.gbVersion ?? '';
 
-  // Load unique contributors from meta file (calculated during parse)
-  const uniqueContributors = loadUniqueContributors();
+  // Find the last cutoff release (most recent isLastBeforeWPBeta)
+  const lastCutoffIndex = sortedReleases.findIndex((r) => r.isLastBeforeWPBeta);
+  const lastCutoffRelease = lastCutoffIndex >= 0 ? sortedReleases[lastCutoffIndex] : null;
+  const lastCutoffVersion = lastCutoffRelease?.gbVersion ?? '';
 
-  // Calculate average PRs from last 10 releases
-  const recentReleases = sortedReleases.slice(0, 10);
-  const recentTotalPRs = recentReleases.reduce((sum, r) => sum + r.totalPRs, 0);
-  const recentAvgPRsPerRelease = Math.round(recentTotalPRs / recentReleases.length);
+  // Find current WP cycle
+  const currentWPCycle = findCurrentWPCycle(lastCutoffVersion, wpSchedule);
+
+  // Releases since cutoff (excluding the cutoff itself)
+  const releasesSinceCutoff = lastCutoffIndex >= 0 ? lastCutoffIndex : 0;
+  const sinceCutoffReleases = sortedReleases.slice(0, releasesSinceCutoff);
+
+  // Calculate averages since cutoff
+  const sinceCutoffCount = sinceCutoffReleases.length || 1;
+  const avgPRsSinceCutoff = Math.round(
+    sinceCutoffReleases.reduce((sum, r) => sum + r.totalPRs, 0) / sinceCutoffCount
+  );
+  const avgFeaturesSinceCutoff = Math.round(
+    sinceCutoffReleases.reduce((sum, r) => sum + r.featurePRs, 0) / sinceCutoffCount
+  );
+  const avgBugsSinceCutoff = Math.round(
+    sinceCutoffReleases.reduce((sum, r) => sum + r.bugPRs, 0) / sinceCutoffCount
+  );
+  const avgA11ySinceCutoff = Math.round(
+    sinceCutoffReleases.reduce((sum, r) => sum + r.a11yPRs, 0) / sinceCutoffCount
+  );
+  const avgPerfSinceCutoff = Math.round(
+    sinceCutoffReleases.reduce((sum, r) => sum + r.performancePRs, 0) / sinceCutoffCount
+  );
+  const avgContributorsSinceCutoff = Math.round(
+    sinceCutoffReleases.reduce((sum, r) => sum + r.contributors, 0) / sinceCutoffCount
+  );
+  const avgNewContributorsSinceCutoff = Math.round(
+    sinceCutoffReleases.reduce((sum, r) => sum + r.newContributors, 0) / sinceCutoffCount
+  );
+
+  // Calculate total averages (all-time) - only from releases that have the data
+  const avgPRsTotal = Math.round(releases.reduce((sum, r) => sum + r.totalPRs, 0) / totalReleases);
+  const avgFeaturesTotal = Math.round(releases.reduce((sum, r) => sum + r.featurePRs, 0) / totalReleases);
+  const avgBugsTotal = Math.round(releases.reduce((sum, r) => sum + r.bugPRs, 0) / totalReleases);
+
+  // A11y and performance data only exists in newer releases
+  const releasesWithA11y = releases.filter((r) => r.a11yPRs > 0);
+  const a11yCount = releasesWithA11y.length || 1;
+  const avgA11yTotal = Math.round(
+    releasesWithA11y.reduce((sum, r) => sum + r.a11yPRs, 0) / a11yCount
+  );
+
+  const releasesWithPerf = releases.filter((r) => r.performancePRs > 0);
+  const perfCount = releasesWithPerf.length || 1;
+  const avgPerfTotal = Math.round(
+    releasesWithPerf.reduce((sum, r) => sum + r.performancePRs, 0) / perfCount
+  );
+
+  // Contributors data only exists in newer releases
+  const releasesWithContributors = releases.filter((r) => r.contributors > 0);
+  const contributorCount = releasesWithContributors.length || 1;
+  const avgContributorsTotal = Math.round(
+    releasesWithContributors.reduce((sum, r) => sum + r.contributors, 0) / contributorCount
+  );
+  const avgNewContributorsTotal = Math.round(
+    releasesWithContributors.reduce((sum, r) => sum + r.newContributors, 0) / contributorCount
+  );
 
   // Check if data actually changed
   const dataChanged =
     !existingSummary ||
     existingSummary.totalReleases !== totalReleases ||
-    existingSummary.totalPRs !== totalPRs ||
     existingSummary.latestRelease !== latestRelease;
 
   return {
-    totalReleases,
-    totalPRs,
-    uniqueContributors,
-    recentAvgPRsPerRelease,
+    currentWPCycle,
+    lastCutoffVersion,
+    releasesSinceCutoff,
+    avgPRsSinceCutoff,
+    avgFeaturesSinceCutoff,
+    avgBugsSinceCutoff,
+    avgA11ySinceCutoff,
+    avgPerfSinceCutoff,
+    avgContributorsSinceCutoff,
+    avgNewContributorsSinceCutoff,
+    avgPRsTotal,
+    avgFeaturesTotal,
+    avgBugsTotal,
+    avgA11yTotal,
+    avgPerfTotal,
+    avgContributorsTotal,
+    avgNewContributorsTotal,
     latestRelease,
     oldestRelease: sortedReleases[sortedReleases.length - 1]?.gbVersion ?? '',
+    totalReleases,
     lastUpdated: dataChanged ? new Date().toISOString() : existingSummary.lastUpdated,
   };
 }
@@ -244,7 +309,7 @@ async function main() {
   console.log(`  Generated by-wp-version.json (${wpVersionStats.length} WP versions)`);
 
   const existingSummary = loadExistingSummary();
-  const summary = generateSummary(enrichedReleases, existingSummary);
+  const summary = generateSummary(enrichedReleases, wpSchedule, existingSummary);
   writeFileSync(`${AGGREGATED_DIR}/summary.json`, JSON.stringify(summary, null, 2));
   console.log(`  Generated summary.json`);
 
