@@ -6,6 +6,7 @@ import {
   ExternalLink,
   Notice,
   Spinner,
+  TabPanel,
   __experimentalText as Text,
   __experimentalHeading as Heading,
 } from '@wordpress/components';
@@ -13,6 +14,7 @@ import { useReleases, useSummary, useWPVersionStats } from './hooks/useReleases'
 import { useDarkMode } from './hooks/useDarkMode';
 import { ReleasesTable } from './components/ReleasesTable';
 import { SummaryStats } from './components/SummaryStats';
+import { WPVersionTable } from './components/WPVersionTable';
 
 const SunIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -82,19 +84,41 @@ function App() {
         </div>
       )}
 
-      {!isLoading && !error && summary && wpVersionStats && (
-        <SummaryStats summary={summary} wpVersionStats={wpVersionStats} />
-      )}
-
-      <main className="app-main">
-        <Card>
-          <CardBody>
-            {!isLoading && !error && releases && (
-              <ReleasesTable releases={releases} />
+      {!isLoading && !error && summary && wpVersionStats && releases && (
+        <main className="app-main">
+          <TabPanel
+            className="app-tabs"
+            tabs={[
+              { name: 'by-wp-version', title: 'WordPress Releases' },
+              { name: 'releases', title: 'Gutenberg Releases' },
+            ]}
+          >
+            {(tab) => (
+              <>
+                {tab.name === 'by-wp-version' && (
+                  <div className="tab-content">
+                    <SummaryStats summary={summary} wpVersionStats={wpVersionStats} />
+                    <Card className="wp-version-table-card">
+                      <CardBody>
+                        <WPVersionTable wpVersionStats={wpVersionStats} />
+                      </CardBody>
+                    </Card>
+                  </div>
+                )}
+                {tab.name === 'releases' && (
+                  <div className="tab-content">
+                    <Card>
+                      <CardBody>
+                        <ReleasesTable releases={releases} />
+                      </CardBody>
+                    </Card>
+                  </div>
+                )}
+              </>
             )}
-          </CardBody>
-        </Card>
-      </main>
+          </TabPanel>
+        </main>
+      )}
     </div>
   );
 }
