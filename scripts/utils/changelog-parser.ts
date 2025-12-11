@@ -1,31 +1,6 @@
 import type { GitHubRelease, ParsedChangelog } from './types.js';
 
 /**
- * Category mappings for PR classification.
- * Maps various changelog header variations to our standard categories.
- */
-const CATEGORY_MAPPINGS: Record<string, keyof Pick<ParsedChangelog, 'featurePRs' | 'bugPRs' | 'a11yPRs' | 'performancePRs'>> = {
-  // Feature/Enhancement categories
-  enhancements: 'featurePRs',
-  features: 'featurePRs',
-  'new features': 'featurePRs',
-
-  // Bug fix categories
-  'bug fixes': 'bugPRs',
-  bugfixes: 'bugPRs',
-  fixes: 'bugPRs',
-
-  // Accessibility categories
-  accessibility: 'a11yPRs',
-  'accessibility improvements': 'a11yPRs',
-  a11y: 'a11yPRs',
-
-  // Performance categories
-  performance: 'performancePRs',
-  'performance improvements': 'performancePRs',
-};
-
-/**
  * Regex to match PR links in changelog entries.
  * Matches patterns like: ([12345](https://github.com/...))
  */
@@ -97,13 +72,10 @@ function countPRs(text: string): number {
 /**
  * Parse changelog format (supports both modern v12+ and legacy formats).
  * Uses ### Category and #### Subcategory headers.
+ * Returns raw categories as the source of truth - no computed fields.
  */
 export function parseModernChangelog(body: string): {
   categories: Record<string, number>;
-  featurePRs: number;
-  bugPRs: number;
-  a11yPRs: number;
-  performancePRs: number;
   totalPRs: number;
 } {
   // Normalize line endings (GitHub API returns \r\n)
@@ -122,12 +94,6 @@ export function parseModernChangelog(body: string): {
   // Check if there are any ### category headers
   const hasCategoryHeaders = normalizedBody.match(CATEGORY_HEADER_REGEX);
 
-  // Track our standard PR counts
-  let featurePRs = 0;
-  let bugPRs = 0;
-  let a11yPRs = 0;
-  let performancePRs = 0;
-
   for (const line of lines) {
     // Check for changelog section start (modern format)
     if (line.match(/^##\s+Changelog/i)) {
@@ -141,11 +107,6 @@ export function parseModernChangelog(body: string): {
       if (currentCategory && currentCategoryContent) {
         const count = countPRs(currentCategoryContent);
         categories[currentCategory] = count;
-        const mapping = CATEGORY_MAPPINGS[currentCategory.toLowerCase()];
-        if (mapping === 'featurePRs') featurePRs += count;
-        else if (mapping === 'bugPRs') bugPRs += count;
-        else if (mapping === 'a11yPRs') a11yPRs += count;
-        else if (mapping === 'performancePRs') performancePRs += count;
       }
       break;
     }
@@ -159,11 +120,6 @@ export function parseModernChangelog(body: string): {
       if (currentCategory && currentCategoryContent) {
         const count = countPRs(currentCategoryContent);
         categories[currentCategory] = count;
-        const mapping = CATEGORY_MAPPINGS[currentCategory.toLowerCase()];
-        if (mapping === 'featurePRs') featurePRs += count;
-        else if (mapping === 'bugPRs') bugPRs += count;
-        else if (mapping === 'a11yPRs') a11yPRs += count;
-        else if (mapping === 'performancePRs') performancePRs += count;
       }
 
       currentCategory = categoryMatch[1].trim();
@@ -190,18 +146,12 @@ export function parseModernChangelog(body: string): {
     const count = countPRs(currentCategoryContent);
     if (!categories[currentCategory]) {
       categories[currentCategory] = count;
-      const mapping = CATEGORY_MAPPINGS[currentCategory.toLowerCase()];
-      if (mapping === 'featurePRs') featurePRs += count;
-      else if (mapping === 'bugPRs') bugPRs += count;
-      else if (mapping === 'a11yPRs') a11yPRs += count;
-      else if (mapping === 'performancePRs') performancePRs += count;
     }
   }
 
   // Handle changelogs without category headers (very old format)
-  let uncategorizedPRs = 0;
   if (uncategorizedContent) {
-    uncategorizedPRs = countPRs(uncategorizedContent);
+    const uncategorizedPRs = countPRs(uncategorizedContent);
     if (uncategorizedPRs > 0) {
       categories['Uncategorized'] = uncategorizedPRs;
     }
@@ -211,10 +161,6 @@ export function parseModernChangelog(body: string): {
 
   return {
     categories,
-    featurePRs,
-    bugPRs,
-    a11yPRs,
-    performancePRs,
     totalPRs,
   };
 }
@@ -286,9 +232,8 @@ export function parseRelease(release: GitHubRelease): ParsedChangelog {
   const date = release.published_at.split('T')[0];
   const body = release.body || '';
 
-  // Parse categories and PR counts
-  const { categories, featurePRs, bugPRs, a11yPRs, performancePRs, totalPRs } =
-    parseModernChangelog(body);
+  // Parse categories - this is the source of truth
+  const { categories, totalPRs } = parseModernChangelog(body);
 
   // Parse contributors
   const { contributors, newContributors, contributorsList, newContributorsList } =
@@ -299,14 +244,10 @@ export function parseRelease(release: GitHubRelease): ParsedChangelog {
     date,
     changelogUrl: release.html_url,
     totalPRs,
-    featurePRs,
-    bugPRs,
-    a11yPRs,
-    performancePRs,
+    categories,
     contributors,
     newContributors,
     contributorsList,
     newContributorsList,
-    categories,
   };
 }

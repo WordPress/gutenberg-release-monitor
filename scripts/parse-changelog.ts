@@ -35,24 +35,17 @@ function getArgs(): ParseArgs {
  * Convert parsed changelog to Release format.
  */
 function toRelease(parsed: ReturnType<typeof parseRelease>): Release {
-  const total = parsed.totalPRs || 1; // Avoid division by zero
-
   return {
     gbVersion: parsed.version,
     wpVersion: null, // Will be set by aggregation step
     date: parsed.date,
     isLastBeforeWPBeta: false, // Will be set by aggregation step
     totalPRs: parsed.totalPRs,
-    featurePRs: parsed.featurePRs,
-    bugPRs: parsed.bugPRs,
-    a11yPRs: parsed.a11yPRs,
-    performancePRs: parsed.performancePRs,
+    categories: parsed.categories,
     contributors: parsed.contributors,
     newContributors: parsed.newContributors,
     contributorsList: parsed.contributorsList,
     newContributorsList: parsed.newContributorsList,
-    enhancementPercent: Math.round((parsed.featurePRs / total) * 100),
-    bugfixPercent: Math.round((parsed.bugPRs / total) * 100),
     changelogUrl: parsed.changelogUrl,
     parsedAt: new Date().toISOString(),
     parserVersion: PARSER_VERSION,
@@ -96,10 +89,14 @@ function aggregatePatchReleases(releases: Release[]): Release[] {
 
     // Aggregate PR counts from patch releases into the base
     const totalPRs = baseRelease.totalPRs + patchReleases.reduce((sum, r) => sum + r.totalPRs, 0);
-    const featurePRs = baseRelease.featurePRs + patchReleases.reduce((sum, r) => sum + r.featurePRs, 0);
-    const bugPRs = baseRelease.bugPRs + patchReleases.reduce((sum, r) => sum + r.bugPRs, 0);
-    const a11yPRs = baseRelease.a11yPRs + patchReleases.reduce((sum, r) => sum + r.a11yPRs, 0);
-    const performancePRs = baseRelease.performancePRs + patchReleases.reduce((sum, r) => sum + r.performancePRs, 0);
+
+    // Merge categories from all releases
+    const categories: Record<string, number> = { ...(baseRelease.categories || {}) };
+    for (const patch of patchReleases) {
+      for (const [cat, count] of Object.entries(patch.categories || {})) {
+        categories[cat] = (categories[cat] || 0) + count;
+      }
+    }
 
     // Combine contributor lists and deduplicate
     const allContributors = new Set<string>(baseRelease.contributorsList || []);
@@ -111,22 +108,15 @@ function aggregatePatchReleases(releases: Release[]): Release[] {
     const contributorsList = Array.from(allContributors);
     const newContributorsList = Array.from(allNewContributors);
 
-    const total = totalPRs || 1;
-
     aggregated.push({
       ...baseRelease,
       gbVersion: `${minorVersion}.0`, // Normalize to x.y.0
       totalPRs,
-      featurePRs,
-      bugPRs,
-      a11yPRs,
-      performancePRs,
+      categories,
       contributors: contributorsList.length,
       newContributors: newContributorsList.length,
       contributorsList,
       newContributorsList,
-      enhancementPercent: Math.round((featurePRs / total) * 100),
-      bugfixPercent: Math.round((bugPRs / total) * 100),
     });
 
     console.log(`    Aggregated ${patchReleases.length} patch release(s) into ${minorVersion}.0`);
@@ -234,7 +224,10 @@ async function main() {
         parsedReleases.push(releaseData);
 
         if (args.verbose) {
-          console.log(` ${releaseData.totalPRs} PRs (${releaseData.featurePRs} features, ${releaseData.bugPRs} bugs)`);
+          const categories = Object.entries(releaseData.categories)
+            .map(([k, v]) => `${k}: ${v}`)
+            .join(', ');
+          console.log(` ${releaseData.totalPRs} PRs (${categories})`);
         } else {
           console.log(' done');
         }
@@ -279,15 +272,31 @@ async function main() {
     writeFileSync(contributorsPath, JSON.stringify(contributorsData, null, 2));
     console.log(`  Found ${allContributors.size} unique contributors`);
 
-    // Summary
+    // Summary - compute from categories
     const totalPRs = aggregatedReleases.reduce((sum, r) => sum + r.totalPRs, 0);
+
+    // Helper to sum specific categories across all releases
+    const sumCategories = (categoryNames: string[]) =>
+      aggregatedReleases.reduce((sum, r) => {
+        return (
+          sum +
+          categoryNames.reduce((catSum, name) => catSum + (r.categories[name] || 0), 0)
+        );
+      }, 0);
+
+    // Use exact category names from Gutenberg changelogs
+    const featureCategories = ['Enhancements'];
+    const bugCategories = ['Bug Fixes'];
+    const a11yCategories = ['Accessibility'];
+    const perfCategories = ['Performance'];
+
     console.log(`\nSummary of parsed releases:`);
     console.log(`  Minor versions: ${aggregatedReleases.length}`);
     console.log(`  Total PRs: ${totalPRs}`);
-    console.log(`  Features: ${aggregatedReleases.reduce((sum, r) => sum + r.featurePRs, 0)}`);
-    console.log(`  Bug fixes: ${aggregatedReleases.reduce((sum, r) => sum + r.bugPRs, 0)}`);
-    console.log(`  Accessibility: ${aggregatedReleases.reduce((sum, r) => sum + r.a11yPRs, 0)}`);
-    console.log(`  Performance: ${aggregatedReleases.reduce((sum, r) => sum + r.performancePRs, 0)}`);
+    console.log(`  Features: ${sumCategories(featureCategories)}`);
+    console.log(`  Bug fixes: ${sumCategories(bugCategories)}`);
+    console.log(`  Accessibility: ${sumCategories(a11yCategories)}`);
+    console.log(`  Performance: ${sumCategories(perfCategories)}`);
   } catch (error) {
     console.error('Error:', error instanceof Error ? error.message : error);
     process.exit(1);

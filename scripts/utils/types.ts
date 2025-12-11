@@ -17,21 +17,20 @@ export interface ParsedChangelog {
   date: string;
   changelogUrl: string;
 
-  // PR counts by category
+  /** Total PRs in this release */
   totalPRs: number;
-  featurePRs: number;
-  bugPRs: number;
-  a11yPRs: number;
-  performancePRs: number;
+
+  /**
+   * Raw category breakdown from changelog - the source of truth.
+   * e.g. { "Enhancements": 32, "Bug Fixes": 49, "Documentation": 12 }
+   */
+  categories: Record<string, number>;
 
   // Contributors
   contributors: number;
   newContributors: number;
   contributorsList: string[];
   newContributorsList: string[];
-
-  // Raw category data for debugging
-  categories: Record<string, number>;
 }
 
 /**
