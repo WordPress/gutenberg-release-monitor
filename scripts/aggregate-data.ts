@@ -1,9 +1,9 @@
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs';
 import type { Release, WPRelease, WPVersionStats, Summary } from '../src/data/types.js';
 
-const RELEASES_PATH = 'data/releases.json';
-const WP_SCHEDULE_PATH = 'data/wp-schedule.json';
-const AGGREGATED_DIR = 'data/aggregated';
+const RELEASES_PATH = 'public/data/releases.json';
+const WP_SCHEDULE_PATH = 'public/data/wp-schedule.json';
+const AGGREGATED_DIR = 'public/data/aggregated';
 
 /**
  * Load releases from JSON file.

@@ -23,7 +23,7 @@ function getArgs(): ParseArgs {
       version: { type: 'string', short: 'v' },
       from: { type: 'string', short: 'f' },
       to: { type: 'string', short: 't' },
-      output: { type: 'string', short: 'o', default: 'data/releases.json' },
+      output: { type: 'string', short: 'o', default: 'public/data/releases.json' },
       verbose: { type: 'boolean', default: false },
     },
   });

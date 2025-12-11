@@ -51,14 +51,14 @@ jobs:
       - name: Check for changes
         id: changes
         run: |
-          git diff --quiet data/ || echo "changed=true" >> $GITHUB_OUTPUT
+          git diff --quiet public/data/ || echo "changed=true" >> $GITHUB_OUTPUT
 
       - name: Commit and push changes
         if: steps.changes.outputs.changed == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/
+          git add public/data/
           git commit -m "Update release data
 
           Automated refresh of Gutenberg release statistics."
