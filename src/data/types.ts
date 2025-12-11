@@ -14,22 +14,21 @@ export interface Release {
   /** Whether this is the last GB version before a WP beta freeze */
   isLastBeforeWPBeta: boolean;
 
-  // PR counts
+  /** Total PRs in this release */
   totalPRs: number;
-  featurePRs: number;
-  bugPRs: number;
-  a11yPRs: number;
-  performancePRs: number;
+
+  /**
+   * Raw category breakdown from changelog.
+   * This is the source of truth - all category-specific counts are computed from this.
+   * e.g. { "Enhancements": 32, "Bug Fixes": 49, "Documentation": 12 }
+   */
+  categories: Record<string, number>;
 
   // Contributors
   contributors: number;
   newContributors: number;
   contributorsList: string[];
   newContributorsList: string[];
-
-  // Percentages (pre-calculated)
-  enhancementPercent: number;
-  bugfixPercent: number;
 
   // Metadata
   /** URL to the changelog on GitHub */
