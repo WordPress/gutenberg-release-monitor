@@ -32,6 +32,18 @@ const CATEGORY_MAPPINGS: Record<string, keyof Pick<ParsedChangelog, 'featurePRs'
 const PR_LINK_REGEX = /\(\[(\d+)\]\([^)]+\)\)/g;
 
 /**
+ * Regex to match inline GitHub PR links (v6-v7 format).
+ * Matches patterns like: [description](https://github.com/WordPress/gutenberg/pull/12345)
+ */
+const INLINE_PR_LINK_REGEX = /\[[^\]]+\]\(https:\/\/github\.com\/[^)]*\/pull\/\d+[^)]*\)/g;
+
+/**
+ * Regex to match bullet points for old changelog format (v5 and earlier).
+ * Matches lines starting with * or - followed by content.
+ */
+const BULLET_POINT_REGEX = /^[\*\-]\s+.+/;
+
+/**
  * Regex to match a category header (### Category).
  */
 const CATEGORY_HEADER_REGEX = /^###\s+(.+)$/;
@@ -53,10 +65,33 @@ const FIRST_TIME_CONTRIBUTORS_REGEX = /^##\s+First[- ]time\s+[Cc]ontributors/i;
 
 /**
  * Count PR references in a text block.
+ * Supports multiple changelog formats:
+ * - Modern (v8+): ([12345](url)) at end of line
+ * - Mid-era (v6-v7): [description](url) inline links
+ * - Legacy (v5-): Just bullet points with no PR links
  */
 function countPRs(text: string): number {
-  const matches = text.match(PR_LINK_REGEX);
-  return matches ? matches.length : 0;
+  // Try modern format first: ([12345](url))
+  const modernMatches = text.match(PR_LINK_REGEX);
+  if (modernMatches && modernMatches.length > 0) {
+    return modernMatches.length;
+  }
+
+  // Try inline PR links: [text](github.com/.../pull/123)
+  const inlineMatches = text.match(INLINE_PR_LINK_REGEX);
+  if (inlineMatches && inlineMatches.length > 0) {
+    return inlineMatches.length;
+  }
+
+  // Fall back to counting bullet points for old format
+  const lines = text.split('\n');
+  let bulletCount = 0;
+  for (const line of lines) {
+    if (BULLET_POINT_REGEX.test(line.trim())) {
+      bulletCount++;
+    }
+  }
+  return bulletCount;
 }
 
 /**
