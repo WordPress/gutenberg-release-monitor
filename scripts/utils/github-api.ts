@@ -7,8 +7,8 @@ const REPO_NAME = 'gutenberg';
 /**
  * Get authorization headers if GITHUB_TOKEN is available.
  */
-function getHeaders(): HeadersInit {
-  const headers: HeadersInit = {
+function getHeaders(): Record<string, string> {
+  const headers: Record<string, string> = {
     Accept: 'application/vnd.github.v3+json',
     'User-Agent': 'gutenberg-release-monitor',
   };
@@ -50,7 +50,7 @@ export async function fetchAllReleases(): Promise<GitHubRelease[]> {
       throw new Error(`GitHub API error: ${response.status} ${response.statusText}`);
     }
 
-    const data: GitHubRelease[] = await response.json();
+    const data = (await response.json()) as GitHubRelease[];
 
     if (data.length === 0) {
       break;
@@ -88,7 +88,7 @@ export async function fetchReleaseByTag(tag: string): Promise<GitHubRelease | nu
     throw new Error(`GitHub API error: ${response.status} ${response.statusText}`);
   }
 
-  return response.json();
+  return (await response.json()) as GitHubRelease;
 }
 
 /**
