@@ -120,6 +120,13 @@ export interface Summary {
   avgContributorsSinceCutoff: number;
   avgNewContributorsSinceCutoff: number;
 
+  // Totals in current WP cycle
+  totalPRsSinceCutoff: number;
+  totalFeaturesSinceCutoff: number;
+  totalBugsSinceCutoff: number;
+  totalA11ySinceCutoff: number;
+  totalPerfSinceCutoff: number;
+
   // Total averages (all-time)
   avgPRsTotal: number;
   avgFeaturesTotal: number;

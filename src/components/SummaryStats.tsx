@@ -20,7 +20,7 @@ function getDiffClass(current: number, total: number): string {
 }
 
 export function SummaryStats({ summary }: SummaryStatsProps) {
-  const stats = [
+  const avgStats = [
     {
       label: 'PRs',
       value: summary.avgPRsSinceCutoff,
@@ -58,6 +58,14 @@ export function SummaryStats({ summary }: SummaryStatsProps) {
     },
   ];
 
+  const totalStats = [
+    { label: 'PRs', value: summary.totalPRsSinceCutoff },
+    { label: 'Features', value: summary.totalFeaturesSinceCutoff },
+    { label: 'Bug Fixes', value: summary.totalBugsSinceCutoff },
+    { label: 'Accessibility', value: summary.totalA11ySinceCutoff },
+    { label: 'Performance', value: summary.totalPerfSinceCutoff },
+  ];
+
   return (
     <div className="summary-section">
       <div className="summary-disclaimer">
@@ -68,7 +76,7 @@ export function SummaryStats({ summary }: SummaryStatsProps) {
         <div className="summary-stats-header">
           Averages per Gutenberg release in the current WordPress {summary.currentWPCycle} cycle ({summary.releasesSinceCutoff} releases since {summary.lastCutoffVersion})
         </div>
-        {stats.map((stat) => {
+        {avgStats.map((stat) => {
           const diff = formatDiff(stat.value, stat.total);
           const diffClass = getDiffClass(stat.value, stat.total);
           return (
@@ -83,6 +91,20 @@ export function SummaryStats({ summary }: SummaryStatsProps) {
             </div>
           );
         })}
+      </div>
+
+      <div className="summary-stats summary-stats-totals">
+        <div className="summary-stats-header">
+          Totals for the current WordPress {summary.currentWPCycle} cycle
+        </div>
+        {totalStats.map((stat) => (
+          <div key={stat.label} className="summary-stat">
+            <div className="summary-stat-label">{stat.label}</div>
+            <div className="summary-stat-value">
+              {stat.value.toLocaleString()}
+            </div>
+          </div>
+        ))}
       </div>
 
       <div className="summary-meta">

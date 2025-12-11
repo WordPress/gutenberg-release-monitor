@@ -185,23 +185,20 @@ function generateSummary(releases: Release[], wpSchedule: WPRelease[], existingS
   const releasesSinceCutoff = lastCutoffIndex >= 0 ? lastCutoffIndex : 0;
   const sinceCutoffReleases = sortedReleases.slice(0, releasesSinceCutoff);
 
+  // Calculate totals since cutoff
+  const totalPRsSinceCutoff = sinceCutoffReleases.reduce((sum, r) => sum + r.totalPRs, 0);
+  const totalFeaturesSinceCutoff = sinceCutoffReleases.reduce((sum, r) => sum + r.featurePRs, 0);
+  const totalBugsSinceCutoff = sinceCutoffReleases.reduce((sum, r) => sum + r.bugPRs, 0);
+  const totalA11ySinceCutoff = sinceCutoffReleases.reduce((sum, r) => sum + r.a11yPRs, 0);
+  const totalPerfSinceCutoff = sinceCutoffReleases.reduce((sum, r) => sum + r.performancePRs, 0);
+
   // Calculate averages since cutoff
   const sinceCutoffCount = sinceCutoffReleases.length || 1;
-  const avgPRsSinceCutoff = Math.round(
-    sinceCutoffReleases.reduce((sum, r) => sum + r.totalPRs, 0) / sinceCutoffCount
-  );
-  const avgFeaturesSinceCutoff = Math.round(
-    sinceCutoffReleases.reduce((sum, r) => sum + r.featurePRs, 0) / sinceCutoffCount
-  );
-  const avgBugsSinceCutoff = Math.round(
-    sinceCutoffReleases.reduce((sum, r) => sum + r.bugPRs, 0) / sinceCutoffCount
-  );
-  const avgA11ySinceCutoff = Math.round(
-    sinceCutoffReleases.reduce((sum, r) => sum + r.a11yPRs, 0) / sinceCutoffCount
-  );
-  const avgPerfSinceCutoff = Math.round(
-    sinceCutoffReleases.reduce((sum, r) => sum + r.performancePRs, 0) / sinceCutoffCount
-  );
+  const avgPRsSinceCutoff = Math.round(totalPRsSinceCutoff / sinceCutoffCount);
+  const avgFeaturesSinceCutoff = Math.round(totalFeaturesSinceCutoff / sinceCutoffCount);
+  const avgBugsSinceCutoff = Math.round(totalBugsSinceCutoff / sinceCutoffCount);
+  const avgA11ySinceCutoff = Math.round(totalA11ySinceCutoff / sinceCutoffCount);
+  const avgPerfSinceCutoff = Math.round(totalPerfSinceCutoff / sinceCutoffCount);
   const avgContributorsSinceCutoff = Math.round(
     sinceCutoffReleases.reduce((sum, r) => sum + r.contributors, 0) / sinceCutoffCount
   );
@@ -254,6 +251,11 @@ function generateSummary(releases: Release[], wpSchedule: WPRelease[], existingS
     avgPerfSinceCutoff,
     avgContributorsSinceCutoff,
     avgNewContributorsSinceCutoff,
+    totalPRsSinceCutoff,
+    totalFeaturesSinceCutoff,
+    totalBugsSinceCutoff,
+    totalA11ySinceCutoff,
+    totalPerfSinceCutoff,
     avgPRsTotal,
     avgFeaturesTotal,
     avgBugsTotal,
