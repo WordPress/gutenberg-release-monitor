@@ -5,10 +5,17 @@
     "date": "2025-12-03",
     "isLastBeforeWPBeta": false,
     "totalPRs": 154,
-    "featurePRs": 32,
-    "bugPRs": 49,
-    "a11yPRs": 3,
-    "performancePRs": 2,
+    "categories": {
+      "Enhancements": 32,
+      "Bug Fixes": 49,
+      "Accessibility": 3,
+      "Performance": 2,
+      "Experiments": 24,
+      "Documentation": 10,
+      "Code Quality": 14,
+      "Tools": 14,
+      "Various": 6
+    },
     "contributors": 49,
     "newContributors": 4,
     "contributorsList": [
@@ -68,10 +75,8 @@
       "triple0t",
       "xristos3490"
     ],
-    "enhancementPercent": 21,
-    "bugfixPercent": 32,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v22.2.0",
-    "parsedAt": "2025-12-11T18:14:25.821Z",
+    "parsedAt": "2025-12-11T22:57:39.488Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -80,10 +85,17 @@
     "date": "2025-11-19",
     "isLastBeforeWPBeta": false,
     "totalPRs": 191,
-    "featurePRs": 35,
-    "bugPRs": 82,
-    "a11yPRs": 5,
-    "performancePRs": 11,
+    "categories": {
+      "Features": 1,
+      "Enhancements": 34,
+      "Bug Fixes": 82,
+      "Accessibility": 5,
+      "Performance": 11,
+      "Experiments": 20,
+      "Documentation": 5,
+      "Code Quality": 5,
+      "Tools": 28
+    },
     "contributors": 51,
     "newContributors": 3,
     "contributorsList": [
@@ -144,10 +156,8 @@
       "paulrenglish",
       "pranvinit"
     ],
-    "enhancementPercent": 18,
-    "bugfixPercent": 43,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v22.1.0",
-    "parsedAt": "2025-12-11T18:14:25.822Z",
+    "parsedAt": "2025-12-11T22:57:39.489Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -156,10 +166,16 @@
     "date": "2025-11-05",
     "isLastBeforeWPBeta": false,
     "totalPRs": 130,
-    "featurePRs": 21,
-    "bugPRs": 51,
-    "a11yPRs": 3,
-    "performancePRs": 3,
+    "categories": {
+      "Enhancements": 21,
+      "Bug Fixes": 51,
+      "Accessibility": 3,
+      "Performance": 3,
+      "Experiments": 3,
+      "Documentation": 4,
+      "Code Quality": 25,
+      "Tools": 20
+    },
     "contributors": 38,
     "newContributors": 3,
     "contributorsList": [
@@ -207,10 +223,8 @@
       "itsroy69",
       "joshualip-plaudit"
     ],
-    "enhancementPercent": 16,
-    "bugfixPercent": 39,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v22.0.0",
-    "parsedAt": "2025-12-11T18:14:25.823Z",
+    "parsedAt": "2025-12-11T22:57:39.489Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -219,10 +233,17 @@
     "date": "2025-10-22",
     "isLastBeforeWPBeta": true,
     "totalPRs": 278,
-    "featurePRs": 55,
-    "bugPRs": 79,
-    "a11yPRs": 9,
-    "performancePRs": 5,
+    "categories": {
+      "New blocks ✨": 5,
+      "Enhancements": 55,
+      "Bug Fixes": 79,
+      "Accessibility": 9,
+      "Performance": 5,
+      "Experiments": 24,
+      "Documentation": 8,
+      "Code Quality": 44,
+      "Tools": 49
+    },
     "contributors": 54,
     "newContributors": 5,
     "contributorsList": [
@@ -288,10 +309,8 @@
       "mathiscode",
       "sidharthpandita1"
     ],
-    "enhancementPercent": 20,
-    "bugfixPercent": 28,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v21.9.0",
-    "parsedAt": "2025-12-11T18:14:25.823Z",
+    "parsedAt": "2025-12-11T22:57:39.489Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -300,10 +319,18 @@
     "date": "2025-10-08",
     "isLastBeforeWPBeta": false,
     "totalPRs": 116,
-    "featurePRs": 50,
-    "bugPRs": 35,
-    "a11yPRs": 7,
-    "performancePRs": 1,
+    "categories": {
+      "Features": 1,
+      "Enhancements": 49,
+      "New APIs": 1,
+      "Bug Fixes": 35,
+      "Accessibility": 7,
+      "Performance": 1,
+      "Experiments": 1,
+      "Documentation": 4,
+      "Code Quality": 16,
+      "Tools": 1
+    },
     "contributors": 47,
     "newContributors": 5,
     "contributorsList": [
@@ -362,10 +389,8 @@
       "theaminuli",
       "utsav-ladani"
     ],
-    "enhancementPercent": 43,
-    "bugfixPercent": 30,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v21.8.0",
-    "parsedAt": "2025-12-11T18:14:25.824Z",
+    "parsedAt": "2025-12-11T22:57:39.489Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -374,10 +399,17 @@
     "date": "2025-09-24",
     "isLastBeforeWPBeta": false,
     "totalPRs": 107,
-    "featurePRs": 38,
-    "bugPRs": 26,
-    "a11yPRs": 3,
-    "performancePRs": 2,
+    "categories": {
+      "Enhancements": 38,
+      "New APIs": 1,
+      "Bug Fixes": 26,
+      "Accessibility": 3,
+      "Performance": 2,
+      "Experiments": 17,
+      "Documentation": 4,
+      "Code Quality": 12,
+      "Tools": 4
+    },
     "contributors": 40,
     "newContributors": 3,
     "contributorsList": [
@@ -427,10 +459,8 @@
       "straku",
       "xavier-lc"
     ],
-    "enhancementPercent": 36,
-    "bugfixPercent": 24,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v21.7.0",
-    "parsedAt": "2025-12-11T18:14:25.824Z",
+    "parsedAt": "2025-12-11T22:57:39.489Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -439,10 +469,15 @@
     "date": "2025-09-10",
     "isLastBeforeWPBeta": false,
     "totalPRs": 79,
-    "featurePRs": 20,
-    "bugPRs": 26,
-    "a11yPRs": 0,
-    "performancePRs": 2,
+    "categories": {
+      "Enhancements": 20,
+      "New APIs": 2,
+      "Bug Fixes": 26,
+      "Performance": 2,
+      "Documentation": 6,
+      "Code Quality": 17,
+      "Tools": 6
+    },
     "contributors": 36,
     "newContributors": 1,
     "contributorsList": [
@@ -486,10 +521,8 @@
     "newContributorsList": [
       "levinbaria"
     ],
-    "enhancementPercent": 25,
-    "bugfixPercent": 33,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v21.6.0",
-    "parsedAt": "2025-12-11T18:14:25.825Z",
+    "parsedAt": "2025-12-11T22:57:39.489Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -498,10 +531,15 @@
     "date": "2025-08-27",
     "isLastBeforeWPBeta": false,
     "totalPRs": 57,
-    "featurePRs": 23,
-    "bugPRs": 17,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "Features": 2,
+      "Enhancements": 21,
+      "Bug Fixes": 17,
+      "Experiments": 2,
+      "Documentation": 6,
+      "Code Quality": 4,
+      "Tools": 5
+    },
     "contributors": 29,
     "newContributors": 1,
     "contributorsList": [
@@ -538,10 +576,8 @@
     "newContributorsList": [
       "elazzabi"
     ],
-    "enhancementPercent": 40,
-    "bugfixPercent": 30,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v21.5.0",
-    "parsedAt": "2025-12-11T18:14:25.825Z",
+    "parsedAt": "2025-12-11T22:57:39.490Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -550,10 +586,15 @@
     "date": "2025-08-13",
     "isLastBeforeWPBeta": false,
     "totalPRs": 107,
-    "featurePRs": 31,
-    "bugPRs": 37,
-    "a11yPRs": 1,
-    "performancePRs": 1,
+    "categories": {
+      "Enhancements": 31,
+      "Bug Fixes": 37,
+      "Accessibility": 1,
+      "Performance": 1,
+      "Documentation": 17,
+      "Code Quality": 15,
+      "Tools": 5
+    },
     "contributors": 48,
     "newContributors": 8,
     "contributorsList": [
@@ -616,10 +657,8 @@
       "rcrdortiz",
       "sahil1617"
     ],
-    "enhancementPercent": 29,
-    "bugfixPercent": 35,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v21.4.0",
-    "parsedAt": "2025-12-11T18:14:25.825Z",
+    "parsedAt": "2025-12-11T22:57:39.490Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -628,10 +667,16 @@
     "date": "2025-07-30",
     "isLastBeforeWPBeta": false,
     "totalPRs": 72,
-    "featurePRs": 14,
-    "bugPRs": 22,
-    "a11yPRs": 3,
-    "performancePRs": 5,
+    "categories": {
+      "Features": 2,
+      "Enhancements": 12,
+      "Bug Fixes": 22,
+      "Accessibility": 3,
+      "Performance": 5,
+      "Documentation": 3,
+      "Code Quality": 20,
+      "Tools": 5
+    },
     "contributors": 34,
     "newContributors": 0,
     "contributorsList": [
@@ -671,10 +716,8 @@
       "youknowriad"
     ],
     "newContributorsList": [],
-    "enhancementPercent": 19,
-    "bugfixPercent": 31,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v21.3.0",
-    "parsedAt": "2025-12-11T18:14:25.825Z",
+    "parsedAt": "2025-12-11T22:57:39.490Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -683,10 +726,15 @@
     "date": "2025-07-16",
     "isLastBeforeWPBeta": false,
     "totalPRs": 44,
-    "featurePRs": 15,
-    "bugPRs": 9,
-    "a11yPRs": 1,
-    "performancePRs": 2,
+    "categories": {
+      "Enhancements": 15,
+      "Bug Fixes": 9,
+      "Accessibility": 1,
+      "Performance": 2,
+      "Documentation": 7,
+      "Code Quality": 7,
+      "Tools": 3
+    },
     "contributors": 25,
     "newContributors": 6,
     "contributorsList": [
@@ -724,10 +772,8 @@
       "r1shabh-gupta",
       "usersatoshi"
     ],
-    "enhancementPercent": 34,
-    "bugfixPercent": 20,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v21.2.0",
-    "parsedAt": "2025-12-11T18:14:25.825Z",
+    "parsedAt": "2025-12-11T22:57:39.490Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -736,10 +782,16 @@
     "date": "2025-07-02",
     "isLastBeforeWPBeta": false,
     "totalPRs": 64,
-    "featurePRs": 14,
-    "bugPRs": 22,
-    "a11yPRs": 1,
-    "performancePRs": 1,
+    "categories": {
+      "Enhancements": 14,
+      "Bug Fixes": 22,
+      "Accessibility": 1,
+      "Performance": 1,
+      "Documentation": 7,
+      "Code Quality": 13,
+      "Tools": 5,
+      "Various": 1
+    },
     "contributors": 31,
     "newContributors": 8,
     "contributorsList": [
@@ -785,10 +837,8 @@
       "usersatoshi",
       "yashjawale"
     ],
-    "enhancementPercent": 22,
-    "bugfixPercent": 34,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v21.1.0",
-    "parsedAt": "2025-12-11T18:14:25.826Z",
+    "parsedAt": "2025-12-11T22:57:39.490Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -797,10 +847,15 @@
     "date": "2025-06-11",
     "isLastBeforeWPBeta": false,
     "totalPRs": 60,
-    "featurePRs": 22,
-    "bugPRs": 10,
-    "a11yPRs": 4,
-    "performancePRs": 0,
+    "categories": {
+      "Enhancements": 22,
+      "Bug Fixes": 10,
+      "Accessibility": 4,
+      "Experiments": 1,
+      "Documentation": 13,
+      "Code Quality": 5,
+      "Tools": 5
+    },
     "contributors": 25,
     "newContributors": 5,
     "contributorsList": [
@@ -837,10 +892,8 @@
       "opurockey",
       "ravigadhiya007"
     ],
-    "enhancementPercent": 37,
-    "bugfixPercent": 17,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v21.0.0",
-    "parsedAt": "2025-12-11T18:14:25.826Z",
+    "parsedAt": "2025-12-11T22:57:39.490Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -849,10 +902,14 @@
     "date": "2025-05-28",
     "isLastBeforeWPBeta": false,
     "totalPRs": 49,
-    "featurePRs": 18,
-    "bugPRs": 12,
-    "a11yPRs": 3,
-    "performancePRs": 0,
+    "categories": {
+      "Enhancements": 18,
+      "Bug Fixes": 12,
+      "Accessibility": 3,
+      "Documentation": 8,
+      "Code Quality": 6,
+      "Tools": 2
+    },
     "contributors": 18,
     "newContributors": 1,
     "contributorsList": [
@@ -878,10 +935,8 @@
     "newContributorsList": [
       "jasalt"
     ],
-    "enhancementPercent": 37,
-    "bugfixPercent": 24,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v20.9.0",
-    "parsedAt": "2025-12-11T18:14:25.826Z",
+    "parsedAt": "2025-12-11T22:57:39.490Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -890,10 +945,16 @@
     "date": "2025-05-14",
     "isLastBeforeWPBeta": false,
     "totalPRs": 56,
-    "featurePRs": 6,
-    "bugPRs": 26,
-    "a11yPRs": 2,
-    "performancePRs": 3,
+    "categories": {
+      "Enhancements": 6,
+      "New APIs": 1,
+      "Bug Fixes": 26,
+      "Accessibility": 2,
+      "Performance": 3,
+      "Documentation": 7,
+      "Code Quality": 7,
+      "Tools": 4
+    },
     "contributors": 19,
     "newContributors": 2,
     "contributorsList": [
@@ -921,10 +982,8 @@
       "jrmd",
       "maikuolan"
     ],
-    "enhancementPercent": 11,
-    "bugfixPercent": 46,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v20.8.0",
-    "parsedAt": "2025-12-11T18:14:25.826Z",
+    "parsedAt": "2025-12-11T22:57:39.490Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -933,10 +992,14 @@
     "date": "2025-04-22",
     "isLastBeforeWPBeta": false,
     "totalPRs": 57,
-    "featurePRs": 11,
-    "bugPRs": 20,
-    "a11yPRs": 7,
-    "performancePRs": 0,
+    "categories": {
+      "Enhancements": 11,
+      "Bug Fixes": 20,
+      "Accessibility": 7,
+      "Documentation": 6,
+      "Code Quality": 9,
+      "Tools": 4
+    },
     "contributors": 21,
     "newContributors": 2,
     "contributorsList": [
@@ -966,10 +1029,8 @@
       "debarghya-banerjee",
       "karthikeya-io"
     ],
-    "enhancementPercent": 19,
-    "bugfixPercent": 35,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v20.7.0",
-    "parsedAt": "2025-12-11T18:14:25.826Z",
+    "parsedAt": "2025-12-11T22:57:39.490Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -978,10 +1039,15 @@
     "date": "2025-04-03",
     "isLastBeforeWPBeta": false,
     "totalPRs": 56,
-    "featurePRs": 7,
-    "bugPRs": 20,
-    "a11yPRs": 5,
-    "performancePRs": 4,
+    "categories": {
+      "Enhancements": 7,
+      "Bug Fixes": 20,
+      "Accessibility": 5,
+      "Performance": 4,
+      "Documentation": 9,
+      "Code Quality": 5,
+      "Tools": 6
+    },
     "contributors": 20,
     "newContributors": 2,
     "contributorsList": [
@@ -1010,10 +1076,8 @@
       "gmovr",
       "im3dabasia"
     ],
-    "enhancementPercent": 13,
-    "bugfixPercent": 36,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v20.6.0",
-    "parsedAt": "2025-12-11T18:14:25.826Z",
+    "parsedAt": "2025-12-11T22:57:39.490Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -1022,10 +1086,17 @@
     "date": "2025-03-20",
     "isLastBeforeWPBeta": false,
     "totalPRs": 58,
-    "featurePRs": 10,
-    "bugPRs": 26,
-    "a11yPRs": 6,
-    "performancePRs": 4,
+    "categories": {
+      "Enhancements": 10,
+      "Bug Fixes": 26,
+      "Accessibility": 6,
+      "Performance": 4,
+      "Experiments": 1,
+      "Documentation": 3,
+      "Code Quality": 4,
+      "Tools": 3,
+      "Various": 1
+    },
     "contributors": 22,
     "newContributors": 5,
     "contributorsList": [
@@ -1059,10 +1130,8 @@
       "sabbir1991",
       "sirlouen"
     ],
-    "enhancementPercent": 17,
-    "bugfixPercent": 45,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v20.5.0",
-    "parsedAt": "2025-12-11T18:14:25.827Z",
+    "parsedAt": "2025-12-11T22:57:39.490Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -1071,10 +1140,16 @@
     "date": "2025-03-05",
     "isLastBeforeWPBeta": true,
     "totalPRs": 72,
-    "featurePRs": 14,
-    "bugPRs": 28,
-    "a11yPRs": 6,
-    "performancePRs": 1,
+    "categories": {
+      "Enhancements": 14,
+      "Bug Fixes": 28,
+      "Accessibility": 6,
+      "Performance": 1,
+      "Documentation": 11,
+      "Code Quality": 5,
+      "Tools": 5,
+      "Various": 2
+    },
     "contributors": 30,
     "newContributors": 3,
     "contributorsList": [
@@ -1114,10 +1189,8 @@
       "andreawetzel",
       "kellymears"
     ],
-    "enhancementPercent": 19,
-    "bugfixPercent": 39,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v20.4.0",
-    "parsedAt": "2025-12-11T18:14:25.827Z",
+    "parsedAt": "2025-12-11T22:57:39.491Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -1126,10 +1199,16 @@
     "date": "2025-02-19",
     "isLastBeforeWPBeta": false,
     "totalPRs": 69,
-    "featurePRs": 16,
-    "bugPRs": 26,
-    "a11yPRs": 4,
-    "performancePRs": 3,
+    "categories": {
+      "Enhancements": 16,
+      "Bug Fixes": 26,
+      "Accessibility": 4,
+      "Performance": 3,
+      "Documentation": 3,
+      "Code Quality": 9,
+      "Tools": 5,
+      "Various": 3
+    },
     "contributors": 28,
     "newContributors": 6,
     "contributorsList": [
@@ -1170,10 +1249,8 @@
       "singhakanshu00",
       "srtfisher"
     ],
-    "enhancementPercent": 23,
-    "bugfixPercent": 38,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v20.3.0",
-    "parsedAt": "2025-12-11T18:14:25.827Z",
+    "parsedAt": "2025-12-11T22:57:39.491Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -1182,10 +1259,15 @@
     "date": "2025-02-05",
     "isLastBeforeWPBeta": false,
     "totalPRs": 61,
-    "featurePRs": 14,
-    "bugPRs": 16,
-    "a11yPRs": 3,
-    "performancePRs": 2,
+    "categories": {
+      "Enhancements": 14,
+      "Bug Fixes": 16,
+      "Accessibility": 3,
+      "Performance": 2,
+      "Documentation": 7,
+      "Code Quality": 15,
+      "Tools": 4
+    },
     "contributors": 19,
     "newContributors": 0,
     "contributorsList": [
@@ -1210,10 +1292,8 @@
       "yogeshbhutkar"
     ],
     "newContributorsList": [],
-    "enhancementPercent": 23,
-    "bugfixPercent": 26,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v20.2.0",
-    "parsedAt": "2025-12-11T18:14:25.828Z",
+    "parsedAt": "2025-12-11T22:57:39.491Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -1222,10 +1302,15 @@
     "date": "2025-01-22",
     "isLastBeforeWPBeta": false,
     "totalPRs": 91,
-    "featurePRs": 18,
-    "bugPRs": 28,
-    "a11yPRs": 9,
-    "performancePRs": 2,
+    "categories": {
+      "Enhancements": 18,
+      "Bug Fixes": 28,
+      "Accessibility": 9,
+      "Performance": 2,
+      "Documentation": 14,
+      "Code Quality": 14,
+      "Tools": 6
+    },
     "contributors": 34,
     "newContributors": 5,
     "contributorsList": [
@@ -1271,10 +1356,8 @@
       "im3dabasia",
       "szepeviktor"
     ],
-    "enhancementPercent": 20,
-    "bugfixPercent": 31,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v20.1.0",
-    "parsedAt": "2025-12-11T18:14:25.828Z",
+    "parsedAt": "2025-12-11T22:57:39.491Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -1283,10 +1366,19 @@
     "date": "2025-01-09",
     "isLastBeforeWPBeta": false,
     "totalPRs": 279,
-    "featurePRs": 80,
-    "bugPRs": 82,
-    "a11yPRs": 12,
-    "performancePRs": 2,
+    "categories": {
+      "Features": 1,
+      "Enhancements": 79,
+      "New APIs": 1,
+      "Bug Fixes": 82,
+      "Accessibility": 12,
+      "Performance": 2,
+      "Experiments": 1,
+      "Documentation": 41,
+      "Code Quality": 46,
+      "Tools": 9,
+      "Various": 5
+    },
     "contributors": 70,
     "newContributors": 13,
     "contributorsList": [
@@ -1376,10 +1468,8 @@
       "timse201",
       "vampdroid"
     ],
-    "enhancementPercent": 29,
-    "bugfixPercent": 29,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v20.0.0",
-    "parsedAt": "2025-12-11T18:14:25.828Z",
+    "parsedAt": "2025-12-11T22:57:39.491Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -1388,10 +1478,18 @@
     "date": "2024-12-18",
     "isLastBeforeWPBeta": false,
     "totalPRs": 220,
-    "featurePRs": 53,
-    "bugPRs": 83,
-    "a11yPRs": 6,
-    "performancePRs": 4,
+    "categories": {
+      "Enhancements": 53,
+      "Bug Fixes": 83,
+      "Accessibility": 6,
+      "Performance": 4,
+      "Experiments": 1,
+      "Documentation": 16,
+      "Code Quality": 41,
+      "Tools": 9,
+      "Security": 1,
+      "Various": 6
+    },
     "contributors": 58,
     "newContributors": 8,
     "contributorsList": [
@@ -1464,10 +1562,8 @@
       "subodhr258",
       "wwdes"
     ],
-    "enhancementPercent": 24,
-    "bugfixPercent": 38,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v19.9.0",
-    "parsedAt": "2025-12-11T18:14:25.829Z",
+    "parsedAt": "2025-12-11T22:57:39.491Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -1476,10 +1572,15 @@
     "date": "2024-12-04",
     "isLastBeforeWPBeta": false,
     "totalPRs": 147,
-    "featurePRs": 33,
-    "bugPRs": 44,
-    "a11yPRs": 6,
-    "performancePRs": 0,
+    "categories": {
+      "Enhancements": 33,
+      "Bug Fixes": 44,
+      "Accessibility": 6,
+      "Experiments": 2,
+      "Documentation": 14,
+      "Code Quality": 42,
+      "Tools": 6
+    },
     "contributors": 52,
     "newContributors": 6,
     "contributorsList": [
@@ -1544,10 +1645,8 @@
       "sarthaknagoshe2002",
       "sukhendu2002"
     ],
-    "enhancementPercent": 22,
-    "bugfixPercent": 30,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v19.8.0",
-    "parsedAt": "2025-12-11T18:14:25.829Z",
+    "parsedAt": "2025-12-11T22:57:39.491Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -1556,10 +1655,17 @@
     "date": "2024-11-20",
     "isLastBeforeWPBeta": false,
     "totalPRs": 144,
-    "featurePRs": 29,
-    "bugPRs": 47,
-    "a11yPRs": 8,
-    "performancePRs": 7,
+    "categories": {
+      "Enhancements": 29,
+      "Bug Fixes": 47,
+      "Accessibility": 8,
+      "Performance": 7,
+      "Experiments": 4,
+      "Documentation": 16,
+      "Code Quality": 27,
+      "Tools": 3,
+      "Various": 3
+    },
     "contributors": 46,
     "newContributors": 6,
     "contributorsList": [
@@ -1618,10 +1724,8 @@
       "rinkalpagdar",
       "yogeshbhutkar"
     ],
-    "enhancementPercent": 20,
-    "bugfixPercent": 33,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v19.7.0",
-    "parsedAt": "2025-12-11T18:14:25.830Z",
+    "parsedAt": "2025-12-11T22:57:39.492Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -1630,10 +1734,17 @@
     "date": "2024-11-06",
     "isLastBeforeWPBeta": false,
     "totalPRs": 193,
-    "featurePRs": 37,
-    "bugPRs": 59,
-    "a11yPRs": 9,
-    "performancePRs": 5,
+    "categories": {
+      "Enhancements": 37,
+      "Bug Fixes": 59,
+      "Accessibility": 9,
+      "Performance": 5,
+      "Experiments": 5,
+      "Documentation": 12,
+      "Code Quality": 55,
+      "Tools": 8,
+      "Uncategorized": 3
+    },
     "contributors": 57,
     "newContributors": 7,
     "contributorsList": [
@@ -1704,10 +1815,8 @@
       "rudrakshi-gupta",
       "sh4lin"
     ],
-    "enhancementPercent": 19,
-    "bugfixPercent": 31,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v19.6.0",
-    "parsedAt": "2025-12-11T18:14:25.830Z",
+    "parsedAt": "2025-12-11T22:57:39.492Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -1716,10 +1825,16 @@
     "date": "2024-10-23",
     "isLastBeforeWPBeta": false,
     "totalPRs": 117,
-    "featurePRs": 12,
-    "bugPRs": 52,
-    "a11yPRs": 8,
-    "performancePRs": 2,
+    "categories": {
+      "Enhancements": 12,
+      "Bug Fixes": 52,
+      "Accessibility": 8,
+      "Performance": 2,
+      "Documentation": 9,
+      "Code Quality": 22,
+      "Tools": 11,
+      "Uncategorized": 1
+    },
     "contributors": 47,
     "newContributors": 6,
     "contributorsList": [
@@ -1779,10 +1894,8 @@
       "vk17-starlord",
       "vrishabhsk"
     ],
-    "enhancementPercent": 10,
-    "bugfixPercent": 44,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v19.5.0",
-    "parsedAt": "2025-12-11T18:14:25.831Z",
+    "parsedAt": "2025-12-11T22:57:39.492Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -1791,10 +1904,16 @@
     "date": "2024-10-09",
     "isLastBeforeWPBeta": false,
     "totalPRs": 186,
-    "featurePRs": 61,
-    "bugPRs": 54,
-    "a11yPRs": 9,
-    "performancePRs": 3,
+    "categories": {
+      "Enhancements": 61,
+      "New APIs": 4,
+      "Bug Fixes": 54,
+      "Accessibility": 9,
+      "Performance": 3,
+      "Documentation": 14,
+      "Code Quality": 32,
+      "Tools": 9
+    },
     "contributors": 56,
     "newContributors": 6,
     "contributorsList": [
@@ -1863,10 +1982,8 @@
       "parthvataliya",
       "spadeshoe"
     ],
-    "enhancementPercent": 33,
-    "bugfixPercent": 29,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v19.4.0",
-    "parsedAt": "2025-12-11T18:14:25.831Z",
+    "parsedAt": "2025-12-11T22:57:39.492Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -1875,10 +1992,18 @@
     "date": "2024-09-25",
     "isLastBeforeWPBeta": true,
     "totalPRs": 167,
-    "featurePRs": 47,
-    "bugPRs": 48,
-    "a11yPRs": 10,
-    "performancePRs": 3,
+    "categories": {
+      "Features": 1,
+      "Enhancements": 46,
+      "New APIs": 3,
+      "Bug Fixes": 48,
+      "Accessibility": 10,
+      "Performance": 3,
+      "Experiments": 1,
+      "Documentation": 7,
+      "Code Quality": 35,
+      "Tools": 13
+    },
     "contributors": 52,
     "newContributors": 7,
     "contributorsList": [
@@ -1944,10 +2069,8 @@
       "louwie17",
       "rahulharpal1603"
     ],
-    "enhancementPercent": 28,
-    "bugfixPercent": 29,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v19.3.0",
-    "parsedAt": "2025-12-11T18:14:25.831Z",
+    "parsedAt": "2025-12-11T22:57:39.492Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -1956,10 +2079,18 @@
     "date": "2024-09-11",
     "isLastBeforeWPBeta": false,
     "totalPRs": 195,
-    "featurePRs": 59,
-    "bugPRs": 58,
-    "a11yPRs": 5,
-    "performancePRs": 10,
+    "categories": {
+      "Enhancements": 59,
+      "New APIs": 1,
+      "Bug Fixes": 58,
+      "Accessibility": 5,
+      "Performance": 10,
+      "Experiments": 2,
+      "Documentation": 21,
+      "Code Quality": 31,
+      "Tools": 6,
+      "Various": 2
+    },
     "contributors": 54,
     "newContributors": 6,
     "contributorsList": [
@@ -2026,10 +2157,8 @@
       "rithik56",
       "rohitmathur-7"
     ],
-    "enhancementPercent": 30,
-    "bugfixPercent": 30,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v19.2.0",
-    "parsedAt": "2025-12-11T18:14:25.832Z",
+    "parsedAt": "2025-12-11T22:57:39.492Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -2038,10 +2167,17 @@
     "date": "2024-08-28",
     "isLastBeforeWPBeta": false,
     "totalPRs": 182,
-    "featurePRs": 63,
-    "bugPRs": 35,
-    "a11yPRs": 5,
-    "performancePRs": 4,
+    "categories": {
+      "Enhancements": 63,
+      "New APIs": 5,
+      "Bug Fixes": 35,
+      "Accessibility": 5,
+      "Performance": 4,
+      "Experiments": 5,
+      "Documentation": 24,
+      "Code Quality": 34,
+      "Tools": 7
+    },
     "contributors": 47,
     "newContributors": 5,
     "contributorsList": [
@@ -2100,10 +2236,8 @@
       "rishit30g",
       "ssang"
     ],
-    "enhancementPercent": 35,
-    "bugfixPercent": 19,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v19.1.0",
-    "parsedAt": "2025-12-11T18:14:25.832Z",
+    "parsedAt": "2025-12-11T22:57:39.493Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -2112,10 +2246,17 @@
     "date": "2024-08-14",
     "isLastBeforeWPBeta": false,
     "totalPRs": 179,
-    "featurePRs": 64,
-    "bugPRs": 52,
-    "a11yPRs": 8,
-    "performancePRs": 4,
+    "categories": {
+      "Enhancements": 64,
+      "New APIs": 1,
+      "Bug Fixes": 52,
+      "Accessibility": 8,
+      "Performance": 4,
+      "Experiments": 5,
+      "Documentation": 13,
+      "Code Quality": 27,
+      "Tools": 5
+    },
     "contributors": 49,
     "newContributors": 5,
     "contributorsList": [
@@ -2176,10 +2317,8 @@
       "rishit30g",
       "wzieba"
     ],
-    "enhancementPercent": 36,
-    "bugfixPercent": 29,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v19.0.0",
-    "parsedAt": "2025-12-11T18:14:25.833Z",
+    "parsedAt": "2025-12-11T22:57:39.493Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -2188,10 +2327,17 @@
     "date": "2024-07-31",
     "isLastBeforeWPBeta": false,
     "totalPRs": 237,
-    "featurePRs": 78,
-    "bugPRs": 70,
-    "a11yPRs": 4,
-    "performancePRs": 1,
+    "categories": {
+      "Enhancements": 78,
+      "New APIs": 1,
+      "Bug Fixes": 70,
+      "Accessibility": 4,
+      "Performance": 1,
+      "Experiments": 9,
+      "Documentation": 20,
+      "Code Quality": 42,
+      "Tools": 12
+    },
     "contributors": 58,
     "newContributors": 4,
     "contributorsList": [
@@ -2260,10 +2406,8 @@
       "tomllobet",
       "troychaplin"
     ],
-    "enhancementPercent": 33,
-    "bugfixPercent": 30,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v18.9.0",
-    "parsedAt": "2025-12-11T18:14:25.833Z",
+    "parsedAt": "2025-12-11T22:57:39.493Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -2272,10 +2416,18 @@
     "date": "2024-07-17",
     "isLastBeforeWPBeta": false,
     "totalPRs": 214,
-    "featurePRs": 56,
-    "bugPRs": 80,
-    "a11yPRs": 11,
-    "performancePRs": 3,
+    "categories": {
+      "Features": 1,
+      "Enhancements": 55,
+      "New APIs": 1,
+      "Bug Fixes": 80,
+      "Accessibility": 11,
+      "Performance": 3,
+      "Experiments": 2,
+      "Documentation": 14,
+      "Code Quality": 28,
+      "Tools": 19
+    },
     "contributors": 59,
     "newContributors": 10,
     "contributorsList": [
@@ -2351,10 +2503,8 @@
       "shreya0204",
       "sejas"
     ],
-    "enhancementPercent": 26,
-    "bugfixPercent": 37,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v18.8.0",
-    "parsedAt": "2025-12-11T18:14:25.834Z",
+    "parsedAt": "2025-12-11T22:57:39.493Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -2363,10 +2513,17 @@
     "date": "2024-07-03",
     "isLastBeforeWPBeta": false,
     "totalPRs": 116,
-    "featurePRs": 13,
-    "bugPRs": 49,
-    "a11yPRs": 5,
-    "performancePRs": 3,
+    "categories": {
+      "Enhancements": 13,
+      "Bug Fixes": 49,
+      "Accessibility": 5,
+      "Performance": 3,
+      "Experiments": 1,
+      "Documentation": 18,
+      "Code Quality": 10,
+      "Tools": 15,
+      "Various": 2
+    },
     "contributors": 50,
     "newContributors": 7,
     "contributorsList": [
@@ -2430,10 +2587,8 @@
       "saulyz",
       "snehapatil2001"
     ],
-    "enhancementPercent": 11,
-    "bugfixPercent": 42,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v18.7.0",
-    "parsedAt": "2025-12-11T18:14:25.834Z",
+    "parsedAt": "2025-12-11T22:57:39.493Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -2442,10 +2597,18 @@
     "date": "2024-06-20",
     "isLastBeforeWPBeta": false,
     "totalPRs": 157,
-    "featurePRs": 13,
-    "bugPRs": 63,
-    "a11yPRs": 4,
-    "performancePRs": 3,
+    "categories": {
+      "Enhancements": 13,
+      "New APIs": 1,
+      "Bug Fixes": 63,
+      "Accessibility": 4,
+      "Performance": 3,
+      "Experiments": 2,
+      "Documentation": 24,
+      "Code Quality": 35,
+      "Tools": 10,
+      "Various": 2
+    },
     "contributors": 53,
     "newContributors": 4,
     "contributorsList": [
@@ -2509,10 +2672,8 @@
       "carstingaxion",
       "up1512001"
     ],
-    "enhancementPercent": 8,
-    "bugfixPercent": 40,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v18.6.0",
-    "parsedAt": "2025-12-11T18:14:25.835Z",
+    "parsedAt": "2025-12-11T22:57:39.494Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -2521,10 +2682,18 @@
     "date": "2024-06-05",
     "isLastBeforeWPBeta": true,
     "totalPRs": 286,
-    "featurePRs": 84,
-    "bugPRs": 70,
-    "a11yPRs": 3,
-    "performancePRs": 4,
+    "categories": {
+      "Features": 8,
+      "Enhancements": 76,
+      "Bug Fixes": 70,
+      "Accessibility": 3,
+      "Performance": 4,
+      "Experiments": 1,
+      "Documentation": 35,
+      "Code Quality": 67,
+      "Tools": 14,
+      "Various": 8
+    },
     "contributors": 70,
     "newContributors": 10,
     "contributorsList": [
@@ -2611,10 +2780,8 @@
       "sanjucta",
       "vipul0425"
     ],
-    "enhancementPercent": 29,
-    "bugfixPercent": 24,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v18.5.0",
-    "parsedAt": "2025-12-11T18:14:25.835Z",
+    "parsedAt": "2025-12-11T22:57:39.494Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -2623,10 +2790,17 @@
     "date": "2024-05-22",
     "isLastBeforeWPBeta": false,
     "totalPRs": 173,
-    "featurePRs": 11,
-    "bugPRs": 51,
-    "a11yPRs": 7,
-    "performancePRs": 5,
+    "categories": {
+      "Enhancements": 11,
+      "Post actions": 36,
+      "Bug Fixes": 50,
+      "Accessibility": 7,
+      "Performance": 5,
+      "Documentation": 21,
+      "Code Quality": 21,
+      "Tools": 21,
+      "Bug fixes": 1
+    },
     "contributors": 58,
     "newContributors": 9,
     "contributorsList": [
@@ -2700,10 +2874,8 @@
       "styleshit",
       "vipul0425"
     ],
-    "enhancementPercent": 6,
-    "bugfixPercent": 29,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v18.4.0",
-    "parsedAt": "2025-12-11T18:14:25.836Z",
+    "parsedAt": "2025-12-11T22:57:39.494Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -2712,10 +2884,16 @@
     "date": "2024-05-08",
     "isLastBeforeWPBeta": false,
     "totalPRs": 156,
-    "featurePRs": 44,
-    "bugPRs": 27,
-    "a11yPRs": 3,
-    "performancePRs": 12,
+    "categories": {
+      "Enhancements": 44,
+      "Bug Fixes": 27,
+      "Accessibility": 3,
+      "Performance": 12,
+      "Experiments": 1,
+      "Documentation": 23,
+      "Code Quality": 39,
+      "Tools": 7
+    },
     "contributors": 44,
     "newContributors": 3,
     "contributorsList": [
@@ -2769,10 +2947,8 @@
       "itzmekhokan",
       "lanresmith"
     ],
-    "enhancementPercent": 28,
-    "bugfixPercent": 17,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v18.3.0",
-    "parsedAt": "2025-12-11T18:14:25.836Z",
+    "parsedAt": "2025-12-11T22:57:39.494Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -2781,10 +2957,17 @@
     "date": "2024-04-24",
     "isLastBeforeWPBeta": false,
     "totalPRs": 226,
-    "featurePRs": 60,
-    "bugPRs": 70,
-    "a11yPRs": 4,
-    "performancePRs": 18,
+    "categories": {
+      "Enhancements": 60,
+      "New APIs": 5,
+      "Bug Fixes": 70,
+      "Accessibility": 4,
+      "Performance": 18,
+      "Documentation": 15,
+      "Code Quality": 41,
+      "Tools": 12,
+      "Uncategorized": 1
+    },
     "contributors": 54,
     "newContributors": 4,
     "contributorsList": [
@@ -2849,10 +3032,8 @@
       "garridinsi",
       "xhemals"
     ],
-    "enhancementPercent": 27,
-    "bugfixPercent": 31,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v18.2.0",
-    "parsedAt": "2025-12-11T18:14:25.837Z",
+    "parsedAt": "2025-12-11T22:57:39.495Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -2861,10 +3042,19 @@
     "date": "2024-04-10",
     "isLastBeforeWPBeta": false,
     "totalPRs": 153,
-    "featurePRs": 58,
-    "bugPRs": 32,
-    "a11yPRs": 6,
-    "performancePRs": 0,
+    "categories": {
+      "Enhancements": 58,
+      "New APIs": 1,
+      "Bug Fixes": 32,
+      "Accessibility": 6,
+      "Performance": 0,
+      "Block Editor": 6,
+      "Experiments": 1,
+      "Documentation": 13,
+      "Code Quality": 27,
+      "Tools": 5,
+      "Uncategorized": 4
+    },
     "contributors": 51,
     "newContributors": 5,
     "contributorsList": [
@@ -2927,10 +3117,8 @@
       "nirav7707",
       "steveariss"
     ],
-    "enhancementPercent": 38,
-    "bugfixPercent": 21,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v18.1.0",
-    "parsedAt": "2025-12-11T18:14:25.838Z",
+    "parsedAt": "2025-12-11T22:57:39.495Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -2939,10 +3127,15 @@
     "date": "2024-03-27",
     "isLastBeforeWPBeta": false,
     "totalPRs": 194,
-    "featurePRs": 29,
-    "bugPRs": 75,
-    "a11yPRs": 3,
-    "performancePRs": 0,
+    "categories": {
+      "Enhancements": 29,
+      "New APIs": 2,
+      "Bug Fixes": 75,
+      "Accessibility": 3,
+      "Documentation": 35,
+      "Code Quality": 39,
+      "Tools": 11
+    },
     "contributors": 74,
     "newContributors": 17,
     "contributorsList": [
@@ -3040,10 +3233,8 @@
       "teresagobble",
       "tomepajk"
     ],
-    "enhancementPercent": 15,
-    "bugfixPercent": 39,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v18.0.0",
-    "parsedAt": "2025-12-11T18:14:25.838Z",
+    "parsedAt": "2025-12-11T22:57:39.495Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -3052,10 +3243,17 @@
     "date": "2024-03-13",
     "isLastBeforeWPBeta": false,
     "totalPRs": 172,
-    "featurePRs": 33,
-    "bugPRs": 67,
-    "a11yPRs": 7,
-    "performancePRs": 2,
+    "categories": {
+      "Enhancements": 33,
+      "Bug Fixes": 67,
+      "Accessibility": 7,
+      "Performance": 2,
+      "Experiments": 3,
+      "Documentation": 23,
+      "Code Quality": 28,
+      "Tools": 8,
+      "Security": 1
+    },
     "contributors": 59,
     "newContributors": 5,
     "contributorsList": [
@@ -3126,10 +3324,8 @@
       "global",
       "teresagobble"
     ],
-    "enhancementPercent": 19,
-    "bugfixPercent": 39,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v17.9.0",
-    "parsedAt": "2025-12-11T18:14:25.839Z",
+    "parsedAt": "2025-12-11T22:57:39.495Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -3138,10 +3334,16 @@
     "date": "2024-02-28",
     "isLastBeforeWPBeta": false,
     "totalPRs": 154,
-    "featurePRs": 21,
-    "bugPRs": 64,
-    "a11yPRs": 8,
-    "performancePRs": 2,
+    "categories": {
+      "Features": 3,
+      "Enhancements": 18,
+      "Bug Fixes": 64,
+      "Accessibility": 8,
+      "Performance": 2,
+      "Documentation": 14,
+      "Code Quality": 32,
+      "Tools": 13
+    },
     "contributors": 45,
     "newContributors": 0,
     "contributorsList": [
@@ -3192,10 +3394,8 @@
       "youknowriad"
     ],
     "newContributorsList": [],
-    "enhancementPercent": 14,
-    "bugfixPercent": 42,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v17.8.0",
-    "parsedAt": "2025-12-11T18:14:25.839Z",
+    "parsedAt": "2025-12-11T22:57:39.495Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -3204,10 +3404,19 @@
     "date": "2024-02-14",
     "isLastBeforeWPBeta": true,
     "totalPRs": 322,
-    "featurePRs": 76,
-    "bugPRs": 86,
-    "a11yPRs": 13,
-    "performancePRs": 20,
+    "categories": {
+      "Enhancements": 76,
+      "New APIs": 1,
+      "Bug Fixes": 86,
+      "Accessibility": 13,
+      "Performance": 20,
+      "Experiments": 2,
+      "Documentation": 28,
+      "Code Quality": 48,
+      "Tools": 31,
+      "Security": 2,
+      "Various": 15
+    },
     "contributors": 71,
     "newContributors": 3,
     "contributorsList": [
@@ -3288,10 +3497,8 @@
       "krupal-panchal",
       "shreyash3087"
     ],
-    "enhancementPercent": 24,
-    "bugfixPercent": 27,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v17.7.0",
-    "parsedAt": "2025-12-11T18:14:25.840Z",
+    "parsedAt": "2025-12-11T22:57:39.496Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -3300,10 +3507,19 @@
     "date": "2024-01-31",
     "isLastBeforeWPBeta": false,
     "totalPRs": 256,
-    "featurePRs": 75,
-    "bugPRs": 58,
-    "a11yPRs": 5,
-    "performancePRs": 20,
+    "categories": {
+      "Features": 8,
+      "Enhancements": 67,
+      "New APIs": 2,
+      "Bug Fixes": 58,
+      "Accessibility": 5,
+      "Performance": 20,
+      "Experiments": 25,
+      "Documentation": 16,
+      "Code Quality": 39,
+      "Tools": 15,
+      "Font Library": 1
+    },
     "contributors": 71,
     "newContributors": 3,
     "contributorsList": [
@@ -3384,10 +3600,8 @@
       "leomuniz",
       "wordpress"
     ],
-    "enhancementPercent": 29,
-    "bugfixPercent": 23,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v17.6.0",
-    "parsedAt": "2025-12-11T18:14:25.841Z",
+    "parsedAt": "2025-12-11T22:57:39.497Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -3396,10 +3610,15 @@
     "date": "2024-01-17",
     "isLastBeforeWPBeta": false,
     "totalPRs": 162,
-    "featurePRs": 31,
-    "bugPRs": 37,
-    "a11yPRs": 0,
-    "performancePRs": 5,
+    "categories": {
+      "Enhancements": 31,
+      "Bug Fixes": 37,
+      "Performance": 5,
+      "Experiments": 26,
+      "Documentation": 16,
+      "Code Quality": 19,
+      "Tools": 28
+    },
     "contributors": 46,
     "newContributors": 2,
     "contributorsList": [
@@ -3454,10 +3673,8 @@
       "hrithikdalal",
       "muhme"
     ],
-    "enhancementPercent": 19,
-    "bugfixPercent": 23,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v17.5.0",
-    "parsedAt": "2025-12-11T18:14:25.842Z",
+    "parsedAt": "2025-12-11T22:57:39.497Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -3466,10 +3683,16 @@
     "date": "2024-01-03",
     "isLastBeforeWPBeta": false,
     "totalPRs": 193,
-    "featurePRs": 21,
-    "bugPRs": 46,
-    "a11yPRs": 3,
-    "performancePRs": 16,
+    "categories": {
+      "Enhancements": 21,
+      "Bug Fixes": 46,
+      "Accessibility": 3,
+      "Performance": 16,
+      "Experiments": 31,
+      "Documentation": 26,
+      "Code Quality": 39,
+      "Tools": 11
+    },
     "contributors": 53,
     "newContributors": 3,
     "contributorsList": [
@@ -3532,10 +3755,8 @@
       "koen12344",
       "kurudrive"
     ],
-    "enhancementPercent": 11,
-    "bugfixPercent": 24,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v17.4.0",
-    "parsedAt": "2025-12-11T18:14:25.842Z",
+    "parsedAt": "2025-12-11T22:57:39.497Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -3544,10 +3765,9 @@
     "date": "2023-12-20",
     "isLastBeforeWPBeta": false,
     "totalPRs": 4,
-    "featurePRs": 0,
-    "bugPRs": 4,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "Bug Fixes": 4
+    },
     "contributors": 4,
     "newContributors": 0,
     "contributorsList": [
@@ -3557,10 +3777,8 @@
       "ellatrix"
     ],
     "newContributorsList": [],
-    "enhancementPercent": 0,
-    "bugfixPercent": 100,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v17.3.0",
-    "parsedAt": "2025-12-11T18:14:25.845Z",
+    "parsedAt": "2025-12-11T22:57:39.497Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -3569,10 +3787,11 @@
     "date": "2023-12-06",
     "isLastBeforeWPBeta": false,
     "totalPRs": 9,
-    "featurePRs": 0,
-    "bugPRs": 6,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "Bug Fixes": 6,
+      "Documentation": 2,
+      "Tools": 1
+    },
     "contributors": 8,
     "newContributors": 0,
     "contributorsList": [
@@ -3586,10 +3805,8 @@
       "jorgefilipecosta"
     ],
     "newContributorsList": [],
-    "enhancementPercent": 0,
-    "bugfixPercent": 67,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v17.2.0",
-    "parsedAt": "2025-12-11T18:14:25.845Z",
+    "parsedAt": "2025-12-11T22:57:39.497Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -3598,10 +3815,19 @@
     "date": "2023-11-22",
     "isLastBeforeWPBeta": false,
     "totalPRs": 186,
-    "featurePRs": 21,
-    "bugPRs": 46,
-    "a11yPRs": 7,
-    "performancePRs": 6,
+    "categories": {
+      "Enhancements": 21,
+      "New APIs": 1,
+      "Bug Fixes": 45,
+      "Accessibility": 7,
+      "Performance": 6,
+      "Experiments": 16,
+      "Documentation": 17,
+      "Code Quality": 48,
+      "Tools": 24,
+      "Bug fixes": 1,
+      "Block Library": 0
+    },
     "contributors": 57,
     "newContributors": 3,
     "contributorsList": [
@@ -3668,10 +3894,8 @@
       "jorgevilchez95",
       "sacerro"
     ],
-    "enhancementPercent": 11,
-    "bugfixPercent": 25,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v17.1.0",
-    "parsedAt": "2025-12-11T18:14:25.846Z",
+    "parsedAt": "2025-12-11T22:57:39.498Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -3680,10 +3904,16 @@
     "date": "2023-11-09",
     "isLastBeforeWPBeta": false,
     "totalPRs": 104,
-    "featurePRs": 10,
-    "bugPRs": 36,
-    "a11yPRs": 3,
-    "performancePRs": 7,
+    "categories": {
+      "Enhancements": 10,
+      "Bug Fixes": 36,
+      "Accessibility": 3,
+      "Performance": 7,
+      "Experiments": 14,
+      "Documentation": 9,
+      "Code Quality": 16,
+      "Tools": 9
+    },
     "contributors": 47,
     "newContributors": 4,
     "contributorsList": [
@@ -3741,10 +3971,8 @@
       "parikshit-adhikari",
       "strarsis"
     ],
-    "enhancementPercent": 10,
-    "bugfixPercent": 35,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v17.0.0",
-    "parsedAt": "2025-12-11T18:14:25.846Z",
+    "parsedAt": "2025-12-11T22:57:39.498Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -3753,10 +3981,19 @@
     "date": "2023-10-25",
     "isLastBeforeWPBeta": false,
     "totalPRs": 162,
-    "featurePRs": 15,
-    "bugPRs": 61,
-    "a11yPRs": 4,
-    "performancePRs": 5,
+    "categories": {
+      "Features": 3,
+      "Enhancements": 12,
+      "Block Editor": 13,
+      "New APIs": 1,
+      "Bug Fixes": 61,
+      "Accessibility": 4,
+      "Performance": 5,
+      "Experiments": 10,
+      "Documentation": 22,
+      "Code Quality": 17,
+      "Tools": 14
+    },
     "contributors": 60,
     "newContributors": 1,
     "contributorsList": [
@@ -3824,10 +4061,8 @@
     "newContributorsList": [
       "unscripted"
     ],
-    "enhancementPercent": 9,
-    "bugfixPercent": 38,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v16.9.0",
-    "parsedAt": "2025-12-11T18:14:25.846Z",
+    "parsedAt": "2025-12-11T22:57:39.498Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -3836,10 +4071,12 @@
     "date": "2023-10-11",
     "isLastBeforeWPBeta": false,
     "totalPRs": 4,
-    "featurePRs": 1,
-    "bugPRs": 0,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "Tools": 1,
+      "Various": 1,
+      "Enhancements": 1,
+      "Code Quality": 1
+    },
     "contributors": 3,
     "newContributors": 0,
     "contributorsList": [
@@ -3848,10 +4085,8 @@
       "jorgefilipecosta"
     ],
     "newContributorsList": [],
-    "enhancementPercent": 25,
-    "bugfixPercent": 0,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v16.8.0",
-    "parsedAt": "2025-12-11T18:14:25.847Z",
+    "parsedAt": "2025-12-11T22:57:39.498Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -3860,10 +4095,19 @@
     "date": "2023-09-27",
     "isLastBeforeWPBeta": true,
     "totalPRs": 333,
-    "featurePRs": 96,
-    "bugPRs": 104,
-    "a11yPRs": 10,
-    "performancePRs": 12,
+    "categories": {
+      "Features": 8,
+      "Enhancements": 88,
+      "New APIs": 6,
+      "Bug Fixes": 104,
+      "Accessibility": 10,
+      "Performance": 12,
+      "Experiments": 1,
+      "Documentation": 30,
+      "Code Quality": 47,
+      "Tools": 26,
+      "Various": 1
+    },
     "contributors": 89,
     "newContributors": 7,
     "contributorsList": [
@@ -3966,10 +4210,8 @@
       "rajinsharwar",
       "toolstack"
     ],
-    "enhancementPercent": 29,
-    "bugfixPercent": 31,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v16.7.0",
-    "parsedAt": "2025-12-11T18:14:25.848Z",
+    "parsedAt": "2025-12-11T22:57:39.498Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -3978,10 +4220,18 @@
     "date": "2023-09-06",
     "isLastBeforeWPBeta": false,
     "totalPRs": 124,
-    "featurePRs": 25,
-    "bugPRs": 40,
-    "a11yPRs": 8,
-    "performancePRs": 3,
+    "categories": {
+      "Features": 4,
+      "Enhancements": 21,
+      "New APIs": 1,
+      "Bug Fixes": 40,
+      "Accessibility": 8,
+      "Performance": 3,
+      "Experiments": 4,
+      "Documentation": 19,
+      "Code Quality": 13,
+      "Tools": 11
+    },
     "contributors": 49,
     "newContributors": 3,
     "contributorsList": [
@@ -4040,10 +4290,8 @@
       "krokodok",
       "mklute101"
     ],
-    "enhancementPercent": 20,
-    "bugfixPercent": 32,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v16.6.0",
-    "parsedAt": "2025-12-11T18:14:25.848Z",
+    "parsedAt": "2025-12-11T22:57:39.498Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -4052,10 +4300,18 @@
     "date": "2023-08-23",
     "isLastBeforeWPBeta": false,
     "totalPRs": 199,
-    "featurePRs": 40,
-    "bugPRs": 62,
-    "a11yPRs": 4,
-    "performancePRs": 4,
+    "categories": {
+      "Features": 1,
+      "Enhancements": 39,
+      "New APIs": 1,
+      "Bug Fixes": 62,
+      "Accessibility": 4,
+      "Performance": 4,
+      "Experiments": 4,
+      "Documentation": 28,
+      "Code Quality": 33,
+      "Tools": 23
+    },
     "contributors": 63,
     "newContributors": 5,
     "contributorsList": [
@@ -4130,10 +4386,8 @@
       "ducksblock",
       "rtro92"
     ],
-    "enhancementPercent": 20,
-    "bugfixPercent": 31,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v16.5.0",
-    "parsedAt": "2025-12-11T18:14:25.848Z",
+    "parsedAt": "2025-12-11T22:57:39.499Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -4142,10 +4396,17 @@
     "date": "2023-08-09",
     "isLastBeforeWPBeta": false,
     "totalPRs": 171,
-    "featurePRs": 37,
-    "bugPRs": 67,
-    "a11yPRs": 7,
-    "performancePRs": 2,
+    "categories": {
+      "Features": 3,
+      "Enhancements": 34,
+      "Bug Fixes": 67,
+      "Accessibility": 7,
+      "Performance": 2,
+      "Experiments": 6,
+      "Documentation": 10,
+      "Code Quality": 23,
+      "Tools": 19
+    },
     "contributors": 60,
     "newContributors": 2,
     "contributorsList": [
@@ -4214,10 +4475,8 @@
       "armondal",
       "lunaluna"
     ],
-    "enhancementPercent": 22,
-    "bugfixPercent": 39,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v16.4.0",
-    "parsedAt": "2025-12-11T18:14:25.849Z",
+    "parsedAt": "2025-12-11T22:57:39.499Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -4226,10 +4485,15 @@
     "date": "2023-07-26",
     "isLastBeforeWPBeta": false,
     "totalPRs": 168,
-    "featurePRs": 36,
-    "bugPRs": 78,
-    "a11yPRs": 0,
-    "performancePRs": 4,
+    "categories": {
+      "Enhancements": 36,
+      "Bug Fixes": 78,
+      "Performance": 4,
+      "Experiments": 2,
+      "Documentation": 9,
+      "Code Quality": 19,
+      "Tools": 20
+    },
     "contributors": 54,
     "newContributors": 3,
     "contributorsList": [
@@ -4293,10 +4557,8 @@
       "ghorivipul97",
       "sethrubenstein"
     ],
-    "enhancementPercent": 21,
-    "bugfixPercent": 46,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v16.3.0",
-    "parsedAt": "2025-12-11T18:14:25.849Z",
+    "parsedAt": "2025-12-11T22:57:39.499Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -4305,10 +4567,18 @@
     "date": "2023-07-12",
     "isLastBeforeWPBeta": false,
     "totalPRs": 176,
-    "featurePRs": 38,
-    "bugPRs": 69,
-    "a11yPRs": 5,
-    "performancePRs": 5,
+    "categories": {
+      "Enhancements": 38,
+      "New APIs": 1,
+      "Bug Fixes": 69,
+      "Accessibility": 5,
+      "Performance": 5,
+      "Experiments": 10,
+      "Documentation": 6,
+      "Code Quality": 24,
+      "Tools": 17,
+      "Project Management": 1
+    },
     "contributors": 45,
     "newContributors": 0,
     "contributorsList": [
@@ -4359,10 +4629,8 @@
       "youknowriad"
     ],
     "newContributorsList": [],
-    "enhancementPercent": 22,
-    "bugfixPercent": 39,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v16.2.0",
-    "parsedAt": "2025-12-11T18:14:25.850Z",
+    "parsedAt": "2025-12-11T22:57:39.499Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -4371,10 +4639,18 @@
     "date": "2023-06-28",
     "isLastBeforeWPBeta": true,
     "totalPRs": 215,
-    "featurePRs": 81,
-    "bugPRs": 44,
-    "a11yPRs": 0,
-    "performancePRs": 6,
+    "categories": {
+      "Features": 9,
+      "Enhancements": 72,
+      "Bug Fixes": 43,
+      "Performance": 6,
+      "Experiments": 1,
+      "Documentation": 9,
+      "Code Quality": 42,
+      "Tools": 31,
+      "Bug fixes": 1,
+      "Bugs": 1
+    },
     "contributors": 69,
     "newContributors": 3,
     "contributorsList": [
@@ -4453,10 +4729,8 @@
       "samnajian",
       "xerpa43"
     ],
-    "enhancementPercent": 38,
-    "bugfixPercent": 20,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v16.1.0",
-    "parsedAt": "2025-12-11T18:14:25.850Z",
+    "parsedAt": "2025-12-11T22:57:39.499Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -4465,10 +4739,16 @@
     "date": "2023-06-14",
     "isLastBeforeWPBeta": false,
     "totalPRs": 146,
-    "featurePRs": 47,
-    "bugPRs": 34,
-    "a11yPRs": 0,
-    "performancePRs": 4,
+    "categories": {
+      "Enhancements": 47,
+      "New APIs": 1,
+      "Bug Fixes": 34,
+      "Performance": 4,
+      "Experiments": 16,
+      "Documentation": 10,
+      "Code Quality": 20,
+      "Tools": 14
+    },
     "contributors": 54,
     "newContributors": 4,
     "contributorsList": [
@@ -4533,10 +4813,8 @@
       "takshil-kunadia",
       "wayheming"
     ],
-    "enhancementPercent": 32,
-    "bugfixPercent": 23,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v16.0.0",
-    "parsedAt": "2025-12-11T18:14:25.850Z",
+    "parsedAt": "2025-12-11T22:57:39.499Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -4545,10 +4823,15 @@
     "date": "2023-05-31",
     "isLastBeforeWPBeta": false,
     "totalPRs": 163,
-    "featurePRs": 50,
-    "bugPRs": 49,
-    "a11yPRs": 0,
-    "performancePRs": 3,
+    "categories": {
+      "Enhancements": 50,
+      "Bug Fixes": 49,
+      "Performance": 3,
+      "Experiments": 2,
+      "Documentation": 8,
+      "Code Quality": 28,
+      "Tools": 23
+    },
     "contributors": 60,
     "newContributors": 7,
     "contributorsList": [
@@ -4622,10 +4905,8 @@
       "saxonf",
       "worldomonation"
     ],
-    "enhancementPercent": 31,
-    "bugfixPercent": 30,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v15.9.0",
-    "parsedAt": "2025-12-11T18:14:25.851Z",
+    "parsedAt": "2025-12-11T22:57:39.500Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -4634,18 +4915,15 @@
     "date": "2023-05-17",
     "isLastBeforeWPBeta": false,
     "totalPRs": 1,
-    "featurePRs": 0,
-    "bugPRs": 0,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "Uncategorized": 1
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 0,
-    "bugfixPercent": 0,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v15.8.0",
-    "parsedAt": "2025-12-11T18:14:25.851Z",
+    "parsedAt": "2025-12-11T22:57:39.500Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -4654,10 +4932,16 @@
     "date": "2023-05-03",
     "isLastBeforeWPBeta": false,
     "totalPRs": 131,
-    "featurePRs": 17,
-    "bugPRs": 58,
-    "a11yPRs": 6,
-    "performancePRs": 3,
+    "categories": {
+      "Enhancements": 17,
+      "Accessibility": 6,
+      "Bug Fixes": 58,
+      "Performance": 3,
+      "Experiments": 2,
+      "Documentation": 27,
+      "Code Quality": 7,
+      "Tools": 11
+    },
     "contributors": 63,
     "newContributors": 8,
     "contributorsList": [
@@ -4735,10 +5019,8 @@
       "tyrann0us",
       "wtower"
     ],
-    "enhancementPercent": 13,
-    "bugfixPercent": 44,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v15.7.0",
-    "parsedAt": "2025-12-11T18:14:25.852Z",
+    "parsedAt": "2025-12-11T22:57:39.500Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -4747,10 +5029,16 @@
     "date": "2023-04-19",
     "isLastBeforeWPBeta": false,
     "totalPRs": 99,
-    "featurePRs": 14,
-    "bugPRs": 43,
-    "a11yPRs": 2,
-    "performancePRs": 7,
+    "categories": {
+      "Enhancements": 14,
+      "Accessibility": 2,
+      "Experiments": 2,
+      "Bug Fixes": 43,
+      "Performance": 7,
+      "Documentation": 13,
+      "Code Quality": 9,
+      "Tools": 9
+    },
     "contributors": 46,
     "newContributors": 7,
     "contributorsList": [
@@ -4810,10 +5098,8 @@
       "nefeline",
       "thealexandrelara"
     ],
-    "enhancementPercent": 14,
-    "bugfixPercent": 43,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v15.6.0",
-    "parsedAt": "2025-12-11T18:14:25.852Z",
+    "parsedAt": "2025-12-11T22:57:39.500Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -4822,10 +5108,15 @@
     "date": "2023-04-05",
     "isLastBeforeWPBeta": false,
     "totalPRs": 136,
-    "featurePRs": 37,
-    "bugPRs": 53,
-    "a11yPRs": 0,
-    "performancePRs": 7,
+    "categories": {
+      "Enhancements": 37,
+      "Bug Fixes": 53,
+      "Performance": 7,
+      "Experiments": 1,
+      "Documentation": 18,
+      "Code Quality": 17,
+      "Tools": 3
+    },
     "contributors": 52,
     "newContributors": 8,
     "contributorsList": [
@@ -4892,10 +5183,8 @@
       "richiecarey",
       "sque89"
     ],
-    "enhancementPercent": 27,
-    "bugfixPercent": 39,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v15.5.0",
-    "parsedAt": "2025-12-11T18:14:25.852Z",
+    "parsedAt": "2025-12-11T22:57:39.500Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -4904,10 +5193,14 @@
     "date": "2023-03-22",
     "isLastBeforeWPBeta": false,
     "totalPRs": 175,
-    "featurePRs": 29,
-    "bugPRs": 73,
-    "a11yPRs": 0,
-    "performancePRs": 10,
+    "categories": {
+      "Enhancements": 29,
+      "Bug Fixes": 73,
+      "Performance": 10,
+      "Documentation": 11,
+      "Code Quality": 42,
+      "Tools": 10
+    },
     "contributors": 57,
     "newContributors": 6,
     "contributorsList": [
@@ -4977,10 +5270,8 @@
       "shvlv",
       "tylerb24890"
     ],
-    "enhancementPercent": 17,
-    "bugfixPercent": 42,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v15.4.0",
-    "parsedAt": "2025-12-11T18:14:25.853Z",
+    "parsedAt": "2025-12-11T22:57:39.500Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -4989,10 +5280,15 @@
     "date": "2023-03-08",
     "isLastBeforeWPBeta": false,
     "totalPRs": 307,
-    "featurePRs": 96,
-    "bugPRs": 89,
-    "a11yPRs": 18,
-    "performancePRs": 22,
+    "categories": {
+      "Enhancements": 96,
+      "Bug Fixes": 89,
+      "Accessibility": 18,
+      "Performance": 22,
+      "Code Quality": 34,
+      "Documentation": 16,
+      "Tools": 32
+    },
     "contributors": 42,
     "newContributors": 6,
     "contributorsList": [
@@ -5047,10 +5343,8 @@
       "suvrodattamitu",
       "tomdevisser"
     ],
-    "enhancementPercent": 31,
-    "bugfixPercent": 29,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v15.3.0",
-    "parsedAt": "2025-12-11T18:14:25.853Z",
+    "parsedAt": "2025-12-11T22:57:39.500Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -5059,10 +5353,16 @@
     "date": "2023-02-22",
     "isLastBeforeWPBeta": false,
     "totalPRs": 184,
-    "featurePRs": 29,
-    "bugPRs": 49,
-    "a11yPRs": 7,
-    "performancePRs": 21,
+    "categories": {
+      "Enhancements": 29,
+      "Bug Fixes": 49,
+      "Accessibility": 7,
+      "Performance": 21,
+      "Experiments": 3,
+      "Documentation": 9,
+      "Code Quality": 43,
+      "Tools": 23
+    },
     "contributors": 59,
     "newContributors": 4,
     "contributorsList": [
@@ -5132,10 +5432,8 @@
       "griffinjohndavid",
       "mike-day"
     ],
-    "enhancementPercent": 16,
-    "bugfixPercent": 27,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v15.2.0",
-    "parsedAt": "2025-12-11T18:14:25.854Z",
+    "parsedAt": "2025-12-11T22:57:39.501Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -5144,10 +5442,16 @@
     "date": "2023-02-08",
     "isLastBeforeWPBeta": true,
     "totalPRs": 248,
-    "featurePRs": 77,
-    "bugPRs": 60,
-    "a11yPRs": 0,
-    "performancePRs": 28,
+    "categories": {
+      "Enhancements": 77,
+      "Bug Fixes": 60,
+      "Performance": 28,
+      "Experiments": 6,
+      "Documentation": 8,
+      "Code Quality": 47,
+      "Tools": 21,
+      "Various": 1
+    },
     "contributors": 55,
     "newContributors": 3,
     "contributorsList": [
@@ -5212,10 +5516,8 @@
       "renatoagds",
       "rodage"
     ],
-    "enhancementPercent": 31,
-    "bugfixPercent": 24,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v15.1.0",
-    "parsedAt": "2025-12-11T18:14:25.854Z",
+    "parsedAt": "2025-12-11T22:57:39.501Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -5224,10 +5526,15 @@
     "date": "2023-01-18",
     "isLastBeforeWPBeta": false,
     "totalPRs": 96,
-    "featurePRs": 28,
-    "bugPRs": 19,
-    "a11yPRs": 0,
-    "performancePRs": 6,
+    "categories": {
+      "Enhancements": 28,
+      "Bug Fixes": 19,
+      "Performance": 6,
+      "Experiments": 5,
+      "Documentation": 11,
+      "Code Quality": 18,
+      "Tools": 9
+    },
     "contributors": 43,
     "newContributors": 7,
     "contributorsList": [
@@ -5284,10 +5591,8 @@
       "tekapo",
       "tonygravagno"
     ],
-    "enhancementPercent": 29,
-    "bugfixPercent": 20,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v15.0.0",
-    "parsedAt": "2025-12-11T18:14:25.855Z",
+    "parsedAt": "2025-12-11T22:57:39.501Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -5296,10 +5601,17 @@
     "date": "2023-01-04",
     "isLastBeforeWPBeta": false,
     "totalPRs": 127,
-    "featurePRs": 21,
-    "bugPRs": 27,
-    "a11yPRs": 4,
-    "performancePRs": 11,
+    "categories": {
+      "Features": 2,
+      "Enhancements": 19,
+      "Bug Fixes": 27,
+      "Accessibility": 4,
+      "Performance": 11,
+      "Experiments": 5,
+      "Documentation": 7,
+      "Code Quality": 21,
+      "Tools": 31
+    },
     "contributors": 44,
     "newContributors": 5,
     "contributorsList": [
@@ -5355,10 +5667,8 @@
       "vykes-mac",
       "websitegenii"
     ],
-    "enhancementPercent": 17,
-    "bugfixPercent": 21,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v14.9.0",
-    "parsedAt": "2025-12-11T18:14:25.855Z",
+    "parsedAt": "2025-12-11T22:57:39.501Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -5367,10 +5677,17 @@
     "date": "2022-12-21",
     "isLastBeforeWPBeta": false,
     "totalPRs": 175,
-    "featurePRs": 40,
-    "bugPRs": 54,
-    "a11yPRs": 0,
-    "performancePRs": 23,
+    "categories": {
+      "Enhancements": 40,
+      "Icons": 11,
+      "Bug Fixes": 54,
+      "Performance": 23,
+      "Experiments": 2,
+      "Documentation": 9,
+      "Code Quality": 30,
+      "Tools": 5,
+      "Various": 1
+    },
     "contributors": 9,
     "newContributors": 0,
     "contributorsList": [
@@ -5385,10 +5702,8 @@
       "youknowriad"
     ],
     "newContributorsList": [],
-    "enhancementPercent": 23,
-    "bugfixPercent": 31,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v14.8.0",
-    "parsedAt": "2025-12-11T18:14:25.856Z",
+    "parsedAt": "2025-12-11T22:57:39.501Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -5397,10 +5712,17 @@
     "date": "2022-12-07",
     "isLastBeforeWPBeta": false,
     "totalPRs": 150,
-    "featurePRs": 39,
-    "bugPRs": 22,
-    "a11yPRs": 5,
-    "performancePRs": 9,
+    "categories": {
+      "Enhancements": 39,
+      "Bug Fixes": 21,
+      "Accessibility": 5,
+      "Performance": 9,
+      "Experiments": 12,
+      "Documentation": 8,
+      "Code Quality": 43,
+      "Tools": 12,
+      "Bug fixes": 1
+    },
     "contributors": 49,
     "newContributors": 9,
     "contributorsList": [
@@ -5465,10 +5787,8 @@
       "mpkelly",
       "tobiasbg"
     ],
-    "enhancementPercent": 26,
-    "bugfixPercent": 15,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v14.7.0",
-    "parsedAt": "2025-12-11T18:14:25.857Z",
+    "parsedAt": "2025-12-11T22:57:39.501Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -5477,10 +5797,16 @@
     "date": "2022-11-23",
     "isLastBeforeWPBeta": false,
     "totalPRs": 145,
-    "featurePRs": 33,
-    "bugPRs": 46,
-    "a11yPRs": 0,
-    "performancePRs": 9,
+    "categories": {
+      "Enhancements": 33,
+      "Bug Fixes": 44,
+      "Experiments": 2,
+      "Documentation": 7,
+      "Performance": 9,
+      "Code Quality": 36,
+      "Tools": 12,
+      "Fixes": 2
+    },
     "contributors": 56,
     "newContributors": 3,
     "contributorsList": [
@@ -5546,10 +5872,8 @@
       "timbroddin",
       "wojtekn"
     ],
-    "enhancementPercent": 23,
-    "bugfixPercent": 32,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v14.6.0",
-    "parsedAt": "2025-12-11T18:14:25.857Z",
+    "parsedAt": "2025-12-11T22:57:39.501Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -5558,10 +5882,15 @@
     "date": "2022-11-09",
     "isLastBeforeWPBeta": false,
     "totalPRs": 134,
-    "featurePRs": 33,
-    "bugPRs": 39,
-    "a11yPRs": 0,
-    "performancePRs": 16,
+    "categories": {
+      "Enhancements": 33,
+      "Bug Fixes": 38,
+      "Performance": 16,
+      "Documentation": 11,
+      "Code Quality": 21,
+      "Tools": 14,
+      "Fixes": 1
+    },
     "contributors": 46,
     "newContributors": 5,
     "contributorsList": [
@@ -5619,10 +5948,8 @@
       "jornp",
       "pkorzelius"
     ],
-    "enhancementPercent": 25,
-    "bugfixPercent": 29,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v14.5.0",
-    "parsedAt": "2025-12-11T18:14:25.858Z",
+    "parsedAt": "2025-12-11T22:57:39.502Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -5631,10 +5958,15 @@
     "date": "2022-10-26",
     "isLastBeforeWPBeta": false,
     "totalPRs": 149,
-    "featurePRs": 21,
-    "bugPRs": 59,
-    "a11yPRs": 2,
-    "performancePRs": 3,
+    "categories": {
+      "Enhancements": 21,
+      "Bug Fixes": 59,
+      "Accessibility": 2,
+      "Performance": 3,
+      "Documentation": 14,
+      "Code Quality": 28,
+      "Tools": 22
+    },
     "contributors": 57,
     "newContributors": 4,
     "contributorsList": [
@@ -5702,10 +6034,8 @@
       "poosham",
       "thelovekesh"
     ],
-    "enhancementPercent": 14,
-    "bugfixPercent": 40,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v14.4.0",
-    "parsedAt": "2025-12-11T18:14:25.859Z",
+    "parsedAt": "2025-12-11T22:57:39.502Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -5714,10 +6044,15 @@
     "date": "2022-10-12",
     "isLastBeforeWPBeta": false,
     "totalPRs": 153,
-    "featurePRs": 25,
-    "bugPRs": 56,
-    "a11yPRs": 0,
-    "performancePRs": 2,
+    "categories": {
+      "Enhancements": 25,
+      "New APIs": 1,
+      "Bug Fixes": 56,
+      "Performance": 2,
+      "Documentation": 10,
+      "Code Quality": 37,
+      "Tools": 22
+    },
     "contributors": 50,
     "newContributors": 7,
     "contributorsList": [
@@ -5781,10 +6116,8 @@
       "lucisu",
       "philwp"
     ],
-    "enhancementPercent": 16,
-    "bugfixPercent": 37,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v14.3.0",
-    "parsedAt": "2025-12-11T18:14:25.859Z",
+    "parsedAt": "2025-12-11T22:57:39.502Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -5793,10 +6126,14 @@
     "date": "2022-09-28",
     "isLastBeforeWPBeta": false,
     "totalPRs": 86,
-    "featurePRs": 15,
-    "bugPRs": 34,
-    "a11yPRs": 0,
-    "performancePRs": 3,
+    "categories": {
+      "Deprecations": 1,
+      "Enhancements": 15,
+      "Bug Fixes": 34,
+      "Performance": 3,
+      "Documentation": 5,
+      "Code Quality": 28
+    },
     "contributors": 35,
     "newContributors": 2,
     "contributorsList": [
@@ -5840,10 +6177,8 @@
       "kkoppenhaver",
       "pagelab"
     ],
-    "enhancementPercent": 17,
-    "bugfixPercent": 40,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v14.2.0",
-    "parsedAt": "2025-12-11T18:14:25.860Z",
+    "parsedAt": "2025-12-11T22:57:39.502Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -5852,10 +6187,17 @@
     "date": "2022-09-15",
     "isLastBeforeWPBeta": true,
     "totalPRs": 330,
-    "featurePRs": 102,
-    "bugPRs": 61,
-    "a11yPRs": 2,
-    "performancePRs": 24,
+    "categories": {
+      "Features": 2,
+      "Enhancements": 100,
+      "New APIs": 4,
+      "Bug Fixes": 61,
+      "Accessibility": 2,
+      "Performance": 24,
+      "Documentation": 19,
+      "Code Quality": 100,
+      "Tools": 18
+    },
     "contributors": 59,
     "newContributors": 7,
     "contributorsList": [
@@ -5928,10 +6270,8 @@
       "mrobit",
       "rahidroid"
     ],
-    "enhancementPercent": 31,
-    "bugfixPercent": 18,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v14.1.0",
-    "parsedAt": "2025-12-11T18:14:25.860Z",
+    "parsedAt": "2025-12-11T22:57:39.502Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -5940,10 +6280,16 @@
     "date": "2022-08-31",
     "isLastBeforeWPBeta": false,
     "totalPRs": 260,
-    "featurePRs": 91,
-    "bugPRs": 64,
-    "a11yPRs": 4,
-    "performancePRs": 24,
+    "categories": {
+      "Enhancements": 91,
+      "Bug Fixes": 64,
+      "Accessibility": 4,
+      "Performance": 24,
+      "Experiments": 1,
+      "Documentation": 8,
+      "Code Quality": 59,
+      "Tools": 9
+    },
     "contributors": 50,
     "newContributors": 5,
     "contributorsList": [
@@ -6005,10 +6351,8 @@
       "rink9",
       "titusdmoore"
     ],
-    "enhancementPercent": 35,
-    "bugfixPercent": 25,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v14.0.0",
-    "parsedAt": "2025-12-11T18:14:25.861Z",
+    "parsedAt": "2025-12-11T22:57:39.502Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -6017,10 +6361,16 @@
     "date": "2022-08-17",
     "isLastBeforeWPBeta": false,
     "totalPRs": 160,
-    "featurePRs": 54,
-    "bugPRs": 48,
-    "a11yPRs": 2,
-    "performancePRs": 9,
+    "categories": {
+      "Enhancements": 54,
+      "Bug Fixes": 48,
+      "Accessibility": 2,
+      "Performance": 9,
+      "Experiments": 7,
+      "Documentation": 17,
+      "Code Quality": 16,
+      "Tools": 7
+    },
     "contributors": 48,
     "newContributors": 4,
     "contributorsList": [
@@ -6079,10 +6429,8 @@
       "smit2808",
       "theminaldiwan"
     ],
-    "enhancementPercent": 34,
-    "bugfixPercent": 30,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v13.9.0",
-    "parsedAt": "2025-12-11T18:14:25.862Z",
+    "parsedAt": "2025-12-11T22:57:39.502Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -6091,10 +6439,15 @@
     "date": "2022-08-03",
     "isLastBeforeWPBeta": false,
     "totalPRs": 398,
-    "featurePRs": 117,
-    "bugPRs": 170,
-    "a11yPRs": 0,
-    "performancePRs": 15,
+    "categories": {
+      "Enhancements": 117,
+      "Bug Fixes": 170,
+      "Performance": 15,
+      "Experiments": 15,
+      "Documentation": 39,
+      "Code Quality": 24,
+      "Tools": 18
+    },
     "contributors": 47,
     "newContributors": 2,
     "contributorsList": [
@@ -6150,10 +6503,8 @@
       "kkmuffme",
       "paulopmt1"
     ],
-    "enhancementPercent": 29,
-    "bugfixPercent": 43,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v13.8.0",
-    "parsedAt": "2025-12-11T18:14:25.863Z",
+    "parsedAt": "2025-12-11T22:57:39.503Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -6162,10 +6513,18 @@
     "date": "2022-07-20",
     "isLastBeforeWPBeta": false,
     "totalPRs": 145,
-    "featurePRs": 21,
-    "bugPRs": 35,
-    "a11yPRs": 5,
-    "performancePRs": 1,
+    "categories": {
+      "Enhancements": 21,
+      "New APIs": 1,
+      "Accessibility": 5,
+      "Bug Fixes": 35,
+      "Performance": 1,
+      "Documentation": 16,
+      "Experiments": 4,
+      "Code Quality": 30,
+      "Tools": 31,
+      "Various": 1
+    },
     "contributors": 56,
     "newContributors": 4,
     "contributorsList": [
@@ -6232,10 +6591,8 @@
       "schutzsmith",
       "welenofsky"
     ],
-    "enhancementPercent": 14,
-    "bugfixPercent": 24,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v13.7.0",
-    "parsedAt": "2025-12-11T18:14:25.864Z",
+    "parsedAt": "2025-12-11T22:57:39.503Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -6244,10 +6601,14 @@
     "date": "2022-07-06",
     "isLastBeforeWPBeta": false,
     "totalPRs": 111,
-    "featurePRs": 35,
-    "bugPRs": 27,
-    "a11yPRs": 0,
-    "performancePRs": 4,
+    "categories": {
+      "Enhancements": 35,
+      "Bug Fixes": 27,
+      "Performance": 4,
+      "Documentation": 13,
+      "Code Quality": 9,
+      "Tooling": 23
+    },
     "contributors": 57,
     "newContributors": 13,
     "contributorsList": [
@@ -6324,10 +6685,8 @@
       "xylocone",
       "zaerl"
     ],
-    "enhancementPercent": 32,
-    "bugfixPercent": 24,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v13.6.0",
-    "parsedAt": "2025-12-11T18:14:25.865Z",
+    "parsedAt": "2025-12-11T22:57:39.503Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -6336,10 +6695,17 @@
     "date": "2022-06-22",
     "isLastBeforeWPBeta": false,
     "totalPRs": 98,
-    "featurePRs": 12,
-    "bugPRs": 15,
-    "a11yPRs": 3,
-    "performancePRs": 0,
+    "categories": {
+      "Enhancements": 12,
+      "Bug Fixes": 15,
+      "Accessibility": 3,
+      "Experiments": 3,
+      "Documentation": 6,
+      "Code Quality": 49,
+      "Tools": 9,
+      "Components": 0,
+      "Block Themes": 1
+    },
     "contributors": 36,
     "newContributors": 5,
     "contributorsList": [
@@ -6387,10 +6753,8 @@
       "sebastienserre",
       "tharsheblows"
     ],
-    "enhancementPercent": 12,
-    "bugfixPercent": 15,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v13.5.0",
-    "parsedAt": "2025-12-11T18:14:25.865Z",
+    "parsedAt": "2025-12-11T22:57:39.503Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -6399,10 +6763,16 @@
     "date": "2022-06-08",
     "isLastBeforeWPBeta": false,
     "totalPRs": 98,
-    "featurePRs": 20,
-    "bugPRs": 28,
-    "a11yPRs": 0,
-    "performancePRs": 3,
+    "categories": {
+      "Enhancements": 20,
+      "New APIs": 1,
+      "Bug Fixes": 28,
+      "Performance": 3,
+      "Experiments": 1,
+      "Documentation": 10,
+      "Code Quality": 13,
+      "Tools": 22
+    },
     "contributors": 46,
     "newContributors": 5,
     "contributorsList": [
@@ -6460,10 +6830,8 @@
       "pooja-muchandikar",
       "xconsau"
     ],
-    "enhancementPercent": 20,
-    "bugfixPercent": 29,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v13.4.0",
-    "parsedAt": "2025-12-11T18:14:25.865Z",
+    "parsedAt": "2025-12-11T22:57:39.503Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -6472,10 +6840,15 @@
     "date": "2022-05-25",
     "isLastBeforeWPBeta": false,
     "totalPRs": 148,
-    "featurePRs": 21,
-    "bugPRs": 48,
-    "a11yPRs": 0,
-    "performancePRs": 5,
+    "categories": {
+      "Enhancements": 21,
+      "Bug Fixes": 48,
+      "Performance": 5,
+      "Experiments": 7,
+      "Documentation": 11,
+      "Code Quality": 36,
+      "Tools": 20
+    },
     "contributors": 55,
     "newContributors": 8,
     "contributorsList": [
@@ -6545,10 +6918,8 @@
       "shanjidah",
       "tomjdv"
     ],
-    "enhancementPercent": 14,
-    "bugfixPercent": 32,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v13.3.0",
-    "parsedAt": "2025-12-11T18:14:25.866Z",
+    "parsedAt": "2025-12-11T22:57:39.503Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -6557,10 +6928,17 @@
     "date": "2022-05-11",
     "isLastBeforeWPBeta": false,
     "totalPRs": 141,
-    "featurePRs": 24,
-    "bugPRs": 49,
-    "a11yPRs": 3,
-    "performancePRs": 3,
+    "categories": {
+      "Features": 1,
+      "Enhancements": 23,
+      "Bug Fixes": 49,
+      "Accessibility": 3,
+      "Performance": 3,
+      "Experiments": 1,
+      "Documentation": 11,
+      "Code Quality": 23,
+      "Tools": 27
+    },
     "contributors": 1,
     "newContributors": 6,
     "contributorsList": [
@@ -6574,10 +6952,8 @@
       "juhi123",
       "trapsta"
     ],
-    "enhancementPercent": 17,
-    "bugfixPercent": 35,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v13.2.0",
-    "parsedAt": "2025-12-11T18:14:25.867Z",
+    "parsedAt": "2025-12-11T22:57:39.503Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -6586,10 +6962,19 @@
     "date": "2022-04-27",
     "isLastBeforeWPBeta": false,
     "totalPRs": 87,
-    "featurePRs": 11,
-    "bugPRs": 10,
-    "a11yPRs": 6,
-    "performancePRs": 1,
+    "categories": {
+      "Enhancements": 11,
+      "Bug Fixes": 10,
+      "Styles": 4,
+      "Site Editor": 2,
+      "Block Editor": 5,
+      "Accessibility": 6,
+      "Performance": 1,
+      "Developer Experience": 2,
+      "Documentation": 10,
+      "Code Quality": 18,
+      "Tools": 18
+    },
     "contributors": 42,
     "newContributors": 6,
     "contributorsList": [
@@ -6644,10 +7029,8 @@
       "roseg43",
       "zutigrm"
     ],
-    "enhancementPercent": 13,
-    "bugfixPercent": 11,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v13.1.0",
-    "parsedAt": "2025-12-11T18:14:25.867Z",
+    "parsedAt": "2025-12-11T22:57:39.503Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -6656,10 +7039,18 @@
     "date": "2022-04-14",
     "isLastBeforeWPBeta": true,
     "totalPRs": 237,
-    "featurePRs": 91,
-    "bugPRs": 42,
-    "a11yPRs": 5,
-    "performancePRs": 2,
+    "categories": {
+      "Enhancements": 91,
+      "Bug Fixes": 42,
+      "Plugin": 1,
+      "Accessibility": 5,
+      "Performance": 2,
+      "Developer Experience": 6,
+      "Experiments": 13,
+      "Documentation": 17,
+      "Code Quality": 32,
+      "Tools": 28
+    },
     "contributors": 70,
     "newContributors": 0,
     "contributorsList": [
@@ -6735,10 +7126,8 @@
       "zebulanstanphill"
     ],
     "newContributorsList": [],
-    "enhancementPercent": 38,
-    "bugfixPercent": 18,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v13.0.0",
-    "parsedAt": "2025-12-11T18:14:25.868Z",
+    "parsedAt": "2025-12-11T22:57:39.504Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -6747,10 +7136,17 @@
     "date": "2022-03-30",
     "isLastBeforeWPBeta": false,
     "totalPRs": 139,
-    "featurePRs": 0,
-    "bugPRs": 0,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "**Features**": 3,
+      "**Enhancements**": 39,
+      "**New APIs**": 4,
+      "**Bug Fixes**": 40,
+      "**Performance**": 2,
+      "**Experiments**": 7,
+      "**Documentation**": 12,
+      "**Code Quality**": 23,
+      "**Tools**": 9
+    },
     "contributors": 56,
     "newContributors": 8,
     "contributorsList": [
@@ -6821,10 +7217,8 @@
       "santosguillamot",
       "stefanolissa"
     ],
-    "enhancementPercent": 0,
-    "bugfixPercent": 0,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v12.9.0",
-    "parsedAt": "2025-12-11T18:14:25.868Z",
+    "parsedAt": "2025-12-11T22:57:39.504Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -6833,10 +7227,16 @@
     "date": "2022-03-16",
     "isLastBeforeWPBeta": false,
     "totalPRs": 121,
-    "featurePRs": 15,
-    "bugPRs": 39,
-    "a11yPRs": 2,
-    "performancePRs": 0,
+    "categories": {
+      "Enhancements": 15,
+      "Accessibility": 2,
+      "New APIs": 11,
+      "Bug Fixes": 39,
+      "Developer experience": 4,
+      "Documentation": 11,
+      "Code Quality": 16,
+      "Tools": 23
+    },
     "contributors": 54,
     "newContributors": 10,
     "contributorsList": [
@@ -6907,10 +7307,8 @@
       "tomasztunik",
       "tumas2"
     ],
-    "enhancementPercent": 12,
-    "bugfixPercent": 32,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v12.8.0",
-    "parsedAt": "2025-12-11T18:14:25.868Z",
+    "parsedAt": "2025-12-11T22:57:39.504Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -6919,10 +7317,16 @@
     "date": "2022-03-02",
     "isLastBeforeWPBeta": false,
     "totalPRs": 136,
-    "featurePRs": 27,
-    "bugPRs": 37,
-    "a11yPRs": 4,
-    "performancePRs": 1,
+    "categories": {
+      "Enhancements": 27,
+      "Bug Fixes": 37,
+      "Accessibility": 4,
+      "Performance": 1,
+      "Experiments": 2,
+      "Documentation": 18,
+      "Code Quality": 19,
+      "Tools": 28
+    },
     "contributors": 52,
     "newContributors": 6,
     "contributorsList": [
@@ -6987,10 +7391,8 @@
       "sanzeeb3",
       "sisanu"
     ],
-    "enhancementPercent": 20,
-    "bugfixPercent": 27,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v12.7.0",
-    "parsedAt": "2025-12-11T18:14:25.869Z",
+    "parsedAt": "2025-12-11T22:57:39.504Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -6999,10 +7401,16 @@
     "date": "2022-02-16",
     "isLastBeforeWPBeta": false,
     "totalPRs": 152,
-    "featurePRs": 39,
-    "bugPRs": 48,
-    "a11yPRs": 0,
-    "performancePRs": 4,
+    "categories": {
+      "Enhancements": 39,
+      "New APIs": 1,
+      "Bug Fixes": 48,
+      "Performance": 4,
+      "Documentation": 30,
+      "Code Quality": 14,
+      "Tools": 15,
+      "People": 1
+    },
     "contributors": 0,
     "newContributors": 3,
     "contributorsList": [],
@@ -7011,10 +7419,8 @@
       "angelistudio",
       "sunyatasattva"
     ],
-    "enhancementPercent": 26,
-    "bugfixPercent": 32,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v12.6.0",
-    "parsedAt": "2025-12-11T18:14:25.869Z",
+    "parsedAt": "2025-12-11T22:57:39.504Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -7023,18 +7429,21 @@
     "date": "2022-02-02",
     "isLastBeforeWPBeta": false,
     "totalPRs": 148,
-    "featurePRs": 37,
-    "bugPRs": 46,
-    "a11yPRs": 0,
-    "performancePRs": 2,
+    "categories": {
+      "Features": 3,
+      "Enhancements": 34,
+      "Bug Fixes": 46,
+      "Performance": 2,
+      "Documentation": 19,
+      "Code Quality": 20,
+      "Tools": 24
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 25,
-    "bugfixPercent": 31,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v12.5.0",
-    "parsedAt": "2025-12-11T18:14:25.870Z",
+    "parsedAt": "2025-12-11T22:57:39.504Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -7043,18 +7452,19 @@
     "date": "2022-01-19",
     "isLastBeforeWPBeta": false,
     "totalPRs": 103,
-    "featurePRs": 17,
-    "bugPRs": 42,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "Enhancements": 17,
+      "Bug Fixes": 42,
+      "Documentation": 22,
+      "Code Quality": 12,
+      "Tools": 10
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 17,
-    "bugfixPercent": 41,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v12.4.0",
-    "parsedAt": "2025-12-11T18:14:25.870Z",
+    "parsedAt": "2025-12-11T22:57:39.504Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -7063,18 +7473,20 @@
     "date": "2022-01-05",
     "isLastBeforeWPBeta": false,
     "totalPRs": 101,
-    "featurePRs": 21,
-    "bugPRs": 55,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "Features": 5,
+      "Enhancements": 16,
+      "Bug Fixes": 55,
+      "Documentation": 11,
+      "Code Quality": 8,
+      "Tools": 6
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 21,
-    "bugfixPercent": 54,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v12.3.0",
-    "parsedAt": "2025-12-11T18:14:25.870Z",
+    "parsedAt": "2025-12-11T22:57:39.504Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -7083,18 +7495,19 @@
     "date": "2021-12-22",
     "isLastBeforeWPBeta": false,
     "totalPRs": 168,
-    "featurePRs": 28,
-    "bugPRs": 76,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "Enhancements": 28,
+      "Bug Fixes": 76,
+      "Documentation": 24,
+      "Code Quality": 22,
+      "Tools": 18
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 17,
-    "bugfixPercent": 45,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v12.2.0",
-    "parsedAt": "2025-12-11T18:14:25.871Z",
+    "parsedAt": "2025-12-11T22:57:39.505Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -7103,18 +7516,20 @@
     "date": "2021-12-08",
     "isLastBeforeWPBeta": false,
     "totalPRs": 172,
-    "featurePRs": 70,
-    "bugPRs": 60,
-    "a11yPRs": 0,
-    "performancePRs": 1,
+    "categories": {
+      "Enhancements": 70,
+      "Bug Fixes": 60,
+      "Performance": 1,
+      "Experiments": 2,
+      "Documentation": 12,
+      "Code Quality": 27
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 41,
-    "bugfixPercent": 35,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v12.1.0",
-    "parsedAt": "2025-12-11T18:14:25.871Z",
+    "parsedAt": "2025-12-11T22:57:39.505Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -7123,18 +7538,21 @@
     "date": "2021-11-24",
     "isLastBeforeWPBeta": false,
     "totalPRs": 88,
-    "featurePRs": 28,
-    "bugPRs": 29,
-    "a11yPRs": 0,
-    "performancePRs": 1,
+    "categories": {
+      "Enhancements": 28,
+      "Bug Fixes": 29,
+      "Documentation": 8,
+      "Developer Experience": 5,
+      "Code Quality": 7,
+      "Tools": 10,
+      "Performance": 1
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 32,
-    "bugfixPercent": 33,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v12.0.0",
-    "parsedAt": "2025-12-11T18:14:25.871Z",
+    "parsedAt": "2025-12-11T22:57:39.505Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -7143,18 +7561,23 @@
     "date": "2021-11-11",
     "isLastBeforeWPBeta": true,
     "totalPRs": 233,
-    "featurePRs": 76,
-    "bugPRs": 86,
-    "a11yPRs": 0,
-    "performancePRs": 4,
+    "categories": {
+      "Features": 4,
+      "Enhancements": 72,
+      "New APIs": 2,
+      "Bug Fixes": 86,
+      "Performance": 4,
+      "Experiments": 5,
+      "Documentation": 22,
+      "Code Quality": 25,
+      "Tools": 13
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 33,
-    "bugfixPercent": 37,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v11.9.0",
-    "parsedAt": "2025-12-11T18:14:25.872Z",
+    "parsedAt": "2025-12-11T22:57:39.506Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -7163,18 +7586,23 @@
     "date": "2021-10-27",
     "isLastBeforeWPBeta": false,
     "totalPRs": 189,
-    "featurePRs": 80,
-    "bugPRs": 42,
-    "a11yPRs": 2,
-    "performancePRs": 2,
+    "categories": {
+      "Enhancements": 80,
+      "Accessibility": 2,
+      "Performance": 2,
+      "Bug Fixes": 42,
+      "Experiments": 11,
+      "Documentation": 21,
+      "Code Quality": 17,
+      "Tools": 11,
+      "Various": 3
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 42,
-    "bugfixPercent": 22,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v11.8.0",
-    "parsedAt": "2025-12-11T18:14:25.872Z",
+    "parsedAt": "2025-12-11T22:57:39.506Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -7183,18 +7611,21 @@
     "date": "2021-10-13",
     "isLastBeforeWPBeta": false,
     "totalPRs": 123,
-    "featurePRs": 42,
-    "bugPRs": 33,
-    "a11yPRs": 0,
-    "performancePRs": 3,
+    "categories": {
+      "Enhancements": 42,
+      "Bug Fixes": 33,
+      "Performance": 3,
+      "Experiments": 10,
+      "Documentation": 10,
+      "Code Quality": 18,
+      "Tools": 7
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 34,
-    "bugfixPercent": 27,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v11.7.0",
-    "parsedAt": "2025-12-11T18:14:25.872Z",
+    "parsedAt": "2025-12-11T22:57:39.506Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -7203,18 +7634,23 @@
     "date": "2021-09-29",
     "isLastBeforeWPBeta": false,
     "totalPRs": 161,
-    "featurePRs": 23,
-    "bugPRs": 34,
-    "a11yPRs": 3,
-    "performancePRs": 1,
+    "categories": {
+      "Enhancements": 23,
+      "New APIs": 2,
+      "Accessibility": 3,
+      "Performance": 1,
+      "Bug Fixes": 34,
+      "Experiments": 24,
+      "Documentation": 17,
+      "Code Quality": 35,
+      "Tools": 22
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 14,
-    "bugfixPercent": 21,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v11.6.0",
-    "parsedAt": "2025-12-11T18:14:25.873Z",
+    "parsedAt": "2025-12-11T22:57:39.506Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -7223,18 +7659,24 @@
     "date": "2021-09-16",
     "isLastBeforeWPBeta": false,
     "totalPRs": 147,
-    "featurePRs": 32,
-    "bugPRs": 46,
-    "a11yPRs": 0,
-    "performancePRs": 4,
+    "categories": {
+      "Features": 1,
+      "Enhancements": 31,
+      "New APIs": 1,
+      "Bug Fixes": 46,
+      "Performance": 4,
+      "Experiments": 5,
+      "Documentation": 8,
+      "Code Quality": 37,
+      "Tools": 13,
+      "Various": 1
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 22,
-    "bugfixPercent": 31,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v11.5.0",
-    "parsedAt": "2025-12-11T18:14:25.875Z",
+    "parsedAt": "2025-12-11T22:57:39.506Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -7243,18 +7685,21 @@
     "date": "2021-09-01",
     "isLastBeforeWPBeta": false,
     "totalPRs": 94,
-    "featurePRs": 23,
-    "bugPRs": 29,
-    "a11yPRs": 0,
-    "performancePRs": 1,
+    "categories": {
+      "Enhancements": 23,
+      "Bug Fixes": 29,
+      "Performance": 1,
+      "Experiments": 5,
+      "Documentation": 11,
+      "Code Quality": 8,
+      "Tools": 17
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 24,
-    "bugfixPercent": 31,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v11.4.0",
-    "parsedAt": "2025-12-11T18:14:25.875Z",
+    "parsedAt": "2025-12-11T22:57:39.506Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -7263,18 +7708,21 @@
     "date": "2021-08-18",
     "isLastBeforeWPBeta": false,
     "totalPRs": 91,
-    "featurePRs": 18,
-    "bugPRs": 26,
-    "a11yPRs": 0,
-    "performancePRs": 7,
+    "categories": {
+      "Enhancements": 18,
+      "Bug Fixes": 26,
+      "Performance": 7,
+      "Experiments": 6,
+      "Documentation": 12,
+      "Code Quality": 11,
+      "Tools": 11
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 20,
-    "bugfixPercent": 29,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v11.3.0",
-    "parsedAt": "2025-12-11T18:14:25.876Z",
+    "parsedAt": "2025-12-11T22:57:39.507Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -7283,18 +7731,22 @@
     "date": "2021-08-04",
     "isLastBeforeWPBeta": false,
     "totalPRs": 87,
-    "featurePRs": 14,
-    "bugPRs": 23,
-    "a11yPRs": 0,
-    "performancePRs": 2,
+    "categories": {
+      "Features": 3,
+      "Enhancements": 11,
+      "Bug Fixes": 23,
+      "Performance": 2,
+      "Experiments": 2,
+      "Tools": 26,
+      "Documentation": 12,
+      "Code Quality": 8
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 16,
-    "bugfixPercent": 26,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v11.2.0",
-    "parsedAt": "2025-12-11T18:14:25.876Z",
+    "parsedAt": "2025-12-11T22:57:39.507Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -7303,18 +7755,23 @@
     "date": "2021-07-21",
     "isLastBeforeWPBeta": false,
     "totalPRs": 117,
-    "featurePRs": 18,
-    "bugPRs": 34,
-    "a11yPRs": 1,
-    "performancePRs": 2,
+    "categories": {
+      "Enhancements": 18,
+      "New APIs": 2,
+      "Performance": 2,
+      "Accessibility": 1,
+      "Bug Fixes": 34,
+      "Experiments": 16,
+      "Documentation": 15,
+      "Code Quality": 13,
+      "Tools": 16
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 15,
-    "bugfixPercent": 29,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v11.1.0",
-    "parsedAt": "2025-12-11T18:14:25.876Z",
+    "parsedAt": "2025-12-11T22:57:39.507Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -7323,18 +7780,23 @@
     "date": "2021-07-07",
     "isLastBeforeWPBeta": false,
     "totalPRs": 149,
-    "featurePRs": 20,
-    "bugPRs": 71,
-    "a11yPRs": 0,
-    "performancePRs": 1,
+    "categories": {
+      "Enhancements": 20,
+      "New APIs": 1,
+      "Bug Fixes": 71,
+      "WordPress Core compatibility": 3,
+      "Documentation": 11,
+      "Code Quality": 26,
+      "Tools": 11,
+      "Performance": 1,
+      "Experiments": 5
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 13,
-    "bugfixPercent": 48,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v11.0.0",
-    "parsedAt": "2025-12-11T18:14:25.876Z",
+    "parsedAt": "2025-12-11T22:57:39.507Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -7343,18 +7805,21 @@
     "date": "2021-06-23",
     "isLastBeforeWPBeta": false,
     "totalPRs": 120,
-    "featurePRs": 32,
-    "bugPRs": 35,
-    "a11yPRs": 0,
-    "performancePRs": 2,
+    "categories": {
+      "Enhancements": 32,
+      "Bug Fixes": 35,
+      "Performance": 2,
+      "Experiments": 15,
+      "Documentation": 4,
+      "Code Quality": 18,
+      "Tools": 14
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 27,
-    "bugfixPercent": 29,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v10.9.0",
-    "parsedAt": "2025-12-11T18:14:25.876Z",
+    "parsedAt": "2025-12-11T22:57:39.507Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -7363,18 +7828,22 @@
     "date": "2021-06-09",
     "isLastBeforeWPBeta": false,
     "totalPRs": 154,
-    "featurePRs": 20,
-    "bugPRs": 30,
-    "a11yPRs": 0,
-    "performancePRs": 5,
+    "categories": {
+      "Enhancements": 20,
+      "Bug Fixes": 29,
+      "Performance": 5,
+      "Experiments": 29,
+      "Documentation": 7,
+      "Code Quality": 48,
+      "Tools": 15,
+      "Bug fixes": 1
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 13,
-    "bugfixPercent": 19,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v10.8.0",
-    "parsedAt": "2025-12-11T18:14:25.876Z",
+    "parsedAt": "2025-12-11T22:57:39.507Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -7383,18 +7852,23 @@
     "date": "2021-05-26",
     "isLastBeforeWPBeta": true,
     "totalPRs": 240,
-    "featurePRs": 40,
-    "bugPRs": 59,
-    "a11yPRs": 0,
-    "performancePRs": 4,
+    "categories": {
+      "Enhancements": 40,
+      "New APIs": 5,
+      "Bug Fixes": 59,
+      "Performance": 4,
+      "Experiments": 48,
+      "Documentation": 14,
+      "Code Quality": 53,
+      "Tools": 15,
+      "Various": 2
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 17,
-    "bugfixPercent": 25,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v10.7.0",
-    "parsedAt": "2025-12-11T18:14:25.877Z",
+    "parsedAt": "2025-12-11T22:57:39.507Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -7403,18 +7877,23 @@
     "date": "2021-05-12",
     "isLastBeforeWPBeta": false,
     "totalPRs": 212,
-    "featurePRs": 37,
-    "bugPRs": 37,
-    "a11yPRs": 0,
-    "performancePRs": 1,
+    "categories": {
+      "Enhancements": 37,
+      "New APIs": 3,
+      "Bug Fixes": 37,
+      "Performance": 1,
+      "Experiments": 55,
+      "Documentation": 13,
+      "Code Quality": 37,
+      "Tools": 26,
+      "Various": 3
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 17,
-    "bugfixPercent": 17,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v10.6.0",
-    "parsedAt": "2025-12-11T18:14:25.877Z",
+    "parsedAt": "2025-12-11T22:57:39.507Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -7423,18 +7902,21 @@
     "date": "2021-04-28",
     "isLastBeforeWPBeta": false,
     "totalPRs": 173,
-    "featurePRs": 44,
-    "bugPRs": 25,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "Enhancements": 44,
+      "Bug Fixes": 25,
+      "Experiments": 28,
+      "Documentation": 26,
+      "Code Quality": 24,
+      "Tools": 24,
+      "Uncategorized": 2
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 25,
-    "bugfixPercent": 14,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v10.5.0",
-    "parsedAt": "2025-12-11T18:14:25.877Z",
+    "parsedAt": "2025-12-11T22:57:39.507Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -7443,18 +7925,21 @@
     "date": "2021-04-14",
     "isLastBeforeWPBeta": false,
     "totalPRs": 125,
-    "featurePRs": 32,
-    "bugPRs": 27,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "Enhancements": 32,
+      "Bug Fixes": 27,
+      "APIs:": 3,
+      "Experiments": 23,
+      "Documentation": 25,
+      "Code Quality": 7,
+      "Tools": 8
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 26,
-    "bugfixPercent": 22,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v10.4.0",
-    "parsedAt": "2025-12-11T18:14:25.878Z",
+    "parsedAt": "2025-12-11T22:57:39.507Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -7463,18 +7948,22 @@
     "date": "2021-03-31",
     "isLastBeforeWPBeta": false,
     "totalPRs": 174,
-    "featurePRs": 21,
-    "bugPRs": 43,
-    "a11yPRs": 0,
-    "performancePRs": 3,
+    "categories": {
+      "Enhancements": 21,
+      "New APIs": 2,
+      "Bug Fixes": 43,
+      "Performance": 3,
+      "Experiments": 63,
+      "Documentation": 12,
+      "Code Quality": 20,
+      "Tools": 10
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 12,
-    "bugfixPercent": 25,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v10.3.0",
-    "parsedAt": "2025-12-11T18:14:25.878Z",
+    "parsedAt": "2025-12-11T22:57:39.508Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -7483,18 +7972,24 @@
     "date": "2021-03-17",
     "isLastBeforeWPBeta": false,
     "totalPRs": 163,
-    "featurePRs": 9,
-    "bugPRs": 31,
-    "a11yPRs": 0,
-    "performancePRs": 1,
+    "categories": {
+      "Features": 1,
+      "Enhancements": 8,
+      "New APIs": 1,
+      "Bug Fixes": 31,
+      "Performance": 1,
+      "Experiments": 32,
+      "Documentation": 15,
+      "Code Quality": 12,
+      "Tools": 11,
+      "Various": 51
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 6,
-    "bugfixPercent": 19,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v10.2.0",
-    "parsedAt": "2025-12-11T18:14:25.879Z",
+    "parsedAt": "2025-12-11T22:57:39.508Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -7503,18 +7998,23 @@
     "date": "2021-03-03",
     "isLastBeforeWPBeta": false,
     "totalPRs": 131,
-    "featurePRs": 9,
-    "bugPRs": 25,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "Features": 3,
+      "Enhancements": 6,
+      "New APIs": 1,
+      "Bug Fixes": 25,
+      "Experiments": 42,
+      "Documentation": 10,
+      "Code Quality": 15,
+      "Tools": 20,
+      "Various": 9
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 7,
-    "bugfixPercent": 19,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v10.1.0",
-    "parsedAt": "2025-12-11T18:14:25.879Z",
+    "parsedAt": "2025-12-11T22:57:39.508Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -7523,18 +8023,23 @@
     "date": "2021-02-17",
     "isLastBeforeWPBeta": false,
     "totalPRs": 105,
-    "featurePRs": 12,
-    "bugPRs": 15,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "Features": 1,
+      "Enhancements": 11,
+      "New APIs": 6,
+      "Bug Fixes": 15,
+      "Experiments": 36,
+      "Documentation": 9,
+      "Code Quality": 11,
+      "Tools": 14,
+      "Various": 2
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 11,
-    "bugfixPercent": 14,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v10.0.0",
-    "parsedAt": "2025-12-11T18:14:25.879Z",
+    "parsedAt": "2025-12-11T22:57:39.508Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -7543,18 +8048,24 @@
     "date": "2021-02-05",
     "isLastBeforeWPBeta": true,
     "totalPRs": 165,
-    "featurePRs": 12,
-    "bugPRs": 37,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "Enhancements": 12,
+      "New APIs": 3,
+      "Breaking Change": 2,
+      "Bug Fixes": 31,
+      "Experiments": 33,
+      "Documentation": 11,
+      "Code Quality": 9,
+      "Tools": 22,
+      "Various": 36,
+      "Bug fixes": 6
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 7,
-    "bugfixPercent": 22,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v9.9.0",
-    "parsedAt": "2025-12-11T18:14:25.880Z",
+    "parsedAt": "2025-12-11T22:57:39.508Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -7563,18 +8074,23 @@
     "date": "2021-01-20",
     "isLastBeforeWPBeta": false,
     "totalPRs": 117,
-    "featurePRs": 2,
-    "bugPRs": 38,
-    "a11yPRs": 0,
-    "performancePRs": 2,
+    "categories": {
+      "Enhancements": 2,
+      "New APIs": 3,
+      "Bug Fixes": 38,
+      "Performance": 2,
+      "Experiments": 16,
+      "Documentation": 8,
+      "Code Quality": 9,
+      "Tools": 24,
+      "Various": 15
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 2,
-    "bugfixPercent": 32,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v9.8.0",
-    "parsedAt": "2025-12-11T18:14:25.880Z",
+    "parsedAt": "2025-12-11T22:57:39.508Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -7583,18 +8099,23 @@
     "date": "2021-01-06",
     "isLastBeforeWPBeta": false,
     "totalPRs": 56,
-    "featurePRs": 9,
-    "bugPRs": 13,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "Features": 1,
+      "Enhancements": 8,
+      "New APIs": 3,
+      "Bug Fixes": 13,
+      "Experiments": 6,
+      "Documentation": 7,
+      "Code Quality": 8,
+      "Tools": 9,
+      "Various": 1
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 16,
-    "bugfixPercent": 23,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v9.7.0",
-    "parsedAt": "2025-12-11T18:14:25.880Z",
+    "parsedAt": "2025-12-11T22:57:39.508Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -7603,18 +8124,25 @@
     "date": "2020-12-23",
     "isLastBeforeWPBeta": false,
     "totalPRs": 147,
-    "featurePRs": 3,
-    "bugPRs": 28,
-    "a11yPRs": 0,
-    "performancePRs": 1,
+    "categories": {
+      "Features": 2,
+      "Enhancements": 1,
+      "New APIs": 7,
+      "Bug Fixes": 27,
+      "Performance": 1,
+      "Experiments": 30,
+      "Documentation": 11,
+      "Code Quality": 24,
+      "Tools": 17,
+      "Various": 26,
+      "Bugfixes": 1
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 2,
-    "bugfixPercent": 19,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v9.6.0",
-    "parsedAt": "2025-12-11T18:14:25.881Z",
+    "parsedAt": "2025-12-11T22:57:39.508Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -7623,18 +8151,25 @@
     "date": "2020-12-02",
     "isLastBeforeWPBeta": false,
     "totalPRs": 130,
-    "featurePRs": 5,
-    "bugPRs": 23,
-    "a11yPRs": 0,
-    "performancePRs": 2,
+    "categories": {
+      "Features": 2,
+      "Enhancements": 3,
+      "New APIs": 2,
+      "Bug Fixes": 23,
+      "Performance": 2,
+      "Experiments": 48,
+      "Documentation": 11,
+      "Code Quality": 15,
+      "Build Tooling": 10,
+      "Various": 10,
+      "Bug Fixes:": 4
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 4,
-    "bugfixPercent": 18,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v9.5.0",
-    "parsedAt": "2025-12-11T18:14:25.881Z",
+    "parsedAt": "2025-12-11T22:57:39.509Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -7643,18 +8178,25 @@
     "date": "2020-11-18",
     "isLastBeforeWPBeta": false,
     "totalPRs": 181,
-    "featurePRs": 23,
-    "bugPRs": 23,
-    "a11yPRs": 0,
-    "performancePRs": 3,
+    "categories": {
+      "Features": 6,
+      "Enhancements": 17,
+      "New APIs": 5,
+      "Bug Fixes": 23,
+      "Experiments": 42,
+      "Performance": 3,
+      "Documentation": 28,
+      "Code Quality": 27,
+      "Build Tooling": 21,
+      "Various": 7,
+      "Uncategorized": 2
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 13,
-    "bugfixPercent": 13,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v9.4.0",
-    "parsedAt": "2025-12-11T18:14:25.881Z",
+    "parsedAt": "2025-12-11T22:57:39.509Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -7663,18 +8205,22 @@
     "date": "2020-11-04",
     "isLastBeforeWPBeta": false,
     "totalPRs": 105,
-    "featurePRs": 8,
-    "bugPRs": 23,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "Enhancements": 8,
+      "Bug Fixes": 23,
+      "New APIs": 3,
+      "Experiments": 27,
+      "Documentation": 10,
+      "Code Quality": 13,
+      "Build Tooling": 18,
+      "Various": 3
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 8,
-    "bugfixPercent": 22,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v9.3.0",
-    "parsedAt": "2025-12-11T18:14:25.881Z",
+    "parsedAt": "2025-12-11T22:57:39.509Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -7683,18 +8229,25 @@
     "date": "2020-10-21",
     "isLastBeforeWPBeta": true,
     "totalPRs": 231,
-    "featurePRs": 27,
-    "bugPRs": 66,
-    "a11yPRs": 0,
-    "performancePRs": 3,
+    "categories": {
+      "Features": 3,
+      "Enhancements": 24,
+      "New APIs": 11,
+      "Experiments": 12,
+      "Bug Fixes": 66,
+      "Performance": 3,
+      "Documentation": 12,
+      "Code Quality": 29,
+      "Security": 1,
+      "Breaking Change": 1,
+      "Various": 69
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 12,
-    "bugfixPercent": 29,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v9.2.0",
-    "parsedAt": "2025-12-11T18:14:25.882Z",
+    "parsedAt": "2025-12-11T22:57:39.509Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -7703,18 +8256,23 @@
     "date": "2020-09-30",
     "isLastBeforeWPBeta": false,
     "totalPRs": 151,
-    "featurePRs": 26,
-    "bugPRs": 28,
-    "a11yPRs": 0,
-    "performancePRs": 1,
+    "categories": {
+      "Features": 2,
+      "Enhancements": 24,
+      "New APIs": 3,
+      "Bug Fixes": 28,
+      "Performance": 1,
+      "Experiments": 42,
+      "Documentation": 23,
+      "Code Quality": 20,
+      "Various": 8
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 17,
-    "bugfixPercent": 19,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v9.1.0",
-    "parsedAt": "2025-12-11T18:14:25.882Z",
+    "parsedAt": "2025-12-11T22:57:39.509Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -7723,18 +8281,22 @@
     "date": "2020-09-16",
     "isLastBeforeWPBeta": false,
     "totalPRs": 111,
-    "featurePRs": 33,
-    "bugPRs": 32,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "Features": 7,
+      "Enhancements": 26,
+      "Bug Fixes": 32,
+      "Experiments": 13,
+      "Documentation": 18,
+      "Code Quality": 8,
+      "Build Tooling": 1,
+      "Various": 6
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 30,
-    "bugfixPercent": 29,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v9.0.0",
-    "parsedAt": "2025-12-11T18:14:25.883Z",
+    "parsedAt": "2025-12-11T22:57:39.509Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -7743,18 +8305,24 @@
     "date": "2020-09-02",
     "isLastBeforeWPBeta": false,
     "totalPRs": 106,
-    "featurePRs": 17,
-    "bugPRs": 36,
-    "a11yPRs": 0,
-    "performancePRs": 3,
+    "categories": {
+      "Features": 5,
+      "Enhancements": 12,
+      "Bug Fixes": 32,
+      "Performance": 3,
+      "New APIs": 1,
+      "Experiments": 18,
+      "Documentation": 11,
+      "Code Quality": 12,
+      "Build Tooling": 8,
+      "Bug fixes": 4
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 16,
-    "bugfixPercent": 34,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v8.9.0",
-    "parsedAt": "2025-12-11T18:14:25.883Z",
+    "parsedAt": "2025-12-11T22:57:39.509Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -7763,18 +8331,21 @@
     "date": "2020-08-19",
     "isLastBeforeWPBeta": false,
     "totalPRs": 79,
-    "featurePRs": 12,
-    "bugPRs": 27,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "Enhancements": 12,
+      "New APIs": 5,
+      "Bug Fixes": 27,
+      "Experiments": 13,
+      "Documentation": 9,
+      "Code Quality": 9,
+      "Build Tooling": 4
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 15,
-    "bugfixPercent": 34,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v8.8.0",
-    "parsedAt": "2025-12-11T18:14:25.883Z",
+    "parsedAt": "2025-12-11T22:57:39.509Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -7783,18 +8354,22 @@
     "date": "2020-08-05",
     "isLastBeforeWPBeta": false,
     "totalPRs": 103,
-    "featurePRs": 22,
-    "bugPRs": 27,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "Enhancements": 22,
+      "New APIs": 4,
+      "Bug Fixes": 27,
+      "Experiments": 26,
+      "Documentation": 13,
+      "Code Quality": 7,
+      "Build Tooling": 3,
+      "Various": 1
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 21,
-    "bugfixPercent": 26,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v8.7.0",
-    "parsedAt": "2025-12-11T18:14:25.883Z",
+    "parsedAt": "2025-12-11T22:57:39.509Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -7803,18 +8378,25 @@
     "date": "2020-07-22",
     "isLastBeforeWPBeta": false,
     "totalPRs": 130,
-    "featurePRs": 15,
-    "bugPRs": 39,
-    "a11yPRs": 0,
-    "performancePRs": 6,
+    "categories": {
+      "Features": 7,
+      "Enhancements": 8,
+      "New APIs": 4,
+      "Experiments": 10,
+      "Bug Fixes": 39,
+      "Performance": 6,
+      "Documentation": 18,
+      "Code Quality": 11,
+      "Build Tooling": 9,
+      "Various": 17,
+      "Bug Fixes:": 1
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 12,
-    "bugfixPercent": 30,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v8.6.0",
-    "parsedAt": "2025-12-11T18:14:25.884Z",
+    "parsedAt": "2025-12-11T22:57:39.509Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -7823,18 +8405,24 @@
     "date": "2020-07-08",
     "isLastBeforeWPBeta": true,
     "totalPRs": 165,
-    "featurePRs": 39,
-    "bugPRs": 38,
-    "a11yPRs": 0,
-    "performancePRs": 1,
+    "categories": {
+      "Features": 2,
+      "Enhancements": 37,
+      "New APIs": 6,
+      "Experiments": 15,
+      "Bug Fixes": 38,
+      "Performance": 1,
+      "Documentation": 19,
+      "Code Quality": 26,
+      "Build Tooling": 16,
+      "Various": 5
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 24,
-    "bugfixPercent": 23,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v8.5.0",
-    "parsedAt": "2025-12-11T18:14:25.884Z",
+    "parsedAt": "2025-12-11T22:57:39.509Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -7843,18 +8431,25 @@
     "date": "2020-06-24",
     "isLastBeforeWPBeta": false,
     "totalPRs": 153,
-    "featurePRs": 29,
-    "bugPRs": 38,
-    "a11yPRs": 0,
-    "performancePRs": 3,
+    "categories": {
+      "Features": 3,
+      "Enhancements": 26,
+      "New APIs": 6,
+      "Bug Fixes": 38,
+      "Performance": 3,
+      "Experiments": 25,
+      "Documentation": 15,
+      "Code Quality": 16,
+      "Copy": 1,
+      "Build Tooling": 11,
+      "Various": 9
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 19,
-    "bugfixPercent": 25,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v8.4.0",
-    "parsedAt": "2025-12-11T18:14:25.884Z",
+    "parsedAt": "2025-12-11T22:57:39.509Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -7863,18 +8458,15 @@
     "date": "2020-06-11",
     "isLastBeforeWPBeta": false,
     "totalPRs": 140,
-    "featurePRs": 0,
-    "bugPRs": 0,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "Uncategorized": 140
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 0,
-    "bugfixPercent": 0,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v8.3.0",
-    "parsedAt": "2025-12-11T18:14:25.884Z",
+    "parsedAt": "2025-12-11T22:57:39.509Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -7883,18 +8475,24 @@
     "date": "2020-05-27",
     "isLastBeforeWPBeta": false,
     "totalPRs": 151,
-    "featurePRs": 24,
-    "bugPRs": 16,
-    "a11yPRs": 0,
-    "performancePRs": 6,
+    "categories": {
+      "Features": 5,
+      "Enhancements": 19,
+      "New APIs": 15,
+      "Bug Fixes": 16,
+      "Performance": 6,
+      "Experimental": 40,
+      "Documentation": 12,
+      "Code Quality": 15,
+      "Build Tooling": 11,
+      "Various": 12
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 16,
-    "bugfixPercent": 11,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v8.2.0",
-    "parsedAt": "2025-12-11T18:14:25.885Z",
+    "parsedAt": "2025-12-11T22:57:39.509Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -7903,18 +8501,25 @@
     "date": "2020-05-13",
     "isLastBeforeWPBeta": false,
     "totalPRs": 125,
-    "featurePRs": 25,
-    "bugPRs": 24,
-    "a11yPRs": 0,
-    "performancePRs": 4,
+    "categories": {
+      "New features": 5,
+      "Enhancements": 20,
+      "API Changes": 5,
+      "Experimental": 10,
+      "Performance": 4,
+      "Bug Fixes": 24,
+      "Tooling": 10,
+      "Code Quality": 22,
+      "Documentation": 13,
+      "Various": 3,
+      "Mobile App": 9
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 20,
-    "bugfixPercent": 19,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v8.1.0",
-    "parsedAt": "2025-12-11T18:14:25.885Z",
+    "parsedAt": "2025-12-11T22:57:39.510Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -7923,18 +8528,24 @@
     "date": "2020-04-29",
     "isLastBeforeWPBeta": false,
     "totalPRs": 99,
-    "featurePRs": 9,
-    "bugPRs": 28,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "Features": 3,
+      "Enhancements": 6,
+      "New APIs": 1,
+      "Bug Fixes": 28,
+      "Experiments": 14,
+      "Deprecations": 1,
+      "Code Quality": 14,
+      "Documentation": 12,
+      "Project Management": 1,
+      "Various": 19
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 9,
-    "bugfixPercent": 28,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v8.0.0",
-    "parsedAt": "2025-12-11T18:14:25.885Z",
+    "parsedAt": "2025-12-11T22:57:39.510Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -7943,18 +8554,23 @@
     "date": "2020-04-15",
     "isLastBeforeWPBeta": false,
     "totalPRs": 170,
-    "featurePRs": 22,
-    "bugPRs": 31,
-    "a11yPRs": 0,
-    "performancePRs": 3,
+    "categories": {
+      "Features": 5,
+      "Enhancements": 17,
+      "Performance": 3,
+      "Bug Fixes": 31,
+      "New APIs": 11,
+      "Experiments": 29,
+      "Documentation": 12,
+      "Code Quality": 29,
+      "Various": 33
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 13,
-    "bugfixPercent": 18,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v7.9.0",
-    "parsedAt": "2025-12-11T18:14:25.886Z",
+    "parsedAt": "2025-12-11T22:57:39.510Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -7963,18 +8579,15 @@
     "date": "2020-03-25",
     "isLastBeforeWPBeta": false,
     "totalPRs": 110,
-    "featurePRs": 0,
-    "bugPRs": 0,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "Uncategorized": 110
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 0,
-    "bugfixPercent": 0,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v7.8.0",
-    "parsedAt": "2025-12-11T18:14:25.886Z",
+    "parsedAt": "2025-12-11T22:57:39.510Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -7983,18 +8596,22 @@
     "date": "2020-03-11",
     "isLastBeforeWPBeta": false,
     "totalPRs": 91,
-    "featurePRs": 14,
-    "bugPRs": 30,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "Features": 3,
+      "Enhancements": 11,
+      "Bug Fixes": 30,
+      "New APIs:": 1,
+      "Experiments": 8,
+      "Documentation": 8,
+      "Code Quality": 11,
+      "Various": 19
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 15,
-    "bugfixPercent": 33,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v7.7.0",
-    "parsedAt": "2025-12-11T18:14:25.886Z",
+    "parsedAt": "2025-12-11T22:57:39.510Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -8003,18 +8620,15 @@
     "date": "2020-02-26",
     "isLastBeforeWPBeta": false,
     "totalPRs": 58,
-    "featurePRs": 0,
-    "bugPRs": 0,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "Uncategorized": 58
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 0,
-    "bugfixPercent": 0,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v7.6.0",
-    "parsedAt": "2025-12-11T18:14:25.886Z",
+    "parsedAt": "2025-12-11T22:57:39.510Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -8023,18 +8637,15 @@
     "date": "2020-02-12",
     "isLastBeforeWPBeta": true,
     "totalPRs": 86,
-    "featurePRs": 0,
-    "bugPRs": 0,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "Uncategorized": 86
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 0,
-    "bugfixPercent": 0,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v7.5.0",
-    "parsedAt": "2025-12-11T18:14:25.886Z",
+    "parsedAt": "2025-12-11T22:57:39.510Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -8043,18 +8654,21 @@
     "date": "2020-02-05",
     "isLastBeforeWPBeta": false,
     "totalPRs": 96,
-    "featurePRs": 13,
-    "bugPRs": 24,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "Features": 2,
+      "Enhancements": 11,
+      "New APIs": 13,
+      "Bug Fixes": 24,
+      "Experiments": 4,
+      "Documentation": 12,
+      "Various": 30
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 14,
-    "bugfixPercent": 25,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v7.4.0",
-    "parsedAt": "2025-12-11T18:14:25.887Z",
+    "parsedAt": "2025-12-11T22:57:39.510Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -8063,18 +8677,15 @@
     "date": "2020-01-22",
     "isLastBeforeWPBeta": false,
     "totalPRs": 137,
-    "featurePRs": 0,
-    "bugPRs": 0,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "Uncategorized": 137
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 0,
-    "bugfixPercent": 0,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v7.3.0",
-    "parsedAt": "2025-12-11T18:14:25.887Z",
+    "parsedAt": "2025-12-11T22:57:39.510Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -8083,18 +8694,22 @@
     "date": "2020-01-08",
     "isLastBeforeWPBeta": false,
     "totalPRs": 152,
-    "featurePRs": 37,
-    "bugPRs": 0,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "New Features": 4,
+      "Enhancements": 33,
+      "Performance:": 1,
+      "Bugs:": 38,
+      "New APIs:": 20,
+      "Experiments": 9,
+      "Documentation": 22,
+      "Various": 25
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 24,
-    "bugfixPercent": 0,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v7.2.0",
-    "parsedAt": "2025-12-11T18:14:25.887Z",
+    "parsedAt": "2025-12-11T22:57:39.510Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -8103,18 +8718,22 @@
     "date": "2019-12-11",
     "isLastBeforeWPBeta": false,
     "totalPRs": 126,
-    "featurePRs": 34,
-    "bugPRs": 27,
-    "a11yPRs": 0,
-    "performancePRs": 4,
+    "categories": {
+      "Features": 5,
+      "Enhancements": 29,
+      "Bug Fixes": 27,
+      "APIs": 9,
+      "Experiments": 6,
+      "Documentation": 10,
+      "Performance": 4,
+      "Various": 36
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 27,
-    "bugfixPercent": 21,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v7.1.0",
-    "parsedAt": "2025-12-11T18:14:25.887Z",
+    "parsedAt": "2025-12-11T22:57:39.510Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -8123,18 +8742,21 @@
     "date": "2019-11-27",
     "isLastBeforeWPBeta": false,
     "totalPRs": 98,
-    "featurePRs": 18,
-    "bugPRs": 15,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "Features": 13,
+      "Enhancements": 5,
+      "Bug Fixes": 15,
+      "New APIs": 5,
+      "Experiments": 13,
+      "Documentation": 23,
+      "Various": 24
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 18,
-    "bugfixPercent": 15,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v7.0.0",
-    "parsedAt": "2025-12-11T18:14:25.887Z",
+    "parsedAt": "2025-12-11T22:57:39.510Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -8143,18 +8765,21 @@
     "date": "2019-11-13",
     "isLastBeforeWPBeta": false,
     "totalPRs": 77,
-    "featurePRs": 4,
-    "bugPRs": 0,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "Features": 1,
+      "Bugs": 9,
+      "Enhancements": 3,
+      "New APIs": 5,
+      "Various": 21,
+      "Experimental": 31,
+      "Documentation": 7
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 5,
-    "bugfixPercent": 0,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v6.9.0",
-    "parsedAt": "2025-12-11T18:14:25.888Z",
+    "parsedAt": "2025-12-11T22:57:39.510Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -8163,18 +8788,20 @@
     "date": "2019-10-30",
     "isLastBeforeWPBeta": false,
     "totalPRs": 63,
-    "featurePRs": 8,
-    "bugPRs": 0,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "Features": 2,
+      "Enhancements": 6,
+      "Bugs": 23,
+      "New APIs": 8,
+      "Various": 20,
+      "Documentation": 4
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 13,
-    "bugfixPercent": 0,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v6.8.0",
-    "parsedAt": "2025-12-11T18:14:25.888Z",
+    "parsedAt": "2025-12-11T22:57:39.510Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -8183,18 +8810,21 @@
     "date": "2019-10-16",
     "isLastBeforeWPBeta": false,
     "totalPRs": 83,
-    "featurePRs": 5,
-    "bugPRs": 40,
-    "a11yPRs": 0,
-    "performancePRs": 1,
+    "categories": {
+      "Features": 1,
+      "Bug Fixes": 40,
+      "Performance": 1,
+      "Enhancements": 4,
+      "Experiments": 5,
+      "Documentation": 3,
+      "Various": 29
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 6,
-    "bugfixPercent": 48,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v6.7.0",
-    "parsedAt": "2025-12-11T18:14:25.888Z",
+    "parsedAt": "2025-12-11T22:57:39.510Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -8203,18 +8833,22 @@
     "date": "2019-10-02",
     "isLastBeforeWPBeta": false,
     "totalPRs": 59,
-    "featurePRs": 6,
-    "bugPRs": 0,
-    "a11yPRs": 0,
-    "performancePRs": 3,
+    "categories": {
+      "Enhancements": 6,
+      "New APIs": 1,
+      "Experimental": 2,
+      "Bugs": 25,
+      "Performance": 3,
+      "Various": 13,
+      "Documentation": 7,
+      "Mobile": 2
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 10,
-    "bugfixPercent": 0,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v6.6.0",
-    "parsedAt": "2025-12-11T18:14:25.888Z",
+    "parsedAt": "2025-12-11T22:57:39.510Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -8223,18 +8857,21 @@
     "date": "2019-09-18",
     "isLastBeforeWPBeta": true,
     "totalPRs": 96,
-    "featurePRs": 20,
-    "bugPRs": 35,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "Features": 6,
+      "Enhancements": 14,
+      "Bug Fixes": 35,
+      "Experiments": 7,
+      "APIs": 7,
+      "Various": 15,
+      "Documentation": 12
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 21,
-    "bugfixPercent": 36,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v6.5.0",
-    "parsedAt": "2025-12-11T18:14:25.888Z",
+    "parsedAt": "2025-12-11T22:57:39.510Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -8243,18 +8880,22 @@
     "date": "2019-08-28",
     "isLastBeforeWPBeta": false,
     "totalPRs": 60,
-    "featurePRs": 15,
-    "bugPRs": 16,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "Features": 7,
+      "Enhancements": 8,
+      "Experiments": 1,
+      "New APIs": 3,
+      "Bug Fixes": 16,
+      "Various": 15,
+      "Documentation": 5,
+      "Mobile": 5
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 25,
-    "bugfixPercent": 27,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v6.4.0",
-    "parsedAt": "2025-12-11T18:14:25.888Z",
+    "parsedAt": "2025-12-11T22:57:39.510Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -8263,18 +8904,22 @@
     "date": "2019-08-14",
     "isLastBeforeWPBeta": false,
     "totalPRs": 99,
-    "featurePRs": 23,
-    "bugPRs": 26,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "Features": 3,
+      "Enhancements": 20,
+      "Experiments": 6,
+      "New APIs": 6,
+      "Bug Fixes": 26,
+      "Various": 25,
+      "Documentation": 10,
+      "Mobile": 3
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 23,
-    "bugfixPercent": 26,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v6.3.0",
-    "parsedAt": "2025-12-11T18:14:25.888Z",
+    "parsedAt": "2025-12-11T22:57:39.511Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -8283,18 +8928,19 @@
     "date": "2019-07-31",
     "isLastBeforeWPBeta": false,
     "totalPRs": 76,
-    "featurePRs": 6,
-    "bugPRs": 23,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "Enhancements": 6,
+      "Bug Fixes": 23,
+      "Documentation": 18,
+      "Divers": 18,
+      "Mobile": 11
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 8,
-    "bugfixPercent": 30,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v6.2.0",
-    "parsedAt": "2025-12-11T18:14:25.889Z",
+    "parsedAt": "2025-12-11T22:57:39.511Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -8303,18 +8949,21 @@
     "date": "2019-07-10",
     "isLastBeforeWPBeta": false,
     "totalPRs": 52,
-    "featurePRs": 9,
-    "bugPRs": 17,
-    "a11yPRs": 0,
-    "performancePRs": 3,
+    "categories": {
+      "Enhancements": 9,
+      "Experiments": 2,
+      "Bug Fixes": 17,
+      "Performance": 3,
+      "Documentation": 8,
+      "Various": 11,
+      "Mobile": 2
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 17,
-    "bugfixPercent": 33,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v6.1.0",
-    "parsedAt": "2025-12-11T18:14:25.889Z",
+    "parsedAt": "2025-12-11T22:57:39.511Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -8323,18 +8972,20 @@
     "date": "2019-06-26",
     "isLastBeforeWPBeta": false,
     "totalPRs": 66,
-    "featurePRs": 13,
-    "bugPRs": 9,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "Features": 1,
+      "Enhancements": 12,
+      "Bug Fixes": 9,
+      "Various": 17,
+      "Documentation": 15,
+      "Mobile": 12
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 20,
-    "bugfixPercent": 14,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v6.0.0",
-    "parsedAt": "2025-12-11T18:14:25.889Z",
+    "parsedAt": "2025-12-11T22:57:39.511Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -8343,18 +8994,20 @@
     "date": "2019-06-12",
     "isLastBeforeWPBeta": false,
     "totalPRs": 94,
-    "featurePRs": 13,
-    "bugPRs": 19,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "Features": 1,
+      "Enhancements": 12,
+      "Bug Fixes": 19,
+      "Various": 29,
+      "Documentation": 13,
+      "Mobile": 20
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 14,
-    "bugfixPercent": 20,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v5.9.0",
-    "parsedAt": "2025-12-11T18:14:25.889Z",
+    "parsedAt": "2025-12-11T22:57:39.511Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -8363,18 +9016,20 @@
     "date": "2019-05-29",
     "isLastBeforeWPBeta": false,
     "totalPRs": 82,
-    "featurePRs": 12,
-    "bugPRs": 15,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "Features": 7,
+      "Enhancements": 5,
+      "Bug Fixes": 15,
+      "Documentation": 17,
+      "Various": 24,
+      "Mobile": 14
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 15,
-    "bugfixPercent": 18,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v5.8.0",
-    "parsedAt": "2025-12-11T18:14:25.889Z",
+    "parsedAt": "2025-12-11T22:57:39.511Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -8383,18 +9038,20 @@
     "date": "2019-05-15",
     "isLastBeforeWPBeta": false,
     "totalPRs": 100,
-    "featurePRs": 4,
-    "bugPRs": 36,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "Features": 4,
+      "Enhancement": 5,
+      "Bug Fixes": 36,
+      "Documentation": 24,
+      "Various": 27,
+      "Mobile": 4
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 4,
-    "bugfixPercent": 36,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v5.7.0",
-    "parsedAt": "2025-12-11T18:14:25.889Z",
+    "parsedAt": "2025-12-11T22:57:39.511Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -8403,18 +9060,16 @@
     "date": "2019-05-01",
     "isLastBeforeWPBeta": false,
     "totalPRs": 57,
-    "featurePRs": 0,
-    "bugPRs": 0,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "Uncategorized": 56,
+      "Miscellaneous": 1
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 0,
-    "bugfixPercent": 0,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v5.6.0",
-    "parsedAt": "2025-12-11T18:14:25.889Z",
+    "parsedAt": "2025-12-11T22:57:39.511Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -8423,18 +9078,15 @@
     "date": "2019-04-17",
     "isLastBeforeWPBeta": false,
     "totalPRs": 91,
-    "featurePRs": 0,
-    "bugPRs": 0,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "Uncategorized": 91
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 0,
-    "bugfixPercent": 0,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v5.5.0",
-    "parsedAt": "2025-12-11T18:14:25.889Z",
+    "parsedAt": "2025-12-11T22:57:39.511Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -8443,18 +9095,13 @@
     "date": "2019-04-03",
     "isLastBeforeWPBeta": true,
     "totalPRs": 0,
-    "featurePRs": 0,
-    "bugPRs": 0,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {},
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 0,
-    "bugfixPercent": 0,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v5.4.0",
-    "parsedAt": "2025-12-11T18:14:25.889Z",
+    "parsedAt": "2025-12-11T22:57:39.511Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -8463,18 +9110,15 @@
     "date": "2019-03-20",
     "isLastBeforeWPBeta": false,
     "totalPRs": 127,
-    "featurePRs": 0,
-    "bugPRs": 0,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "Uncategorized": 127
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 0,
-    "bugfixPercent": 0,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v5.3.0",
-    "parsedAt": "2025-12-11T18:14:25.890Z",
+    "parsedAt": "2025-12-11T22:57:39.511Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -8483,18 +9127,13 @@
     "date": "2019-03-06",
     "isLastBeforeWPBeta": false,
     "totalPRs": 0,
-    "featurePRs": 0,
-    "bugPRs": 0,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {},
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 0,
-    "bugfixPercent": 0,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v5.2.0",
-    "parsedAt": "2025-12-11T18:14:25.890Z",
+    "parsedAt": "2025-12-11T22:57:39.511Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -8503,18 +9142,15 @@
     "date": "2019-02-20",
     "isLastBeforeWPBeta": false,
     "totalPRs": 1,
-    "featurePRs": 0,
-    "bugPRs": 0,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "Uncategorized": 1
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 0,
-    "bugfixPercent": 0,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v5.1.0",
-    "parsedAt": "2025-12-11T18:14:25.890Z",
+    "parsedAt": "2025-12-11T22:57:39.511Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -8523,18 +9159,21 @@
     "date": "2019-02-06",
     "isLastBeforeWPBeta": false,
     "totalPRs": 126,
-    "featurePRs": 23,
-    "bugPRs": 21,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "Features": 5,
+      "Enhancements": 18,
+      "Bug Fixes": 21,
+      "Various": 11,
+      "Documentation": 22,
+      "Chore": 40,
+      "Mobile": 9
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 18,
-    "bugfixPercent": 17,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v5.0.0",
-    "parsedAt": "2025-12-11T18:14:25.890Z",
+    "parsedAt": "2025-12-11T22:57:39.511Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -8543,18 +9182,15 @@
     "date": "2019-01-23",
     "isLastBeforeWPBeta": false,
     "totalPRs": 73,
-    "featurePRs": 0,
-    "bugPRs": 0,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "Uncategorized": 73
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 0,
-    "bugfixPercent": 0,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v4.9.0",
-    "parsedAt": "2025-12-11T18:14:25.890Z",
+    "parsedAt": "2025-12-11T22:57:39.511Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -8563,18 +9199,15 @@
     "date": "2019-01-07",
     "isLastBeforeWPBeta": true,
     "totalPRs": 62,
-    "featurePRs": 0,
-    "bugPRs": 0,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "Uncategorized": 62
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 0,
-    "bugfixPercent": 0,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v4.8.0",
-    "parsedAt": "2025-12-11T18:14:25.890Z",
+    "parsedAt": "2025-12-11T22:57:39.511Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -8583,18 +9216,15 @@
     "date": "2018-12-12",
     "isLastBeforeWPBeta": true,
     "totalPRs": 46,
-    "featurePRs": 0,
-    "bugPRs": 0,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "Uncategorized": 46
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 0,
-    "bugfixPercent": 0,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v4.7.0",
-    "parsedAt": "2025-12-11T18:14:25.890Z",
+    "parsedAt": "2025-12-11T22:57:39.511Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -8603,18 +9233,15 @@
     "date": "2018-11-30",
     "isLastBeforeWPBeta": false,
     "totalPRs": 28,
-    "featurePRs": 0,
-    "bugPRs": 0,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "Uncategorized": 28
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 0,
-    "bugfixPercent": 0,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v4.6.0",
-    "parsedAt": "2025-12-11T18:14:25.890Z",
+    "parsedAt": "2025-12-11T22:57:39.511Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -8623,18 +9250,15 @@
     "date": "2018-11-20",
     "isLastBeforeWPBeta": false,
     "totalPRs": 83,
-    "featurePRs": 0,
-    "bugPRs": 0,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "Uncategorized": 83
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 0,
-    "bugfixPercent": 0,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v4.5.0",
-    "parsedAt": "2025-12-11T18:14:25.890Z",
+    "parsedAt": "2025-12-11T22:57:39.511Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -8643,18 +9267,15 @@
     "date": "2018-11-15",
     "isLastBeforeWPBeta": false,
     "totalPRs": 67,
-    "featurePRs": 0,
-    "bugPRs": 0,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "Uncategorized": 67
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 0,
-    "bugfixPercent": 0,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v4.4.0",
-    "parsedAt": "2025-12-11T18:14:25.891Z",
+    "parsedAt": "2025-12-11T22:57:39.511Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -8663,18 +9284,15 @@
     "date": "2018-11-12",
     "isLastBeforeWPBeta": false,
     "totalPRs": 133,
-    "featurePRs": 0,
-    "bugPRs": 0,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "Uncategorized": 133
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 0,
-    "bugfixPercent": 0,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v4.3.0",
-    "parsedAt": "2025-12-11T18:14:25.891Z",
+    "parsedAt": "2025-12-11T22:57:39.512Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -8683,18 +9301,15 @@
     "date": "2018-11-06",
     "isLastBeforeWPBeta": false,
     "totalPRs": 3,
-    "featurePRs": 0,
-    "bugPRs": 0,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "Uncategorized": 3
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 0,
-    "bugfixPercent": 0,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v4.2.0",
-    "parsedAt": "2025-12-11T18:14:25.891Z",
+    "parsedAt": "2025-12-11T22:57:39.512Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -8703,18 +9318,15 @@
     "date": "2018-10-24",
     "isLastBeforeWPBeta": false,
     "totalPRs": 114,
-    "featurePRs": 0,
-    "bugPRs": 0,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "Uncategorized": 114
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 0,
-    "bugfixPercent": 0,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v4.1.0",
-    "parsedAt": "2025-12-11T18:14:25.891Z",
+    "parsedAt": "2025-12-11T22:57:39.512Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -8723,18 +9335,19 @@
     "date": "2018-10-17",
     "isLastBeforeWPBeta": false,
     "totalPRs": 142,
-    "featurePRs": 57,
-    "bugPRs": 44,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "New Features": 57,
+      "Bug Fixes": 44,
+      "Other Changes": 36,
+      "Mobile": 4,
+      "Uncategorized": 1
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 40,
-    "bugfixPercent": 31,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v4.0.0",
-    "parsedAt": "2025-12-11T18:14:25.891Z",
+    "parsedAt": "2025-12-11T22:57:39.512Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -8743,18 +9356,15 @@
     "date": "2018-09-21",
     "isLastBeforeWPBeta": false,
     "totalPRs": 74,
-    "featurePRs": 0,
-    "bugPRs": 0,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "Uncategorized": 74
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 0,
-    "bugfixPercent": 0,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v3.9.0",
-    "parsedAt": "2025-12-11T18:14:25.891Z",
+    "parsedAt": "2025-12-11T22:57:39.512Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -8763,18 +9373,15 @@
     "date": "2018-09-12",
     "isLastBeforeWPBeta": false,
     "totalPRs": 40,
-    "featurePRs": 0,
-    "bugPRs": 0,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "Uncategorized": 40
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 0,
-    "bugfixPercent": 0,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v3.8.0",
-    "parsedAt": "2025-12-11T18:14:25.891Z",
+    "parsedAt": "2025-12-11T22:57:39.512Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -8783,18 +9390,15 @@
     "date": "2018-11-01",
     "isLastBeforeWPBeta": false,
     "totalPRs": 1,
-    "featurePRs": 0,
-    "bugPRs": 0,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "Uncategorized": 1
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 0,
-    "bugfixPercent": 0,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v3.7.1",
-    "parsedAt": "2025-12-11T18:14:25.891Z",
+    "parsedAt": "2025-12-11T22:57:39.512Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -8803,18 +9407,15 @@
     "date": "2018-11-01",
     "isLastBeforeWPBeta": false,
     "totalPRs": 1,
-    "featurePRs": 0,
-    "bugPRs": 0,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "Uncategorized": 1
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 0,
-    "bugfixPercent": 0,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v3.6.3",
-    "parsedAt": "2025-12-11T18:14:25.891Z",
+    "parsedAt": "2025-12-11T22:57:39.512Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -8823,18 +9424,15 @@
     "date": "2018-08-15",
     "isLastBeforeWPBeta": false,
     "totalPRs": 106,
-    "featurePRs": 0,
-    "bugPRs": 0,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "Uncategorized": 106
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 0,
-    "bugfixPercent": 0,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v3.5.0",
-    "parsedAt": "2025-12-11T18:14:25.891Z",
+    "parsedAt": "2025-12-11T22:57:39.512Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -8843,18 +9441,15 @@
     "date": "2018-07-31",
     "isLastBeforeWPBeta": false,
     "totalPRs": 60,
-    "featurePRs": 0,
-    "bugPRs": 0,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "Uncategorized": 60
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 0,
-    "bugfixPercent": 0,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v3.4.0",
-    "parsedAt": "2025-12-11T18:14:25.892Z",
+    "parsedAt": "2025-12-11T22:57:39.512Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -8863,18 +9458,15 @@
     "date": "2018-07-20",
     "isLastBeforeWPBeta": false,
     "totalPRs": 92,
-    "featurePRs": 0,
-    "bugPRs": 0,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "Uncategorized": 92
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 0,
-    "bugfixPercent": 0,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v3.3.0",
-    "parsedAt": "2025-12-11T18:14:25.892Z",
+    "parsedAt": "2025-12-11T22:57:39.512Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -8883,18 +9475,15 @@
     "date": "2018-06-28",
     "isLastBeforeWPBeta": false,
     "totalPRs": 2,
-    "featurePRs": 0,
-    "bugPRs": 0,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {
+      "Uncategorized": 2
+    },
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 0,
-    "bugfixPercent": 0,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v3.1.1",
-    "parsedAt": "2025-12-11T18:14:25.892Z",
+    "parsedAt": "2025-12-11T22:57:39.512Z",
     "parserVersion": "1.0.0"
   },
   {
@@ -8903,18 +9492,13 @@
     "date": "2017-08-29",
     "isLastBeforeWPBeta": false,
     "totalPRs": 0,
-    "featurePRs": 0,
-    "bugPRs": 0,
-    "a11yPRs": 0,
-    "performancePRs": 0,
+    "categories": {},
     "contributors": 0,
     "newContributors": 0,
     "contributorsList": [],
     "newContributorsList": [],
-    "enhancementPercent": 0,
-    "bugfixPercent": 0,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v1.0.0",
-    "parsedAt": "2025-12-11T18:14:25.892Z",
+    "parsedAt": "2025-12-11T22:57:39.512Z",
     "parserVersion": "1.0.0"
   }
 ]
