@@ -1,7 +1,12 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { DataViews } from '@wordpress/dataviews';
 import { ExternalLink, Tooltip } from '@wordpress/components';
 import type { Release } from '../data/types';
+import {
+  loadCategoryConfig,
+  getAggregatedPRs,
+  type CategoryConfig,
+} from '../utils/categories';
 
 import '@wordpress/dataviews/build-style/style.css';
 
@@ -31,7 +36,18 @@ const defaultLayouts = {
   table: {},
 };
 
+// Static fields that are always present
+const STATIC_FIELDS = ['gbVersion', 'wpVersion', 'date', 'totalPRs'];
+const CONTRIBUTOR_FIELDS = ['contributors', 'newContributors'];
+
 export function ReleasesTable({ releases }: ReleasesTableProps) {
+  const [categoryConfig, setCategoryConfig] = useState<CategoryConfig | null>(null);
+
+  // Load category config on mount
+  useEffect(() => {
+    loadCategoryConfig().then(setCategoryConfig);
+  }, []);
+
   // Derive WP version options from releases data
   const wpVersionOptions = useMemo(() => {
     const versions = new Set<string>();
@@ -47,6 +63,18 @@ export function ReleasesTable({ releases }: ReleasesTableProps) {
       })
       .map((v) => ({ value: v, label: `WP ${v}` }));
   }, [releases]);
+
+  // Compute default visible fields based on config
+  const defaultVisibleFields = useMemo(() => {
+    if (!categoryConfig) return [...STATIC_FIELDS, ...CONTRIBUTOR_FIELDS];
+
+    const defaultCategoryFields = categoryConfig.aggregations
+      .filter((agg) => agg.includeByDefault)
+      .map((agg) => `cat_${agg.id}`);
+
+    return [...STATIC_FIELDS, ...defaultCategoryFields, ...CONTRIBUTOR_FIELDS];
+  }, [categoryConfig]);
+
   const [view, setView] = useState<View>({
     type: 'table',
     perPage: 25,
@@ -57,21 +85,46 @@ export function ReleasesTable({ releases }: ReleasesTableProps) {
     },
     search: '',
     filters: [],
-    fields: [
-      'gbVersion',
-      'wpVersion',
-      'date',
-      'totalPRs',
-      'featurePRs',
-      'bugPRs',
-      'a11yPRs',
-      'performancePRs',
-      'contributors',
-      'newContributors',
-    ],
+    fields: [...STATIC_FIELDS, ...CONTRIBUTOR_FIELDS], // Initial, updated when config loads
     layout: {},
   });
 
+  // Update visible fields when config loads (only on first load)
+  useEffect(() => {
+    if (categoryConfig && view.fields.length === STATIC_FIELDS.length + CONTRIBUTOR_FIELDS.length) {
+      setView((prev) => ({
+        ...prev,
+        fields: defaultVisibleFields,
+      }));
+    }
+  }, [categoryConfig, defaultVisibleFields, view.fields.length]);
+
+  // Generate category fields dynamically from config
+  const categoryFields = useMemo(() => {
+    if (!categoryConfig) return [];
+
+    return categoryConfig.aggregations.map((agg) => ({
+      id: `cat_${agg.id}`,
+      label: agg.label,
+      enableSorting: true,
+      render: ({ item }: { item: Release }) => {
+        const count = getAggregatedPRs(item.categories, categoryConfig, agg.id);
+        // Show percentage for features and bugs
+        if (agg.id === 'features' || agg.id === 'bugs') {
+          const total = item.totalPRs || 1;
+          const percent = Math.round((count / total) * 100);
+          return (
+            <span className={`release-${agg.id}`}>
+              {count} ({percent}%)
+            </span>
+          );
+        }
+        return <span className={`release-${agg.id}`}>{count}</span>;
+      },
+    }));
+  }, [categoryConfig]);
+
+  // Combine static fields + dynamic category fields + contributor fields
   const fields = useMemo(
     () => [
       {
@@ -124,42 +177,8 @@ export function ReleasesTable({ releases }: ReleasesTableProps) {
           <span className="release-total-prs">{item.totalPRs}</span>
         ),
       },
-      {
-        id: 'featurePRs',
-        label: 'Features',
-        enableSorting: true,
-        render: ({ item }: { item: Release }) => (
-          <span className="release-features">
-            {item.featurePRs} ({item.enhancementPercent}%)
-          </span>
-        ),
-      },
-      {
-        id: 'bugPRs',
-        label: 'Bug Fixes',
-        enableSorting: true,
-        render: ({ item }: { item: Release }) => (
-          <span className="release-bugs">
-            {item.bugPRs} ({item.bugfixPercent}%)
-          </span>
-        ),
-      },
-      {
-        id: 'a11yPRs',
-        label: 'A11y',
-        enableSorting: true,
-        render: ({ item }: { item: Release }) => (
-          <span className="release-a11y">{item.a11yPRs}</span>
-        ),
-      },
-      {
-        id: 'performancePRs',
-        label: 'Perf',
-        enableSorting: true,
-        render: ({ item }: { item: Release }) => (
-          <span className="release-perf">{item.performancePRs}</span>
-        ),
-      },
+      // Insert dynamic category fields here
+      ...categoryFields,
       {
         id: 'contributors',
         label: 'Contributors',
@@ -177,7 +196,7 @@ export function ReleasesTable({ releases }: ReleasesTableProps) {
           ),
       },
     ],
-    [wpVersionOptions]
+    [wpVersionOptions, categoryFields]
   );
 
   // Filter and sort data based on view state
