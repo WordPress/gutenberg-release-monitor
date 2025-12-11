@@ -23,7 +23,18 @@ function App() {
     <div className="app">
       <header className="app-header">
         <h1>Gutenberg Release Monitor</h1>
-        <p>Track Gutenberg release statistics and changelog data</p>
+        <p>
+          Track Gutenberg release statistics and changelog data
+          <span className="header-separator">·</span>
+          <a
+            href="https://github.com/WordPress/gutenberg"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="header-link"
+          >
+            View Repository
+          </a>
+        </p>
       </header>
 
       {error && (

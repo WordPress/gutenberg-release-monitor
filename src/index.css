@@ -43,6 +43,19 @@ body {
   color: #757575;
 }
 
+.header-separator {
+  margin: 0 0.5rem;
+}
+
+.header-link {
+  color: #0073aa;
+  text-decoration: none;
+}
+
+.header-link:hover {
+  text-decoration: underline;
+}
+
 .app-main {
   background: white;
   border-radius: 4px;
@@ -62,9 +75,20 @@ body {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
+.summary-disclaimer {
+  grid-column: 1 / -1;
+  font-size: 0.75rem;
+  color: #757575;
+  background: #f9f9f9;
+  padding: 0.5rem 0.75rem;
+  border-radius: 3px;
+  margin-bottom: 0.5rem;
+}
+
 .summary-stat {
   text-align: center;
   padding: 0.75rem;
+  cursor: help;
 }
 
 .summary-stat-value {

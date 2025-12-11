@@ -8,10 +8,8 @@ interface ReleasesTableProps {
   releases: Release[];
 }
 
-type ViewType = 'table' | 'grid' | 'list';
-
 interface View {
-  type: ViewType;
+  type: 'table';
   perPage: number;
   page: number;
   sort: {
@@ -116,7 +114,7 @@ export function ReleasesTable({ releases }: ReleasesTableProps) {
         label: 'WP Version',
         elements: wpVersionOptions,
         filterBy: {
-          operators: ['is', 'isNot', 'isAny'],
+          operators: ['is', 'isNot', 'isAny'] as ('is' | 'isNot' | 'isAny')[],
         },
         render: ({ item }: { item: Release }) =>
           item.wpVersion ? `WP ${item.wpVersion}` : '—',
@@ -289,8 +287,8 @@ export function ReleasesTable({ releases }: ReleasesTableProps) {
     <DataViews
       data={paginatedData}
       fields={fields}
-      view={view}
-      onChangeView={setView}
+      view={view as Parameters<typeof DataViews>[0]['view']}
+      onChangeView={setView as Parameters<typeof DataViews>[0]['onChangeView']}
       paginationInfo={paginationInfo}
       defaultLayouts={defaultLayouts}
       getItemId={(item: Release) => item.gbVersion}
