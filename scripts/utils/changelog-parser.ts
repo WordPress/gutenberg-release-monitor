@@ -60,7 +60,7 @@ function countPRs(text: string): number {
 }
 
 /**
- * Parse the modern changelog format (v12+).
+ * Parse changelog format (supports both modern v12+ and legacy formats).
  * Uses ### Category and #### Subcategory headers.
  */
 export function parseModernChangelog(body: string): {
@@ -78,7 +78,10 @@ export function parseModernChangelog(body: string): {
 
   let currentCategory = '';
   let currentCategoryContent = '';
-  let inChangelog = false;
+
+  // Check if there's a "## Changelog" header - if not, assume whole body is changelog (legacy format)
+  const hasChangelogHeader = normalizedBody.includes('## Changelog');
+  let inChangelog = !hasChangelogHeader; // Start in changelog mode for legacy format
 
   // Track our standard PR counts
   let featurePRs = 0;
@@ -87,7 +90,7 @@ export function parseModernChangelog(body: string): {
   let performancePRs = 0;
 
   for (const line of lines) {
-    // Check for changelog section start
+    // Check for changelog section start (modern format)
     if (line.match(/^##\s+Changelog/i)) {
       inChangelog = true;
       continue;

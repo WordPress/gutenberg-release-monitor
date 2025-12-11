@@ -52,5 +52,23 @@
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v22.0.0",
     "parsedAt": "2025-12-11T16:09:29.521Z",
     "parserVersion": "1.0.0"
+  },
+  {
+    "gbVersion": "10.0.0",
+    "wpVersion": null,
+    "date": "2021-02-17",
+    "isLastBeforeWPBeta": false,
+    "totalPRs": 103,
+    "featurePRs": 12,
+    "bugPRs": 13,
+    "a11yPRs": 0,
+    "performancePRs": 0,
+    "contributors": 0,
+    "newContributors": 0,
+    "enhancementPercent": 12,
+    "bugfixPercent": 13,
+    "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v10.0.0",
+    "parsedAt": "2025-12-11T16:13:39.954Z",
+    "parserVersion": "1.0.0"
   }
 ]
