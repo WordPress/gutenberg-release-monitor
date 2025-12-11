@@ -1,8 +1,8 @@
 {
   "totalReleases": 192,
   "totalPRs": 24702,
-  "totalContributors": 4404,
-  "avgPRsPerRelease": 129,
+  "uniqueContributors": 665,
+  "recentAvgPRsPerRelease": 129,
   "latestRelease": "22.2.0",
   "oldestRelease": "1.0.0",
   "lastUpdated": "2025-12-11T17:03:06.107Z"
