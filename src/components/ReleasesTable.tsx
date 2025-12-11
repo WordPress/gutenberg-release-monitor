@@ -181,7 +181,7 @@ export function ReleasesTable({ releases }: ReleasesTableProps) {
       },
       {
         id: 'newContributors',
-        label: 'New',
+        label: 'New Contributors',
         enableSorting: true,
         render: ({ item }: { item: Release }) =>
           item.newContributors > 0 ? (
