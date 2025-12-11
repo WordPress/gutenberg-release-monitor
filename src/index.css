@@ -49,3 +49,76 @@ body {
   padding: 1.5rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
+
+/* Summary Stats */
+.summary-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: white;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.summary-stat {
+  text-align: center;
+  padding: 0.75rem;
+}
+
+.summary-stat-value {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #1e1e1e;
+}
+
+.summary-stat-label {
+  font-size: 0.875rem;
+  color: #757575;
+  margin-top: 0.25rem;
+}
+
+.summary-meta {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: #757575;
+  padding-top: 0.75rem;
+  border-top: 1px solid #e0e0e0;
+}
+
+/* Loading State */
+.app-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 3rem;
+  color: #757575;
+}
+
+/* Error State */
+.app-error {
+  background: #fcf0f1;
+  color: #8a1f1f;
+  padding: 1rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  border-left: 4px solid #d63638;
+}
+
+/* DataViews Overrides */
+.dataviews-wrapper {
+  font-size: 0.875rem;
+}
+
+.dataviews-view-table th {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.dataviews-view-table td {
+  vertical-align: middle;
+}
