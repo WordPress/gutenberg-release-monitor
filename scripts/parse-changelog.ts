@@ -8,7 +8,7 @@ import {
   getMinorVersion,
   isPatchRelease,
 } from './utils/github-api.js';
-import { parseRelease } from './utils/changelog-parser.js';
+import { parseRelease, parseContributors } from './utils/changelog-parser.js';
 import type { ParseArgs } from './utils/types.js';
 import type { Release } from '../src/data/types.js';
 
@@ -251,6 +251,24 @@ async function main() {
     // Write output
     writeFileSync(outputPath, JSON.stringify(mergedReleases, null, 2));
     console.log(`\nWrote ${mergedReleases.length} releases to ${outputPath}`);
+
+    // Calculate unique contributors across all fetched releases
+    console.log('\nCalculating unique contributors...');
+    const allContributors = new Set<string>();
+    for (const ghRelease of releases) {
+      const { contributorsList, newContributorsList } = parseContributors(ghRelease.body || '');
+      for (const c of contributorsList) allContributors.add(c);
+      for (const c of newContributorsList) allContributors.add(c);
+    }
+
+    // Write unique contributors count to a separate file
+    const contributorsData = {
+      uniqueCount: allContributors.size,
+      calculatedAt: new Date().toISOString(),
+    };
+    const contributorsPath = dirname(outputPath) + '/contributors-meta.json';
+    writeFileSync(contributorsPath, JSON.stringify(contributorsData, null, 2));
+    console.log(`  Found ${allContributors.size} unique contributors`);
 
     // Summary
     const totalPRs = aggregatedReleases.reduce((sum, r) => sum + r.totalPRs, 0);

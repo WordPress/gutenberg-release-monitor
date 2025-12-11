@@ -225,6 +225,8 @@ export function parseModernChangelog(body: string): {
 export function parseContributors(body: string): {
   contributors: number;
   newContributors: number;
+  contributorsList: string[];
+  newContributorsList: string[];
 } {
   // Normalize line endings (GitHub API returns \r\n)
   const normalizedBody = body.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
@@ -260,13 +262,19 @@ export function parseContributors(body: string): {
     }
   }
 
-  // Count @mentions as contributors
-  const contributorMatches = contributorsList.match(/@[\w-]+/g);
-  const firstTimeMatches = firstTimeList.match(/@[\w-]+/g);
+  // Extract @mentions as contributors (normalize to lowercase for deduplication)
+  const contributorMatches = contributorsList.match(/@[\w-]+/g) || [];
+  const firstTimeMatches = firstTimeList.match(/@[\w-]+/g) || [];
+
+  // Normalize mentions (remove @ and lowercase)
+  const normalizedContributors = contributorMatches.map((m) => m.slice(1).toLowerCase());
+  const normalizedNewContributors = firstTimeMatches.map((m) => m.slice(1).toLowerCase());
 
   return {
-    contributors: contributorMatches ? contributorMatches.length : 0,
-    newContributors: firstTimeMatches ? firstTimeMatches.length : 0,
+    contributors: normalizedContributors.length,
+    newContributors: normalizedNewContributors.length,
+    contributorsList: normalizedContributors,
+    newContributorsList: normalizedNewContributors,
   };
 }
 
@@ -283,7 +291,8 @@ export function parseRelease(release: GitHubRelease): ParsedChangelog {
     parseModernChangelog(body);
 
   // Parse contributors
-  const { contributors, newContributors } = parseContributors(body);
+  const { contributors, newContributors, contributorsList, newContributorsList } =
+    parseContributors(body);
 
   return {
     version,
@@ -296,6 +305,8 @@ export function parseRelease(release: GitHubRelease): ParsedChangelog {
     performancePRs,
     contributors,
     newContributors,
+    contributorsList,
+    newContributorsList,
     categories,
   };
 }

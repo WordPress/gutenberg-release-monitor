@@ -27,6 +27,8 @@ export interface ParsedChangelog {
   // Contributors
   contributors: number;
   newContributors: number;
+  contributorsList: string[];
+  newContributorsList: string[];
 
   // Raw category data for debugging
   categories: Record<string, number>;
