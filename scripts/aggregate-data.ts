@@ -1,5 +1,11 @@
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs';
 import type { Release, WPRelease, WPVersionStats, Summary } from '../src/data/types.js';
+import {
+  getReleaseFeaturePRs,
+  getReleaseBugPRs,
+  getReleaseA11yPRs,
+  getReleasePerformancePRs,
+} from './utils/category-utils.js';
 
 const RELEASES_PATH = 'public/data/releases.json';
 const WP_SCHEDULE_PATH = 'public/data/wp-schedule.json';
@@ -99,10 +105,10 @@ function generateWPVersionStats(releases: Release[]): WPVersionStats[] {
     const gbVersionRange = `${versions[0]}-${versions[versions.length - 1]}`;
 
     const totalPRs = wpReleases.reduce((sum, r) => sum + r.totalPRs, 0);
-    const totalFeaturePRs = wpReleases.reduce((sum, r) => sum + r.featurePRs, 0);
-    const totalBugPRs = wpReleases.reduce((sum, r) => sum + r.bugPRs, 0);
-    const totalA11yPRs = wpReleases.reduce((sum, r) => sum + r.a11yPRs, 0);
-    const totalPerformancePRs = wpReleases.reduce((sum, r) => sum + r.performancePRs, 0);
+    const totalFeaturePRs = wpReleases.reduce((sum, r) => sum + getReleaseFeaturePRs(r), 0);
+    const totalBugPRs = wpReleases.reduce((sum, r) => sum + getReleaseBugPRs(r), 0);
+    const totalA11yPRs = wpReleases.reduce((sum, r) => sum + getReleaseA11yPRs(r), 0);
+    const totalPerformancePRs = wpReleases.reduce((sum, r) => sum + getReleasePerformancePRs(r), 0);
     const totalContributors = wpReleases.reduce((sum, r) => sum + r.contributors, 0);
     const totalNewContributors = wpReleases.reduce((sum, r) => sum + r.newContributors, 0);
 
@@ -187,10 +193,10 @@ function generateSummary(releases: Release[], wpSchedule: WPRelease[], existingS
 
   // Calculate totals since cutoff
   const totalPRsSinceCutoff = sinceCutoffReleases.reduce((sum, r) => sum + r.totalPRs, 0);
-  const totalFeaturesSinceCutoff = sinceCutoffReleases.reduce((sum, r) => sum + r.featurePRs, 0);
-  const totalBugsSinceCutoff = sinceCutoffReleases.reduce((sum, r) => sum + r.bugPRs, 0);
-  const totalA11ySinceCutoff = sinceCutoffReleases.reduce((sum, r) => sum + r.a11yPRs, 0);
-  const totalPerfSinceCutoff = sinceCutoffReleases.reduce((sum, r) => sum + r.performancePRs, 0);
+  const totalFeaturesSinceCutoff = sinceCutoffReleases.reduce((sum, r) => sum + getReleaseFeaturePRs(r), 0);
+  const totalBugsSinceCutoff = sinceCutoffReleases.reduce((sum, r) => sum + getReleaseBugPRs(r), 0);
+  const totalA11ySinceCutoff = sinceCutoffReleases.reduce((sum, r) => sum + getReleaseA11yPRs(r), 0);
+  const totalPerfSinceCutoff = sinceCutoffReleases.reduce((sum, r) => sum + getReleasePerformancePRs(r), 0);
 
   // Calculate unique contributors across all releases in cycle (deduplicated)
   const allContributors = new Set<string>();
@@ -218,20 +224,20 @@ function generateSummary(releases: Release[], wpSchedule: WPRelease[], existingS
 
   // Calculate total averages (all-time) - only from releases that have the data
   const avgPRsTotal = Math.round(releases.reduce((sum, r) => sum + r.totalPRs, 0) / totalReleases);
-  const avgFeaturesTotal = Math.round(releases.reduce((sum, r) => sum + r.featurePRs, 0) / totalReleases);
-  const avgBugsTotal = Math.round(releases.reduce((sum, r) => sum + r.bugPRs, 0) / totalReleases);
+  const avgFeaturesTotal = Math.round(releases.reduce((sum, r) => sum + getReleaseFeaturePRs(r), 0) / totalReleases);
+  const avgBugsTotal = Math.round(releases.reduce((sum, r) => sum + getReleaseBugPRs(r), 0) / totalReleases);
 
   // A11y and performance data only exists in newer releases
-  const releasesWithA11y = releases.filter((r) => r.a11yPRs > 0);
+  const releasesWithA11y = releases.filter((r) => getReleaseA11yPRs(r) > 0);
   const a11yCount = releasesWithA11y.length || 1;
   const avgA11yTotal = Math.round(
-    releasesWithA11y.reduce((sum, r) => sum + r.a11yPRs, 0) / a11yCount
+    releasesWithA11y.reduce((sum, r) => sum + getReleaseA11yPRs(r), 0) / a11yCount
   );
 
-  const releasesWithPerf = releases.filter((r) => r.performancePRs > 0);
+  const releasesWithPerf = releases.filter((r) => getReleasePerformancePRs(r) > 0);
   const perfCount = releasesWithPerf.length || 1;
   const avgPerfTotal = Math.round(
-    releasesWithPerf.reduce((sum, r) => sum + r.performancePRs, 0) / perfCount
+    releasesWithPerf.reduce((sum, r) => sum + getReleasePerformancePRs(r), 0) / perfCount
   );
 
   // Contributors data only exists in newer releases
@@ -333,10 +339,10 @@ async function main() {
       gbVersion: r.gbVersion,
       date: r.date,
       totalPRs: r.totalPRs,
-      featurePRs: r.featurePRs,
-      bugPRs: r.bugPRs,
-      a11yPRs: r.a11yPRs,
-      performancePRs: r.performancePRs,
+      featurePRs: getReleaseFeaturePRs(r),
+      bugPRs: getReleaseBugPRs(r),
+      a11yPRs: getReleaseA11yPRs(r),
+      performancePRs: getReleasePerformancePRs(r),
       isLastBeforeWPBeta: r.isLastBeforeWPBeta,
       wpVersion: r.wpVersion,
     }))
