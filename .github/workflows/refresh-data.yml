@@ -1,0 +1,65 @@
+name: Refresh Release Data
+
+on:
+  schedule:
+    # Run weekly on Mondays at 9:00 UTC (after GB releases)
+    - cron: '0 9 * * 1'
+  workflow_dispatch:
+    inputs:
+      from_version:
+        description: 'Parse from version (optional)'
+        required: false
+      to_version:
+        description: 'Parse to version (optional)'
+        required: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Parse releases
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ -n "${{ github.event.inputs.from_version }}" ] || [ -n "${{ github.event.inputs.to_version }}" ]; then
+            ARGS=""
+            [ -n "${{ github.event.inputs.from_version }}" ] && ARGS="$ARGS --from ${{ github.event.inputs.from_version }}"
+            [ -n "${{ github.event.inputs.to_version }}" ] && ARGS="$ARGS --to ${{ github.event.inputs.to_version }}"
+            npm run parse -- $ARGS
+          else
+            npm run parse
+          fi
+
+      - name: Aggregate data
+        run: npm run aggregate
+
+      - name: Check for changes
+        id: changes
+        run: |
+          git diff --quiet data/ || echo "changed=true" >> $GITHUB_OUTPUT
+
+      - name: Commit and push changes
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/
+          git commit -m "Update release data
+
+          Automated refresh of Gutenberg release statistics."
+          git push
