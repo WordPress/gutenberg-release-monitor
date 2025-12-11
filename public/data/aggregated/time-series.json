@@ -85,7 +85,7 @@
     "a11yPRs": 0,
     "performancePRs": 0,
     "isLastBeforeWPBeta": false,
-    "wpVersion": null
+    "wpVersion": "5.0"
   },
   {
     "gbVersion": "4.1.0",
@@ -96,7 +96,7 @@
     "a11yPRs": 0,
     "performancePRs": 0,
     "isLastBeforeWPBeta": false,
-    "wpVersion": null
+    "wpVersion": "5.0"
   },
   {
     "gbVersion": "3.7.1",
@@ -129,7 +129,7 @@
     "a11yPRs": 0,
     "performancePRs": 0,
     "isLastBeforeWPBeta": false,
-    "wpVersion": null
+    "wpVersion": "5.0"
   },
   {
     "gbVersion": "4.3.0",
@@ -140,7 +140,7 @@
     "a11yPRs": 0,
     "performancePRs": 0,
     "isLastBeforeWPBeta": false,
-    "wpVersion": null
+    "wpVersion": "5.0"
   },
   {
     "gbVersion": "4.4.0",
@@ -151,7 +151,7 @@
     "a11yPRs": 0,
     "performancePRs": 0,
     "isLastBeforeWPBeta": false,
-    "wpVersion": null
+    "wpVersion": "5.0"
   },
   {
     "gbVersion": "4.5.0",
@@ -162,7 +162,7 @@
     "a11yPRs": 0,
     "performancePRs": 0,
     "isLastBeforeWPBeta": false,
-    "wpVersion": null
+    "wpVersion": "5.0"
   },
   {
     "gbVersion": "4.6.0",
@@ -173,7 +173,7 @@
     "a11yPRs": 0,
     "performancePRs": 0,
     "isLastBeforeWPBeta": false,
-    "wpVersion": null
+    "wpVersion": "5.0"
   },
   {
     "gbVersion": "4.7.0",
@@ -183,8 +183,8 @@
     "bugPRs": 0,
     "a11yPRs": 0,
     "performancePRs": 0,
-    "isLastBeforeWPBeta": false,
-    "wpVersion": null
+    "isLastBeforeWPBeta": true,
+    "wpVersion": "5.0"
   },
   {
     "gbVersion": "4.8.0",
@@ -194,8 +194,8 @@
     "bugPRs": 0,
     "a11yPRs": 0,
     "performancePRs": 0,
-    "isLastBeforeWPBeta": false,
-    "wpVersion": null
+    "isLastBeforeWPBeta": true,
+    "wpVersion": "5.1"
   },
   {
     "gbVersion": "4.9.0",
@@ -206,7 +206,7 @@
     "a11yPRs": 0,
     "performancePRs": 0,
     "isLastBeforeWPBeta": false,
-    "wpVersion": null
+    "wpVersion": "5.2"
   },
   {
     "gbVersion": "5.0.0",
@@ -217,7 +217,7 @@
     "a11yPRs": 0,
     "performancePRs": 0,
     "isLastBeforeWPBeta": false,
-    "wpVersion": null
+    "wpVersion": "5.2"
   },
   {
     "gbVersion": "5.1.0",
@@ -228,7 +228,7 @@
     "a11yPRs": 0,
     "performancePRs": 0,
     "isLastBeforeWPBeta": false,
-    "wpVersion": null
+    "wpVersion": "5.2"
   },
   {
     "gbVersion": "5.2.0",
@@ -239,7 +239,7 @@
     "a11yPRs": 0,
     "performancePRs": 0,
     "isLastBeforeWPBeta": false,
-    "wpVersion": null
+    "wpVersion": "5.2"
   },
   {
     "gbVersion": "5.3.0",
@@ -250,7 +250,7 @@
     "a11yPRs": 0,
     "performancePRs": 0,
     "isLastBeforeWPBeta": false,
-    "wpVersion": null
+    "wpVersion": "5.2"
   },
   {
     "gbVersion": "5.4.0",
@@ -260,8 +260,8 @@
     "bugPRs": 0,
     "a11yPRs": 0,
     "performancePRs": 0,
-    "isLastBeforeWPBeta": false,
-    "wpVersion": null
+    "isLastBeforeWPBeta": true,
+    "wpVersion": "5.2"
   },
   {
     "gbVersion": "5.5.0",
@@ -272,7 +272,7 @@
     "a11yPRs": 0,
     "performancePRs": 0,
     "isLastBeforeWPBeta": false,
-    "wpVersion": null
+    "wpVersion": "5.3"
   },
   {
     "gbVersion": "5.6.0",
@@ -283,7 +283,7 @@
     "a11yPRs": 0,
     "performancePRs": 0,
     "isLastBeforeWPBeta": false,
-    "wpVersion": null
+    "wpVersion": "5.3"
   },
   {
     "gbVersion": "5.7.0",
@@ -294,7 +294,7 @@
     "a11yPRs": 0,
     "performancePRs": 0,
     "isLastBeforeWPBeta": false,
-    "wpVersion": null
+    "wpVersion": "5.3"
   },
   {
     "gbVersion": "5.8.0",
@@ -305,7 +305,7 @@
     "a11yPRs": 0,
     "performancePRs": 0,
     "isLastBeforeWPBeta": false,
-    "wpVersion": null
+    "wpVersion": "5.3"
   },
   {
     "gbVersion": "5.9.0",
@@ -316,7 +316,7 @@
     "a11yPRs": 0,
     "performancePRs": 0,
     "isLastBeforeWPBeta": false,
-    "wpVersion": null
+    "wpVersion": "5.3"
   },
   {
     "gbVersion": "6.0.0",
@@ -327,7 +327,7 @@
     "a11yPRs": 0,
     "performancePRs": 0,
     "isLastBeforeWPBeta": false,
-    "wpVersion": null
+    "wpVersion": "5.3"
   },
   {
     "gbVersion": "6.1.0",
@@ -338,7 +338,7 @@
     "a11yPRs": 0,
     "performancePRs": 3,
     "isLastBeforeWPBeta": false,
-    "wpVersion": null
+    "wpVersion": "5.3"
   },
   {
     "gbVersion": "6.2.0",
@@ -349,7 +349,7 @@
     "a11yPRs": 0,
     "performancePRs": 0,
     "isLastBeforeWPBeta": false,
-    "wpVersion": null
+    "wpVersion": "5.3"
   },
   {
     "gbVersion": "6.3.0",
@@ -360,7 +360,7 @@
     "a11yPRs": 0,
     "performancePRs": 0,
     "isLastBeforeWPBeta": false,
-    "wpVersion": null
+    "wpVersion": "5.3"
   },
   {
     "gbVersion": "6.4.0",
@@ -371,7 +371,7 @@
     "a11yPRs": 0,
     "performancePRs": 0,
     "isLastBeforeWPBeta": false,
-    "wpVersion": null
+    "wpVersion": "5.3"
   },
   {
     "gbVersion": "6.5.0",
@@ -381,8 +381,8 @@
     "bugPRs": 35,
     "a11yPRs": 0,
     "performancePRs": 0,
-    "isLastBeforeWPBeta": false,
-    "wpVersion": null
+    "isLastBeforeWPBeta": true,
+    "wpVersion": "5.3"
   },
   {
     "gbVersion": "6.6.0",
@@ -393,7 +393,7 @@
     "a11yPRs": 0,
     "performancePRs": 3,
     "isLastBeforeWPBeta": false,
-    "wpVersion": null
+    "wpVersion": "5.4"
   },
   {
     "gbVersion": "6.7.0",
@@ -404,7 +404,7 @@
     "a11yPRs": 0,
     "performancePRs": 1,
     "isLastBeforeWPBeta": false,
-    "wpVersion": null
+    "wpVersion": "5.4"
   },
   {
     "gbVersion": "6.8.0",
@@ -415,7 +415,7 @@
     "a11yPRs": 0,
     "performancePRs": 0,
     "isLastBeforeWPBeta": false,
-    "wpVersion": null
+    "wpVersion": "5.4"
   },
   {
     "gbVersion": "6.9.0",
@@ -426,7 +426,7 @@
     "a11yPRs": 0,
     "performancePRs": 0,
     "isLastBeforeWPBeta": false,
-    "wpVersion": null
+    "wpVersion": "5.4"
   },
   {
     "gbVersion": "7.0.0",
@@ -437,7 +437,7 @@
     "a11yPRs": 0,
     "performancePRs": 0,
     "isLastBeforeWPBeta": false,
-    "wpVersion": null
+    "wpVersion": "5.4"
   },
   {
     "gbVersion": "7.1.0",
@@ -448,7 +448,7 @@
     "a11yPRs": 0,
     "performancePRs": 4,
     "isLastBeforeWPBeta": false,
-    "wpVersion": null
+    "wpVersion": "5.4"
   },
   {
     "gbVersion": "7.2.0",
@@ -459,7 +459,7 @@
     "a11yPRs": 0,
     "performancePRs": 0,
     "isLastBeforeWPBeta": false,
-    "wpVersion": null
+    "wpVersion": "5.4"
   },
   {
     "gbVersion": "7.3.0",
@@ -470,7 +470,7 @@
     "a11yPRs": 0,
     "performancePRs": 0,
     "isLastBeforeWPBeta": false,
-    "wpVersion": null
+    "wpVersion": "5.4"
   },
   {
     "gbVersion": "7.4.0",
@@ -481,7 +481,7 @@
     "a11yPRs": 0,
     "performancePRs": 0,
     "isLastBeforeWPBeta": false,
-    "wpVersion": null
+    "wpVersion": "5.4"
   },
   {
     "gbVersion": "7.5.0",
@@ -491,8 +491,8 @@
     "bugPRs": 0,
     "a11yPRs": 0,
     "performancePRs": 0,
-    "isLastBeforeWPBeta": false,
-    "wpVersion": null
+    "isLastBeforeWPBeta": true,
+    "wpVersion": "5.4"
   },
   {
     "gbVersion": "7.6.0",
@@ -503,7 +503,7 @@
     "a11yPRs": 0,
     "performancePRs": 0,
     "isLastBeforeWPBeta": false,
-    "wpVersion": null
+    "wpVersion": "5.5"
   },
   {
     "gbVersion": "7.7.0",
@@ -514,7 +514,7 @@
     "a11yPRs": 0,
     "performancePRs": 0,
     "isLastBeforeWPBeta": false,
-    "wpVersion": null
+    "wpVersion": "5.5"
   },
   {
     "gbVersion": "7.8.0",
@@ -525,7 +525,7 @@
     "a11yPRs": 0,
     "performancePRs": 0,
     "isLastBeforeWPBeta": false,
-    "wpVersion": null
+    "wpVersion": "5.5"
   },
   {
     "gbVersion": "7.9.0",
@@ -536,7 +536,7 @@
     "a11yPRs": 0,
     "performancePRs": 3,
     "isLastBeforeWPBeta": false,
-    "wpVersion": null
+    "wpVersion": "5.5"
   },
   {
     "gbVersion": "8.0.0",
@@ -547,7 +547,7 @@
     "a11yPRs": 0,
     "performancePRs": 0,
     "isLastBeforeWPBeta": false,
-    "wpVersion": null
+    "wpVersion": "5.5"
   },
   {
     "gbVersion": "8.1.0",
@@ -558,7 +558,7 @@
     "a11yPRs": 0,
     "performancePRs": 4,
     "isLastBeforeWPBeta": false,
-    "wpVersion": null
+    "wpVersion": "5.5"
   },
   {
     "gbVersion": "8.2.0",
@@ -569,7 +569,7 @@
     "a11yPRs": 0,
     "performancePRs": 6,
     "isLastBeforeWPBeta": false,
-    "wpVersion": null
+    "wpVersion": "5.5"
   },
   {
     "gbVersion": "8.3.0",
@@ -580,7 +580,7 @@
     "a11yPRs": 0,
     "performancePRs": 0,
     "isLastBeforeWPBeta": false,
-    "wpVersion": null
+    "wpVersion": "5.5"
   },
   {
     "gbVersion": "8.4.0",
@@ -591,7 +591,7 @@
     "a11yPRs": 0,
     "performancePRs": 3,
     "isLastBeforeWPBeta": false,
-    "wpVersion": null
+    "wpVersion": "5.5"
   },
   {
     "gbVersion": "8.5.0",
@@ -601,8 +601,8 @@
     "bugPRs": 38,
     "a11yPRs": 0,
     "performancePRs": 1,
-    "isLastBeforeWPBeta": false,
-    "wpVersion": null
+    "isLastBeforeWPBeta": true,
+    "wpVersion": "5.5"
   },
   {
     "gbVersion": "8.6.0",

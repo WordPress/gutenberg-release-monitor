@@ -104,5 +104,48 @@
     "stableDate": "2020-12-08",
     "lastGBVersion": "9.2",
     "gbVersionRange": "8.6-9.2"
+  },
+  {
+    "wpVersion": "5.5",
+    "beta1Date": "2020-07-07",
+    "stableDate": "2020-08-11",
+    "lastGBVersion": "8.5",
+    "gbVersionRange": "7.6-8.5"
+  },
+  {
+    "wpVersion": "5.4",
+    "beta1Date": "2020-02-11",
+    "stableDate": "2020-03-31",
+    "lastGBVersion": "7.5",
+    "gbVersionRange": "6.6-7.5"
+  },
+  {
+    "wpVersion": "5.3",
+    "beta1Date": "2019-09-23",
+    "stableDate": "2019-11-12",
+    "lastGBVersion": "6.5",
+    "gbVersionRange": "5.5-6.5"
+  },
+  {
+    "wpVersion": "5.2",
+    "beta1Date": "2019-03-28",
+    "stableDate": "2019-05-07",
+    "lastGBVersion": "5.4",
+    "gbVersionRange": "4.9-5.4"
+  },
+  {
+    "wpVersion": "5.1",
+    "beta1Date": "2019-01-14",
+    "stableDate": "2019-02-21",
+    "lastGBVersion": "4.8",
+    "gbVersionRange": "4.8-4.8"
+  },
+  {
+    "wpVersion": "5.0",
+    "beta1Date": "2018-10-24",
+    "stableDate": "2018-12-06",
+    "lastGBVersion": "4.7",
+    "gbVersionRange": "4.0-4.7",
+    "note": "First WordPress release with Gutenberg block editor"
   }
 ]

@@ -7819,9 +7819,9 @@
   },
   {
     "gbVersion": "8.5.0",
-    "wpVersion": null,
+    "wpVersion": "5.5",
     "date": "2020-07-08",
-    "isLastBeforeWPBeta": false,
+    "isLastBeforeWPBeta": true,
     "totalPRs": 165,
     "featurePRs": 39,
     "bugPRs": 38,
@@ -7839,7 +7839,7 @@
   },
   {
     "gbVersion": "8.4.0",
-    "wpVersion": null,
+    "wpVersion": "5.5",
     "date": "2020-06-24",
     "isLastBeforeWPBeta": false,
     "totalPRs": 153,
@@ -7859,7 +7859,7 @@
   },
   {
     "gbVersion": "8.3.0",
-    "wpVersion": null,
+    "wpVersion": "5.5",
     "date": "2020-06-11",
     "isLastBeforeWPBeta": false,
     "totalPRs": 140,
@@ -7879,7 +7879,7 @@
   },
   {
     "gbVersion": "8.2.0",
-    "wpVersion": null,
+    "wpVersion": "5.5",
     "date": "2020-05-27",
     "isLastBeforeWPBeta": false,
     "totalPRs": 151,
@@ -7899,7 +7899,7 @@
   },
   {
     "gbVersion": "8.1.0",
-    "wpVersion": null,
+    "wpVersion": "5.5",
     "date": "2020-05-13",
     "isLastBeforeWPBeta": false,
     "totalPRs": 125,
@@ -7919,7 +7919,7 @@
   },
   {
     "gbVersion": "8.0.0",
-    "wpVersion": null,
+    "wpVersion": "5.5",
     "date": "2020-04-29",
     "isLastBeforeWPBeta": false,
     "totalPRs": 99,
@@ -7939,7 +7939,7 @@
   },
   {
     "gbVersion": "7.9.0",
-    "wpVersion": null,
+    "wpVersion": "5.5",
     "date": "2020-04-15",
     "isLastBeforeWPBeta": false,
     "totalPRs": 170,
@@ -7959,7 +7959,7 @@
   },
   {
     "gbVersion": "7.8.0",
-    "wpVersion": null,
+    "wpVersion": "5.5",
     "date": "2020-03-25",
     "isLastBeforeWPBeta": false,
     "totalPRs": 110,
@@ -7979,7 +7979,7 @@
   },
   {
     "gbVersion": "7.7.0",
-    "wpVersion": null,
+    "wpVersion": "5.5",
     "date": "2020-03-11",
     "isLastBeforeWPBeta": false,
     "totalPRs": 91,
@@ -7999,7 +7999,7 @@
   },
   {
     "gbVersion": "7.6.0",
-    "wpVersion": null,
+    "wpVersion": "5.5",
     "date": "2020-02-26",
     "isLastBeforeWPBeta": false,
     "totalPRs": 58,
@@ -8019,9 +8019,9 @@
   },
   {
     "gbVersion": "7.5.0",
-    "wpVersion": null,
+    "wpVersion": "5.4",
     "date": "2020-02-12",
-    "isLastBeforeWPBeta": false,
+    "isLastBeforeWPBeta": true,
     "totalPRs": 86,
     "featurePRs": 0,
     "bugPRs": 0,
@@ -8039,7 +8039,7 @@
   },
   {
     "gbVersion": "7.4.0",
-    "wpVersion": null,
+    "wpVersion": "5.4",
     "date": "2020-02-05",
     "isLastBeforeWPBeta": false,
     "totalPRs": 96,
@@ -8059,7 +8059,7 @@
   },
   {
     "gbVersion": "7.3.0",
-    "wpVersion": null,
+    "wpVersion": "5.4",
     "date": "2020-01-22",
     "isLastBeforeWPBeta": false,
     "totalPRs": 137,
@@ -8079,7 +8079,7 @@
   },
   {
     "gbVersion": "7.2.0",
-    "wpVersion": null,
+    "wpVersion": "5.4",
     "date": "2020-01-08",
     "isLastBeforeWPBeta": false,
     "totalPRs": 152,
@@ -8099,7 +8099,7 @@
   },
   {
     "gbVersion": "7.1.0",
-    "wpVersion": null,
+    "wpVersion": "5.4",
     "date": "2019-12-11",
     "isLastBeforeWPBeta": false,
     "totalPRs": 126,
@@ -8119,7 +8119,7 @@
   },
   {
     "gbVersion": "7.0.0",
-    "wpVersion": null,
+    "wpVersion": "5.4",
     "date": "2019-11-27",
     "isLastBeforeWPBeta": false,
     "totalPRs": 98,
@@ -8139,7 +8139,7 @@
   },
   {
     "gbVersion": "6.9.0",
-    "wpVersion": null,
+    "wpVersion": "5.4",
     "date": "2019-11-13",
     "isLastBeforeWPBeta": false,
     "totalPRs": 77,
@@ -8159,7 +8159,7 @@
   },
   {
     "gbVersion": "6.8.0",
-    "wpVersion": null,
+    "wpVersion": "5.4",
     "date": "2019-10-30",
     "isLastBeforeWPBeta": false,
     "totalPRs": 63,
@@ -8179,7 +8179,7 @@
   },
   {
     "gbVersion": "6.7.0",
-    "wpVersion": null,
+    "wpVersion": "5.4",
     "date": "2019-10-16",
     "isLastBeforeWPBeta": false,
     "totalPRs": 83,
@@ -8199,7 +8199,7 @@
   },
   {
     "gbVersion": "6.6.0",
-    "wpVersion": null,
+    "wpVersion": "5.4",
     "date": "2019-10-02",
     "isLastBeforeWPBeta": false,
     "totalPRs": 59,
@@ -8219,9 +8219,9 @@
   },
   {
     "gbVersion": "6.5.0",
-    "wpVersion": null,
+    "wpVersion": "5.3",
     "date": "2019-09-18",
-    "isLastBeforeWPBeta": false,
+    "isLastBeforeWPBeta": true,
     "totalPRs": 96,
     "featurePRs": 20,
     "bugPRs": 35,
@@ -8239,7 +8239,7 @@
   },
   {
     "gbVersion": "6.4.0",
-    "wpVersion": null,
+    "wpVersion": "5.3",
     "date": "2019-08-28",
     "isLastBeforeWPBeta": false,
     "totalPRs": 60,
@@ -8259,7 +8259,7 @@
   },
   {
     "gbVersion": "6.3.0",
-    "wpVersion": null,
+    "wpVersion": "5.3",
     "date": "2019-08-14",
     "isLastBeforeWPBeta": false,
     "totalPRs": 99,
@@ -8279,7 +8279,7 @@
   },
   {
     "gbVersion": "6.2.0",
-    "wpVersion": null,
+    "wpVersion": "5.3",
     "date": "2019-07-31",
     "isLastBeforeWPBeta": false,
     "totalPRs": 76,
@@ -8299,7 +8299,7 @@
   },
   {
     "gbVersion": "6.1.0",
-    "wpVersion": null,
+    "wpVersion": "5.3",
     "date": "2019-07-10",
     "isLastBeforeWPBeta": false,
     "totalPRs": 52,
@@ -8319,7 +8319,7 @@
   },
   {
     "gbVersion": "6.0.0",
-    "wpVersion": null,
+    "wpVersion": "5.3",
     "date": "2019-06-26",
     "isLastBeforeWPBeta": false,
     "totalPRs": 66,
@@ -8339,7 +8339,7 @@
   },
   {
     "gbVersion": "5.9.0",
-    "wpVersion": null,
+    "wpVersion": "5.3",
     "date": "2019-06-12",
     "isLastBeforeWPBeta": false,
     "totalPRs": 94,
@@ -8359,7 +8359,7 @@
   },
   {
     "gbVersion": "5.8.0",
-    "wpVersion": null,
+    "wpVersion": "5.3",
     "date": "2019-05-29",
     "isLastBeforeWPBeta": false,
     "totalPRs": 82,
@@ -8379,7 +8379,7 @@
   },
   {
     "gbVersion": "5.7.0",
-    "wpVersion": null,
+    "wpVersion": "5.3",
     "date": "2019-05-15",
     "isLastBeforeWPBeta": false,
     "totalPRs": 100,
@@ -8399,7 +8399,7 @@
   },
   {
     "gbVersion": "5.6.0",
-    "wpVersion": null,
+    "wpVersion": "5.3",
     "date": "2019-05-01",
     "isLastBeforeWPBeta": false,
     "totalPRs": 57,
@@ -8419,7 +8419,7 @@
   },
   {
     "gbVersion": "5.5.0",
-    "wpVersion": null,
+    "wpVersion": "5.3",
     "date": "2019-04-17",
     "isLastBeforeWPBeta": false,
     "totalPRs": 91,
@@ -8439,9 +8439,9 @@
   },
   {
     "gbVersion": "5.4.0",
-    "wpVersion": null,
+    "wpVersion": "5.2",
     "date": "2019-04-03",
-    "isLastBeforeWPBeta": false,
+    "isLastBeforeWPBeta": true,
     "totalPRs": 0,
     "featurePRs": 0,
     "bugPRs": 0,
@@ -8459,7 +8459,7 @@
   },
   {
     "gbVersion": "5.3.0",
-    "wpVersion": null,
+    "wpVersion": "5.2",
     "date": "2019-03-20",
     "isLastBeforeWPBeta": false,
     "totalPRs": 127,
@@ -8479,7 +8479,7 @@
   },
   {
     "gbVersion": "5.2.0",
-    "wpVersion": null,
+    "wpVersion": "5.2",
     "date": "2019-03-06",
     "isLastBeforeWPBeta": false,
     "totalPRs": 0,
@@ -8499,7 +8499,7 @@
   },
   {
     "gbVersion": "5.1.0",
-    "wpVersion": null,
+    "wpVersion": "5.2",
     "date": "2019-02-20",
     "isLastBeforeWPBeta": false,
     "totalPRs": 1,
@@ -8519,7 +8519,7 @@
   },
   {
     "gbVersion": "5.0.0",
-    "wpVersion": null,
+    "wpVersion": "5.2",
     "date": "2019-02-06",
     "isLastBeforeWPBeta": false,
     "totalPRs": 126,
@@ -8539,7 +8539,7 @@
   },
   {
     "gbVersion": "4.9.0",
-    "wpVersion": null,
+    "wpVersion": "5.2",
     "date": "2019-01-23",
     "isLastBeforeWPBeta": false,
     "totalPRs": 73,
@@ -8559,9 +8559,9 @@
   },
   {
     "gbVersion": "4.8.0",
-    "wpVersion": null,
+    "wpVersion": "5.1",
     "date": "2019-01-07",
-    "isLastBeforeWPBeta": false,
+    "isLastBeforeWPBeta": true,
     "totalPRs": 62,
     "featurePRs": 0,
     "bugPRs": 0,
@@ -8579,9 +8579,9 @@
   },
   {
     "gbVersion": "4.7.0",
-    "wpVersion": null,
+    "wpVersion": "5.0",
     "date": "2018-12-12",
-    "isLastBeforeWPBeta": false,
+    "isLastBeforeWPBeta": true,
     "totalPRs": 46,
     "featurePRs": 0,
     "bugPRs": 0,
@@ -8599,7 +8599,7 @@
   },
   {
     "gbVersion": "4.6.0",
-    "wpVersion": null,
+    "wpVersion": "5.0",
     "date": "2018-11-30",
     "isLastBeforeWPBeta": false,
     "totalPRs": 28,
@@ -8619,7 +8619,7 @@
   },
   {
     "gbVersion": "4.5.0",
-    "wpVersion": null,
+    "wpVersion": "5.0",
     "date": "2018-11-20",
     "isLastBeforeWPBeta": false,
     "totalPRs": 83,
@@ -8639,7 +8639,7 @@
   },
   {
     "gbVersion": "4.4.0",
-    "wpVersion": null,
+    "wpVersion": "5.0",
     "date": "2018-11-15",
     "isLastBeforeWPBeta": false,
     "totalPRs": 67,
@@ -8659,7 +8659,7 @@
   },
   {
     "gbVersion": "4.3.0",
-    "wpVersion": null,
+    "wpVersion": "5.0",
     "date": "2018-11-12",
     "isLastBeforeWPBeta": false,
     "totalPRs": 133,
@@ -8679,7 +8679,7 @@
   },
   {
     "gbVersion": "4.2.0",
-    "wpVersion": null,
+    "wpVersion": "5.0",
     "date": "2018-11-06",
     "isLastBeforeWPBeta": false,
     "totalPRs": 3,
@@ -8699,7 +8699,7 @@
   },
   {
     "gbVersion": "4.1.0",
-    "wpVersion": null,
+    "wpVersion": "5.0",
     "date": "2018-10-24",
     "isLastBeforeWPBeta": false,
     "totalPRs": 114,
@@ -8719,7 +8719,7 @@
   },
   {
     "gbVersion": "4.0.0",
-    "wpVersion": null,
+    "wpVersion": "5.0",
     "date": "2018-10-17",
     "isLastBeforeWPBeta": false,
     "totalPRs": 142,
