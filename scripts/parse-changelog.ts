@@ -49,6 +49,8 @@ function toRelease(parsed: ReturnType<typeof parseRelease>): Release {
     performancePRs: parsed.performancePRs,
     contributors: parsed.contributors,
     newContributors: parsed.newContributors,
+    contributorsList: parsed.contributorsList,
+    newContributorsList: parsed.newContributorsList,
     enhancementPercent: Math.round((parsed.featurePRs / total) * 100),
     bugfixPercent: Math.round((parsed.bugPRs / total) * 100),
     changelogUrl: parsed.changelogUrl,
@@ -99,10 +101,15 @@ function aggregatePatchReleases(releases: Release[]): Release[] {
     const a11yPRs = baseRelease.a11yPRs + patchReleases.reduce((sum, r) => sum + r.a11yPRs, 0);
     const performancePRs = baseRelease.performancePRs + patchReleases.reduce((sum, r) => sum + r.performancePRs, 0);
 
-    // Use unique contributors (can't simply add since people may contribute to multiple patches)
-    // For now, just use the max as an approximation
-    const contributors = Math.max(baseRelease.contributors, ...patchReleases.map((r) => r.contributors));
-    const newContributors = baseRelease.newContributors + patchReleases.reduce((sum, r) => sum + r.newContributors, 0);
+    // Combine contributor lists and deduplicate
+    const allContributors = new Set<string>(baseRelease.contributorsList || []);
+    const allNewContributors = new Set<string>(baseRelease.newContributorsList || []);
+    for (const patch of patchReleases) {
+      for (const c of patch.contributorsList || []) allContributors.add(c);
+      for (const c of patch.newContributorsList || []) allNewContributors.add(c);
+    }
+    const contributorsList = Array.from(allContributors);
+    const newContributorsList = Array.from(allNewContributors);
 
     const total = totalPRs || 1;
 
@@ -114,8 +121,10 @@ function aggregatePatchReleases(releases: Release[]): Release[] {
       bugPRs,
       a11yPRs,
       performancePRs,
-      contributors,
-      newContributors,
+      contributors: contributorsList.length,
+      newContributors: newContributorsList.length,
+      contributorsList,
+      newContributorsList,
       enhancementPercent: Math.round((featurePRs / total) * 100),
       bugfixPercent: Math.round((bugPRs / total) * 100),
     });

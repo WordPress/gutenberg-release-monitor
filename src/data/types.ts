@@ -24,6 +24,8 @@ export interface Release {
   // Contributors
   contributors: number;
   newContributors: number;
+  contributorsList: string[];
+  newContributorsList: string[];
 
   // Percentages (pre-calculated)
   enhancementPercent: number;
@@ -126,6 +128,8 @@ export interface Summary {
   totalBugsSinceCutoff: number;
   totalA11ySinceCutoff: number;
   totalPerfSinceCutoff: number;
+  uniqueContributorsSinceCutoff: number;
+  uniqueNewContributorsSinceCutoff: number;
 
   // Total averages (all-time)
   avgPRsTotal: number;

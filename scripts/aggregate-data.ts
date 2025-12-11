@@ -192,6 +192,16 @@ function generateSummary(releases: Release[], wpSchedule: WPRelease[], existingS
   const totalA11ySinceCutoff = sinceCutoffReleases.reduce((sum, r) => sum + r.a11yPRs, 0);
   const totalPerfSinceCutoff = sinceCutoffReleases.reduce((sum, r) => sum + r.performancePRs, 0);
 
+  // Calculate unique contributors across all releases in cycle (deduplicated)
+  const allContributors = new Set<string>();
+  const allNewContributors = new Set<string>();
+  for (const release of sinceCutoffReleases) {
+    for (const c of release.contributorsList || []) allContributors.add(c);
+    for (const c of release.newContributorsList || []) allNewContributors.add(c);
+  }
+  const uniqueContributorsSinceCutoff = allContributors.size;
+  const uniqueNewContributorsSinceCutoff = allNewContributors.size;
+
   // Calculate averages since cutoff
   const sinceCutoffCount = sinceCutoffReleases.length || 1;
   const avgPRsSinceCutoff = Math.round(totalPRsSinceCutoff / sinceCutoffCount);
@@ -256,6 +266,8 @@ function generateSummary(releases: Release[], wpSchedule: WPRelease[], existingS
     totalBugsSinceCutoff,
     totalA11ySinceCutoff,
     totalPerfSinceCutoff,
+    uniqueContributorsSinceCutoff,
+    uniqueNewContributorsSinceCutoff,
     avgPRsTotal,
     avgFeaturesTotal,
     avgBugsTotal,

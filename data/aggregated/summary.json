@@ -14,6 +14,8 @@
   "totalBugsSinceCutoff": 182,
   "totalA11ySinceCutoff": 11,
   "totalPerfSinceCutoff": 16,
+  "uniqueContributorsSinceCutoff": 0,
+  "uniqueNewContributorsSinceCutoff": 0,
   "avgPRsTotal": 129,
   "avgFeaturesTotal": 26,
   "avgBugsTotal": 34,

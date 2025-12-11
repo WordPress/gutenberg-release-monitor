@@ -64,6 +64,8 @@ export function SummaryStats({ summary }: SummaryStatsProps) {
     { label: 'Bug Fixes', value: summary.totalBugsSinceCutoff },
     { label: 'Accessibility', value: summary.totalA11ySinceCutoff },
     { label: 'Performance', value: summary.totalPerfSinceCutoff },
+    { label: 'Contributors', value: summary.uniqueContributorsSinceCutoff },
+    { label: 'New Contributors', value: summary.uniqueNewContributorsSinceCutoff },
   ];
 
   return (
