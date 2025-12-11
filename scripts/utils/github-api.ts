@@ -92,13 +92,41 @@ export async function fetchReleaseByTag(tag: string): Promise<GitHubRelease | nu
 }
 
 /**
+ * Check if a version is a release candidate.
+ */
+export function isReleaseCandidate(version: string): boolean {
+  return version.includes('-rc') || version.includes('-RC');
+}
+
+/**
+ * Get the minor version from a full version string.
+ * e.g., "20.1.2" -> "20.1", "20.0.0" -> "20.0"
+ */
+export function getMinorVersion(version: string): string {
+  const cleanVersion = version.replace(/^v/, '');
+  const parts = cleanVersion.split('.');
+  return `${parts[0]}.${parts[1] ?? '0'}`;
+}
+
+/**
+ * Check if a version is a patch release (not x.y.0).
+ */
+export function isPatchRelease(version: string): boolean {
+  const cleanVersion = version.replace(/^v/, '');
+  const parts = cleanVersion.split('.');
+  const patch = parseInt(parts[2] ?? '0', 10);
+  return patch > 0;
+}
+
+/**
  * Filter releases by version range.
+ * By default, excludes release candidates.
  */
 export function filterReleasesByVersion(
   releases: GitHubRelease[],
-  options: { from?: string; to?: string; version?: string }
+  options: { from?: string; to?: string; version?: string; includeRC?: boolean }
 ): GitHubRelease[] {
-  const { from, to, version } = options;
+  const { from, to, version, includeRC = false } = options;
 
   if (version) {
     const normalizedVersion = version.startsWith('v') ? version : `v${version}`;
@@ -107,6 +135,11 @@ export function filterReleasesByVersion(
 
   return releases.filter((release) => {
     const releaseVersion = release.tag_name.replace(/^v/, '');
+
+    // Filter out release candidates unless explicitly included
+    if (!includeRC && isReleaseCandidate(releaseVersion)) {
+      return false;
+    }
 
     if (from && compareVersions(releaseVersion, from) < 0) {
       return false;

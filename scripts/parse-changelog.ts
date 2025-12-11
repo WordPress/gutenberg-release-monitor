@@ -1,7 +1,13 @@
 import { parseArgs } from 'node:util';
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs';
 import { dirname } from 'node:path';
-import { fetchAllReleases, fetchReleaseByTag, filterReleasesByVersion } from './utils/github-api.js';
+import {
+  fetchAllReleases,
+  fetchReleaseByTag,
+  filterReleasesByVersion,
+  getMinorVersion,
+  isPatchRelease,
+} from './utils/github-api.js';
 import { parseRelease } from './utils/changelog-parser.js';
 import type { ParseArgs } from './utils/types.js';
 import type { Release } from '../src/data/types.js';
@@ -49,6 +55,75 @@ function toRelease(parsed: ReturnType<typeof parseRelease>): Release {
     parsedAt: new Date().toISOString(),
     parserVersion: PARSER_VERSION,
   };
+}
+
+/**
+ * Aggregate patch releases into their minor version.
+ * e.g., 20.1.0, 20.1.1, 20.1.2 -> single 20.1.0 with combined PRs
+ */
+function aggregatePatchReleases(releases: Release[]): Release[] {
+  const minorVersionMap = new Map<string, Release[]>();
+
+  // Group releases by minor version
+  for (const release of releases) {
+    const minorVersion = getMinorVersion(release.gbVersion);
+    const existing = minorVersionMap.get(minorVersion) || [];
+    existing.push(release);
+    minorVersionMap.set(minorVersion, existing);
+  }
+
+  // Aggregate each group
+  const aggregated: Release[] = [];
+  for (const [minorVersion, group] of minorVersionMap) {
+    // Find the base release (x.y.0) or use the first one
+    const baseRelease = group.find((r) => !isPatchRelease(r.gbVersion)) || group[0];
+
+    // If there's only one release and it's the base, no aggregation needed
+    if (group.length === 1) {
+      aggregated.push(baseRelease);
+      continue;
+    }
+
+    // Find patch releases to add
+    const patchReleases = group.filter((r) => isPatchRelease(r.gbVersion));
+
+    if (patchReleases.length === 0) {
+      aggregated.push(baseRelease);
+      continue;
+    }
+
+    // Aggregate PR counts from patch releases into the base
+    const totalPRs = baseRelease.totalPRs + patchReleases.reduce((sum, r) => sum + r.totalPRs, 0);
+    const featurePRs = baseRelease.featurePRs + patchReleases.reduce((sum, r) => sum + r.featurePRs, 0);
+    const bugPRs = baseRelease.bugPRs + patchReleases.reduce((sum, r) => sum + r.bugPRs, 0);
+    const a11yPRs = baseRelease.a11yPRs + patchReleases.reduce((sum, r) => sum + r.a11yPRs, 0);
+    const performancePRs = baseRelease.performancePRs + patchReleases.reduce((sum, r) => sum + r.performancePRs, 0);
+
+    // Use unique contributors (can't simply add since people may contribute to multiple patches)
+    // For now, just use the max as an approximation
+    const contributors = Math.max(baseRelease.contributors, ...patchReleases.map((r) => r.contributors));
+    const newContributors = baseRelease.newContributors + patchReleases.reduce((sum, r) => sum + r.newContributors, 0);
+
+    const total = totalPRs || 1;
+
+    aggregated.push({
+      ...baseRelease,
+      gbVersion: `${minorVersion}.0`, // Normalize to x.y.0
+      totalPRs,
+      featurePRs,
+      bugPRs,
+      a11yPRs,
+      performancePRs,
+      contributors,
+      newContributors,
+      enhancementPercent: Math.round((featurePRs / total) * 100),
+      bugfixPercent: Math.round((bugPRs / total) * 100),
+    });
+
+    console.log(`    Aggregated ${patchReleases.length} patch release(s) into ${minorVersion}.0`);
+  }
+
+  return aggregated;
 }
 
 /**
@@ -114,6 +189,8 @@ async function main() {
     console.log('Parsing all versions');
   }
 
+  console.log('Note: Release candidates are excluded, patch releases are aggregated into minor versions');
+
   try {
     // Fetch releases
     let releases;
@@ -126,13 +203,15 @@ async function main() {
       }
     } else {
       const allReleases = await fetchAllReleases();
+      // Filter out RCs by default
       releases = filterReleasesByVersion(allReleases, {
         from: args.from,
         to: args.to,
+        includeRC: false,
       });
     }
 
-    console.log(`\nFound ${releases.length} releases to parse`);
+    console.log(`\nFound ${releases.length} stable releases to parse`);
 
     // Parse each release
     const parsedReleases: Release[] = [];
@@ -155,9 +234,13 @@ async function main() {
       }
     }
 
+    // Aggregate patch releases into minor versions
+    console.log('\nAggregating patch releases...');
+    const aggregatedReleases = aggregatePatchReleases(parsedReleases);
+
     // Load existing and merge
     const existingReleases = loadExistingReleases(outputPath);
-    const mergedReleases = mergeReleases(existingReleases, parsedReleases);
+    const mergedReleases = mergeReleases(existingReleases, aggregatedReleases);
 
     // Ensure output directory exists
     const dir = dirname(outputPath);
@@ -170,13 +253,14 @@ async function main() {
     console.log(`\nWrote ${mergedReleases.length} releases to ${outputPath}`);
 
     // Summary
-    const totalPRs = parsedReleases.reduce((sum, r) => sum + r.totalPRs, 0);
+    const totalPRs = aggregatedReleases.reduce((sum, r) => sum + r.totalPRs, 0);
     console.log(`\nSummary of parsed releases:`);
+    console.log(`  Minor versions: ${aggregatedReleases.length}`);
     console.log(`  Total PRs: ${totalPRs}`);
-    console.log(`  Features: ${parsedReleases.reduce((sum, r) => sum + r.featurePRs, 0)}`);
-    console.log(`  Bug fixes: ${parsedReleases.reduce((sum, r) => sum + r.bugPRs, 0)}`);
-    console.log(`  Accessibility: ${parsedReleases.reduce((sum, r) => sum + r.a11yPRs, 0)}`);
-    console.log(`  Performance: ${parsedReleases.reduce((sum, r) => sum + r.performancePRs, 0)}`);
+    console.log(`  Features: ${aggregatedReleases.reduce((sum, r) => sum + r.featurePRs, 0)}`);
+    console.log(`  Bug fixes: ${aggregatedReleases.reduce((sum, r) => sum + r.bugPRs, 0)}`);
+    console.log(`  Accessibility: ${aggregatedReleases.reduce((sum, r) => sum + r.a11yPRs, 0)}`);
+    console.log(`  Performance: ${aggregatedReleases.reduce((sum, r) => sum + r.performancePRs, 0)}`);
   } catch (error) {
     console.error('Error:', error instanceof Error ? error.message : error);
     process.exit(1);
