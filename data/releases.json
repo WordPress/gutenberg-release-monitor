@@ -1,7 +1,7 @@
 [
   {
     "gbVersion": "22.2.0",
-    "wpVersion": null,
+    "wpVersion": "7.0",
     "date": "2025-12-03",
     "isLastBeforeWPBeta": false,
     "totalPRs": 154,
@@ -19,7 +19,7 @@
   },
   {
     "gbVersion": "22.1.0",
-    "wpVersion": null,
+    "wpVersion": "7.0",
     "date": "2025-11-19",
     "isLastBeforeWPBeta": false,
     "totalPRs": 191,
@@ -37,7 +37,7 @@
   },
   {
     "gbVersion": "22.0.0",
-    "wpVersion": null,
+    "wpVersion": "7.0",
     "date": "2025-11-05",
     "isLastBeforeWPBeta": false,
     "totalPRs": 130,
@@ -55,7 +55,7 @@
   },
   {
     "gbVersion": "10.0.0",
-    "wpVersion": null,
+    "wpVersion": "5.8",
     "date": "2021-02-17",
     "isLastBeforeWPBeta": false,
     "totalPRs": 103,

@@ -1,0 +1,46 @@
+[
+  {
+    "gbVersion": "10.0.0",
+    "date": "2021-02-17",
+    "totalPRs": 103,
+    "featurePRs": 12,
+    "bugPRs": 13,
+    "a11yPRs": 0,
+    "performancePRs": 0,
+    "isLastBeforeWPBeta": false,
+    "wpVersion": "5.8"
+  },
+  {
+    "gbVersion": "22.0.0",
+    "date": "2025-11-05",
+    "totalPRs": 130,
+    "featurePRs": 21,
+    "bugPRs": 51,
+    "a11yPRs": 3,
+    "performancePRs": 3,
+    "isLastBeforeWPBeta": false,
+    "wpVersion": "7.0"
+  },
+  {
+    "gbVersion": "22.1.0",
+    "date": "2025-11-19",
+    "totalPRs": 191,
+    "featurePRs": 35,
+    "bugPRs": 82,
+    "a11yPRs": 5,
+    "performancePRs": 11,
+    "isLastBeforeWPBeta": false,
+    "wpVersion": "7.0"
+  },
+  {
+    "gbVersion": "22.2.0",
+    "date": "2025-12-03",
+    "totalPRs": 154,
+    "featurePRs": 32,
+    "bugPRs": 49,
+    "a11yPRs": 3,
+    "performancePRs": 2,
+    "isLastBeforeWPBeta": false,
+    "wpVersion": "7.0"
+  }
+]

@@ -1,0 +1,108 @@
+[
+  {
+    "wpVersion": "7.0",
+    "beta1Date": "2026-03-01",
+    "stableDate": "2026-04-15",
+    "lastGBVersion": null,
+    "gbVersionRange": "22.0-99.9",
+    "note": "Estimated - WP 7.0 postponed to 2026"
+  },
+  {
+    "wpVersion": "6.9",
+    "beta1Date": "2025-10-21",
+    "stableDate": "2025-12-02",
+    "lastGBVersion": "21.9",
+    "gbVersionRange": "20.5-21.9"
+  },
+  {
+    "wpVersion": "6.8",
+    "beta1Date": "2025-03-04",
+    "stableDate": "2025-04-15",
+    "lastGBVersion": "20.4",
+    "gbVersionRange": "19.4-20.4"
+  },
+  {
+    "wpVersion": "6.7",
+    "beta1Date": "2024-10-01",
+    "stableDate": "2024-11-12",
+    "lastGBVersion": "19.3",
+    "gbVersionRange": "18.6-19.3"
+  },
+  {
+    "wpVersion": "6.6",
+    "beta1Date": "2024-06-04",
+    "stableDate": "2024-07-16",
+    "lastGBVersion": "18.5",
+    "gbVersionRange": "17.8-18.5"
+  },
+  {
+    "wpVersion": "6.5",
+    "beta1Date": "2024-02-13",
+    "stableDate": "2024-04-02",
+    "lastGBVersion": "17.7",
+    "gbVersionRange": "16.8-17.7"
+  },
+  {
+    "wpVersion": "6.4",
+    "beta1Date": "2023-10-03",
+    "stableDate": "2023-11-07",
+    "lastGBVersion": "16.7",
+    "gbVersionRange": "16.2-16.7"
+  },
+  {
+    "wpVersion": "6.3",
+    "beta1Date": "2023-06-27",
+    "stableDate": "2023-08-08",
+    "lastGBVersion": "16.1",
+    "gbVersionRange": "15.2-16.1"
+  },
+  {
+    "wpVersion": "6.2",
+    "beta1Date": "2023-02-07",
+    "stableDate": "2023-03-29",
+    "lastGBVersion": "15.1",
+    "gbVersionRange": "14.2-15.1"
+  },
+  {
+    "wpVersion": "6.1",
+    "beta1Date": "2022-09-20",
+    "stableDate": "2022-11-01",
+    "lastGBVersion": "14.1",
+    "gbVersionRange": "13.1-14.1"
+  },
+  {
+    "wpVersion": "6.0",
+    "beta1Date": "2022-04-12",
+    "stableDate": "2022-05-24",
+    "lastGBVersion": "13.0",
+    "gbVersionRange": "12.0-13.0"
+  },
+  {
+    "wpVersion": "5.9",
+    "beta1Date": "2021-11-16",
+    "stableDate": "2022-01-25",
+    "lastGBVersion": "11.9",
+    "gbVersionRange": "10.8-11.9"
+  },
+  {
+    "wpVersion": "5.8",
+    "beta1Date": "2021-05-25",
+    "stableDate": "2021-07-20",
+    "lastGBVersion": "10.7",
+    "gbVersionRange": "10.0-10.7"
+  },
+  {
+    "wpVersion": "5.7",
+    "beta1Date": "2021-02-09",
+    "stableDate": "2021-03-09",
+    "lastGBVersion": "9.9",
+    "gbVersionRange": "9.3-9.9"
+  },
+  {
+    "wpVersion": "5.6",
+    "beta1Date": "2020-10-20",
+    "stableDate": "2020-12-08",
+    "lastGBVersion": "9.2",
+    "gbVersionRange": "8.6-9.2"
+  }
+]

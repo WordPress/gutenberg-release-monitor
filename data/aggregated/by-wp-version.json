@@ -1,0 +1,36 @@
+[
+  {
+    "wpVersion": "7.0",
+    "gbVersionRange": "22.0.0-22.2.0",
+    "releaseCount": 3,
+    "totalPRs": 475,
+    "totalFeaturePRs": 88,
+    "totalBugPRs": 182,
+    "totalA11yPRs": 11,
+    "totalPerformancePRs": 16,
+    "totalContributors": 137,
+    "totalNewContributors": 10,
+    "avgPRsPerRelease": 158,
+    "avgFeaturePRsPerRelease": 29,
+    "avgBugPRsPerRelease": 61,
+    "avgEnhancementPercent": 19,
+    "avgBugfixPercent": 38
+  },
+  {
+    "wpVersion": "5.8",
+    "gbVersionRange": "10.0.0-10.0.0",
+    "releaseCount": 1,
+    "totalPRs": 103,
+    "totalFeaturePRs": 12,
+    "totalBugPRs": 13,
+    "totalA11yPRs": 0,
+    "totalPerformancePRs": 0,
+    "totalContributors": 0,
+    "totalNewContributors": 0,
+    "avgPRsPerRelease": 103,
+    "avgFeaturePRsPerRelease": 12,
+    "avgBugPRsPerRelease": 13,
+    "avgEnhancementPercent": 12,
+    "avgBugfixPercent": 13
+  }
+]
