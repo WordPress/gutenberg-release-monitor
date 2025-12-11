@@ -113,10 +113,14 @@ export function parseModernChangelog(body: string): {
 
   let currentCategory = '';
   let currentCategoryContent = '';
+  let uncategorizedContent = ''; // For changelogs without category headers
 
   // Check if there's a "## Changelog" header - if not, assume whole body is changelog (legacy format)
   const hasChangelogHeader = normalizedBody.includes('## Changelog');
   let inChangelog = !hasChangelogHeader; // Start in changelog mode for legacy format
+
+  // Check if there are any ### category headers
+  const hasCategoryHeaders = normalizedBody.match(CATEGORY_HEADER_REGEX);
 
   // Track our standard PR counts
   let featurePRs = 0;
@@ -172,9 +176,12 @@ export function parseModernChangelog(body: string): {
       continue;
     }
 
-    // Accumulate content for current category
+    // Accumulate content for current category or uncategorized
     if (currentCategory) {
       currentCategoryContent += line + '\n';
+    } else if (inChangelog && !hasCategoryHeaders) {
+      // For changelogs without category headers, accumulate all content
+      uncategorizedContent += line + '\n';
     }
   }
 
@@ -188,6 +195,15 @@ export function parseModernChangelog(body: string): {
       else if (mapping === 'bugPRs') bugPRs += count;
       else if (mapping === 'a11yPRs') a11yPRs += count;
       else if (mapping === 'performancePRs') performancePRs += count;
+    }
+  }
+
+  // Handle changelogs without category headers (very old format)
+  let uncategorizedPRs = 0;
+  if (uncategorizedContent) {
+    uncategorizedPRs = countPRs(uncategorizedContent);
+    if (uncategorizedPRs > 0) {
+      categories['Uncategorized'] = uncategorizedPRs;
     }
   }
 
