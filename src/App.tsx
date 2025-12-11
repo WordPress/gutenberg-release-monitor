@@ -1,6 +1,6 @@
 import '@wordpress/components/build-style/style.css';
 import { Spinner } from '@wordpress/components';
-import { useReleases, useSummary } from './hooks/useReleases';
+import { useReleases, useSummary, useWPVersionStats } from './hooks/useReleases';
 import { ReleasesTable } from './components/ReleasesTable';
 import { SummaryStats } from './components/SummaryStats';
 
@@ -15,9 +15,14 @@ function App() {
     isLoading: summaryLoading,
     error: summaryError,
   } = useSummary();
+  const {
+    data: wpVersionStats,
+    isLoading: wpVersionStatsLoading,
+    error: wpVersionStatsError,
+  } = useWPVersionStats();
 
-  const isLoading = releasesLoading || summaryLoading;
-  const error = releasesError || summaryError;
+  const isLoading = releasesLoading || summaryLoading || wpVersionStatsLoading;
+  const error = releasesError || summaryError || wpVersionStatsError;
 
   return (
     <div className="app">
@@ -50,8 +55,8 @@ function App() {
         </div>
       )}
 
-      {!isLoading && !error && summary && (
-        <SummaryStats summary={summary} />
+      {!isLoading && !error && summary && wpVersionStats && (
+        <SummaryStats summary={summary} wpVersionStats={wpVersionStats} />
       )}
 
       <main className="app-main">

@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import type { Release, Summary } from '../data/types';
+import type { Release, Summary, WPVersionStats } from '../data/types';
 
 const BASE_URL = import.meta.env.BASE_URL;
 
@@ -19,6 +19,14 @@ async function fetchSummary(): Promise<Summary> {
   return response.json();
 }
 
+async function fetchWPVersionStats(): Promise<WPVersionStats[]> {
+  const response = await fetch(`${BASE_URL}data/aggregated/by-wp-version.json`);
+  if (!response.ok) {
+    throw new Error('Failed to fetch WP version stats');
+  }
+  return response.json();
+}
+
 export function useReleases() {
   return useQuery({
     queryKey: ['releases'],
@@ -30,5 +38,12 @@ export function useSummary() {
   return useQuery({
     queryKey: ['summary'],
     queryFn: fetchSummary,
+  });
+}
+
+export function useWPVersionStats() {
+  return useQuery({
+    queryKey: ['wpVersionStats'],
+    queryFn: fetchWPVersionStats,
   });
 }
