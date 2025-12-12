@@ -1,6 +1,5 @@
 import { useMemo } from 'react';
-import { PieChart } from '@automattic/charts/pie-chart';
-import '@automattic/charts/pie-chart/style.css';
+import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from 'recharts';
 import type { CategoryConfig } from '../utils/categories';
 
 interface CategoryPieChartProps {
@@ -79,31 +78,54 @@ export function CategoryPieChart({
     return null;
   }
 
-  // Filter legend to only show categories with data
-  const legendData = chartData.filter((item) => item.value > 0);
+  // Filter to non-zero values only (maintains order, no sorting)
+  const pieData = chartData.filter((item) => item.value > 0);
 
   return (
     <div className="category-pie-chart">
-      <PieChart
-        data={chartData}
-        size={size}
-        innerRadius={40}
-        showLabels={false}
-        showLegend={false}
-      />
-      <div className="category-pie-legend">
-        {legendData.map((item) => (
-          <div
-            key={item.label}
-            className="category-pie-legend-item"
-            // eslint-disable-next-line react/forbid-component-props -- dynamic color from data
-            style={{ '--legend-color': item.color } as React.CSSProperties}
-          >
-            <span className="category-pie-legend-color" />
-            <span className="category-pie-legend-label">{item.label}</span>
-            <span className="category-pie-legend-value">{item.percentage}%</span>
-          </div>
-        ))}
+      <div className="category-pie-chart-recharts">
+        <ResponsiveContainer width="100%" height="100%">
+          <PieChart>
+            <Pie
+              data={pieData}
+              dataKey="value"
+              nameKey="label"
+              cx="50%"
+              cy="50%"
+              innerRadius={0}
+              outerRadius={size / 2 - 10}
+              isAnimationActive
+              animationBegin={0}
+              animationDuration={150}
+              stroke="none"
+            >
+              {pieData.map((entry) => (
+                <Cell key={entry.label} fill={entry.color} />
+              ))}
+            </Pie>
+            <Legend
+              layout="horizontal"
+              align="center"
+              verticalAlign="bottom"
+              content={() => (
+                <div className="category-pie-legend category-pie-legend--recharts">
+                  {pieData.map((item) => (
+                    <div
+                      key={item.label}
+                      className="category-pie-legend-item"
+                      // eslint-disable-next-line react/forbid-component-props -- dynamic color from data
+                      style={{ '--legend-color': item.color } as React.CSSProperties}
+                    >
+                      <span className="category-pie-legend-color" />
+                      <span className="category-pie-legend-label">{item.label}</span>
+                      <span className="category-pie-legend-value">{item.percentage}%</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+            />
+          </PieChart>
+        </ResponsiveContainer>
       </div>
     </div>
   );
