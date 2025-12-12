@@ -81,7 +81,10 @@ function App() {
           release statistics and changelog data.
         </Text>
         <Text className="app-disclaimer">
-          This data is an approximation based on parsing Gutenberg release changelogs, and doesn't include cherry-picks to WordPress release branches after the Beta1 cutoff.
+          This data is an approximation based on parsing Gutenberg release changelogs, and doesn't include cherry-picks to WordPress release branches after the Beta1 cutoff.{' '}
+          <ExternalLink href="https://developer.wordpress.org/block-editor/contributors/versions-in-wordpress/">
+            Learn more
+          </ExternalLink>
         </Text>
       </header>
 
