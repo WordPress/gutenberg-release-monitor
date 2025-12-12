@@ -41,6 +41,23 @@
       "includeByDefault": true
     },
     {
+      "id": "codeQuality",
+      "label": "Code Quality",
+      "color": "#2196F3",
+      "rawCategories": [
+        "Code Quality",
+        "**Code Quality**",
+        "Tools",
+        "**Tools**",
+        "Build Tooling",
+        "Tooling",
+        "Chore",
+        "Deprecations",
+        "Security"
+      ],
+      "includeByDefault": true
+    },
+    {
       "id": "a11y",
       "label": "Accessibility",
       "color": "#9C27B0",
@@ -55,23 +72,6 @@
         "Performance",
         "**Performance**",
         "Performance:"
-      ],
-      "includeByDefault": true
-    },
-    {
-      "id": "codeQuality",
-      "label": "Code Quality",
-      "color": "#2196F3",
-      "rawCategories": [
-        "Code Quality",
-        "**Code Quality**",
-        "Tools",
-        "**Tools**",
-        "Build Tooling",
-        "Tooling",
-        "Chore",
-        "Deprecations",
-        "Security"
       ],
       "includeByDefault": true
     },
