@@ -19,6 +19,7 @@
   "avgPRsTotal": 129,
   "avgFeaturesTotal": 35,
   "avgBugsTotal": 35,
+  "avgCodeQualityTotal": 37,
   "avgA11yTotal": 5,
   "avgPerfTotal": 5,
   "avgContributorsTotal": 47,

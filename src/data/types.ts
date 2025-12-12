@@ -126,6 +126,7 @@ export interface Summary {
   avgPRsTotal: number;
   avgFeaturesTotal: number;
   avgBugsTotal: number;
+  avgCodeQualityTotal: number;
   avgA11yTotal: number;
   avgPerfTotal: number;
   avgContributorsTotal: number;

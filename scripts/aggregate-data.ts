@@ -239,6 +239,13 @@ function generateSummary(releases: Release[], wpSchedule: WPRelease[], existingS
   const avgFeaturesTotal = Math.round(releases.reduce((sum, r) => sum + getAggregatedPRs(r, 'features'), 0) / totalReleases);
   const avgBugsTotal = Math.round(releases.reduce((sum, r) => sum + getAggregatedPRs(r, 'bugs'), 0) / totalReleases);
 
+  // Code Quality data only exists in newer releases
+  const releasesWithCodeQuality = releases.filter((r) => getAggregatedPRs(r, 'codeQuality') > 0);
+  const codeQualityCount = releasesWithCodeQuality.length || 1;
+  const avgCodeQualityTotal = Math.round(
+    releasesWithCodeQuality.reduce((sum, r) => sum + getAggregatedPRs(r, 'codeQuality'), 0) / codeQualityCount
+  );
+
   // A11y and performance data only exists in newer releases
   const releasesWithA11y = releases.filter((r) => getAggregatedPRs(r, 'a11y') > 0);
   const a11yCount = releasesWithA11y.length || 1;
@@ -289,6 +296,7 @@ function generateSummary(releases: Release[], wpSchedule: WPRelease[], existingS
     avgPRsTotal,
     avgFeaturesTotal,
     avgBugsTotal,
+    avgCodeQualityTotal,
     avgA11yTotal,
     avgPerfTotal,
     avgContributorsTotal,
