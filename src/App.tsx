@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import '@wordpress/components/build-style/style.css';
 import {
   Button,
@@ -9,12 +10,20 @@ import {
   TabPanel,
   __experimentalText as Text,
   __experimentalHeading as Heading,
+  __experimentalToggleGroupControl as ToggleGroupControl,
+  __experimentalToggleGroupControlOption as ToggleGroupControlOption,
 } from '@wordpress/components';
 import { useReleases, useSummary, useWPVersionStats } from './hooks/useReleases';
 import { useDarkMode } from './hooks/useDarkMode';
 import { ReleasesTable } from './components/ReleasesTable';
 import { SummaryStats } from './components/SummaryStats';
 import { WPVersionTable } from './components/WPVersionTable';
+import { TrendLineChart } from './components/TrendLineChart';
+import { TrendBarChart } from './components/TrendBarChart';
+import { TrendDistributionChart } from './components/TrendDistributionChart';
+
+export type ViewMode = 'averages' | 'totals' | 'distribution';
+export type ChartType = 'line' | 'bar' | 'area' | 'stacked';
 
 const SunIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -30,6 +39,8 @@ const MoonIcon = () => (
 );
 
 function App() {
+  const [viewMode, setViewMode] = useState<ViewMode>('averages');
+  const [chartType, setChartType] = useState<ChartType>('stacked');
   const {
     data: releases,
     isLoading: releasesLoading,
@@ -63,11 +74,14 @@ function App() {
           />
         </div>
         <Text>
-          Track Gutenberg release statistics and changelog data
-          <span className="header-separator">·</span>
+          Track{' '}
           <ExternalLink href="https://github.com/WordPress/gutenberg">
-            View Repository
-          </ExternalLink>
+            Gutenberg
+          </ExternalLink>{' '}
+          release statistics and changelog data.
+        </Text>
+        <Text className="app-disclaimer">
+          This data is an approximation based on parsing Gutenberg release changelogs, and doesn't include cherry-picks to WordPress release branches after the Beta1 cutoff.
         </Text>
       </header>
 
@@ -85,39 +99,95 @@ function App() {
       )}
 
       {!isLoading && !error && summary && wpVersionStats && releases && (
-        <main className="app-main">
-          <TabPanel
-            className="app-tabs"
-            tabs={[
-              { name: 'by-wp-version', title: 'WordPress Releases' },
-              { name: 'releases', title: 'Gutenberg Releases' },
-            ]}
-          >
-            {(tab) => (
-              <>
-                {tab.name === 'by-wp-version' && (
-                  <div className="tab-content">
-                    <SummaryStats summary={summary} wpVersionStats={wpVersionStats} />
-                    <Card className="wp-version-table-card">
-                      <CardBody>
-                        <WPVersionTable wpVersionStats={wpVersionStats} />
-                      </CardBody>
-                    </Card>
-                  </div>
-                )}
-                {tab.name === 'releases' && (
-                  <div className="tab-content">
-                    <Card>
-                      <CardBody>
-                        <ReleasesTable releases={releases} />
-                      </CardBody>
-                    </Card>
-                  </div>
-                )}
-              </>
-            )}
-          </TabPanel>
-        </main>
+        <>
+          <main className="app-main">
+            <TabPanel
+              className="app-tabs"
+              tabs={[
+                { name: 'by-wp-version', title: 'By WP Version' },
+                { name: 'releases', title: 'By GB Release' },
+              ]}
+            >
+              {(tab) => (
+                <>
+                  {tab.name === 'by-wp-version' && (
+                    <div className="tab-content">
+                      <SummaryStats summary={summary} wpVersionStats={wpVersionStats} />
+                      <div className="view-mode-toggle">
+                        <ToggleGroupControl
+                          __nextHasNoMarginBottom
+                          isBlock
+                          label="View mode"
+                          hideLabelFromVision
+                          value={viewMode}
+                          onChange={(value) => setViewMode(value as ViewMode)}
+                        >
+                          <ToggleGroupControlOption value="averages" label="Averages" />
+                          <ToggleGroupControlOption value="totals" label="Totals" />
+                          <ToggleGroupControlOption value="distribution" label="Distribution" />
+                        </ToggleGroupControl>
+                      </div>
+                      <Card className="trend-chart-card">
+                        <CardBody>
+                          <div className="chart-type-toggle">
+                            <ToggleGroupControl
+                              __nextHasNoMarginBottom
+                              label="Chart type"
+                              hideLabelFromVision
+                              value={chartType}
+                              onChange={(value) => setChartType(value as ChartType)}
+                            >
+                              <ToggleGroupControlOption value="stacked" label="Stacked" />
+                              <ToggleGroupControlOption value="area" label="Area" />
+                              <ToggleGroupControlOption value="line" label="Line" />
+                              <ToggleGroupControlOption value="bar" label="Bar" />
+                            </ToggleGroupControl>
+                          </div>
+                          {viewMode === 'averages' && (
+                            <TrendLineChart wpVersionStats={wpVersionStats} chartType={chartType} />
+                          )}
+                          {viewMode === 'totals' && (
+                            <TrendBarChart wpVersionStats={wpVersionStats} chartType={chartType} />
+                          )}
+                          {viewMode === 'distribution' && (
+                            <TrendDistributionChart wpVersionStats={wpVersionStats} chartType={chartType} />
+                          )}
+                        </CardBody>
+                      </Card>
+                      <Card className="wp-version-table-card">
+                        <CardBody>
+                          <WPVersionTable wpVersionStats={wpVersionStats} viewMode={viewMode} />
+                        </CardBody>
+                      </Card>
+                    </div>
+                  )}
+                  {tab.name === 'releases' && (
+                    <div className="tab-content">
+                      <Card>
+                        <CardBody>
+                          <ReleasesTable releases={releases} />
+                        </CardBody>
+                      </Card>
+                    </div>
+                  )}
+                </>
+              )}
+            </TabPanel>
+          </main>
+          <footer className="app-footer">
+            <Text>
+              {summary.totalReleases} releases: {summary.oldestRelease} – {summary.latestRelease}
+            </Text>
+            <Text>
+              Last updated:{' '}
+              {new Date(summary.lastUpdated).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+              })}
+            </Text>
+          </footer>
+        </>
       )}
     </div>
   );
