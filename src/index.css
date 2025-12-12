@@ -147,6 +147,11 @@
   color: var(--color-text);
 }
 
+.dark-mode .components-button:disabled svg {
+  fill: var(--color-text-disabled);
+  color: var(--color-text-disabled);
+}
+
 /* Dark mode - DataViews */
 .dark-mode .dataviews-wrapper,
 .dark-mode .dataviews-view-table-wrapper,
@@ -515,6 +520,14 @@ body {
   color: var(--color-text-muted);
   font-size: 0.8125rem;
   font-weight: 500;
+  transition: opacity 0.2s ease-out 0.2s;
+  min-width: 2.5em;
+  text-align: right;
+}
+
+.category-pie-legend-value--hidden {
+  opacity: 0;
+  transition: opacity 0.1s ease-out;
 }
 
 .category-pie-chart-label {
@@ -557,19 +570,21 @@ body {
 }
 
 .summary-stats-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
   width: 100%;
 }
 
 /* Stats Grid */
 .summary-stats {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   gap: 0.75rem;
-  padding: 1rem;
+  padding: 1rem 0;
 }
 
 .summary-stats-header {
-  grid-column: 1 / -1;
   font-size: 0.875rem;
   font-weight: 600;
   padding-bottom: 0.5rem;

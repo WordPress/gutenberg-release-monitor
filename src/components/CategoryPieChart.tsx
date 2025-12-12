@@ -108,10 +108,6 @@ export function CategoryPieChart({
     [onCategoryToggle, visibleCategories, categoryConfig]
   );
 
-  if (chartData.length === 0) {
-    return null;
-  }
-
   // Filter to non-zero values only for the pie chart
   const pieSliceData = chartData.filter((item) => item.value > 0);
 
@@ -128,30 +124,27 @@ export function CategoryPieChart({
   });
 
   // Build legend data from ALL categories (to allow toggling hidden ones)
+  // Use chartData percentages directly - they're already distributed correctly
   const legendData = useMemo(() => {
     return allCategories.map((agg) => {
       const isVisible = visibleCategories
         ? visibleCategories.includes(agg.id)
         : agg.includeByDefault;
+      // Find percentage from chartData (which uses distributePercentages)
       const dataPoint = chartData.find((d) => d.id === agg.id);
       const total = categoryTotals[agg.id] || 0;
-      // Calculate percentage from visible categories only
-      const visibleTotal = effectiveCategories.reduce(
-        (sum, cat) => sum + (categoryTotals[cat.id] || 0),
-        0
-      );
-      const percentage = visibleTotal > 0 ? Math.round((total / visibleTotal) * 100) : 0;
       return {
         id: agg.id,
         label: agg.label,
         color: agg.color,
         value: total,
-        percentage: dataPoint?.percentage ?? percentage,
+        // Use chartData percentage if available (visible category), otherwise 0
+        percentage: dataPoint?.percentage ?? 0,
         isVisible,
         hasData: total > 0,
       };
     });
-  }, [allCategories, visibleCategories, chartData, categoryTotals, effectiveCategories]);
+  }, [allCategories, visibleCategories, chartData, categoryTotals]);
 
   const isClickable = !!onCategoryToggle;
 
@@ -172,7 +165,7 @@ export function CategoryPieChart({
               endAngle={-270}
               isAnimationActive
               animationBegin={0}
-              animationDuration={150}
+              animationDuration={400}
               stroke="none"
             >
               {pieData.map((entry) => (
@@ -223,9 +216,11 @@ export function CategoryPieChart({
                     >
                       <span className="category-pie-legend-color" />
                       <span className="category-pie-legend-label">{item.label}</span>
-                      {item.isVisible && item.hasData && (
-                        <span className="category-pie-legend-value">{item.percentage}%</span>
-                      )}
+                      <span
+                        className={`category-pie-legend-value${!item.isVisible || !item.hasData ? ' category-pie-legend-value--hidden' : ''}`}
+                      >
+                        {item.percentage}%
+                      </span>
                     </button>
                   ))}
                 </div>

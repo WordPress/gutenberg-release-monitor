@@ -17,10 +17,8 @@ import { useReleases, useSummary, useWPVersionStats } from './hooks/useReleases'
 import { useTimeSeries } from './hooks/useTimeSeries';
 import { useDarkMode } from './hooks/useDarkMode';
 import { useURLState } from './hooks/useURLState';
-import { ReleasesTable } from './components/ReleasesTable';
 import { SummaryStats } from './components/SummaryStats';
-import { GBReleaseSummaryStats } from './components/GBReleaseSummaryStats';
-import { WPVersionTable } from './components/WPVersionTable';
+import { DataTable } from './components/DataTable';
 import { TrendChart } from './components/TrendChart';
 import { getDefaultCategoryIds } from './components/CategoryFilter';
 
@@ -187,58 +185,49 @@ function App() {
                 const isWPTab = activeTab === 'by-wp-version';
                 const effectiveViewMode = !isWPTab && viewMode === 'totals' ? 'averages' : viewMode;
 
+                // Compute props objects to avoid conditional JSX rendering
+                // This keeps components mounted and animating on data changes
+                const summaryProps = isWPTab
+                  ? { dataSource: 'wp-version' as const, data: wpVersionStats }
+                  : { dataSource: 'gb-release' as const, data: releases };
+
+                const trendChartProps = isWPTab
+                  ? { dataSource: 'wp-version' as const, data: wpVersionStats }
+                  : { dataSource: 'gb-release' as const, data: timeSeries, releaseCount: 50 };
+
+                const dataTableProps = isWPTab
+                  ? { dataSource: 'wp-version' as const, data: wpVersionStats, viewMode }
+                  : { dataSource: 'gb-release' as const, data: releases, viewMode: effectiveViewMode };
+
                 return (
                   <div className="tab-content">
-                    {/* Summary section - different component per tab */}
+                    {/* Summary section - single instance, props switch */}
                     <section id="version-summary">
-                      {isWPTab ? (
-                        <SummaryStats
-                          summary={summary}
-                          wpVersionStats={wpVersionStats}
-                          visibleCategories={visibleCategories}
-                          onCategoryToggle={handleCategoryToggle}
-                        />
-                      ) : (
-                        <GBReleaseSummaryStats
-                          releases={releases}
-                          summary={summary}
-                          visibleCategories={visibleCategories}
-                          onCategoryToggle={handleCategoryToggle}
-                        />
-                      )}
+                      <SummaryStats
+                        {...summaryProps}
+                        summary={summary}
+                        visibleCategories={visibleCategories}
+                        onCategoryToggle={handleCategoryToggle}
+                      />
                     </section>
 
                     {/* View mode toggle - different options per tab */}
                     <div className="view-mode-toggle">
-                      {isWPTab ? (
-                        <ToggleGroupControl
-                          __nextHasNoMarginBottom
-                          isBlock
-                          label="View mode"
-                          hideLabelFromVision
-                          value={viewMode}
-                          onChange={(value) => setViewMode(value as ViewMode)}
-                        >
-                          <ToggleGroupControlOption value="averages" label="Per Release" />
-                          <ToggleGroupControlOption value="totals" label="Totals" />
-                          <ToggleGroupControlOption value="distribution" label="Distribution" />
-                        </ToggleGroupControl>
-                      ) : (
-                        <ToggleGroupControl
-                          __nextHasNoMarginBottom
-                          isBlock
-                          label="View mode"
-                          hideLabelFromVision
-                          value={effectiveViewMode}
-                          onChange={(value) => setViewMode(value as ViewMode)}
-                        >
-                          <ToggleGroupControlOption value="averages" label="PRs" />
-                          <ToggleGroupControlOption value="distribution" label="Distribution" />
-                        </ToggleGroupControl>
-                      )}
+                      <ToggleGroupControl
+                        __nextHasNoMarginBottom
+                        isBlock
+                        label="View mode"
+                        hideLabelFromVision
+                        value={isWPTab ? viewMode : effectiveViewMode}
+                        onChange={(value) => setViewMode(value as ViewMode)}
+                      >
+                        <ToggleGroupControlOption value="averages" label={isWPTab ? 'Per Release' : 'PRs'} />
+                        {isWPTab && <ToggleGroupControlOption value="totals" label="Totals" />}
+                        <ToggleGroupControlOption value="distribution" label="Distribution" />
+                      </ToggleGroupControl>
                     </div>
 
-                    {/* Chart - single instance, adapts via props */}
+                    {/* Chart - single instance, props switch */}
                     <Card id="trend-chart" className="trend-chart-card">
                       <CardBody>
                         <div className="chart-type-toggle">
@@ -255,37 +244,20 @@ function App() {
                             <ToggleGroupControlOption value="bar" label="Bar" />
                           </ToggleGroupControl>
                         </div>
-                        {isWPTab ? (
-                          <TrendChart
-                            dataSource="wp-version"
-                            data={wpVersionStats}
-                            viewMode={effectiveViewMode}
-                            chartType={chartType}
-                            visibleCategories={visibleCategories}
-                            onCategoryToggle={handleCategoryToggle}
-                          />
-                        ) : (
-                          <TrendChart
-                            dataSource="gb-release"
-                            data={timeSeries}
-                            viewMode={effectiveViewMode}
-                            chartType={chartType}
-                            visibleCategories={visibleCategories}
-                            onCategoryToggle={handleCategoryToggle}
-                            releaseCount={50}
-                          />
-                        )}
+                        <TrendChart
+                          {...trendChartProps}
+                          viewMode={effectiveViewMode}
+                          chartType={chartType}
+                          visibleCategories={visibleCategories}
+                          onCategoryToggle={handleCategoryToggle}
+                        />
                       </CardBody>
                     </Card>
 
-                    {/* Table - different component per tab */}
+                    {/* Table - single instance, props switch */}
                     <Card id="releases-table" className={isWPTab ? 'wp-version-table-card' : undefined}>
                       <CardBody>
-                        {isWPTab ? (
-                          <WPVersionTable wpVersionStats={wpVersionStats} viewMode={viewMode} />
-                        ) : (
-                          <ReleasesTable releases={releases} viewMode={effectiveViewMode} />
-                        )}
+                        <DataTable {...dataTableProps} />
                       </CardBody>
                     </Card>
                   </div>
