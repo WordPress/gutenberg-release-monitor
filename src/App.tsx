@@ -14,13 +14,13 @@ import {
   __experimentalToggleGroupControlOption as ToggleGroupControlOption,
 } from '@wordpress/components';
 import { useReleases, useSummary, useWPVersionStats } from './hooks/useReleases';
+import { useTimeSeries } from './hooks/useTimeSeries';
 import { useDarkMode } from './hooks/useDarkMode';
 import { ReleasesTable } from './components/ReleasesTable';
 import { SummaryStats } from './components/SummaryStats';
+import { GBReleaseSummaryStats } from './components/GBReleaseSummaryStats';
 import { WPVersionTable } from './components/WPVersionTable';
-import { TrendLineChart } from './components/TrendLineChart';
-import { TrendBarChart } from './components/TrendBarChart';
-import { TrendDistributionChart } from './components/TrendDistributionChart';
+import { TrendChart } from './components/TrendChart';
 
 export type ViewMode = 'averages' | 'totals' | 'distribution';
 export type ChartType = 'line' | 'bar' | 'area' | 'stacked';
@@ -39,6 +39,7 @@ const MoonIcon = () => (
 );
 
 function App() {
+  const [activeTab, setActiveTab] = useState<'by-wp-version' | 'releases'>('by-wp-version');
   const [viewMode, setViewMode] = useState<ViewMode>('averages');
   const [chartType, setChartType] = useState<ChartType>('stacked');
   const {
@@ -56,10 +57,15 @@ function App() {
     isLoading: wpVersionStatsLoading,
     error: wpVersionStatsError,
   } = useWPVersionStats();
+  const {
+    data: timeSeries,
+    isLoading: timeSeriesLoading,
+    error: timeSeriesError,
+  } = useTimeSeries();
   const { isDark, toggle } = useDarkMode();
 
-  const isLoading = releasesLoading || summaryLoading || wpVersionStatsLoading;
-  const error = releasesError || summaryError || wpVersionStatsError;
+  const isLoading = releasesLoading || summaryLoading || wpVersionStatsLoading || timeSeriesLoading;
+  const error = releasesError || summaryError || wpVersionStatsError || timeSeriesError;
 
   return (
     <div className="app">
@@ -101,7 +107,7 @@ function App() {
         </div>
       )}
 
-      {!isLoading && !error && summary && wpVersionStats && releases && (
+      {!isLoading && !error && summary && wpVersionStats && releases && timeSeries && (
         <>
           <main className="app-main">
             <TabPanel
@@ -110,13 +116,24 @@ function App() {
                 { name: 'by-wp-version', title: 'By WP Version' },
                 { name: 'releases', title: 'By GB Release' },
               ]}
+              onSelect={(tabName) => setActiveTab(tabName as 'by-wp-version' | 'releases')}
             >
-              {(tab) => (
-                <>
-                  {tab.name === 'by-wp-version' && (
-                    <div className="tab-content">
+              {() => {
+                const isWPTab = activeTab === 'by-wp-version';
+                const effectiveViewMode = !isWPTab && viewMode === 'totals' ? 'averages' : viewMode;
+
+                return (
+                  <div className="tab-content">
+                    {/* Summary section - different component per tab */}
+                    {isWPTab ? (
                       <SummaryStats summary={summary} wpVersionStats={wpVersionStats} />
-                      <div className="view-mode-toggle">
+                    ) : (
+                      <GBReleaseSummaryStats releases={releases} summary={summary} />
+                    )}
+
+                    {/* View mode toggle - different options per tab */}
+                    <div className="view-mode-toggle">
+                      {isWPTab ? (
                         <ToggleGroupControl
                           __nextHasNoMarginBottom
                           isBlock
@@ -125,56 +142,74 @@ function App() {
                           value={viewMode}
                           onChange={(value) => setViewMode(value as ViewMode)}
                         >
-                          <ToggleGroupControlOption value="averages" label="Averages" />
+                          <ToggleGroupControlOption value="averages" label="Per Release" />
                           <ToggleGroupControlOption value="totals" label="Totals" />
                           <ToggleGroupControlOption value="distribution" label="Distribution" />
                         </ToggleGroupControl>
-                      </div>
-                      <Card className="trend-chart-card">
-                        <CardBody>
-                          <div className="chart-type-toggle">
-                            <ToggleGroupControl
-                              __nextHasNoMarginBottom
-                              label="Chart type"
-                              hideLabelFromVision
-                              value={chartType}
-                              onChange={(value) => setChartType(value as ChartType)}
-                            >
-                              <ToggleGroupControlOption value="stacked" label="Stacked" />
-                              <ToggleGroupControlOption value="area" label="Area" />
-                              <ToggleGroupControlOption value="line" label="Line" />
-                              <ToggleGroupControlOption value="bar" label="Bar" />
-                            </ToggleGroupControl>
-                          </div>
-                          {viewMode === 'averages' && (
-                            <TrendLineChart wpVersionStats={wpVersionStats} chartType={chartType} />
-                          )}
-                          {viewMode === 'totals' && (
-                            <TrendBarChart wpVersionStats={wpVersionStats} chartType={chartType} />
-                          )}
-                          {viewMode === 'distribution' && (
-                            <TrendDistributionChart wpVersionStats={wpVersionStats} chartType={chartType} />
-                          )}
-                        </CardBody>
-                      </Card>
-                      <Card className="wp-version-table-card">
-                        <CardBody>
+                      ) : (
+                        <ToggleGroupControl
+                          __nextHasNoMarginBottom
+                          isBlock
+                          label="View mode"
+                          hideLabelFromVision
+                          value={effectiveViewMode}
+                          onChange={(value) => setViewMode(value as ViewMode)}
+                        >
+                          <ToggleGroupControlOption value="averages" label="PRs" />
+                          <ToggleGroupControlOption value="distribution" label="Distribution" />
+                        </ToggleGroupControl>
+                      )}
+                    </div>
+
+                    {/* Chart - single instance, adapts via props */}
+                    <Card className="trend-chart-card">
+                      <CardBody>
+                        <div className="chart-type-toggle">
+                          <ToggleGroupControl
+                            __nextHasNoMarginBottom
+                            label="Chart type"
+                            hideLabelFromVision
+                            value={chartType}
+                            onChange={(value) => setChartType(value as ChartType)}
+                          >
+                            <ToggleGroupControlOption value="stacked" label="Stacked" />
+                            <ToggleGroupControlOption value="area" label="Area" />
+                            <ToggleGroupControlOption value="line" label="Line" />
+                            <ToggleGroupControlOption value="bar" label="Bar" />
+                          </ToggleGroupControl>
+                        </div>
+                        {isWPTab ? (
+                          <TrendChart
+                            dataSource="wp-version"
+                            data={wpVersionStats}
+                            viewMode={effectiveViewMode}
+                            chartType={chartType}
+                          />
+                        ) : (
+                          <TrendChart
+                            dataSource="gb-release"
+                            data={timeSeries}
+                            viewMode={effectiveViewMode}
+                            chartType={chartType}
+                            releaseCount={50}
+                          />
+                        )}
+                      </CardBody>
+                    </Card>
+
+                    {/* Table - different component per tab */}
+                    <Card className={isWPTab ? 'wp-version-table-card' : undefined}>
+                      <CardBody>
+                        {isWPTab ? (
                           <WPVersionTable wpVersionStats={wpVersionStats} viewMode={viewMode} />
-                        </CardBody>
-                      </Card>
-                    </div>
-                  )}
-                  {tab.name === 'releases' && (
-                    <div className="tab-content">
-                      <Card>
-                        <CardBody>
-                          <ReleasesTable releases={releases} />
-                        </CardBody>
-                      </Card>
-                    </div>
-                  )}
-                </>
-              )}
+                        ) : (
+                          <ReleasesTable releases={releases} viewMode={effectiveViewMode} />
+                        )}
+                      </CardBody>
+                    </Card>
+                  </div>
+                );
+              }}
             </TabPanel>
           </main>
           <footer className="app-footer">

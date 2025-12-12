@@ -9,9 +9,11 @@ import {
 } from '../utils/categories';
 
 import '@wordpress/dataviews/build-style/style.css';
+import type { ViewMode } from '../App';
 
 interface ReleasesTableProps {
   releases: Release[];
+  viewMode?: ViewMode;
 }
 
 interface View {
@@ -40,7 +42,7 @@ const defaultLayouts = {
 const STATIC_FIELDS = ['gbVersion', 'wpVersion', 'date', 'totalPRs'];
 const CONTRIBUTOR_FIELDS = ['contributors', 'newContributors'];
 
-export function ReleasesTable({ releases }: ReleasesTableProps) {
+export function ReleasesTable({ releases, viewMode = 'averages' }: ReleasesTableProps) {
   const [categoryConfig, setCategoryConfig] = useState<CategoryConfig | null>(null);
 
   // Load category config on mount
@@ -109,10 +111,16 @@ export function ReleasesTable({ releases }: ReleasesTableProps) {
       enableSorting: true,
       render: ({ item }: { item: Release }) => {
         const count = getAggregatedPRs(item.categories, categoryConfig, agg.id);
-        // Show percentage for features and bugs
+        const total = item.totalPRs || 1;
+        const percent = Math.round((count / total) * 100);
+
+        // In distribution mode, show only percentages
+        if (viewMode === 'distribution') {
+          return <span className={`release-${agg.id}`}>{percent}%</span>;
+        }
+
+        // In PRs mode, show count with percentage for features and bugs
         if (agg.id === 'features' || agg.id === 'bugs') {
-          const total = item.totalPRs || 1;
-          const percent = Math.round((count / total) * 100);
           return (
             <span className={`release-${agg.id}`}>
               {count} ({percent}%)
@@ -122,7 +130,7 @@ export function ReleasesTable({ releases }: ReleasesTableProps) {
         return <span className={`release-${agg.id}`}>{count}</span>;
       },
     }));
-  }, [categoryConfig]);
+  }, [categoryConfig, viewMode]);
 
   // Combine static fields + dynamic category fields + contributor fields
   const fields = useMemo(

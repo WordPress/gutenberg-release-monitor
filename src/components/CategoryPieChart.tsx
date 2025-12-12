@@ -6,6 +6,8 @@ interface CategoryPieChartProps {
   categoryTotals: Record<string, number>;
   categoryConfig: CategoryConfig;
   size?: number;
+  /** Number of releases (for computing averages in WP Version view) */
+  releaseCount?: number;
 }
 
 interface PieDataPoint {
@@ -45,6 +47,7 @@ export function CategoryPieChart({
   categoryTotals,
   categoryConfig,
   size = 200,
+  releaseCount,
 }: CategoryPieChartProps) {
   const chartData = useMemo((): PieDataPoint[] => {
     // Filter to includeByDefault categories only, keeping config order
@@ -122,6 +125,7 @@ export function CategoryPieChart({
               content={({ active, payload }) => {
                 if (!active || !payload || !payload[0]) return null;
                 const data = payload[0].payload as PieDataPoint;
+                const avg = releaseCount ? Math.round(data.value / releaseCount) : null;
                 return (
                   <div className="category-pie-tooltip">
                     <div
@@ -132,7 +136,11 @@ export function CategoryPieChart({
                       {data.label}
                     </div>
                     <div className="category-pie-tooltip-value">
-                      {data.value.toLocaleString()} PRs ({data.percentage}%)
+                      {avg !== null ? (
+                        <>{avg.toLocaleString()} avg, {data.value.toLocaleString()} total ({data.percentage}%)</>
+                      ) : (
+                        <>{data.value.toLocaleString()} PRs ({data.percentage}%)</>
+                      )}
                     </div>
                   </div>
                 );
