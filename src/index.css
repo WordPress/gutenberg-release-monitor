@@ -9,6 +9,11 @@
   --color-perf: #996800;
   --color-bg: #f0f0f0;
   --color-bg-card: #fff;
+  --color-surface: #fff;
+  --color-surface-hover: #f5f5f5;
+  --color-surface-alt: #f8f8f8;
+  --color-border: #e0e0e0;
+  --color-border-strong: #c0c0c0;
 
   /* Chart reference lines (WP beta cutoffs) */
   --trend-chart-reference-line: #7b68a6;
@@ -278,18 +283,29 @@
 
 /* Dark mode - Summary navigation */
 .dark-mode .summary-version-nav .components-button {
-  background: var(--color-surface);
   color: var(--color-text);
   border-color: var(--color-border-strong);
-}
-
-.dark-mode .summary-version-nav .components-button:hover:not(:disabled) {
-  background: var(--color-surface-hover);
+  box-shadow: none !important;
 }
 
 .dark-mode .summary-version-nav .components-button:disabled {
   color: var(--color-text-disabled);
-  background: var(--color-surface-alt);
+}
+
+.dark-mode .summary-version-nav .components-button:focus {
+  box-shadow: 0 0 0 var(--wp-admin-border-width-focus, 2px) var(--color-border) !important;
+}
+
+.dark-mode .app-header-top > .components-button {
+  border-color: var(--color-border-strong) !important;
+}
+
+.dark-mode .app-header-top > .components-button:hover:not(:disabled) {
+  background: var(--color-surface-hover);
+}
+
+.dark-mode .app-header-top > .components-button:focus {
+  box-shadow: 0 0 0 var(--wp-admin-border-width-focus, 2px) var(--color-border) !important;
 }
 
 /* Dark mode - Text */
@@ -345,6 +361,21 @@ body {
   align-items: center;
 }
 
+.app-header-top > .components-button {
+  border: 1px solid var(--color-border);
+  border-radius: var(--wp-components-border-radius, 4px);
+  box-shadow: none;
+}
+
+.app-header-top > .components-button:hover:not(:disabled) {
+  border-color: var(--color-border-strong);
+}
+
+.app-header-top > .components-button:focus {
+  box-shadow: 0 0 0 var(--wp-admin-border-width-focus, 2px) var(--color-border-strong);
+  outline: none;
+}
+
 .app-header h1 {
   font-size: 1.75rem;
   font-weight: 600;
@@ -397,10 +428,16 @@ body {
 
 .summary-version-nav .components-button.is-secondary {
   border-color: var(--color-border);
+  box-shadow: none;
 }
 
 .summary-version-nav .components-button.is-secondary:hover:not(:disabled) {
   border-color: var(--color-border-strong);
+}
+
+.summary-version-nav .components-button.is-secondary:focus {
+  box-shadow: 0 0 0 var(--wp-admin-border-width-focus, 2px) var(--color-border-strong);
+  outline: none;
 }
 
 .summary-version-select.components-base-control {
@@ -740,10 +777,6 @@ body {
   margin-bottom: 1rem;
 }
 
-.view-mode-toggle .components-toggle-group-control {
-  min-height: 36px;
-}
-
 /* Chart type toggle - inside chart card */
 .chart-type-toggle {
   max-width: 200px;
@@ -751,7 +784,8 @@ body {
 }
 
 .chart-type-toggle .components-toggle-group-control {
-  min-height: 32px;
+  border: 1px solid var(--color-border);
+  border-radius: 2px;
 }
 
 /* Trend Line Chart */

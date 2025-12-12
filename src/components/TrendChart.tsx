@@ -524,8 +524,9 @@ export function TrendChart(props: TrendChartProps) {
               strokeWidth={1.5}
               strokeOpacity={0.6}
               label={{
-                value: `WP ${wpVersion}`,
-                position: 'insideTopLeft',
+                value: `WP ${wpVersion} beta`,
+                position: 'top',
+                offset: 5,
                 fontSize: 9,
                 fill: 'var(--trend-chart-reference-label, #7a6a9a)',
                 fontWeight: 500,
