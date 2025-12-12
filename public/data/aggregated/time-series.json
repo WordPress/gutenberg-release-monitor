@@ -6,9 +6,9 @@
     "categoryPRs": {
       "features": 0,
       "bugs": 0,
+      "codeQuality": 0,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 0,
       "documentation": 0,
       "other": 0
     },
@@ -22,9 +22,9 @@
     "categoryPRs": {
       "features": 0,
       "bugs": 0,
+      "codeQuality": 0,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 0,
       "documentation": 0,
       "other": 2
     },
@@ -38,9 +38,9 @@
     "categoryPRs": {
       "features": 0,
       "bugs": 0,
+      "codeQuality": 0,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 0,
       "documentation": 0,
       "other": 92
     },
@@ -54,9 +54,9 @@
     "categoryPRs": {
       "features": 0,
       "bugs": 0,
+      "codeQuality": 0,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 0,
       "documentation": 0,
       "other": 60
     },
@@ -70,9 +70,9 @@
     "categoryPRs": {
       "features": 0,
       "bugs": 0,
+      "codeQuality": 0,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 0,
       "documentation": 0,
       "other": 106
     },
@@ -86,9 +86,9 @@
     "categoryPRs": {
       "features": 0,
       "bugs": 0,
+      "codeQuality": 0,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 0,
       "documentation": 0,
       "other": 40
     },
@@ -102,9 +102,9 @@
     "categoryPRs": {
       "features": 0,
       "bugs": 0,
+      "codeQuality": 0,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 0,
       "documentation": 0,
       "other": 74
     },
@@ -118,9 +118,9 @@
     "categoryPRs": {
       "features": 57,
       "bugs": 44,
+      "codeQuality": 0,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 0,
       "documentation": 0,
       "other": 41
     },
@@ -134,9 +134,9 @@
     "categoryPRs": {
       "features": 0,
       "bugs": 0,
+      "codeQuality": 0,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 0,
       "documentation": 0,
       "other": 114
     },
@@ -150,9 +150,9 @@
     "categoryPRs": {
       "features": 0,
       "bugs": 0,
+      "codeQuality": 0,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 0,
       "documentation": 0,
       "other": 1
     },
@@ -166,9 +166,9 @@
     "categoryPRs": {
       "features": 0,
       "bugs": 0,
+      "codeQuality": 0,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 0,
       "documentation": 0,
       "other": 1
     },
@@ -182,9 +182,9 @@
     "categoryPRs": {
       "features": 0,
       "bugs": 0,
+      "codeQuality": 0,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 0,
       "documentation": 0,
       "other": 3
     },
@@ -198,9 +198,9 @@
     "categoryPRs": {
       "features": 0,
       "bugs": 0,
+      "codeQuality": 0,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 0,
       "documentation": 0,
       "other": 133
     },
@@ -214,9 +214,9 @@
     "categoryPRs": {
       "features": 0,
       "bugs": 0,
+      "codeQuality": 0,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 0,
       "documentation": 0,
       "other": 67
     },
@@ -230,9 +230,9 @@
     "categoryPRs": {
       "features": 0,
       "bugs": 0,
+      "codeQuality": 0,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 0,
       "documentation": 0,
       "other": 83
     },
@@ -246,9 +246,9 @@
     "categoryPRs": {
       "features": 0,
       "bugs": 0,
+      "codeQuality": 0,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 0,
       "documentation": 0,
       "other": 28
     },
@@ -262,9 +262,9 @@
     "categoryPRs": {
       "features": 0,
       "bugs": 0,
+      "codeQuality": 0,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 0,
       "documentation": 0,
       "other": 46
     },
@@ -278,9 +278,9 @@
     "categoryPRs": {
       "features": 0,
       "bugs": 0,
+      "codeQuality": 0,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 0,
       "documentation": 0,
       "other": 62
     },
@@ -294,9 +294,9 @@
     "categoryPRs": {
       "features": 0,
       "bugs": 0,
+      "codeQuality": 0,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 0,
       "documentation": 0,
       "other": 73
     },
@@ -310,9 +310,9 @@
     "categoryPRs": {
       "features": 23,
       "bugs": 21,
+      "codeQuality": 40,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 40,
       "documentation": 22,
       "other": 20
     },
@@ -326,9 +326,9 @@
     "categoryPRs": {
       "features": 0,
       "bugs": 0,
+      "codeQuality": 0,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 0,
       "documentation": 0,
       "other": 1
     },
@@ -342,9 +342,9 @@
     "categoryPRs": {
       "features": 0,
       "bugs": 0,
+      "codeQuality": 0,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 0,
       "documentation": 0,
       "other": 0
     },
@@ -358,9 +358,9 @@
     "categoryPRs": {
       "features": 0,
       "bugs": 0,
+      "codeQuality": 0,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 0,
       "documentation": 0,
       "other": 127
     },
@@ -374,9 +374,9 @@
     "categoryPRs": {
       "features": 0,
       "bugs": 0,
+      "codeQuality": 0,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 0,
       "documentation": 0,
       "other": 0
     },
@@ -390,9 +390,9 @@
     "categoryPRs": {
       "features": 0,
       "bugs": 0,
+      "codeQuality": 0,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 0,
       "documentation": 0,
       "other": 91
     },
@@ -406,9 +406,9 @@
     "categoryPRs": {
       "features": 0,
       "bugs": 0,
+      "codeQuality": 0,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 0,
       "documentation": 0,
       "other": 57
     },
@@ -422,9 +422,9 @@
     "categoryPRs": {
       "features": 9,
       "bugs": 36,
+      "codeQuality": 0,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 0,
       "documentation": 24,
       "other": 31
     },
@@ -438,9 +438,9 @@
     "categoryPRs": {
       "features": 12,
       "bugs": 15,
+      "codeQuality": 0,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 0,
       "documentation": 17,
       "other": 38
     },
@@ -454,9 +454,9 @@
     "categoryPRs": {
       "features": 13,
       "bugs": 19,
+      "codeQuality": 0,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 0,
       "documentation": 13,
       "other": 49
     },
@@ -470,9 +470,9 @@
     "categoryPRs": {
       "features": 13,
       "bugs": 9,
+      "codeQuality": 0,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 0,
       "documentation": 15,
       "other": 29
     },
@@ -486,9 +486,9 @@
     "categoryPRs": {
       "features": 11,
       "bugs": 17,
+      "codeQuality": 0,
       "a11y": 0,
       "performance": 3,
-      "codeQuality": 0,
       "documentation": 8,
       "other": 13
     },
@@ -502,9 +502,9 @@
     "categoryPRs": {
       "features": 6,
       "bugs": 23,
+      "codeQuality": 0,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 0,
       "documentation": 18,
       "other": 29
     },
@@ -518,9 +518,9 @@
     "categoryPRs": {
       "features": 35,
       "bugs": 26,
+      "codeQuality": 0,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 0,
       "documentation": 10,
       "other": 28
     },
@@ -534,9 +534,9 @@
     "categoryPRs": {
       "features": 19,
       "bugs": 16,
+      "codeQuality": 0,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 0,
       "documentation": 5,
       "other": 20
     },
@@ -550,9 +550,9 @@
     "categoryPRs": {
       "features": 34,
       "bugs": 35,
+      "codeQuality": 0,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 0,
       "documentation": 12,
       "other": 15
     },
@@ -566,9 +566,9 @@
     "categoryPRs": {
       "features": 9,
       "bugs": 25,
+      "codeQuality": 0,
       "a11y": 0,
       "performance": 3,
-      "codeQuality": 0,
       "documentation": 7,
       "other": 15
     },
@@ -582,9 +582,9 @@
     "categoryPRs": {
       "features": 10,
       "bugs": 40,
+      "codeQuality": 0,
       "a11y": 0,
       "performance": 1,
-      "codeQuality": 0,
       "documentation": 3,
       "other": 29
     },
@@ -598,9 +598,9 @@
     "categoryPRs": {
       "features": 16,
       "bugs": 23,
+      "codeQuality": 0,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 0,
       "documentation": 4,
       "other": 20
     },
@@ -614,9 +614,9 @@
     "categoryPRs": {
       "features": 40,
       "bugs": 9,
+      "codeQuality": 0,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 0,
       "documentation": 7,
       "other": 21
     },
@@ -630,9 +630,9 @@
     "categoryPRs": {
       "features": 36,
       "bugs": 15,
+      "codeQuality": 0,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 0,
       "documentation": 23,
       "other": 24
     },
@@ -646,9 +646,9 @@
     "categoryPRs": {
       "features": 49,
       "bugs": 27,
+      "codeQuality": 0,
       "a11y": 0,
       "performance": 4,
-      "codeQuality": 0,
       "documentation": 10,
       "other": 36
     },
@@ -662,9 +662,9 @@
     "categoryPRs": {
       "features": 66,
       "bugs": 38,
+      "codeQuality": 0,
       "a11y": 0,
       "performance": 1,
-      "codeQuality": 0,
       "documentation": 22,
       "other": 25
     },
@@ -678,9 +678,9 @@
     "categoryPRs": {
       "features": 0,
       "bugs": 0,
+      "codeQuality": 0,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 0,
       "documentation": 0,
       "other": 137
     },
@@ -694,9 +694,9 @@
     "categoryPRs": {
       "features": 30,
       "bugs": 24,
+      "codeQuality": 0,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 0,
       "documentation": 12,
       "other": 30
     },
@@ -710,9 +710,9 @@
     "categoryPRs": {
       "features": 0,
       "bugs": 0,
+      "codeQuality": 0,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 0,
       "documentation": 0,
       "other": 86
     },
@@ -726,9 +726,9 @@
     "categoryPRs": {
       "features": 0,
       "bugs": 0,
+      "codeQuality": 0,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 0,
       "documentation": 0,
       "other": 58
     },
@@ -742,9 +742,9 @@
     "categoryPRs": {
       "features": 23,
       "bugs": 30,
+      "codeQuality": 11,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 11,
       "documentation": 8,
       "other": 19
     },
@@ -758,9 +758,9 @@
     "categoryPRs": {
       "features": 0,
       "bugs": 0,
+      "codeQuality": 0,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 0,
       "documentation": 0,
       "other": 110
     },
@@ -774,9 +774,9 @@
     "categoryPRs": {
       "features": 62,
       "bugs": 31,
+      "codeQuality": 29,
       "a11y": 0,
       "performance": 3,
-      "codeQuality": 29,
       "documentation": 12,
       "other": 33
     },
@@ -790,9 +790,9 @@
     "categoryPRs": {
       "features": 24,
       "bugs": 28,
+      "codeQuality": 15,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 15,
       "documentation": 12,
       "other": 20
     },
@@ -806,9 +806,9 @@
     "categoryPRs": {
       "features": 35,
       "bugs": 24,
+      "codeQuality": 32,
       "a11y": 0,
       "performance": 4,
-      "codeQuality": 32,
       "documentation": 13,
       "other": 17
     },
@@ -822,9 +822,9 @@
     "categoryPRs": {
       "features": 79,
       "bugs": 16,
+      "codeQuality": 26,
       "a11y": 0,
       "performance": 6,
-      "codeQuality": 26,
       "documentation": 12,
       "other": 12
     },
@@ -838,9 +838,9 @@
     "categoryPRs": {
       "features": 0,
       "bugs": 0,
+      "codeQuality": 0,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 0,
       "documentation": 0,
       "other": 140
     },
@@ -854,9 +854,9 @@
     "categoryPRs": {
       "features": 60,
       "bugs": 38,
+      "codeQuality": 27,
       "a11y": 0,
       "performance": 3,
-      "codeQuality": 27,
       "documentation": 15,
       "other": 10
     },
@@ -870,9 +870,9 @@
     "categoryPRs": {
       "features": 60,
       "bugs": 38,
+      "codeQuality": 42,
       "a11y": 0,
       "performance": 1,
-      "codeQuality": 42,
       "documentation": 19,
       "other": 5
     },
@@ -886,9 +886,9 @@
     "categoryPRs": {
       "features": 29,
       "bugs": 40,
+      "codeQuality": 20,
       "a11y": 0,
       "performance": 6,
-      "codeQuality": 20,
       "documentation": 18,
       "other": 17
     },
@@ -902,9 +902,9 @@
     "categoryPRs": {
       "features": 52,
       "bugs": 27,
+      "codeQuality": 10,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 10,
       "documentation": 13,
       "other": 1
     },
@@ -918,9 +918,9 @@
     "categoryPRs": {
       "features": 30,
       "bugs": 27,
+      "codeQuality": 13,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 13,
       "documentation": 9,
       "other": 0
     },
@@ -934,9 +934,9 @@
     "categoryPRs": {
       "features": 36,
       "bugs": 36,
+      "codeQuality": 20,
       "a11y": 0,
       "performance": 3,
-      "codeQuality": 20,
       "documentation": 11,
       "other": 0
     },
@@ -950,9 +950,9 @@
     "categoryPRs": {
       "features": 46,
       "bugs": 32,
+      "codeQuality": 9,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 9,
       "documentation": 18,
       "other": 6
     },
@@ -966,9 +966,9 @@
     "categoryPRs": {
       "features": 71,
       "bugs": 28,
+      "codeQuality": 20,
       "a11y": 0,
       "performance": 1,
-      "codeQuality": 20,
       "documentation": 23,
       "other": 8
     },
@@ -982,9 +982,9 @@
     "categoryPRs": {
       "features": 50,
       "bugs": 66,
+      "codeQuality": 30,
       "a11y": 0,
       "performance": 3,
-      "codeQuality": 30,
       "documentation": 12,
       "other": 70
     },
@@ -998,9 +998,9 @@
     "categoryPRs": {
       "features": 38,
       "bugs": 23,
+      "codeQuality": 31,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 31,
       "documentation": 10,
       "other": 3
     },
@@ -1014,9 +1014,9 @@
     "categoryPRs": {
       "features": 70,
       "bugs": 23,
+      "codeQuality": 48,
       "a11y": 0,
       "performance": 3,
-      "codeQuality": 48,
       "documentation": 28,
       "other": 9
     },
@@ -1030,9 +1030,9 @@
     "categoryPRs": {
       "features": 55,
       "bugs": 27,
+      "codeQuality": 25,
       "a11y": 0,
       "performance": 2,
-      "codeQuality": 25,
       "documentation": 11,
       "other": 10
     },
@@ -1046,9 +1046,9 @@
     "categoryPRs": {
       "features": 40,
       "bugs": 28,
+      "codeQuality": 41,
       "a11y": 0,
       "performance": 1,
-      "codeQuality": 41,
       "documentation": 11,
       "other": 26
     },
@@ -1062,9 +1062,9 @@
     "categoryPRs": {
       "features": 18,
       "bugs": 13,
+      "codeQuality": 17,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 17,
       "documentation": 7,
       "other": 1
     },
@@ -1078,9 +1078,9 @@
     "categoryPRs": {
       "features": 21,
       "bugs": 38,
+      "codeQuality": 33,
       "a11y": 0,
       "performance": 2,
-      "codeQuality": 33,
       "documentation": 8,
       "other": 15
     },
@@ -1094,9 +1094,9 @@
     "categoryPRs": {
       "features": 48,
       "bugs": 37,
+      "codeQuality": 31,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 31,
       "documentation": 11,
       "other": 38
     },
@@ -1110,9 +1110,9 @@
     "categoryPRs": {
       "features": 54,
       "bugs": 15,
+      "codeQuality": 25,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 25,
       "documentation": 9,
       "other": 2
     },
@@ -1126,9 +1126,9 @@
     "categoryPRs": {
       "features": 52,
       "bugs": 25,
+      "codeQuality": 35,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 35,
       "documentation": 10,
       "other": 9
     },
@@ -1142,9 +1142,9 @@
     "categoryPRs": {
       "features": 42,
       "bugs": 31,
+      "codeQuality": 23,
       "a11y": 0,
       "performance": 1,
-      "codeQuality": 23,
       "documentation": 15,
       "other": 51
     },
@@ -1158,9 +1158,9 @@
     "categoryPRs": {
       "features": 86,
       "bugs": 43,
+      "codeQuality": 30,
       "a11y": 0,
       "performance": 3,
-      "codeQuality": 30,
       "documentation": 12,
       "other": 0
     },
@@ -1174,9 +1174,9 @@
     "categoryPRs": {
       "features": 58,
       "bugs": 27,
+      "codeQuality": 15,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 15,
       "documentation": 25,
       "other": 0
     },
@@ -1190,9 +1190,9 @@
     "categoryPRs": {
       "features": 72,
       "bugs": 25,
+      "codeQuality": 48,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 48,
       "documentation": 26,
       "other": 2
     },
@@ -1206,9 +1206,9 @@
     "categoryPRs": {
       "features": 95,
       "bugs": 37,
+      "codeQuality": 63,
       "a11y": 0,
       "performance": 1,
-      "codeQuality": 63,
       "documentation": 13,
       "other": 3
     },
@@ -1222,9 +1222,9 @@
     "categoryPRs": {
       "features": 93,
       "bugs": 59,
+      "codeQuality": 68,
       "a11y": 0,
       "performance": 4,
-      "codeQuality": 68,
       "documentation": 14,
       "other": 2
     },
@@ -1238,9 +1238,9 @@
     "categoryPRs": {
       "features": 49,
       "bugs": 30,
+      "codeQuality": 63,
       "a11y": 0,
       "performance": 5,
-      "codeQuality": 63,
       "documentation": 7,
       "other": 0
     },
@@ -1254,9 +1254,9 @@
     "categoryPRs": {
       "features": 47,
       "bugs": 35,
+      "codeQuality": 32,
       "a11y": 0,
       "performance": 2,
-      "codeQuality": 32,
       "documentation": 4,
       "other": 0
     },
@@ -1270,9 +1270,9 @@
     "categoryPRs": {
       "features": 26,
       "bugs": 71,
+      "codeQuality": 37,
       "a11y": 0,
       "performance": 1,
-      "codeQuality": 37,
       "documentation": 11,
       "other": 3
     },
@@ -1286,9 +1286,9 @@
     "categoryPRs": {
       "features": 36,
       "bugs": 34,
+      "codeQuality": 29,
       "a11y": 1,
       "performance": 2,
-      "codeQuality": 29,
       "documentation": 15,
       "other": 0
     },
@@ -1302,9 +1302,9 @@
     "categoryPRs": {
       "features": 16,
       "bugs": 23,
+      "codeQuality": 34,
       "a11y": 0,
       "performance": 2,
-      "codeQuality": 34,
       "documentation": 12,
       "other": 0
     },
@@ -1318,9 +1318,9 @@
     "categoryPRs": {
       "features": 24,
       "bugs": 26,
+      "codeQuality": 22,
       "a11y": 0,
       "performance": 7,
-      "codeQuality": 22,
       "documentation": 12,
       "other": 0
     },
@@ -1334,9 +1334,9 @@
     "categoryPRs": {
       "features": 28,
       "bugs": 29,
+      "codeQuality": 25,
       "a11y": 0,
       "performance": 1,
-      "codeQuality": 25,
       "documentation": 11,
       "other": 0
     },
@@ -1350,9 +1350,9 @@
     "categoryPRs": {
       "features": 38,
       "bugs": 46,
+      "codeQuality": 50,
       "a11y": 0,
       "performance": 4,
-      "codeQuality": 50,
       "documentation": 8,
       "other": 1
     },
@@ -1366,9 +1366,9 @@
     "categoryPRs": {
       "features": 49,
       "bugs": 34,
+      "codeQuality": 57,
       "a11y": 3,
       "performance": 1,
-      "codeQuality": 57,
       "documentation": 17,
       "other": 0
     },
@@ -1382,9 +1382,9 @@
     "categoryPRs": {
       "features": 52,
       "bugs": 33,
+      "codeQuality": 25,
       "a11y": 0,
       "performance": 3,
-      "codeQuality": 25,
       "documentation": 10,
       "other": 0
     },
@@ -1398,9 +1398,9 @@
     "categoryPRs": {
       "features": 91,
       "bugs": 42,
+      "codeQuality": 28,
       "a11y": 2,
       "performance": 2,
-      "codeQuality": 28,
       "documentation": 21,
       "other": 3
     },
@@ -1414,9 +1414,9 @@
     "categoryPRs": {
       "features": 83,
       "bugs": 86,
+      "codeQuality": 38,
       "a11y": 0,
       "performance": 4,
-      "codeQuality": 38,
       "documentation": 22,
       "other": 0
     },
@@ -1430,9 +1430,9 @@
     "categoryPRs": {
       "features": 28,
       "bugs": 29,
+      "codeQuality": 17,
       "a11y": 0,
       "performance": 1,
-      "codeQuality": 17,
       "documentation": 8,
       "other": 5
     },
@@ -1446,9 +1446,9 @@
     "categoryPRs": {
       "features": 72,
       "bugs": 60,
+      "codeQuality": 27,
       "a11y": 0,
       "performance": 1,
-      "codeQuality": 27,
       "documentation": 12,
       "other": 0
     },
@@ -1462,9 +1462,9 @@
     "categoryPRs": {
       "features": 28,
       "bugs": 76,
+      "codeQuality": 40,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 40,
       "documentation": 24,
       "other": 0
     },
@@ -1478,9 +1478,9 @@
     "categoryPRs": {
       "features": 21,
       "bugs": 55,
+      "codeQuality": 14,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 14,
       "documentation": 11,
       "other": 0
     },
@@ -1494,9 +1494,9 @@
     "categoryPRs": {
       "features": 17,
       "bugs": 42,
+      "codeQuality": 22,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 22,
       "documentation": 22,
       "other": 0
     },
@@ -1510,9 +1510,9 @@
     "categoryPRs": {
       "features": 37,
       "bugs": 46,
+      "codeQuality": 44,
       "a11y": 0,
       "performance": 2,
-      "codeQuality": 44,
       "documentation": 19,
       "other": 0
     },
@@ -1526,9 +1526,9 @@
     "categoryPRs": {
       "features": 40,
       "bugs": 48,
+      "codeQuality": 29,
       "a11y": 0,
       "performance": 4,
-      "codeQuality": 29,
       "documentation": 30,
       "other": 1
     },
@@ -1542,9 +1542,9 @@
     "categoryPRs": {
       "features": 29,
       "bugs": 37,
+      "codeQuality": 47,
       "a11y": 4,
       "performance": 1,
-      "codeQuality": 47,
       "documentation": 18,
       "other": 0
     },
@@ -1558,9 +1558,9 @@
     "categoryPRs": {
       "features": 26,
       "bugs": 39,
+      "codeQuality": 39,
       "a11y": 2,
       "performance": 0,
-      "codeQuality": 39,
       "documentation": 11,
       "other": 4
     },
@@ -1574,9 +1574,9 @@
     "categoryPRs": {
       "features": 53,
       "bugs": 40,
+      "codeQuality": 32,
       "a11y": 0,
       "performance": 2,
-      "codeQuality": 32,
       "documentation": 12,
       "other": 0
     },
@@ -1590,9 +1590,9 @@
     "categoryPRs": {
       "features": 104,
       "bugs": 42,
+      "codeQuality": 60,
       "a11y": 5,
       "performance": 2,
-      "codeQuality": 60,
       "documentation": 17,
       "other": 7
     },
@@ -1606,9 +1606,9 @@
     "categoryPRs": {
       "features": 11,
       "bugs": 10,
+      "codeQuality": 36,
       "a11y": 6,
       "performance": 1,
-      "codeQuality": 36,
       "documentation": 10,
       "other": 13
     },
@@ -1622,9 +1622,9 @@
     "categoryPRs": {
       "features": 25,
       "bugs": 49,
+      "codeQuality": 50,
       "a11y": 3,
       "performance": 3,
-      "codeQuality": 50,
       "documentation": 11,
       "other": 0
     },
@@ -1638,9 +1638,9 @@
     "categoryPRs": {
       "features": 28,
       "bugs": 48,
+      "codeQuality": 56,
       "a11y": 0,
       "performance": 5,
-      "codeQuality": 56,
       "documentation": 11,
       "other": 0
     },
@@ -1654,9 +1654,9 @@
     "categoryPRs": {
       "features": 22,
       "bugs": 28,
+      "codeQuality": 35,
       "a11y": 0,
       "performance": 3,
-      "codeQuality": 35,
       "documentation": 10,
       "other": 0
     },
@@ -1670,9 +1670,9 @@
     "categoryPRs": {
       "features": 15,
       "bugs": 15,
+      "codeQuality": 58,
       "a11y": 3,
       "performance": 0,
-      "codeQuality": 58,
       "documentation": 6,
       "other": 1
     },
@@ -1686,9 +1686,9 @@
     "categoryPRs": {
       "features": 35,
       "bugs": 27,
+      "codeQuality": 32,
       "a11y": 0,
       "performance": 4,
-      "codeQuality": 32,
       "documentation": 13,
       "other": 0
     },
@@ -1702,9 +1702,9 @@
     "categoryPRs": {
       "features": 26,
       "bugs": 35,
+      "codeQuality": 61,
       "a11y": 5,
       "performance": 1,
-      "codeQuality": 61,
       "documentation": 16,
       "other": 1
     },
@@ -1718,9 +1718,9 @@
     "categoryPRs": {
       "features": 132,
       "bugs": 170,
+      "codeQuality": 42,
       "a11y": 0,
       "performance": 15,
-      "codeQuality": 42,
       "documentation": 39,
       "other": 0
     },
@@ -1734,9 +1734,9 @@
     "categoryPRs": {
       "features": 61,
       "bugs": 48,
+      "codeQuality": 23,
       "a11y": 2,
       "performance": 9,
-      "codeQuality": 23,
       "documentation": 17,
       "other": 0
     },
@@ -1750,9 +1750,9 @@
     "categoryPRs": {
       "features": 92,
       "bugs": 64,
+      "codeQuality": 68,
       "a11y": 4,
       "performance": 24,
-      "codeQuality": 68,
       "documentation": 8,
       "other": 0
     },
@@ -1766,9 +1766,9 @@
     "categoryPRs": {
       "features": 106,
       "bugs": 61,
+      "codeQuality": 118,
       "a11y": 2,
       "performance": 24,
-      "codeQuality": 118,
       "documentation": 19,
       "other": 0
     },
@@ -1782,9 +1782,9 @@
     "categoryPRs": {
       "features": 15,
       "bugs": 34,
+      "codeQuality": 29,
       "a11y": 0,
       "performance": 3,
-      "codeQuality": 29,
       "documentation": 5,
       "other": 0
     },
@@ -1798,9 +1798,9 @@
     "categoryPRs": {
       "features": 26,
       "bugs": 56,
+      "codeQuality": 59,
       "a11y": 0,
       "performance": 2,
-      "codeQuality": 59,
       "documentation": 10,
       "other": 0
     },
@@ -1814,9 +1814,9 @@
     "categoryPRs": {
       "features": 21,
       "bugs": 59,
+      "codeQuality": 50,
       "a11y": 2,
       "performance": 3,
-      "codeQuality": 50,
       "documentation": 14,
       "other": 0
     },
@@ -1830,9 +1830,9 @@
     "categoryPRs": {
       "features": 33,
       "bugs": 39,
+      "codeQuality": 35,
       "a11y": 0,
       "performance": 16,
-      "codeQuality": 35,
       "documentation": 11,
       "other": 0
     },
@@ -1846,9 +1846,9 @@
     "categoryPRs": {
       "features": 35,
       "bugs": 46,
+      "codeQuality": 48,
       "a11y": 0,
       "performance": 9,
-      "codeQuality": 48,
       "documentation": 7,
       "other": 0
     },
@@ -1862,9 +1862,9 @@
     "categoryPRs": {
       "features": 51,
       "bugs": 22,
+      "codeQuality": 55,
       "a11y": 5,
       "performance": 9,
-      "codeQuality": 55,
       "documentation": 8,
       "other": 0
     },
@@ -1878,9 +1878,9 @@
     "categoryPRs": {
       "features": 42,
       "bugs": 54,
+      "codeQuality": 35,
       "a11y": 0,
       "performance": 23,
-      "codeQuality": 35,
       "documentation": 9,
       "other": 12
     },
@@ -1894,9 +1894,9 @@
     "categoryPRs": {
       "features": 26,
       "bugs": 27,
+      "codeQuality": 52,
       "a11y": 4,
       "performance": 11,
-      "codeQuality": 52,
       "documentation": 7,
       "other": 0
     },
@@ -1910,9 +1910,9 @@
     "categoryPRs": {
       "features": 33,
       "bugs": 19,
+      "codeQuality": 27,
       "a11y": 0,
       "performance": 6,
-      "codeQuality": 27,
       "documentation": 11,
       "other": 0
     },
@@ -1926,9 +1926,9 @@
     "categoryPRs": {
       "features": 83,
       "bugs": 60,
+      "codeQuality": 68,
       "a11y": 0,
       "performance": 28,
-      "codeQuality": 68,
       "documentation": 8,
       "other": 1
     },
@@ -1942,9 +1942,9 @@
     "categoryPRs": {
       "features": 32,
       "bugs": 49,
+      "codeQuality": 66,
       "a11y": 7,
       "performance": 21,
-      "codeQuality": 66,
       "documentation": 9,
       "other": 0
     },
@@ -1958,9 +1958,9 @@
     "categoryPRs": {
       "features": 96,
       "bugs": 89,
+      "codeQuality": 66,
       "a11y": 18,
       "performance": 22,
-      "codeQuality": 66,
       "documentation": 16,
       "other": 0
     },
@@ -1974,9 +1974,9 @@
     "categoryPRs": {
       "features": 29,
       "bugs": 73,
+      "codeQuality": 52,
       "a11y": 0,
       "performance": 10,
-      "codeQuality": 52,
       "documentation": 11,
       "other": 0
     },
@@ -1990,9 +1990,9 @@
     "categoryPRs": {
       "features": 38,
       "bugs": 53,
+      "codeQuality": 20,
       "a11y": 0,
       "performance": 7,
-      "codeQuality": 20,
       "documentation": 18,
       "other": 0
     },
@@ -2006,9 +2006,9 @@
     "categoryPRs": {
       "features": 16,
       "bugs": 43,
+      "codeQuality": 18,
       "a11y": 2,
       "performance": 7,
-      "codeQuality": 18,
       "documentation": 13,
       "other": 0
     },
@@ -2022,9 +2022,9 @@
     "categoryPRs": {
       "features": 19,
       "bugs": 58,
+      "codeQuality": 18,
       "a11y": 6,
       "performance": 3,
-      "codeQuality": 18,
       "documentation": 27,
       "other": 0
     },
@@ -2038,9 +2038,9 @@
     "categoryPRs": {
       "features": 0,
       "bugs": 0,
+      "codeQuality": 0,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 0,
       "documentation": 0,
       "other": 1
     },
@@ -2054,9 +2054,9 @@
     "categoryPRs": {
       "features": 52,
       "bugs": 49,
+      "codeQuality": 51,
       "a11y": 0,
       "performance": 3,
-      "codeQuality": 51,
       "documentation": 8,
       "other": 0
     },
@@ -2070,9 +2070,9 @@
     "categoryPRs": {
       "features": 64,
       "bugs": 34,
+      "codeQuality": 34,
       "a11y": 0,
       "performance": 4,
-      "codeQuality": 34,
       "documentation": 10,
       "other": 0
     },
@@ -2086,9 +2086,9 @@
     "categoryPRs": {
       "features": 82,
       "bugs": 45,
+      "codeQuality": 73,
       "a11y": 0,
       "performance": 6,
-      "codeQuality": 73,
       "documentation": 9,
       "other": 0
     },
@@ -2102,9 +2102,9 @@
     "categoryPRs": {
       "features": 49,
       "bugs": 69,
+      "codeQuality": 41,
       "a11y": 5,
       "performance": 5,
-      "codeQuality": 41,
       "documentation": 6,
       "other": 1
     },
@@ -2118,9 +2118,9 @@
     "categoryPRs": {
       "features": 38,
       "bugs": 78,
+      "codeQuality": 39,
       "a11y": 0,
       "performance": 4,
-      "codeQuality": 39,
       "documentation": 9,
       "other": 0
     },
@@ -2134,9 +2134,9 @@
     "categoryPRs": {
       "features": 43,
       "bugs": 67,
+      "codeQuality": 42,
       "a11y": 7,
       "performance": 2,
-      "codeQuality": 42,
       "documentation": 10,
       "other": 0
     },
@@ -2150,9 +2150,9 @@
     "categoryPRs": {
       "features": 45,
       "bugs": 62,
+      "codeQuality": 56,
       "a11y": 4,
       "performance": 4,
-      "codeQuality": 56,
       "documentation": 28,
       "other": 0
     },
@@ -2166,9 +2166,9 @@
     "categoryPRs": {
       "features": 30,
       "bugs": 40,
+      "codeQuality": 24,
       "a11y": 8,
       "performance": 3,
-      "codeQuality": 24,
       "documentation": 19,
       "other": 0
     },
@@ -2182,9 +2182,9 @@
     "categoryPRs": {
       "features": 103,
       "bugs": 104,
+      "codeQuality": 73,
       "a11y": 10,
       "performance": 12,
-      "codeQuality": 73,
       "documentation": 30,
       "other": 1
     },
@@ -2198,9 +2198,9 @@
     "categoryPRs": {
       "features": 1,
       "bugs": 0,
+      "codeQuality": 2,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 2,
       "documentation": 0,
       "other": 1
     },
@@ -2214,9 +2214,9 @@
     "categoryPRs": {
       "features": 26,
       "bugs": 61,
+      "codeQuality": 31,
       "a11y": 4,
       "performance": 5,
-      "codeQuality": 31,
       "documentation": 22,
       "other": 13
     },
@@ -2230,9 +2230,9 @@
     "categoryPRs": {
       "features": 24,
       "bugs": 36,
+      "codeQuality": 25,
       "a11y": 3,
       "performance": 7,
-      "codeQuality": 25,
       "documentation": 9,
       "other": 0
     },
@@ -2246,9 +2246,9 @@
     "categoryPRs": {
       "features": 38,
       "bugs": 46,
+      "codeQuality": 72,
       "a11y": 7,
       "performance": 6,
-      "codeQuality": 72,
       "documentation": 17,
       "other": 0
     },
@@ -2262,9 +2262,9 @@
     "categoryPRs": {
       "features": 0,
       "bugs": 6,
+      "codeQuality": 1,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 1,
       "documentation": 2,
       "other": 0
     },
@@ -2278,9 +2278,9 @@
     "categoryPRs": {
       "features": 0,
       "bugs": 4,
+      "codeQuality": 0,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 0,
       "documentation": 0,
       "other": 0
     },
@@ -2294,9 +2294,9 @@
     "categoryPRs": {
       "features": 52,
       "bugs": 46,
+      "codeQuality": 50,
       "a11y": 3,
       "performance": 16,
-      "codeQuality": 50,
       "documentation": 26,
       "other": 0
     },
@@ -2310,9 +2310,9 @@
     "categoryPRs": {
       "features": 57,
       "bugs": 37,
+      "codeQuality": 47,
       "a11y": 0,
       "performance": 5,
-      "codeQuality": 47,
       "documentation": 16,
       "other": 0
     },
@@ -2326,9 +2326,9 @@
     "categoryPRs": {
       "features": 102,
       "bugs": 58,
+      "codeQuality": 54,
       "a11y": 5,
       "performance": 20,
-      "codeQuality": 54,
       "documentation": 16,
       "other": 1
     },
@@ -2342,9 +2342,9 @@
     "categoryPRs": {
       "features": 79,
       "bugs": 86,
+      "codeQuality": 81,
       "a11y": 13,
       "performance": 20,
-      "codeQuality": 81,
       "documentation": 28,
       "other": 15
     },
@@ -2358,9 +2358,9 @@
     "categoryPRs": {
       "features": 21,
       "bugs": 64,
+      "codeQuality": 45,
       "a11y": 8,
       "performance": 2,
-      "codeQuality": 45,
       "documentation": 14,
       "other": 0
     },
@@ -2374,9 +2374,9 @@
     "categoryPRs": {
       "features": 36,
       "bugs": 67,
+      "codeQuality": 37,
       "a11y": 7,
       "performance": 2,
-      "codeQuality": 37,
       "documentation": 23,
       "other": 0
     },
@@ -2390,9 +2390,9 @@
     "categoryPRs": {
       "features": 31,
       "bugs": 75,
+      "codeQuality": 50,
       "a11y": 3,
       "performance": 0,
-      "codeQuality": 50,
       "documentation": 35,
       "other": 0
     },
@@ -2406,9 +2406,9 @@
     "categoryPRs": {
       "features": 60,
       "bugs": 32,
+      "codeQuality": 32,
       "a11y": 6,
       "performance": 0,
-      "codeQuality": 32,
       "documentation": 13,
       "other": 10
     },
@@ -2422,9 +2422,9 @@
     "categoryPRs": {
       "features": 65,
       "bugs": 70,
+      "codeQuality": 53,
       "a11y": 4,
       "performance": 18,
-      "codeQuality": 53,
       "documentation": 15,
       "other": 1
     },
@@ -2438,9 +2438,9 @@
     "categoryPRs": {
       "features": 45,
       "bugs": 27,
+      "codeQuality": 46,
       "a11y": 3,
       "performance": 12,
-      "codeQuality": 46,
       "documentation": 23,
       "other": 0
     },
@@ -2454,9 +2454,9 @@
     "categoryPRs": {
       "features": 11,
       "bugs": 51,
+      "codeQuality": 42,
       "a11y": 7,
       "performance": 5,
-      "codeQuality": 42,
       "documentation": 21,
       "other": 36
     },
@@ -2470,9 +2470,9 @@
     "categoryPRs": {
       "features": 85,
       "bugs": 70,
+      "codeQuality": 81,
       "a11y": 3,
       "performance": 4,
-      "codeQuality": 81,
       "documentation": 35,
       "other": 8
     },
@@ -2486,9 +2486,9 @@
     "categoryPRs": {
       "features": 16,
       "bugs": 63,
+      "codeQuality": 45,
       "a11y": 4,
       "performance": 3,
-      "codeQuality": 45,
       "documentation": 24,
       "other": 2
     },
@@ -2502,9 +2502,9 @@
     "categoryPRs": {
       "features": 14,
       "bugs": 49,
+      "codeQuality": 25,
       "a11y": 5,
       "performance": 3,
-      "codeQuality": 25,
       "documentation": 18,
       "other": 2
     },
@@ -2518,9 +2518,9 @@
     "categoryPRs": {
       "features": 59,
       "bugs": 80,
+      "codeQuality": 47,
       "a11y": 11,
       "performance": 3,
-      "codeQuality": 47,
       "documentation": 14,
       "other": 0
     },
@@ -2534,9 +2534,9 @@
     "categoryPRs": {
       "features": 88,
       "bugs": 70,
+      "codeQuality": 54,
       "a11y": 4,
       "performance": 1,
-      "codeQuality": 54,
       "documentation": 20,
       "other": 0
     },
@@ -2550,9 +2550,9 @@
     "categoryPRs": {
       "features": 70,
       "bugs": 52,
+      "codeQuality": 32,
       "a11y": 8,
       "performance": 4,
-      "codeQuality": 32,
       "documentation": 13,
       "other": 0
     },
@@ -2566,9 +2566,9 @@
     "categoryPRs": {
       "features": 73,
       "bugs": 35,
+      "codeQuality": 41,
       "a11y": 5,
       "performance": 4,
-      "codeQuality": 41,
       "documentation": 24,
       "other": 0
     },
@@ -2582,9 +2582,9 @@
     "categoryPRs": {
       "features": 62,
       "bugs": 58,
+      "codeQuality": 37,
       "a11y": 5,
       "performance": 10,
-      "codeQuality": 37,
       "documentation": 21,
       "other": 2
     },
@@ -2598,9 +2598,9 @@
     "categoryPRs": {
       "features": 51,
       "bugs": 48,
+      "codeQuality": 48,
       "a11y": 10,
       "performance": 3,
-      "codeQuality": 48,
       "documentation": 7,
       "other": 0
     },
@@ -2614,9 +2614,9 @@
     "categoryPRs": {
       "features": 65,
       "bugs": 54,
+      "codeQuality": 41,
       "a11y": 9,
       "performance": 3,
-      "codeQuality": 41,
       "documentation": 14,
       "other": 0
     },
@@ -2630,9 +2630,9 @@
     "categoryPRs": {
       "features": 12,
       "bugs": 52,
+      "codeQuality": 33,
       "a11y": 8,
       "performance": 2,
-      "codeQuality": 33,
       "documentation": 9,
       "other": 1
     },
@@ -2646,9 +2646,9 @@
     "categoryPRs": {
       "features": 42,
       "bugs": 59,
+      "codeQuality": 63,
       "a11y": 9,
       "performance": 5,
-      "codeQuality": 63,
       "documentation": 12,
       "other": 3
     },
@@ -2662,9 +2662,9 @@
     "categoryPRs": {
       "features": 33,
       "bugs": 47,
+      "codeQuality": 30,
       "a11y": 8,
       "performance": 7,
-      "codeQuality": 30,
       "documentation": 16,
       "other": 3
     },
@@ -2678,9 +2678,9 @@
     "categoryPRs": {
       "features": 35,
       "bugs": 44,
+      "codeQuality": 48,
       "a11y": 6,
       "performance": 0,
-      "codeQuality": 48,
       "documentation": 14,
       "other": 0
     },
@@ -2694,9 +2694,9 @@
     "categoryPRs": {
       "features": 54,
       "bugs": 83,
+      "codeQuality": 51,
       "a11y": 6,
       "performance": 4,
-      "codeQuality": 51,
       "documentation": 16,
       "other": 6
     },
@@ -2710,9 +2710,9 @@
     "categoryPRs": {
       "features": 82,
       "bugs": 82,
+      "codeQuality": 55,
       "a11y": 12,
       "performance": 2,
-      "codeQuality": 55,
       "documentation": 41,
       "other": 5
     },
@@ -2726,9 +2726,9 @@
     "categoryPRs": {
       "features": 18,
       "bugs": 28,
+      "codeQuality": 20,
       "a11y": 9,
       "performance": 2,
-      "codeQuality": 20,
       "documentation": 14,
       "other": 0
     },
@@ -2742,9 +2742,9 @@
     "categoryPRs": {
       "features": 14,
       "bugs": 16,
+      "codeQuality": 19,
       "a11y": 3,
       "performance": 2,
-      "codeQuality": 19,
       "documentation": 7,
       "other": 0
     },
@@ -2758,9 +2758,9 @@
     "categoryPRs": {
       "features": 16,
       "bugs": 26,
+      "codeQuality": 14,
       "a11y": 4,
       "performance": 3,
-      "codeQuality": 14,
       "documentation": 3,
       "other": 3
     },
@@ -2774,9 +2774,9 @@
     "categoryPRs": {
       "features": 14,
       "bugs": 28,
+      "codeQuality": 10,
       "a11y": 6,
       "performance": 1,
-      "codeQuality": 10,
       "documentation": 11,
       "other": 2
     },
@@ -2790,9 +2790,9 @@
     "categoryPRs": {
       "features": 11,
       "bugs": 26,
+      "codeQuality": 7,
       "a11y": 6,
       "performance": 4,
-      "codeQuality": 7,
       "documentation": 3,
       "other": 1
     },
@@ -2806,9 +2806,9 @@
     "categoryPRs": {
       "features": 7,
       "bugs": 20,
+      "codeQuality": 11,
       "a11y": 5,
       "performance": 4,
-      "codeQuality": 11,
       "documentation": 9,
       "other": 0
     },
@@ -2822,9 +2822,9 @@
     "categoryPRs": {
       "features": 11,
       "bugs": 20,
+      "codeQuality": 13,
       "a11y": 7,
       "performance": 0,
-      "codeQuality": 13,
       "documentation": 6,
       "other": 0
     },
@@ -2838,9 +2838,9 @@
     "categoryPRs": {
       "features": 7,
       "bugs": 26,
+      "codeQuality": 11,
       "a11y": 2,
       "performance": 3,
-      "codeQuality": 11,
       "documentation": 7,
       "other": 0
     },
@@ -2854,9 +2854,9 @@
     "categoryPRs": {
       "features": 18,
       "bugs": 12,
+      "codeQuality": 8,
       "a11y": 3,
       "performance": 0,
-      "codeQuality": 8,
       "documentation": 8,
       "other": 0
     },
@@ -2870,9 +2870,9 @@
     "categoryPRs": {
       "features": 23,
       "bugs": 10,
+      "codeQuality": 10,
       "a11y": 4,
       "performance": 0,
-      "codeQuality": 10,
       "documentation": 13,
       "other": 0
     },
@@ -2886,9 +2886,9 @@
     "categoryPRs": {
       "features": 14,
       "bugs": 22,
+      "codeQuality": 18,
       "a11y": 1,
       "performance": 1,
-      "codeQuality": 18,
       "documentation": 7,
       "other": 1
     },
@@ -2902,9 +2902,9 @@
     "categoryPRs": {
       "features": 15,
       "bugs": 9,
+      "codeQuality": 10,
       "a11y": 1,
       "performance": 2,
-      "codeQuality": 10,
       "documentation": 7,
       "other": 0
     },
@@ -2918,9 +2918,9 @@
     "categoryPRs": {
       "features": 14,
       "bugs": 22,
+      "codeQuality": 25,
       "a11y": 3,
       "performance": 5,
-      "codeQuality": 25,
       "documentation": 3,
       "other": 0
     },
@@ -2934,9 +2934,9 @@
     "categoryPRs": {
       "features": 31,
       "bugs": 37,
+      "codeQuality": 20,
       "a11y": 1,
       "performance": 1,
-      "codeQuality": 20,
       "documentation": 17,
       "other": 0
     },
@@ -2950,9 +2950,9 @@
     "categoryPRs": {
       "features": 25,
       "bugs": 17,
+      "codeQuality": 9,
       "a11y": 0,
       "performance": 0,
-      "codeQuality": 9,
       "documentation": 6,
       "other": 0
     },
@@ -2966,9 +2966,9 @@
     "categoryPRs": {
       "features": 22,
       "bugs": 26,
+      "codeQuality": 23,
       "a11y": 0,
       "performance": 2,
-      "codeQuality": 23,
       "documentation": 6,
       "other": 0
     },
@@ -2982,9 +2982,9 @@
     "categoryPRs": {
       "features": 56,
       "bugs": 26,
+      "codeQuality": 16,
       "a11y": 3,
       "performance": 2,
-      "codeQuality": 16,
       "documentation": 4,
       "other": 0
     },
@@ -2998,9 +2998,9 @@
     "categoryPRs": {
       "features": 52,
       "bugs": 35,
+      "codeQuality": 17,
       "a11y": 7,
       "performance": 1,
-      "codeQuality": 17,
       "documentation": 4,
       "other": 0
     },
@@ -3014,9 +3014,9 @@
     "categoryPRs": {
       "features": 84,
       "bugs": 79,
+      "codeQuality": 93,
       "a11y": 9,
       "performance": 5,
-      "codeQuality": 93,
       "documentation": 8,
       "other": 0
     },
@@ -3030,9 +3030,9 @@
     "categoryPRs": {
       "features": 24,
       "bugs": 51,
+      "codeQuality": 45,
       "a11y": 3,
       "performance": 3,
-      "codeQuality": 45,
       "documentation": 4,
       "other": 0
     },
@@ -3046,9 +3046,9 @@
     "categoryPRs": {
       "features": 55,
       "bugs": 82,
+      "codeQuality": 33,
       "a11y": 5,
       "performance": 11,
-      "codeQuality": 33,
       "documentation": 5,
       "other": 0
     },
@@ -3062,9 +3062,9 @@
     "categoryPRs": {
       "features": 56,
       "bugs": 49,
+      "codeQuality": 28,
       "a11y": 3,
       "performance": 2,
-      "codeQuality": 28,
       "documentation": 10,
       "other": 6
     },
