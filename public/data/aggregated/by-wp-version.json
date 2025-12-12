@@ -15,7 +15,9 @@
       "documentation": 19,
       "other": 6
     },
-    "avgPRsPerRelease": 158
+    "avgPRsPerRelease": 158,
+    "avgContributorsPerRelease": 46,
+    "avgNewContributorsPerRelease": 3
   },
   {
     "wpVersion": "6.9",
@@ -33,7 +35,9 @@
       "documentation": 108,
       "other": 2
     },
-    "avgPRsPerRelease": 84
+    "avgPRsPerRelease": 84,
+    "avgContributorsPerRelease": 31,
+    "avgNewContributorsPerRelease": 4
   },
   {
     "wpVersion": "6.8",
@@ -51,7 +55,9 @@
       "documentation": 157,
       "other": 23
     },
-    "avgPRsPerRelease": 144
+    "avgPRsPerRelease": 144,
+    "avgContributorsPerRelease": 45,
+    "avgNewContributorsPerRelease": 6
   },
   {
     "wpVersion": "6.7",
@@ -69,7 +75,9 @@
       "documentation": 141,
       "other": 6
     },
-    "avgPRsPerRelease": 181
+    "avgPRsPerRelease": 181,
+    "avgContributorsPerRelease": 53,
+    "avgNewContributorsPerRelease": 6
   },
   {
     "wpVersion": "6.6",
@@ -87,7 +95,9 @@
       "documentation": 179,
       "other": 55
     },
-    "avgPRsPerRelease": 189
+    "avgPRsPerRelease": 189,
+    "avgContributorsPerRelease": 57,
+    "avgNewContributorsPerRelease": 7
   },
   {
     "wpVersion": "6.5",
@@ -105,7 +115,9 @@
       "documentation": 136,
       "other": 30
     },
-    "avgPRsPerRelease": 140
+    "avgPRsPerRelease": 140,
+    "avgContributorsPerRelease": 42,
+    "avgNewContributorsPerRelease": 2
   },
   {
     "wpVersion": "6.4",
@@ -123,7 +135,9 @@
       "documentation": 102,
       "other": 2
     },
-    "avgPRsPerRelease": 195
+    "avgPRsPerRelease": 195,
+    "avgContributorsPerRelease": 60,
+    "avgNewContributorsPerRelease": 3
   },
   {
     "wpVersion": "6.3",
@@ -141,7 +155,9 @@
       "documentation": 121,
       "other": 1
     },
-    "avgPRsPerRelease": 156
+    "avgPRsPerRelease": 156,
+    "avgContributorsPerRelease": 50,
+    "avgNewContributorsPerRelease": 5
   },
   {
     "wpVersion": "6.2",
@@ -159,7 +175,9 @@
       "documentation": 90,
       "other": 13
     },
-    "avgPRsPerRelease": 146
+    "avgPRsPerRelease": 146,
+    "avgContributorsPerRelease": 44,
+    "avgNewContributorsPerRelease": 5
   },
   {
     "wpVersion": "6.1",
@@ -177,7 +195,9 @@
       "documentation": 160,
       "other": 15
     },
-    "avgPRsPerRelease": 180
+    "avgPRsPerRelease": 180,
+    "avgContributorsPerRelease": 45,
+    "avgNewContributorsPerRelease": 6
   },
   {
     "wpVersion": "6.0",
@@ -195,7 +215,9 @@
       "documentation": 184,
       "other": 17
     },
-    "avgPRsPerRelease": 142
+    "avgPRsPerRelease": 142,
+    "avgContributorsPerRelease": 21,
+    "avgNewContributorsPerRelease": 2
   },
   {
     "wpVersion": "5.9",
@@ -213,7 +235,9 @@
       "documentation": 150,
       "other": 7
     },
-    "avgPRsPerRelease": 139
+    "avgPRsPerRelease": 139,
+    "avgContributorsPerRelease": 0,
+    "avgNewContributorsPerRelease": 0
   },
   {
     "wpVersion": "5.8",
@@ -231,7 +255,9 @@
       "documentation": 124,
       "other": 69
     },
-    "avgPRsPerRelease": 165
+    "avgPRsPerRelease": 165,
+    "avgContributorsPerRelease": 0,
+    "avgNewContributorsPerRelease": 0
   },
   {
     "wpVersion": "5.7",
@@ -249,7 +275,9 @@
       "documentation": 86,
       "other": 102
     },
-    "avgPRsPerRelease": 129
+    "avgPRsPerRelease": 129,
+    "avgContributorsPerRelease": 0,
+    "avgNewContributorsPerRelease": 0
   },
   {
     "wpVersion": "5.6",
@@ -267,7 +295,9 @@
       "documentation": 104,
       "other": 102
     },
-    "avgPRsPerRelease": 130
+    "avgPRsPerRelease": 130,
+    "avgContributorsPerRelease": 0,
+    "avgNewContributorsPerRelease": 0
   },
   {
     "wpVersion": "5.5",
@@ -285,7 +315,9 @@
       "documentation": 91,
       "other": 424
     },
-    "avgPRsPerRelease": 126
+    "avgPRsPerRelease": 126,
+    "avgContributorsPerRelease": 0,
+    "avgNewContributorsPerRelease": 0
   },
   {
     "wpVersion": "5.4",
@@ -303,7 +335,9 @@
       "documentation": 88,
       "other": 423
     },
-    "avgPRsPerRelease": 98
+    "avgPRsPerRelease": 98,
+    "avgContributorsPerRelease": 0,
+    "avgNewContributorsPerRelease": 0
   },
   {
     "wpVersion": "5.3",
@@ -321,7 +355,9 @@
       "documentation": 122,
       "other": 400
     },
-    "avgPRsPerRelease": 79
+    "avgPRsPerRelease": 79,
+    "avgContributorsPerRelease": 0,
+    "avgNewContributorsPerRelease": 0
   },
   {
     "wpVersion": "5.2",
@@ -339,7 +375,9 @@
       "documentation": 22,
       "other": 221
     },
-    "avgPRsPerRelease": 55
+    "avgPRsPerRelease": 55,
+    "avgContributorsPerRelease": 0,
+    "avgNewContributorsPerRelease": 0
   },
   {
     "wpVersion": "5.1",
@@ -357,7 +395,9 @@
       "documentation": 0,
       "other": 62
     },
-    "avgPRsPerRelease": 62
+    "avgPRsPerRelease": 62,
+    "avgContributorsPerRelease": 0,
+    "avgNewContributorsPerRelease": 0
   },
   {
     "wpVersion": "5.0",
@@ -375,6 +415,8 @@
       "documentation": 0,
       "other": 515
     },
-    "avgPRsPerRelease": 77
+    "avgPRsPerRelease": 77,
+    "avgContributorsPerRelease": 0,
+    "avgNewContributorsPerRelease": 0
   }
 ]

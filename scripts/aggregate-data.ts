@@ -123,6 +123,14 @@ function generateWPVersionStats(releases: Release[]): WPVersionStats[] {
 
     const releaseCount = wpReleases.length;
 
+    // Calculate average contributors per release (sum-based, not deduplicated)
+    const avgContributorsPerRelease = Math.round(
+      wpReleases.reduce((sum, r) => sum + r.contributors, 0) / releaseCount
+    );
+    const avgNewContributorsPerRelease = Math.round(
+      wpReleases.reduce((sum, r) => sum + r.newContributors, 0) / releaseCount
+    );
+
     stats.push({
       wpVersion,
       gbVersionRange,
@@ -132,6 +140,8 @@ function generateWPVersionStats(releases: Release[]): WPVersionStats[] {
       totalNewContributors,
       categoryTotals,
       avgPRsPerRelease: Math.round(totalPRs / releaseCount),
+      avgContributorsPerRelease,
+      avgNewContributorsPerRelease,
     });
   }
 

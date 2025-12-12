@@ -11,6 +11,7 @@ import {
 import { chevronLeft, chevronRight } from '@wordpress/icons';
 import type { Summary, WPVersionStats } from '../data/types';
 import { loadCategoryConfig, type CategoryConfig } from '../utils/categories';
+import { CategoryPieChart } from './CategoryPieChart';
 
 interface SummaryStatsProps {
   summary: Summary;
@@ -86,13 +87,9 @@ export function SummaryStats({ summary, wpVersionStats }: SummaryStatsProps) {
   // Check if data is available (0 means no data for these categories in older releases)
   const hasContributorData = selectedStats ? selectedStats.totalContributors > 0 : false;
 
-  // Calculate averages from the selected version's totals
-  const avgContributors = selectedStats && hasContributorData
-    ? Math.round(selectedStats.totalContributors / selectedStats.releaseCount)
-    : 0;
-  const avgNewContributors = selectedStats && hasContributorData
-    ? Math.round(selectedStats.totalNewContributors / selectedStats.releaseCount)
-    : 0;
+  // Use pre-calculated averages from aggregated data
+  const avgContributors = selectedStats?.avgContributorsPerRelease ?? 0;
+  const avgNewContributors = selectedStats?.avgNewContributorsPerRelease ?? 0;
 
   // Generate category stats dynamically from config
   const categoryStats = useMemo(() => {
@@ -232,43 +229,55 @@ export function SummaryStats({ summary, wpVersionStats }: SummaryStatsProps) {
             </Text>
           </div>
 
-          <div className="summary-stats">
-            <div className="summary-stats-header">Averages per Gutenberg release</div>
-            {avgStats.map((stat) => {
-              const diff = stat.unavailable ? '' : formatDiff(stat.value, stat.total ?? 0);
-              const diffClass = stat.unavailable ? 'neutral' : getDiffClass(stat.value, stat.total ?? 0);
-              return (
-                <div key={stat.label} className="summary-stat">
-                  <div className="summary-stat-label">{stat.label}</div>
-                  <div className={`summary-stat-value${stat.unavailable ? ' unavailable' : ''}`}>
-                    {stat.unavailable ? 'N/A' : stat.value.toLocaleString()}
-                  </div>
-                  {!stat.unavailable && (
-                    <div className="summary-stat-comparison">
-                      (vs {stat.total}
-                      {diff && (
-                        <>
-                          , <span className={`summary-stat-diff ${diffClass}`}>{diff}</span>
-                        </>
-                      )}
-                      )
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
+          <div className="summary-content">
+            {categoryConfig && selectedStats.categoryTotals && (
+              <CategoryPieChart
+                categoryTotals={selectedStats.categoryTotals}
+                categoryConfig={categoryConfig}
+                size={220}
+              />
+            )}
 
-          <div className="summary-stats summary-stats-totals">
-            <div className="summary-stats-header">Totals</div>
-            {totalStats.map((stat) => (
-              <div key={stat.label} className="summary-stat">
-                <div className="summary-stat-label">{stat.label}</div>
-                <div className={`summary-stat-value${stat.unavailable ? ' unavailable' : ''}`}>
-                  {stat.unavailable ? 'N/A' : stat.value.toLocaleString()}
-                </div>
+            <div className="summary-stats-container">
+              <div className="summary-stats">
+                <div className="summary-stats-header">Averages per Gutenberg release</div>
+                {avgStats.map((stat) => {
+                  const diff = stat.unavailable ? '' : formatDiff(stat.value, stat.total ?? 0);
+                  const diffClass = stat.unavailable ? 'neutral' : getDiffClass(stat.value, stat.total ?? 0);
+                  return (
+                    <div key={stat.label} className="summary-stat">
+                      <div className="summary-stat-label">{stat.label}</div>
+                      <div className={`summary-stat-value${stat.unavailable ? ' unavailable' : ''}`}>
+                        {stat.unavailable ? 'N/A' : stat.value.toLocaleString()}
+                      </div>
+                      {!stat.unavailable && (
+                        <div className="summary-stat-comparison">
+                          (vs {stat.total}
+                          {diff && (
+                            <>
+                              , <span className={`summary-stat-diff ${diffClass}`}>{diff}</span>
+                            </>
+                          )}
+                          )
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
               </div>
-            ))}
+
+              <div className="summary-stats summary-stats-totals">
+                <div className="summary-stats-header">Totals</div>
+                {totalStats.map((stat) => (
+                  <div key={stat.label} className="summary-stat">
+                    <div className="summary-stat-label">{stat.label}</div>
+                    <div className={`summary-stat-value${stat.unavailable ? ' unavailable' : ''}`}>
+                      {stat.unavailable ? 'N/A' : stat.value.toLocaleString()}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </CardBody>
       )}

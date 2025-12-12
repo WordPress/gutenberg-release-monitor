@@ -79,6 +79,8 @@ export interface WPVersionStats {
 
   // Averages per release
   avgPRsPerRelease: number;
+  avgContributorsPerRelease: number;
+  avgNewContributorsPerRelease: number;
 }
 
 /**
