@@ -1,11 +1,6 @@
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs';
 import type { Release, WPRelease, WPVersionStats, Summary } from '../src/data/types.js';
-import {
-  getReleaseFeaturePRs,
-  getReleaseBugPRs,
-  getReleaseA11yPRs,
-  getReleasePerformancePRs,
-} from './utils/category-utils.js';
+import { loadCategoryConfig, getAggregatedPRs } from './utils/category-utils.js';
 
 const RELEASES_PATH = 'public/data/releases.json';
 const WP_SCHEDULE_PATH = 'public/data/wp-schedule.json';
@@ -87,6 +82,7 @@ function enrichReleases(releases: Release[], wpSchedule: WPRelease[]): Release[]
  * Generate per-WP-version aggregated statistics.
  */
 function generateWPVersionStats(releases: Release[]): WPVersionStats[] {
+  const categoryConfig = loadCategoryConfig();
   const byWPVersion = new Map<string, Release[]>();
 
   // Group releases by WP version
@@ -105,12 +101,17 @@ function generateWPVersionStats(releases: Release[]): WPVersionStats[] {
     const gbVersionRange = `${versions[0]}-${versions[versions.length - 1]}`;
 
     const totalPRs = wpReleases.reduce((sum, r) => sum + r.totalPRs, 0);
-    const totalFeaturePRs = wpReleases.reduce((sum, r) => sum + getReleaseFeaturePRs(r), 0);
-    const totalBugPRs = wpReleases.reduce((sum, r) => sum + getReleaseBugPRs(r), 0);
-    const totalA11yPRs = wpReleases.reduce((sum, r) => sum + getReleaseA11yPRs(r), 0);
-    const totalPerformancePRs = wpReleases.reduce((sum, r) => sum + getReleasePerformancePRs(r), 0);
     const totalContributors = wpReleases.reduce((sum, r) => sum + r.contributors, 0);
     const totalNewContributors = wpReleases.reduce((sum, r) => sum + r.newContributors, 0);
+
+    // Compute category totals dynamically from config
+    const categoryTotals: Record<string, number> = {};
+    for (const agg of categoryConfig.aggregations) {
+      categoryTotals[agg.id] = wpReleases.reduce(
+        (sum, r) => sum + getAggregatedPRs(r, agg.id),
+        0
+      );
+    }
 
     const releaseCount = wpReleases.length;
 
@@ -119,17 +120,10 @@ function generateWPVersionStats(releases: Release[]): WPVersionStats[] {
       gbVersionRange,
       releaseCount,
       totalPRs,
-      totalFeaturePRs,
-      totalBugPRs,
-      totalA11yPRs,
-      totalPerformancePRs,
       totalContributors,
       totalNewContributors,
+      categoryTotals,
       avgPRsPerRelease: Math.round(totalPRs / releaseCount),
-      avgFeaturePRsPerRelease: Math.round(totalFeaturePRs / releaseCount),
-      avgBugPRsPerRelease: Math.round(totalBugPRs / releaseCount),
-      avgEnhancementPercent: Math.round((totalFeaturePRs / (totalPRs || 1)) * 100),
-      avgBugfixPercent: Math.round((totalBugPRs / (totalPRs || 1)) * 100),
     });
   }
 
@@ -193,10 +187,10 @@ function generateSummary(releases: Release[], wpSchedule: WPRelease[], existingS
 
   // Calculate totals since cutoff
   const totalPRsSinceCutoff = sinceCutoffReleases.reduce((sum, r) => sum + r.totalPRs, 0);
-  const totalFeaturesSinceCutoff = sinceCutoffReleases.reduce((sum, r) => sum + getReleaseFeaturePRs(r), 0);
-  const totalBugsSinceCutoff = sinceCutoffReleases.reduce((sum, r) => sum + getReleaseBugPRs(r), 0);
-  const totalA11ySinceCutoff = sinceCutoffReleases.reduce((sum, r) => sum + getReleaseA11yPRs(r), 0);
-  const totalPerfSinceCutoff = sinceCutoffReleases.reduce((sum, r) => sum + getReleasePerformancePRs(r), 0);
+  const totalFeaturesSinceCutoff = sinceCutoffReleases.reduce((sum, r) => sum + getAggregatedPRs(r, 'features'), 0);
+  const totalBugsSinceCutoff = sinceCutoffReleases.reduce((sum, r) => sum + getAggregatedPRs(r, 'bugs'), 0);
+  const totalA11ySinceCutoff = sinceCutoffReleases.reduce((sum, r) => sum + getAggregatedPRs(r, 'a11y'), 0);
+  const totalPerfSinceCutoff = sinceCutoffReleases.reduce((sum, r) => sum + getAggregatedPRs(r, 'performance'), 0);
 
   // Calculate unique contributors across all releases in cycle (deduplicated)
   const allContributors = new Set<string>();
@@ -224,20 +218,20 @@ function generateSummary(releases: Release[], wpSchedule: WPRelease[], existingS
 
   // Calculate total averages (all-time) - only from releases that have the data
   const avgPRsTotal = Math.round(releases.reduce((sum, r) => sum + r.totalPRs, 0) / totalReleases);
-  const avgFeaturesTotal = Math.round(releases.reduce((sum, r) => sum + getReleaseFeaturePRs(r), 0) / totalReleases);
-  const avgBugsTotal = Math.round(releases.reduce((sum, r) => sum + getReleaseBugPRs(r), 0) / totalReleases);
+  const avgFeaturesTotal = Math.round(releases.reduce((sum, r) => sum + getAggregatedPRs(r, 'features'), 0) / totalReleases);
+  const avgBugsTotal = Math.round(releases.reduce((sum, r) => sum + getAggregatedPRs(r, 'bugs'), 0) / totalReleases);
 
   // A11y and performance data only exists in newer releases
-  const releasesWithA11y = releases.filter((r) => getReleaseA11yPRs(r) > 0);
+  const releasesWithA11y = releases.filter((r) => getAggregatedPRs(r, 'a11y') > 0);
   const a11yCount = releasesWithA11y.length || 1;
   const avgA11yTotal = Math.round(
-    releasesWithA11y.reduce((sum, r) => sum + getReleaseA11yPRs(r), 0) / a11yCount
+    releasesWithA11y.reduce((sum, r) => sum + getAggregatedPRs(r, 'a11y'), 0) / a11yCount
   );
 
-  const releasesWithPerf = releases.filter((r) => getReleasePerformancePRs(r) > 0);
+  const releasesWithPerf = releases.filter((r) => getAggregatedPRs(r, 'performance') > 0);
   const perfCount = releasesWithPerf.length || 1;
   const avgPerfTotal = Math.round(
-    releasesWithPerf.reduce((sum, r) => sum + getReleasePerformancePRs(r), 0) / perfCount
+    releasesWithPerf.reduce((sum, r) => sum + getAggregatedPRs(r, 'performance'), 0) / perfCount
   );
 
   // Contributors data only exists in newer releases
@@ -334,18 +328,22 @@ async function main() {
   console.log(`  Generated summary.json`);
 
   // Generate time series data (just the releases sorted by date)
+  const categoryConfig = loadCategoryConfig();
   const timeSeries = enrichedReleases
-    .map((r) => ({
-      gbVersion: r.gbVersion,
-      date: r.date,
-      totalPRs: r.totalPRs,
-      featurePRs: getReleaseFeaturePRs(r),
-      bugPRs: getReleaseBugPRs(r),
-      a11yPRs: getReleaseA11yPRs(r),
-      performancePRs: getReleasePerformancePRs(r),
-      isLastBeforeWPBeta: r.isLastBeforeWPBeta,
-      wpVersion: r.wpVersion,
-    }))
+    .map((r) => {
+      const categoryPRs: Record<string, number> = {};
+      for (const agg of categoryConfig.aggregations) {
+        categoryPRs[agg.id] = getAggregatedPRs(r, agg.id);
+      }
+      return {
+        gbVersion: r.gbVersion,
+        date: r.date,
+        totalPRs: r.totalPRs,
+        categoryPRs,
+        isLastBeforeWPBeta: r.isLastBeforeWPBeta,
+        wpVersion: r.wpVersion,
+      };
+    })
     .sort((a, b) => a.date.localeCompare(b.date));
   writeFileSync(`${AGGREGATED_DIR}/time-series.json`, JSON.stringify(timeSeries, null, 2));
   console.log(`  Generated time-series.json (${timeSeries.length} data points)`);

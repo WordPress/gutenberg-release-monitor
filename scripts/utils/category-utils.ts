@@ -64,30 +64,3 @@ export function getAggregatedPRs(
   return sumCategories(release.categories || {}, agg.rawCategories);
 }
 
-/**
- * Convenience functions for common aggregation IDs.
- * These use the config, so category mappings are defined in one place.
- */
-export function getReleaseFeaturePRs(release: Release): number {
-  return getAggregatedPRs(release, 'features');
-}
-
-export function getReleaseBugPRs(release: Release): number {
-  return getAggregatedPRs(release, 'bugs');
-}
-
-export function getReleaseA11yPRs(release: Release): number {
-  return getAggregatedPRs(release, 'a11y');
-}
-
-export function getReleasePerformancePRs(release: Release): number {
-  return getAggregatedPRs(release, 'performance');
-}
-
-export function getReleaseCodeQualityPRs(release: Release): number {
-  return getAggregatedPRs(release, 'codeQuality');
-}
-
-export function getReleaseDocumentationPRs(release: Release): number {
-  return getAggregatedPRs(release, 'documentation');
-}

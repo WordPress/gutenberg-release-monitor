@@ -71,21 +71,14 @@ export interface WPVersionStats {
 
   // Totals
   totalPRs: number;
-  totalFeaturePRs: number;
-  totalBugPRs: number;
-  totalA11yPRs: number;
-  totalPerformancePRs: number;
   totalContributors: number;
   totalNewContributors: number;
 
+  // Category totals - keyed by category ID from config
+  categoryTotals: Record<string, number>;
+
   // Averages per release
   avgPRsPerRelease: number;
-  avgFeaturePRsPerRelease: number;
-  avgBugPRsPerRelease: number;
-
-  // Percentages
-  avgEnhancementPercent: number;
-  avgBugfixPercent: number;
 }
 
 /**
@@ -95,10 +88,7 @@ export interface TimeSeriesPoint {
   gbVersion: string;
   date: string;
   totalPRs: number;
-  featurePRs: number;
-  bugPRs: number;
-  a11yPRs: number;
-  performancePRs: number;
+  categoryPRs: Record<string, number>;
   isLastBeforeWPBeta: boolean;
   wpVersion: string | null;
 }

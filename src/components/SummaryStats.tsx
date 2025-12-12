@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import {
   Button,
   Card,
@@ -10,6 +10,7 @@ import {
 } from '@wordpress/components';
 import { chevronLeft, chevronRight } from '@wordpress/icons';
 import type { Summary, WPVersionStats } from '../data/types';
+import { loadCategoryConfig, type CategoryConfig } from '../utils/categories';
 
 interface SummaryStatsProps {
   summary: Summary;
@@ -56,6 +57,12 @@ export function SummaryStats({ summary, wpVersionStats }: SummaryStatsProps) {
   const [selectedVersion, setSelectedVersion] = useState(() =>
     getInitialVersion(wpVersionStats, summary.currentWPCycle)
   );
+  const [categoryConfig, setCategoryConfig] = useState<CategoryConfig | null>(null);
+
+  // Load category config on mount
+  useEffect(() => {
+    loadCategoryConfig().then(setCategoryConfig);
+  }, []);
 
   // Update URL when version changes
   useEffect(() => {
@@ -78,21 +85,46 @@ export function SummaryStats({ summary, wpVersionStats }: SummaryStatsProps) {
 
   // Check if data is available (0 means no data for these categories in older releases)
   const hasContributorData = selectedStats ? selectedStats.totalContributors > 0 : false;
-  const hasA11yData = selectedStats ? selectedStats.totalA11yPRs > 0 : false;
 
   // Calculate averages from the selected version's totals
-  const avgA11y = selectedStats && hasA11yData
-    ? Math.round(selectedStats.totalA11yPRs / selectedStats.releaseCount)
-    : 0;
-  const avgPerf = selectedStats
-    ? Math.round(selectedStats.totalPerformancePRs / selectedStats.releaseCount)
-    : 0;
   const avgContributors = selectedStats && hasContributorData
     ? Math.round(selectedStats.totalContributors / selectedStats.releaseCount)
     : 0;
   const avgNewContributors = selectedStats && hasContributorData
     ? Math.round(selectedStats.totalNewContributors / selectedStats.releaseCount)
     : 0;
+
+  // Generate category stats dynamically from config
+  const categoryStats = useMemo(() => {
+    if (!categoryConfig || !selectedStats) return { avg: [], total: [] };
+
+    // Only show categories that are marked as includeByDefault
+    const defaultCategories = categoryConfig.aggregations.filter((agg) => agg.includeByDefault);
+
+    const avgItems: StatItem[] = defaultCategories.map((agg) => {
+      const total = selectedStats.categoryTotals?.[agg.id] || 0;
+      const value = total > 0 ? Math.round(total / selectedStats.releaseCount) : 0;
+      const hasData = total > 0;
+      return {
+        label: agg.label,
+        value,
+        total: summary[`avg${agg.id.charAt(0).toUpperCase() + agg.id.slice(1)}Total` as keyof Summary] as number | undefined,
+        unavailable: !hasData,
+      };
+    });
+
+    const totalItems: StatItem[] = defaultCategories.map((agg) => {
+      const value = selectedStats.categoryTotals?.[agg.id] || 0;
+      const hasData = value > 0;
+      return {
+        label: agg.label,
+        value,
+        unavailable: !hasData,
+      };
+    });
+
+    return { avg: avgItems, total: totalItems };
+  }, [categoryConfig, selectedStats, summary]);
 
   const avgStats: StatItem[] = selectedStats
     ? [
@@ -101,27 +133,7 @@ export function SummaryStats({ summary, wpVersionStats }: SummaryStatsProps) {
           value: selectedStats.avgPRsPerRelease,
           total: summary.avgPRsTotal,
         },
-        {
-          label: 'Features',
-          value: selectedStats.avgFeaturePRsPerRelease,
-          total: summary.avgFeaturesTotal,
-        },
-        {
-          label: 'Bug Fixes',
-          value: selectedStats.avgBugPRsPerRelease,
-          total: summary.avgBugsTotal,
-        },
-        {
-          label: 'Accessibility',
-          value: avgA11y,
-          total: summary.avgA11yTotal,
-          unavailable: !hasA11yData,
-        },
-        {
-          label: 'Performance',
-          value: avgPerf,
-          total: summary.avgPerfTotal,
-        },
+        ...categoryStats.avg,
         {
           label: 'Contributors',
           value: avgContributors,
@@ -140,10 +152,7 @@ export function SummaryStats({ summary, wpVersionStats }: SummaryStatsProps) {
   const totalStats: StatItem[] = selectedStats
     ? [
         { label: 'PRs', value: selectedStats.totalPRs },
-        { label: 'Features', value: selectedStats.totalFeaturePRs },
-        { label: 'Bug Fixes', value: selectedStats.totalBugPRs },
-        { label: 'Accessibility', value: selectedStats.totalA11yPRs, unavailable: !hasA11yData },
-        { label: 'Performance', value: selectedStats.totalPerformancePRs },
+        ...categoryStats.total,
         { label: 'Contributors', value: selectedStats.totalContributors, unavailable: !hasContributorData },
         { label: 'New Contributors', value: selectedStats.totalNewContributors, unavailable: !hasContributorData },
       ]

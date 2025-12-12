@@ -42,20 +42,6 @@ const defaultLayouts = {
 const BASE_FIELDS = ['wpVersion', 'gbVersionRange', 'releaseCount'];
 const CONTRIBUTOR_FIELDS = ['contributors', 'newContributors'];
 
-// Mapping from category config IDs to WPVersionStats field names
-const CATEGORY_FIELD_MAP: Record<string, { total: keyof WPVersionStats; avg?: keyof WPVersionStats }> = {
-  features: { total: 'totalFeaturePRs', avg: 'avgFeaturePRsPerRelease' },
-  bugs: { total: 'totalBugPRs', avg: 'avgBugPRsPerRelease' },
-  a11y: { total: 'totalA11yPRs' },
-  performance: { total: 'totalPerformancePRs' },
-};
-
-// Mapping for percentage fields
-const PERCENT_FIELD_MAP: Record<string, keyof WPVersionStats> = {
-  features: 'avgEnhancementPercent',
-  bugs: 'avgBugfixPercent',
-};
-
 type ViewMode = 'averages' | 'totals' | 'distribution';
 
 export function WPVersionTable({ wpVersionStats }: WPVersionTableProps) {
@@ -67,17 +53,23 @@ export function WPVersionTable({ wpVersionStats }: WPVersionTableProps) {
     loadCategoryConfig().then(setCategoryConfig);
   }, []);
 
-  // Get categories that have WPVersionStats fields
+  // Get all categories from config
   const supportedCategories = useMemo(() => {
     if (!categoryConfig) return [];
-    return categoryConfig.aggregations.filter((agg) => agg.id in CATEGORY_FIELD_MAP);
+    return categoryConfig.aggregations;
   }, [categoryConfig]);
 
-  // Compute visible fields based on view mode
+  // Get default visible categories (those marked includeByDefault)
+  const defaultVisibleCategories = useMemo(() => {
+    if (!categoryConfig) return [];
+    return categoryConfig.aggregations.filter((agg) => agg.includeByDefault);
+  }, [categoryConfig]);
+
+  // Compute visible fields based on view mode (only includeByDefault categories)
   const visibleFields = useMemo(() => {
-    const categoryFieldIds = supportedCategories.map((agg) => `cat_${agg.id}_${viewMode}`);
+    const categoryFieldIds = defaultVisibleCategories.map((agg) => `cat_${agg.id}_${viewMode}`);
     return [...BASE_FIELDS, 'totalPRs', ...categoryFieldIds, ...CONTRIBUTOR_FIELDS];
-  }, [viewMode, supportedCategories]);
+  }, [viewMode, defaultVisibleCategories]);
 
   const [view, setView] = useState<View>({
     type: 'table',
@@ -135,37 +127,26 @@ export function WPVersionTable({ wpVersionStats }: WPVersionTableProps) {
     },
   ], []);
 
-  // Generate category fields dynamically from config
+  // Generate category fields dynamically from config using categoryTotals
   const categoryFields = useMemo(() => {
     if (!categoryConfig) return [];
 
     return supportedCategories.flatMap((agg) => {
-      const mapping = CATEGORY_FIELD_MAP[agg.id];
-      if (!mapping) return [];
-
       const fields = [];
 
       // Averages field
       if (viewMode === 'averages') {
-        const avgField = mapping.avg;
         fields.push({
           id: `cat_${agg.id}_averages`,
           label: agg.label,
           enableSorting: true,
           getValue: ({ item }: { item: WPVersionStats }) => {
-            if (avgField) return item[avgField] as number;
-            // Calculate average from total
-            const total = item[mapping.total] as number;
+            const total = item.categoryTotals?.[agg.id] || 0;
             return total > 0 ? Math.round(total / item.releaseCount) : 0;
           },
           render: ({ item }: { item: WPVersionStats }) => {
-            let value: number;
-            if (avgField) {
-              value = item[avgField] as number;
-            } else {
-              const total = item[mapping.total] as number;
-              value = total > 0 ? Math.round(total / item.releaseCount) : 0;
-            }
+            const total = item.categoryTotals?.[agg.id] || 0;
+            const value = total > 0 ? Math.round(total / item.releaseCount) : 0;
             if (value === 0) return '—';
             return <span className={`release-${agg.id}`}>{value}</span>;
           },
@@ -178,8 +159,9 @@ export function WPVersionTable({ wpVersionStats }: WPVersionTableProps) {
           id: `cat_${agg.id}_totals`,
           label: agg.label,
           enableSorting: true,
+          getValue: ({ item }: { item: WPVersionStats }) => item.categoryTotals?.[agg.id] || 0,
           render: ({ item }: { item: WPVersionStats }) => {
-            const value = item[mapping.total] as number;
+            const value = item.categoryTotals?.[agg.id] || 0;
             if (value === 0) return '—';
             return <span className={`release-${agg.id}`}>{value.toLocaleString()}</span>;
           },
@@ -188,25 +170,17 @@ export function WPVersionTable({ wpVersionStats }: WPVersionTableProps) {
 
       // Distribution field (percentages)
       if (viewMode === 'distribution') {
-        const percentField = PERCENT_FIELD_MAP[agg.id];
         fields.push({
           id: `cat_${agg.id}_distribution`,
           label: agg.label,
           enableSorting: true,
           getValue: ({ item }: { item: WPVersionStats }) => {
-            if (percentField) return item[percentField] as number;
-            // Calculate percentage from totals
-            const total = item[mapping.total] as number;
+            const total = item.categoryTotals?.[agg.id] || 0;
             return item.totalPRs > 0 ? Math.round((total / item.totalPRs) * 100) : 0;
           },
           render: ({ item }: { item: WPVersionStats }) => {
-            let percent: number;
-            if (percentField) {
-              percent = item[percentField] as number;
-            } else {
-              const total = item[mapping.total] as number;
-              percent = item.totalPRs > 0 ? Math.round((total / item.totalPRs) * 100) : 0;
-            }
+            const total = item.categoryTotals?.[agg.id] || 0;
+            const percent = item.totalPRs > 0 ? Math.round((total / item.totalPRs) * 100) : 0;
             if (percent === 0) return '—';
             return <span className={`release-${agg.id}`}>{percent}%</span>;
           },
@@ -291,6 +265,21 @@ export function WPVersionTable({ wpVersionStats }: WPVersionTableProps) {
       );
     }
 
+    // Apply filters
+    for (const filter of view.filters) {
+      if (filter.field === 'wpVersion') {
+        if (filter.operator === 'is') {
+          result = result.filter((s) => s.wpVersion === filter.value);
+        } else if (filter.operator === 'isNot') {
+          result = result.filter((s) => s.wpVersion !== filter.value);
+        } else if (filter.operator === 'isAny' && Array.isArray(filter.value)) {
+          result = result.filter((s) =>
+            (filter.value as unknown as string[]).includes(s.wpVersion)
+          );
+        }
+      }
+    }
+
     // Apply sorting
     if (view.sort.field) {
       result.sort((a, b) => {
@@ -324,7 +313,7 @@ export function WPVersionTable({ wpVersionStats }: WPVersionTableProps) {
     }
 
     return result;
-  }, [wpVersionStats, view.search, view.sort]);
+  }, [wpVersionStats, view.search, view.filters, view.sort]);
 
   // Paginate
   const paginatedData = useMemo(() => {
