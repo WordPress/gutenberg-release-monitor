@@ -16,6 +16,10 @@ import { useURLState } from '../hooks/useURLState';
 interface SummaryStatsProps {
   summary: Summary;
   wpVersionStats: WPVersionStats[];
+  /** Currently visible category IDs (for clickable legend) */
+  visibleCategories?: string[];
+  /** Callback when a category is toggled via legend click */
+  onCategoryToggle?: (categoryId: string, isVisible: boolean) => void;
 }
 
 interface StatItem {
@@ -45,7 +49,12 @@ function parseVersionRange(range: string): { start: string; end: string } {
   return { start, end };
 }
 
-export function SummaryStats({ summary, wpVersionStats }: SummaryStatsProps) {
+export function SummaryStats({
+  summary,
+  wpVersionStats,
+  visibleCategories,
+  onCategoryToggle,
+}: SummaryStatsProps) {
   const validVersions = useMemo(
     () => wpVersionStats.map((s) => s.wpVersion),
     [wpVersionStats]
@@ -227,6 +236,8 @@ export function SummaryStats({ summary, wpVersionStats }: SummaryStatsProps) {
                 categoryConfig={categoryConfig}
                 size={200}
                 releaseCount={selectedStats.releaseCount}
+                visibleCategories={visibleCategories}
+                onCategoryToggle={onCategoryToggle}
               />
             )}
 

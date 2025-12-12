@@ -16,6 +16,10 @@ import { useURLState } from '../hooks/useURLState';
 interface GBReleaseSummaryStatsProps {
   releases: Release[];
   summary: Summary;
+  /** Currently visible category IDs (for clickable legend) */
+  visibleCategories?: string[];
+  /** Callback when a category is toggled via legend click */
+  onCategoryToggle?: (categoryId: string, isVisible: boolean) => void;
 }
 
 interface StatItem {
@@ -48,7 +52,12 @@ function formatDate(dateStr: string): string {
   });
 }
 
-export function GBReleaseSummaryStats({ releases, summary }: GBReleaseSummaryStatsProps) {
+export function GBReleaseSummaryStats({
+  releases,
+  summary,
+  visibleCategories,
+  onCategoryToggle,
+}: GBReleaseSummaryStatsProps) {
   // Releases are sorted newest to oldest
   const latestRelease = releases[0]?.gbVersion || '';
   const validVersions = useMemo(
@@ -209,6 +218,8 @@ export function GBReleaseSummaryStats({ releases, summary }: GBReleaseSummarySta
                 categoryTotals={categoryTotals}
                 categoryConfig={categoryConfig}
                 size={200}
+                visibleCategories={visibleCategories}
+                onCategoryToggle={onCategoryToggle}
               />
             )}
 

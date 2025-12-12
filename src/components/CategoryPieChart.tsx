@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useCallback } from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from 'recharts';
 import type { CategoryConfig } from '../utils/categories';
 
@@ -8,9 +8,14 @@ interface CategoryPieChartProps {
   size?: number;
   /** Number of releases (for computing averages in WP Version view) */
   releaseCount?: number;
+  /** Currently visible category IDs (for clickable legend) */
+  visibleCategories?: string[];
+  /** Callback when a category is toggled via legend click */
+  onCategoryToggle?: (categoryId: string, isVisible: boolean) => void;
 }
 
 interface PieDataPoint {
+  id: string;
   label: string;
   value: number;
   percentage: number;
@@ -48,15 +53,29 @@ export function CategoryPieChart({
   categoryConfig,
   size = 200,
   releaseCount,
+  visibleCategories,
+  onCategoryToggle,
 }: CategoryPieChartProps) {
-  const chartData = useMemo((): PieDataPoint[] => {
-    // Filter to includeByDefault categories only, keeping config order
-    const defaultCategories = categoryConfig.aggregations.filter(
-      (agg) => agg.includeByDefault
-    );
+  // Determine which categories to show based on visibleCategories prop
+  const effectiveCategories = useMemo(() => {
+    if (visibleCategories && visibleCategories.length > 0) {
+      return categoryConfig.aggregations.filter((agg) =>
+        visibleCategories.includes(agg.id)
+      );
+    }
+    // Default: show includeByDefault categories
+    return categoryConfig.aggregations.filter((agg) => agg.includeByDefault);
+  }, [categoryConfig, visibleCategories]);
 
-    // Build data points for ALL categories (keep consistent order for pie positioning)
-    const allData = defaultCategories.map((agg) => ({
+  // All categories for legend (to allow toggling hidden ones back on)
+  const allCategories = useMemo(() => {
+    return categoryConfig.aggregations;
+  }, [categoryConfig]);
+
+  const chartData = useMemo((): PieDataPoint[] => {
+    // Build data points for visible categories only
+    const allData = effectiveCategories.map((agg) => ({
+      id: agg.id,
       label: agg.label,
       value: categoryTotals[agg.id] || 0,
       color: agg.color,
@@ -76,17 +95,28 @@ export function CategoryPieChart({
       ...point,
       percentage: point.value > 0 ? percentages[percentageIndex++] : 0,
     }));
-  }, [categoryTotals, categoryConfig]);
+  }, [categoryTotals, effectiveCategories]);
+
+  const handleLegendClick = useCallback(
+    (categoryId: string) => {
+      if (!onCategoryToggle) return;
+      const isCurrentlyVisible = visibleCategories
+        ? visibleCategories.includes(categoryId)
+        : categoryConfig.aggregations.find((a) => a.id === categoryId)?.includeByDefault ?? false;
+      onCategoryToggle(categoryId, !isCurrentlyVisible);
+    },
+    [onCategoryToggle, visibleCategories, categoryConfig]
+  );
 
   if (chartData.length === 0) {
     return null;
   }
 
-  // Filter to non-zero values only - this is the legend order (original config order)
-  const legendData = chartData.filter((item) => item.value > 0);
+  // Filter to non-zero values only for the pie chart
+  const pieSliceData = chartData.filter((item) => item.value > 0);
 
   // Reorder for pie slices: Bug Fixes first, Features last (so they appear near top)
-  const pieData = [...legendData].sort((a, b) => {
+  const pieData = [...pieSliceData].sort((a, b) => {
     // Bug Fixes should be first (index 0)
     if (a.label === 'Bug Fixes') return -1;
     if (b.label === 'Bug Fixes') return 1;
@@ -96,6 +126,34 @@ export function CategoryPieChart({
     // Keep others in original order
     return 0;
   });
+
+  // Build legend data from ALL categories (to allow toggling hidden ones)
+  const legendData = useMemo(() => {
+    return allCategories.map((agg) => {
+      const isVisible = visibleCategories
+        ? visibleCategories.includes(agg.id)
+        : agg.includeByDefault;
+      const dataPoint = chartData.find((d) => d.id === agg.id);
+      const total = categoryTotals[agg.id] || 0;
+      // Calculate percentage from visible categories only
+      const visibleTotal = effectiveCategories.reduce(
+        (sum, cat) => sum + (categoryTotals[cat.id] || 0),
+        0
+      );
+      const percentage = visibleTotal > 0 ? Math.round((total / visibleTotal) * 100) : 0;
+      return {
+        id: agg.id,
+        label: agg.label,
+        color: agg.color,
+        value: total,
+        percentage: dataPoint?.percentage ?? percentage,
+        isVisible,
+        hasData: total > 0,
+      };
+    });
+  }, [allCategories, visibleCategories, chartData, categoryTotals, effectiveCategories]);
+
+  const isClickable = !!onCategoryToggle;
 
   return (
     <div className="category-pie-chart">
@@ -151,18 +209,24 @@ export function CategoryPieChart({
               align="right"
               verticalAlign="middle"
               content={() => (
-                <div className="category-pie-legend category-pie-legend--side">
+                <div className={`category-pie-legend category-pie-legend--side${isClickable ? ' category-pie-legend--clickable' : ''}`}>
                   {legendData.map((item) => (
-                    <div
-                      key={item.label}
-                      className="category-pie-legend-item"
+                    <button
+                      type="button"
+                      key={item.id}
+                      className={`category-pie-legend-item${!item.isVisible ? ' category-pie-legend-item--hidden' : ''}${!item.hasData ? ' category-pie-legend-item--no-data' : ''}`}
                       // eslint-disable-next-line react/forbid-component-props -- dynamic color from data
                       style={{ '--legend-color': item.color } as React.CSSProperties}
+                      onClick={() => handleLegendClick(item.id)}
+                      disabled={!isClickable}
+                      title={isClickable ? `Click to ${item.isVisible ? 'hide' : 'show'} ${item.label}` : undefined}
                     >
                       <span className="category-pie-legend-color" />
                       <span className="category-pie-legend-label">{item.label}</span>
-                      <span className="category-pie-legend-value">{item.percentage}%</span>
-                    </div>
+                      {item.isVisible && item.hasData && (
+                        <span className="category-pie-legend-value">{item.percentage}%</span>
+                      )}
+                    </button>
                   ))}
                 </div>
               )}

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import '@wordpress/components/build-style/style.css';
 import {
   Button,
@@ -22,6 +22,7 @@ import { SummaryStats } from './components/SummaryStats';
 import { GBReleaseSummaryStats } from './components/GBReleaseSummaryStats';
 import { WPVersionTable } from './components/WPVersionTable';
 import { TrendChart } from './components/TrendChart';
+import { getDefaultCategoryIds } from './components/CategoryFilter';
 
 export type ViewMode = 'averages' | 'totals' | 'distribution';
 export type ChartType = 'line' | 'bar' | 'area' | 'stacked';
@@ -51,6 +52,60 @@ function App() {
   const activeTab = activeTabStr as TabName;
   const viewMode = viewModeStr as ViewMode;
   const chartType = chartTypeStr as ChartType;
+
+  // Category filter state (synced with URL)
+  const [visibleCategories, setVisibleCategories] = useState<string[]>([]);
+  const [defaultCategoryIds, setDefaultCategoryIds] = useState<string[]>([]);
+
+  // Initialize visible categories from URL or defaults
+  useEffect(() => {
+    getDefaultCategoryIds().then((ids) => {
+      setDefaultCategoryIds(ids);
+      // Check URL for saved categories
+      const params = new URLSearchParams(window.location.search);
+      const urlCategories = params.get('categories');
+      if (urlCategories) {
+        const parsedCategories = urlCategories.split(',').filter((c) => ids.includes(c));
+        if (parsedCategories.length > 0) {
+          setVisibleCategories(parsedCategories);
+          return;
+        }
+      }
+      setVisibleCategories(ids);
+    });
+  }, []);
+
+  // Handle category toggle from clickable legends
+  const handleCategoryToggle = useCallback(
+    (categoryId: string, isVisible: boolean) => {
+      setVisibleCategories((prev) => {
+        let newCategories: string[];
+        if (isVisible) {
+          // Add category if not already present
+          newCategories = prev.includes(categoryId) ? prev : [...prev, categoryId];
+        } else {
+          // Remove category, but don't allow unchecking the last one
+          if (prev.length <= 1) return prev;
+          newCategories = prev.filter((id) => id !== categoryId);
+        }
+
+        // Sync to URL
+        const params = new URLSearchParams(window.location.search);
+        if (newCategories.length === defaultCategoryIds.length) {
+          params.delete('categories');
+        } else {
+          params.set('categories', newCategories.join(','));
+        }
+        const newUrl = params.toString()
+          ? `${window.location.pathname}?${params.toString()}`
+          : window.location.pathname;
+        window.history.replaceState({}, '', newUrl);
+
+        return newCategories;
+      });
+    },
+    [defaultCategoryIds]
+  );
   const {
     data: releases,
     isLoading: releasesLoading,
@@ -137,9 +192,19 @@ function App() {
                     {/* Summary section - different component per tab */}
                     <section id="version-summary">
                       {isWPTab ? (
-                        <SummaryStats summary={summary} wpVersionStats={wpVersionStats} />
+                        <SummaryStats
+                          summary={summary}
+                          wpVersionStats={wpVersionStats}
+                          visibleCategories={visibleCategories}
+                          onCategoryToggle={handleCategoryToggle}
+                        />
                       ) : (
-                        <GBReleaseSummaryStats releases={releases} summary={summary} />
+                        <GBReleaseSummaryStats
+                          releases={releases}
+                          summary={summary}
+                          visibleCategories={visibleCategories}
+                          onCategoryToggle={handleCategoryToggle}
+                        />
                       )}
                     </section>
 
@@ -196,6 +261,8 @@ function App() {
                             data={wpVersionStats}
                             viewMode={effectiveViewMode}
                             chartType={chartType}
+                            visibleCategories={visibleCategories}
+                            onCategoryToggle={handleCategoryToggle}
                           />
                         ) : (
                           <TrendChart
@@ -203,6 +270,8 @@ function App() {
                             data={timeSeries}
                             viewMode={effectiveViewMode}
                             chartType={chartType}
+                            visibleCategories={visibleCategories}
+                            onCategoryToggle={handleCategoryToggle}
                             releaseCount={50}
                           />
                         )}

@@ -395,6 +395,14 @@ body {
   gap: 0.25rem;
 }
 
+.summary-version-nav .components-button.is-secondary {
+  border-color: var(--color-border);
+}
+
+.summary-version-nav .components-button.is-secondary:hover:not(:disabled) {
+  border-color: var(--color-border-strong);
+}
+
 .summary-version-select.components-base-control {
   margin-bottom: 0;
 }
@@ -820,6 +828,64 @@ body {
 
 .trend-chart-legend-label {
   color: var(--color-text);
+}
+
+/* Clickable legend styles (shared between pie and trend charts) */
+.category-pie-legend-item,
+.trend-chart-legend-item {
+  background: none;
+  border: none;
+  padding: 0.25rem 0.5rem;
+  margin: -0.25rem -0.5rem;
+  border-radius: 4px;
+  transition: background-color 0.15s ease, opacity 0.15s ease;
+}
+
+.category-pie-legend--clickable .category-pie-legend-item,
+.trend-chart-legend--clickable .trend-chart-legend-item {
+  cursor: pointer;
+}
+
+.category-pie-legend--clickable .category-pie-legend-item:hover,
+.trend-chart-legend--clickable .trend-chart-legend-item:hover {
+  background-color: var(--color-surface-alt);
+}
+
+.category-pie-legend--clickable .category-pie-legend-item:focus-visible,
+.trend-chart-legend--clickable .trend-chart-legend-item:focus-visible {
+  outline: 2px solid var(--wp-admin-theme-color, #3858e9);
+  outline-offset: 1px;
+}
+
+/* Hidden (toggled off) legend items */
+.category-pie-legend-item--hidden,
+.trend-chart-legend-item--hidden {
+  opacity: 0.4;
+}
+
+.category-pie-legend-item--hidden .category-pie-legend-label,
+.trend-chart-legend-item--hidden .trend-chart-legend-label {
+  text-decoration: line-through;
+}
+
+/* Fixed (non-toggleable) items - normal cursor */
+.trend-chart-legend-item--fixed {
+  cursor: default;
+}
+
+.trend-chart-legend--clickable .trend-chart-legend-item--fixed:hover {
+  background-color: transparent;
+}
+
+/* No data items */
+.category-pie-legend-item--no-data {
+  opacity: 0.5;
+}
+
+/* Dark mode clickable legends */
+.dark-mode .category-pie-legend--clickable .category-pie-legend-item:hover,
+.dark-mode .trend-chart-legend--clickable .trend-chart-legend-item:hover {
+  background-color: var(--color-surface);
 }
 
 /* Dark mode chart adjustments */

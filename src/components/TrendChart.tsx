@@ -1,4 +1,4 @@
-import { useMemo, useEffect, useState } from 'react';
+import { useMemo, useEffect, useState, useCallback } from 'react';
 import {
   ComposedChart,
   Line,
@@ -19,6 +19,10 @@ import { loadCategoryConfig, type CategoryConfig } from '../utils/categories';
 interface BaseTrendChartProps {
   viewMode: ViewMode;
   chartType: ChartType;
+  /** Category IDs to display (default: all default categories) */
+  visibleCategories?: string[];
+  /** Callback when a category is toggled via legend click */
+  onCategoryToggle?: (categoryId: string, isVisible: boolean) => void;
 }
 
 interface WPVersionTrendChartProps extends BaseTrendChartProps {
@@ -40,7 +44,7 @@ const PRS_COLOR = '#3858e9';
 const RELEASES_COLOR = '#757575';
 
 export function TrendChart(props: TrendChartProps) {
-  const { viewMode, chartType, dataSource, data } = props;
+  const { viewMode, chartType, dataSource, data, visibleCategories, onCategoryToggle } = props;
   const releaseCount = dataSource === 'gb-release' ? props.releaseCount : undefined;
 
   const [categoryConfig, setCategoryConfig] = useState<CategoryConfig | null>(null);
@@ -49,11 +53,16 @@ export function TrendChart(props: TrendChartProps) {
     loadCategoryConfig().then(setCategoryConfig);
   }, []);
 
-  // Get default categories for rendering
+  // Get categories to render (filtered by visibleCategories if provided)
   const defaultCategories = useMemo(() => {
     if (!categoryConfig) return [];
-    return categoryConfig.aggregations.filter((agg) => agg.includeByDefault);
-  }, [categoryConfig]);
+    if (!visibleCategories || visibleCategories.length === 0) {
+      // No filter: show includeByDefault categories
+      return categoryConfig.aggregations.filter((agg) => agg.includeByDefault);
+    }
+    // Filter provided: show any category from visibleCategories (not just defaults)
+    return categoryConfig.aggregations.filter((agg) => visibleCategories.includes(agg.id));
+  }, [categoryConfig, visibleCategories]);
 
   // Configuration based on data source
   const config = useMemo(() => {
@@ -149,22 +158,43 @@ export function TrendChart(props: TrendChartProps) {
     });
   }, [data, categoryConfig, viewMode, defaultCategories, dataSource, releaseCount]);
 
-  // Build legend items
+  // Build legend items - include ALL categories for clickable legend
   const legendItems = useMemo(() => {
-    const items: Array<{ label: string; color: string; dashed?: boolean }> = [];
-    defaultCategories.forEach((agg) => {
-      items.push({ label: agg.label, color: agg.color });
-    });
+    const items: Array<{ id: string; label: string; color: string; dashed?: boolean; isVisible: boolean; isCategory: boolean }> = [];
+
+    // Add all categories (visible and hidden) for clickable legend
+    if (categoryConfig) {
+      categoryConfig.aggregations.forEach((agg) => {
+        const isVisible = visibleCategories
+          ? visibleCategories.includes(agg.id)
+          : agg.includeByDefault;
+        items.push({ id: agg.id, label: agg.label, color: agg.color, isVisible, isCategory: true });
+      });
+    }
+
     // Show "All PRs" for line/bar in non-distribution mode
     if (viewMode !== 'distribution' && (chartType === 'line' || chartType === 'bar')) {
-      items.push({ label: 'All PRs', color: PRS_COLOR });
+      items.push({ id: 'allPRs', label: 'All PRs', color: PRS_COLOR, isVisible: true, isCategory: false });
     }
     // Show releases count for WP totals mode
     if (config.showReleasesLine) {
-      items.push({ label: 'GB releases included', color: RELEASES_COLOR, dashed: true });
+      items.push({ id: 'releases', label: 'GB releases included', color: RELEASES_COLOR, dashed: true, isVisible: true, isCategory: false });
     }
     return items;
-  }, [defaultCategories, chartType, viewMode, config.showReleasesLine]);
+  }, [categoryConfig, visibleCategories, chartType, viewMode, config.showReleasesLine]);
+
+  const handleLegendClick = useCallback(
+    (categoryId: string) => {
+      if (!onCategoryToggle) return;
+      const item = legendItems.find((i) => i.id === categoryId);
+      if (item && item.isCategory) {
+        onCategoryToggle(categoryId, !item.isVisible);
+      }
+    },
+    [onCategoryToggle, legendItems]
+  );
+
+  const isClickable = !!onCategoryToggle;
 
   // Get cutoff versions for reference lines (GB release tab only)
   // Must be before early return to maintain consistent hook order
@@ -190,16 +220,20 @@ export function TrendChart(props: TrendChartProps) {
   const renderLegend = () => (
     <Legend
       content={() => (
-        <div className="trend-chart-legend">
+        <div className={`trend-chart-legend${isClickable ? ' trend-chart-legend--clickable' : ''}`}>
           {legendItems.map((item) => (
-            <div
-              key={item.label}
-              className="trend-chart-legend-item"
+            <button
+              type="button"
+              key={item.id}
+              className={`trend-chart-legend-item${!item.isVisible ? ' trend-chart-legend-item--hidden' : ''}${!item.isCategory ? ' trend-chart-legend-item--fixed' : ''}`}
               style={{ '--legend-color': item.color } as React.CSSProperties}
+              onClick={() => handleLegendClick(item.id)}
+              disabled={!isClickable || !item.isCategory}
+              title={isClickable && item.isCategory ? `Click to ${item.isVisible ? 'hide' : 'show'} ${item.label}` : undefined}
             >
               <span className={`trend-chart-legend-line${item.dashed ? ' trend-chart-legend-line--dashed' : ''}`} />
               <span className="trend-chart-legend-label">{item.label}</span>
-            </div>
+            </button>
           ))}
         </div>
       )}
