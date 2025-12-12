@@ -11,6 +11,7 @@ import { chevronLeft, chevronRight } from '@wordpress/icons';
 import type { Summary, WPVersionStats } from '../data/types';
 import { loadCategoryConfig, type CategoryConfig } from '../utils/categories';
 import { CategoryPieChart } from './CategoryPieChart';
+import { useURLState } from '../hooks/useURLState';
 
 interface SummaryStatsProps {
   summary: Summary;
@@ -44,18 +45,15 @@ function parseVersionRange(range: string): { start: string; end: string } {
   return { start, end };
 }
 
-function getInitialVersion(wpVersionStats: WPVersionStats[], defaultVersion: string): string {
-  const params = new URLSearchParams(window.location.search);
-  const wpParam = params.get('wp');
-  if (wpParam && wpVersionStats.some((s) => s.wpVersion === wpParam)) {
-    return wpParam;
-  }
-  return defaultVersion;
-}
-
 export function SummaryStats({ summary, wpVersionStats }: SummaryStatsProps) {
-  const [selectedVersion, setSelectedVersion] = useState(() =>
-    getInitialVersion(wpVersionStats, summary.currentWPCycle)
+  const validVersions = useMemo(
+    () => wpVersionStats.map((s) => s.wpVersion),
+    [wpVersionStats]
+  );
+  const [selectedVersion, setSelectedVersion] = useURLState(
+    'wp',
+    summary.currentWPCycle,
+    validVersions
   );
   const [categoryConfig, setCategoryConfig] = useState<CategoryConfig | null>(null);
 
@@ -63,20 +61,6 @@ export function SummaryStats({ summary, wpVersionStats }: SummaryStatsProps) {
   useEffect(() => {
     loadCategoryConfig().then(setCategoryConfig);
   }, []);
-
-  // Update URL when version changes
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    if (selectedVersion === summary.currentWPCycle) {
-      params.delete('wp');
-    } else {
-      params.set('wp', selectedVersion);
-    }
-    const newUrl = params.toString()
-      ? `${window.location.pathname}?${params.toString()}`
-      : window.location.pathname;
-    window.history.replaceState({}, '', newUrl);
-  }, [selectedVersion, summary.currentWPCycle]);
 
   const selectedStats = wpVersionStats.find(
     (stats) => stats.wpVersion === selectedVersion

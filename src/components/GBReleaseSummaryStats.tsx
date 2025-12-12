@@ -11,6 +11,7 @@ import { chevronLeft, chevronRight } from '@wordpress/icons';
 import type { Release, Summary } from '../data/types';
 import { loadCategoryConfig, aggregateCategories, type CategoryConfig } from '../utils/categories';
 import { CategoryPieChart } from './CategoryPieChart';
+import { useURLState } from '../hooks/useURLState';
 
 interface GBReleaseSummaryStatsProps {
   releases: Release[];
@@ -39,15 +40,6 @@ function getDiffClass(current: number, total: number): string {
   return 'neutral';
 }
 
-function getInitialVersion(releases: Release[], defaultVersion: string): string {
-  const params = new URLSearchParams(window.location.search);
-  const gbParam = params.get('gb');
-  if (gbParam && releases.some((r) => r.gbVersion === gbParam)) {
-    return gbParam;
-  }
-  return defaultVersion;
-}
-
 function formatDate(dateStr: string): string {
   return new Date(dateStr).toLocaleDateString('en-US', {
     year: 'numeric',
@@ -59,8 +51,14 @@ function formatDate(dateStr: string): string {
 export function GBReleaseSummaryStats({ releases, summary }: GBReleaseSummaryStatsProps) {
   // Releases are sorted newest to oldest
   const latestRelease = releases[0]?.gbVersion || '';
-  const [selectedVersion, setSelectedVersion] = useState(() =>
-    getInitialVersion(releases, latestRelease)
+  const validVersions = useMemo(
+    () => releases.map((r) => r.gbVersion),
+    [releases]
+  );
+  const [selectedVersion, setSelectedVersion] = useURLState(
+    'gb',
+    latestRelease,
+    validVersions
   );
   const [categoryConfig, setCategoryConfig] = useState<CategoryConfig | null>(null);
 
@@ -68,20 +66,6 @@ export function GBReleaseSummaryStats({ releases, summary }: GBReleaseSummarySta
   useEffect(() => {
     loadCategoryConfig().then(setCategoryConfig);
   }, []);
-
-  // Update URL when version changes
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    if (selectedVersion === latestRelease) {
-      params.delete('gb');
-    } else {
-      params.set('gb', selectedVersion);
-    }
-    const newUrl = params.toString()
-      ? `${window.location.pathname}?${params.toString()}`
-      : window.location.pathname;
-    window.history.replaceState({}, '', newUrl);
-  }, [selectedVersion, latestRelease]);
 
   const selectedRelease = releases.find((r) => r.gbVersion === selectedVersion);
   const isLatest = selectedVersion === latestRelease;

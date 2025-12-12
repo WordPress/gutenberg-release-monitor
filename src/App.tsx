@@ -16,6 +16,7 @@ import {
 import { useReleases, useSummary, useWPVersionStats } from './hooks/useReleases';
 import { useTimeSeries } from './hooks/useTimeSeries';
 import { useDarkMode } from './hooks/useDarkMode';
+import { useURLState } from './hooks/useURLState';
 import { ReleasesTable } from './components/ReleasesTable';
 import { SummaryStats } from './components/SummaryStats';
 import { GBReleaseSummaryStats } from './components/GBReleaseSummaryStats';
@@ -24,6 +25,11 @@ import { TrendChart } from './components/TrendChart';
 
 export type ViewMode = 'averages' | 'totals' | 'distribution';
 export type ChartType = 'line' | 'bar' | 'area' | 'stacked';
+
+const VIEW_MODES: ViewMode[] = ['averages', 'totals', 'distribution'];
+const CHART_TYPES: ChartType[] = ['line', 'bar', 'area', 'stacked'];
+const TABS = ['by-wp-version', 'by-gb-release'] as const;
+type TabName = typeof TABS[number];
 
 const SunIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -39,9 +45,12 @@ const MoonIcon = () => (
 );
 
 function App() {
-  const [activeTab, setActiveTab] = useState<'by-wp-version' | 'releases'>('by-wp-version');
-  const [viewMode, setViewMode] = useState<ViewMode>('averages');
-  const [chartType, setChartType] = useState<ChartType>('stacked');
+  const [activeTabStr, setActiveTab] = useURLState('tab', 'by-wp-version', [...TABS]);
+  const [viewModeStr, setViewMode] = useURLState('view', 'averages', VIEW_MODES);
+  const [chartTypeStr, setChartType] = useURLState('chart', 'stacked', CHART_TYPES);
+  const activeTab = activeTabStr as TabName;
+  const viewMode = viewModeStr as ViewMode;
+  const chartType = chartTypeStr as ChartType;
   const {
     data: releases,
     isLoading: releasesLoading,
@@ -114,9 +123,10 @@ function App() {
               className="app-tabs"
               tabs={[
                 { name: 'by-wp-version', title: 'By WP Version' },
-                { name: 'releases', title: 'By GB Release' },
+                { name: 'by-gb-release', title: 'By GB Release' },
               ]}
-              onSelect={(tabName) => setActiveTab(tabName as 'by-wp-version' | 'releases')}
+              initialTabName={activeTab}
+              onSelect={(tabName) => setActiveTab(tabName as TabName)}
             >
               {() => {
                 const isWPTab = activeTab === 'by-wp-version';
@@ -125,11 +135,13 @@ function App() {
                 return (
                   <div className="tab-content">
                     {/* Summary section - different component per tab */}
-                    {isWPTab ? (
-                      <SummaryStats summary={summary} wpVersionStats={wpVersionStats} />
-                    ) : (
-                      <GBReleaseSummaryStats releases={releases} summary={summary} />
-                    )}
+                    <section id="version-summary">
+                      {isWPTab ? (
+                        <SummaryStats summary={summary} wpVersionStats={wpVersionStats} />
+                      ) : (
+                        <GBReleaseSummaryStats releases={releases} summary={summary} />
+                      )}
+                    </section>
 
                     {/* View mode toggle - different options per tab */}
                     <div className="view-mode-toggle">
@@ -162,7 +174,7 @@ function App() {
                     </div>
 
                     {/* Chart - single instance, adapts via props */}
-                    <Card className="trend-chart-card">
+                    <Card id="trend-chart" className="trend-chart-card">
                       <CardBody>
                         <div className="chart-type-toggle">
                           <ToggleGroupControl
@@ -198,7 +210,7 @@ function App() {
                     </Card>
 
                     {/* Table - different component per tab */}
-                    <Card className={isWPTab ? 'wp-version-table-card' : undefined}>
+                    <Card id="releases-table" className={isWPTab ? 'wp-version-table-card' : undefined}>
                       <CardBody>
                         {isWPTab ? (
                           <WPVersionTable wpVersionStats={wpVersionStats} viewMode={viewMode} />
