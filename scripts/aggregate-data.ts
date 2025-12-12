@@ -101,8 +101,16 @@ function generateWPVersionStats(releases: Release[]): WPVersionStats[] {
     const gbVersionRange = `${versions[0]}-${versions[versions.length - 1]}`;
 
     const totalPRs = wpReleases.reduce((sum, r) => sum + r.totalPRs, 0);
-    const totalContributors = wpReleases.reduce((sum, r) => sum + r.contributors, 0);
-    const totalNewContributors = wpReleases.reduce((sum, r) => sum + r.newContributors, 0);
+
+    // Deduplicate contributors across all releases in this WP version
+    const allContributors = new Set<string>();
+    const allNewContributors = new Set<string>();
+    for (const release of wpReleases) {
+      for (const c of release.contributorsList || []) allContributors.add(c);
+      for (const c of release.newContributorsList || []) allNewContributors.add(c);
+    }
+    const totalContributors = allContributors.size;
+    const totalNewContributors = allNewContributors.size;
 
     // Compute category totals dynamically from config
     const categoryTotals: Record<string, number> = {};
