@@ -3,7 +3,6 @@ import {
   Button,
   Card,
   CardBody,
-  CardFooter,
   CardHeader,
   SelectControl,
   __experimentalText as Text,
@@ -91,6 +90,16 @@ export function SummaryStats({ summary, wpVersionStats }: SummaryStatsProps) {
   const avgContributors = selectedStats?.avgContributorsPerRelease ?? 0;
   const avgNewContributors = selectedStats?.avgNewContributorsPerRelease ?? 0;
 
+  // Map category IDs to Summary field name suffixes
+  // Summary type uses abbreviated names that don't always match category IDs
+  const categoryToSummaryField: Record<string, string> = {
+    features: 'Features',
+    bugs: 'Bugs',
+    codeQuality: 'CodeQuality',
+    a11y: 'A11y',
+    performance: 'Perf',
+  };
+
   // Generate category stats dynamically from config
   const categoryStats = useMemo(() => {
     if (!categoryConfig || !selectedStats) return { avg: [], total: [] };
@@ -102,10 +111,14 @@ export function SummaryStats({ summary, wpVersionStats }: SummaryStatsProps) {
       const total = selectedStats.categoryTotals?.[agg.id] || 0;
       const value = total > 0 ? Math.round(total / selectedStats.releaseCount) : 0;
       const hasData = total > 0;
+      const summaryFieldSuffix = categoryToSummaryField[agg.id];
+      const summaryTotal = summaryFieldSuffix
+        ? (summary[`avg${summaryFieldSuffix}Total` as keyof Summary] as number | undefined)
+        : undefined;
       return {
         label: agg.label,
         value,
-        total: summary[`avg${agg.id.charAt(0).toUpperCase() + agg.id.slice(1)}Total` as keyof Summary] as number | undefined,
+        total: summaryTotal,
         unavailable: !hasData,
       };
     });
@@ -126,7 +139,7 @@ export function SummaryStats({ summary, wpVersionStats }: SummaryStatsProps) {
   const avgStats: StatItem[] = selectedStats
     ? [
         {
-          label: 'PRs',
+          label: 'All PRs',
           value: selectedStats.avgPRsPerRelease,
           total: summary.avgPRsTotal,
         },
@@ -148,7 +161,7 @@ export function SummaryStats({ summary, wpVersionStats }: SummaryStatsProps) {
 
   const totalStats: StatItem[] = selectedStats
     ? [
-        { label: 'PRs', value: selectedStats.totalPRs },
+        { label: 'All PRs', value: selectedStats.totalPRs },
         ...categoryStats.total,
         { label: 'Contributors', value: selectedStats.totalContributors, unavailable: !hasContributorData },
         { label: 'New Contributors', value: selectedStats.totalNewContributors, unavailable: !hasContributorData },
@@ -185,9 +198,6 @@ export function SummaryStats({ summary, wpVersionStats }: SummaryStatsProps) {
   return (
     <Card className="summary-section">
       <CardHeader className="summary-card-header">
-        <Text className="summary-disclaimer">
-          Data is an estimation based on parsing release changelogs.
-        </Text>
         <div className="summary-version-nav">
           <Button
             variant="secondary"
@@ -220,12 +230,9 @@ export function SummaryStats({ summary, wpVersionStats }: SummaryStatsProps) {
       {selectedStats && (
         <CardBody className="summary-card-body">
           <div className="summary-version-info">
-            <div className="summary-version-title">
-              WordPress {selectedVersion}
-              {isCurrentCycle && <span className="summary-version-current">(current)</span>}
-            </div>
             <Text className="summary-version-range">
-              {selectedStats.releaseCount} releases included, from {versionRange?.start} to {versionRange?.end}
+              Includes {selectedStats.releaseCount} Gutenberg releases, from {versionRange?.start} to {versionRange?.end}.{' '}
+              {isCurrentCycle && <span className="summary-version-current">(current cycle)</span>}
             </Text>
           </div>
 
@@ -234,7 +241,7 @@ export function SummaryStats({ summary, wpVersionStats }: SummaryStatsProps) {
               <CategoryPieChart
                 categoryTotals={selectedStats.categoryTotals}
                 categoryConfig={categoryConfig}
-                size={220}
+                size={200}
               />
             )}
 
@@ -250,7 +257,7 @@ export function SummaryStats({ summary, wpVersionStats }: SummaryStatsProps) {
                       <div className={`summary-stat-value${stat.unavailable ? ' unavailable' : ''}`}>
                         {stat.unavailable ? 'N/A' : stat.value.toLocaleString()}
                       </div>
-                      {!stat.unavailable && (
+                      {!stat.unavailable && stat.total !== undefined && (
                         <div className="summary-stat-comparison">
                           (vs {stat.total}
                           {diff && (
@@ -279,22 +286,10 @@ export function SummaryStats({ summary, wpVersionStats }: SummaryStatsProps) {
               </div>
             </div>
           </div>
+
         </CardBody>
       )}
 
-      <CardFooter className="summary-meta">
-        <Text>
-          {summary.totalReleases} releases: {summary.oldestRelease} – {summary.latestRelease}
-        </Text>
-        <Text>
-          Last updated:{' '}
-          {new Date(summary.lastUpdated).toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'short',
-            day: 'numeric',
-          })}
-        </Text>
-      </CardFooter>
     </Card>
   );
 }

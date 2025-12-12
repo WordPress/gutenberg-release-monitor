@@ -300,7 +300,6 @@
   color: var(--color-a11y);
 }
 
-.dark-mode .summary-version-title,
 .dark-mode .summary-stat-value {
   color: var(--color-text);
 }
@@ -346,10 +345,6 @@ body {
 
 .app-header p {
   color: var(--color-text-muted);
-}
-
-.header-separator {
-  margin: 0 0.5rem;
 }
 
 .app-loading {
@@ -398,12 +393,6 @@ body {
 
 .summary-version-info {
   padding: 1rem;
-}
-
-.summary-version-title {
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-bottom: 0.25rem;
 }
 
 .summary-version-current {
@@ -483,8 +472,35 @@ body {
 }
 
 .category-pie-chart-recharts {
-  width: 220px;
-  height: 280px;
+  width: 100%;
+  min-width: 320px;
+  max-width: 420px;
+  height: 200px;
+}
+
+.category-pie-legend--side {
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Pie chart tooltip */
+.category-pie-tooltip {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 0.5rem 0.75rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.category-pie-tooltip-label {
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.category-pie-tooltip-value {
+  color: var(--color-text-muted);
+  font-size: 0.8125rem;
+  margin-top: 0.125rem;
 }
 
 .summary-stats-container {
@@ -662,4 +678,268 @@ body {
 
 .total-cell {
   font-weight: 600;
+}
+
+/* App Disclaimer */
+.app-disclaimer {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+/* App Repository Link */
+.app-repo-link {
+  margin-top: 0.375rem;
+  font-size: 0.875rem;
+}
+
+/* App Footer */
+.app-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  margin-top: 1.5rem;
+  border-top: 1px solid var(--color-border, #e0e0e0);
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+}
+
+/* Summary Chart Section */
+.summary-chart-section {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-border, #e0e0e0);
+}
+
+/* Trend Chart Card */
+.trend-chart-card {
+  margin-top: 0;
+}
+
+/* View mode toggle - full width at top */
+.view-mode-toggle {
+  margin-bottom: 1rem;
+}
+
+.view-mode-toggle .components-toggle-group-control {
+  min-height: 36px;
+}
+
+/* Chart type toggle - inside chart card */
+.chart-type-toggle {
+  max-width: 200px;
+  margin-bottom: 1rem;
+}
+
+.chart-type-toggle .components-toggle-group-control {
+  min-height: 32px;
+}
+
+/* Trend Line Chart */
+.trend-line-chart {
+  width: 100%;
+  min-height: 300px;
+}
+
+.trend-line-chart .recharts-cartesian-grid-horizontal line,
+.trend-line-chart .recharts-cartesian-grid-vertical line {
+  stroke: var(--color-border, #e0e0e0);
+}
+
+.trend-line-chart .recharts-text {
+  fill: var(--color-text);
+}
+
+/* Trend Bar Chart */
+.trend-bar-chart {
+  width: 100%;
+  min-height: 300px;
+}
+
+.trend-bar-chart .recharts-cartesian-grid-horizontal line,
+.trend-bar-chart .recharts-cartesian-grid-vertical line {
+  stroke: var(--color-border, #e0e0e0);
+}
+
+.trend-bar-chart .recharts-text {
+  fill: var(--color-text);
+}
+
+/* Trend Chart Legend (matches pie chart style) */
+.trend-chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding: 0 1rem;
+}
+
+.trend-chart-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  color: var(--color-text);
+}
+
+.trend-chart-legend-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  background-color: var(--legend-color);
+}
+
+.trend-chart-legend-line {
+  width: 20px;
+  height: 2px;
+  background-color: var(--legend-color);
+  border-radius: 1px;
+}
+
+.trend-chart-legend-line--dashed {
+  background: repeating-linear-gradient(
+    90deg,
+    var(--legend-color) 0,
+    var(--legend-color) 4px,
+    transparent 4px,
+    transparent 7px
+  );
+}
+
+.trend-chart-legend-label {
+  color: var(--color-text);
+}
+
+/* Dark mode chart adjustments */
+.dark-mode .summary-chart-section {
+  border-top-color: var(--color-border);
+}
+
+.dark-mode .trend-line-chart .recharts-cartesian-grid-horizontal line,
+.dark-mode .trend-line-chart .recharts-cartesian-grid-vertical line,
+.dark-mode .trend-bar-chart .recharts-cartesian-grid-horizontal line,
+.dark-mode .trend-bar-chart .recharts-cartesian-grid-vertical line {
+  stroke: var(--color-border);
+}
+
+.dark-mode .trend-line-chart .recharts-tooltip-wrapper .recharts-default-tooltip,
+.dark-mode .trend-bar-chart .recharts-tooltip-wrapper .recharts-default-tooltip {
+  background-color: var(--color-surface) !important;
+  border-color: var(--color-border) !important;
+}
+
+.dark-mode .trend-line-chart .recharts-tooltip-item,
+.dark-mode .trend-bar-chart .recharts-tooltip-item,
+.dark-mode .trend-line-chart .recharts-tooltip-label,
+.dark-mode .trend-bar-chart .recharts-tooltip-label {
+  color: var(--color-text) !important;
+}
+
+/* Custom Trend Chart Tooltip */
+.trend-chart-tooltip {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border, #e0e0e0);
+  border-radius: 4px;
+  padding: 0.75rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  min-width: 160px;
+  z-index: 10;
+  position: relative;
+}
+
+/* Ensure tooltip wrapper is above legend */
+.recharts-tooltip-wrapper {
+  z-index: 100 !important;
+}
+
+.trend-chart-tooltip-label {
+  font-weight: 600;
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--color-border, #e0e0e0);
+  color: var(--color-text);
+}
+
+.trend-chart-tooltip-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0;
+}
+
+.trend-chart-tooltip-item--secondary {
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--color-border, #e0e0e0);
+}
+
+.trend-chart-tooltip-color {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.trend-chart-tooltip-color--dashed {
+  position: relative;
+  background: transparent !important;
+}
+
+.trend-chart-tooltip-color--dashed::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: repeating-linear-gradient(
+    90deg,
+    currentColor 0,
+    currentColor 2px,
+    transparent 2px,
+    transparent 4px
+  );
+  transform: translateY(-50%);
+}
+
+.trend-chart-tooltip-name {
+  flex: 1;
+  font-size: 0.8125rem;
+  color: var(--color-text);
+}
+
+.trend-chart-tooltip-value {
+  font-weight: 600;
+  font-size: 0.8125rem;
+  color: var(--color-text);
+}
+
+.trend-chart-tooltip-total {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--color-border, #e0e0e0);
+}
+
+.trend-chart-tooltip-total .trend-chart-tooltip-name {
+  font-weight: 600;
+}
+
+/* Dark mode custom tooltip */
+.dark-mode .trend-chart-tooltip {
+  background: var(--color-surface);
+  border-color: var(--color-border);
+}
+
+.dark-mode .trend-chart-tooltip-label,
+.dark-mode .trend-chart-tooltip-item--secondary,
+.dark-mode .trend-chart-tooltip-total {
+  border-color: var(--color-border);
 }

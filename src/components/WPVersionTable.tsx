@@ -1,10 +1,7 @@
 import { useState, useMemo, useEffect } from 'react';
 import { DataViews } from '@wordpress/dataviews';
-import {
-  __experimentalToggleGroupControl as ToggleGroupControl,
-  __experimentalToggleGroupControlOption as ToggleGroupControlOption,
-} from '@wordpress/components';
 import type { WPVersionStats } from '../data/types';
+import type { ViewMode } from '../App';
 import {
   loadCategoryConfig,
   type CategoryConfig,
@@ -14,6 +11,7 @@ import '@wordpress/dataviews/build-style/style.css';
 
 interface WPVersionTableProps {
   wpVersionStats: WPVersionStats[];
+  viewMode: ViewMode;
 }
 
 interface View {
@@ -42,10 +40,7 @@ const defaultLayouts = {
 const BASE_FIELDS = ['wpVersion', 'gbVersionRange', 'releaseCount'];
 const CONTRIBUTOR_FIELDS = ['contributors', 'newContributors'];
 
-type ViewMode = 'averages' | 'totals' | 'distribution';
-
-export function WPVersionTable({ wpVersionStats }: WPVersionTableProps) {
-  const [viewMode, setViewMode] = useState<ViewMode>('averages');
+export function WPVersionTable({ wpVersionStats, viewMode }: WPVersionTableProps) {
   const [categoryConfig, setCategoryConfig] = useState<CategoryConfig | null>(null);
 
   // Load category config on mount
@@ -332,20 +327,6 @@ export function WPVersionTable({ wpVersionStats }: WPVersionTableProps) {
 
   return (
     <div className="wp-version-table">
-      <div className="wp-version-table-header">
-        <ToggleGroupControl
-          __nextHasNoMarginBottom
-          isBlock
-          label="View mode"
-          hideLabelFromVision
-          value={viewMode}
-          onChange={(value) => setViewMode(value as ViewMode)}
-        >
-          <ToggleGroupControlOption value="averages" label="Averages" />
-          <ToggleGroupControlOption value="totals" label="Totals" />
-          <ToggleGroupControlOption value="distribution" label="Distribution" />
-        </ToggleGroupControl>
-      </div>
       <DataViews
         data={paginatedData}
         fields={fields}

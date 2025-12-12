@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from 'recharts';
+import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from 'recharts';
 import type { CategoryConfig } from '../utils/categories';
 
 interface CategoryPieChartProps {
@@ -13,6 +13,7 @@ interface PieDataPoint {
   value: number;
   percentage: number;
   color: string;
+  [key: string]: string | number;
 }
 
 /**
@@ -78,8 +79,20 @@ export function CategoryPieChart({
     return null;
   }
 
-  // Filter to non-zero values only (maintains order, no sorting)
-  const pieData = chartData.filter((item) => item.value > 0);
+  // Filter to non-zero values only - this is the legend order (original config order)
+  const legendData = chartData.filter((item) => item.value > 0);
+
+  // Reorder for pie slices: Bug Fixes first, Features last (so they appear near top)
+  const pieData = [...legendData].sort((a, b) => {
+    // Bug Fixes should be first (index 0)
+    if (a.label === 'Bug Fixes') return -1;
+    if (b.label === 'Bug Fixes') return 1;
+    // Features should be last
+    if (a.label === 'Features') return 1;
+    if (b.label === 'Features') return -1;
+    // Keep others in original order
+    return 0;
+  });
 
   return (
     <div className="category-pie-chart">
@@ -90,10 +103,12 @@ export function CategoryPieChart({
               data={pieData}
               dataKey="value"
               nameKey="label"
-              cx="50%"
+              cx="40%"
               cy="50%"
               innerRadius={0}
               outerRadius={size / 2 - 10}
+              startAngle={90}
+              endAngle={-270}
               isAnimationActive
               animationBegin={0}
               animationDuration={150}
@@ -103,13 +118,33 @@ export function CategoryPieChart({
                 <Cell key={entry.label} fill={entry.color} />
               ))}
             </Pie>
+            <Tooltip
+              content={({ active, payload }) => {
+                if (!active || !payload || !payload[0]) return null;
+                const data = payload[0].payload as PieDataPoint;
+                return (
+                  <div className="category-pie-tooltip">
+                    <div
+                      className="category-pie-tooltip-label"
+                      // eslint-disable-next-line react/forbid-component-props -- dynamic color from data
+                      style={{ color: data.color }}
+                    >
+                      {data.label}
+                    </div>
+                    <div className="category-pie-tooltip-value">
+                      {data.value.toLocaleString()} PRs ({data.percentage}%)
+                    </div>
+                  </div>
+                );
+              }}
+            />
             <Legend
-              layout="horizontal"
-              align="center"
-              verticalAlign="bottom"
+              layout="vertical"
+              align="right"
+              verticalAlign="middle"
               content={() => (
-                <div className="category-pie-legend category-pie-legend--recharts">
-                  {pieData.map((item) => (
+                <div className="category-pie-legend category-pie-legend--side">
+                  {legendData.map((item) => (
                     <div
                       key={item.label}
                       className="category-pie-legend-item"
