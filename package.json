@@ -11,6 +11,8 @@
     "parse": "tsx scripts/parse-changelog.ts",
     "aggregate": "tsx scripts/aggregate-data.ts",
     "refresh": "npm run parse && npm run aggregate",
+    "compute-aggregates": "tsx scripts/compute-release-aggregates.ts",
+    "build-mapping": "tsx scripts/build-username-mapping.ts",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

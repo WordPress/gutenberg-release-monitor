@@ -1,4 +1,22 @@
 /**
+ * Contributor aggregate statistics for a single release.
+ * Privacy-preserving: only counts, no individual data.
+ */
+export interface ReleaseContributorAggregates {
+  /** Contributor statistics */
+  stats: {
+    total: number;
+    newContributors: number;
+  };
+  /** Sponsor breakdown: { "Automattic": 15, "Unknown": 42, ... } - sum = total */
+  sponsorBreakdown: Record<string, number>;
+  /** Country breakdown: { "United States": 20, "Unknown": 16, ... } - sum = total */
+  countryBreakdown: Record<string, number>;
+  /** ISO timestamp of when aggregates were computed */
+  aggregatedAt: string;
+}
+
+/**
  * A single Gutenberg release with parsed changelog data.
  */
 export interface Release {
@@ -29,6 +47,9 @@ export interface Release {
   newContributors: number;
   contributorsList: string[];
   newContributorsList: string[];
+
+  // Contributor aggregates (privacy-preserving)
+  contributorAggregates?: ReleaseContributorAggregates;
 
   // Metadata
   /** URL to the changelog on GitHub */

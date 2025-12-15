@@ -1,6 +1,7 @@
 import { parseArgs } from 'node:util';
-import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs';
+import { readFileSync, existsSync, mkdirSync } from 'node:fs';
 import { dirname } from 'node:path';
+import { writeJsonIfChanged } from './utils/file-utils.js';
 import {
   fetchAllReleases,
   fetchReleaseByTag,
@@ -250,9 +251,13 @@ async function main() {
       mkdirSync(dir, { recursive: true });
     }
 
-    // Write output
-    writeFileSync(outputPath, JSON.stringify(mergedReleases, null, 2));
-    console.log(`\nWrote ${mergedReleases.length} releases to ${outputPath}`);
+    // Write output (only if changed)
+    const releasesWritten = writeJsonIfChanged(outputPath, mergedReleases);
+    console.log(
+      releasesWritten
+        ? `\nWrote ${mergedReleases.length} releases to ${outputPath}`
+        : `\nNo changes to ${outputPath} (${mergedReleases.length} releases)`
+    );
 
     // Calculate unique contributors across all fetched releases
     console.log('\nCalculating unique contributors...');
@@ -263,14 +268,28 @@ async function main() {
       for (const c of newContributorsList) allContributors.add(c);
     }
 
-    // Write unique contributors count to a separate file
-    const contributorsData = {
-      uniqueCount: allContributors.size,
-      calculatedAt: new Date().toISOString(),
-    };
+    // Write unique contributors count to a separate file (only if count changed)
     const contributorsPath = dirname(outputPath) + '/contributors-meta.json';
-    writeFileSync(contributorsPath, JSON.stringify(contributorsData, null, 2));
-    console.log(`  Found ${allContributors.size} unique contributors`);
+    let existingContributorsMeta: { uniqueCount?: number; calculatedAt?: string } = {};
+    if (existsSync(contributorsPath)) {
+      try {
+        existingContributorsMeta = JSON.parse(readFileSync(contributorsPath, 'utf-8'));
+      } catch {
+        // If parse fails, treat as empty
+      }
+    }
+
+    const countChanged = existingContributorsMeta.uniqueCount !== allContributors.size;
+    if (countChanged) {
+      const contributorsData = {
+        uniqueCount: allContributors.size,
+        calculatedAt: new Date().toISOString(),
+      };
+      writeJsonIfChanged(contributorsPath, contributorsData);
+      console.log(`  Found ${allContributors.size} unique contributors`);
+    } else {
+      console.log(`  Found ${allContributors.size} unique contributors (unchanged)`);
+    }
 
     // Summary - compute from categories
     const totalPRs = aggregatedReleases.reduce((sum, r) => sum + r.totalPRs, 0);

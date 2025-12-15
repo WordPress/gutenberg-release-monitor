@@ -1,4 +1,4 @@
-import type { GitHubRelease } from './types.js';
+import type { GitHubRelease, GitHubUserProfile } from './types.js';
 
 const GITHUB_API_BASE = 'https://api.github.com';
 const REPO_OWNER = 'WordPress';
@@ -170,4 +170,39 @@ function compareVersions(a: string, b: string): number {
   }
 
   return 0;
+}
+
+/**
+ * Fetch a GitHub user profile by username.
+ */
+export async function fetchGitHubUserProfile(
+  username: string
+): Promise<GitHubUserProfile | null> {
+  const url = `${GITHUB_API_BASE}/users/${username}`;
+  const response = await fetch(url, { headers: getHeaders() });
+
+  if (response.status === 404) {
+    return null;
+  }
+
+  if (!response.ok) {
+    const remaining = response.headers.get('x-ratelimit-remaining');
+    if (response.status === 403 && remaining === '0') {
+      const resetTime = response.headers.get('x-ratelimit-reset');
+      const resetDate = resetTime ? new Date(parseInt(resetTime) * 1000) : null;
+      throw new Error(
+        `GitHub API rate limit exceeded. Resets at ${resetDate?.toISOString() ?? 'unknown'}`
+      );
+    }
+    throw new Error(`GitHub API error: ${response.status} ${response.statusText}`);
+  }
+
+  const data = await response.json();
+  return {
+    login: data.login,
+    name: data.name || null,
+    company: data.company || null,
+    location: data.location || null,
+    bio: data.bio || null,
+  };
 }

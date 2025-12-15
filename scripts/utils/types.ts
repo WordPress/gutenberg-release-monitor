@@ -52,3 +52,55 @@ export interface ParseArgs {
   /** Enable verbose logging */
   verbose?: boolean;
 }
+
+/**
+ * WordPress.org profile data for a contributor.
+ */
+export interface ContributorProfile {
+  username: string;
+  wpProfileExists: boolean;
+
+  // WP.org profile data (null if not found/not filled)
+  employer: string | null;
+  location: string | null;
+  memberSince: string | null;
+  badges: string[];
+
+  // GitHub username linked from WP.org profile (may differ from WP.org username)
+  wporgLinkedGitHubUsername: string | null;
+
+  // GitHub fallback data
+  githubCompany: string | null;
+  githubLocation: string | null;
+
+  // Track data source
+  employerSource: 'wporg' | 'github' | null;
+
+  fetchedAt: string;
+}
+
+/**
+ * Container for all contributor profile data.
+ */
+export interface ContributorsData {
+  contributors: Record<string, ContributorProfile>;
+  summary: {
+    total: number;
+    profilesFound: number;
+    withEmployer: number;
+    withLocation: number;
+    withBadges: number;
+  };
+  fetchedAt: string;
+}
+
+/**
+ * GitHub user profile data (subset of fields we care about).
+ */
+export interface GitHubUserProfile {
+  login: string;
+  name: string | null;
+  company: string | null;
+  location: string | null;
+  bio: string | null;
+}
