@@ -102,7 +102,7 @@ export async function fetchContributorData(
 			if ( ! location && ghProfile?.location ) {
 				location = ghProfile.location;
 			}
-		} catch ( error ) {
+		} catch {
 			if ( verbose ) {
 				console.error( `\n   Warning: GitHub fetch failed for ${ ghUsername }` );
 			}

@@ -22,7 +22,7 @@ const INLINE_PR_LINK_REGEX = /\[[^\]]+\]\(https:\/\/github\.com\/[^)]*\/pull\/\d
  * Regex to match bullet points for old changelog format (v5 and earlier).
  * Matches lines starting with * or - followed by content.
  */
-const BULLET_POINT_REGEX = /^[\*\-]\s+.+/;
+const BULLET_POINT_REGEX = /^[*-]\s+.+/;
 
 /**
  * Regex to match a category header (### Category).

@@ -21,9 +21,7 @@ import { SponsorNormalizer } from './utils/sponsor-normalization.js';
 import {
 	loadUsernameMapping,
 	fetchContributorProfiles,
-	delay,
 	type ContributorData,
-	type UsernameMapping,
 } from './utils/contributor-data.js';
 import type {
 	Release,

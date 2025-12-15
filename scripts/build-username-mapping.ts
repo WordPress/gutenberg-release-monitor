@@ -8,7 +8,7 @@
  */
 
 import { parseArgs } from 'node:util';
-import { readFileSync, existsSync, mkdirSync } from 'node:fs';
+import { existsSync, mkdirSync } from 'node:fs';
 import { dirname } from 'node:path';
 import { writeJsonIfChanged } from './utils/file-utils.js';
 import { fetchWPOrgProfile } from './utils/wporg-api.js';
