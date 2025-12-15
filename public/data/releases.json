@@ -95,28 +95,28 @@
         "Unknown": 6
       },
       "countryBreakdown": {
-        "Spain": 5,
+        "Spain": 6,
         "United Kingdom": 5,
-        "United States": 4,
-        "Australia": 4,
+        "United States": 5,
+        "Australia": 5,
         "India": 3,
         "Portugal": 2,
         "Greece": 2,
         "Algeria": 2,
+        "Italy": 2,
         "Japan": 2,
         "France": 1,
         "Germany": 1,
         "Denmark": 1,
         "Czechia": 1,
         "Georgia": 1,
-        "Italy": 1,
         "Russia": 1,
         "Bangladesh": 1,
         "Canada": 1,
         "Lithuania": 1,
         "Nigeria": 1,
         "Bulgaria": 1,
-        "Unknown": 8
+        "Unknown": 4
       },
       "aggregatedAt": "2025-12-15T19:28:52.222Z"
     }
@@ -224,21 +224,21 @@
         "Unknown": 8
       },
       "countryBreakdown": {
-        "United States": 9,
+        "United States": 10,
         "India": 8,
-        "Australia": 4,
-        "Spain": 4,
+        "Australia": 5,
+        "Spain": 5,
         "United Kingdom": 3,
         "Portugal": 2,
+        "Italy": 2,
         "Japan": 2,
         "Czechia": 1,
         "Georgia": 1,
-        "Italy": 1,
         "Greece": 1,
         "Germany": 1,
         "Bulgaria": 1,
         "Algeria": 1,
-        "Unknown": 12
+        "Unknown": 8
       },
       "aggregatedAt": "2025-12-15T19:28:52.222Z"
     }
@@ -330,18 +330,19 @@
       "countryBreakdown": {
         "United States": 7,
         "India": 6,
-        "Spain": 3,
+        "Spain": 4,
         "Australia": 3,
         "United Kingdom": 2,
         "Japan": 2,
         "Morocco": 1,
         "Portugal": 1,
+        "Italy": 1,
         "Germany": 1,
         "Georgia": 1,
         "Greece": 1,
         "Canada": 1,
         "Algeria": 1,
-        "Unknown": 8
+        "Unknown": 6
       },
       "aggregatedAt": "2025-12-15T19:28:52.223Z"
     }

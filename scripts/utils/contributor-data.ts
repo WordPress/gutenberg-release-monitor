@@ -76,6 +76,7 @@ export function resolveWporgUsername(
 /**
  * Fetch contributor data for a single username.
  * Returns in-memory data structure (not persisted).
+ * Checks WP.org first, then GitHub for missing data.
  */
 export async function fetchContributorData(
 	githubUsername: string,
@@ -91,12 +92,12 @@ export async function fetchContributorData(
 	let sponsor = wpProfile.employer || null;
 	let location = wpProfile.location || null;
 
-	// If no sponsor from WP.org, try GitHub
-	if ( ! sponsor ) {
+	// Check GitHub for missing sponsor OR missing location
+	if ( ! sponsor || ! location ) {
 		const ghUsername = wpProfile.wporgLinkedGitHubUsername || githubUsername;
 		try {
 			const ghProfile = await fetchGitHubUserProfile( ghUsername );
-			if ( ghProfile?.company ) {
+			if ( ! sponsor && ghProfile?.company ) {
 				sponsor = ghProfile.company.replace( /^@/, '' ).trim() || null;
 			}
 			if ( ! location && ghProfile?.location ) {

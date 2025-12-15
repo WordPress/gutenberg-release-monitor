@@ -45,12 +45,13 @@
         "Unknown": 24
       },
       "countryBreakdown": {
-        "United States": 9,
+        "United States": 10,
         "India": 8,
-        "Spain": 6,
+        "Spain": 7,
         "United Kingdom": 5,
-        "Australia": 4,
+        "Australia": 5,
         "Germany": 3,
+        "Italy": 3,
         "Japan": 3,
         "Portugal": 2,
         "Greece": 2,
@@ -59,11 +60,10 @@
         "Denmark": 1,
         "Czechia": 1,
         "Georgia": 1,
-        "Italy": 1,
         "Canada": 1,
         "Lithuania": 1,
         "Bulgaria": 1,
-        "Unknown": 28
+        "Unknown": 23
       },
       "aggregatedAt": "2025-12-15T20:23:29.986Z"
     }
