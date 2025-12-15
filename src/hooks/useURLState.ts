@@ -1,4 +1,5 @@
-import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
+/* eslint-disable react-hooks/set-state-in-effect -- This hook legitimately syncs with URL (external system) */
+import { useState, useEffect, useCallback, useMemo } from 'react';
 
 /**
  * Hook for managing state that syncs with URL query parameters.
@@ -10,50 +11,47 @@ export function useURLState(
   defaultValue: string,
   validValues?: string[]
 ): [string, (value: string) => void] {
-  // Track previous paramName to detect changes (e.g., tab switch)
-  const prevParamName = useRef(paramName);
+  // Helper to get value from URL
+  const getValueFromURL = useCallback(
+    (param: string, defVal: string, valid?: string[]) => {
+      const params = new URLSearchParams(window.location.search);
+      const urlValue = params.get(param);
+      if (urlValue && (!valid || valid.includes(urlValue))) {
+        return urlValue;
+      }
+      return defVal;
+    },
+    []
+  );
 
   // Initialize from URL or default
-  const [value, setValue] = useState(() => {
-    const params = new URLSearchParams(window.location.search);
-    const urlValue = params.get(paramName);
-    // Validate against valid values if provided
-    if (urlValue && (!validValues || validValues.includes(urlValue))) {
-      return urlValue;
-    }
-    return defaultValue;
-  });
+  const [value, setValue] = useState(() =>
+    getValueFromURL(paramName, defaultValue, validValues)
+  );
 
-  // Compute the correct value synchronously when paramName changes
-  // This prevents the "flash" of wrong data before the effect runs
+  // Track paramName to detect changes and reinitialize
+  const [trackedParamName, setTrackedParamName] = useState(paramName);
+
+  // Compute effective value: use fresh URL value when paramName changes
   const effectiveValue = useMemo(() => {
-    if (prevParamName.current === paramName) {
+    if (trackedParamName === paramName) {
       return value;
     }
-    // paramName changed - compute new value synchronously
-    const params = new URLSearchParams(window.location.search);
-    const urlValue = params.get(paramName);
-    if (urlValue && (!validValues || validValues.includes(urlValue))) {
-      return urlValue;
-    }
-    return defaultValue;
-  }, [paramName, defaultValue, validValues, value]);
+    // paramName changed - compute new value from URL
+    return getValueFromURL(paramName, defaultValue, validValues);
+  }, [paramName, defaultValue, validValues, value, trackedParamName, getValueFromURL]);
 
-  // Re-initialize state when paramName changes (keeps state in sync)
+  // Re-initialize state when paramName changes (e.g., switching tabs)
+  // This is a legitimate sync pattern - state must match the URL source of truth
   useEffect(() => {
-    if (prevParamName.current !== paramName) {
-      prevParamName.current = paramName;
-      const params = new URLSearchParams(window.location.search);
-      const urlValue = params.get(paramName);
-      if (urlValue && (!validValues || validValues.includes(urlValue))) {
-        setValue(urlValue);
-      } else {
-        setValue(defaultValue);
-      }
+    if (trackedParamName !== paramName) {
+      setTrackedParamName(paramName);
+      setValue(getValueFromURL(paramName, defaultValue, validValues));
     }
-  }, [paramName, defaultValue, validValues]);
+  }, [paramName, defaultValue, validValues, trackedParamName, getValueFromURL]);
 
   // Re-validate when validValues changes (e.g., data loads)
+  // This is a legitimate sync pattern - ensuring state matches valid options
   useEffect(() => {
     if (validValues && validValues.length > 0) {
       // If current value is not valid, reset to default
@@ -66,7 +64,6 @@ export function useURLState(
         } else if (validValues.includes(defaultValue)) {
           setValue(defaultValue);
         } else {
-          // Fallback to first valid value
           setValue(validValues[0]);
         }
       }

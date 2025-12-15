@@ -22,11 +22,13 @@ import { DataTable } from './components/DataTable';
 import { TrendChart } from './components/TrendChart';
 import { getDefaultCategoryIds } from './components/CategoryFilter';
 
-export type ViewMode = 'averages' | 'totals' | 'distribution';
+export type ViewMode = 'averages' | 'totals' | 'distribution' | 'sponsors' | 'countries';
 export type ChartType = 'line' | 'bar' | 'area' | 'stacked';
+export type MetricType = 'prs' | 'contributors';
 
-const VIEW_MODES: ViewMode[] = ['averages', 'totals', 'distribution'];
+const VIEW_MODES: ViewMode[] = ['averages', 'totals', 'distribution', 'sponsors', 'countries'];
 const CHART_TYPES: ChartType[] = ['line', 'bar', 'area', 'stacked'];
+const METRIC_TYPES: MetricType[] = ['prs', 'contributors'];
 const TABS = ['by-wp-version', 'by-gb-release'] as const;
 type TabName = typeof TABS[number];
 
@@ -47,9 +49,11 @@ function App() {
   const [activeTabStr, setActiveTab] = useURLState('tab', 'by-wp-version', [...TABS]);
   const [viewModeStr, setViewMode] = useURLState('view', 'averages', VIEW_MODES);
   const [chartTypeStr, setChartType] = useURLState('chart', 'stacked', CHART_TYPES);
+  const [metricStr, setMetric] = useURLState('metric', 'prs', METRIC_TYPES);
   const activeTab = activeTabStr as TabName;
   const viewMode = viewModeStr as ViewMode;
   const chartType = chartTypeStr as ChartType;
+  const metric = metricStr as MetricType;
 
   // Category filter state (synced with URL)
   const [visibleCategories, setVisibleCategories] = useState<string[]>([]);
@@ -183,7 +187,19 @@ function App() {
             >
               {() => {
                 const isWPTab = activeTab === 'by-wp-version';
-                const effectiveViewMode = !isWPTab && viewMode === 'totals' ? 'averages' : viewMode;
+                const isContributorMetric = metric === 'contributors';
+                // Adjust viewMode when switching metrics or tabs
+                let effectiveViewMode = viewMode;
+                // GB Release tab doesn't have totals mode
+                if (!isWPTab && viewMode === 'totals') {
+                  effectiveViewMode = 'averages';
+                }
+                // Contributor mode doesn't have category distribution, PR mode doesn't have sponsors/countries
+                if (isContributorMetric && viewMode === 'distribution') {
+                  effectiveViewMode = 'sponsors';
+                } else if (!isContributorMetric && (viewMode === 'sponsors' || viewMode === 'countries')) {
+                  effectiveViewMode = 'distribution';
+                }
 
                 // Compute props objects to avoid conditional JSX rendering
                 // This keeps components mounted and animating on data changes
@@ -191,13 +207,16 @@ function App() {
                   ? { dataSource: 'wp-version' as const, data: wpVersionStats }
                   : { dataSource: 'gb-release' as const, data: releases };
 
+                // For GB release tab, use releases data for contributors (has contributor counts)
+                // and timeSeries for PRs (optimized for chart)
+                const gbChartData = metric === 'contributors' ? releases : timeSeries;
                 const trendChartProps = isWPTab
-                  ? { dataSource: 'wp-version' as const, data: wpVersionStats }
-                  : { dataSource: 'gb-release' as const, data: timeSeries, releaseCount: 50 };
+                  ? { dataSource: 'wp-version' as const, data: wpVersionStats, metric }
+                  : { dataSource: 'gb-release' as const, data: gbChartData, releaseCount: 50, metric };
 
                 const dataTableProps = isWPTab
-                  ? { dataSource: 'wp-version' as const, data: wpVersionStats, viewMode }
-                  : { dataSource: 'gb-release' as const, data: releases, viewMode: effectiveViewMode };
+                  ? { dataSource: 'wp-version' as const, data: wpVersionStats, viewMode, metric }
+                  : { dataSource: 'gb-release' as const, data: releases, viewMode: effectiveViewMode, metric };
 
                 return (
                   <div className="tab-content">
@@ -208,23 +227,47 @@ function App() {
                         summary={summary}
                         visibleCategories={visibleCategories}
                         onCategoryToggle={handleCategoryToggle}
+                        viewMode={effectiveViewMode}
+                        metric={metric}
                       />
                     </section>
 
-                    {/* View mode toggle - different options per tab */}
-                    <div className="view-mode-toggle">
-                      <ToggleGroupControl
-                        __nextHasNoMarginBottom
-                        isBlock
-                        label="View mode"
-                        hideLabelFromVision
-                        value={isWPTab ? viewMode : effectiveViewMode}
-                        onChange={(value) => setViewMode(value as ViewMode)}
-                      >
-                        <ToggleGroupControlOption value="averages" label={isWPTab ? 'Per Release' : 'PRs'} />
-                        {isWPTab && <ToggleGroupControlOption value="totals" label="Totals" />}
-                        <ToggleGroupControlOption value="distribution" label="Distribution" />
-                      </ToggleGroupControl>
+                    {/* Metric and view mode toggles */}
+                    <div className="view-controls">
+                      <div className="metric-toggle">
+                        <ToggleGroupControl
+                          __nextHasNoMarginBottom
+                          isBlock
+                          label="Metric"
+                          hideLabelFromVision
+                          value={metric}
+                          onChange={(value) => setMetric(value as MetricType)}
+                        >
+                          <ToggleGroupControlOption value="prs" label="PRs" />
+                          <ToggleGroupControlOption value="contributors" label="Contributors" />
+                        </ToggleGroupControl>
+                      </div>
+                      <div className="view-mode-toggle">
+                        <ToggleGroupControl
+                          __nextHasNoMarginBottom
+                          isBlock
+                          label="View mode"
+                          hideLabelFromVision
+                          value={isWPTab ? viewMode : effectiveViewMode}
+                          onChange={(value) => setViewMode(value as ViewMode)}
+                        >
+                          <ToggleGroupControlOption value="averages" label={isWPTab ? 'Per Release' : (metric === 'prs' ? 'PRs' : 'Contributors')} />
+                          {isWPTab && <ToggleGroupControlOption value="totals" label="Totals" />}
+                          {metric === 'prs' ? (
+                            <ToggleGroupControlOption value="distribution" label="Distribution" />
+                          ) : (
+                            <>
+                              <ToggleGroupControlOption value="sponsors" label="Sponsors" />
+                              <ToggleGroupControlOption value="countries" label="Countries" />
+                            </>
+                          )}
+                        </ToggleGroupControl>
+                      </div>
                     </div>
 
                     {/* Chart - single instance, props switch */}

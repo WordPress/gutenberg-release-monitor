@@ -8,7 +8,7 @@ import {
   __experimentalText as Text,
 } from '@wordpress/components';
 import { chevronLeft, chevronRight } from '@wordpress/icons';
-import type { Summary, WPVersionStats, Release } from '../data/types';
+import type { Summary, WPVersionStats, Release, ReleaseContributorAggregates, WPVersionContributorAggregates } from '../data/types';
 import { loadCategoryConfig, aggregateCategories, type CategoryConfig } from '../utils/categories';
 import { CategoryPieChart } from './CategoryPieChart';
 import { useURLState } from '../hooks/useURLState';
@@ -19,6 +19,10 @@ interface BaseSummaryStatsProps {
   visibleCategories?: string[];
   /** Callback when a category is toggled via legend click */
   onCategoryToggle?: (categoryId: string, isVisible: boolean) => void;
+  /** Current view mode (to sync breakdown selection when sponsors/countries) */
+  viewMode?: 'averages' | 'totals' | 'distribution' | 'sponsors' | 'countries';
+  /** Current metric type */
+  metric?: 'prs' | 'contributors';
 }
 
 interface WPVersionSummaryStatsProps extends BaseSummaryStatsProps {
@@ -32,6 +36,7 @@ interface GBReleaseSummaryStatsProps extends BaseSummaryStatsProps {
 }
 
 type SummaryStatsProps = WPVersionSummaryStatsProps | GBReleaseSummaryStatsProps;
+
 
 // Normalized data structure for both sources
 interface NormalizedItem {
@@ -47,6 +52,8 @@ interface NormalizedItem {
   // Category data (raw categories for GB, pre-aggregated for WP)
   rawCategories?: Record<string, number>;
   categoryTotals?: Record<string, number>;
+  // Contributor aggregates (sponsor/country breakdowns)
+  contributorAggregates?: ReleaseContributorAggregates | WPVersionContributorAggregates;
   // WP-specific
   releaseCount?: number;
   gbVersionRange?: string;
@@ -88,6 +95,15 @@ function formatDate(dateStr: string): string {
   });
 }
 
+// Map category IDs to Summary field name suffixes (constant, defined outside component)
+const CATEGORY_TO_SUMMARY_FIELD: Record<string, string> = {
+  features: 'Features',
+  bugs: 'Bugs',
+  codeQuality: 'CodeQuality',
+  a11y: 'A11y',
+  performance: 'Perf',
+};
+
 export function SummaryStats(props: SummaryStatsProps) {
   const { summary, visibleCategories, onCategoryToggle, dataSource, data } = props;
   const isWPVersion = dataSource === 'wp-version';
@@ -112,6 +128,7 @@ export function SummaryStats(props: SummaryStatsProps) {
         newContributors: stat.totalNewContributors,
         hasContributorData: stat.totalContributors > 0,
         categoryTotals: stat.categoryTotals,
+        contributorAggregates: stat.contributorAggregates,
         releaseCount: stat.releaseCount,
         gbVersionRange: stat.gbVersionRange,
         avgPRsPerRelease: stat.avgPRsPerRelease,
@@ -129,6 +146,7 @@ export function SummaryStats(props: SummaryStatsProps) {
       newContributors: release.newContributors,
       hasContributorData: release.contributors > 0,
       rawCategories: release.categories,
+      contributorAggregates: release.contributorAggregates,
       date: release.date,
       wpVersion: release.wpVersion ?? undefined,
     }));
@@ -169,14 +187,14 @@ export function SummaryStats(props: SummaryStatsProps) {
     return aggregateCategories(selectedItem.rawCategories ?? {}, categoryConfig);
   }, [selectedItem, categoryConfig]);
 
-  // Map category IDs to Summary field name suffixes
-  const categoryToSummaryField: Record<string, string> = {
-    features: 'Features',
-    bugs: 'Bugs',
-    codeQuality: 'CodeQuality',
-    a11y: 'A11y',
-    performance: 'Perf',
-  };
+  // Get sponsor and country breakdown data
+  const sponsorData = useMemo(() => {
+    return selectedItem?.contributorAggregates?.sponsorBreakdown ?? {};
+  }, [selectedItem]);
+
+  const countryData = useMemo(() => {
+    return selectedItem?.contributorAggregates?.countryBreakdown ?? {};
+  }, [selectedItem]);
 
   // Build stat items based on selected item
   const { primaryStats, secondaryStats } = useMemo(() => {
@@ -195,7 +213,7 @@ export function SummaryStats(props: SummaryStatsProps) {
           ? Math.round(total / selectedItem.releaseCount)
           : total;
         const hasData = total > 0;
-        const summaryFieldSuffix = categoryToSummaryField[agg.id];
+        const summaryFieldSuffix = CATEGORY_TO_SUMMARY_FIELD[agg.id];
         const summaryTotal = summaryFieldSuffix
           ? (summary[`avg${summaryFieldSuffix}Total` as keyof Summary] as number | undefined)
           : undefined;
@@ -240,7 +258,7 @@ export function SummaryStats(props: SummaryStatsProps) {
     ];
 
     return { primaryStats: primary, secondaryStats: [] };
-  }, [selectedItem, categoryConfig, categoryTotals, summary, categoryToSummaryField]);
+  }, [selectedItem, categoryConfig, categoryTotals, summary]);
 
   // Build version options for dropdown
   const versionOptions = useMemo(
@@ -357,16 +375,46 @@ export function SummaryStats(props: SummaryStatsProps) {
           </div>
 
           <div className="summary-content">
-            {categoryConfig && (
-              <CategoryPieChart
-                categoryTotals={categoryTotals}
-                categoryConfig={categoryConfig}
-                size={200}
-                releaseCount={selectedItem.releaseCount}
-                visibleCategories={visibleCategories}
-                onCategoryToggle={onCategoryToggle}
-              />
-            )}
+            <div className="summary-pie-charts">
+              {categoryConfig && (
+                <>
+                  <div className="summary-pie-chart-item">
+                    <Text className="summary-pie-chart-title">Categories</Text>
+                    <CategoryPieChart
+                      breakdownType="categories"
+                      categoryTotals={categoryTotals}
+                      categoryConfig={categoryConfig}
+                      size={200}
+                      releaseCount={selectedItem.releaseCount}
+                      visibleCategories={visibleCategories}
+                      onCategoryToggle={onCategoryToggle}
+                    />
+                  </div>
+                  <div className="summary-pie-chart-item">
+                    <Text className="summary-pie-chart-title">Sponsors</Text>
+                    <CategoryPieChart
+                      breakdownType="sponsors"
+                      breakdownData={sponsorData}
+                      categoryTotals={categoryTotals}
+                      categoryConfig={categoryConfig}
+                      size={200}
+                      releaseCount={selectedItem.releaseCount}
+                    />
+                  </div>
+                  <div className="summary-pie-chart-item">
+                    <Text className="summary-pie-chart-title">Countries</Text>
+                    <CategoryPieChart
+                      breakdownType="countries"
+                      breakdownData={countryData}
+                      categoryTotals={categoryTotals}
+                      categoryConfig={categoryConfig}
+                      size={200}
+                      releaseCount={selectedItem.releaseCount}
+                    />
+                  </div>
+                </>
+              )}
+            </div>
 
             <div className="summary-stats-container">
               {selectedItem.sourceType === 'wp' && (

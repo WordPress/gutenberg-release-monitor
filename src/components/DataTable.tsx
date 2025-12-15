@@ -2,7 +2,7 @@ import { useState, useMemo, useEffect } from 'react';
 import { DataViews } from '@wordpress/dataviews';
 import { ExternalLink, Tooltip } from '@wordpress/components';
 import type { Release, WPVersionStats } from '../data/types';
-import type { ViewMode } from '../App';
+import type { ViewMode, MetricType } from '../App';
 import {
   loadCategoryConfig,
   getAggregatedPRs,
@@ -13,6 +13,7 @@ import '@wordpress/dataviews/build-style/style.css';
 
 interface BaseDataTableProps {
   viewMode: ViewMode;
+  metric: MetricType;
 }
 
 interface WPVersionDataTableProps extends BaseDataTableProps {
@@ -75,8 +76,9 @@ const defaultLayouts = {
 const CONTRIBUTOR_FIELDS = ['contributors', 'newContributors'];
 
 export function DataTable(props: DataTableProps) {
-  const { dataSource, data, viewMode } = props;
+  const { dataSource, data, viewMode, metric } = props;
   const isWPVersion = dataSource === 'wp-version';
+  const isContributorMetric = metric === 'contributors';
 
   const [categoryConfig, setCategoryConfig] = useState<CategoryConfig | null>(null);
 
@@ -162,15 +164,24 @@ export function DataTable(props: DataTableProps) {
       .map((v) => ({ value: v, label: `WP ${v}` }));
   }, [isWPVersion, tableData]);
 
-  // Compute visible field IDs based on data source and view mode
+  // Compute visible field IDs based on data source, view mode, and metric
   const visibleFieldIds = useMemo(() => {
     const categoryFieldIds = defaultVisibleCategories.map((agg) => `cat_${agg.id}`);
 
-    if (isWPVersion) {
-      return ['version', 'gbVersionRange', 'releaseCount', 'totalPRs', ...categoryFieldIds, ...CONTRIBUTOR_FIELDS];
+    // Base fields that always appear
+    const baseFields = isWPVersion
+      ? ['version', 'gbVersionRange', 'releaseCount']
+      : ['version', 'wpVersionIncluded', 'date'];
+
+    // Metric-specific fields
+    if (isContributorMetric) {
+      // Contributor metric: show contributor fields only
+      return [...baseFields, ...CONTRIBUTOR_FIELDS];
     }
-    return ['version', 'wpVersionIncluded', 'date', 'totalPRs', ...categoryFieldIds, ...CONTRIBUTOR_FIELDS];
-  }, [isWPVersion, defaultVisibleCategories]);
+
+    // PR metric: show totalPRs and category breakdown
+    return [...baseFields, 'totalPRs', ...categoryFieldIds];
+  }, [isWPVersion, defaultVisibleCategories, isContributorMetric]);
 
   const defaultSortField = 'version';
 
@@ -184,17 +195,15 @@ export function DataTable(props: DataTableProps) {
     },
     search: '',
     filters: [],
-    fields: visibleFieldIds,
+    fields: [],
     layout: {},
   });
 
-  // Update view fields when mode or config changes
-  useEffect(() => {
-    setView((prev) => ({
-      ...prev,
-      fields: visibleFieldIds,
-    }));
-  }, [visibleFieldIds]);
+  // Compute effective view with current fields (avoids setState in effect)
+  const effectiveView = useMemo(
+    () => ({ ...view, fields: visibleFieldIds }),
+    [view, visibleFieldIds]
+  );
 
   // Build fields for DataViews (all work with TableRow)
   const fields = useMemo(() => {
@@ -342,10 +351,9 @@ export function DataTable(props: DataTableProps) {
       },
     }));
 
-    // Contributor fields (hide in distribution mode for WP)
+    // Contributor fields (always defined, visibility controlled by visibleFieldIds)
     const contributorFields = [];
-    if (!(isWPVersion && viewMode === 'distribution')) {
-      contributorFields.push({
+    contributorFields.push({
         id: 'contributors',
         label: 'Contributors',
         enableSorting: true,
@@ -390,7 +398,6 @@ export function DataTable(props: DataTableProps) {
           ) : '0';
         },
       });
-    }
 
     return [...baseFields, ...categoryFields, ...contributorFields];
   }, [categoryConfig, isWPVersion, viewMode, wpVersionOptions]);
@@ -495,7 +502,7 @@ export function DataTable(props: DataTableProps) {
       <DataViews
         data={paginatedData}
         fields={fields}
-        view={view as Parameters<typeof DataViews>[0]['view']}
+        view={effectiveView as Parameters<typeof DataViews>[0]['view']}
         onChangeView={setView as Parameters<typeof DataViews>[0]['onChangeView']}
         paginationInfo={paginationInfo}
         defaultLayouts={defaultLayouts}

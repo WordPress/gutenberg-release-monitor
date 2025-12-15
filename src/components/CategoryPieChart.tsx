@@ -2,15 +2,22 @@ import { useMemo, useCallback } from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from 'recharts';
 import type { CategoryConfig } from '../utils/categories';
 
+type BreakdownType = 'categories' | 'sponsors' | 'countries';
+
 interface CategoryPieChartProps {
+  /** Type of breakdown being displayed */
+  breakdownType?: BreakdownType;
+  /** Generic breakdown data (for sponsors/countries) */
+  breakdownData?: Record<string, number>;
+  /** Category totals (for categories breakdown) */
   categoryTotals: Record<string, number>;
   categoryConfig: CategoryConfig;
   size?: number;
   /** Number of releases (for computing averages in WP Version view) */
   releaseCount?: number;
-  /** Currently visible category IDs (for clickable legend) */
+  /** Currently visible category IDs (for clickable legend) - only applies to categories */
   visibleCategories?: string[];
-  /** Callback when a category is toggled via legend click */
+  /** Callback when a category is toggled via legend click - only applies to categories */
   onCategoryToggle?: (categoryId: string, isVisible: boolean) => void;
 }
 
@@ -37,7 +44,7 @@ function distributePercentages(items: { value: number; [key: string]: unknown }[
   const remainders = exact.map((e, i) => ({ index: i, remainder: e - floored[i] }));
 
   // Distribute the remaining percentage points to items with largest remainders
-  let remaining = 100 - floored.reduce((a, b) => a + b, 0);
+  const remaining = 100 - floored.reduce((a, b) => a + b, 0);
   remainders.sort((a, b) => b.remainder - a.remainder);
 
   const result = [...floored];
@@ -48,7 +55,16 @@ function distributePercentages(items: { value: number; [key: string]: unknown }[
   return result;
 }
 
+// Predefined color palette for sponsor/country breakdowns
+const BREAKDOWN_COLORS = [
+  '#4CAF50', '#2196F3', '#FF9800', '#9C27B0', '#F44336',
+  '#00BCD4', '#E91E63', '#8BC34A', '#FF5722', '#3F51B5',
+  '#CDDC39', '#795548', '#607D8B', '#009688', '#FFC107',
+];
+
 export function CategoryPieChart({
+  breakdownType = 'categories',
+  breakdownData,
   categoryTotals,
   categoryConfig,
   size = 200,
@@ -56,6 +72,8 @@ export function CategoryPieChart({
   visibleCategories,
   onCategoryToggle,
 }: CategoryPieChartProps) {
+  // Determine if we're showing categories or sponsor/country breakdown
+  const isCategories = breakdownType === 'categories';
   // Determine which categories to show based on visibleCategories prop
   const effectiveCategories = useMemo(() => {
     if (visibleCategories && visibleCategories.length > 0) {
@@ -73,39 +91,95 @@ export function CategoryPieChart({
   }, [categoryConfig]);
 
   const chartData = useMemo((): PieDataPoint[] => {
-    // Build data points for visible categories only
-    const allData = effectiveCategories.map((agg) => ({
-      id: agg.id,
-      label: agg.label,
-      value: categoryTotals[agg.id] || 0,
-      color: agg.color,
+    if (isCategories) {
+      // Category breakdown: use categoryConfig for structure and colors
+      const allData = effectiveCategories.map((agg) => ({
+        id: agg.id,
+        label: agg.label,
+        value: categoryTotals[agg.id] || 0,
+        color: agg.color,
+      }));
+
+      // Check if we have any data
+      const hasData = allData.some((point) => point.value > 0);
+      if (!hasData) return [];
+
+      // Filter to non-zero for percentage calculation only
+      const nonZeroData = allData.filter((point) => point.value > 0);
+      const percentages = distributePercentages(nonZeroData);
+
+      // Map percentages back, keeping all categories in order
+      let percentageIndex = 0;
+      return allData.map((point) => ({
+        ...point,
+        percentage: point.value > 0 ? percentages[percentageIndex++] : 0,
+      }));
+    }
+
+    // Sponsor/Country breakdown: use breakdownData directly
+    const data = breakdownData ?? {};
+    const entries = Object.entries(data);
+    if (entries.length === 0) return [];
+
+    // Sort by value descending, but keep "Unknown" at the end
+    const sorted = entries.sort(([aKey, aVal], [bKey, bVal]) => {
+      if (aKey === 'Unknown') return 1;
+      if (bKey === 'Unknown') return -1;
+      return bVal - aVal;
+    });
+
+    // Limit to top N items + "Others" for readability (pie charts work best with 5-7 segments)
+    const MAX_ITEMS = 8;
+    let displayItems: Array<[string, number]>;
+    let othersValue = 0;
+
+    if (sorted.length > MAX_ITEMS) {
+      displayItems = sorted.slice(0, MAX_ITEMS - 1);
+      // Sum up the rest as "Others"
+      othersValue = sorted.slice(MAX_ITEMS - 1).reduce((sum, [, val]) => sum + val, 0);
+    } else {
+      displayItems = sorted;
+    }
+
+    // Build data points with generated colors
+    const allData = displayItems.map(([label, value], index) => ({
+      id: label.toLowerCase().replace(/\s+/g, '-'),
+      label,
+      value,
+      color: label === 'Unknown' ? '#9E9E9E' : BREAKDOWN_COLORS[index % BREAKDOWN_COLORS.length],
     }));
 
-    // Check if we have any data
-    const hasData = allData.some((point) => point.value > 0);
-    if (!hasData) return [];
+    // Add "Others" if needed
+    if (othersValue > 0) {
+      allData.push({
+        id: 'others',
+        label: 'Others',
+        value: othersValue,
+        color: '#BDBDBD',
+      });
+    }
 
-    // Filter to non-zero for percentage calculation only
+    // Calculate percentages
     const nonZeroData = allData.filter((point) => point.value > 0);
     const percentages = distributePercentages(nonZeroData);
 
-    // Map percentages back, keeping all categories in order
     let percentageIndex = 0;
     return allData.map((point) => ({
       ...point,
       percentage: point.value > 0 ? percentages[percentageIndex++] : 0,
     }));
-  }, [categoryTotals, effectiveCategories]);
+  }, [isCategories, categoryTotals, effectiveCategories, breakdownData]);
 
   const handleLegendClick = useCallback(
-    (categoryId: string) => {
-      if (!onCategoryToggle) return;
+    (itemId: string) => {
+      // Only allow toggling for categories breakdown
+      if (!isCategories || !onCategoryToggle) return;
       const isCurrentlyVisible = visibleCategories
-        ? visibleCategories.includes(categoryId)
-        : categoryConfig.aggregations.find((a) => a.id === categoryId)?.includeByDefault ?? false;
-      onCategoryToggle(categoryId, !isCurrentlyVisible);
+        ? visibleCategories.includes(itemId)
+        : categoryConfig.aggregations.find((a) => a.id === itemId)?.includeByDefault ?? false;
+      onCategoryToggle(itemId, !isCurrentlyVisible);
     },
-    [onCategoryToggle, visibleCategories, categoryConfig]
+    [isCategories, onCategoryToggle, visibleCategories, categoryConfig]
   );
 
   // Filter to non-zero values only for the pie chart
@@ -123,30 +197,62 @@ export function CategoryPieChart({
     return 0;
   });
 
-  // Build legend data from ALL categories (to allow toggling hidden ones)
-  // Use chartData percentages directly - they're already distributed correctly
+  // Build legend data - different structure for categories vs sponsor/country
   const legendData = useMemo(() => {
-    return allCategories.map((agg) => {
-      const isVisible = visibleCategories
-        ? visibleCategories.includes(agg.id)
-        : agg.includeByDefault;
-      // Find percentage from chartData (which uses distributePercentages)
-      const dataPoint = chartData.find((d) => d.id === agg.id);
-      const total = categoryTotals[agg.id] || 0;
-      return {
-        id: agg.id,
-        label: agg.label,
-        color: agg.color,
-        value: total,
-        // Use chartData percentage if available (visible category), otherwise 0
-        percentage: dataPoint?.percentage ?? 0,
-        isVisible,
-        hasData: total > 0,
-      };
-    });
-  }, [allCategories, visibleCategories, chartData, categoryTotals]);
+    if (isCategories) {
+      // For categories: show ALL categories (to allow toggling hidden ones)
+      return allCategories.map((agg) => {
+        const isVisible = visibleCategories
+          ? visibleCategories.includes(agg.id)
+          : agg.includeByDefault;
+        // Find percentage from chartData (which uses distributePercentages)
+        const dataPoint = chartData.find((d) => d.id === agg.id);
+        const total = categoryTotals[agg.id] || 0;
+        return {
+          id: agg.id,
+          label: agg.label,
+          color: agg.color,
+          value: total,
+          // Use chartData percentage if available (visible category), otherwise 0
+          percentage: dataPoint?.percentage ?? 0,
+          isVisible,
+          hasData: total > 0,
+        };
+      });
+    }
 
-  const isClickable = !!onCategoryToggle;
+    // For sponsor/country: use chartData directly (already processed)
+    return chartData.map((point) => ({
+      id: point.id,
+      label: point.label,
+      color: point.color,
+      value: point.value,
+      percentage: point.percentage,
+      isVisible: true, // All items are visible for sponsor/country
+      hasData: point.value > 0,
+    }));
+  }, [isCategories, allCategories, visibleCategories, chartData, categoryTotals]);
+
+  // Only categories support toggle filtering
+  const isClickable = isCategories && !!onCategoryToggle;
+
+  // Check if contributor data is unavailable for sponsor/country breakdown
+  const isContributorDataUnavailable = !isCategories &&
+    (!breakdownData || Object.keys(breakdownData).length === 0);
+
+  // Show "Not available" state for sponsor/country when no data
+  if (isContributorDataUnavailable) {
+    return (
+      <div className="category-pie-chart">
+        <div className="category-pie-chart-unavailable">
+          <span className="category-pie-chart-unavailable-text">Not available</span>
+          <span className="category-pie-chart-unavailable-subtext">
+            Contributor data not yet computed for this {breakdownType === 'sponsors' ? 'sponsor' : 'country'} breakdown
+          </span>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="category-pie-chart">
@@ -177,20 +283,23 @@ export function CategoryPieChart({
                 if (!active || !payload || !payload[0]) return null;
                 const data = payload[0].payload as PieDataPoint;
                 const avg = releaseCount ? Math.round(data.value / releaseCount) : null;
+
+                // Different labels for different breakdown types
+                const unitLabel = isCategories ? 'PRs' : 'contributors';
+
                 return (
                   <div className="category-pie-tooltip">
                     <div
                       className="category-pie-tooltip-label"
-                      // eslint-disable-next-line react/forbid-component-props -- dynamic color from data
                       style={{ color: data.color }}
                     >
                       {data.label}
                     </div>
                     <div className="category-pie-tooltip-value">
-                      {avg !== null ? (
+                      {avg !== null && isCategories ? (
                         <>{avg.toLocaleString()} avg, {data.value.toLocaleString()} total ({data.percentage}%)</>
                       ) : (
-                        <>{data.value.toLocaleString()} PRs ({data.percentage}%)</>
+                        <>{data.value.toLocaleString()} {unitLabel} ({data.percentage}%)</>
                       )}
                     </div>
                   </div>
@@ -208,7 +317,6 @@ export function CategoryPieChart({
                       type="button"
                       key={item.id}
                       className={`category-pie-legend-item${!item.isVisible ? ' category-pie-legend-item--hidden' : ''}${!item.hasData ? ' category-pie-legend-item--no-data' : ''}`}
-                      // eslint-disable-next-line react/forbid-component-props -- dynamic color from data
                       style={{ '--legend-color': item.color } as React.CSSProperties}
                       onClick={() => handleLegendClick(item.id)}
                       disabled={!isClickable}
