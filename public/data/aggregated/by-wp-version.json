@@ -17,7 +17,56 @@
     },
     "avgPRsPerRelease": 158,
     "avgContributorsPerRelease": 46,
-    "avgNewContributorsPerRelease": 3
+    "avgNewContributorsPerRelease": 3,
+    "contributorAggregates": {
+      "stats": {
+        "total": 80,
+        "newContributors": 10
+      },
+      "sponsorBreakdown": {
+        "Automattic": 37,
+        "rtCamp": 2,
+        "Multidots Inc": 2,
+        "Earthbound": 1,
+        "Whodunit": 1,
+        "Google": 1,
+        "GoDaddy": 1,
+        "The Open Sea": 1,
+        "University of Wisconsin Madison": 1,
+        "Bluehost": 1,
+        "KrishaWeb": 1,
+        "Accessible Web Design": 1,
+        "Self-sponsored": 1,
+        "Fueled": 1,
+        "Pew Research Center": 1,
+        "ParshipMeet Group": 1,
+        "Greyd GmbH": 1,
+        "WP Engine": 1,
+        "Unknown": 24
+      },
+      "countryBreakdown": {
+        "United States": 9,
+        "India": 8,
+        "Spain": 6,
+        "United Kingdom": 5,
+        "Australia": 4,
+        "Germany": 3,
+        "Japan": 3,
+        "Portugal": 2,
+        "Greece": 2,
+        "Algeria": 2,
+        "France": 1,
+        "Denmark": 1,
+        "Czechia": 1,
+        "Georgia": 1,
+        "Italy": 1,
+        "Canada": 1,
+        "Lithuania": 1,
+        "Bulgaria": 1,
+        "Unknown": 28
+      },
+      "aggregatedAt": "2025-12-15T20:23:29.986Z"
+    }
   },
   {
     "wpVersion": "6.9",
