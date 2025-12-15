@@ -12,10 +12,14 @@ on:
       to_version:
         description: 'Parse to version (optional)'
         required: false
-      force_recompute_all:
-        description: 'Force recompute ALL contributor aggregates (slow - use when normalization rules change)'
-        type: boolean
-        default: false
+      contributor_aggregates:
+        description: 'Contributor aggregates (sponsor/country breakdown)'
+        type: choice
+        default: 'auto'
+        options:
+          - 'auto'
+          - 'skip'
+          - 'force-all'
 
 jobs:
   refresh:
@@ -53,8 +57,9 @@ jobs:
         run: npm run aggregate
 
       - name: Compute contributor aggregates
+        if: ${{ github.event.inputs.contributor_aggregates != 'skip' }}
         run: |
-          if [ "${{ github.event.inputs.force_recompute_all }}" == "true" ]; then
+          if [ "${{ github.event.inputs.contributor_aggregates }}" == "force-all" ]; then
             npm run compute-aggregates -- --force --delay 300
           else
             npm run compute-aggregates -- --delay 300
