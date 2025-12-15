@@ -83,6 +83,26 @@ export interface WPRelease {
 }
 
 /**
+ * Contributor aggregate statistics for a WP version.
+ * Privacy-preserving: only counts, no individual data.
+ */
+export interface WPVersionContributorAggregates {
+  /** Contributor statistics */
+  stats: {
+    /** Unique contributors across all GB releases in this WP version */
+    total: number;
+    /** Unique new contributors across all GB releases in this WP version */
+    newContributors: number;
+  };
+  /** Sponsor breakdown: { "Automattic": 15, "Unknown": 42, ... } - sum = total */
+  sponsorBreakdown: Record<string, number>;
+  /** Country breakdown: { "United States": 20, "Unknown": 16, ... } - sum = total */
+  countryBreakdown: Record<string, number>;
+  /** ISO timestamp of when aggregates were computed */
+  aggregatedAt: string;
+}
+
+/**
  * Aggregated statistics for a WordPress version.
  */
 export interface WPVersionStats {
@@ -102,6 +122,9 @@ export interface WPVersionStats {
   avgPRsPerRelease: number;
   avgContributorsPerRelease: number;
   avgNewContributorsPerRelease: number;
+
+  // Contributor aggregates (privacy-preserving, optional)
+  contributorAggregates?: WPVersionContributorAggregates;
 }
 
 /**

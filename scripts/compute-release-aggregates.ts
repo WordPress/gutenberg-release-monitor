@@ -1,55 +1,40 @@
 /**
- * Compute per-release contributor aggregates without storing individual data.
+ * Compute per-release and per-WP-version contributor aggregates without storing individual data.
  *
  * This script fetches WP.org profiles on-the-fly, computes aggregates, and
- * stores them directly in releases.json. No individual contributor data is persisted.
+ * stores them directly in releases.json and by-wp-version.json.
+ * No individual contributor data is persisted.
  *
  * This is the privacy-first approach: only aggregate counts are stored,
  * e.g. "15 Automattic, 3 Google" not "alice@automattic, bob@google".
  *
- * Usage: npx tsx scripts/compute-release-aggregates.ts [--gb-version 21.0] [--from-gb 20.0] [--to-gb 21.9] [--delay 500]
+ * Usage:
+ *   npx tsx scripts/compute-release-aggregates.ts [--gb-version 21.0] [--from-gb 20.0] [--to-gb 21.9] [--delay 500]
+ *   npx tsx scripts/compute-release-aggregates.ts --wp-version 7.0  # Computes GB + WP aggregates for all releases in WP 7.0
  */
 
 import { parseArgs } from 'node:util';
 import { readFileSync, existsSync } from 'node:fs';
 import { writeJsonIfChanged } from './utils/file-utils.js';
-import { fetchWPOrgProfile } from './utils/wporg-api.js';
-import { fetchGitHubUserProfile } from './utils/github-api.js';
 import { extractCountry, batchGeocodeLocations } from './utils/geocoding.js';
 import { SponsorNormalizer } from './utils/sponsor-normalization.js';
-import type { Release, ReleaseContributorAggregates } from '../src/data/types.js';
-
-/**
- * Username mapping structure (from build-username-mapping.ts).
- */
-interface UsernameMapping {
-	githubToWporg: Record< string, string >;
-	meta: {
-		wpVersion: string;
-		totalScanned: number;
-		withLinkedGithub: number;
-		differentUsernames: number;
-		builtAt: string;
-	};
-}
-
-/**
- * In-memory contributor profile (not persisted).
- */
-interface ContributorData {
-	sponsor: string | null;
-	location: string | null;
-}
-
-/**
- * Delay helper for rate limiting.
- */
-function delay( ms: number ): Promise< void > {
-	return new Promise( ( resolve ) => setTimeout( resolve, ms ) );
-}
+import {
+	loadUsernameMapping,
+	fetchContributorProfiles,
+	delay,
+	type ContributorData,
+	type UsernameMapping,
+} from './utils/contributor-data.js';
+import type {
+	Release,
+	ReleaseContributorAggregates,
+	WPVersionStats,
+	WPVersionContributorAggregates,
+	WPRelease,
+} from '../src/data/types.js';
 
 interface ComputeArgs {
-	wpVersion?: string;
+	wpVersion?: string[];
 	gbVersion?: string;
 	fromGb?: string;
 	toGb?: string;
@@ -73,8 +58,14 @@ function getArgs(): ComputeArgs {
 		},
 	} );
 
+	// Parse --wp-version as comma-separated list (e.g., "6.9,7.0")
+	const wpVersionArg = values[ 'wp-version' ] as string | undefined;
+	const wpVersions = wpVersionArg
+		? wpVersionArg.split( ',' ).map( ( v ) => v.trim() )
+		: undefined;
+
 	return {
-		wpVersion: values[ 'wp-version' ] as string | undefined,
+		wpVersion: wpVersions,
 		gbVersion: values[ 'gb-version' ] as string | undefined,
 		fromGb: values[ 'from-gb' ] as string | undefined,
 		toGb: values[ 'to-gb' ] as string | undefined,
@@ -96,78 +87,37 @@ function compareGbVersions( a: string, b: string ): number {
 }
 
 /**
- * Load the username mapping file if it exists.
+ * Load WP schedule to get GB version ranges for WP versions.
  */
-function loadUsernameMapping(): UsernameMapping | null {
-	const mappingPath = 'public/data/username-mapping.json';
-	if ( ! existsSync( mappingPath ) ) {
-		return null;
+function loadWPSchedule(): WPRelease[] {
+	const schedulePath = 'public/data/wp-schedule.json';
+	if ( ! existsSync( schedulePath ) ) {
+		console.warn( '⚠️  WP schedule file not found' );
+		return [];
 	}
 
 	try {
-		return JSON.parse( readFileSync( mappingPath, 'utf-8' ) );
+		return JSON.parse( readFileSync( schedulePath, 'utf-8' ) );
 	} catch {
-		console.warn( '⚠️  Failed to parse username mapping file' );
+		console.warn( '⚠️  Failed to parse WP schedule file' );
+		return [];
+	}
+}
+
+/**
+ * Get GB version range for a WP version from the schedule.
+ */
+function getGBRangeForWPVersion(
+	wpVersion: string,
+	schedule: WPRelease[]
+): { fromGb: string; toGb: string } | null {
+	const entry = schedule.find( ( s ) => s.wpVersion === wpVersion );
+	if ( ! entry?.gbVersionRange ) {
 		return null;
 	}
-}
 
-/**
- * Resolve GitHub username to WP.org username using the mapping.
- */
-function resolveWporgUsername(
-	githubUsername: string,
-	mapping: UsernameMapping | null
-): string {
-	const githubLower = githubUsername.toLowerCase();
-
-	// Check if we have a mapping for this GitHub username
-	if ( mapping && mapping.githubToWporg[ githubLower ] ) {
-		return mapping.githubToWporg[ githubLower ];
-	}
-
-	// No mapping found - assume GitHub username = WP.org username
-	return githubUsername;
-}
-
-/**
- * Fetch contributor data for a single username.
- * Returns in-memory data structure (not persisted).
- */
-async function fetchContributorData(
-	githubUsername: string,
-	mapping: UsernameMapping | null,
-	delayMs: number,
-	verbose: boolean
-): Promise< ContributorData > {
-	const wporgUsername = resolveWporgUsername( githubUsername, mapping );
-
-	// Fetch WP.org profile
-	const wpProfile = await fetchWPOrgProfile( wporgUsername );
-
-	let sponsor = wpProfile.employer || null;
-	let location = wpProfile.location || null;
-
-	// If no sponsor from WP.org, try GitHub
-	if ( ! sponsor ) {
-		const ghUsername = wpProfile.wporgLinkedGitHubUsername || githubUsername;
-		try {
-			const ghProfile = await fetchGitHubUserProfile( ghUsername );
-			if ( ghProfile?.company ) {
-				sponsor = ghProfile.company.replace( /^@/, '' ).trim() || null;
-			}
-			if ( ! location && ghProfile?.location ) {
-				location = ghProfile.location;
-			}
-		} catch ( error ) {
-			if ( verbose ) {
-				console.error( `\n   Warning: GitHub fetch failed for ${ ghUsername }` );
-			}
-		}
-		await delay( delayMs );
-	}
-
-	return { sponsor, location };
+	const [ fromGb, toGb ] = entry.gbVersionRange.split( '-' );
+	return { fromGb, toGb };
 }
 
 /**
@@ -204,15 +154,74 @@ function computeAggregates(
 		countryBreakdown[ country ] = ( countryBreakdown[ country ] || 0 ) + 1;
 	}
 
-	// Sort breakdowns by value (descending), but keep "Unknown" at end
-	const sortByValue = ( obj: Record< string, number > ): Record< string, number > => {
-		const entries = Object.entries( obj );
-		const unknown = entries.find( ( [ k ] ) => k === 'Unknown' );
-		const others = entries
-			.filter( ( [ k ] ) => k !== 'Unknown' )
-			.sort( ( a, b ) => b[ 1 ] - a[ 1 ] );
-		return Object.fromEntries( unknown ? [ ...others, unknown ] : others );
+	return {
+		stats,
+		sponsorBreakdown: sortByValue( sponsorBreakdown ),
+		countryBreakdown: sortByValue( countryBreakdown ),
+		aggregatedAt: new Date().toISOString(),
 	};
+}
+
+/**
+ * Sort breakdown by value (descending), but keep "Unknown" at end.
+ */
+function sortByValue( obj: Record< string, number > ): Record< string, number > {
+	const entries = Object.entries( obj );
+	const unknown = entries.find( ( [ k ] ) => k === 'Unknown' );
+	const others = entries
+		.filter( ( [ k ] ) => k !== 'Unknown' )
+		.sort( ( a, b ) => b[ 1 ] - a[ 1 ] );
+	return Object.fromEntries( unknown ? [ ...others, unknown ] : others );
+}
+
+/**
+ * Compute aggregates for a WP version from unique contributors across all its GB releases.
+ */
+function computeWPVersionAggregates(
+	wpVersion: string,
+	wpReleases: Release[],
+	contributorDataMap: Map< string, ContributorData >,
+	sponsorNormalizer: SponsorNormalizer
+): WPVersionContributorAggregates {
+	// Collect unique contributors and new contributors across all releases
+	const uniqueContributors = new Set< string >();
+	const uniqueNewContributors = new Set< string >();
+
+	for ( const release of wpReleases ) {
+		for ( const username of release.contributorsList ) {
+			uniqueContributors.add( username.toLowerCase() );
+		}
+		for ( const username of release.newContributorsList ) {
+			uniqueNewContributors.add( username.toLowerCase() );
+		}
+	}
+
+	const stats = {
+		total: uniqueContributors.size,
+		newContributors: uniqueNewContributors.size,
+	};
+
+	// Compute breakdown from unique contributors (not per-appearance)
+	const sponsorBreakdown: Record< string, number > = {};
+	const countryBreakdown: Record< string, number > = {};
+
+	for ( const username of uniqueContributors ) {
+		const data = contributorDataMap.get( username );
+
+		// Sponsor: normalize and deduplicate variations
+		const sponsor = sponsorNormalizer.normalize( data?.sponsor || null );
+		sponsorBreakdown[ sponsor ] = ( sponsorBreakdown[ sponsor ] || 0 ) + 1;
+
+		// Country: resolved or "Unknown"
+		let country = 'Unknown';
+		if ( data?.location ) {
+			const geo = extractCountry( data.location );
+			if ( geo.country ) {
+				country = geo.country;
+			}
+		}
+		countryBreakdown[ country ] = ( countryBreakdown[ country ] || 0 ) + 1;
+	}
 
 	return {
 		stats,
@@ -240,19 +249,47 @@ async function main(): Promise< void > {
 		console.log( `\n📂 Loaded username mapping (${ Object.keys( mapping.githubToWporg ).length } entries)` );
 	}
 
-	// Filter releases
-	let targetReleases = releases;
-	if ( args.wpVersion ) {
-		// Filter by WP version
-		targetReleases = releases.filter( r => r.wpVersion === args.wpVersion );
-		console.log( `\n🔍 Filtering to WP ${ args.wpVersion }: ${ targetReleases.length } releases` );
+	// Load WP schedule for --wp-version mode
+	const wpSchedule = loadWPSchedule();
+
+	// Determine target releases and WP versions to aggregate
+	let targetReleases: Release[] = [];
+	const targetWPVersions: string[] = [];
+
+	if ( args.wpVersion && args.wpVersion.length > 0 ) {
+		// Enhanced --wp-version mode: find all GB releases in the WP version range
+		console.log( `\n🔍 WP Version Mode: ${ args.wpVersion.join( ', ' ) }` );
+
+		for ( const wpVer of args.wpVersion ) {
+			const range = getGBRangeForWPVersion( wpVer, wpSchedule );
+			if ( ! range ) {
+				console.warn( `   ⚠️  No GB range found for WP ${ wpVer }` );
+				continue;
+			}
+
+			console.log( `   WP ${ wpVer } → GB ${ range.fromGb } - ${ range.toGb }` );
+			targetWPVersions.push( wpVer );
+
+			// Add all releases in this GB range
+			const wpReleases = releases.filter( ( r ) => {
+				return (
+					compareGbVersions( r.gbVersion, range.fromGb ) >= 0 &&
+					compareGbVersions( r.gbVersion, range.toGb ) <= 0
+				);
+			} );
+			targetReleases.push( ...wpReleases );
+		}
+
+		// Deduplicate (in case of overlapping ranges)
+		targetReleases = [ ...new Set( targetReleases ) ];
+		console.log( `   Total releases: ${ targetReleases.length }` );
 	} else if ( args.gbVersion ) {
 		// Single GB version
-		targetReleases = releases.filter( r => r.gbVersion === args.gbVersion );
+		targetReleases = releases.filter( ( r ) => r.gbVersion === args.gbVersion );
 		console.log( `\n🔍 Filtering to GB ${ args.gbVersion }: ${ targetReleases.length } releases` );
 	} else if ( args.fromGb || args.toGb ) {
 		// GB version range
-		targetReleases = releases.filter( r => {
+		targetReleases = releases.filter( ( r ) => {
 			if ( args.fromGb && compareGbVersions( r.gbVersion, args.fromGb ) < 0 ) {
 				return false;
 			}
@@ -261,70 +298,82 @@ async function main(): Promise< void > {
 			}
 			return true;
 		} );
-		const rangeStr = args.fromGb && args.toGb
-			? `GB ${ args.fromGb } - ${ args.toGb }`
-			: args.fromGb
-				? `GB ${ args.fromGb }+`
-				: `GB up to ${ args.toGb }`;
+		const rangeStr =
+			args.fromGb && args.toGb
+				? `GB ${ args.fromGb } - ${ args.toGb }`
+				: args.fromGb
+					? `GB ${ args.fromGb }+`
+					: `GB up to ${ args.toGb }`;
 		console.log( `\n🔍 Filtering to ${ rangeStr }: ${ targetReleases.length } releases` );
+	} else {
+		// Default: all releases
+		targetReleases = releases;
 	}
 
-	// Find releases needing aggregation
-	const needsAggregation = args.force
+	// Find releases needing GB-level aggregation
+	const needsGBAggregation = args.force
 		? targetReleases
-		: targetReleases.filter( r => ! r.contributorAggregates );
+		: targetReleases.filter( ( r ) => ! r.contributorAggregates );
 
-	if ( needsAggregation.length === 0 ) {
-		console.log( '\n✅ All target releases already have aggregates!' );
-		console.log( '   Use --force to recompute' );
-		return;
-	}
-
-	console.log( `\n📊 Computing Aggregates for ${ needsAggregation.length } Releases` );
-	console.log( '================================================' );
-
-	// Collect all unique contributors
+	// Collect ALL unique contributors needed:
+	// - From releases needing GB aggregation
+	// - From ALL releases in target WP versions (for WP-level aggregates)
 	const allContributors = new Set< string >();
-	for ( const release of needsAggregation ) {
+
+	// Contributors from releases needing GB aggregation
+	for ( const release of needsGBAggregation ) {
 		for ( const username of release.contributorsList ) {
 			allContributors.add( username.toLowerCase() );
 		}
 	}
 
+	// Contributors from ALL releases in target WP versions (for WP-level unique counts)
+	if ( targetWPVersions.length > 0 ) {
+		for ( const release of targetReleases ) {
+			for ( const username of release.contributorsList ) {
+				allContributors.add( username.toLowerCase() );
+			}
+		}
+	}
+
+	if ( allContributors.size === 0 ) {
+		console.log( '\n✅ No contributors to fetch!' );
+		if ( needsGBAggregation.length === 0 ) {
+			console.log( '   All target releases already have aggregates. Use --force to recompute.' );
+		}
+		return;
+	}
+
+	console.log( `\n📊 Computing Aggregates` );
+	console.log( '=======================' );
+	console.log( `GB releases to aggregate: ${ needsGBAggregation.length }` );
+	console.log( `WP versions to aggregate: ${ targetWPVersions.length > 0 ? targetWPVersions.join( ', ' ) : 'none' }` );
 	console.log( `Unique contributors to fetch: ${ allContributors.size }` );
 	console.log( `Rate limit: ${ args.delay }ms between requests` );
 
-	const estimatedMinutes = Math.ceil( allContributors.size * args.delay / 1000 / 60 );
+	const estimatedMinutes = Math.ceil( ( allContributors.size * args.delay ) / 1000 / 60 );
 	console.log( `Estimated time: ~${ estimatedMinutes } minute(s)\n` );
 
 	// Fetch all contributor data (in-memory only)
 	console.log( '📥 Fetching contributor profiles...' );
-	const contributorDataMap = new Map< string, ContributorData >();
-	const usernames = [ ...allContributors ];
-
-	for ( let i = 0; i < usernames.length; i++ ) {
-		const username = usernames[ i ];
-		const data = await fetchContributorData(
-			username,
-			mapping,
-			args.delay,
-			args.verbose
-		);
-		contributorDataMap.set( username, data );
-
-		const pct = ( ( ( i + 1 ) / usernames.length ) * 100 ).toFixed( 0 );
-		process.stdout.write( `\r   Progress: ${ i + 1 }/${ usernames.length } (${ pct }%)` );
-
-		if ( i < usernames.length - 1 ) {
-			await delay( args.delay );
+	const contributorDataMap = await fetchContributorProfiles(
+		[ ...allContributors ],
+		mapping,
+		{
+			delayMs: args.delay,
+			verbose: args.verbose,
+			onProgress: ( done, total ) => {
+				const pct = ( ( done / total ) * 100 ).toFixed( 0 );
+				process.stdout.write( `\r   Progress: ${ done }/${ total } (${ pct }%)` );
+			},
 		}
-	}
+	);
 
 	console.log( '\n' );
 
 	// Batch geocode all locations
 	const allLocations = [ ...contributorDataMap.values() ]
-		.map( d => d.location )
+		.map( ( d ) => d.location )
 		.filter( ( loc ): loc is string => Boolean( loc ) );
 
 	if ( allLocations.length > 0 ) {
@@ -339,30 +388,82 @@ async function main(): Promise< void > {
 		console.log( '\n' );
 	}
 
-	// Compute aggregates for each release
-	console.log( '🔄 Computing release aggregates...' );
+	// Compute GB-level aggregates for each release
 	const sponsorNormalizer = new SponsorNormalizer();
-	let processed = 0;
+	let gbProcessed = 0;
 
-	for ( const release of releases ) {
-		// Skip if not in our target set
-		if ( ! needsAggregation.includes( release ) ) {
-			continue;
+	if ( needsGBAggregation.length > 0 ) {
+		console.log( '🔄 Computing GB release aggregates...' );
+
+		for ( const release of releases ) {
+			// Skip if not in our target set
+			if ( ! needsGBAggregation.includes( release ) ) {
+				continue;
+			}
+
+			release.contributorAggregates = computeAggregates(
+				contributorDataMap,
+				release,
+				sponsorNormalizer
+			);
+			gbProcessed++;
+
+			const pct = ( ( gbProcessed / needsGBAggregation.length ) * 100 ).toFixed( 0 );
+			process.stdout.write( `\r   Processed: ${ gbProcessed }/${ needsGBAggregation.length } (${ pct }%)` );
 		}
 
-		release.contributorAggregates = computeAggregates( contributorDataMap, release, sponsorNormalizer );
-		processed++;
-
-		const pct = ( ( processed / needsAggregation.length ) * 100 ).toFixed( 0 );
-		process.stdout.write( `\r   Processed: ${ processed }/${ needsAggregation.length } (${ pct }%)` );
+		console.log( '\n' );
 	}
 
-	console.log( '\n' );
+	// Compute WP-level aggregates
+	let wpVersionStats: WPVersionStats[] = [];
+	if ( targetWPVersions.length > 0 ) {
+		console.log( '🔄 Computing WP version aggregates...' );
 
-	// Print summary
-	const sample = needsAggregation[ needsAggregation.length - 1 ];
+		// Load existing WP version stats
+		const wpStatsPath = 'public/data/aggregated/by-wp-version.json';
+		if ( existsSync( wpStatsPath ) ) {
+			wpVersionStats = JSON.parse( readFileSync( wpStatsPath, 'utf-8' ) );
+		}
+
+		for ( const wpVersion of targetWPVersions ) {
+			// Get releases for this WP version
+			const wpReleases = targetReleases.filter( ( r ) => r.wpVersion === wpVersion );
+
+			if ( wpReleases.length === 0 ) {
+				console.log( `   ⚠️  No releases found for WP ${ wpVersion }` );
+				continue;
+			}
+
+			// Compute WP-level aggregates
+			const wpAggregates = computeWPVersionAggregates(
+				wpVersion,
+				wpReleases,
+				contributorDataMap,
+				sponsorNormalizer
+			);
+
+			// Update or add to wpVersionStats
+			const existingIndex = wpVersionStats.findIndex( ( s ) => s.wpVersion === wpVersion );
+			if ( existingIndex >= 0 ) {
+				wpVersionStats[ existingIndex ].contributorAggregates = wpAggregates;
+			} else {
+				console.warn( `   ⚠️  WP ${ wpVersion } not found in by-wp-version.json` );
+			}
+
+			console.log(
+				`   WP ${ wpVersion }: ${ wpAggregates.stats.total } unique contributors, ` +
+					`${ wpAggregates.stats.newContributors } new`
+			);
+		}
+
+		console.log( '' );
+	}
+
+	// Print sample
+	const sample = needsGBAggregation[ needsGBAggregation.length - 1 ];
 	if ( sample?.contributorAggregates ) {
-		console.log( `📋 Sample: GB ${ sample.gbVersion } (WP ${ sample.wpVersion })` );
+		console.log( `📋 Sample GB: ${ sample.gbVersion } (WP ${ sample.wpVersion })` );
 		console.log( `   Contributors: ${ sample.contributorAggregates.stats.total }` );
 		console.log( `   New contributors: ${ sample.contributorAggregates.stats.newContributors }` );
 
@@ -370,7 +471,9 @@ async function main(): Promise< void > {
 			.filter( ( [ k ] ) => k !== 'Unknown' )
 			.slice( 0, 5 );
 		if ( topSponsors.length > 0 ) {
-			console.log( `   Top sponsors: ${ topSponsors.map( ( [ s, c ] ) => `${ s } (${ c })` ).join( ', ' ) }` );
+			console.log(
+				`   Top sponsors: ${ topSponsors.map( ( [ s, c ] ) => `${ s } (${ c })` ).join( ', ' ) }`
+			);
 		}
 	}
 
@@ -378,15 +481,26 @@ async function main(): Promise< void > {
 	if ( args.dryRun ) {
 		console.log( '\n🔍 Dry run - no changes written' );
 	} else {
-		const written = writeJsonIfChanged( releasesPath, releases );
-		console.log( written ? `\n✅ Updated ${ releasesPath }` : `\n✅ No changes to ${ releasesPath }` );
+		// Write releases.json
+		if ( gbProcessed > 0 ) {
+			const written = writeJsonIfChanged( releasesPath, releases );
+			console.log( written ? `\n✅ Updated ${ releasesPath }` : `\n✅ No changes to ${ releasesPath }` );
+		}
+
+		// Write by-wp-version.json
+		if ( targetWPVersions.length > 0 && wpVersionStats.length > 0 ) {
+			const wpStatsPath = 'public/data/aggregated/by-wp-version.json';
+			const written = writeJsonIfChanged( wpStatsPath, wpVersionStats );
+			console.log( written ? `✅ Updated ${ wpStatsPath }` : `✅ No changes to ${ wpStatsPath }` );
+		}
 	}
 
 	// Summary
 	console.log( '\n📊 Summary' );
 	console.log( '==========' );
 	console.log( `Contributors fetched (in-memory only): ${ contributorDataMap.size }` );
-	console.log( `Releases aggregated: ${ processed }` );
+	console.log( `GB releases aggregated: ${ gbProcessed }` );
+	console.log( `WP versions aggregated: ${ targetWPVersions.length }` );
 	console.log( `Unique sponsors (after normalization): ${ sponsorNormalizer.getStats().uniqueSponsors }` );
 	console.log( `Individual data persisted: 0 (privacy-first)` );
 }
