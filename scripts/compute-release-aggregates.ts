@@ -7,7 +7,7 @@
  * This is the privacy-first approach: only aggregate counts are stored,
  * e.g. "15 Automattic, 3 Google" not "alice@automattic, bob@google".
  *
- * Usage: npx tsx scripts/compute-release-aggregates.ts [--wp-version 7.0] [--delay 500]
+ * Usage: npx tsx scripts/compute-release-aggregates.ts [--gb-version 21.0] [--from-gb 20.0] [--to-gb 21.9] [--delay 500]
  */
 
 import { parseArgs } from 'node:util';
@@ -50,6 +50,9 @@ function delay( ms: number ): Promise< void > {
 
 interface ComputeArgs {
 	wpVersion?: string;
+	gbVersion?: string;
+	fromGb?: string;
+	toGb?: string;
 	delay: number;
 	force: boolean;
 	dryRun: boolean;
@@ -60,6 +63,9 @@ function getArgs(): ComputeArgs {
 	const { values } = parseArgs( {
 		options: {
 			'wp-version': { type: 'string', short: 'w' },
+			'gb-version': { type: 'string', short: 'g' },
+			'from-gb': { type: 'string' },
+			'to-gb': { type: 'string' },
 			delay: { type: 'string', short: 'd', default: '500' },
 			force: { type: 'boolean', short: 'f', default: false },
 			'dry-run': { type: 'boolean', default: false },
@@ -69,11 +75,24 @@ function getArgs(): ComputeArgs {
 
 	return {
 		wpVersion: values[ 'wp-version' ] as string | undefined,
+		gbVersion: values[ 'gb-version' ] as string | undefined,
+		fromGb: values[ 'from-gb' ] as string | undefined,
+		toGb: values[ 'to-gb' ] as string | undefined,
 		delay: parseInt( values.delay as string, 10 ),
 		force: values.force as boolean,
 		dryRun: values[ 'dry-run' ] as boolean,
 		verbose: values.verbose as boolean,
 	};
+}
+
+/**
+ * Compare GB version strings (e.g., "20.0" vs "21.5").
+ */
+function compareGbVersions( a: string, b: string ): number {
+	const [ aMajor, aMinor ] = a.split( '.' ).map( Number );
+	const [ bMajor, bMinor ] = b.split( '.' ).map( Number );
+	if ( aMajor !== bMajor ) return aMajor - bMajor;
+	return ( aMinor || 0 ) - ( bMinor || 0 );
 }
 
 /**
@@ -224,8 +243,30 @@ async function main(): Promise< void > {
 	// Filter releases
 	let targetReleases = releases;
 	if ( args.wpVersion ) {
+		// Filter by WP version
 		targetReleases = releases.filter( r => r.wpVersion === args.wpVersion );
 		console.log( `\n🔍 Filtering to WP ${ args.wpVersion }: ${ targetReleases.length } releases` );
+	} else if ( args.gbVersion ) {
+		// Single GB version
+		targetReleases = releases.filter( r => r.gbVersion === args.gbVersion );
+		console.log( `\n🔍 Filtering to GB ${ args.gbVersion }: ${ targetReleases.length } releases` );
+	} else if ( args.fromGb || args.toGb ) {
+		// GB version range
+		targetReleases = releases.filter( r => {
+			if ( args.fromGb && compareGbVersions( r.gbVersion, args.fromGb ) < 0 ) {
+				return false;
+			}
+			if ( args.toGb && compareGbVersions( r.gbVersion, args.toGb ) > 0 ) {
+				return false;
+			}
+			return true;
+		} );
+		const rangeStr = args.fromGb && args.toGb
+			? `GB ${ args.fromGb } - ${ args.toGb }`
+			: args.fromGb
+				? `GB ${ args.fromGb }+`
+				: `GB up to ${ args.toGb }`;
+		console.log( `\n🔍 Filtering to ${ rangeStr }: ${ targetReleases.length } releases` );
 	}
 
 	// Find releases needing aggregation

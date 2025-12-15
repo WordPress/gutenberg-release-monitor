@@ -15,6 +15,12 @@ const NOT_A_SPONSOR = [
 ];
 
 /**
+ * Known GitHub usernames that are not company names.
+ * These should be treated as Unknown.
+ */
+const KNOWN_USERNAMES: string[] = [];
+
+/**
  * Values that indicate self-sponsored contributors.
  * These people work for themselves, not for a company.
  */
@@ -23,10 +29,14 @@ const SELF_SPONSORED = [
 	'freelancer',
 	'self-employed',
 	'self employed',
+	'selfemployed',
 	'independent',
 	'open to work',
+	'#opentowork',
 	'looking for work',
+	'looking for opportunity',
 	'available for hire',
+	'wordpress developer',
 ];
 
 /**
@@ -86,7 +96,15 @@ export class SponsorNormalizer {
 		const lower = value.toLowerCase().trim();
 		return NOT_A_SPONSOR.some( pattern =>
 			lower === pattern || lower.includes( pattern )
-		);
+		) || KNOWN_USERNAMES.includes( lower );
+	}
+
+	/**
+	 * Extract company name from @company patterns (e.g., "Lead Engineer @bigbite" -> "bigbite").
+	 */
+	private extractAtMention( value: string ): string | null {
+		const match = value.match( /@([a-zA-Z0-9_-]+)/ );
+		return match ? match[ 1 ] : null;
 	}
 
 	/**
@@ -113,12 +131,19 @@ export class SponsorNormalizer {
 			return 'Unknown';
 		}
 
+		// Check for @company patterns first (e.g., "Lead Engineer @bigbite")
+		const atMention = this.extractAtMention( trimmed );
+		if ( atMention ) {
+			// Recursively normalize the extracted company name
+			return this.normalize( atMention );
+		}
+
 		// Check for self-sponsored first (freelance, independent, etc.)
 		if ( this.isSelfSponsored( trimmed ) ) {
 			return 'Self-sponsored';
 		}
 
-		// Check for non-sponsor values (job-seeking status, n/a, etc.)
+		// Check for non-sponsor values (job-seeking status, n/a, usernames, etc.)
 		if ( this.isNotASponsor( trimmed ) ) {
 			return 'Unknown';
 		}

@@ -34,6 +34,7 @@ export async function extractCountryAsync( location: string ): Promise< Geocodin
 		url.searchParams.set( 'format', 'json' );
 		url.searchParams.set( 'addressdetails', '1' );
 		url.searchParams.set( 'limit', '1' );
+		url.searchParams.set( 'accept-language', 'en' );
 
 		const response = await fetch( url.toString(), {
 			headers: {
