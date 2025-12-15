@@ -16,6 +16,7 @@ import { writeJsonIfChanged } from './utils/file-utils.js';
 import { fetchWPOrgProfile } from './utils/wporg-api.js';
 import { fetchGitHubUserProfile } from './utils/github-api.js';
 import { extractCountry, batchGeocodeLocations } from './utils/geocoding.js';
+import { SponsorNormalizer } from './utils/sponsor-normalization.js';
 import type { Release, ReleaseContributorAggregates } from '../src/data/types.js';
 
 /**
@@ -155,7 +156,8 @@ async function fetchContributorData(
  */
 function computeAggregates(
 	contributorDataMap: Map< string, ContributorData >,
-	release: Release
+	release: Release,
+	sponsorNormalizer: SponsorNormalizer
 ): ReleaseContributorAggregates {
 	const stats = {
 		total: release.contributorsList.length,
@@ -168,8 +170,8 @@ function computeAggregates(
 	for ( const username of release.contributorsList ) {
 		const data = contributorDataMap.get( username.toLowerCase() );
 
-		// Sponsor: known or "Unknown"
-		const sponsor = data?.sponsor || 'Unknown';
+		// Sponsor: normalize and deduplicate variations
+		const sponsor = sponsorNormalizer.normalize( data?.sponsor || null );
 		sponsorBreakdown[ sponsor ] = ( sponsorBreakdown[ sponsor ] || 0 ) + 1;
 
 		// Country: resolved or "Unknown"
@@ -298,6 +300,7 @@ async function main(): Promise< void > {
 
 	// Compute aggregates for each release
 	console.log( '🔄 Computing release aggregates...' );
+	const sponsorNormalizer = new SponsorNormalizer();
 	let processed = 0;
 
 	for ( const release of releases ) {
@@ -306,7 +309,7 @@ async function main(): Promise< void > {
 			continue;
 		}
 
-		release.contributorAggregates = computeAggregates( contributorDataMap, release );
+		release.contributorAggregates = computeAggregates( contributorDataMap, release, sponsorNormalizer );
 		processed++;
 
 		const pct = ( ( processed / needsAggregation.length ) * 100 ).toFixed( 0 );
@@ -343,6 +346,7 @@ async function main(): Promise< void > {
 	console.log( '==========' );
 	console.log( `Contributors fetched (in-memory only): ${ contributorDataMap.size }` );
 	console.log( `Releases aggregated: ${ processed }` );
+	console.log( `Unique sponsors (after normalization): ${ sponsorNormalizer.getStats().uniqueSponsors }` );
 	console.log( `Individual data persisted: 0 (privacy-first)` );
 }
 
