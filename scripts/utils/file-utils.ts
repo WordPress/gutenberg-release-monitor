@@ -1,3 +1,9 @@
+/**
+ * File system utilities for JSON data persistence.
+ * Provides change-detection to avoid unnecessary writes.
+ * @module scripts/utils/file-utils
+ */
+
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 
 /**

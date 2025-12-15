@@ -1,3 +1,9 @@
+/**
+ * GitHub API utilities for fetching releases and user profiles.
+ * Handles pagination, rate limiting, and authentication.
+ * @module scripts/utils/github-api
+ */
+
 import type { GitHubRelease, GitHubUserProfile } from './types.js';
 
 const GITHUB_API_BASE = 'https://api.github.com';

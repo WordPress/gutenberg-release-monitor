@@ -1,3 +1,9 @@
+/**
+ * WordPress.org profile scraping utilities.
+ * Extracts contributor data from profiles.wordpress.org HTML pages.
+ * @module scripts/utils/wporg-api
+ */
+
 import type { ContributorProfile } from './types.js';
 
 const WPORG_PROFILE_BASE = 'https://profiles.wordpress.org';

@@ -1,6 +1,7 @@
 /**
  * Category utilities for computing aggregated values from raw categories.
  * Reads category configuration from the config file.
+ * @module scripts/utils/category-utils
  */
 
 import { readFileSync } from 'node:fs';
@@ -10,15 +11,25 @@ import type { Release } from '../../src/data/types.js';
  * Category aggregation configuration.
  */
 export interface CategoryAggregation {
+  /** Unique identifier, e.g. "features", "bugs" */
   id: string;
+  /** Display label, e.g. "Features", "Bug Fixes" */
   label: string;
+  /** CSS color for charts, e.g. "#4CAF50" */
   color: string;
+  /** Raw changelog category names to sum, e.g. ["Enhancements", "New APIs"] */
   rawCategories: string[];
+  /** Whether this category is visible by default in the UI */
   includeByDefault: boolean;
 }
 
+/**
+ * Category configuration loaded from category-config.json.
+ */
 export interface CategoryConfig {
+  /** List of category aggregation definitions */
   aggregations: CategoryAggregation[];
+  /** Config version for compatibility tracking */
   version: string;
 }
 

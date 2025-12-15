@@ -1,4 +1,10 @@
 /**
+ * Type definitions for the data pipeline scripts.
+ * Covers GitHub API responses, parsed changelogs, and contributor profiles.
+ * @module scripts/utils/types
+ */
+
+/**
  * Raw GitHub release data from the API.
  */
 export interface GitHubRelease {

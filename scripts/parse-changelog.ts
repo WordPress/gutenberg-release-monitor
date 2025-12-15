@@ -1,3 +1,15 @@
+/**
+ * Changelog parser script for Gutenberg releases.
+ * Fetches releases from GitHub API, parses changelogs, and outputs releases.json.
+ *
+ * Usage:
+ *   npm run parse                    # Parse all releases
+ *   npm run parse -- --version 20.0  # Parse specific version
+ *   npm run parse -- --from 19.0 --to 20.0  # Parse range
+ *
+ * @module scripts/parse-changelog
+ */
+
 import { parseArgs } from 'node:util';
 import { readFileSync, existsSync, mkdirSync } from 'node:fs';
 import { dirname } from 'node:path';

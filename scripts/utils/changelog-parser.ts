@@ -1,3 +1,9 @@
+/**
+ * Changelog parsing utilities for Gutenberg releases.
+ * Supports multiple changelog formats: modern (v8+), mid-era (v6-v7), and legacy (v5-).
+ * @module scripts/utils/changelog-parser
+ */
+
 import type { GitHubRelease, ParsedChangelog } from './types.js';
 
 /**

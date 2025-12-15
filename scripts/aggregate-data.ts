@@ -1,3 +1,13 @@
+/**
+ * Data aggregation script for Gutenberg release statistics.
+ * Computes per-WP-version aggregates and overall summary from releases.json.
+ *
+ * Usage:
+ *   npm run aggregate  # Regenerate summary.json and by-wp-version.json
+ *
+ * @module scripts/aggregate-data
+ */
+
 import { readFileSync, existsSync, mkdirSync } from 'node:fs';
 import type { Release, WPRelease, WPVersionStats, Summary } from '../src/data/types.js';
 import { loadCategoryConfig, getAggregatedPRs } from './utils/category-utils.js';

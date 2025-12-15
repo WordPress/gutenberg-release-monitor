@@ -1,13 +1,22 @@
+/**
+ * Dark mode management hook with system preference detection.
+ * Persists preference to localStorage and syncs with system theme.
+ * @module hooks/useDarkMode
+ */
+
 import { useState, useEffect, useCallback } from 'react';
 
+/** Theme preference: explicit light/dark or follow system */
 type Theme = 'light' | 'dark' | 'system';
 
 const STORAGE_KEY = 'theme-preference';
 
+/** Checks if system prefers dark color scheme */
 function getSystemPreference(): boolean {
   return window.matchMedia('(prefers-color-scheme: dark)').matches;
 }
 
+/** Retrieves stored theme preference from localStorage */
 function getStoredPreference(): Theme | null {
   const stored = localStorage.getItem(STORAGE_KEY);
   if (stored === 'light' || stored === 'dark' || stored === 'system') {
@@ -16,6 +25,10 @@ function getStoredPreference(): Theme | null {
   return null;
 }
 
+/**
+ * Manages dark mode state with system preference awareness.
+ * @returns Object with isDark boolean, current theme, toggle function, and setToSystem function
+ */
 export function useDarkMode() {
   const [theme, setTheme] = useState<Theme>(() => {
     return getStoredPreference() ?? 'system';
