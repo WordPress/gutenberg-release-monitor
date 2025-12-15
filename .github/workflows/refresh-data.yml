@@ -12,6 +12,10 @@ on:
       to_version:
         description: 'Parse to version (optional)'
         required: false
+      force_recompute_all:
+        description: 'Force recompute ALL contributor aggregates (slow - use when normalization rules change)'
+        type: boolean
+        default: false
 
 jobs:
   refresh:
@@ -47,6 +51,14 @@ jobs:
 
       - name: Aggregate data
         run: npm run aggregate
+
+      - name: Compute contributor aggregates
+        run: |
+          if [ "${{ github.event.inputs.force_recompute_all }}" == "true" ]; then
+            npm run compute-aggregates -- --force --delay 300
+          else
+            npm run compute-aggregates -- --delay 300
+          fi
 
       - name: Check for changes
         id: changes
