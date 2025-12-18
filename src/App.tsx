@@ -236,9 +236,11 @@ function App() {
                 // For GB release tab, use releases data for contributors (has contributor counts)
                 // and timeSeries for PRs (optimized for chart)
                 const gbChartData = metric === 'contributors' ? releases : timeSeries;
-                const totalReleases = releases?.length || 0;
+                const totalGBReleases = releases?.length || 0;
+                const totalWPVersions = wpVersionStats?.length || 0;
+                const totalItems = isWPTab ? totalWPVersions : totalGBReleases;
                 const trendChartProps = isWPTab
-                  ? { dataSource: 'wp-version' as const, data: wpVersionStats, metric }
+                  ? { dataSource: 'wp-version' as const, data: wpVersionStats, releaseCount, metric }
                   : { dataSource: 'gb-release' as const, data: gbChartData, releaseCount, metric };
 
                 const dataTableProps = isWPTab
@@ -315,23 +317,26 @@ function App() {
                               <ToggleGroupControlOption value="bar" label="Bar" />
                             </ToggleGroupControl>
                           </div>
-                          {!isWPTab && totalReleases > 10 && (
+                          {totalItems > 10 && (
                             <div className="release-count-control">
+                              <span className="release-count-label">Show:</span>
                               <RangeControl
                                 __nextHasNoMarginBottom
-                                label="Releases shown"
-                                value={releaseCount}
+                                label="Items to show"
+                                hideLabelFromVision
+                                value={Math.min(releaseCount, totalItems)}
                                 onChange={(value) => setReleaseCount(value ?? 50)}
                                 min={10}
-                                max={totalReleases}
+                                max={totalItems}
                                 step={5}
                                 marks={[
                                   { value: 10, label: '10' },
-                                  { value: 50, label: '50' },
-                                  { value: 100, label: '100' },
-                                  { value: totalReleases, label: 'All' },
+                                  ...(totalItems >= 25 ? [{ value: 25, label: '25' }] : []),
+                                  ...(totalItems >= 50 ? [{ value: 50, label: '50' }] : []),
+                                  { value: totalItems, label: 'All' },
                                 ]}
                                 withInputField={false}
+                                __next40pxDefaultSize
                               />
                             </div>
                           )}

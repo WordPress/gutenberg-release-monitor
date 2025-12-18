@@ -30,6 +30,8 @@ interface BaseTrendChartProps {
 interface WPVersionTrendChartProps extends BaseTrendChartProps {
   dataSource: 'wp-version';
   data: WPVersionStats[];
+  /** Number of versions to show (default: all) */
+  releaseCount?: number;
 }
 
 interface GBReleaseTrendChartProps extends BaseTrendChartProps {
@@ -67,8 +69,7 @@ const OTHERS_COLOR = '#BDBDBD';
 const MAX_BREAKDOWN_ITEMS = 10;
 
 export function TrendChart(props: TrendChartProps) {
-  const { viewMode, chartType, dataSource, data, visibleCategories, onCategoryToggle, metric } = props;
-  const releaseCount = dataSource === 'gb-release' ? props.releaseCount : undefined;
+  const { viewMode, chartType, dataSource, data, visibleCategories, onCategoryToggle, metric, releaseCount } = props;
   const isContributorMetric = metric === 'contributors';
   const isSponsorBreakdown = viewMode === 'sponsors';
   const isCountryBreakdown = viewMode === 'countries';
@@ -77,18 +78,22 @@ export function TrendChart(props: TrendChartProps) {
   const [categoryConfig, setCategoryConfig] = useState<CategoryConfig | null>(null);
   // Local state for hidden breakdown items (resets when view mode changes)
   const [hiddenBreakdownItems, setHiddenBreakdownItems] = useState<Set<string>>(new Set());
+  // Local state for hiding "All PRs" line
+  const [showAllPRs, setShowAllPRs] = useState(true);
   const prevViewModeRef = useRef(viewMode);
 
   useEffect(() => {
     loadCategoryConfig().then(setCategoryConfig);
   }, []);
 
-  // Reset hidden breakdown items when view mode changes
+  // Reset hidden items when view mode changes
   useEffect(() => {
     if (prevViewModeRef.current !== viewMode) {
       prevViewModeRef.current = viewMode;
       // eslint-disable-next-line react-hooks/set-state-in-effect -- Intentional reset on prop change
       setHiddenBreakdownItems(new Set());
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- Intentional reset on prop change
+      setShowAllPRs(true);
     }
   }, [viewMode]);
 
@@ -197,6 +202,8 @@ export function TrendChart(props: TrendChartProps) {
         tickInterval: 0,
         xAxisAngle: 0,
         xAxisHeight: 30,
+        filterToMajorVersions: false,
+        tickFormatter: undefined as ((value: string) => string) | undefined,
       };
     }
     return {
@@ -204,11 +211,14 @@ export function TrendChart(props: TrendChartProps) {
       xLabel: 'GB release',
       tooltipPrefix: 'Gutenberg',
       showReleasesLine: false,
-      tickInterval: data.length > 50 ? Math.floor(data.length / 20) : 0,
-      xAxisAngle: -45,
-      xAxisHeight: 60,
+      tickInterval: 0,
+      xAxisAngle: 0,
+      xAxisHeight: 30,
+      filterToMajorVersions: true,
+      // Strip .0 suffix from major versions (e.g., "19.0" → "19")
+      tickFormatter: (value: string) => value.replace(/\.0$/, ''),
     };
-  }, [dataSource, viewMode, data.length]);
+  }, [dataSource, viewMode]);
 
   // Transform data for chart
   const chartData = useMemo(() => {
@@ -216,7 +226,11 @@ export function TrendChart(props: TrendChartProps) {
 
     if (dataSource === 'wp-version') {
       const wpData = data as WPVersionStats[];
-      return [...wpData].reverse().map((stat) => {
+      // WP versions are sorted newest-first; reverse for chronological display, then slice
+      const displayedData = releaseCount
+        ? [...wpData].slice(0, releaseCount).reverse()
+        : [...wpData].reverse();
+      return displayedData.map((stat) => {
         const baseData: Record<string, string | number> = {
           wpVersion: stat.wpVersion,
           releaseCount: stat.releaseCount,
@@ -382,9 +396,24 @@ export function TrendChart(props: TrendChartProps) {
     });
   }, [data, categoryConfig, viewMode, defaultCategories, dataSource, releaseCount, isContributorMetric, isBreakdownMode, isSponsorBreakdown, topBreakdownItems]);
 
+  // Compute X-axis ticks - for GB releases, only show major versions (X.0)
+  const xAxisTicks = useMemo(() => {
+    if (!config.filterToMajorVersions || chartData.length === 0) {
+      return undefined; // Let Recharts auto-calculate
+    }
+    // Filter to only major versions where minor version is 0 (e.g., "19.0", "20.0")
+    // This excludes versions like "19.3" or "19.3.0"
+    return chartData
+      .map((point) => point[config.xKey] as string)
+      .filter((version) => {
+        const parts = version.split('.');
+        return parts.length >= 2 && parts[1] === '0';
+      });
+  }, [chartData, config.filterToMajorVersions, config.xKey]);
+
   // Build legend items - include ALL categories for clickable legend
   const legendItems = useMemo(() => {
-    const items: Array<{ id: string; label: string; color: string; dashed?: boolean; isVisible: boolean; isCategory: boolean; isBreakdown: boolean }> = [];
+    const items: Array<{ id: string; label: string; color: string; dashed?: boolean; isVisible: boolean; isCategory: boolean; isBreakdown: boolean; isAllPRs?: boolean }> = [];
 
     if (isBreakdownMode) {
       // Sponsor/country breakdown: show top items as legend (toggleable)
@@ -414,9 +443,9 @@ export function TrendChart(props: TrendChartProps) {
         });
       }
 
-      // Show "All PRs" for line/bar in non-distribution mode
+      // Show "All PRs" for line/bar in non-distribution mode (toggleable)
       if (viewMode !== 'distribution' && (chartType === 'line' || chartType === 'bar')) {
-        items.push({ id: 'allPRs', label: 'All PRs', color: PRS_COLOR, isVisible: true, isCategory: false, isBreakdown: false });
+        items.push({ id: 'allPRs', label: 'All PRs', color: PRS_COLOR, isVisible: showAllPRs, isCategory: false, isBreakdown: false, isAllPRs: true });
       }
     }
 
@@ -425,7 +454,7 @@ export function TrendChart(props: TrendChartProps) {
       items.push({ id: 'releases', label: 'GB releases included', color: RELEASES_COLOR, dashed: true, isVisible: true, isCategory: false, isBreakdown: false });
     }
     return items;
-  }, [categoryConfig, visibleCategories, chartType, viewMode, config.showReleasesLine, isContributorMetric, isBreakdownMode, topBreakdownItems, hiddenBreakdownItems]);
+  }, [categoryConfig, visibleCategories, chartType, viewMode, config.showReleasesLine, isContributorMetric, isBreakdownMode, topBreakdownItems, hiddenBreakdownItems, showAllPRs]);
 
   const handleLegendClick = useCallback(
     (itemId: string) => {
@@ -435,6 +464,12 @@ export function TrendChart(props: TrendChartProps) {
       // Handle category toggle (via parent callback)
       if (item.isCategory && onCategoryToggle) {
         onCategoryToggle(itemId, !item.isVisible);
+        return;
+      }
+
+      // Handle "All PRs" toggle (local state)
+      if (item.isAllPRs) {
+        setShowAllPRs((prev) => !prev);
         return;
       }
 
@@ -458,8 +493,9 @@ export function TrendChart(props: TrendChartProps) {
     [onCategoryToggle, legendItems, topBreakdownItems]
   );
 
-  // Categories and breakdown items are clickable
-  const isClickable = !!onCategoryToggle || isBreakdownMode;
+  // Legend items are clickable when there's a category toggle callback, breakdown mode, or All PRs is shown
+  const hasAllPRsToggle = legendItems.some((item) => item.isAllPRs);
+  const isClickable = !!onCategoryToggle || isBreakdownMode || hasAllPRsToggle;
 
   // Get cutoff versions for reference lines (GB release tab only)
   // Must be before early return to maintain consistent hook order
@@ -487,7 +523,7 @@ export function TrendChart(props: TrendChartProps) {
       content={() => (
         <div className={`trend-chart-legend${isClickable ? ' trend-chart-legend--clickable' : ''}`}>
           {legendItems.map((item) => {
-            const isToggleable = item.isCategory || item.isBreakdown;
+            const isToggleable = item.isCategory || item.isBreakdown || item.isAllPRs;
             const isItemClickable = isClickable && isToggleable;
             return (
               <button
@@ -672,7 +708,7 @@ export function TrendChart(props: TrendChartProps) {
               opacity={0.8}
             />
           ))}
-          {viewMode !== 'distribution' && (
+          {viewMode !== 'distribution' && showAllPRs && (
             <Bar yAxisId={yAxisId} dataKey="totalPRs" name="All PRs" fill={PRS_COLOR} opacity={0.8} />
           )}
           {config.showReleasesLine && (
@@ -766,7 +802,7 @@ export function TrendChart(props: TrendChartProps) {
             activeDot={{ r: 5, fill: agg.color }}
           />
         ))}
-        {viewMode !== 'distribution' && (
+        {viewMode !== 'distribution' && showAllPRs && (
           <Line
             yAxisId={yAxisId}
             type="monotone"
@@ -915,11 +951,11 @@ export function TrendChart(props: TrendChartProps) {
           <CartesianGrid strokeDasharray="3 3" opacity={0.3} />
           <XAxis
             dataKey={config.xKey}
-            tick={{ fontSize: config.xAxisAngle ? 10 : 12 }}
+            tick={{ fontSize: 12 }}
             tickMargin={8}
             interval={config.tickInterval}
-            angle={config.xAxisAngle}
-            textAnchor={config.xAxisAngle ? 'end' : 'middle'}
+            ticks={xAxisTicks}
+            tickFormatter={config.tickFormatter}
             height={config.xAxisHeight}
             label={{ value: config.xLabel, position: 'insideBottom', offset: -5, fontSize: 12 }}
           />

@@ -905,7 +905,8 @@ body {
 .chart-controls {
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: space-between;
   gap: 1rem;
   margin-bottom: 1rem;
 }
@@ -915,20 +916,40 @@ body {
 }
 
 .release-count-control {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  width: 280px;
+}
+
+.release-count-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--color-text-secondary, #757575);
+  white-space: nowrap;
+  line-height: 40px; /* Match __next40pxDefaultSize height */
+}
+
+.release-count-control .components-base-control {
   flex: 1;
-  min-width: 200px;
-  max-width: 400px;
+  min-width: 0;
 }
 
 .release-count-control .components-range-control__root {
   margin-bottom: 0;
 }
 
-.release-count-control .components-base-control__label {
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  color: var(--color-text-secondary, #757575);
+.release-count-control .components-range-control__wrapper {
+  width: 100%;
+}
+
+.release-count-control .components-range-control__mark-label {
+  color: var(--color-text-secondary, #757575) !important;
+}
+
+.release-count-control .components-range-control__mark-label.is-selected {
+  color: var(--color-text-secondary, #757575) !important;
 }
 
 /* Trend Line Chart */
