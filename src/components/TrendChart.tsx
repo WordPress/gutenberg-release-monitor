@@ -1,4 +1,4 @@
-import { useMemo, useEffect, useState, useCallback } from 'react';
+import { useMemo, useEffect, useState, useCallback, useRef } from 'react';
 import {
   ComposedChart,
   Line,
@@ -50,12 +50,19 @@ const NEW_CONTRIBUTORS_COLOR = '#FF9800';
 const RETURNING_CONTRIBUTORS_COLOR = '#2196F3';
 
 // Color palette for sponsor/country breakdown charts
+// Note: Blue shades excluded since Automattic uses blue (#3499CD)
 const BREAKDOWN_COLORS = [
-  '#4CAF50', '#2196F3', '#FF9800', '#9C27B0', '#F44336',
-  '#00BCD4', '#E91E63', '#8BC34A', '#FF5722', '#3F51B5',
-  '#CDDC39', '#795548', '#607D8B', '#009688', '#FFC107',
+  '#4CAF50', '#FF9800', '#9C27B0', '#F44336', '#00BCD4',
+  '#E91E63', '#8BC34A', '#FF5722', '#CDDC39', '#795548',
+  '#607D8B', '#009688', '#FFC107', '#673AB7', '#3F51B5',
 ];
 const UNKNOWN_COLOR = '#9E9E9E';
+
+// Fixed colors for specific sponsors
+const SPONSOR_COLORS: Record<string, string> = {
+  Automattic: '#3499CD', // Automattic logo blue
+  Unknown: UNKNOWN_COLOR,
+};
 const OTHERS_COLOR = '#BDBDBD';
 const MAX_BREAKDOWN_ITEMS = 10;
 
@@ -68,10 +75,22 @@ export function TrendChart(props: TrendChartProps) {
   const isBreakdownMode = isSponsorBreakdown || isCountryBreakdown;
 
   const [categoryConfig, setCategoryConfig] = useState<CategoryConfig | null>(null);
+  // Local state for hidden breakdown items (resets when view mode changes)
+  const [hiddenBreakdownItems, setHiddenBreakdownItems] = useState<Set<string>>(new Set());
+  const prevViewModeRef = useRef(viewMode);
 
   useEffect(() => {
     loadCategoryConfig().then(setCategoryConfig);
   }, []);
+
+  // Reset hidden breakdown items when view mode changes
+  useEffect(() => {
+    if (prevViewModeRef.current !== viewMode) {
+      prevViewModeRef.current = viewMode;
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- Intentional reset on prop change
+      setHiddenBreakdownItems(new Set());
+    }
+  }, [viewMode]);
 
   // Get categories to render (filtered by visibleCategories if provided)
   const defaultCategories = useMemo(() => {
@@ -115,25 +134,31 @@ export function TrendChart(props: TrendChartProps) {
       });
     }
 
-    // Sort by total, keep Unknown at end
-    const sorted = Object.entries(totals).sort(([aKey, aVal], [bKey, bVal]) => {
-      if (aKey === 'Unknown') return 1;
-      if (bKey === 'Unknown') return -1;
-      return bVal - aVal;
-    });
+    // Separate Unknown from other items BEFORE processing
+    const unknownTotal = totals['Unknown'] || 0;
+    const hasUnknown = unknownTotal > 0;
 
-    // Take top N items (excluding Unknown), add Others if needed
-    const hasUnknown = totals['Unknown'] > 0;
-    const nonUnknown = sorted.filter(([key]) => key !== 'Unknown');
-    const topItems = nonUnknown.slice(0, MAX_BREAKDOWN_ITEMS - (hasUnknown ? 1 : 0));
-    const othersItems = nonUnknown.slice(MAX_BREAKDOWN_ITEMS - (hasUnknown ? 1 : 0));
-    const othersTotal = othersItems.reduce((sum, [, val]) => sum + val, 0);
+    // Sort non-Unknown items by value descending
+    const nonUnknownEntries = Object.entries(totals).filter(([key]) => key !== 'Unknown');
+    const sortedNonUnknown = nonUnknownEntries.sort(([, aVal], [, bVal]) => bVal - aVal);
+
+    // Calculate available slots: MAX minus reserved for Unknown
+    const availableForNonUnknown = MAX_BREAKDOWN_ITEMS - (hasUnknown ? 1 : 0);
+
+    // Determine if we need "Others" and how many top items to show
+    const needsOthers = sortedNonUnknown.length > availableForNonUnknown;
+    const topItemsCount = needsOthers ? availableForNonUnknown - 1 : sortedNonUnknown.length;
+
+    const topItems = sortedNonUnknown.slice(0, topItemsCount);
+    const othersTotal = needsOthers
+      ? sortedNonUnknown.slice(topItemsCount).reduce((sum, [, val]) => sum + val, 0)
+      : 0;
     const grandTotal = Object.values(totals).reduce((sum, val) => sum + val, 0);
 
     const result: Array<{ id: string; label: string; color: string; total: number; percentage: number }> = topItems.map(([label, total], index) => ({
       id: label.toLowerCase().replace(/\s+/g, '-'),
       label,
-      color: BREAKDOWN_COLORS[index % BREAKDOWN_COLORS.length],
+      color: SPONSOR_COLORS[label] ?? BREAKDOWN_COLORS[index % BREAKDOWN_COLORS.length],
       total,
       percentage: grandTotal > 0 ? Math.round((total / grandTotal) * 1000) / 10 : 0,
     }));
@@ -149,11 +174,10 @@ export function TrendChart(props: TrendChartProps) {
     }
 
     if (hasUnknown) {
-      const unknownTotal = totals['Unknown'];
       result.push({
         id: 'unknown',
         label: 'Unknown',
-        color: UNKNOWN_COLOR,
+        color: SPONSOR_COLORS['Unknown'],
         total: unknownTotal,
         percentage: grandTotal > 0 ? Math.round((unknownTotal / grandTotal) * 1000) / 10 : 0,
       });
@@ -268,11 +292,16 @@ export function TrendChart(props: TrendChartProps) {
     if (isBreakdownMode) {
       // Sponsor/country breakdown - data is Release[]
       const releaseData = data as Release[];
+      const breakdownKey = isSponsorBreakdown ? 'sponsorBreakdown' : 'countryBreakdown';
+      // Filter to only releases with contributor breakdown data
+      const releasesWithData = releaseData.filter(
+        (release) => release.contributorAggregates?.[breakdownKey] &&
+          Object.keys(release.contributorAggregates[breakdownKey]).length > 0
+      );
       // Releases are sorted newest-first; reverse for chronological chart display
       const displayedData = releaseCount
-        ? releaseData.slice(0, releaseCount).reverse()
-        : [...releaseData].reverse();
-      const breakdownKey = isSponsorBreakdown ? 'sponsorBreakdown' : 'countryBreakdown';
+        ? releasesWithData.slice(0, releaseCount).reverse()
+        : [...releasesWithData].reverse();
       const topLabels = topBreakdownItems.filter((item) => item.label !== 'Others' && item.label !== 'Unknown').map((item) => item.label);
 
       return displayedData.map((release) => {
@@ -355,23 +384,24 @@ export function TrendChart(props: TrendChartProps) {
 
   // Build legend items - include ALL categories for clickable legend
   const legendItems = useMemo(() => {
-    const items: Array<{ id: string; label: string; color: string; dashed?: boolean; isVisible: boolean; isCategory: boolean }> = [];
+    const items: Array<{ id: string; label: string; color: string; dashed?: boolean; isVisible: boolean; isCategory: boolean; isBreakdown: boolean }> = [];
 
     if (isBreakdownMode) {
-      // Sponsor/country breakdown: show top items as legend
+      // Sponsor/country breakdown: show top items as legend (toggleable)
       topBreakdownItems.forEach((item) => {
-        items.push({ id: item.id, label: item.label, color: item.color, isVisible: true, isCategory: false });
+        const isVisible = !hiddenBreakdownItems.has(item.id);
+        items.push({ id: item.id, label: item.label, color: item.color, isVisible, isCategory: false, isBreakdown: true });
       });
     } else if (isContributorMetric) {
       // Contributor mode: show contributor legend items
       // For stacked/area, show returning + new; for line/bar, show total + new
       const isStackedChart = chartType === 'stacked' || chartType === 'area';
       if (isStackedChart) {
-        items.push({ id: 'returningContributors', label: 'Returning Contributors', color: RETURNING_CONTRIBUTORS_COLOR, isVisible: true, isCategory: false });
-        items.push({ id: 'newContributors', label: 'New Contributors', color: NEW_CONTRIBUTORS_COLOR, isVisible: true, isCategory: false });
+        items.push({ id: 'returningContributors', label: 'Returning Contributors', color: RETURNING_CONTRIBUTORS_COLOR, isVisible: true, isCategory: false, isBreakdown: false });
+        items.push({ id: 'newContributors', label: 'New Contributors', color: NEW_CONTRIBUTORS_COLOR, isVisible: true, isCategory: false, isBreakdown: false });
       } else {
-        items.push({ id: 'contributors', label: 'Total Contributors', color: CONTRIBUTORS_COLOR, isVisible: true, isCategory: false });
-        items.push({ id: 'newContributors', label: 'New Contributors', color: NEW_CONTRIBUTORS_COLOR, isVisible: true, isCategory: false });
+        items.push({ id: 'contributors', label: 'Total Contributors', color: CONTRIBUTORS_COLOR, isVisible: true, isCategory: false, isBreakdown: false });
+        items.push({ id: 'newContributors', label: 'New Contributors', color: NEW_CONTRIBUTORS_COLOR, isVisible: true, isCategory: false, isBreakdown: false });
       }
     } else {
       // PR mode: show category legend items
@@ -380,35 +410,56 @@ export function TrendChart(props: TrendChartProps) {
           const isVisible = visibleCategories
             ? visibleCategories.includes(agg.id)
             : agg.includeByDefault;
-          items.push({ id: agg.id, label: agg.label, color: agg.color, isVisible, isCategory: true });
+          items.push({ id: agg.id, label: agg.label, color: agg.color, isVisible, isCategory: true, isBreakdown: false });
         });
       }
 
       // Show "All PRs" for line/bar in non-distribution mode
       if (viewMode !== 'distribution' && (chartType === 'line' || chartType === 'bar')) {
-        items.push({ id: 'allPRs', label: 'All PRs', color: PRS_COLOR, isVisible: true, isCategory: false });
+        items.push({ id: 'allPRs', label: 'All PRs', color: PRS_COLOR, isVisible: true, isCategory: false, isBreakdown: false });
       }
     }
 
     // Show releases count for WP totals mode (both modes)
     if (config.showReleasesLine) {
-      items.push({ id: 'releases', label: 'GB releases included', color: RELEASES_COLOR, dashed: true, isVisible: true, isCategory: false });
+      items.push({ id: 'releases', label: 'GB releases included', color: RELEASES_COLOR, dashed: true, isVisible: true, isCategory: false, isBreakdown: false });
     }
     return items;
-  }, [categoryConfig, visibleCategories, chartType, viewMode, config.showReleasesLine, isContributorMetric, isBreakdownMode, topBreakdownItems]);
+  }, [categoryConfig, visibleCategories, chartType, viewMode, config.showReleasesLine, isContributorMetric, isBreakdownMode, topBreakdownItems, hiddenBreakdownItems]);
 
   const handleLegendClick = useCallback(
-    (categoryId: string) => {
-      if (!onCategoryToggle) return;
-      const item = legendItems.find((i) => i.id === categoryId);
-      if (item && item.isCategory) {
-        onCategoryToggle(categoryId, !item.isVisible);
+    (itemId: string) => {
+      const item = legendItems.find((i) => i.id === itemId);
+      if (!item) return;
+
+      // Handle category toggle (via parent callback)
+      if (item.isCategory && onCategoryToggle) {
+        onCategoryToggle(itemId, !item.isVisible);
+        return;
+      }
+
+      // Handle breakdown item toggle (local state)
+      if (item.isBreakdown) {
+        setHiddenBreakdownItems((prev) => {
+          const next = new Set(prev);
+          if (next.has(itemId)) {
+            next.delete(itemId);
+          } else {
+            // Don't allow hiding the last visible item
+            const visibleCount = topBreakdownItems.filter((i) => !prev.has(i.id)).length;
+            if (visibleCount > 1) {
+              next.add(itemId);
+            }
+          }
+          return next;
+        });
       }
     },
-    [onCategoryToggle, legendItems]
+    [onCategoryToggle, legendItems, topBreakdownItems]
   );
 
-  const isClickable = !!onCategoryToggle;
+  // Categories and breakdown items are clickable
+  const isClickable = !!onCategoryToggle || isBreakdownMode;
 
   // Get cutoff versions for reference lines (GB release tab only)
   // Must be before early return to maintain consistent hook order
@@ -435,20 +486,24 @@ export function TrendChart(props: TrendChartProps) {
     <Legend
       content={() => (
         <div className={`trend-chart-legend${isClickable ? ' trend-chart-legend--clickable' : ''}`}>
-          {legendItems.map((item) => (
-            <button
-              type="button"
-              key={item.id}
-              className={`trend-chart-legend-item${!item.isVisible ? ' trend-chart-legend-item--hidden' : ''}${!item.isCategory ? ' trend-chart-legend-item--fixed' : ''}`}
-              style={{ '--legend-color': item.color } as React.CSSProperties}
-              onClick={() => handleLegendClick(item.id)}
-              disabled={!isClickable || !item.isCategory}
-              title={isClickable && item.isCategory ? `Click to ${item.isVisible ? 'hide' : 'show'} ${item.label}` : undefined}
-            >
-              <span className={`trend-chart-legend-line${item.dashed ? ' trend-chart-legend-line--dashed' : ''}`} />
-              <span className="trend-chart-legend-label">{item.label}</span>
-            </button>
-          ))}
+          {legendItems.map((item) => {
+            const isToggleable = item.isCategory || item.isBreakdown;
+            const isItemClickable = isClickable && isToggleable;
+            return (
+              <button
+                type="button"
+                key={item.id}
+                className={`trend-chart-legend-item${!item.isVisible ? ' trend-chart-legend-item--hidden' : ''}${!isToggleable ? ' trend-chart-legend-item--fixed' : ''}`}
+                style={{ '--legend-color': item.color } as React.CSSProperties}
+                onClick={() => handleLegendClick(item.id)}
+                disabled={!isItemClickable}
+                title={isItemClickable ? `Click to ${item.isVisible ? 'hide' : 'show'} ${item.label}` : undefined}
+              >
+                <span className={`trend-chart-legend-line${item.dashed ? ' trend-chart-legend-line--dashed' : ''}`} />
+                <span className="trend-chart-legend-label">{item.label}</span>
+              </button>
+            );
+          })}
         </div>
       )}
     />
@@ -466,6 +521,9 @@ export function TrendChart(props: TrendChartProps) {
 
     // Sponsor/country breakdown mode
     if (isBreakdownMode) {
+      // Filter out hidden breakdown items
+      const visibleBreakdownItems = topBreakdownItems.filter((item) => !hiddenBreakdownItems.has(item.id));
+
       const releasesLine = config.showReleasesLine && (
         <Line
           yAxisId="right"
@@ -482,7 +540,7 @@ export function TrendChart(props: TrendChartProps) {
       if (chartType === 'bar') {
         return (
           <>
-            {topBreakdownItems.map((item) => (
+            {visibleBreakdownItems.map((item) => (
               <Bar key={item.id} yAxisId={yAxisId} dataKey={item.id} name={item.label} fill={item.color} opacity={0.8} />
             ))}
             {releasesLine}
@@ -492,7 +550,7 @@ export function TrendChart(props: TrendChartProps) {
       if (chartType === 'stacked') {
         return (
           <>
-            {topBreakdownItems.map((item) => (
+            {visibleBreakdownItems.map((item) => (
               <Bar key={item.id} yAxisId={yAxisId} dataKey={item.id} name={item.label} fill={item.color} stackId="breakdown" />
             ))}
             {releasesLine}
@@ -502,7 +560,7 @@ export function TrendChart(props: TrendChartProps) {
       if (chartType === 'area') {
         return (
           <>
-            {topBreakdownItems.map((item) => (
+            {visibleBreakdownItems.map((item) => (
               <Area key={item.id} yAxisId={yAxisId} type="monotone" dataKey={item.id} name={item.label} stroke={item.color} fill={item.color} fillOpacity={0.6} strokeWidth={2} stackId="breakdown" />
             ))}
             {releasesLine}
@@ -512,7 +570,7 @@ export function TrendChart(props: TrendChartProps) {
       // Default: line
       return (
         <>
-          {topBreakdownItems.map((item) => (
+          {visibleBreakdownItems.map((item) => (
             <Line
               key={item.id}
               yAxisId={yAxisId}

@@ -7,7 +7,7 @@ import {
   SelectControl,
   __experimentalText as Text,
 } from '@wordpress/components';
-import { chevronLeft, chevronRight } from '@wordpress/icons';
+import { chevronLeft, chevronRight, previous, next } from '@wordpress/icons';
 import type { Summary, WPVersionStats, Release, ReleaseContributorAggregates, WPVersionContributorAggregates } from '../data/types';
 import { loadCategoryConfig, aggregateCategories, type CategoryConfig } from '../utils/categories';
 import { CategoryPieChart } from './CategoryPieChart';
@@ -283,6 +283,14 @@ export function SummaryStats(props: SummaryStatsProps) {
     }
   }, [currentIndex, hasNext, normalizedItems, setSelectedVersion]);
 
+  const goToFirst = useCallback(() => {
+    setSelectedVersion(normalizedItems[normalizedItems.length - 1].version);
+  }, [normalizedItems, setSelectedVersion]);
+
+  const goToLast = useCallback(() => {
+    setSelectedVersion(normalizedItems[0].version);
+  }, [normalizedItems, setSelectedVersion]);
+
   // Derived display values
   const isCurrentOrLatest = isWPVersion
     ? selectedVersion === summary.currentWPCycle
@@ -323,6 +331,14 @@ export function SummaryStats(props: SummaryStatsProps) {
           <Button
             variant="secondary"
             size="small"
+            icon={previous}
+            onClick={goToFirst}
+            disabled={!hasPrevious}
+            label={`First ${versionNavLabel}`}
+          />
+          <Button
+            variant="secondary"
+            size="small"
             icon={chevronLeft}
             onClick={goToPrevious}
             disabled={!hasPrevious}
@@ -344,6 +360,14 @@ export function SummaryStats(props: SummaryStatsProps) {
             onClick={goToNext}
             disabled={!hasNext}
             label={`Next ${versionNavLabel}`}
+          />
+          <Button
+            variant="secondary"
+            size="small"
+            icon={next}
+            onClick={goToLast}
+            disabled={!hasNext}
+            label={`Last ${versionNavLabel}`}
           />
         </div>
       </CardHeader>

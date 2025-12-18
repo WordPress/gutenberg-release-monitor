@@ -6,6 +6,7 @@ import {
   CardBody,
   ExternalLink,
   Notice,
+  RangeControl,
   Spinner,
   TabPanel,
   __experimentalText as Text,
@@ -58,6 +59,31 @@ function App() {
   // Category filter state (synced with URL)
   const [visibleCategories, setVisibleCategories] = useState<string[]>([]);
   const [defaultCategoryIds, setDefaultCategoryIds] = useState<string[]>([]);
+
+  // Release count for trend chart (GB release tab, synced with URL)
+  const [releaseCount, setReleaseCount] = useState<number>(() => {
+    const params = new URLSearchParams(window.location.search);
+    const urlCount = params.get('releases');
+    if (urlCount) {
+      const parsed = parseInt(urlCount, 10);
+      if (!isNaN(parsed) && parsed >= 10) return parsed;
+    }
+    return 50; // default
+  });
+
+  // Sync releaseCount to URL
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (releaseCount === 50) {
+      params.delete('releases');
+    } else {
+      params.set('releases', String(releaseCount));
+    }
+    const newUrl = params.toString()
+      ? `${window.location.pathname}?${params.toString()}`
+      : window.location.pathname;
+    window.history.replaceState({}, '', newUrl);
+  }, [releaseCount]);
 
   // Initialize visible categories from URL or defaults
   useEffect(() => {
@@ -210,9 +236,10 @@ function App() {
                 // For GB release tab, use releases data for contributors (has contributor counts)
                 // and timeSeries for PRs (optimized for chart)
                 const gbChartData = metric === 'contributors' ? releases : timeSeries;
+                const totalReleases = releases?.length || 0;
                 const trendChartProps = isWPTab
                   ? { dataSource: 'wp-version' as const, data: wpVersionStats, metric }
-                  : { dataSource: 'gb-release' as const, data: gbChartData, releaseCount: 50, metric };
+                  : { dataSource: 'gb-release' as const, data: gbChartData, releaseCount, metric };
 
                 const dataTableProps = isWPTab
                   ? { dataSource: 'wp-version' as const, data: wpVersionStats, viewMode, metric }
@@ -256,7 +283,7 @@ function App() {
                           value={isWPTab ? viewMode : effectiveViewMode}
                           onChange={(value) => setViewMode(value as ViewMode)}
                         >
-                          <ToggleGroupControlOption value="averages" label={isWPTab ? 'Per Release' : (metric === 'prs' ? 'PRs' : 'Contributors')} />
+                          <ToggleGroupControlOption value="averages" label={isWPTab ? 'Per GB Release' : (metric === 'prs' ? 'PRs' : 'Contributors')} />
                           {isWPTab && <ToggleGroupControlOption value="totals" label="Totals" />}
                           {metric === 'prs' ? (
                             <ToggleGroupControlOption value="distribution" label="Distribution" />
@@ -273,19 +300,41 @@ function App() {
                     {/* Chart - single instance, props switch */}
                     <Card id="trend-chart" className="trend-chart-card">
                       <CardBody>
-                        <div className="chart-type-toggle">
-                          <ToggleGroupControl
-                            __nextHasNoMarginBottom
-                            label="Chart type"
-                            hideLabelFromVision
-                            value={chartType}
-                            onChange={(value) => setChartType(value as ChartType)}
-                          >
-                            <ToggleGroupControlOption value="stacked" label="Stacked" />
-                            <ToggleGroupControlOption value="area" label="Area" />
-                            <ToggleGroupControlOption value="line" label="Line" />
-                            <ToggleGroupControlOption value="bar" label="Bar" />
-                          </ToggleGroupControl>
+                        <div className="chart-controls">
+                          <div className="chart-type-toggle">
+                            <ToggleGroupControl
+                              __nextHasNoMarginBottom
+                              label="Chart type"
+                              hideLabelFromVision
+                              value={chartType}
+                              onChange={(value) => setChartType(value as ChartType)}
+                            >
+                              <ToggleGroupControlOption value="stacked" label="Stacked" />
+                              <ToggleGroupControlOption value="area" label="Area" />
+                              <ToggleGroupControlOption value="line" label="Line" />
+                              <ToggleGroupControlOption value="bar" label="Bar" />
+                            </ToggleGroupControl>
+                          </div>
+                          {!isWPTab && totalReleases > 10 && (
+                            <div className="release-count-control">
+                              <RangeControl
+                                __nextHasNoMarginBottom
+                                label="Releases shown"
+                                value={releaseCount}
+                                onChange={(value) => setReleaseCount(value ?? 50)}
+                                min={10}
+                                max={totalReleases}
+                                step={5}
+                                marks={[
+                                  { value: 10, label: '10' },
+                                  { value: 50, label: '50' },
+                                  { value: 100, label: '100' },
+                                  { value: totalReleases, label: 'All' },
+                                ]}
+                                withInputField={false}
+                              />
+                            </div>
+                          )}
                         </div>
                         <TrendChart
                           {...trendChartProps}

@@ -203,7 +203,13 @@ export async function fetchGitHubUserProfile(
     throw new Error(`GitHub API error: ${response.status} ${response.statusText}`);
   }
 
-  const data = await response.json();
+  const data = await response.json() as {
+    login: string;
+    name: string | null;
+    company: string | null;
+    location: string | null;
+    bio: string | null;
+  };
   return {
     login: data.login,
     name: data.name || null,

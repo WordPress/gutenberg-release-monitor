@@ -509,6 +509,14 @@ body {
   width: 100%;
 }
 
+/* Grid layout for stable pie chart + legend positioning */
+.category-pie-chart--grid {
+  display: grid;
+  grid-template-columns: 55% 45%;
+  align-items: center;
+  gap: 0;
+}
+
 /* Custom pie chart legend */
 .category-pie-legend {
   display: flex;
@@ -572,6 +580,12 @@ body {
   height: 240px;
 }
 
+/* In grid mode, let the chart fill its column */
+.category-pie-chart--grid .category-pie-chart-recharts {
+  max-width: none;
+  height: 200px;
+}
+
 /* Compact mode for three-chart layout */
 .summary-pie-chart-item .category-pie-chart-recharts {
   min-width: 280px;
@@ -583,6 +597,7 @@ body {
   justify-content: center;
   gap: 0.375rem;
   max-height: 180px;
+  min-width: 120px;
   overflow-y: auto;
   font-size: 0.8125rem;
 }
@@ -884,6 +899,36 @@ body {
 .chart-type-toggle .components-toggle-group-control {
   border: 1px solid var(--color-border);
   border-radius: 2px;
+}
+
+/* Chart controls container */
+.chart-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.chart-controls .chart-type-toggle {
+  margin-bottom: 0;
+}
+
+.release-count-control {
+  flex: 1;
+  min-width: 200px;
+  max-width: 400px;
+}
+
+.release-count-control .components-range-control__root {
+  margin-bottom: 0;
+}
+
+.release-count-control .components-base-control__label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--color-text-secondary, #757575);
 }
 
 /* Trend Line Chart */

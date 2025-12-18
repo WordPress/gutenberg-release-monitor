@@ -1,5 +1,5 @@
 import { useMemo, useCallback } from 'react';
-import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from 'recharts';
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 import type { CategoryConfig } from '../utils/categories';
 
 type BreakdownType = 'categories' | 'sponsors' | 'countries';
@@ -56,11 +56,18 @@ function distributePercentages(items: { value: number; [key: string]: unknown }[
 }
 
 // Predefined color palette for sponsor/country breakdowns
+// Note: Blue shades excluded since Automattic uses blue (#3499CD)
 const BREAKDOWN_COLORS = [
-  '#4CAF50', '#2196F3', '#FF9800', '#9C27B0', '#F44336',
-  '#00BCD4', '#E91E63', '#8BC34A', '#FF5722', '#3F51B5',
-  '#CDDC39', '#795548', '#607D8B', '#009688', '#FFC107',
+  '#4CAF50', '#FF9800', '#9C27B0', '#F44336', '#00BCD4',
+  '#E91E63', '#8BC34A', '#FF5722', '#CDDC39', '#795548',
+  '#607D8B', '#009688', '#FFC107', '#673AB7', '#3F51B5',
 ];
+
+// Fixed colors for specific sponsors
+const SPONSOR_COLORS: Record<string, string> = {
+  Automattic: '#3499CD', // Automattic logo blue
+  Unknown: '#9E9E9E', // Gray
+};
 
 export function CategoryPieChart({
   breakdownType = 'categories',
@@ -121,41 +128,52 @@ export function CategoryPieChart({
     const entries = Object.entries(data);
     if (entries.length === 0) return [];
 
-    // Sort by value descending, but keep "Unknown" at the end
-    const sorted = entries.sort(([aKey, aVal], [bKey, bVal]) => {
-      if (aKey === 'Unknown') return 1;
-      if (bKey === 'Unknown') return -1;
-      return bVal - aVal;
-    });
+    // Separate Unknown from other items BEFORE processing
+    const unknownValue = data['Unknown'] || 0;
+    const hasUnknown = unknownValue > 0;
+    const nonUnknownEntries = entries.filter(([key]) => key !== 'Unknown');
 
-    // Limit to top N items + "Others" for readability (pie charts work best with 5-7 segments)
+    // Sort non-Unknown items by value descending
+    const sortedNonUnknown = nonUnknownEntries.sort(([, aVal], [, bVal]) => bVal - aVal);
+
+    // Calculate available slots: MAX_ITEMS minus reserved slot for Unknown
     const MAX_ITEMS = 8;
-    let displayItems: Array<[string, number]>;
-    let othersValue = 0;
+    const availableForNonUnknown = MAX_ITEMS - (hasUnknown ? 1 : 0);
 
-    if (sorted.length > MAX_ITEMS) {
-      displayItems = sorted.slice(0, MAX_ITEMS - 1);
-      // Sum up the rest as "Others"
-      othersValue = sorted.slice(MAX_ITEMS - 1).reduce((sum, [, val]) => sum + val, 0);
-    } else {
-      displayItems = sorted;
-    }
+    // Determine if we need "Others" and how many top items to show
+    const needsOthers = sortedNonUnknown.length > availableForNonUnknown;
+    const topItemsCount = needsOthers ? availableForNonUnknown - 1 : sortedNonUnknown.length;
+
+    const displayItems = sortedNonUnknown.slice(0, topItemsCount);
+    const othersValue = needsOthers
+      ? sortedNonUnknown.slice(topItemsCount).reduce((sum, [, val]) => sum + val, 0)
+      : 0;
 
     // Build data points with generated colors
     const allData = displayItems.map(([label, value], index) => ({
       id: label.toLowerCase().replace(/\s+/g, '-'),
       label,
       value,
-      color: label === 'Unknown' ? '#9E9E9E' : BREAKDOWN_COLORS[index % BREAKDOWN_COLORS.length],
+      color: SPONSOR_COLORS[label] ?? BREAKDOWN_COLORS[index % BREAKDOWN_COLORS.length],
     }));
 
-    // Add "Others" if needed
+    // Add "Others" if needed (before Unknown for consistent ordering)
     if (othersValue > 0) {
       allData.push({
         id: 'others',
         label: 'Others',
         value: othersValue,
         color: '#BDBDBD',
+      });
+    }
+
+    // Add "Unknown" as its own item (never grouped into Others)
+    if (hasUnknown) {
+      allData.push({
+        id: 'unknown',
+        label: 'Unknown',
+        value: unknownValue,
+        color: SPONSOR_COLORS['Unknown'],
       });
     }
 
@@ -240,22 +258,27 @@ export function CategoryPieChart({
   const isContributorDataUnavailable = !isCategories &&
     (!breakdownData || Object.keys(breakdownData).length === 0);
 
-  // Show "Not available" state for sponsor/country when no data
-  if (isContributorDataUnavailable) {
+  // Check if category data is unavailable (no PRs in any category)
+  const isCategoryDataUnavailable = isCategories &&
+    Object.values(categoryTotals).every((val) => val === 0);
+
+  // Show "Not available" state when no data
+  if (isContributorDataUnavailable || isCategoryDataUnavailable) {
+    const message = isCategories
+      ? 'PR category data not yet computed for this release'
+      : `Contributor data not yet computed for this ${breakdownType === 'sponsors' ? 'sponsor' : 'country'} breakdown`;
     return (
       <div className="category-pie-chart">
         <div className="category-pie-chart-unavailable">
           <span className="category-pie-chart-unavailable-text">Not available</span>
-          <span className="category-pie-chart-unavailable-subtext">
-            Contributor data not yet computed for this {breakdownType === 'sponsors' ? 'sponsor' : 'country'} breakdown
-          </span>
+          <span className="category-pie-chart-unavailable-subtext">{message}</span>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="category-pie-chart">
+    <div className="category-pie-chart category-pie-chart--grid">
       <div className="category-pie-chart-recharts">
         <ResponsiveContainer width="100%" height="100%">
           <PieChart>
@@ -263,7 +286,7 @@ export function CategoryPieChart({
               data={pieData}
               dataKey="value"
               nameKey="label"
-              cx="40%"
+              cx="50%"
               cy="50%"
               innerRadius={0}
               outerRadius={size / 2 - 10}
@@ -306,36 +329,30 @@ export function CategoryPieChart({
                 );
               }}
             />
-            <Legend
-              layout="vertical"
-              align="right"
-              verticalAlign="middle"
-              content={() => (
-                <div className={`category-pie-legend category-pie-legend--side${isClickable ? ' category-pie-legend--clickable' : ''}`}>
-                  {legendData.map((item) => (
-                    <button
-                      type="button"
-                      key={item.id}
-                      className={`category-pie-legend-item${!item.isVisible ? ' category-pie-legend-item--hidden' : ''}${!item.hasData ? ' category-pie-legend-item--no-data' : ''}`}
-                      style={{ '--legend-color': item.color } as React.CSSProperties}
-                      onClick={() => handleLegendClick(item.id)}
-                      disabled={!isClickable}
-                      title={isClickable ? `Click to ${item.isVisible ? 'hide' : 'show'} ${item.label}` : undefined}
-                    >
-                      <span className="category-pie-legend-color" />
-                      <span className="category-pie-legend-label">{item.label}</span>
-                      <span
-                        className={`category-pie-legend-value${!item.isVisible || !item.hasData ? ' category-pie-legend-value--hidden' : ''}`}
-                      >
-                        {item.percentage}%
-                      </span>
-                    </button>
-                  ))}
-                </div>
-              )}
-            />
           </PieChart>
         </ResponsiveContainer>
+      </div>
+      {/* Legend rendered outside PieChart to prevent layout recalculation */}
+      <div className={`category-pie-legend category-pie-legend--side${isClickable ? ' category-pie-legend--clickable' : ''}`}>
+        {legendData.map((item) => (
+          <button
+            type="button"
+            key={item.id}
+            className={`category-pie-legend-item${!item.isVisible ? ' category-pie-legend-item--hidden' : ''}${!item.hasData ? ' category-pie-legend-item--no-data' : ''}`}
+            style={{ '--legend-color': item.color } as React.CSSProperties}
+            onClick={() => handleLegendClick(item.id)}
+            disabled={!isClickable}
+            title={isClickable ? `Click to ${item.isVisible ? 'hide' : 'show'} ${item.label}` : undefined}
+          >
+            <span className="category-pie-legend-color" />
+            <span className="category-pie-legend-label">{item.label}</span>
+            <span
+              className={`category-pie-legend-value${!item.isVisible || !item.hasData ? ' category-pie-legend-value--hidden' : ''}`}
+            >
+              {item.percentage}%
+            </span>
+          </button>
+        ))}
       </div>
     </div>
   );

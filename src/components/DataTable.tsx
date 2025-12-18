@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect, useRef } from 'react';
 import { DataViews } from '@wordpress/dataviews';
 import { ExternalLink, Tooltip } from '@wordpress/components';
 import type { Release, WPVersionStats } from '../data/types';
@@ -79,6 +79,10 @@ export function DataTable(props: DataTableProps) {
   const { dataSource, data, viewMode, metric } = props;
   const isWPVersion = dataSource === 'wp-version';
   const isContributorMetric = metric === 'contributors';
+
+  // Track context changes to reset fields only when necessary
+  const contextKey = `${dataSource}-${metric}`;
+  const prevContextKey = useRef<string | null>(null);
 
   const [categoryConfig, setCategoryConfig] = useState<CategoryConfig | null>(null);
 
@@ -199,11 +203,20 @@ export function DataTable(props: DataTableProps) {
     layout: {},
   });
 
-  // Compute effective view with current fields (avoids setState in effect)
-  const effectiveView = useMemo(
-    () => ({ ...view, fields: visibleFieldIds }),
-    [view, visibleFieldIds]
-  );
+  // Initialize or reset fields when context changes (data source or metric)
+  useEffect(() => {
+    const contextChanged = prevContextKey.current !== contextKey;
+
+    if (contextChanged) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- Intentional reset on prop change
+      setView((prev) => ({ ...prev, fields: visibleFieldIds }));
+      prevContextKey.current = contextKey;
+    }
+  }, [contextKey, visibleFieldIds]);
+
+  // Use view directly - fields are managed by the effect above
+  // This preserves user column selections until context changes
+  const effectiveView = view;
 
   // Build fields for DataViews (all work with TableRow)
   const fields = useMemo(() => {
@@ -318,36 +331,37 @@ export function DataTable(props: DataTableProps) {
       },
       render: ({ item }: { item: TableRow }) => {
         const count = item.categoryTotals[agg.id] || 0;
+        const colorStyle = { color: agg.color };
 
         if (isWPVersion) {
           if (viewMode === 'averages' && item.releaseCount) {
             const avg = count > 0 ? Math.round(count / item.releaseCount) : 0;
             if (avg === 0) return '—';
-            return <span className={`release-${agg.id}`}>{avg}</span>;
+            return <span className={`release-${agg.id}`} style={colorStyle}>{avg}</span>;
           }
           if (viewMode === 'distribution') {
             const percent = item.totalPRs > 0 ? Math.round((count / item.totalPRs) * 100) : 0;
             if (percent === 0) return '—';
-            return <span className={`release-${agg.id}`}>{percent}%</span>;
+            return <span className={`release-${agg.id}`} style={colorStyle}>{percent}%</span>;
           }
           // totals
           if (count === 0) return '—';
-          return <span className={`release-${agg.id}`}>{count.toLocaleString()}</span>;
+          return <span className={`release-${agg.id}`} style={colorStyle}>{count.toLocaleString()}</span>;
         }
 
         // GB Release
         const percent = item.totalPRs > 0 ? Math.round((count / item.totalPRs) * 100) : 0;
         if (viewMode === 'distribution') {
-          return <span className={`release-${agg.id}`}>{percent}%</span>;
+          return <span className={`release-${agg.id}`} style={colorStyle}>{percent}%</span>;
         }
         if (agg.id === 'features' || agg.id === 'bugs') {
           return (
-            <span className={`release-${agg.id}`}>
+            <span className={`release-${agg.id}`} style={colorStyle}>
               {count} ({percent}%)
             </span>
           );
         }
-        return <span className={`release-${agg.id}`}>{count}</span>;
+        return <span className={`release-${agg.id}`} style={colorStyle}>{count}</span>;
       },
     }));
 

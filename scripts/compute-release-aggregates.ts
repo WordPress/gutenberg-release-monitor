@@ -176,7 +176,7 @@ function sortByValue( obj: Record< string, number > ): Record< string, number > 
  * Compute aggregates for a WP version from unique contributors across all its GB releases.
  */
 function computeWPVersionAggregates(
-	wpVersion: string,
+	_wpVersion: string,
 	wpReleases: Release[],
 	contributorDataMap: Map< string, ContributorData >,
 	sponsorNormalizer: SponsorNormalizer
