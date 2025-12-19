@@ -180,6 +180,7 @@ function App() {
         </Text>
         <Text className="app-disclaimer">
           This data is an approximation based on parsing Gutenberg release changelogs, and doesn't include cherry-picks to WordPress release branches after the Beta1 cutoff.{' '}
+          Contributor sponsor and country data for releases before WP 6.9 / GB 20.5 was collected retroactively and reflects current profiles, not historical affiliations.{' '}
           <ExternalLink href="https://developer.wordpress.org/block-editor/contributors/versions-in-wordpress/">
             Learn more
           </ExternalLink>
