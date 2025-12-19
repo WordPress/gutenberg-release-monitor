@@ -7149,7 +7149,16 @@
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v15.8.0",
     "parsedAt": "2025-12-15T09:27:48.216Z",
-    "parserVersion": "1.0.0"
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-19T19:58:48.345Z"
+    }
   },
   {
     "gbVersion": "15.7.0",
@@ -10760,7 +10769,16 @@
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v12.6.0",
     "parsedAt": "2025-12-15T09:27:48.234Z",
-    "parserVersion": "1.0.0"
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 3
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-19T19:58:48.345Z"
+    }
   },
   {
     "gbVersion": "12.5.0",
@@ -10783,7 +10801,16 @@
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v12.5.0",
     "parsedAt": "2025-12-15T09:27:48.234Z",
-    "parserVersion": "1.0.0"
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-19T19:58:48.345Z"
+    }
   },
   {
     "gbVersion": "12.4.0",
@@ -10804,7 +10831,16 @@
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v12.4.0",
     "parsedAt": "2025-12-15T09:27:48.235Z",
-    "parserVersion": "1.0.0"
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-19T19:58:48.345Z"
+    }
   },
   {
     "gbVersion": "12.3.0",
@@ -10826,7 +10862,16 @@
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v12.3.0",
     "parsedAt": "2025-12-15T09:27:48.235Z",
-    "parserVersion": "1.0.0"
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-19T19:58:48.345Z"
+    }
   },
   {
     "gbVersion": "12.2.0",
@@ -10847,7 +10892,16 @@
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v12.2.0",
     "parsedAt": "2025-12-15T09:27:48.235Z",
-    "parserVersion": "1.0.0"
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-19T19:58:48.345Z"
+    }
   },
   {
     "gbVersion": "12.1.0",
@@ -10869,7 +10923,16 @@
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v12.1.0",
     "parsedAt": "2025-12-15T09:27:48.236Z",
-    "parserVersion": "1.0.0"
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-19T19:58:48.345Z"
+    }
   },
   {
     "gbVersion": "12.0.0",
@@ -10892,7 +10955,16 @@
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v12.0.0",
     "parsedAt": "2025-12-15T09:27:48.236Z",
-    "parserVersion": "1.0.0"
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-19T19:58:48.345Z"
+    }
   },
   {
     "gbVersion": "11.9.0",
