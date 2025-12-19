@@ -1220,3 +1220,51 @@ body {
 .dark-mode .trend-chart-tooltip-total {
   border-color: var(--color-border);
 }
+
+/* Error Boundary */
+.error-boundary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  padding: 2rem;
+  text-align: center;
+}
+
+.error-boundary h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.25rem;
+}
+
+.error-boundary p {
+  margin: 0 0 1rem;
+  color: var(--color-text-muted);
+}
+
+.error-boundary details {
+  margin-top: 1rem;
+  text-align: left;
+  width: 100%;
+  max-width: 600px;
+}
+
+.error-boundary summary {
+  cursor: pointer;
+  color: var(--color-text-muted);
+}
+
+.error-boundary pre {
+  margin-top: 0.5rem;
+  padding: 1rem;
+  background: var(--color-surface-alt);
+  border-radius: 4px;
+  overflow-x: auto;
+  font-size: 0.875rem;
+}
+
+.error-boundary-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}

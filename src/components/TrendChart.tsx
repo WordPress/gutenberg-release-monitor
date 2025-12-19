@@ -90,10 +90,10 @@ export function TrendChart(props: TrendChartProps) {
   useEffect(() => {
     if (prevViewModeRef.current !== viewMode) {
       prevViewModeRef.current = viewMode;
-      // eslint-disable-next-line react-hooks/set-state-in-effect -- Intentional reset on prop change
+      /* eslint-disable react-hooks/set-state-in-effect -- Intentional reset on prop change, safe with ref guard */
       setHiddenBreakdownItems(new Set());
-      // eslint-disable-next-line react-hooks/set-state-in-effect -- Intentional reset on prop change
       setShowAllPRs(true);
+      /* eslint-enable react-hooks/set-state-in-effect */
     }
   }, [viewMode]);
 
