@@ -89,24 +89,24 @@
         "Whodunit": 1,
         "Google": 1,
         "rtCamp": 1,
-        "Multidots": 1,
+        "Multidots Inc": 1,
         "GoDaddy": 1,
         "The Open Sea": 1,
         "Unknown": 6
       },
       "countryBreakdown": {
-        "Spain": 6,
-        "United Kingdom": 5,
-        "United States": 5,
+        "Spain": 7,
         "Australia": 5,
+        "United States": 5,
+        "United Kingdom": 5,
         "India": 3,
+        "Germany": 2,
+        "Italy": 2,
         "Portugal": 2,
         "Greece": 2,
         "Algeria": 2,
-        "Italy": 2,
         "Japan": 2,
         "France": 1,
-        "Germany": 1,
         "Denmark": 1,
         "Czechia": 1,
         "Georgia": 1,
@@ -116,9 +116,9 @@
         "Lithuania": 1,
         "Nigeria": 1,
         "Bulgaria": 1,
-        "Unknown": 4
+        "Unknown": 2
       },
-      "aggregatedAt": "2025-12-15T19:28:52.222Z"
+      "aggregatedAt": "2025-12-19T23:20:59.369Z"
     }
   },
   {
@@ -215,7 +215,7 @@
         "KrishaWeb": 1,
         "Accessible Web Design": 1,
         "Self-sponsored": 1,
-        "Multidots": 1,
+        "Multidots Inc": 1,
         "GoDaddy": 1,
         "Fueled": 1,
         "Pew Research Center": 1,
@@ -226,21 +226,21 @@
       "countryBreakdown": {
         "United States": 10,
         "India": 8,
+        "Spain": 6,
         "Australia": 5,
-        "Spain": 5,
         "United Kingdom": 3,
-        "Portugal": 2,
         "Italy": 2,
+        "Portugal": 2,
+        "Germany": 2,
         "Japan": 2,
         "Czechia": 1,
         "Georgia": 1,
         "Greece": 1,
-        "Germany": 1,
         "Bulgaria": 1,
         "Algeria": 1,
-        "Unknown": 8
+        "Unknown": 6
       },
-      "aggregatedAt": "2025-12-15T19:28:52.222Z"
+      "aggregatedAt": "2025-12-19T23:20:59.370Z"
     }
   },
   {
@@ -317,34 +317,35 @@
       "sponsorBreakdown": {
         "Automattic": 21,
         "Earthbound": 1,
-        "Unknown": 8,
+        "Kolkata": 1,
         "Self-sponsored": 1,
-        "Multidots": 1,
+        "Multidots Inc": 1,
         "librecoop": 1,
         "Greyd GmbH": 1,
         "GoDaddy": 1,
         "Fueled": 1,
         "rtCamp": 1,
-        "WP Engine": 1
+        "WP Engine": 1,
+        "Unknown": 7
       },
       "countryBreakdown": {
         "United States": 7,
         "India": 6,
-        "Spain": 4,
+        "Spain": 5,
         "Australia": 3,
         "United Kingdom": 2,
+        "Germany": 2,
         "Japan": 2,
+        "Italy": 1,
         "Morocco": 1,
         "Portugal": 1,
-        "Italy": 1,
-        "Germany": 1,
         "Georgia": 1,
         "Greece": 1,
         "Canada": 1,
         "Algeria": 1,
-        "Unknown": 6
+        "Unknown": 4
       },
-      "aggregatedAt": "2025-12-15T19:28:52.223Z"
+      "aggregatedAt": "2025-12-19T23:20:59.370Z"
     }
   },
   {
@@ -440,9 +441,9 @@
       "sponsorBreakdown": {
         "Automattic": 31,
         "rtCamp": 3,
-        "Multidots": 2,
+        "Multidots Inc": 2,
         "Earthbound": 1,
-        "Unknown": 9,
+        "marwadi university": 1,
         "BuxumLunic": 1,
         "Alpha Particle": 1,
         "10up": 1,
@@ -450,27 +451,30 @@
         "GoDaddy": 1,
         "ParshipMeet Group": 1,
         "Google": 1,
-        "WP Engine": 1
+        "WP Engine": 1,
+        "Unknown": 8
       },
       "countryBreakdown": {
         "United States": 9,
         "India": 9,
-        "Spain": 6,
+        "Spain": 8,
         "Australia": 5,
         "United Kingdom": 4,
+        "Germany": 3,
         "Japan": 3,
         "Switzerland": 2,
-        "Germany": 2,
         "Portugal": 2,
+        "Bulgaria": 1,
+        "Italy": 1,
         "Slovakia": 1,
         "Denmark": 1,
         "Georgia": 1,
         "Greece": 1,
         "Indonesia": 1,
         "Algeria": 1,
-        "Unknown": 6
+        "Unknown": 1
       },
-      "aggregatedAt": "2025-12-15T19:28:52.223Z"
+      "aggregatedAt": "2025-12-19T23:32:26.756Z"
     }
   },
   {
@@ -560,25 +564,24 @@
       "sponsorBreakdown": {
         "Automattic": 24,
         "rtCamp": 6,
-        "Multidots": 3,
+        "Multidots Inc": 3,
         "Earthbound": 1,
         "Cross Media Cloud": 1,
         "Self-sponsored": 1,
         "GoDaddy": 1,
-        "Evermade": 1,
         "10up": 1,
         "Roxnor": 1,
-        "Unknown": 7
+        "Unknown": 8
       },
       "countryBreakdown": {
-        "India": 11,
-        "Spain": 6,
-        "Australia": 5,
+        "India": 10,
+        "Spain": 8,
+        "Australia": 6,
         "United Kingdom": 3,
         "United States": 2,
+        "Germany": 2,
         "Japan": 2,
         "Vietnam": 1,
-        "Germany": 1,
         "Morocco": 1,
         "Portugal": 1,
         "Czechia": 1,
@@ -588,9 +591,9 @@
         "Greece": 1,
         "Bangladesh": 1,
         "Algeria": 1,
-        "Unknown": 7
+        "Unknown": 4
       },
-      "aggregatedAt": "2025-12-15T19:28:52.223Z"
+      "aggregatedAt": "2025-12-19T23:32:26.756Z"
     }
   },
   {
@@ -668,15 +671,15 @@
         "newContributors": 3
       },
       "sponsorBreakdown": {
-        "Automattic": 20,
+        "Automattic": 17,
         "rtCamp": 8,
         "Earthbound": 1,
         "EMRL": 1,
-        "Multidots": 1,
+        "Multidots Inc": 1,
         "GoDaddy": 1,
         "Google": 1,
         "WP Engine": 1,
-        "Unknown": 6
+        "Unknown": 9
       },
       "countryBreakdown": {
         "India": 9,
@@ -686,15 +689,15 @@
         "Spain": 3,
         "United Kingdom": 2,
         "Morocco": 1,
+        "Italy": 1,
         "Portugal": 1,
         "Georgia": 1,
         "Greece": 1,
-        "New Zealand": 1,
-        "Poland": 1,
+        "Germany": 1,
         "Switzerland": 1,
         "Unknown": 7
       },
-      "aggregatedAt": "2025-12-15T19:28:52.224Z"
+      "aggregatedAt": "2025-12-19T23:32:26.757Z"
     }
   },
   {
@@ -764,21 +767,21 @@
         "newContributors": 1
       },
       "sponsorBreakdown": {
-        "Automattic": 19,
+        "Automattic": 18,
         "rtCamp": 7,
         "Emilia Capital": 1,
         "Bluehost": 1,
-        "Self-sponsored": 2,
-        "Multidots": 1,
+        "Self-sponsored": 1,
+        "Multidots Inc": 1,
         "GoDaddy": 1,
         "Google": 1,
         "WP Engine": 1,
-        "Unknown": 2
+        "Unknown": 4
       },
       "countryBreakdown": {
         "India": 10,
+        "Spain": 5,
         "Australia": 4,
-        "Spain": 4,
         "Japan": 3,
         "United States": 2,
         "United Kingdom": 2,
@@ -791,9 +794,9 @@
         "Switzerland": 1,
         "Bulgaria": 1,
         "Algeria": 1,
-        "Unknown": 2
+        "Unknown": 1
       },
-      "aggregatedAt": "2025-12-15T19:28:52.224Z"
+      "aggregatedAt": "2025-12-19T23:32:26.757Z"
     }
   },
   {
@@ -856,28 +859,27 @@
         "newContributors": 1
       },
       "sponsorBreakdown": {
-        "Automattic": 15,
+        "Automattic": 13,
         "rtCamp": 7,
         "Bluehost": 1,
         "GoDaddy": 1,
-        "Unknown": 5
+        "Unknown": 7
       },
       "countryBreakdown": {
         "India": 7,
         "Australia": 3,
         "United Kingdom": 3,
         "Japan": 3,
+        "Spain": 3,
         "United States": 2,
-        "Spain": 2,
-        "Romania": 1,
         "Morocco": 1,
+        "Italy": 1,
         "Denmark": 1,
         "Georgia": 1,
-        "New Zealand": 1,
         "Algeria": 1,
         "Unknown": 3
       },
-      "aggregatedAt": "2025-12-15T19:28:52.224Z"
+      "aggregatedAt": "2025-12-19T23:32:26.757Z"
     }
   },
   {
@@ -966,17 +968,16 @@
         "newContributors": 8
       },
       "sponsorBreakdown": {
-        "Automattic": 21,
+        "Automattic": 17,
         "rtCamp": 14,
         "Bluehost": 1,
-        "Self-sponsored": 1,
         "GoDaddy": 1,
-        "Unknown": 8,
-        "DW Innovation": 1,
-        "WP Engine": 1
+        "mgn": 1,
+        "WP Engine": 1,
+        "Unknown": 13
       },
       "countryBreakdown": {
-        "India": 17,
+        "India": 16,
         "Australia": 4,
         "United States": 4,
         "Japan": 4,
@@ -988,11 +989,11 @@
         "Denmark": 1,
         "Czechia": 1,
         "Georgia": 1,
-        "New Zealand": 1,
+        "Germany": 1,
         "Canada": 1,
-        "Unknown": 6
+        "Unknown": 7
       },
-      "aggregatedAt": "2025-12-15T19:28:52.224Z"
+      "aggregatedAt": "2025-12-19T23:32:26.757Z"
     }
   },
   {
@@ -1059,30 +1060,30 @@
         "newContributors": 0
       },
       "sponsorBreakdown": {
-        "Automattic": 18,
+        "Automattic": 16,
         "rtCamp": 8,
         "Yoast": 1,
         "GoDaddy": 1,
-        "Evermade": 1,
         "The Open Sea": 1,
-        "Unknown": 4
+        "Unknown": 7
       },
       "countryBreakdown": {
         "India": 9,
         "United States": 4,
+        "Spain": 4,
         "Australia": 2,
-        "Spain": 2,
         "Japan": 2,
         "Sweden": 1,
         "Taiwan": 1,
         "United Kingdom": 1,
+        "Italy": 1,
         "Czechia": 1,
         "Georgia": 1,
         "Finland": 1,
         "Algeria": 1,
-        "Unknown": 8
+        "Unknown": 5
       },
-      "aggregatedAt": "2025-12-15T19:28:52.224Z"
+      "aggregatedAt": "2025-12-19T23:32:26.758Z"
     }
   },
   {
@@ -1147,27 +1148,26 @@
       },
       "sponsorBreakdown": {
         "rtCamp": 10,
-        "Automattic": 10,
+        "Automattic": 7,
         "Make IT Easy": 1,
         "GoDaddy": 1,
         "Google": 1,
-        "Unknown": 2
+        "Unknown": 5
       },
       "countryBreakdown": {
         "India": 9,
-        "Spain": 2,
+        "Spain": 3,
         "Japan": 2,
         "Taiwan": 1,
         "United Kingdom": 1,
         "Denmark": 1,
         "Croatia": 1,
         "Georgia": 1,
-        "New Zealand": 1,
         "Switzerland": 1,
         "Algeria": 1,
         "Unknown": 4
       },
-      "aggregatedAt": "2025-12-15T19:28:52.224Z"
+      "aggregatedAt": "2025-12-19T23:32:26.758Z"
     }
   },
   {
@@ -1242,12 +1242,11 @@
       "sponsorBreakdown": {
         "rtCamp": 15,
         "Automattic": 7,
-        "CERN": 1,
         "GoDaddy": 1,
-        "Multidots": 1,
+        "Multidots Inc": 1,
         "10up": 1,
         "WP Engine": 1,
-        "Unknown": 4
+        "Unknown": 5
       },
       "countryBreakdown": {
         "India": 14,
@@ -1259,7 +1258,7 @@
         "United States": 1,
         "Unknown": 5
       },
-      "aggregatedAt": "2025-12-15T19:28:52.225Z"
+      "aggregatedAt": "2025-12-19T23:32:26.758Z"
     }
   },
   {
@@ -1326,20 +1325,20 @@
         "Aurooba Makes": 1,
         "Automattic": 1,
         "GoDaddy": 1,
-        "Unknown": 7,
-        "Self-sponsored": 1,
-        "WP Engine": 1
+        "WP Engine": 1,
+        "Unknown": 8
       },
       "countryBreakdown": {
         "India": 12,
-        "United States": 3,
         "Canada": 2,
         "Japan": 2,
+        "United States": 2,
+        "Spain": 1,
         "Georgia": 1,
         "Bangladesh": 1,
         "Unknown": 4
       },
-      "aggregatedAt": "2025-12-15T19:28:52.225Z"
+      "aggregatedAt": "2025-12-19T23:32:26.758Z"
     }
   },
   {
@@ -1413,7 +1412,7 @@
         "United States": 1,
         "Unknown": 1
       },
-      "aggregatedAt": "2025-12-15T19:28:52.225Z"
+      "aggregatedAt": "2025-12-19T23:32:26.758Z"
     }
   },
   {
@@ -1470,11 +1469,10 @@
       "sponsorBreakdown": {
         "rtCamp": 9,
         "Automattic": 1,
-        "Bethink Studio": 1,
-        "Human Made": 1,
-        "Unknown": 5,
+        "Human Made Ltd": 1,
         "GoDaddy": 1,
-        "TeamUpdraft": 1
+        "TeamUpdraft": 1,
+        "Unknown": 6
       },
       "countryBreakdown": {
         "India": 9,
@@ -1485,7 +1483,7 @@
         "Georgia": 1,
         "Unknown": 3
       },
-      "aggregatedAt": "2025-12-15T19:28:52.225Z"
+      "aggregatedAt": "2025-12-19T23:32:26.758Z"
     }
   },
   {
@@ -1558,7 +1556,7 @@
         "Germany": 1,
         "Unknown": 3
       },
-      "aggregatedAt": "2025-12-15T19:28:52.225Z"
+      "aggregatedAt": "2025-12-19T23:32:26.758Z"
     }
   },
   {
@@ -1614,12 +1612,12 @@
       },
       "sponsorBreakdown": {
         "rtCamp": 9,
-        "Automattic": 3,
+        "Automattic": 2,
         "Google": 1,
-        "Multidots": 1,
+        "Multidots Inc": 1,
         "GoDaddy": 1,
         "WP Engine": 1,
-        "Unknown": 4
+        "Unknown": 5
       },
       "countryBreakdown": {
         "India": 8,
@@ -1630,7 +1628,7 @@
         "Georgia": 1,
         "Unknown": 4
       },
-      "aggregatedAt": "2025-12-15T19:28:52.225Z"
+      "aggregatedAt": "2025-12-19T23:32:26.758Z"
     }
   },
   {
@@ -1704,7 +1702,7 @@
       },
       "countryBreakdown": {
         "India": 8,
-        "Spain": 2,
+        "Spain": 3,
         "United States": 2,
         "Japan": 2,
         "Italy": 1,
@@ -1712,9 +1710,9 @@
         "Australia": 1,
         "Georgia": 1,
         "Bangladesh": 1,
-        "Unknown": 3
+        "Unknown": 2
       },
-      "aggregatedAt": "2025-12-15T19:28:52.225Z"
+      "aggregatedAt": "2025-12-19T23:32:26.759Z"
     }
   },
   {

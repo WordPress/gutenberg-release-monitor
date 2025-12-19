@@ -24,8 +24,8 @@
         "newContributors": 10
       },
       "sponsorBreakdown": {
-        "Automattic": 37,
-        "rtCamp": 2,
+        "Automattic": 43,
+        "rtCamp": 4,
         "Multidots Inc": 2,
         "Earthbound": 1,
         "Whodunit": 1,
@@ -40,17 +40,19 @@
         "Fueled": 1,
         "Pew Research Center": 1,
         "ParshipMeet Group": 1,
+        "Kolkata": 1,
+        "librecoop": 1,
         "Greyd GmbH": 1,
         "WP Engine": 1,
-        "Unknown": 24
+        "Unknown": 14
       },
       "countryBreakdown": {
-        "United States": 10,
-        "India": 8,
-        "Spain": 7,
-        "United Kingdom": 5,
+        "United States": 13,
+        "India": 12,
+        "Spain": 9,
         "Australia": 5,
-        "Germany": 3,
+        "United Kingdom": 5,
+        "Germany": 4,
         "Italy": 3,
         "Japan": 3,
         "Portugal": 2,
@@ -60,12 +62,16 @@
         "Denmark": 1,
         "Czechia": 1,
         "Georgia": 1,
+        "Russia": 1,
+        "Bangladesh": 1,
         "Canada": 1,
         "Lithuania": 1,
+        "Nigeria": 1,
         "Bulgaria": 1,
-        "Unknown": 23
+        "Morocco": 1,
+        "Unknown": 9
       },
-      "aggregatedAt": "2025-12-15T20:23:29.986Z"
+      "aggregatedAt": "2025-12-19T23:20:59.373Z"
     }
   },
   {
@@ -93,13 +99,15 @@
         "newContributors": 50
       },
       "sponsorBreakdown": {
-        "Automattic": 47,
-        "rtCamp": 33,
+        "Automattic": 53,
+        "rtCamp": 34,
         "Multidots Inc": 4,
         "10up": 2,
         "Google": 2,
         "Yoast": 2,
         "Earthbound": 1,
+        "marwadi university": 1,
+        "BuxumLunic": 1,
         "Alpha Particle": 1,
         "Self-sponsored": 1,
         "GoDaddy": 1,
@@ -121,38 +129,41 @@
         "TeamUpdraft": 1,
         "East Carolina University": 1,
         "The Code Company": 1,
-        "Unknown": 51
+        "Unknown": 42
       },
       "countryBreakdown": {
         "India": 42,
-        "United States": 13,
-        "Spain": 10,
-        "Australia": 9,
+        "United States": 17,
+        "Spain": 14,
+        "Australia": 10,
+        "Germany": 6,
         "United Kingdom": 6,
-        "Germany": 5,
         "Japan": 4,
         "Canada": 4,
         "Portugal": 3,
         "Bangladesh": 3,
         "Switzerland": 2,
+        "Bulgaria": 2,
+        "Italy": 2,
         "Greece": 2,
         "Finland": 2,
+        "Slovakia": 1,
         "Denmark": 1,
         "Georgia": 1,
+        "Indonesia": 1,
         "Algeria": 1,
         "Vietnam": 1,
+        "Morocco": 1,
         "Czechia": 1,
-        "Bulgaria": 1,
         "Poland": 1,
         "Taiwan": 1,
         "Sweden": 1,
         "Croatia": 1,
         "Serbia": 1,
         "South Africa": 1,
-        "Italy": 1,
-        "Unknown": 45
+        "Unknown": 30
       },
-      "aggregatedAt": "2025-12-15T20:11:30.041Z"
+      "aggregatedAt": "2025-12-19T23:32:26.760Z"
     }
   },
   {
