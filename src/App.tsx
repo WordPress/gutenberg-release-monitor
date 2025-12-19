@@ -236,8 +236,32 @@ function App() {
                 // For GB release tab, use releases data for contributors (has contributor counts)
                 // and timeSeries for PRs (optimized for chart)
                 const gbChartData = metric === 'contributors' ? releases : timeSeries;
-                const totalGBReleases = releases?.length || 0;
-                const totalWPVersions = wpVersionStats?.length || 0;
+
+                // Filter items that don't have data for the current mode
+                // This ensures the range slider max matches what TrendChart will actually display
+                const hasRequiredData = (item: { contributorAggregates?: { sponsorBreakdown?: Record<string, number>; countryBreakdown?: Record<string, number> }; categoryTotals?: Record<string, number>; categoryPRs?: Record<string, number> }) => {
+                  if (effectiveViewMode === 'sponsors') {
+                    return item.contributorAggregates?.sponsorBreakdown &&
+                      Object.keys(item.contributorAggregates.sponsorBreakdown).length > 0;
+                  }
+                  if (effectiveViewMode === 'countries') {
+                    return item.contributorAggregates?.countryBreakdown &&
+                      Object.keys(item.contributorAggregates.countryBreakdown).length > 0;
+                  }
+                  // For PR modes (averages, totals, distribution), check category data
+                  if (metric === 'prs') {
+                    const categoryData = item.categoryTotals || item.categoryPRs;
+                    return categoryData && Object.values(categoryData).some(v => v > 0);
+                  }
+                  // For contributor averages mode, data is always present
+                  return true;
+                };
+
+                const filteredReleases = releases?.filter(hasRequiredData) || [];
+                const filteredWPVersions = wpVersionStats?.filter(hasRequiredData) || [];
+
+                const totalGBReleases = filteredReleases.length;
+                const totalWPVersions = filteredWPVersions.length;
                 const totalItems = isWPTab ? totalWPVersions : totalGBReleases;
                 const trendChartProps = isWPTab
                   ? { dataSource: 'wp-version' as const, data: wpVersionStats, releaseCount, metric }

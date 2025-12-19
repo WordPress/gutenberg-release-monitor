@@ -226,10 +226,26 @@ export function TrendChart(props: TrendChartProps) {
 
     if (dataSource === 'wp-version') {
       const wpData = data as WPVersionStats[];
+      // Filter items that don't have data for the current mode
+      const filteredWpData = wpData.filter((stat) => {
+        if (isSponsorBreakdown) {
+          return stat.contributorAggregates?.sponsorBreakdown &&
+            Object.keys(stat.contributorAggregates.sponsorBreakdown).length > 0;
+        }
+        if (isBreakdownMode) { // countries
+          return stat.contributorAggregates?.countryBreakdown &&
+            Object.keys(stat.contributorAggregates.countryBreakdown).length > 0;
+        }
+        // For PR modes, check category data; contributor averages always have data
+        if (!isContributorMetric) {
+          return stat.categoryTotals && Object.values(stat.categoryTotals).some(v => v > 0);
+        }
+        return true;
+      });
       // WP versions are sorted newest-first; reverse for chronological display, then slice
       const displayedData = releaseCount
-        ? [...wpData].slice(0, releaseCount).reverse()
-        : [...wpData].reverse();
+        ? [...filteredWpData].slice(0, releaseCount).reverse()
+        : [...filteredWpData].reverse();
       return displayedData.map((stat) => {
         const baseData: Record<string, string | number> = {
           wpVersion: stat.wpVersion,
@@ -367,7 +383,11 @@ export function TrendChart(props: TrendChartProps) {
 
     // PR metrics - data is TimeSeriesPoint[]
     const gbData = data as TimeSeriesPoint[];
-    const displayedData = releaseCount ? gbData.slice(-releaseCount) : gbData;
+    // Filter to only releases with PR category data
+    const filteredGbData = gbData.filter(
+      (point) => point.categoryPRs && Object.values(point.categoryPRs).some(v => v > 0)
+    );
+    const displayedData = releaseCount ? filteredGbData.slice(-releaseCount) : filteredGbData;
 
     return displayedData.map((point) => {
       const baseData: Record<string, string | number | boolean> = {
@@ -403,8 +423,9 @@ export function TrendChart(props: TrendChartProps) {
     }
     // Filter to only major versions where minor version is 0 (e.g., "19.0", "20.0")
     // This excludes versions like "19.3" or "19.3.0"
+    // Use type assertion since xKey is always 'gbVersion' or 'wpVersion' which exist on all chart data types
     return chartData
-      .map((point) => point[config.xKey] as string)
+      .map((point) => (point as Record<string, unknown>)[config.xKey] as string)
       .filter((version) => {
         const parts = version.split('.');
         return parts.length >= 2 && parts[1] === '0';
