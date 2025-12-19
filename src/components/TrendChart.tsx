@@ -58,14 +58,14 @@ const BREAKDOWN_COLORS = [
   '#E91E63', '#8BC34A', '#FF5722', '#CDDC39', '#795548',
   '#607D8B', '#009688', '#FFC107', '#673AB7', '#3F51B5',
 ];
-const UNKNOWN_COLOR = '#9E9E9E';
+const UNKNOWN_COLOR = '#757575'; // Dark gray - distinct from "Other" (#9E9E9E)
 
 // Fixed colors for specific sponsors
 const SPONSOR_COLORS: Record<string, string> = {
   Automattic: '#3499CD', // Automattic logo blue
   Unknown: UNKNOWN_COLOR,
 };
-const OTHERS_COLOR = '#BDBDBD';
+const OTHER_COLOR = '#9E9E9E'; // Same as "Other" category
 const MAX_BREAKDOWN_ITEMS = 10;
 
 export function TrendChart(props: TrendChartProps) {
@@ -170,9 +170,9 @@ export function TrendChart(props: TrendChartProps) {
 
     if (othersTotal > 0) {
       result.push({
-        id: 'others',
-        label: 'Others',
-        color: OTHERS_COLOR,
+        id: 'other',
+        label: 'Other',
+        color: OTHER_COLOR,
         total: othersTotal,
         percentage: grandTotal > 0 ? Math.round((othersTotal / grandTotal) * 1000) / 10 : 0,
       });
@@ -258,11 +258,11 @@ export function TrendChart(props: TrendChartProps) {
           const breakdown = stat.contributorAggregates?.[breakdownKey] || {};
 
           // Add values for each top item
-          const topLabels = topBreakdownItems.filter((item) => item.label !== 'Others' && item.label !== 'Unknown').map((item) => item.label);
+          const topLabels = topBreakdownItems.filter((item) => item.label !== 'Other' && item.label !== 'Unknown').map((item) => item.label);
           let othersTotal = 0;
 
           topBreakdownItems.forEach((item) => {
-            if (item.label === 'Others') {
+            if (item.label === 'Other') {
               // Sum up all items not in top items (excluding Unknown)
               Object.entries(breakdown).forEach(([key, value]) => {
                 if (!topLabels.includes(key) && key !== 'Unknown') {
@@ -332,7 +332,7 @@ export function TrendChart(props: TrendChartProps) {
       const displayedData = releaseCount
         ? releasesWithData.slice(0, releaseCount).reverse()
         : [...releasesWithData].reverse();
-      const topLabels = topBreakdownItems.filter((item) => item.label !== 'Others' && item.label !== 'Unknown').map((item) => item.label);
+      const topLabels = topBreakdownItems.filter((item) => item.label !== 'Other' && item.label !== 'Unknown').map((item) => item.label);
 
       return displayedData.map((release) => {
         const baseData: Record<string, string | number | boolean> = {

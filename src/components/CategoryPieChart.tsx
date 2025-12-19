@@ -66,7 +66,7 @@ const BREAKDOWN_COLORS = [
 // Fixed colors for specific sponsors
 const SPONSOR_COLORS: Record<string, string> = {
   Automattic: '#3499CD', // Automattic logo blue
-  Unknown: '#9E9E9E', // Gray
+  Unknown: '#757575', // Dark gray - distinct from "Other" (#9E9E9E)
 };
 
 export function CategoryPieChart({
@@ -157,17 +157,17 @@ export function CategoryPieChart({
       color: SPONSOR_COLORS[label] ?? BREAKDOWN_COLORS[index % BREAKDOWN_COLORS.length],
     }));
 
-    // Add "Others" if needed (before Unknown for consistent ordering)
+    // Add "Other" if needed (before Unknown for consistent ordering)
     if (othersValue > 0) {
       allData.push({
-        id: 'others',
-        label: 'Others',
+        id: 'other',
+        label: 'Other',
         value: othersValue,
-        color: '#BDBDBD',
+        color: '#9E9E9E',
       });
     }
 
-    // Add "Unknown" as its own item (never grouped into Others)
+    // Add "Unknown" as its own item (never grouped into Other)
     if (hasUnknown) {
       allData.push({
         id: 'unknown',
