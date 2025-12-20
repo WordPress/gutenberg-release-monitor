@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import '@wordpress/components/build-style/style.css';
 import {
   Button,
@@ -22,16 +22,15 @@ import { SummaryStats } from './components/SummaryStats';
 import { DataTable } from './components/DataTable';
 import { TrendChart } from './components/TrendChart';
 import { getDefaultCategoryIds } from './components/CategoryFilter';
+import { useConfig, useTabPanelTabs, useTabIds } from './config';
+import type { ViewMode, ChartType, MetricType } from './config/types';
 
-export type ViewMode = 'averages' | 'totals' | 'distribution' | 'sponsors' | 'countries';
-export type ChartType = 'line' | 'bar' | 'area' | 'stacked';
-export type MetricType = 'prs' | 'contributors';
+// Re-export types for backward compatibility
+export type { ViewMode, ChartType, MetricType } from './config/types';
 
 const VIEW_MODES: ViewMode[] = ['averages', 'totals', 'distribution', 'sponsors', 'countries'];
 const CHART_TYPES: ChartType[] = ['line', 'bar', 'area', 'stacked'];
 const METRIC_TYPES: MetricType[] = ['prs', 'contributors'];
-const TABS = ['by-wp-version', 'by-gb-release'] as const;
-type TabName = typeof TABS[number];
 
 const SunIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -47,20 +46,32 @@ const MoonIcon = () => (
 );
 
 function App() {
-  const [activeTabStr, setActiveTab] = useURLState('tab', 'by-wp-version', [...TABS]);
-  const [viewModeStr, setViewMode] = useURLState('view', 'averages', VIEW_MODES);
-  const [chartTypeStr, setChartType] = useURLState('chart', 'stacked', CHART_TYPES);
-  const [metricStr, setMetric] = useURLState('metric', 'prs', METRIC_TYPES);
-  const activeTab = activeTabStr as TabName;
+  // Get configuration
+  const config = useConfig();
+  const tabIds = useTabIds();
+  const tabPanelTabs = useTabPanelTabs();
+
+  // URL-synced state using config defaults
+  const [activeTab, setActiveTab] = useURLState('tab', config.defaults.tab, tabIds);
+  const [viewModeStr, setViewMode] = useURLState('view', config.defaults.viewMode, VIEW_MODES);
+  const [chartTypeStr, setChartType] = useURLState('chart', config.defaults.chartType, CHART_TYPES);
+  const [metricStr, setMetric] = useURLState('metric', config.defaults.metric, METRIC_TYPES);
   const viewMode = viewModeStr as ViewMode;
   const chartType = chartTypeStr as ChartType;
   const metric = metricStr as MetricType;
+
+  // Get current tab configuration
+  const tabConfig = useMemo(
+    () => config.tabs.find((t) => t.id === activeTab) || config.tabs[0],
+    [config.tabs, activeTab]
+  );
 
   // Category filter state (synced with URL)
   const [visibleCategories, setVisibleCategories] = useState<string[]>([]);
   const [defaultCategoryIds, setDefaultCategoryIds] = useState<string[]>([]);
 
-  // Release count for trend chart (GB release tab, synced with URL)
+  // Release count for trend chart (synced with URL)
+  const defaultReleaseCount = config.defaults.releaseCount;
   const [releaseCount, setReleaseCount] = useState<number>(() => {
     const params = new URLSearchParams(window.location.search);
     const urlCount = params.get('releases');
@@ -68,13 +79,13 @@ function App() {
       const parsed = parseInt(urlCount, 10);
       if (!isNaN(parsed) && parsed >= 10) return parsed;
     }
-    return 50; // default
+    return defaultReleaseCount;
   });
 
   // Sync releaseCount to URL
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    if (releaseCount === 50) {
+    if (releaseCount === defaultReleaseCount) {
       params.delete('releases');
     } else {
       params.set('releases', String(releaseCount));
@@ -83,7 +94,7 @@ function App() {
       ? `${window.location.pathname}?${params.toString()}`
       : window.location.pathname;
     window.history.replaceState({}, '', newUrl);
-  }, [releaseCount]);
+  }, [releaseCount, defaultReleaseCount]);
 
   // Initialize visible categories from URL or defaults
   useEffect(() => {
@@ -163,7 +174,7 @@ function App() {
     <div className="app">
       <header className="app-header">
         <div className="app-header-top">
-          <Heading level={1}>Gutenberg Release Monitor</Heading>
+          <Heading level={1}>{config.project.name}</Heading>
           <Button
             variant="tertiary"
             onClick={toggle}
@@ -173,15 +184,14 @@ function App() {
         </div>
         <Text>
           Track{' '}
-          <ExternalLink href="https://github.com/WordPress/gutenberg">
-            Gutenberg
+          <ExternalLink href={config.project.projectUrl}>
+            {config.project.projectLabel}
           </ExternalLink>{' '}
-          release statistics and changelog data.
+          {config.project.description}
         </Text>
         <Text className="app-disclaimer">
-          This data is an approximation based on parsing Gutenberg release changelogs, and doesn't include cherry-picks to WordPress release branches after the Beta1 cutoff.{' '}
-          Contributor sponsor and country data for releases before WP 6.9 / GB 20.5 was collected retroactively and reflects current profiles, not historical affiliations.{' '}
-          <ExternalLink href="https://developer.wordpress.org/block-editor/contributors/versions-in-wordpress/">
+          {config.project.disclaimer}{' '}
+          <ExternalLink href={config.project.learnMoreUrl}>
             Learn more
           </ExternalLink>
         </Text>
@@ -205,20 +215,18 @@ function App() {
           <main className="app-main">
             <TabPanel
               className="app-tabs"
-              tabs={[
-                { name: 'by-wp-version', title: 'By WP Version' },
-                { name: 'by-gb-release', title: 'By GB Release' },
-              ]}
+              tabs={tabPanelTabs}
               initialTabName={activeTab}
-              onSelect={(tabName) => setActiveTab(tabName as TabName)}
+              onSelect={(tabName) => setActiveTab(tabName)}
             >
               {() => {
-                const isWPTab = activeTab === 'by-wp-version';
+                // Use config to determine supported modes
+                const supportsTotals = tabConfig.supportedViewModes.includes('totals');
                 const isContributorMetric = metric === 'contributors';
                 // Adjust viewMode when switching metrics or tabs
                 let effectiveViewMode = viewMode;
-                // GB Release tab doesn't have totals mode
-                if (!isWPTab && viewMode === 'totals') {
+                // Handle unsupported view modes based on tab config
+                if (!supportsTotals && viewMode === 'totals') {
                   effectiveViewMode = 'averages';
                 }
                 // Contributor mode doesn't have category distribution, PR mode doesn't have sponsors/countries
@@ -230,7 +238,8 @@ function App() {
 
                 // Compute props objects to avoid conditional JSX rendering
                 // This keeps components mounted and animating on data changes
-                const summaryProps = isWPTab
+                const isWPVersionTab = tabConfig.versionField === 'wpVersion';
+                const summaryProps = isWPVersionTab
                   ? { dataSource: 'wp-version' as const, data: wpVersionStats }
                   : { dataSource: 'gb-release' as const, data: releases };
 
@@ -263,12 +272,12 @@ function App() {
 
                 const totalGBReleases = filteredReleases.length;
                 const totalWPVersions = filteredWPVersions.length;
-                const totalItems = isWPTab ? totalWPVersions : totalGBReleases;
-                const trendChartProps = isWPTab
+                const totalItems = isWPVersionTab ? totalWPVersions : totalGBReleases;
+                const trendChartProps = isWPVersionTab
                   ? { dataSource: 'wp-version' as const, data: wpVersionStats, releaseCount, metric }
                   : { dataSource: 'gb-release' as const, data: gbChartData, releaseCount, metric };
 
-                const dataTableProps = isWPTab
+                const dataTableProps = isWPVersionTab
                   ? { dataSource: 'wp-version' as const, data: wpVersionStats, viewMode, metric }
                   : { dataSource: 'gb-release' as const, data: releases, viewMode: effectiveViewMode, metric };
 
@@ -307,11 +316,11 @@ function App() {
                           isBlock
                           label="View mode"
                           hideLabelFromVision
-                          value={isWPTab ? viewMode : effectiveViewMode}
+                          value={supportsTotals ? viewMode : effectiveViewMode}
                           onChange={(value) => setViewMode(value as ViewMode)}
                         >
-                          <ToggleGroupControlOption value="averages" label={isWPTab ? 'Per GB Release' : (metric === 'prs' ? 'PRs' : 'Contributors')} />
-                          {isWPTab && <ToggleGroupControlOption value="totals" label="Totals" />}
+                          <ToggleGroupControlOption value="averages" label={tabConfig.averagesLabel ?? (metric === 'prs' ? 'PRs' : 'Contributors')} />
+                          {supportsTotals && <ToggleGroupControlOption value="totals" label="Totals" />}
                           {metric === 'prs' ? (
                             <ToggleGroupControlOption value="distribution" label="Distribution" />
                           ) : (
@@ -377,7 +386,7 @@ function App() {
                     </Card>
 
                     {/* Table - single instance, props switch */}
-                    <Card id="releases-table" className={isWPTab ? 'wp-version-table-card' : undefined}>
+                    <Card id="releases-table" className={tabConfig.tableCardClass || undefined}>
                       <CardBody>
                         <DataTable {...dataTableProps} />
                       </CardBody>

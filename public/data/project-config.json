@@ -1,0 +1,44 @@
+{
+  "version": "1.0.0",
+  "project": {
+    "name": "Gutenberg Release Monitor",
+    "description": "Track Gutenberg release statistics and changelog data.",
+    "projectUrl": "https://github.com/WordPress/gutenberg",
+    "projectLabel": "Gutenberg",
+    "disclaimer": "This data is an approximation based on parsing Gutenberg release changelogs, and doesn't include cherry-picks to WordPress release branches after the Beta1 cutoff. Contributor sponsor and country data for releases before WP 6.9 / GB 20.5 was collected retroactively and reflects current profiles, not historical affiliations.",
+    "learnMoreUrl": "https://developer.wordpress.org/block-editor/contributors/versions-in-wordpress/"
+  },
+  "tabs": [
+    {
+      "id": "by-wp-version",
+      "title": "By WP Version",
+      "dataEndpoint": "aggregated/by-wp-version.json",
+      "versionField": "wpVersion",
+      "versionPrefix": "WP",
+      "supportedViewModes": ["averages", "totals", "distribution", "sponsors", "countries"],
+      "averagesLabel": "Per GB Release",
+      "tableCardClass": "wp-version-table-card"
+    },
+    {
+      "id": "by-gb-release",
+      "title": "By GB Release",
+      "dataEndpoint": "releases.json",
+      "versionField": "gbVersion",
+      "versionPrefix": "",
+      "supportedViewModes": ["averages", "distribution", "sponsors", "countries"],
+      "averagesLabel": null,
+      "tableCardClass": null
+    }
+  ],
+  "dataSources": {
+    "summary": "aggregated/summary.json",
+    "timeSeries": "aggregated/time-series.json"
+  },
+  "defaults": {
+    "tab": "by-wp-version",
+    "viewMode": "averages",
+    "chartType": "stacked",
+    "metric": "prs",
+    "releaseCount": 50
+  }
+}
