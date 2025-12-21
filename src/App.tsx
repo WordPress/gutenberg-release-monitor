@@ -14,8 +14,7 @@ import {
   __experimentalToggleGroupControl as ToggleGroupControl,
   __experimentalToggleGroupControlOption as ToggleGroupControlOption,
 } from '@wordpress/components';
-import { useReleases, useSummary, useWPVersionStats } from './hooks/useReleases';
-import { useTimeSeries } from './hooks/useTimeSeries';
+import { useReleases, useSummary, useAggregatedStats } from './hooks/useReleases';
 import { useDarkMode } from './hooks/useDarkMode';
 import { useURLState } from './hooks/useURLState';
 import { SummaryStats } from './components/SummaryStats';
@@ -23,6 +22,7 @@ import { DataTable } from './components/DataTable';
 import { TrendChart } from './components/TrendChart';
 import { getDefaultCategoryIds } from './components/CategoryFilter';
 import { useConfig, useTabPanelTabs, useTabIds } from './config';
+import { normalizeWPVersionStats, normalizeGBReleases } from './data/providers';
 import type { ViewMode, ChartType, MetricType } from './config/types';
 
 // Re-export types for backward compatibility
@@ -156,19 +156,25 @@ function App() {
     error: summaryError,
   } = useSummary();
   const {
-    data: wpVersionStats,
-    isLoading: wpVersionStatsLoading,
-    error: wpVersionStatsError,
-  } = useWPVersionStats();
-  const {
-    data: timeSeries,
-    isLoading: timeSeriesLoading,
-    error: timeSeriesError,
-  } = useTimeSeries();
+    data: aggregatedStats,
+    isLoading: aggregatedStatsLoading,
+    error: aggregatedStatsError,
+  } = useAggregatedStats();
   const { isDark, toggle } = useDarkMode();
 
-  const isLoading = releasesLoading || summaryLoading || wpVersionStatsLoading || timeSeriesLoading;
-  const error = releasesError || summaryError || wpVersionStatsError || timeSeriesError;
+  const isLoading = releasesLoading || summaryLoading || aggregatedStatsLoading;
+  const error = releasesError || summaryError || aggregatedStatsError;
+
+  // Normalize data at the boundary - each provider converts its format
+  const normalizedData = useMemo(() => {
+    if (!aggregatedStats || !releases) return null;
+
+    const displayPrefix = tabConfig.versionPrefix ?? config.project.projectLabel;
+    if (tabConfig.isAggregated) {
+      return normalizeWPVersionStats(aggregatedStats, displayPrefix);
+    }
+    return normalizeGBReleases(releases, displayPrefix);
+  }, [aggregatedStats, releases, tabConfig, config.project.projectLabel]);
 
   return (
     <div className="app">
@@ -210,7 +216,7 @@ function App() {
         </div>
       )}
 
-      {!isLoading && !error && summary && wpVersionStats && releases && timeSeries && (
+      {!isLoading && !error && summary && aggregatedStats && releases && (
         <>
           <main className="app-main">
             <TabPanel
@@ -236,20 +242,10 @@ function App() {
                   effectiveViewMode = 'distribution';
                 }
 
-                // Compute props objects to avoid conditional JSX rendering
-                // This keeps components mounted and animating on data changes
-                const isWPVersionTab = tabConfig.versionField === 'wpVersion';
-                const summaryProps = isWPVersionTab
-                  ? { dataSource: 'wp-version' as const, data: wpVersionStats }
-                  : { dataSource: 'gb-release' as const, data: releases };
-
-                // For GB release tab, use releases data for contributors (has contributor counts)
-                // and timeSeries for PRs (optimized for chart)
-                const gbChartData = metric === 'contributors' ? releases : timeSeries;
-
-                // Filter items that don't have data for the current mode
-                // This ensures the range slider max matches what TrendChart will actually display
-                const hasRequiredData = (item: { contributorAggregates?: { sponsorBreakdown?: Record<string, number>; countryBreakdown?: Record<string, number> }; categoryTotals?: Record<string, number>; categoryPRs?: Record<string, number> }) => {
+                // Filter normalized data for items that have data for the current mode
+                // This ensures the range slider max matches what TrendChart will display
+                // Uses normalized field names - no raw data or isAggregated checks needed
+                const filteredData = (normalizedData ?? []).filter((item) => {
                   if (effectiveViewMode === 'sponsors') {
                     return item.contributorAggregates?.sponsorBreakdown &&
                       Object.keys(item.contributorAggregates.sponsorBreakdown).length > 0;
@@ -258,35 +254,39 @@ function App() {
                     return item.contributorAggregates?.countryBreakdown &&
                       Object.keys(item.contributorAggregates.countryBreakdown).length > 0;
                   }
-                  // For PR modes (averages, totals, distribution), check category data
+                  // For PR modes, check category data (normalized uses categoryTotals or rawCategories)
                   if (metric === 'prs') {
-                    const categoryData = item.categoryTotals || item.categoryPRs;
+                    const categoryData = item.categoryTotals || item.rawCategories;
                     return categoryData && Object.values(categoryData).some(v => v > 0);
                   }
-                  // For contributor averages mode, data is always present
+                  // For contributor modes, data is always present
                   return true;
+                });
+
+                const totalItems = filteredData.length;
+                // TrendChart also receives normalized data
+                const trendChartProps = {
+                  data: normalizedData ?? [],
+                  releaseCount,
+                  metric,
+                  tabConfig,
                 };
 
-                const filteredReleases = releases?.filter(hasRequiredData) || [];
-                const filteredWPVersions = wpVersionStats?.filter(hasRequiredData) || [];
-
-                const totalGBReleases = filteredReleases.length;
-                const totalWPVersions = filteredWPVersions.length;
-                const totalItems = isWPVersionTab ? totalWPVersions : totalGBReleases;
-                const trendChartProps = isWPVersionTab
-                  ? { dataSource: 'wp-version' as const, data: wpVersionStats, releaseCount, metric }
-                  : { dataSource: 'gb-release' as const, data: gbChartData, releaseCount, metric };
-
-                const dataTableProps = isWPVersionTab
-                  ? { dataSource: 'wp-version' as const, data: wpVersionStats, viewMode, metric }
-                  : { dataSource: 'gb-release' as const, data: releases, viewMode: effectiveViewMode, metric };
+                // DataTable receives normalized data
+                const dataTableProps = {
+                  data: normalizedData ?? [],
+                  viewMode: effectiveViewMode,
+                  metric,
+                  tabConfig,
+                };
 
                 return (
                   <div className="tab-content">
-                    {/* Summary section - single instance, props switch */}
+                    {/* Summary section - receives normalized data */}
                     <section id="version-summary">
                       <SummaryStats
-                        {...summaryProps}
+                        data={normalizedData ?? []}
+                        tabConfig={tabConfig}
                         summary={summary}
                         visibleCategories={visibleCategories}
                         onCategoryToggle={handleCategoryToggle}
@@ -319,7 +319,7 @@ function App() {
                           value={supportsTotals ? viewMode : effectiveViewMode}
                           onChange={(value) => setViewMode(value as ViewMode)}
                         >
-                          <ToggleGroupControlOption value="averages" label={tabConfig.averagesLabel ?? (metric === 'prs' ? 'PRs' : 'Contributors')} />
+                          <ToggleGroupControlOption value="averages" label={tabConfig.labels.averagesToggle ?? (metric === 'prs' ? 'PRs' : 'Contributors')} />
                           {supportsTotals && <ToggleGroupControlOption value="totals" label="Totals" />}
                           {metric === 'prs' ? (
                             <ToggleGroupControlOption value="distribution" label="Distribution" />

@@ -8,13 +8,21 @@ import {
   __experimentalText as Text,
 } from '@wordpress/components';
 import { chevronLeft, chevronRight, previous, next } from '@wordpress/icons';
-import type { Summary, WPVersionStats, Release, ReleaseContributorAggregates, WPVersionContributorAggregates } from '../data/types';
+import type { Summary } from '../data/types';
+import type { NormalizedRelease } from '../data/normalized';
 import { loadCategoryConfig, aggregateCategories, type CategoryConfig } from '../utils/categories';
 import { CategoryPieChart } from './CategoryPieChart';
 import { useURLState } from '../hooks/useURLState';
+import { useConfig } from '../config';
+import type { TabConfig } from '../config/types';
 
-interface BaseSummaryStatsProps {
+interface SummaryStatsProps {
+  /** Normalized release data */
+  data: NormalizedRelease[];
+  /** Summary statistics */
   summary: Summary;
+  /** Tab configuration for labels and field mapping */
+  tabConfig?: TabConfig;
   /** Currently visible category IDs (for clickable legend) */
   visibleCategories?: string[];
   /** Callback when a category is toggled via legend click */
@@ -23,46 +31,6 @@ interface BaseSummaryStatsProps {
   viewMode?: 'averages' | 'totals' | 'distribution' | 'sponsors' | 'countries';
   /** Current metric type */
   metric?: 'prs' | 'contributors';
-}
-
-interface WPVersionSummaryStatsProps extends BaseSummaryStatsProps {
-  dataSource: 'wp-version';
-  data: WPVersionStats[];
-}
-
-interface GBReleaseSummaryStatsProps extends BaseSummaryStatsProps {
-  dataSource: 'gb-release';
-  data: Release[];
-}
-
-type SummaryStatsProps = WPVersionSummaryStatsProps | GBReleaseSummaryStatsProps;
-
-
-// Normalized data structure for both sources
-interface NormalizedItem {
-  id: string;
-  version: string;
-  displayLabel: string;
-  sourceType: 'wp' | 'gb';
-  // Stats
-  totalPRs: number;
-  contributors: number;
-  newContributors: number;
-  hasContributorData: boolean;
-  // Category data (raw categories for GB, pre-aggregated for WP)
-  rawCategories?: Record<string, number>;
-  categoryTotals?: Record<string, number>;
-  // Contributor aggregates (sponsor/country breakdowns)
-  contributorAggregates?: ReleaseContributorAggregates | WPVersionContributorAggregates;
-  // WP-specific
-  releaseCount?: number;
-  gbVersionRange?: string;
-  avgPRsPerRelease?: number;
-  avgContributorsPerRelease?: number;
-  avgNewContributorsPerRelease?: number;
-  // GB-specific
-  date?: string;
-  wpVersion?: string;
 }
 
 interface StatItem {
@@ -95,18 +63,16 @@ function formatDate(dateStr: string): string {
   });
 }
 
-// Map category IDs to Summary field name suffixes (constant, defined outside component)
-const CATEGORY_TO_SUMMARY_FIELD: Record<string, string> = {
-  features: 'Features',
-  bugs: 'Bugs',
-  codeQuality: 'CodeQuality',
-  a11y: 'A11y',
-  performance: 'Perf',
-};
-
 export function SummaryStats(props: SummaryStatsProps) {
-  const { summary, visibleCategories, onCategoryToggle, dataSource, data } = props;
-  const isWPVersion = dataSource === 'wp-version';
+  const { summary, tabConfig, visibleCategories, onCategoryToggle, data } = props;
+  const config = useConfig();
+
+  // Use tabConfig for all display logic (no domain knowledge)
+  const isAggregated = tabConfig?.isAggregated ?? false;
+  const projectLabel = config.project.projectLabel;
+  const versionLabel = tabConfig?.title ?? `${projectLabel} Version`;
+  const versionNavLabel = tabConfig?.title?.replace('By ', '') ?? `${projectLabel} release`;
+  const childItemLabel = tabConfig?.labels?.childItem ?? `${projectLabel} release`;
 
   const [categoryConfig, setCategoryConfig] = useState<CategoryConfig | null>(null);
 
@@ -115,75 +81,42 @@ export function SummaryStats(props: SummaryStatsProps) {
     loadCategoryConfig().then(setCategoryConfig);
   }, []);
 
-  // Normalize all data into common structure
-  const normalizedItems = useMemo((): NormalizedItem[] => {
-    if (isWPVersion) {
-      return (data as WPVersionStats[]).map((stat) => ({
-        id: stat.wpVersion,
-        version: stat.wpVersion,
-        displayLabel: `WordPress ${stat.wpVersion}`,
-        sourceType: 'wp' as const,
-        totalPRs: stat.totalPRs,
-        contributors: stat.totalContributors,
-        newContributors: stat.totalNewContributors,
-        hasContributorData: stat.totalContributors > 0,
-        categoryTotals: stat.categoryTotals,
-        contributorAggregates: stat.contributorAggregates,
-        releaseCount: stat.releaseCount,
-        gbVersionRange: stat.gbVersionRange,
-        avgPRsPerRelease: stat.avgPRsPerRelease,
-        avgContributorsPerRelease: stat.avgContributorsPerRelease,
-        avgNewContributorsPerRelease: stat.avgNewContributorsPerRelease,
-      }));
-    }
-    return (data as Release[]).map((release) => ({
-      id: release.gbVersion,
-      version: release.gbVersion,
-      displayLabel: `Gutenberg ${release.gbVersion}`,
-      sourceType: 'gb' as const,
-      totalPRs: release.totalPRs,
-      contributors: release.contributors,
-      newContributors: release.newContributors,
-      hasContributorData: release.contributors > 0,
-      rawCategories: release.categories,
-      contributorAggregates: release.contributorAggregates,
-      date: release.date,
-      wpVersion: release.wpVersion ?? undefined,
-    }));
-  }, [data, isWPVersion]);
+  // Data comes pre-normalized from App - no transformation needed here
 
   // Compute valid versions and default for URL state
   const validVersions = useMemo(
-    () => normalizedItems.map((item) => item.version),
-    [normalizedItems]
+    () => data.map((item) => item.version),
+    [data]
   );
 
   const defaultVersion = useMemo(() => {
-    if (isWPVersion) {
-      return summary.currentWPCycle;
+    // Use config to determine default: either from summary field or first item
+    const summaryField = tabConfig?.defaultItemSummaryField;
+    if (summaryField && summary[summaryField as keyof Summary]) {
+      return summary[summaryField as keyof Summary] as string;
     }
-    return normalizedItems[0]?.version || '';
-  }, [isWPVersion, summary.currentWPCycle, normalizedItems]);
+    return data[0]?.version || '';
+  }, [tabConfig?.defaultItemSummaryField, summary, data]);
 
   const [selectedVersion, setSelectedVersion] = useURLState(
-    isWPVersion ? 'wp' : 'gb',
+    tabConfig?.urlParamKey ?? 'v',
     defaultVersion,
     validVersions
   );
 
   // Find selected item from normalized data (fallback to first item to prevent unmounting)
   const selectedItem = useMemo(
-    () => normalizedItems.find((item) => item.version === selectedVersion) ?? normalizedItems[0],
-    [normalizedItems, selectedVersion]
+    () => data.find((item) => item.version === selectedVersion) ?? data[0],
+    [data, selectedVersion]
   );
 
-  // Compute category totals (aggregate for GB, use pre-computed for WP)
+  // Compute category totals (use pre-computed for aggregated, aggregate for individual items)
   const categoryTotals = useMemo(() => {
     if (!selectedItem || !categoryConfig) return {};
-    if (selectedItem.sourceType === 'wp') {
+    if (selectedItem.isAggregated) {
       return selectedItem.categoryTotals ?? {};
     }
-    // GB: aggregate raw categories
+    // Individual items: aggregate raw categories
     return aggregateCategories(selectedItem.rawCategories ?? {}, categoryConfig);
   }, [selectedItem, categoryConfig]);
 
@@ -203,22 +136,21 @@ export function SummaryStats(props: SummaryStatsProps) {
     }
 
     const defaultCategories = categoryConfig.aggregations.filter((agg) => agg.includeByDefault);
-    const isWP = selectedItem.sourceType === 'wp';
 
     // Category stat items with comparison to global average
     const buildCategoryStats = (useAverage: boolean): StatItem[] => {
       return defaultCategories.map((agg) => {
         const total = categoryTotals[agg.id] || 0;
-        const value = useAverage && selectedItem.releaseCount
-          ? Math.round(total / selectedItem.releaseCount)
+        const value = useAverage && selectedItem.groupedCount
+          ? Math.round(total / selectedItem.groupedCount)
           : total;
         const hasData = total > 0;
-        const summaryFieldSuffix = CATEGORY_TO_SUMMARY_FIELD[agg.id];
+        const summaryFieldSuffix = agg.labels.short;
         const summaryTotal = summaryFieldSuffix
           ? (summary[`avg${summaryFieldSuffix}Total` as keyof Summary] as number | undefined)
           : undefined;
         return {
-          label: agg.label,
+          label: agg.labels.full,
           value,
           total: useAverage ? summaryTotal : undefined,
           unavailable: !hasData,
@@ -226,16 +158,16 @@ export function SummaryStats(props: SummaryStatsProps) {
       });
     };
 
-    if (isWP) {
-      // WP: Primary = averages per release, Secondary = totals
+    if (isAggregated) {
+      // Aggregated: Primary = averages per child item, Secondary = totals
       const avgCategoryStats = buildCategoryStats(true);
       const totalCategoryStats = buildCategoryStats(false);
 
       const primary: StatItem[] = [
-        { label: 'All PRs', value: selectedItem.avgPRsPerRelease ?? 0, total: summary.avgPRsTotal },
+        { label: 'All PRs', value: selectedItem.avgPRs, total: summary.avgPRsTotal },
         ...avgCategoryStats,
-        { label: 'Contributors', value: selectedItem.avgContributorsPerRelease ?? 0, total: summary.avgContributorsTotal, unavailable: !selectedItem.hasContributorData },
-        { label: 'New Contributors', value: selectedItem.avgNewContributorsPerRelease ?? 0, total: summary.avgNewContributorsTotal, unavailable: !selectedItem.hasContributorData },
+        { label: 'Contributors', value: selectedItem.avgContributors, total: summary.avgContributorsTotal, unavailable: !selectedItem.hasContributorData },
+        { label: 'New Contributors', value: selectedItem.avgNewContributors, total: summary.avgNewContributorsTotal, unavailable: !selectedItem.hasContributorData },
       ];
 
       const secondary: StatItem[] = [
@@ -248,55 +180,57 @@ export function SummaryStats(props: SummaryStatsProps) {
       return { primaryStats: primary, secondaryStats: secondary };
     }
 
-    // GB: Single column with comparison to averages
-    const gbCategoryStats = buildCategoryStats(false);
+    // Individual items: Single column with comparison to averages
+    const categoryStats = buildCategoryStats(false);
     const primary: StatItem[] = [
       { label: 'All PRs', value: selectedItem.totalPRs, total: summary.avgPRsTotal },
-      ...gbCategoryStats,
+      ...categoryStats,
       { label: 'Contributors', value: selectedItem.contributors, total: summary.avgContributorsTotal, unavailable: !selectedItem.hasContributorData },
       { label: 'New Contributors', value: selectedItem.newContributors, total: summary.avgNewContributorsTotal, unavailable: !selectedItem.hasContributorData },
     ];
 
     return { primaryStats: primary, secondaryStats: [] };
-  }, [selectedItem, categoryConfig, categoryTotals, summary]);
+  }, [selectedItem, categoryConfig, categoryTotals, summary, isAggregated]);
 
   // Build version options for dropdown
   const versionOptions = useMemo(
-    () => normalizedItems.map((item) => ({ label: item.displayLabel, value: item.version })),
-    [normalizedItems]
+    () => data.map((item) => ({ label: item.displayLabel, value: item.version })),
+    [data]
   );
 
   // Navigation helpers
-  const currentIndex = normalizedItems.findIndex((item) => item.version === selectedVersion);
-  const hasPrevious = currentIndex < normalizedItems.length - 1;
+  const currentIndex = data.findIndex((item) => item.version === selectedVersion);
+  const hasPrevious = currentIndex < data.length - 1;
   const hasNext = currentIndex > 0;
 
   const goToPrevious = useCallback(() => {
     if (hasPrevious) {
-      setSelectedVersion(normalizedItems[currentIndex + 1].version);
+      setSelectedVersion(data[currentIndex + 1].version);
     }
-  }, [currentIndex, hasPrevious, normalizedItems, setSelectedVersion]);
+  }, [currentIndex, hasPrevious, data, setSelectedVersion]);
 
   const goToNext = useCallback(() => {
     if (hasNext) {
-      setSelectedVersion(normalizedItems[currentIndex - 1].version);
+      setSelectedVersion(data[currentIndex - 1].version);
     }
-  }, [currentIndex, hasNext, normalizedItems, setSelectedVersion]);
+  }, [currentIndex, hasNext, data, setSelectedVersion]);
 
   const goToFirst = useCallback(() => {
-    setSelectedVersion(normalizedItems[normalizedItems.length - 1].version);
-  }, [normalizedItems, setSelectedVersion]);
+    setSelectedVersion(data[data.length - 1].version);
+  }, [data, setSelectedVersion]);
 
   const goToLast = useCallback(() => {
-    setSelectedVersion(normalizedItems[0].version);
-  }, [normalizedItems, setSelectedVersion]);
+    setSelectedVersion(data[0].version);
+  }, [data, setSelectedVersion]);
 
   // Derived display values
-  const isCurrentOrLatest = isWPVersion
-    ? selectedVersion === summary.currentWPCycle
-    : selectedVersion === normalizedItems[0]?.version;
-
-  const versionNavLabel = isWPVersion ? 'WordPress version' : 'Gutenberg release';
+  const isCurrentOrLatest = useMemo(() => {
+    const summaryField = tabConfig?.defaultItemSummaryField;
+    if (summaryField && summary[summaryField as keyof Summary]) {
+      return selectedVersion === summary[summaryField as keyof Summary];
+    }
+    return selectedVersion === data[0]?.version;
+  }, [tabConfig?.defaultItemSummaryField, summary, selectedVersion, data]);
 
   // Render stat item with optional comparison
   const renderStatItem = (stat: StatItem, showComparison: boolean) => {
@@ -311,7 +245,7 @@ export function SummaryStats(props: SummaryStatsProps) {
         </div>
         {showComparison && !stat.unavailable && stat.total !== undefined && (
           <div className="summary-stat-comparison">
-            (vs {isWPVersion ? '' : 'avg '}{Math.round(stat.total)}
+            (vs avg {Math.round(stat.total)}
             {diff && (
               <>
                 , <span className={`summary-stat-diff ${diffClass}`}>{diff}</span>
@@ -346,7 +280,7 @@ export function SummaryStats(props: SummaryStatsProps) {
           />
           <SelectControl
             __nextHasNoMarginBottom
-            label={isWPVersion ? 'WordPress Version' : 'Gutenberg Version'}
+            label={versionLabel}
             hideLabelFromVision
             value={selectedVersion}
             options={versionOptions}
@@ -376,23 +310,24 @@ export function SummaryStats(props: SummaryStatsProps) {
         <CardBody className="summary-card-body">
           <div className="summary-version-info">
             <Text className="summary-version-range">
-              {selectedItem.sourceType === 'wp' ? (
+              {isAggregated ? (
                 <>
-                  Includes {selectedItem.releaseCount} Gutenberg releases, from{' '}
-                  {selectedItem.gbVersionRange?.split('-')[0]} to {selectedItem.gbVersionRange?.split('-')[1]}.{' '}
+                  Includes {selectedItem.groupedCount} {childItemLabel}s
+                  {selectedItem.groupedRange && (
+                    <>, from {selectedItem.groupedRange.split('-')[0]} to {selectedItem.groupedRange.split('-')[1]}</>
+                  )}.{' '}
                 </>
               ) : (
                 <>
                   Released {formatDate(selectedItem.date!)}
-                  {selectedItem.wpVersion
-                    ? <> &middot; Included in WordPress {selectedItem.wpVersion}</>
-                    : <> &middot; Not yet in WordPress</>
-                  }
+                  {tabConfig?.labels?.itemContext && selectedItem.memberOf && (
+                    <> &middot; {tabConfig.labels.itemContext.replace('{version}', selectedItem.memberOf)}</>
+                  )}
                 </>
               )}
               {isCurrentOrLatest && (
                 <span className="summary-version-current">
-                  ({selectedItem.sourceType === 'wp' ? 'current cycle' : 'latest'})
+                  ({isAggregated ? 'current cycle' : 'latest'})
                 </span>
               )}
             </Text>
@@ -409,7 +344,7 @@ export function SummaryStats(props: SummaryStatsProps) {
                       categoryTotals={categoryTotals}
                       categoryConfig={categoryConfig}
                       size={200}
-                      releaseCount={selectedItem.releaseCount}
+                      groupedCount={selectedItem.groupedCount}
                       visibleCategories={visibleCategories}
                       onCategoryToggle={onCategoryToggle}
                     />
@@ -422,7 +357,7 @@ export function SummaryStats(props: SummaryStatsProps) {
                       categoryTotals={categoryTotals}
                       categoryConfig={categoryConfig}
                       size={200}
-                      releaseCount={selectedItem.releaseCount}
+                      groupedCount={selectedItem.groupedCount}
                     />
                   </div>
                   <div className="summary-pie-chart-item">
@@ -433,7 +368,7 @@ export function SummaryStats(props: SummaryStatsProps) {
                       categoryTotals={categoryTotals}
                       categoryConfig={categoryConfig}
                       size={200}
-                      releaseCount={selectedItem.releaseCount}
+                      groupedCount={selectedItem.groupedCount}
                     />
                   </div>
                 </>
@@ -441,8 +376,8 @@ export function SummaryStats(props: SummaryStatsProps) {
             </div>
 
             <div className="summary-stats-container">
-              {selectedItem.sourceType === 'wp' && (
-                <div className="summary-stats-header">Averages per Gutenberg release</div>
+              {tabConfig?.labels?.statsHeader && (
+                <div className="summary-stats-header">{tabConfig.labels.statsHeader}</div>
               )}
               <div className="summary-stats">
                 {primaryStats.map((stat) => renderStatItem(stat, true))}

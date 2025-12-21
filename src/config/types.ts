@@ -14,6 +14,32 @@ export type ChartType = 'line' | 'bar' | 'area' | 'stacked';
 export type MetricType = 'prs' | 'contributors';
 
 /**
+ * Labels configuration for a tab.
+ */
+export interface TabLabels {
+  /** Custom label for 'averages' toggle button (null = use metric name) */
+  averagesToggle: string | null;
+  /** Header text for averages stats section (null = don't show header) */
+  statsHeader: string | null;
+  /** Label for child items in aggregated views (singular, e.g., "Gutenberg release") */
+  childItem: string | null;
+  /** Column header for the primary version (e.g., "WP Version", "GB Version") */
+  versionColumn: string | null;
+  /** Column header for child versions in aggregated views (e.g., "GB Versions") */
+  childVersionColumn: string | null;
+  /** Column header for parent version in non-aggregated views (e.g., "WP Version" for GB releases) */
+  parentVersionColumn: string | null;
+  /** Prefix for parent version values (e.g., "WP" for displaying "WP 6.7") */
+  parentVersionPrefix: string | null;
+  /** Template for item context with {version} placeholder (e.g., "Included in WordPress {version}") */
+  itemContext: string | null;
+  /** Tooltip for special marker badges (e.g., beta cutoff indicator) */
+  specialMarkerTooltip: string | null;
+  /** Label for secondary chart series (e.g., "GB releases included") */
+  chartSecondaryLabel: string | null;
+}
+
+/**
  * Tab configuration - defines a single tab/view in the dashboard.
  */
 export interface TabConfig {
@@ -27,12 +53,22 @@ export interface TabConfig {
   versionField: string;
   /** Prefix for display labels (e.g., 'WP' for 'WP 6.7') */
   versionPrefix: string;
+  /** Field name for related version in data (e.g., 'wpVersion' for GB releases to show WP inclusion) */
+  relatedVersionField: string | null;
   /** View modes available for this tab */
   supportedViewModes: ViewMode[];
-  /** Custom label for 'averages' mode (null = use metric name) */
-  averagesLabel: string | null;
   /** CSS class for the table card (null = no class) */
   tableCardClass: string | null;
+  /** URL parameter key for version selection (e.g., 'wp', 'gb') */
+  urlParamKey: string;
+  /** Summary field for default selected item (null = use first item) */
+  defaultItemSummaryField: string | null;
+  /** Whether this tab shows aggregated data (affects stats display) */
+  isAggregated: boolean;
+  /** Whether to show reference lines on charts (e.g., beta cutoff markers) */
+  showReferenceLines: boolean;
+  /** Labels for this tab's UI elements */
+  labels: TabLabels;
 }
 
 /**

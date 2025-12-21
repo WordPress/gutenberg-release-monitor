@@ -1,8 +1,8 @@
 import { useState, useMemo, useEffect, useRef } from 'react';
 import { DataViews } from '@wordpress/dataviews';
 import { ExternalLink, Tooltip } from '@wordpress/components';
-import type { Release, WPVersionStats } from '../data/types';
-import type { ViewMode, MetricType } from '../App';
+import type { NormalizedRelease } from '../data/normalized';
+import type { ViewMode, MetricType, TabConfig } from '../config/types';
 import {
   loadCategoryConfig,
   getAggregatedPRs,
@@ -11,44 +11,38 @@ import {
 
 import '@wordpress/dataviews/build-style/style.css';
 
-interface BaseDataTableProps {
+interface DataTableProps {
+  /** Normalized release data */
+  data: NormalizedRelease[];
   viewMode: ViewMode;
   metric: MetricType;
+  tabConfig?: TabConfig;
 }
 
-interface WPVersionDataTableProps extends BaseDataTableProps {
-  dataSource: 'wp-version';
-  data: WPVersionStats[];
-}
-
-interface GBReleaseDataTableProps extends BaseDataTableProps {
-  dataSource: 'gb-release';
-  data: Release[];
-}
-
-type DataTableProps = WPVersionDataTableProps | GBReleaseDataTableProps;
-
-// Normalized row type that both data sources transform into
+// Row type for DataViews component - derived from NormalizedRelease
 interface TableRow {
   id: string;
-  version: string;           // wpVersion or gbVersion (displayed as primary version)
-  displayVersion: string;    // formatted display string
+  version: string;
+  displayVersion: string;
   totalPRs: number;
   contributors: number;
   newContributors: number;
-  // WP-specific
-  gbVersionRange?: string;
-  releaseCount?: number;
-  avgPRsPerRelease?: number;
-  // GB-specific
+  // Pre-computed averages (for averages view)
+  avgPRs: number;
+  avgContributors: number;
+  avgNewContributors: number;
+  // Aggregated view fields (items that group other items)
+  groupedRange?: string;
+  groupedCount?: number;
+  // Individual item fields (items that belong to a group)
   date?: string;
   changelogUrl?: string;
-  isLastBeforeWPBeta?: boolean;
-  wpVersionIncluded?: string;  // Which WP version this GB release is in
-  // Unified category data (raw counts)
+  isSpecialMarker?: boolean;
+  memberOf?: string;
+  // Unified category data (aggregated counts)
   categoryTotals: Record<string, number>;
-  // Source type for conditional rendering
-  sourceType: 'wp' | 'gb';
+  // For conditional rendering
+  isAggregated: boolean;
 }
 
 interface View {
@@ -76,12 +70,14 @@ const defaultLayouts = {
 const CONTRIBUTOR_FIELDS = ['contributors', 'newContributors'];
 
 export function DataTable(props: DataTableProps) {
-  const { dataSource, data, viewMode, metric } = props;
-  const isWPVersion = dataSource === 'wp-version';
+  const { data, viewMode, metric, tabConfig } = props;
+
+  // Use tabConfig for display logic (no domain knowledge)
+  const isAggregated = tabConfig?.isAggregated ?? false;
   const isContributorMetric = metric === 'contributors';
 
   // Track context changes to reset fields only when necessary
-  const contextKey = `${dataSource}-${metric}`;
+  const contextKey = `${tabConfig?.id ?? 'default'}-${metric}`;
   const prevContextKey = useRef<string | null>(null);
 
   const [categoryConfig, setCategoryConfig] = useState<CategoryConfig | null>(null);
@@ -96,67 +92,56 @@ export function DataTable(props: DataTableProps) {
     return categoryConfig.aggregations.filter((agg) => agg.includeByDefault);
   }, [categoryConfig]);
 
-  // Transform source data into normalized TableRow[]
+  // Transform NormalizedRelease[] into TableRow[] for DataViews
   const tableData: TableRow[] = useMemo(() => {
     if (!categoryConfig) return [];
 
-    if (isWPVersion) {
-      const wpData = data as WPVersionStats[];
-      return wpData.map((stat) => {
-        // Build category totals
-        const categoryTotals: Record<string, number> = {};
-        categoryConfig.aggregations.forEach((agg) => {
-          categoryTotals[agg.id] = stat.categoryTotals?.[agg.id] || 0;
-        });
-
-        return {
-          id: stat.wpVersion,
-          version: stat.wpVersion,
-          displayVersion: `WP ${stat.wpVersion}`,
-          totalPRs: stat.totalPRs,
-          contributors: stat.totalContributors,
-          newContributors: stat.totalNewContributors,
-          gbVersionRange: stat.gbVersionRange,
-          releaseCount: stat.releaseCount,
-          avgPRsPerRelease: stat.avgPRsPerRelease,
-          categoryTotals,
-          sourceType: 'wp' as const,
-        };
-      });
-    }
-
-    // GB Release
-    const gbData = data as Release[];
-    return gbData.map((release) => {
-      // Aggregate categories using config
+    return data.map((item) => {
+      // Build category totals - aggregate from raw if individual, use pre-computed if aggregated
       const categoryTotals: Record<string, number> = {};
       categoryConfig.aggregations.forEach((agg) => {
-        categoryTotals[agg.id] = getAggregatedPRs(release.categories, categoryConfig, agg.id);
+        if (item.categoryTotals) {
+          // Pre-aggregated (aggregated items)
+          categoryTotals[agg.id] = item.categoryTotals[agg.id] || 0;
+        } else if (item.rawCategories) {
+          // Aggregate from raw categories (individual items)
+          categoryTotals[agg.id] = getAggregatedPRs(item.rawCategories, categoryConfig, agg.id);
+        } else {
+          categoryTotals[agg.id] = 0;
+        }
       });
 
       return {
-        id: release.gbVersion,
-        version: release.gbVersion,
-        displayVersion: release.gbVersion,
-        totalPRs: release.totalPRs,
-        contributors: release.contributors,
-        newContributors: release.newContributors,
-        date: release.date,
-        changelogUrl: release.changelogUrl,
-        isLastBeforeWPBeta: release.isLastBeforeWPBeta,
-        wpVersionIncluded: release.wpVersion ?? undefined,
+        id: item.id,
+        version: item.version,
+        displayVersion: item.displayLabel,
+        totalPRs: item.totalPRs,
+        contributors: item.contributors,
+        newContributors: item.newContributors,
+        avgPRs: item.avgPRs,
+        avgContributors: item.avgContributors,
+        avgNewContributors: item.avgNewContributors,
+        groupedRange: item.groupedRange,
+        groupedCount: item.groupedCount,
+        date: item.date,
+        changelogUrl: item.changelogUrl,
+        isSpecialMarker: item.isSpecialMarker,
+        memberOf: item.memberOf,
         categoryTotals,
-        sourceType: 'gb' as const,
+        isAggregated: item.isAggregated,
       };
     });
-  }, [data, categoryConfig, isWPVersion]);
+  }, [data, categoryConfig]);
 
-  // Derive WP version options from GB releases (for filtering)
-  const wpVersionOptions = useMemo(() => {
-    if (isWPVersion) return [];
+  // Get parent version prefix from config for filter labels
+  const parentVersionPrefixForFilter = tabConfig?.labels?.parentVersionPrefix ?? '';
+
+  // Derive group options from individual items (for filtering by membership)
+  const memberOfOptions = useMemo(() => {
+    if (isAggregated) return [];
     const versions = new Set<string>();
     tableData.forEach((row) => {
-      if (row.wpVersionIncluded) versions.add(row.wpVersionIncluded);
+      if (row.memberOf) versions.add(row.memberOf);
     });
     return Array.from(versions)
       .sort((a, b) => {
@@ -165,17 +150,20 @@ export function DataTable(props: DataTableProps) {
         if (bMajor !== aMajor) return bMajor - aMajor;
         return bMinor - aMinor;
       })
-      .map((v) => ({ value: v, label: `WP ${v}` }));
-  }, [isWPVersion, tableData]);
+      .map((v) => ({
+        value: v,
+        label: `${parentVersionPrefixForFilter} ${v}`.trim(),
+      }));
+  }, [isAggregated, tableData, parentVersionPrefixForFilter]);
 
   // Compute visible field IDs based on data source, view mode, and metric
   const visibleFieldIds = useMemo(() => {
     const categoryFieldIds = defaultVisibleCategories.map((agg) => `cat_${agg.id}`);
 
-    // Base fields that always appear
-    const baseFields = isWPVersion
-      ? ['version', 'gbVersionRange', 'releaseCount']
-      : ['version', 'wpVersionIncluded', 'date'];
+    // Base fields that always appear (aggregated vs individual)
+    const baseFields = isAggregated
+      ? ['version', 'groupedRange', 'groupedCount']
+      : ['version', 'memberOf', 'date'];
 
     // Metric-specific fields
     if (isContributorMetric) {
@@ -185,7 +173,7 @@ export function DataTable(props: DataTableProps) {
 
     // PR metric: show totalPRs and category breakdown
     return [...baseFields, 'totalPRs', ...categoryFieldIds];
-  }, [isWPVersion, defaultVisibleCategories, isContributorMetric]);
+  }, [isAggregated, defaultVisibleCategories, isContributorMetric]);
 
   const defaultSortField = 'version';
 
@@ -222,36 +210,42 @@ export function DataTable(props: DataTableProps) {
   const fields = useMemo(() => {
     if (!categoryConfig) return [];
 
+    // Get labels from config (no domain-specific inference)
+    const versionColumnLabel = tabConfig?.labels?.versionColumn ?? 'Version';
+    const childVersionColumnLabel = tabConfig?.labels?.childVersionColumn ?? 'Versions';
+    const parentVersionColumnLabel = tabConfig?.labels?.parentVersionColumn ?? 'Version';
+    const parentVersionPrefixValue = tabConfig?.labels?.parentVersionPrefix ?? '';
+
     const baseFields = [];
 
     // Version field (primary identifier)
-    if (isWPVersion) {
+    if (isAggregated) {
       baseFields.push({
         id: 'version',
-        label: 'WP Version',
+        label: versionColumnLabel,
         enableHiding: false,
         enableGlobalSearch: true,
         render: ({ item }: { item: TableRow }) => (
-          <span className="wp-version-cell">{item.displayVersion}</span>
+          <span className="aggregated-cell">{item.displayVersion}</span>
         ),
       });
       baseFields.push({
-        id: 'gbVersionRange',
-        label: 'GB Versions',
+        id: 'groupedRange',
+        label: childVersionColumnLabel,
         enableSorting: false,
         render: ({ item }: { item: TableRow }) => (
-          <span className="wp-version-range">{item.gbVersionRange}</span>
+          <span className="grouped-range">{item.groupedRange}</span>
         ),
       });
       baseFields.push({
-        id: 'releaseCount',
+        id: 'groupedCount',
         label: 'Releases',
         enableSorting: true,
       });
     } else {
       baseFields.push({
         id: 'version',
-        label: 'GB Version',
+        label: versionColumnLabel,
         enableHiding: false,
         enableGlobalSearch: true,
         render: ({ item }: { item: TableRow }) => (
@@ -262,8 +256,8 @@ export function DataTable(props: DataTableProps) {
             >
               {item.displayVersion}
             </ExternalLink>
-            {item.isLastBeforeWPBeta && (
-              <Tooltip text="Last Gutenberg version before WordPress beta freeze">
+            {item.isSpecialMarker && tabConfig?.labels?.specialMarkerTooltip && (
+              <Tooltip text={tabConfig.labels.specialMarkerTooltip}>
                 <span className="release-badge-cutoff">Beta Cutoff</span>
               </Tooltip>
             )}
@@ -271,14 +265,16 @@ export function DataTable(props: DataTableProps) {
         ),
       });
       baseFields.push({
-        id: 'wpVersionIncluded',
-        label: 'WP Version',
-        elements: wpVersionOptions,
+        id: 'memberOf',
+        label: parentVersionColumnLabel,
+        elements: memberOfOptions,
         filterBy: {
           operators: ['is', 'isNot', 'isAny'] as ('is' | 'isNot' | 'isAny')[],
         },
         render: ({ item }: { item: TableRow }) =>
-          item.wpVersionIncluded ? `WP ${item.wpVersionIncluded}` : '—',
+          item.memberOf
+            ? `${parentVersionPrefixValue} ${item.memberOf}`.trim()
+            : '—',
       });
       baseFields.push({
         id: 'date',
@@ -298,10 +294,10 @@ export function DataTable(props: DataTableProps) {
     // Total PRs field
     baseFields.push({
       id: 'totalPRs',
-      label: isWPVersion ? 'PRs' : 'Total PRs',
+      label: isAggregated ? 'PRs' : 'Total PRs',
       enableSorting: true,
       render: ({ item }: { item: TableRow }) => (
-        <span className={isWPVersion ? 'total-cell' : 'release-total-prs'}>
+        <span className={isAggregated ? 'total-cell' : 'release-total-prs'}>
           {item.totalPRs.toLocaleString()}
         </span>
       ),
@@ -310,20 +306,20 @@ export function DataTable(props: DataTableProps) {
     // Category fields
     const categoryFields = categoryConfig.aggregations.map((agg) => ({
       id: `cat_${agg.id}`,
-      label: agg.label,
+      label: agg.labels.full,
       enableSorting: true,
       getValue: ({ item }: { item: TableRow }) => {
         const count = item.categoryTotals[agg.id] || 0;
-        if (isWPVersion) {
-          if (viewMode === 'averages' && item.releaseCount) {
-            return count > 0 ? Math.round(count / item.releaseCount) : 0;
+        if (isAggregated) {
+          if (viewMode === 'averages' && item.groupedCount) {
+            return count > 0 ? Math.round(count / item.groupedCount) : 0;
           }
           if (viewMode === 'distribution') {
             return item.totalPRs > 0 ? Math.round((count / item.totalPRs) * 100) : 0;
           }
           return count; // totals
         }
-        // GB Release
+        // Individual release
         if (viewMode === 'distribution') {
           return item.totalPRs > 0 ? Math.round((count / item.totalPRs) * 100) : 0;
         }
@@ -333,9 +329,9 @@ export function DataTable(props: DataTableProps) {
         const count = item.categoryTotals[agg.id] || 0;
         const colorStyle = { color: agg.color };
 
-        if (isWPVersion) {
-          if (viewMode === 'averages' && item.releaseCount) {
-            const avg = count > 0 ? Math.round(count / item.releaseCount) : 0;
+        if (isAggregated) {
+          if (viewMode === 'averages' && item.groupedCount) {
+            const avg = count > 0 ? Math.round(count / item.groupedCount) : 0;
             if (avg === 0) return '—';
             return <span className={`release-${agg.id}`} style={colorStyle}>{avg}</span>;
           }
@@ -349,7 +345,7 @@ export function DataTable(props: DataTableProps) {
           return <span className={`release-${agg.id}`} style={colorStyle}>{count.toLocaleString()}</span>;
         }
 
-        // GB Release
+        // Individual release
         const percent = item.totalPRs > 0 ? Math.round((count / item.totalPRs) * 100) : 0;
         if (viewMode === 'distribution') {
           return <span className={`release-${agg.id}`} style={colorStyle}>{percent}%</span>;
@@ -372,16 +368,16 @@ export function DataTable(props: DataTableProps) {
         label: 'Contributors',
         enableSorting: true,
         getValue: ({ item }: { item: TableRow }) => {
-          if (isWPVersion && viewMode === 'averages' && item.releaseCount) {
-            return item.contributors > 0 ? Math.round(item.contributors / item.releaseCount) : 0;
+          if (isAggregated && viewMode === 'averages' && item.groupedCount) {
+            return item.contributors > 0 ? Math.round(item.contributors / item.groupedCount) : 0;
           }
           return item.contributors;
         },
         render: ({ item }: { item: TableRow }) => {
-          if (isWPVersion && viewMode === 'averages' && item.releaseCount) {
-            return item.contributors > 0 ? Math.round(item.contributors / item.releaseCount) : '—';
+          if (isAggregated && viewMode === 'averages' && item.groupedCount) {
+            return item.contributors > 0 ? Math.round(item.contributors / item.groupedCount) : '—';
           }
-          if (isWPVersion) {
+          if (isAggregated) {
             return item.contributors > 0 ? item.contributors.toLocaleString() : '—';
           }
           return item.contributors;
@@ -392,17 +388,17 @@ export function DataTable(props: DataTableProps) {
         label: 'New Contributors',
         enableSorting: true,
         getValue: ({ item }: { item: TableRow }) => {
-          if (isWPVersion && viewMode === 'averages' && item.releaseCount) {
-            return item.newContributors > 0 ? Math.round(item.newContributors / item.releaseCount) : 0;
+          if (isAggregated && viewMode === 'averages' && item.groupedCount) {
+            return item.newContributors > 0 ? Math.round(item.newContributors / item.groupedCount) : 0;
           }
           return item.newContributors;
         },
         render: ({ item }: { item: TableRow }) => {
-          if (isWPVersion && viewMode === 'averages' && item.releaseCount) {
-            const avg = item.newContributors > 0 ? Math.round(item.newContributors / item.releaseCount) : 0;
+          if (isAggregated && viewMode === 'averages' && item.groupedCount) {
+            const avg = item.newContributors > 0 ? Math.round(item.newContributors / item.groupedCount) : 0;
             return avg > 0 ? <span className="release-new-contributors">+{avg}</span> : '—';
           }
-          if (isWPVersion) {
+          if (isAggregated) {
             return item.newContributors > 0 ? (
               <span className="release-new-contributors">+{item.newContributors.toLocaleString()}</span>
             ) : '—';
@@ -414,7 +410,7 @@ export function DataTable(props: DataTableProps) {
       });
 
     return [...baseFields, ...categoryFields, ...contributorFields];
-  }, [categoryConfig, isWPVersion, viewMode, wpVersionOptions]);
+  }, [categoryConfig, isAggregated, tabConfig, viewMode, memberOfOptions]);
 
   // Process data (filter, search, sort)
   const processedData = useMemo(() => {
@@ -424,21 +420,21 @@ export function DataTable(props: DataTableProps) {
       const searchLower = view.search.toLowerCase();
       result = result.filter((row) => {
         if (row.version.toLowerCase().includes(searchLower)) return true;
-        if (row.gbVersionRange?.toLowerCase().includes(searchLower)) return true;
-        if (row.wpVersionIncluded?.toLowerCase().includes(searchLower)) return true;
+        if (row.groupedRange?.toLowerCase().includes(searchLower)) return true;
+        if (row.memberOf?.toLowerCase().includes(searchLower)) return true;
         return false;
       });
     }
 
     for (const filter of view.filters) {
-      if (filter.field === 'wpVersionIncluded') {
+      if (filter.field === 'memberOf') {
         if (filter.operator === 'is') {
-          result = result.filter((r) => r.wpVersionIncluded === filter.value);
+          result = result.filter((r) => r.memberOf === filter.value);
         } else if (filter.operator === 'isNot') {
-          result = result.filter((r) => r.wpVersionIncluded !== filter.value);
+          result = result.filter((r) => r.memberOf !== filter.value);
         } else if (filter.operator === 'isAny' && Array.isArray(filter.value)) {
           result = result.filter((r) =>
-            (filter.value as unknown as string[]).includes(r.wpVersionIncluded ?? '')
+            (filter.value as unknown as string[]).includes(r.memberOf ?? '')
           );
         }
       }
@@ -450,6 +446,7 @@ export function DataTable(props: DataTableProps) {
 
         if (field === 'version') {
           // Version comparison (semantic versioning)
+          if (!a.version || !b.version) return 0;
           const partsA = a.version.split('.').map(Number);
           const partsB = b.version.split('.').map(Number);
           for (let i = 0; i < Math.max(partsA.length, partsB.length); i++) {
@@ -512,7 +509,7 @@ export function DataTable(props: DataTableProps) {
   );
 
   return (
-    <div className={isWPVersion ? 'wp-version-table' : undefined}>
+    <div className={isAggregated ? 'aggregated-table' : undefined}>
       <DataViews
         data={paginatedData}
         fields={fields}

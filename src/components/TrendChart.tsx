@@ -12,11 +12,12 @@ import {
   ResponsiveContainer,
   ReferenceLine,
 } from 'recharts';
-import type { WPVersionStats, TimeSeriesPoint, Release } from '../data/types';
-import type { ViewMode, ChartType, MetricType } from '../App';
-import { loadCategoryConfig, type CategoryConfig } from '../utils/categories';
+import type { NormalizedRelease } from '../data/normalized';
+import type { ViewMode, ChartType, MetricType, TabConfig } from '../config/types';
+import { useConfig } from '../config';
+import { loadCategoryConfig, aggregateCategories, type CategoryConfig } from '../utils/categories';
 
-interface BaseTrendChartProps {
+interface TrendChartProps {
   viewMode: ViewMode;
   chartType: ChartType;
   /** Metric type: PRs or Contributors */
@@ -25,24 +26,13 @@ interface BaseTrendChartProps {
   visibleCategories?: string[];
   /** Callback when a category is toggled via legend click */
   onCategoryToggle?: (categoryId: string, isVisible: boolean) => void;
-}
-
-interface WPVersionTrendChartProps extends BaseTrendChartProps {
-  dataSource: 'wp-version';
-  data: WPVersionStats[];
-  /** Number of versions to show (default: all) */
-  releaseCount?: number;
-}
-
-interface GBReleaseTrendChartProps extends BaseTrendChartProps {
-  dataSource: 'gb-release';
-  /** PR data (TimeSeriesPoint[]) or contributor data (Release[]) based on metric */
-  data: TimeSeriesPoint[] | Release[];
+  /** Tab configuration for display labels and data behavior */
+  tabConfig: TabConfig;
+  /** Normalized release data */
+  data: NormalizedRelease[];
   /** Number of releases to show (default: all) */
   releaseCount?: number;
 }
-
-type TrendChartProps = WPVersionTrendChartProps | GBReleaseTrendChartProps;
 
 // Fixed colors
 const PRS_COLOR = '#3858e9';
@@ -69,11 +59,17 @@ const OTHER_COLOR = '#9E9E9E'; // Same as "Other" category
 const MAX_BREAKDOWN_ITEMS = 10;
 
 export function TrendChart(props: TrendChartProps) {
-  const { viewMode, chartType, dataSource, data, visibleCategories, onCategoryToggle, metric, releaseCount } = props;
+  const { viewMode, chartType, data, visibleCategories, onCategoryToggle, metric, releaseCount, tabConfig } = props;
+  const config = useConfig();
   const isContributorMetric = metric === 'contributors';
   const isSponsorBreakdown = viewMode === 'sponsors';
   const isCountryBreakdown = viewMode === 'countries';
   const isBreakdownMode = isSponsorBreakdown || isCountryBreakdown;
+
+  // Get labels from config (no domain-specific inference)
+  const versionPrefix = tabConfig?.versionPrefix ?? config.project.projectLabel;
+  const childItemLabel = tabConfig?.labels?.childItem ?? `${config.project.projectLabel} release`;
+  const parentVersionPrefix = tabConfig?.labels?.parentVersionPrefix ?? '';
 
   const [categoryConfig, setCategoryConfig] = useState<CategoryConfig | null>(null);
   // Local state for hidden breakdown items (resets when view mode changes)
@@ -116,28 +112,15 @@ export function TrendChart(props: TrendChartProps) {
     const totals: Record<string, number> = {};
     const breakdownKey = isSponsorBreakdown ? 'sponsorBreakdown' : 'countryBreakdown';
 
-    if (dataSource === 'wp-version') {
-      const wpData = data as WPVersionStats[];
-      wpData.forEach((stat) => {
-        const breakdown = stat.contributorAggregates?.[breakdownKey];
-        if (breakdown) {
-          Object.entries(breakdown).forEach(([key, value]) => {
-            totals[key] = (totals[key] || 0) + value;
-          });
-        }
-      });
-    } else {
-      const releaseData = data as Release[];
-      const displayedData = releaseCount ? releaseData.slice(0, releaseCount) : releaseData;
-      displayedData.forEach((release) => {
-        const breakdown = release.contributorAggregates?.[breakdownKey];
-        if (breakdown) {
-          Object.entries(breakdown).forEach(([key, value]) => {
-            totals[key] = (totals[key] || 0) + value;
-          });
-        }
-      });
-    }
+    const displayedData = releaseCount ? data.slice(0, releaseCount) : data;
+    displayedData.forEach((item) => {
+      const breakdown = item.contributorAggregates?.[breakdownKey];
+      if (breakdown) {
+        Object.entries(breakdown).forEach(([key, value]) => {
+          totals[key] = (totals[key] || 0) + value;
+        });
+      }
+    });
 
     // Separate Unknown from other items BEFORE processing
     const unknownTotal = totals['Unknown'] || 0;
@@ -189,248 +172,144 @@ export function TrendChart(props: TrendChartProps) {
     }
 
     return result;
-  }, [isBreakdownMode, isSponsorBreakdown, dataSource, data, releaseCount]);
+  }, [isBreakdownMode, isSponsorBreakdown, data, releaseCount]);
 
-  // Configuration based on data source
-  const config = useMemo(() => {
-    if (dataSource === 'wp-version') {
-      return {
-        xKey: 'wpVersion',
-        xLabel: 'WP version',
-        tooltipPrefix: 'WordPress',
-        showReleasesLine: viewMode === 'totals',
-        tickInterval: 0,
-        xAxisAngle: 0,
-        xAxisHeight: 30,
-        filterToMajorVersions: false,
-        tickFormatter: undefined as ((value: string) => string) | undefined,
-      };
-    }
+  // Configuration based on tabConfig (no isAggregated checks)
+  const chartConfig = useMemo(() => {
+    // Use chartSecondaryLabel from config if available, otherwise compute from childItemLabel
+    const childReleasesLabel = tabConfig?.labels?.chartSecondaryLabel ?? `${childItemLabel}s included`;
+
     return {
-      xKey: 'gbVersion',
-      xLabel: 'GB release',
-      tooltipPrefix: 'Gutenberg',
-      showReleasesLine: false,
+      // Use consistent key for normalized data (not raw field names)
+      xKey: 'displayVersion',
+      xLabel: `${versionPrefix} version`,
+      tooltipPrefix: versionPrefix,
+      // Show releases line only for totals view when data has groupedCount (determined at render time)
+      showReleasesLine: viewMode === 'totals',
+      childReleasesLabel,
       tickInterval: 0,
       xAxisAngle: 0,
       xAxisHeight: 30,
-      filterToMajorVersions: true,
-      // Strip .0 suffix from major versions (e.g., "19.0" → "19")
-      tickFormatter: (value: string) => value.replace(/\.0$/, ''),
     };
-  }, [dataSource, viewMode]);
+  }, [viewMode, versionPrefix, childItemLabel, tabConfig?.labels?.chartSecondaryLabel, tabConfig?.versionField]);
 
-  // Transform data for chart
+  // Transform normalized data for chart
   const chartData = useMemo(() => {
     if (!categoryConfig) return [];
 
-    if (dataSource === 'wp-version') {
-      const wpData = data as WPVersionStats[];
-      // Filter items that don't have data for the current mode
-      const filteredWpData = wpData.filter((stat) => {
-        if (isSponsorBreakdown) {
-          return stat.contributorAggregates?.sponsorBreakdown &&
-            Object.keys(stat.contributorAggregates.sponsorBreakdown).length > 0;
-        }
-        if (isBreakdownMode) { // countries
-          return stat.contributorAggregates?.countryBreakdown &&
-            Object.keys(stat.contributorAggregates.countryBreakdown).length > 0;
-        }
-        // For PR modes, check category data; contributor averages always have data
-        if (!isContributorMetric) {
-          return stat.categoryTotals && Object.values(stat.categoryTotals).some(v => v > 0);
-        }
-        return true;
-      });
-      // WP versions are sorted newest-first; reverse for chronological display, then slice
-      const displayedData = releaseCount
-        ? [...filteredWpData].slice(0, releaseCount).reverse()
-        : [...filteredWpData].reverse();
-      return displayedData.map((stat) => {
-        const baseData: Record<string, string | number> = {
-          wpVersion: stat.wpVersion,
-          releaseCount: stat.releaseCount,
-        };
+    // Filter items that don't have data for the current mode
+    const filteredData = data.filter((item) => {
+      if (isSponsorBreakdown) {
+        return item.contributorAggregates?.sponsorBreakdown &&
+          Object.keys(item.contributorAggregates.sponsorBreakdown).length > 0;
+      }
+      if (isBreakdownMode) { // countries
+        return item.contributorAggregates?.countryBreakdown &&
+          Object.keys(item.contributorAggregates.countryBreakdown).length > 0;
+      }
+      // For PR modes, check category data
+      if (!isContributorMetric) {
+        const categories = item.categoryTotals || item.rawCategories;
+        return categories && Object.values(categories).some(v => v > 0);
+      }
+      return true;
+    });
 
-        if (isBreakdownMode) {
-          // Sponsor/country breakdown
-          const breakdownKey = isSponsorBreakdown ? 'sponsorBreakdown' : 'countryBreakdown';
-          const breakdown = stat.contributorAggregates?.[breakdownKey] || {};
+    // Data is sorted newest-first; reverse for chronological display, then slice
+    const displayedData = releaseCount
+      ? [...filteredData].slice(0, releaseCount).reverse()
+      : [...filteredData].reverse();
 
-          // Add values for each top item
-          const topLabels = topBreakdownItems.filter((item) => item.label !== 'Other' && item.label !== 'Unknown').map((item) => item.label);
-          let othersTotal = 0;
+    return displayedData.map((item) => {
+      const baseData: Record<string, string | number | boolean> = {
+        [chartConfig.xKey]: item.displayVersion,
+        isSpecialMarker: item.isSpecialMarker ?? false,
+        memberOf: item.memberOf ?? '',
+      };
 
-          topBreakdownItems.forEach((item) => {
-            if (item.label === 'Other') {
-              // Sum up all items not in top items (excluding Unknown)
-              Object.entries(breakdown).forEach(([key, value]) => {
-                if (!topLabels.includes(key) && key !== 'Unknown') {
-                  othersTotal += value;
-                }
-              });
-              baseData[item.id] = othersTotal;
-            } else if (item.label === 'Unknown') {
-              baseData[item.id] = breakdown['Unknown'] || 0;
-            } else {
-              baseData[item.id] = breakdown[item.label] || 0;
-            }
-          });
-        } else if (isContributorMetric) {
-          // Contributor metrics (totals/averages)
-          if (viewMode === 'totals') {
-            baseData.contributors = stat.totalContributors;
-            baseData.newContributors = stat.totalNewContributors;
-            baseData.returningContributors = stat.totalContributors - stat.totalNewContributors;
-          } else {
-            // averages (default for contributors)
-            baseData.contributors = stat.avgContributorsPerRelease;
-            baseData.newContributors = stat.avgNewContributorsPerRelease;
-            baseData.returningContributors = Math.round(stat.avgContributorsPerRelease - stat.avgNewContributorsPerRelease);
-          }
-        } else {
-          // PR metrics (existing logic)
-          if (viewMode === 'distribution') {
-            const totalCategorySum = defaultCategories.reduce((sum, agg) => {
-              return sum + (stat.categoryTotals?.[agg.id] || 0);
-            }, 0);
-            defaultCategories.forEach((agg) => {
-              const value = stat.categoryTotals?.[agg.id] || 0;
-              const percentage = totalCategorySum > 0 ? (value / totalCategorySum) * 100 : 0;
-              baseData[`pct_${agg.id}`] = Math.round(percentage * 10) / 10;
-            });
-          } else if (viewMode === 'totals') {
-            baseData.totalPRs = stat.totalPRs;
-            defaultCategories.forEach((agg) => {
-              baseData[agg.id] = stat.categoryTotals?.[agg.id] || 0;
-            });
-          } else {
-            // averages
-            baseData.totalPRs = stat.avgPRsPerRelease;
-            defaultCategories.forEach((agg) => {
-              const total = stat.categoryTotals?.[agg.id] || 0;
-              baseData[agg.id] = total > 0 ? Math.round(total / stat.releaseCount) : 0;
-            });
-          }
-        }
+      // Add groupedCount for aggregated items (used for secondary axis)
+      if (item.groupedCount !== undefined) {
+        baseData.releaseCount = item.groupedCount;
+      }
 
-        return baseData;
-      });
-    }
-
-    // GB release data
-    if (isBreakdownMode) {
-      // Sponsor/country breakdown - data is Release[]
-      const releaseData = data as Release[];
-      const breakdownKey = isSponsorBreakdown ? 'sponsorBreakdown' : 'countryBreakdown';
-      // Filter to only releases with contributor breakdown data
-      const releasesWithData = releaseData.filter(
-        (release) => release.contributorAggregates?.[breakdownKey] &&
-          Object.keys(release.contributorAggregates[breakdownKey]).length > 0
-      );
-      // Releases are sorted newest-first; reverse for chronological chart display
-      const displayedData = releaseCount
-        ? releasesWithData.slice(0, releaseCount).reverse()
-        : [...releasesWithData].reverse();
-      const topLabels = topBreakdownItems.filter((item) => item.label !== 'Other' && item.label !== 'Unknown').map((item) => item.label);
-
-      return displayedData.map((release) => {
-        const baseData: Record<string, string | number | boolean> = {
-          gbVersion: release.gbVersion,
-          isLastBeforeWPBeta: release.isLastBeforeWPBeta,
-          wpVersion: release.wpVersion || '',
-        };
-
-        const breakdown = release.contributorAggregates?.[breakdownKey] || {};
+      if (isBreakdownMode) {
+        // Sponsor/country breakdown
+        const breakdownKey = isSponsorBreakdown ? 'sponsorBreakdown' : 'countryBreakdown';
+        const breakdown = item.contributorAggregates?.[breakdownKey] || {};
+        const topLabels = topBreakdownItems.filter((i) => i.label !== 'Other' && i.label !== 'Unknown').map((i) => i.label);
         let othersTotal = 0;
 
-        topBreakdownItems.forEach((item) => {
-          if (item.label === 'Others') {
+        topBreakdownItems.forEach((breakdownItem) => {
+          if (breakdownItem.label === 'Other') {
             Object.entries(breakdown).forEach(([key, value]) => {
               if (!topLabels.includes(key) && key !== 'Unknown') {
                 othersTotal += value;
               }
             });
-            baseData[item.id] = othersTotal;
-          } else if (item.label === 'Unknown') {
-            baseData[item.id] = breakdown['Unknown'] || 0;
+            baseData[breakdownItem.id] = othersTotal;
+          } else if (breakdownItem.label === 'Unknown') {
+            baseData[breakdownItem.id] = breakdown['Unknown'] || 0;
           } else {
-            baseData[item.id] = breakdown[item.label] || 0;
+            baseData[breakdownItem.id] = breakdown[breakdownItem.label] || 0;
           }
         });
-
-        return baseData;
-      });
-    }
-
-    if (isContributorMetric) {
-      // Contributor metrics (totals/averages) - data is Release[]
-      const releaseData = data as Release[];
-      // Releases are sorted newest-first; reverse for chronological chart display
-      const displayedData = releaseCount
-        ? releaseData.slice(0, releaseCount).reverse()
-        : [...releaseData].reverse();
-
-      return displayedData.map((release) => ({
-        gbVersion: release.gbVersion,
-        contributors: release.contributors,
-        newContributors: release.newContributors,
-        returningContributors: release.contributors - release.newContributors,
-        isLastBeforeWPBeta: release.isLastBeforeWPBeta,
-        wpVersion: release.wpVersion || '',
-      }));
-    }
-
-    // PR metrics - data is TimeSeriesPoint[]
-    const gbData = data as TimeSeriesPoint[];
-    // Filter to only releases with PR category data
-    const filteredGbData = gbData.filter(
-      (point) => point.categoryPRs && Object.values(point.categoryPRs).some(v => v > 0)
-    );
-    const displayedData = releaseCount ? filteredGbData.slice(-releaseCount) : filteredGbData;
-
-    return displayedData.map((point) => {
-      const baseData: Record<string, string | number | boolean> = {
-        gbVersion: point.gbVersion,
-        totalPRs: point.totalPRs,
-        isLastBeforeWPBeta: point.isLastBeforeWPBeta,
-        wpVersion: point.wpVersion || '',
-      };
-
-      if (viewMode === 'distribution') {
-        const totalCategorySum = defaultCategories.reduce((sum, agg) => {
-          return sum + (point.categoryPRs[agg.id] || 0);
-        }, 0);
-        defaultCategories.forEach((agg) => {
-          const value = point.categoryPRs[agg.id] || 0;
-          const percentage = totalCategorySum > 0 ? (value / totalCategorySum) * 100 : 0;
-          baseData[`pct_${agg.id}`] = Math.round(percentage * 10) / 10;
-        });
+      } else if (isContributorMetric) {
+        // Contributor metrics - use pre-computed fields from normalization layer
+        const contributors = viewMode === 'totals' ? item.contributors : item.avgContributors;
+        const newContributors = viewMode === 'totals' ? item.newContributors : item.avgNewContributors;
+        baseData.contributors = contributors;
+        baseData.newContributors = newContributors;
+        baseData.returningContributors = Math.round(contributors - newContributors);
       } else {
-        defaultCategories.forEach((agg) => {
-          baseData[agg.id] = point.categoryPRs[agg.id] || 0;
-        });
+        // PR metrics - aggregate categories (normalization handles raw vs pre-aggregated)
+        const categories = item.categoryTotals
+          ? item.categoryTotals
+          : item.rawCategories
+            ? aggregateCategories(item.rawCategories, categoryConfig)
+            : {};
+
+        if (viewMode === 'distribution') {
+          const totalCategorySum = defaultCategories.reduce((sum, agg) => {
+            return sum + (categories[agg.id] || 0);
+          }, 0);
+          defaultCategories.forEach((agg) => {
+            const value = categories[agg.id] || 0;
+            const percentage = totalCategorySum > 0 ? (value / totalCategorySum) * 100 : 0;
+            baseData[`pct_${agg.id}`] = Math.round(percentage * 10) / 10;
+          });
+        } else if (viewMode === 'totals') {
+          baseData.totalPRs = item.totalPRs;
+          defaultCategories.forEach((agg) => {
+            baseData[agg.id] = categories[agg.id] || 0;
+          });
+        } else {
+          // Averages: use pre-computed avgPRs, compute category avg using groupedCount
+          baseData.totalPRs = item.avgPRs;
+          defaultCategories.forEach((agg) => {
+            const total = categories[agg.id] || 0;
+            // groupedCount only exists for aggregated items; individual items use totals
+            baseData[agg.id] = item.groupedCount ? Math.round(total / item.groupedCount) : total;
+          });
+        }
       }
 
       return baseData;
     });
-  }, [data, categoryConfig, viewMode, defaultCategories, dataSource, releaseCount, isContributorMetric, isBreakdownMode, isSponsorBreakdown, topBreakdownItems]);
+  }, [data, categoryConfig, viewMode, defaultCategories, releaseCount, isContributorMetric, isBreakdownMode, isSponsorBreakdown, topBreakdownItems, chartConfig.xKey]);
 
-  // Compute X-axis ticks - for GB releases, only show major versions (X.0)
+  // Automatically filter X-axis to show only X.0 versions when there are many data points
+  const XAXIS_DENSITY_THRESHOLD = 15;
+  const shouldFilterToMinorZero = chartData.length > XAXIS_DENSITY_THRESHOLD;
+
   const xAxisTicks = useMemo(() => {
-    if (!config.filterToMajorVersions || chartData.length === 0) {
+    if (!shouldFilterToMinorZero || chartData.length === 0) {
       return undefined; // Let Recharts auto-calculate
     }
-    // Filter to only major versions where minor version is 0 (e.g., "19.0", "20.0")
-    // This excludes versions like "19.3" or "19.3.0"
-    // Use type assertion since xKey is always 'gbVersion' or 'wpVersion' which exist on all chart data types
+    // Filter to only X.0 and X.5 versions for cleaner display
     return chartData
-      .map((point) => (point as Record<string, unknown>)[config.xKey] as string)
-      .filter((version) => {
-        const parts = version.split('.');
-        return parts.length >= 2 && parts[1] === '0';
-      });
-  }, [chartData, config.filterToMajorVersions, config.xKey]);
+      .map((point) => (point as Record<string, unknown>)[chartConfig.xKey] as string)
+      .filter((version) => version.endsWith('.0') || version.endsWith('.5'));
+  }, [chartData, shouldFilterToMinorZero, chartConfig.xKey]);
 
   // Build legend items - include ALL categories for clickable legend
   const legendItems = useMemo(() => {
@@ -460,7 +339,7 @@ export function TrendChart(props: TrendChartProps) {
           const isVisible = visibleCategories
             ? visibleCategories.includes(agg.id)
             : agg.includeByDefault;
-          items.push({ id: agg.id, label: agg.label, color: agg.color, isVisible, isCategory: true, isBreakdown: false });
+          items.push({ id: agg.id, label: agg.labels.full, color: agg.color, isVisible, isCategory: true, isBreakdown: false });
         });
       }
 
@@ -470,12 +349,12 @@ export function TrendChart(props: TrendChartProps) {
       }
     }
 
-    // Show releases count for WP totals mode (both modes)
-    if (config.showReleasesLine) {
-      items.push({ id: 'releases', label: 'GB releases included', color: RELEASES_COLOR, dashed: true, isVisible: true, isCategory: false, isBreakdown: false });
+    // Show releases count for aggregated totals mode
+    if (chartConfig.showReleasesLine) {
+      items.push({ id: 'releases', label: chartConfig.childReleasesLabel, color: RELEASES_COLOR, dashed: true, isVisible: true, isCategory: false, isBreakdown: false });
     }
     return items;
-  }, [categoryConfig, visibleCategories, chartType, viewMode, config.showReleasesLine, isContributorMetric, isBreakdownMode, topBreakdownItems, hiddenBreakdownItems, showAllPRs]);
+  }, [categoryConfig, visibleCategories, chartType, viewMode, chartConfig.showReleasesLine, chartConfig.childReleasesLabel, isContributorMetric, isBreakdownMode, topBreakdownItems, hiddenBreakdownItems, showAllPRs]);
 
   const handleLegendClick = useCallback(
     (itemId: string) => {
@@ -518,17 +397,17 @@ export function TrendChart(props: TrendChartProps) {
   const hasAllPRsToggle = legendItems.some((item) => item.isAllPRs);
   const isClickable = !!onCategoryToggle || isBreakdownMode || hasAllPRsToggle;
 
-  // Get cutoff versions for reference lines (GB release tab only)
+  // Get marked versions for reference lines (controlled by config)
   // Must be before early return to maintain consistent hook order
-  const cutoffVersions = useMemo(() => {
-    if (dataSource !== 'gb-release') return [];
+  const referenceMarkers = useMemo((): Array<{ version: string; label: string }> => {
+    if (!tabConfig.showReferenceLines) return [];
     return chartData
-      .filter((point) => point.isLastBeforeWPBeta)
+      .filter((point) => point.isSpecialMarker)
       .map((point) => ({
-        version: point.gbVersion as string,
-        wpVersion: point.wpVersion as string,
+        version: point[chartConfig.xKey] as string,
+        label: point.memberOf as string,
       }));
-  }, [chartData, dataSource]);
+  }, [chartData, tabConfig.showReferenceLines, chartConfig.xKey]);
 
   if (!categoryConfig || chartData.length === 0) {
     return null;
@@ -536,7 +415,7 @@ export function TrendChart(props: TrendChartProps) {
 
   const commonProps = {
     data: chartData,
-    margin: { top: 20, right: config.showReleasesLine ? 50 : 30, left: 20, bottom: 5 },
+    margin: { top: 20, right: chartConfig.showReleasesLine ? 50 : 30, left: 20, bottom: 5 },
   };
 
   const renderLegend = () => (
@@ -570,7 +449,7 @@ export function TrendChart(props: TrendChartProps) {
     return viewMode === 'distribution' ? `pct_${categoryId}` : categoryId;
   };
 
-  const usesDualAxis = config.showReleasesLine;
+  const usesDualAxis = chartConfig.showReleasesLine;
 
   const renderDataSeries = () => {
     // Always use 'left' yAxisId for consistent DOM structure (prevents remounting)
@@ -581,12 +460,12 @@ export function TrendChart(props: TrendChartProps) {
       // Filter out hidden breakdown items
       const visibleBreakdownItems = topBreakdownItems.filter((item) => !hiddenBreakdownItems.has(item.id));
 
-      const releasesLine = config.showReleasesLine && (
+      const releasesLine = chartConfig.showReleasesLine && (
         <Line
           yAxisId="right"
           type="linear"
           dataKey="releaseCount"
-          name="GB releases included"
+          name={chartConfig.childReleasesLabel}
           stroke={RELEASES_COLOR}
           strokeWidth={2}
           strokeDasharray="5 5"
@@ -647,12 +526,12 @@ export function TrendChart(props: TrendChartProps) {
 
     // Contributor metrics - render based on chart type
     if (isContributorMetric) {
-      const releasesLine = config.showReleasesLine && (
+      const releasesLine = chartConfig.showReleasesLine && (
         <Line
           yAxisId="right"
           type="linear"
           dataKey="releaseCount"
-          name="GB releases included"
+          name={chartConfig.childReleasesLabel}
           stroke={RELEASES_COLOR}
           strokeWidth={2}
           strokeDasharray="5 5"
@@ -724,7 +603,7 @@ export function TrendChart(props: TrendChartProps) {
               key={agg.id}
               yAxisId={yAxisId}
               dataKey={getDataKey(agg.id)}
-              name={agg.label}
+              name={agg.labels.full}
               fill={agg.color}
               opacity={0.8}
             />
@@ -732,12 +611,12 @@ export function TrendChart(props: TrendChartProps) {
           {viewMode !== 'distribution' && showAllPRs && (
             <Bar yAxisId={yAxisId} dataKey="totalPRs" name="All PRs" fill={PRS_COLOR} opacity={0.8} />
           )}
-          {config.showReleasesLine && (
+          {chartConfig.showReleasesLine && (
             <Line
               yAxisId="right"
               type="linear"
               dataKey="releaseCount"
-              name="GB releases included"
+              name={chartConfig.childReleasesLabel}
               stroke={RELEASES_COLOR}
               strokeWidth={2}
               strokeDasharray="5 5"
@@ -755,17 +634,17 @@ export function TrendChart(props: TrendChartProps) {
               key={agg.id}
               yAxisId={yAxisId}
               dataKey={getDataKey(agg.id)}
-              name={agg.label}
+              name={agg.labels.full}
               fill={agg.color}
               stackId="1"
             />
           ))}
-          {config.showReleasesLine && (
+          {chartConfig.showReleasesLine && (
             <Line
               yAxisId="right"
               type="linear"
               dataKey="releaseCount"
-              name="GB releases included"
+              name={chartConfig.childReleasesLabel}
               stroke={RELEASES_COLOR}
               strokeWidth={2}
               strokeDasharray="5 5"
@@ -784,7 +663,7 @@ export function TrendChart(props: TrendChartProps) {
               yAxisId={yAxisId}
               type="monotone"
               dataKey={getDataKey(agg.id)}
-              name={agg.label}
+              name={agg.labels.full}
               stroke={agg.color}
               fill={agg.color}
               fillOpacity={0.6}
@@ -792,12 +671,12 @@ export function TrendChart(props: TrendChartProps) {
               stackId="1"
             />
           ))}
-          {config.showReleasesLine && (
+          {chartConfig.showReleasesLine && (
             <Line
               yAxisId="right"
               type="linear"
               dataKey="releaseCount"
-              name="GB releases included"
+              name={chartConfig.childReleasesLabel}
               stroke={RELEASES_COLOR}
               strokeWidth={2}
               strokeDasharray="5 5"
@@ -816,7 +695,7 @@ export function TrendChart(props: TrendChartProps) {
             yAxisId={yAxisId}
             type="monotone"
             dataKey={getDataKey(agg.id)}
-            name={agg.label}
+            name={agg.labels.full}
             stroke={agg.color}
             strokeWidth={2}
             dot={{ r: 3, fill: agg.color }}
@@ -835,12 +714,12 @@ export function TrendChart(props: TrendChartProps) {
             activeDot={{ r: 5, fill: PRS_COLOR }}
           />
         )}
-        {config.showReleasesLine && (
+        {chartConfig.showReleasesLine && (
           <Line
             yAxisId="right"
             type="linear"
             dataKey="releaseCount"
-            name="GB releases included"
+            name={chartConfig.childReleasesLabel}
             stroke={RELEASES_COLOR}
             strokeWidth={2}
             strokeDasharray="5 5"
@@ -865,17 +744,17 @@ export function TrendChart(props: TrendChartProps) {
   }) => {
     if (!active || !payload || !payload.length) return null;
 
-    // Get metadata from the data point (for GB release tab)
+    // Get metadata from the data point for special markers
     const dataPoint = payload[0]?.payload;
-    const isLastBeforeWPBeta = dataPoint?.isLastBeforeWPBeta as boolean | undefined;
-    const wpVersion = dataPoint?.wpVersion as string | undefined;
+    const isSpecialMarker = dataPoint?.isSpecialMarker as boolean | undefined;
+    const memberOf = dataPoint?.memberOf as string | undefined;
 
     // Separate category data from special entries
     const categoryPayload = payload.filter(
-      (entry) => entry.name !== 'All PRs' && entry.name !== 'GB releases included'
+      (entry) => entry.name !== 'All PRs' && entry.name !== chartConfig.childReleasesLabel
     );
     const allPRsEntry = payload.find((entry) => entry.name === 'All PRs');
-    const releasesEntry = payload.find((entry) => entry.name === 'GB releases included');
+    const releasesEntry = payload.find((entry) => entry.name === chartConfig.childReleasesLabel);
 
     // For breakdown mode, sort by value descending; otherwise keep original order
     const displayPayload = isBreakdownMode
@@ -901,8 +780,8 @@ export function TrendChart(props: TrendChartProps) {
     return (
       <div className="trend-chart-tooltip">
         <div className="trend-chart-tooltip-label">
-          {config.tooltipPrefix} {label}
-          {isLastBeforeWPBeta && <span className="trend-chart-tooltip-cutoff" title={`WP ${wpVersion} Beta Cutoff`}> ⚑</span>}
+          {chartConfig.tooltipPrefix} {label}
+          {isSpecialMarker && <span className="trend-chart-tooltip-cutoff" title={`${parentVersionPrefix} ${memberOf} Beta Cutoff`}> ⚑</span>}
         </div>
         {displayPayload.map((entry) => (
           <div key={entry.name} className="trend-chart-tooltip-item">
@@ -971,14 +850,13 @@ export function TrendChart(props: TrendChartProps) {
         <ComposedChart {...commonProps}>
           <CartesianGrid strokeDasharray="3 3" opacity={0.3} />
           <XAxis
-            dataKey={config.xKey}
+            dataKey={chartConfig.xKey}
             tick={{ fontSize: 12 }}
             tickMargin={8}
-            interval={config.tickInterval}
+            interval={chartConfig.tickInterval}
             ticks={xAxisTicks}
-            tickFormatter={config.tickFormatter}
-            height={config.xAxisHeight}
-            label={{ value: config.xLabel, position: 'insideBottom', offset: -5, fontSize: 12 }}
+            height={chartConfig.xAxisHeight}
+            label={{ value: chartConfig.xLabel, position: 'insideBottom', offset: -5, fontSize: 12 }}
           />
           <YAxis
             yAxisId="left"
@@ -990,11 +868,11 @@ export function TrendChart(props: TrendChartProps) {
             orientation="right"
             tick={{ fontSize: 12 }}
             hide={!usesDualAxis}
-            label={usesDualAxis ? { value: 'GB releases', angle: 90, position: 'insideRight', fontSize: 12 } : undefined}
+            label={usesDualAxis ? { value: `${childItemLabel}s`, angle: 90, position: 'insideRight', fontSize: 12 } : undefined}
           />
           <Tooltip content={renderTooltipContent} />
           {renderLegend()}
-          {cutoffVersions.map(({ version, wpVersion }) => (
+          {referenceMarkers.map(({ version, label }) => (
             <ReferenceLine
               key={version}
               yAxisId="left"
@@ -1003,7 +881,7 @@ export function TrendChart(props: TrendChartProps) {
               strokeWidth={1.5}
               strokeOpacity={0.6}
               label={{
-                value: `WP ${wpVersion} beta`,
+                value: `${parentVersionPrefix} ${label} beta`,
                 position: 'top',
                 offset: 5,
                 fontSize: 9,

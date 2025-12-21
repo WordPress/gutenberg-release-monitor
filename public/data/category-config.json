@@ -2,7 +2,10 @@
   "aggregations": [
     {
       "id": "features",
-      "label": "Features",
+      "labels": {
+        "full": "Features",
+        "short": "Features"
+      },
       "color": "#4CAF50",
       "rawCategories": [
         "Enhancements",
@@ -26,7 +29,10 @@
     },
     {
       "id": "bugs",
-      "label": "Bug Fixes",
+      "labels": {
+        "full": "Bug Fixes",
+        "short": "Bugs"
+      },
       "color": "#F44336",
       "rawCategories": [
         "Bug Fixes",
@@ -42,7 +48,10 @@
     },
     {
       "id": "codeQuality",
-      "label": "Code Quality",
+      "labels": {
+        "full": "Code Quality",
+        "short": "CodeQuality"
+      },
       "color": "#2196F3",
       "rawCategories": [
         "Code Quality",
@@ -59,14 +68,20 @@
     },
     {
       "id": "a11y",
-      "label": "Accessibility",
+      "labels": {
+        "full": "Accessibility",
+        "short": "A11y"
+      },
       "color": "#9C27B0",
       "rawCategories": ["Accessibility"],
       "includeByDefault": true
     },
     {
       "id": "performance",
-      "label": "Performance",
+      "labels": {
+        "full": "Performance",
+        "short": "Perf"
+      },
       "color": "#FF9800",
       "rawCategories": [
         "Performance",
@@ -77,7 +92,10 @@
     },
     {
       "id": "documentation",
-      "label": "Documentation",
+      "labels": {
+        "full": "Documentation",
+        "short": "Docs"
+      },
       "color": "#795548",
       "rawCategories": [
         "Documentation",
@@ -87,7 +105,10 @@
     },
     {
       "id": "other",
-      "label": "Other",
+      "labels": {
+        "full": "Other",
+        "short": "Other"
+      },
       "color": "#9E9E9E",
       "rawCategories": [
         "Various",

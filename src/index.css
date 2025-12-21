@@ -807,25 +807,25 @@ body {
   gap: 1.5rem;
 }
 
-/* WP Version Table */
-.wp-version-table-card {
+/* Aggregated Table */
+.aggregated-table-card {
   margin-top: 0;
 }
 
-.wp-version-table .dataviews__view-actions {
+.aggregated-table .dataviews__view-actions {
   padding-left: 0 !important;
   padding-right: 0 !important;
 }
 
-.wp-version-table-header {
+.aggregated-table-header {
   margin-bottom: 0.75rem;
 }
 
-.wp-version-cell {
+.aggregated-cell {
   font-weight: 600;
 }
 
-.wp-version-range {
+.grouped-range {
   font-family: monospace;
   font-size: 0.875rem;
 }

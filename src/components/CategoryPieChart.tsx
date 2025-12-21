@@ -13,8 +13,8 @@ interface CategoryPieChartProps {
   categoryTotals: Record<string, number>;
   categoryConfig: CategoryConfig;
   size?: number;
-  /** Number of releases (for computing averages in WP Version view) */
-  releaseCount?: number;
+  /** Number of grouped items (for computing averages in aggregated views) */
+  groupedCount?: number;
   /** Currently visible category IDs (for clickable legend) - only applies to categories */
   visibleCategories?: string[];
   /** Callback when a category is toggled via legend click - only applies to categories */
@@ -75,7 +75,7 @@ export function CategoryPieChart({
   categoryTotals,
   categoryConfig,
   size = 200,
-  releaseCount,
+  groupedCount,
   visibleCategories,
   onCategoryToggle,
 }: CategoryPieChartProps) {
@@ -102,7 +102,7 @@ export function CategoryPieChart({
       // Category breakdown: use categoryConfig for structure and colors
       const allData = effectiveCategories.map((agg) => ({
         id: agg.id,
-        label: agg.label,
+        label: agg.labels.full,
         value: categoryTotals[agg.id] || 0,
         color: agg.color,
       }));
@@ -228,7 +228,7 @@ export function CategoryPieChart({
         const total = categoryTotals[agg.id] || 0;
         return {
           id: agg.id,
-          label: agg.label,
+          label: agg.labels.full,
           color: agg.color,
           value: total,
           // Use chartData percentage if available (visible category), otherwise 0
@@ -305,7 +305,7 @@ export function CategoryPieChart({
               content={({ active, payload }) => {
                 if (!active || !payload || !payload[0]) return null;
                 const data = payload[0].payload as PieDataPoint;
-                const avg = releaseCount ? Math.round(data.value / releaseCount) : null;
+                const avg = groupedCount ? Math.round(data.value / groupedCount) : null;
 
                 // Different labels for different breakdown types
                 const unitLabel = isCategories ? 'PRs' : 'contributors';

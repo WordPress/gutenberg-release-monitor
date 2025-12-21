@@ -11,11 +11,19 @@ const BASE_URL = import.meta.env.BASE_URL;
 /**
  * Category aggregation configuration loaded from category-config.json.
  */
+/** Category label variants */
+export interface CategoryLabels {
+  /** Full display label, e.g. "Bug Fixes", "Accessibility" */
+  full: string;
+  /** Short/abbreviated form, e.g. "Bugs", "A11y" */
+  short: string;
+}
+
 export interface CategoryAggregation {
   /** Unique identifier, e.g. "features", "bugs" */
   id: string;
-  /** Display label, e.g. "Features", "Bug Fixes" */
-  label: string;
+  /** Display labels in various forms */
+  labels: CategoryLabels;
   /** CSS color for charts, e.g. "#4CAF50" */
   color: string;
   /** Raw changelog category names to sum, e.g. ["Enhancements", "New APIs"] */
