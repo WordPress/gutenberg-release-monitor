@@ -12,6 +12,7 @@
 
 import { readFileSync, existsSync } from 'node:fs';
 import type { Release, WPRelease } from './types.js';
+import type { NormalizedRelease, SourceSummary } from '../src/data/normalized.js';
 import { loadCategoryConfig, getAggregatedPRs } from './utils/category-utils.js';
 import { writeJsonIfChanged } from './utils/file-utils.js';
 
@@ -20,62 +21,12 @@ const WP_SCHEDULE_PATH = 'public/data/wp-schedule.json';
 const OUTPUT_DIR = 'public/data';
 
 /**
- * Normalized release type for JSON output.
- * Matches src/data/normalized.ts NormalizedRelease interface.
+ * Extended NormalizedRelease with contributor lists for internal script use.
  */
-interface NormalizedRelease {
-  id: string;
-  version: string;
-  displayLabel: string;
-  isAggregated: boolean;
-  totalPRs: number;
-  contributors: number;
-  newContributors: number;
-  hasContributorData: boolean;
-  avgPRs: number;
-  avgContributors: number;
-  avgNewContributors: number;
-  rawCategories?: Record<string, number>;
-  categoryTotals?: Record<string, number>;
-  contributorAggregates?: {
-    stats?: { total: number; newContributors: number };
-    sponsorBreakdown: Record<string, number>;
-    countryBreakdown: Record<string, number>;
-    aggregatedAt?: string;
-  };
-  groupedCount?: number;
-  groupedRange?: string;
-  date?: string;
-  memberOf?: string;
-  isSpecialMarker?: boolean;
-  changelogUrl?: string;
-  // Internal fields for script use (not used by UI)
+type NormalizedReleaseWithContributors = NormalizedRelease & {
   contributorsList?: string[];
   newContributorsList?: string[];
-}
-
-/**
- * Normalized summary type for JSON output.
- * Matches src/data/normalized.ts SourceSummary interface.
- */
-interface NormalizedSummary {
-  currentPeriod: string;
-  lastCutoffVersion: string;
-  releasesSinceCutoff: number;
-  avgPRsSinceCutoff: number;
-  avgContributorsSinceCutoff: number;
-  avgNewContributorsSinceCutoff: number;
-  totalPRsSinceCutoff: number;
-  uniqueContributorsSinceCutoff: number;
-  uniqueNewContributorsSinceCutoff: number;
-  avgPRsTotal: number;
-  avgContributorsTotal: number;
-  avgNewContributorsTotal: number;
-  latestRelease: string;
-  oldestRelease: string;
-  totalReleases: number;
-  lastUpdated: string;
-}
+};
 
 /**
  * Load releases from JSON file (can be either internal or normalized format).
@@ -175,7 +126,7 @@ function enrichReleases(releases: Release[], wpSchedule: WPRelease[]): Release[]
 /**
  * Convert internal Release to NormalizedRelease format.
  */
-function toNormalizedRelease(release: Release): NormalizedRelease {
+function toNormalizedRelease(release: Release): NormalizedReleaseWithContributors {
   const version = getMinorVersion(release.gbVersion);
 
   return {
@@ -290,7 +241,7 @@ function generateWPVersionStats(releases: Release[]): NormalizedRelease[] {
 /**
  * Load existing summary if it exists.
  */
-function loadExistingSummary(): NormalizedSummary | null {
+function loadExistingSummary(): SourceSummary | null {
   const summaryPath = `${OUTPUT_DIR}/summary.json`;
   if (!existsSync(summaryPath)) {
     return null;
@@ -318,13 +269,13 @@ function findCurrentWPCycle(cutoffVersion: string, wpSchedule: WPRelease[]): str
 }
 
 /**
- * Generate summary statistics in NormalizedSummary format.
+ * Generate summary statistics in SourceSummary format.
  */
 function generateSummary(
   releases: Release[],
   wpSchedule: WPRelease[],
-  existingSummary: NormalizedSummary | null
-): NormalizedSummary {
+  existingSummary: SourceSummary | null
+): SourceSummary {
   const sortedReleases = [...releases].sort((a, b) => compareVersions(b.gbVersion, a.gbVersion));
 
   const totalReleases = releases.length;

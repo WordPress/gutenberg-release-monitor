@@ -14,9 +14,6 @@ export interface ReleaseContributorAggregates {
   aggregatedAt: string;
 }
 
-/** Alias for WP version aggregates (same structure) */
-export type WPVersionContributorAggregates = ReleaseContributorAggregates;
-
 /** Raw parsed release data (internal to scripts) */
 export interface Release {
   gbVersion: string;
@@ -44,17 +41,3 @@ export interface WPRelease {
   gbVersionRange: string;
 }
 
-/** Aggregated stats for a WP version (used by compute-release-aggregates) */
-export interface WPVersionStats {
-  wpVersion: string;
-  gbVersionRange: string;
-  releaseCount: number;
-  totalPRs: number;
-  totalContributors: number;
-  totalNewContributors: number;
-  categoryTotals: Record<string, number>;
-  avgPRsPerRelease: number;
-  avgContributorsPerRelease: number;
-  avgNewContributorsPerRelease: number;
-  contributorAggregates?: ReleaseContributorAggregates;
-}

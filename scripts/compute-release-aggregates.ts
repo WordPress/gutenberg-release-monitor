@@ -23,13 +23,8 @@ import {
 	fetchContributorProfiles,
 	type ContributorData,
 } from './utils/contributor-data.js';
-import type {
-	Release,
-	ReleaseContributorAggregates,
-	WPVersionStats,
-	WPVersionContributorAggregates,
-	WPRelease,
-} from './types.js';
+import type { Release, ReleaseContributorAggregates, WPRelease } from './types.js';
+import type { NormalizedRelease, ContributorAggregates } from '../src/data/normalized.js';
 
 interface ComputeArgs {
 	wpVersion?: string[];
@@ -72,6 +67,75 @@ function getArgs(): ComputeArgs {
 		dryRun: values[ 'dry-run' ] as boolean,
 		verbose: values.verbose as boolean,
 	};
+}
+
+/**
+ * Convert internal Release to NormalizedRelease for JSON output.
+ */
+function toNormalizedRelease( release: Release ): NormalizedRelease & { contributorsList?: string[]; newContributorsList?: string[] } {
+	const version = release.gbVersion.split( '.' ).slice( 0, 2 ).join( '.' );
+
+	const contributorAggregates: ContributorAggregates | undefined = release.contributorAggregates
+		? {
+				sponsorBreakdown: release.contributorAggregates.sponsorBreakdown,
+				countryBreakdown: release.contributorAggregates.countryBreakdown,
+		  }
+		: undefined;
+
+	return {
+		id: version,
+		version,
+		displayLabel: `Gutenberg ${ version }`,
+		isAggregated: false,
+		totalPRs: release.totalPRs,
+		contributors: release.contributors,
+		newContributors: release.newContributors,
+		hasContributorData: release.contributors > 0,
+		avgPRs: release.totalPRs,
+		avgContributors: release.contributors,
+		avgNewContributors: release.newContributors,
+		rawCategories: release.categories,
+		contributorAggregates,
+		date: release.date,
+		memberOf: release.wpVersion || undefined,
+		isSpecialMarker: release.isLastBeforeWPBeta || undefined,
+		changelogUrl: release.changelogUrl,
+		// Keep these for internal script use (not part of NormalizedRelease but useful for compute-release-aggregates)
+		contributorsList: release.contributorsList,
+		newContributorsList: release.newContributorsList,
+	};
+}
+
+/**
+ * Load releases from JSON file (handles both normalized and legacy format).
+ */
+function loadReleases( releasesPath: string ): Release[] {
+	const content = readFileSync( releasesPath, 'utf-8' );
+	const data = JSON.parse( content );
+
+	// Handle both normalized format (version field) and internal format (gbVersion field)
+	return data.map( ( r: Record< string, unknown > ) => ( {
+		gbVersion: ( r.version as string ) || ( r.gbVersion as string ),
+		wpVersion: ( r.memberOf as string ) || ( r.wpVersion as string ) || null,
+		date: r.date as string,
+		isLastBeforeWPBeta:
+			( r.isSpecialMarker as boolean ) ||
+			( r.isLastBeforeWPBeta as boolean ) ||
+			false,
+		totalPRs: r.totalPRs as number,
+		categories:
+			( r.rawCategories as Record< string, number > ) ||
+			( r.categories as Record< string, number > ) ||
+			{},
+		contributors: r.contributors as number,
+		newContributors: r.newContributors as number,
+		contributorsList: ( r.contributorsList as string[] ) || [],
+		newContributorsList: ( r.newContributorsList as string[] ) || [],
+		contributorAggregates: r.contributorAggregates as Release[ 'contributorAggregates' ],
+		changelogUrl: r.changelogUrl as string,
+		parsedAt: ( r.parsedAt as string ) || '',
+		parserVersion: ( r.parserVersion as string ) || '',
+	} ) );
 }
 
 /**
@@ -180,7 +244,7 @@ function computeWPVersionAggregates(
 	wpReleases: Release[],
 	contributorDataMap: Map< string, ContributorData >,
 	sponsorNormalizer: SponsorNormalizer
-): WPVersionContributorAggregates {
+): ReleaseContributorAggregates {
 	// Collect unique contributors and new contributors across all releases
 	const uniqueContributors = new Set< string >();
 	const uniqueNewContributors = new Set< string >();
@@ -239,7 +303,7 @@ async function main(): Promise< void > {
 		process.exit( 1 );
 	}
 
-	const releases: Release[] = JSON.parse( readFileSync( releasesPath, 'utf-8' ) );
+	const releases: Release[] = loadReleases( releasesPath );
 
 	// Load username mapping
 	const mapping = loadUsernameMapping();
@@ -414,14 +478,14 @@ async function main(): Promise< void > {
 	}
 
 	// Compute WP-level aggregates
-	let wpVersionStats: WPVersionStats[] = [];
+	let wpVersionData: NormalizedRelease[] = [];
+	const wpStatsPath = 'public/data/by-wp-version.json';
 	if ( targetWPVersions.length > 0 ) {
 		console.log( '🔄 Computing WP version aggregates...' );
 
-		// Load existing WP version stats
-		const wpStatsPath = 'public/data/aggregated/by-wp-version.json';
+		// Load existing WP version data (normalized format)
 		if ( existsSync( wpStatsPath ) ) {
-			wpVersionStats = JSON.parse( readFileSync( wpStatsPath, 'utf-8' ) );
+			wpVersionData = JSON.parse( readFileSync( wpStatsPath, 'utf-8' ) );
 		}
 
 		for ( const wpVersion of targetWPVersions ) {
@@ -441,10 +505,13 @@ async function main(): Promise< void > {
 				sponsorNormalizer
 			);
 
-			// Update or add to wpVersionStats
-			const existingIndex = wpVersionStats.findIndex( ( s ) => s.wpVersion === wpVersion );
+			// Update the NormalizedRelease entry with contributor aggregates
+			const existingIndex = wpVersionData.findIndex( ( s ) => s.version === wpVersion );
 			if ( existingIndex >= 0 ) {
-				wpVersionStats[ existingIndex ].contributorAggregates = wpAggregates;
+				wpVersionData[ existingIndex ].contributorAggregates = {
+					sponsorBreakdown: wpAggregates.sponsorBreakdown,
+					countryBreakdown: wpAggregates.countryBreakdown,
+				};
 			} else {
 				console.warn( `   ⚠️  WP ${ wpVersion } not found in by-wp-version.json` );
 			}
@@ -479,16 +546,16 @@ async function main(): Promise< void > {
 	if ( args.dryRun ) {
 		console.log( '\n🔍 Dry run - no changes written' );
 	} else {
-		// Write releases.json
+		// Write releases.json in normalized format
 		if ( gbProcessed > 0 ) {
-			const written = writeJsonIfChanged( releasesPath, releases );
+			const normalizedReleases = releases.map( toNormalizedRelease );
+			const written = writeJsonIfChanged( releasesPath, normalizedReleases );
 			console.log( written ? `\n✅ Updated ${ releasesPath }` : `\n✅ No changes to ${ releasesPath }` );
 		}
 
-		// Write by-wp-version.json
-		if ( targetWPVersions.length > 0 && wpVersionStats.length > 0 ) {
-			const wpStatsPath = 'public/data/aggregated/by-wp-version.json';
-			const written = writeJsonIfChanged( wpStatsPath, wpVersionStats );
+		// Write by-wp-version.json (already in normalized format)
+		if ( targetWPVersions.length > 0 && wpVersionData.length > 0 ) {
+			const written = writeJsonIfChanged( wpStatsPath, wpVersionData );
 			console.log( written ? `✅ Updated ${ wpStatsPath }` : `✅ No changes to ${ wpStatsPath }` );
 		}
 	}

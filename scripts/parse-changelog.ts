@@ -26,38 +26,17 @@ import {
 import { parseRelease, parseContributors } from './utils/changelog-parser.js';
 import type { ParseArgs } from './utils/types.js';
 import type { Release } from './types.js';
+import type { NormalizedRelease } from '../src/data/normalized.js';
 
 const PARSER_VERSION = '1.0.0';
 
 /**
- * Normalized release type for JSON output.
- * Matches src/data/normalized.ts NormalizedRelease interface.
+ * Extended NormalizedRelease with contributor lists for internal script use.
  */
-interface NormalizedRelease {
-  id: string;
-  version: string;
-  displayLabel: string;
-  isAggregated: boolean;
-  totalPRs: number;
-  contributors: number;
-  newContributors: number;
-  hasContributorData: boolean;
-  avgPRs: number;
-  avgContributors: number;
-  avgNewContributors: number;
-  rawCategories?: Record<string, number>;
-  contributorAggregates?: {
-    sponsorBreakdown: Record<string, number>;
-    countryBreakdown: Record<string, number>;
-  };
-  date?: string;
-  memberOf?: string;
-  isSpecialMarker?: boolean;
-  changelogUrl?: string;
-  // Internal fields for script use (not used by UI)
+type NormalizedReleaseWithContributors = NormalizedRelease & {
   contributorsList?: string[];
   newContributorsList?: string[];
-}
+};
 
 /**
  * Parse command line arguments.
@@ -100,7 +79,7 @@ function toRelease(parsed: ReturnType<typeof parseRelease>): Release {
 /**
  * Convert internal Release to NormalizedRelease format for JSON output.
  */
-function toNormalizedRelease(release: Release): NormalizedRelease {
+function toNormalizedRelease(release: Release): NormalizedReleaseWithContributors {
   const version = getMinorVersion(release.gbVersion);
 
   return {
