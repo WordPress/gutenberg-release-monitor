@@ -5,7 +5,7 @@
  */
 
 import { readFileSync } from 'node:fs';
-import type { Release } from '../../src/data/types.js';
+import type { Release } from '../types.js';
 
 /**
  * Category aggregation configuration.

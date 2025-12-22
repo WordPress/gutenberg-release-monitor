@@ -8,8 +8,7 @@ import {
   __experimentalText as Text,
 } from '@wordpress/components';
 import { chevronLeft, chevronRight, previous, next } from '@wordpress/icons';
-import type { Summary } from '../data/types';
-import type { NormalizedRelease } from '../data/normalized';
+import type { NormalizedRelease, SourceSummary } from '../data/normalized';
 import { loadCategoryConfig, aggregateCategories, type CategoryConfig } from '../utils/categories';
 import { CategoryPieChart } from './CategoryPieChart';
 import { useURLState } from '../hooks/useURLState';
@@ -20,7 +19,7 @@ interface SummaryStatsProps {
   /** Normalized release data */
   data: NormalizedRelease[];
   /** Summary statistics */
-  summary: Summary;
+  summary: SourceSummary;
   /** Tab configuration for labels and field mapping */
   tabConfig?: TabConfig;
   /** Currently visible category IDs (for clickable legend) */
@@ -92,8 +91,8 @@ export function SummaryStats(props: SummaryStatsProps) {
   const defaultVersion = useMemo(() => {
     // Use config to determine default: either from summary field or first item
     const summaryField = tabConfig?.defaultItemSummaryField;
-    if (summaryField && summary[summaryField as keyof Summary]) {
-      return summary[summaryField as keyof Summary] as string;
+    if (summaryField && summary[summaryField as keyof SourceSummary]) {
+      return summary[summaryField as keyof SourceSummary] as string;
     }
     return data[0]?.version || '';
   }, [tabConfig?.defaultItemSummaryField, summary, data]);
@@ -147,7 +146,7 @@ export function SummaryStats(props: SummaryStatsProps) {
         const hasData = total > 0;
         const summaryFieldSuffix = agg.labels.short;
         const summaryTotal = summaryFieldSuffix
-          ? (summary[`avg${summaryFieldSuffix}Total` as keyof Summary] as number | undefined)
+          ? (summary[`avg${summaryFieldSuffix}Total` as keyof SourceSummary] as number | undefined)
           : undefined;
         return {
           label: agg.labels.full,
@@ -226,8 +225,8 @@ export function SummaryStats(props: SummaryStatsProps) {
   // Derived display values
   const isCurrentOrLatest = useMemo(() => {
     const summaryField = tabConfig?.defaultItemSummaryField;
-    if (summaryField && summary[summaryField as keyof Summary]) {
-      return selectedVersion === summary[summaryField as keyof Summary];
+    if (summaryField && summary[summaryField as keyof SourceSummary]) {
+      return selectedVersion === summary[summaryField as keyof SourceSummary];
     }
     return selectedVersion === data[0]?.version;
   }, [tabConfig?.defaultItemSummaryField, summary, selectedVersion, data]);

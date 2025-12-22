@@ -1,0 +1,18 @@
+{
+  "currentPeriod": "7.0",
+  "lastCutoffVersion": "21.9",
+  "releasesSinceCutoff": 4,
+  "avgPRsSinceCutoff": 151,
+  "avgContributorsSinceCutoff": 45,
+  "avgNewContributorsSinceCutoff": 4,
+  "totalPRsSinceCutoff": 603,
+  "uniqueContributorsSinceCutoff": 93,
+  "uniqueNewContributorsSinceCutoff": 14,
+  "avgPRsTotal": 129,
+  "avgContributorsTotal": 47,
+  "avgNewContributorsTotal": 5,
+  "latestRelease": "22.3",
+  "oldestRelease": "1.0",
+  "totalReleases": 193,
+  "lastUpdated": "2025-12-22T12:31:48.401Z"
+}

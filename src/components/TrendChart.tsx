@@ -180,8 +180,8 @@ export function TrendChart(props: TrendChartProps) {
     const childReleasesLabel = tabConfig?.labels?.chartSecondaryLabel ?? `${childItemLabel}s included`;
 
     return {
-      // Use consistent key for normalized data (not raw field names)
-      xKey: 'displayVersion',
+      // Use version field directly (already in display format)
+      xKey: 'version',
       xLabel: `${versionPrefix} version`,
       tooltipPrefix: versionPrefix,
       // Show releases line only for totals view when data has groupedCount (determined at render time)
@@ -191,7 +191,7 @@ export function TrendChart(props: TrendChartProps) {
       xAxisAngle: 0,
       xAxisHeight: 30,
     };
-  }, [viewMode, versionPrefix, childItemLabel, tabConfig?.labels?.chartSecondaryLabel, tabConfig?.versionField]);
+  }, [viewMode, versionPrefix, childItemLabel, tabConfig?.labels?.chartSecondaryLabel]);
 
   // Transform normalized data for chart
   const chartData = useMemo(() => {
@@ -222,7 +222,7 @@ export function TrendChart(props: TrendChartProps) {
 
     return displayedData.map((item) => {
       const baseData: Record<string, string | number | boolean> = {
-        [chartConfig.xKey]: item.displayVersion,
+        [chartConfig.xKey]: item.version,
         isSpecialMarker: item.isSpecialMarker ?? false,
         memberOf: item.memberOf ?? '',
       };

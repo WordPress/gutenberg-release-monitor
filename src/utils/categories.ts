@@ -4,8 +4,6 @@
  * compute derived values on-the-fly.
  */
 
-import type { Release } from '../data/types.js';
-
 const BASE_URL = import.meta.env.BASE_URL;
 
 /**
@@ -84,30 +82,6 @@ export function getAggregatedPRs(
   const agg = config.aggregations.find((a) => a.id === aggregationId);
   if (!agg) return 0;
   return sumCategories(categories, agg.rawCategories);
-}
-
-/**
- * Calculate enhancement percentage for a release.
- */
-export function getEnhancementPercent(
-  release: Release,
-  config: CategoryConfig
-): number {
-  const total = release.totalPRs || 1;
-  const features = getAggregatedPRs(release.categories, config, 'features');
-  return Math.round((features / total) * 100);
-}
-
-/**
- * Calculate bug fix percentage for a release.
- */
-export function getBugfixPercent(
-  release: Release,
-  config: CategoryConfig
-): number {
-  const total = release.totalPRs || 1;
-  const bugs = getAggregatedPRs(release.categories, config, 'bugs');
-  return Math.round((bugs / total) * 100);
 }
 
 /**

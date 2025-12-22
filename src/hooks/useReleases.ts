@@ -6,8 +6,8 @@
  */
 
 import { useQuery } from '@tanstack/react-query';
-import { useConfig } from '../config';
-import type { Release, Summary, WPVersionStats } from '../data/types';
+import { useConfig, useTabConfig } from '../config';
+import type { NormalizedRelease, SourceSummary } from '../data/normalized';
 
 const BASE_URL = import.meta.env.BASE_URL;
 
@@ -26,42 +26,28 @@ async function fetchData<T>(path: string, errorMessage: string): Promise<T> {
 
 /**
  * Fetches and caches data for a specific tab.
- * Path is read from tab configuration.
+ * Returns NormalizedRelease[] ready for UI consumption.
  * @param tabId - The tab identifier from config
- * @returns Query result with tab-specific data
+ * @returns Query result with normalized release data
  */
-export function useTabData<T>(tabId: string) {
-  const config = useConfig();
-  const tabConfig = config.tabs.find((tab) => tab.id === tabId);
+export function useTabData(tabId: string) {
+  const tabConfig = useTabConfig(tabId);
   const dataEndpoint = tabConfig?.dataEndpoint ?? '';
 
   return useQuery({
     queryKey: ['tabData', tabId],
-    queryFn: () => fetchData<T>(dataEndpoint, `Failed to fetch data for tab: ${tabId}`),
-    enabled: !!dataEndpoint,
-  });
-}
-
-/**
- * Fetches and caches individual release items.
- * Finds the non-aggregated tab from config to get the data endpoint.
- * @returns Query result with Release[] data
- */
-export function useReleases() {
-  const config = useConfig();
-  const tabConfig = config.tabs.find((tab) => !tab.isAggregated);
-  const dataEndpoint = tabConfig?.dataEndpoint ?? '';
-
-  return useQuery({
-    queryKey: ['releases'],
-    queryFn: () => fetchData<Release[]>(dataEndpoint, 'Failed to fetch releases'),
+    queryFn: () => fetchData<NormalizedRelease[]>(
+      dataEndpoint,
+      `Failed to fetch data for tab: ${tabId}`
+    ),
+    enabled: !!dataEndpoint && !!tabConfig,
   });
 }
 
 /**
  * Fetches and caches summary statistics.
  * Path is read from dataSources.summary in config.
- * @returns Query result with Summary data
+ * @returns Query result with SourceSummary data
  */
 export function useSummary() {
   const config = useConfig();
@@ -69,22 +55,6 @@ export function useSummary() {
 
   return useQuery({
     queryKey: ['summary'],
-    queryFn: () => fetchData<Summary>(summaryPath, 'Failed to fetch summary'),
-  });
-}
-
-/**
- * Fetches and caches aggregated version statistics.
- * Finds the aggregated tab from config to get the data endpoint.
- * @returns Query result with aggregated stats data
- */
-export function useAggregatedStats() {
-  const config = useConfig();
-  const tabConfig = config.tabs.find((tab) => tab.isAggregated);
-  const dataEndpoint = tabConfig?.dataEndpoint ?? '';
-
-  return useQuery({
-    queryKey: ['aggregatedStats'],
-    queryFn: () => fetchData<WPVersionStats[]>(dataEndpoint, 'Failed to fetch aggregated stats'),
+    queryFn: () => fetchData<SourceSummary>(summaryPath, 'Failed to fetch summary'),
   });
 }

@@ -23,7 +23,7 @@ interface DataTableProps {
 interface TableRow {
   id: string;
   version: string;
-  displayVersion: string;
+  displayLabel: string;
   totalPRs: number;
   contributors: number;
   newContributors: number;
@@ -114,7 +114,7 @@ export function DataTable(props: DataTableProps) {
       return {
         id: item.id,
         version: item.version,
-        displayVersion: item.displayLabel,
+        displayLabel: item.displayLabel,
         totalPRs: item.totalPRs,
         contributors: item.contributors,
         newContributors: item.newContributors,
@@ -226,7 +226,7 @@ export function DataTable(props: DataTableProps) {
         enableHiding: false,
         enableGlobalSearch: true,
         render: ({ item }: { item: TableRow }) => (
-          <span className="aggregated-cell">{item.displayVersion}</span>
+          <span className="aggregated-cell">{item.displayLabel}</span>
         ),
       });
       baseFields.push({
@@ -254,7 +254,7 @@ export function DataTable(props: DataTableProps) {
               href={item.changelogUrl || '#'}
               className="release-version-link"
             >
-              {item.displayVersion}
+              {item.displayLabel}
             </ExternalLink>
             {item.isSpecialMarker && tabConfig?.labels?.specialMarkerTooltip && (
               <Tooltip text={tabConfig.labels.specialMarkerTooltip}>

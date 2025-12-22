@@ -2,27 +2,105 @@
  * Data aggregation script for Gutenberg release statistics.
  * Computes per-WP-version aggregates and overall summary from releases.json.
  *
+ * Outputs NormalizedRelease format for UI consumption.
+ *
  * Usage:
  *   npm run aggregate  # Regenerate summary.json and by-wp-version.json
  *
  * @module scripts/aggregate-data
  */
 
-import { readFileSync, existsSync, mkdirSync } from 'node:fs';
-import type { Release, WPRelease, WPVersionStats, Summary } from '../src/data/types.js';
+import { readFileSync, existsSync } from 'node:fs';
+import type { Release, WPRelease } from './types.js';
 import { loadCategoryConfig, getAggregatedPRs } from './utils/category-utils.js';
 import { writeJsonIfChanged } from './utils/file-utils.js';
 
 const RELEASES_PATH = 'public/data/releases.json';
 const WP_SCHEDULE_PATH = 'public/data/wp-schedule.json';
-const AGGREGATED_DIR = 'public/data/aggregated';
+const OUTPUT_DIR = 'public/data';
 
 /**
- * Load releases from JSON file.
+ * Normalized release type for JSON output.
+ * Matches src/data/normalized.ts NormalizedRelease interface.
+ */
+interface NormalizedRelease {
+  id: string;
+  version: string;
+  displayLabel: string;
+  isAggregated: boolean;
+  totalPRs: number;
+  contributors: number;
+  newContributors: number;
+  hasContributorData: boolean;
+  avgPRs: number;
+  avgContributors: number;
+  avgNewContributors: number;
+  rawCategories?: Record<string, number>;
+  categoryTotals?: Record<string, number>;
+  contributorAggregates?: {
+    stats?: { total: number; newContributors: number };
+    sponsorBreakdown: Record<string, number>;
+    countryBreakdown: Record<string, number>;
+    aggregatedAt?: string;
+  };
+  groupedCount?: number;
+  groupedRange?: string;
+  date?: string;
+  memberOf?: string;
+  isSpecialMarker?: boolean;
+  changelogUrl?: string;
+  // Internal fields for script use (not used by UI)
+  contributorsList?: string[];
+  newContributorsList?: string[];
+}
+
+/**
+ * Normalized summary type for JSON output.
+ * Matches src/data/normalized.ts SourceSummary interface.
+ */
+interface NormalizedSummary {
+  currentPeriod: string;
+  lastCutoffVersion: string;
+  releasesSinceCutoff: number;
+  avgPRsSinceCutoff: number;
+  avgContributorsSinceCutoff: number;
+  avgNewContributorsSinceCutoff: number;
+  totalPRsSinceCutoff: number;
+  uniqueContributorsSinceCutoff: number;
+  uniqueNewContributorsSinceCutoff: number;
+  avgPRsTotal: number;
+  avgContributorsTotal: number;
+  avgNewContributorsTotal: number;
+  latestRelease: string;
+  oldestRelease: string;
+  totalReleases: number;
+  lastUpdated: string;
+}
+
+/**
+ * Load releases from JSON file (can be either internal or normalized format).
  */
 function loadReleases(): Release[] {
   const content = readFileSync(RELEASES_PATH, 'utf-8');
-  return JSON.parse(content);
+  const data = JSON.parse(content);
+
+  // Handle both normalized format (version field) and internal format (gbVersion field)
+  return data.map((r: Record<string, unknown>) => ({
+    gbVersion: (r.version as string) || (r.gbVersion as string),
+    wpVersion: (r.memberOf as string) || (r.wpVersion as string) || null,
+    date: r.date as string,
+    isLastBeforeWPBeta: (r.isSpecialMarker as boolean) || (r.isLastBeforeWPBeta as boolean) || false,
+    totalPRs: r.totalPRs as number,
+    categories: (r.rawCategories as Record<string, number>) || (r.categories as Record<string, number>) || {},
+    contributors: r.contributors as number,
+    newContributors: r.newContributors as number,
+    contributorsList: r.contributorsList as string[] || [],
+    newContributorsList: r.newContributorsList as string[] || [],
+    contributorAggregates: r.contributorAggregates as Release['contributorAggregates'],
+    changelogUrl: r.changelogUrl as string,
+    parsedAt: r.parsedAt as string || '',
+    parserVersion: r.parserVersion as string || '',
+  }));
 }
 
 /**
@@ -50,17 +128,25 @@ function compareVersions(a: string, b: string): number {
 }
 
 /**
+ * Extract minor version from a version string (e.g., "20.1.0" -> "20.1").
+ */
+function getMinorVersion(version: string): string {
+  const parts = version.split('.');
+  return `${parts[0]}.${parts[1] || '0'}`;
+}
+
+/**
  * Find which WP version a GB release belongs to.
  */
 function findWPVersion(gbVersion: string, wpSchedule: WPRelease[]): string | null {
-  // Parse GB version range from each WP release
+  const minorVersion = getMinorVersion(gbVersion);
+
   for (const wpRelease of wpSchedule) {
     const [startVersion, endVersion] = wpRelease.gbVersionRange.split('-');
 
-    // Check if gbVersion falls within this range
     if (
-      compareVersions(gbVersion, startVersion) >= 0 &&
-      compareVersions(gbVersion, endVersion) <= 0
+      compareVersions(minorVersion, startVersion) >= 0 &&
+      compareVersions(minorVersion, endVersion) <= 0
     ) {
       return wpRelease.wpVersion;
     }
@@ -72,11 +158,10 @@ function findWPVersion(gbVersion: string, wpSchedule: WPRelease[]): string | nul
  * Map GB releases to WP versions and mark beta cutoffs.
  */
 function enrichReleases(releases: Release[], wpSchedule: WPRelease[]): Release[] {
-  const enriched = releases.map((release) => {
+  return releases.map((release) => {
+    const minorVersion = getMinorVersion(release.gbVersion);
     const wpVersion = findWPVersion(release.gbVersion, wpSchedule);
-
-    // Check if this is the last GB version before WP beta
-    const matchingWP = wpSchedule.find((wp) => wp.lastGBVersion === release.gbVersion.replace('.0', ''));
+    const matchingWP = wpSchedule.find((wp) => wp.lastGBVersion === minorVersion);
     const isLastBeforeWPBeta = !!matchingWP;
 
     return {
@@ -85,14 +170,45 @@ function enrichReleases(releases: Release[], wpSchedule: WPRelease[]): Release[]
       isLastBeforeWPBeta,
     };
   });
-
-  return enriched;
 }
 
 /**
- * Generate per-WP-version aggregated statistics.
+ * Convert internal Release to NormalizedRelease format.
  */
-function generateWPVersionStats(releases: Release[]): WPVersionStats[] {
+function toNormalizedRelease(release: Release): NormalizedRelease {
+  const version = getMinorVersion(release.gbVersion);
+
+  return {
+    id: version,
+    version,
+    displayLabel: `Gutenberg ${version}`,
+    isAggregated: false,
+    totalPRs: release.totalPRs,
+    contributors: release.contributors,
+    newContributors: release.newContributors,
+    hasContributorData: release.contributors > 0,
+    avgPRs: release.totalPRs,
+    avgContributors: release.contributors,
+    avgNewContributors: release.newContributors,
+    rawCategories: release.categories,
+    contributorAggregates: release.contributorAggregates ? {
+      sponsorBreakdown: release.contributorAggregates.sponsorBreakdown,
+      countryBreakdown: release.contributorAggregates.countryBreakdown,
+    } : undefined,
+    date: release.date,
+    memberOf: release.wpVersion || undefined,
+    isSpecialMarker: release.isLastBeforeWPBeta || undefined,
+    changelogUrl: release.changelogUrl,
+    // Include for script use
+    contributorsList: release.contributorsList,
+    newContributorsList: release.newContributorsList,
+  };
+}
+
+/**
+ * Generate per-WP-version aggregated statistics in NormalizedRelease format.
+ */
+function generateWPVersionStats(releases: Release[]): NormalizedRelease[] {
   const categoryConfig = loadCategoryConfig();
   const byWPVersion = new Map<string, Release[]>();
 
@@ -106,9 +222,9 @@ function generateWPVersionStats(releases: Release[]): WPVersionStats[] {
   }
 
   // Calculate stats for each WP version
-  const stats: WPVersionStats[] = [];
+  const stats: NormalizedRelease[] = [];
   for (const [wpVersion, wpReleases] of byWPVersion) {
-    const versions = wpReleases.map((r) => r.gbVersion).sort((a, b) => compareVersions(a, b));
+    const versions = wpReleases.map((r) => getMinorVersion(r.gbVersion)).sort((a, b) => compareVersions(a, b));
     const gbVersionRange = `${versions[0]}-${versions[versions.length - 1]}`;
 
     const totalPRs = wpReleases.reduce((sum, r) => sum + r.totalPRs, 0);
@@ -142,29 +258,40 @@ function generateWPVersionStats(releases: Release[]): WPVersionStats[] {
       wpReleases.reduce((sum, r) => sum + r.newContributors, 0) / releaseCount
     );
 
+    // Get contributor aggregates if any release has them
+    const releaseWithAggregates = wpReleases.find(r => r.contributorAggregates);
+
     stats.push({
-      wpVersion,
-      gbVersionRange,
-      releaseCount,
+      id: wpVersion,
+      version: wpVersion,
+      displayLabel: `WordPress ${wpVersion}`,
+      isAggregated: true,
       totalPRs,
-      totalContributors,
-      totalNewContributors,
+      contributors: totalContributors,
+      newContributors: totalNewContributors,
+      hasContributorData: totalContributors > 0,
+      avgPRs: Math.round(totalPRs / releaseCount),
+      avgContributors: avgContributorsPerRelease,
+      avgNewContributors: avgNewContributorsPerRelease,
       categoryTotals,
-      avgPRsPerRelease: Math.round(totalPRs / releaseCount),
-      avgContributorsPerRelease,
-      avgNewContributorsPerRelease,
+      contributorAggregates: releaseWithAggregates?.contributorAggregates ? {
+        sponsorBreakdown: {},  // Will be computed by compute-release-aggregates.ts
+        countryBreakdown: {},
+      } : undefined,
+      groupedCount: releaseCount,
+      groupedRange: gbVersionRange,
     });
   }
 
   // Sort by WP version (newest first)
-  return stats.sort((a, b) => compareVersions(b.wpVersion, a.wpVersion));
+  return stats.sort((a, b) => compareVersions(b.version, a.version));
 }
 
 /**
  * Load existing summary if it exists.
  */
-function loadExistingSummary(): Summary | null {
-  const summaryPath = `${AGGREGATED_DIR}/summary.json`;
+function loadExistingSummary(): NormalizedSummary | null {
+  const summaryPath = `${OUTPUT_DIR}/summary.json`;
   if (!existsSync(summaryPath)) {
     return null;
   }
@@ -180,32 +307,33 @@ function loadExistingSummary(): Summary | null {
  * Find the current WP cycle based on the cutoff version.
  */
 function findCurrentWPCycle(cutoffVersion: string, wpSchedule: WPRelease[]): string {
-  // Find the WP release where this cutoff belongs
-  const cutoffWP = wpSchedule.find((wp) => wp.lastGBVersion === cutoffVersion.replace('.0', ''));
+  const minorVersion = getMinorVersion(cutoffVersion);
+  const cutoffWP = wpSchedule.find((wp) => wp.lastGBVersion === minorVersion);
   if (!cutoffWP) return '';
 
-  // The current cycle is the next WP version after the cutoff
   const sortedSchedule = [...wpSchedule].sort((a, b) => compareVersions(b.wpVersion, a.wpVersion));
   const cutoffIndex = sortedSchedule.findIndex((wp) => wp.wpVersion === cutoffWP.wpVersion);
 
-  // Return the WP version before the cutoff in the sorted list (which is the next/current cycle)
   return cutoffIndex > 0 ? sortedSchedule[cutoffIndex - 1].wpVersion : '';
 }
 
 /**
- * Generate summary statistics.
- * Only updates timestamp if data actually changed.
+ * Generate summary statistics in NormalizedSummary format.
  */
-function generateSummary(releases: Release[], wpSchedule: WPRelease[], existingSummary: Summary | null): Summary {
+function generateSummary(
+  releases: Release[],
+  wpSchedule: WPRelease[],
+  existingSummary: NormalizedSummary | null
+): NormalizedSummary {
   const sortedReleases = [...releases].sort((a, b) => compareVersions(b.gbVersion, a.gbVersion));
 
   const totalReleases = releases.length;
-  const latestRelease = sortedReleases[0]?.gbVersion ?? '';
+  const latestRelease = getMinorVersion(sortedReleases[0]?.gbVersion ?? '');
 
   // Find the last cutoff release (most recent isLastBeforeWPBeta)
   const lastCutoffIndex = sortedReleases.findIndex((r) => r.isLastBeforeWPBeta);
   const lastCutoffRelease = lastCutoffIndex >= 0 ? sortedReleases[lastCutoffIndex] : null;
-  const lastCutoffVersion = lastCutoffRelease?.gbVersion ?? '';
+  const lastCutoffVersion = lastCutoffRelease ? getMinorVersion(lastCutoffRelease.gbVersion) : '';
 
   // Find current WP cycle
   const currentWPCycle = findCurrentWPCycle(lastCutoffVersion, wpSchedule);
@@ -216,10 +344,6 @@ function generateSummary(releases: Release[], wpSchedule: WPRelease[], existingS
 
   // Calculate totals since cutoff
   const totalPRsSinceCutoff = sinceCutoffReleases.reduce((sum, r) => sum + r.totalPRs, 0);
-  const totalFeaturesSinceCutoff = sinceCutoffReleases.reduce((sum, r) => sum + getAggregatedPRs(r, 'features'), 0);
-  const totalBugsSinceCutoff = sinceCutoffReleases.reduce((sum, r) => sum + getAggregatedPRs(r, 'bugs'), 0);
-  const totalA11ySinceCutoff = sinceCutoffReleases.reduce((sum, r) => sum + getAggregatedPRs(r, 'a11y'), 0);
-  const totalPerfSinceCutoff = sinceCutoffReleases.reduce((sum, r) => sum + getAggregatedPRs(r, 'performance'), 0);
 
   // Calculate unique contributors across all releases in cycle (deduplicated)
   const allContributors = new Set<string>();
@@ -234,10 +358,6 @@ function generateSummary(releases: Release[], wpSchedule: WPRelease[], existingS
   // Calculate averages since cutoff
   const sinceCutoffCount = sinceCutoffReleases.length || 1;
   const avgPRsSinceCutoff = Math.round(totalPRsSinceCutoff / sinceCutoffCount);
-  const avgFeaturesSinceCutoff = Math.round(totalFeaturesSinceCutoff / sinceCutoffCount);
-  const avgBugsSinceCutoff = Math.round(totalBugsSinceCutoff / sinceCutoffCount);
-  const avgA11ySinceCutoff = Math.round(totalA11ySinceCutoff / sinceCutoffCount);
-  const avgPerfSinceCutoff = Math.round(totalPerfSinceCutoff / sinceCutoffCount);
   const avgContributorsSinceCutoff = Math.round(
     sinceCutoffReleases.reduce((sum, r) => sum + r.contributors, 0) / sinceCutoffCount
   );
@@ -245,30 +365,8 @@ function generateSummary(releases: Release[], wpSchedule: WPRelease[], existingS
     sinceCutoffReleases.reduce((sum, r) => sum + r.newContributors, 0) / sinceCutoffCount
   );
 
-  // Calculate total averages (all-time) - only from releases that have the data
+  // Calculate total averages (all-time)
   const avgPRsTotal = Math.round(releases.reduce((sum, r) => sum + r.totalPRs, 0) / totalReleases);
-  const avgFeaturesTotal = Math.round(releases.reduce((sum, r) => sum + getAggregatedPRs(r, 'features'), 0) / totalReleases);
-  const avgBugsTotal = Math.round(releases.reduce((sum, r) => sum + getAggregatedPRs(r, 'bugs'), 0) / totalReleases);
-
-  // Code Quality data only exists in newer releases
-  const releasesWithCodeQuality = releases.filter((r) => getAggregatedPRs(r, 'codeQuality') > 0);
-  const codeQualityCount = releasesWithCodeQuality.length || 1;
-  const avgCodeQualityTotal = Math.round(
-    releasesWithCodeQuality.reduce((sum, r) => sum + getAggregatedPRs(r, 'codeQuality'), 0) / codeQualityCount
-  );
-
-  // A11y and performance data only exists in newer releases
-  const releasesWithA11y = releases.filter((r) => getAggregatedPRs(r, 'a11y') > 0);
-  const a11yCount = releasesWithA11y.length || 1;
-  const avgA11yTotal = Math.round(
-    releasesWithA11y.reduce((sum, r) => sum + getAggregatedPRs(r, 'a11y'), 0) / a11yCount
-  );
-
-  const releasesWithPerf = releases.filter((r) => getAggregatedPRs(r, 'performance') > 0);
-  const perfCount = releasesWithPerf.length || 1;
-  const avgPerfTotal = Math.round(
-    releasesWithPerf.reduce((sum, r) => sum + getAggregatedPRs(r, 'performance'), 0) / perfCount
-  );
 
   // Contributors data only exists in newer releases
   const releasesWithContributors = releases.filter((r) => r.contributors > 0);
@@ -287,33 +385,20 @@ function generateSummary(releases: Release[], wpSchedule: WPRelease[], existingS
     existingSummary.latestRelease !== latestRelease;
 
   return {
-    currentWPCycle,
+    currentPeriod: currentWPCycle,
     lastCutoffVersion,
     releasesSinceCutoff,
     avgPRsSinceCutoff,
-    avgFeaturesSinceCutoff,
-    avgBugsSinceCutoff,
-    avgA11ySinceCutoff,
-    avgPerfSinceCutoff,
     avgContributorsSinceCutoff,
     avgNewContributorsSinceCutoff,
     totalPRsSinceCutoff,
-    totalFeaturesSinceCutoff,
-    totalBugsSinceCutoff,
-    totalA11ySinceCutoff,
-    totalPerfSinceCutoff,
     uniqueContributorsSinceCutoff,
     uniqueNewContributorsSinceCutoff,
     avgPRsTotal,
-    avgFeaturesTotal,
-    avgBugsTotal,
-    avgCodeQualityTotal,
-    avgA11yTotal,
-    avgPerfTotal,
     avgContributorsTotal,
     avgNewContributorsTotal,
     latestRelease,
-    oldestRelease: sortedReleases[sortedReleases.length - 1]?.gbVersion ?? '',
+    oldestRelease: getMinorVersion(sortedReleases[sortedReleases.length - 1]?.gbVersion ?? ''),
     totalReleases,
     lastUpdated: dataChanged ? new Date().toISOString() : existingSummary.lastUpdated,
   };
@@ -322,11 +407,6 @@ function generateSummary(releases: Release[], wpSchedule: WPRelease[], existingS
 async function main() {
   console.log('Gutenberg Release Aggregator');
   console.log('============================');
-
-  // Ensure output directory exists
-  if (!existsSync(AGGREGATED_DIR)) {
-    mkdirSync(AGGREGATED_DIR, { recursive: true });
-  }
 
   // Load data
   console.log('\nLoading releases...');
@@ -345,15 +425,16 @@ async function main() {
   console.log(`  Mapped ${mappedCount}/${enrichedReleases.length} releases to WP versions`);
   console.log(`  Marked ${betaCutoffs} beta cutoff releases`);
 
-  // Update releases.json with enriched data (only if changed)
-  const releasesWritten = writeJsonIfChanged(RELEASES_PATH, enrichedReleases);
+  // Convert to NormalizedRelease format and write releases.json
+  const normalizedReleases = enrichedReleases.map(toNormalizedRelease);
+  const releasesWritten = writeJsonIfChanged(RELEASES_PATH, normalizedReleases);
   console.log(releasesWritten ? `  Updated ${RELEASES_PATH}` : `  No changes to ${RELEASES_PATH}`);
 
   // Generate aggregated stats
   console.log('\nGenerating aggregated statistics...');
 
   const wpVersionStats = generateWPVersionStats(enrichedReleases);
-  const wpVersionWritten = writeJsonIfChanged(`${AGGREGATED_DIR}/by-wp-version.json`, wpVersionStats);
+  const wpVersionWritten = writeJsonIfChanged(`${OUTPUT_DIR}/by-wp-version.json`, wpVersionStats);
   console.log(
     wpVersionWritten
       ? `  Generated by-wp-version.json (${wpVersionStats.length} WP versions)`
@@ -362,10 +443,10 @@ async function main() {
 
   const existingSummary = loadExistingSummary();
   const summary = generateSummary(enrichedReleases, wpSchedule, existingSummary);
-  const summaryWritten = writeJsonIfChanged(`${AGGREGATED_DIR}/summary.json`, summary);
+  const summaryWritten = writeJsonIfChanged(`${OUTPUT_DIR}/summary.json`, summary);
   console.log(summaryWritten ? `  Generated summary.json` : `  No changes to summary.json`);
 
-  // Generate time series data (just the releases sorted by date)
+  // Generate time series data
   const categoryConfig = loadCategoryConfig();
   const timeSeries = enrichedReleases
     .map((r) => {
@@ -374,7 +455,7 @@ async function main() {
         categoryPRs[agg.id] = getAggregatedPRs(r, agg.id);
       }
       return {
-        gbVersion: r.gbVersion,
+        gbVersion: getMinorVersion(r.gbVersion),
         date: r.date,
         totalPRs: r.totalPRs,
         categoryPRs,
@@ -383,7 +464,7 @@ async function main() {
       };
     })
     .sort((a, b) => a.date.localeCompare(b.date));
-  const timeSeriesWritten = writeJsonIfChanged(`${AGGREGATED_DIR}/time-series.json`, timeSeries);
+  const timeSeriesWritten = writeJsonIfChanged(`${OUTPUT_DIR}/time-series.json`, timeSeries);
   console.log(
     timeSeriesWritten
       ? `  Generated time-series.json (${timeSeries.length} data points)`

@@ -29,7 +29,7 @@ import type {
 	WPVersionStats,
 	WPVersionContributorAggregates,
 	WPRelease,
-} from '../src/data/types.js';
+} from './types.js';
 
 interface ComputeArgs {
 	wpVersion?: string[];

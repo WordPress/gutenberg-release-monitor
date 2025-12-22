@@ -2,6 +2,8 @@
  * Changelog parser script for Gutenberg releases.
  * Fetches releases from GitHub API, parses changelogs, and outputs releases.json.
  *
+ * Outputs NormalizedRelease format for UI consumption.
+ *
  * Usage:
  *   npm run parse                    # Parse all releases
  *   npm run parse -- --version 20.0  # Parse specific version
@@ -23,9 +25,39 @@ import {
 } from './utils/github-api.js';
 import { parseRelease, parseContributors } from './utils/changelog-parser.js';
 import type { ParseArgs } from './utils/types.js';
-import type { Release } from '../src/data/types.js';
+import type { Release } from './types.js';
 
 const PARSER_VERSION = '1.0.0';
+
+/**
+ * Normalized release type for JSON output.
+ * Matches src/data/normalized.ts NormalizedRelease interface.
+ */
+interface NormalizedRelease {
+  id: string;
+  version: string;
+  displayLabel: string;
+  isAggregated: boolean;
+  totalPRs: number;
+  contributors: number;
+  newContributors: number;
+  hasContributorData: boolean;
+  avgPRs: number;
+  avgContributors: number;
+  avgNewContributors: number;
+  rawCategories?: Record<string, number>;
+  contributorAggregates?: {
+    sponsorBreakdown: Record<string, number>;
+    countryBreakdown: Record<string, number>;
+  };
+  date?: string;
+  memberOf?: string;
+  isSpecialMarker?: boolean;
+  changelogUrl?: string;
+  // Internal fields for script use (not used by UI)
+  contributorsList?: string[];
+  newContributorsList?: string[];
+}
 
 /**
  * Parse command line arguments.
@@ -45,7 +77,7 @@ function getArgs(): ParseArgs {
 }
 
 /**
- * Convert parsed changelog to Release format.
+ * Convert parsed changelog to internal Release format.
  */
 function toRelease(parsed: ReturnType<typeof parseRelease>): Release {
   return {
@@ -66,8 +98,41 @@ function toRelease(parsed: ReturnType<typeof parseRelease>): Release {
 }
 
 /**
+ * Convert internal Release to NormalizedRelease format for JSON output.
+ */
+function toNormalizedRelease(release: Release): NormalizedRelease {
+  const version = getMinorVersion(release.gbVersion);
+
+  return {
+    id: version,
+    version,
+    displayLabel: `Gutenberg ${version}`,
+    isAggregated: false,
+    totalPRs: release.totalPRs,
+    contributors: release.contributors,
+    newContributors: release.newContributors,
+    hasContributorData: release.contributors > 0,
+    avgPRs: release.totalPRs,
+    avgContributors: release.contributors,
+    avgNewContributors: release.newContributors,
+    rawCategories: release.categories,
+    contributorAggregates: release.contributorAggregates ? {
+      sponsorBreakdown: release.contributorAggregates.sponsorBreakdown,
+      countryBreakdown: release.contributorAggregates.countryBreakdown,
+    } : undefined,
+    date: release.date,
+    memberOf: release.wpVersion || undefined,
+    isSpecialMarker: release.isLastBeforeWPBeta || undefined,
+    changelogUrl: release.changelogUrl,
+    // Include for script use
+    contributorsList: release.contributorsList,
+    newContributorsList: release.newContributorsList,
+  };
+}
+
+/**
  * Aggregate patch releases into their minor version.
- * e.g., 20.1.0, 20.1.1, 20.1.2 -> single 20.1.0 with combined PRs
+ * e.g., 20.1.0, 20.1.1, 20.1.2 -> single 20.1 with combined PRs
  */
 function aggregatePatchReleases(releases: Release[]): Release[] {
   const minorVersionMap = new Map<string, Release[]>();
@@ -88,7 +153,11 @@ function aggregatePatchReleases(releases: Release[]): Release[] {
 
     // If there's only one release and it's the base, no aggregation needed
     if (group.length === 1) {
-      aggregated.push(baseRelease);
+      // Normalize version to x.y format
+      aggregated.push({
+        ...baseRelease,
+        gbVersion: minorVersion,
+      });
       continue;
     }
 
@@ -96,7 +165,10 @@ function aggregatePatchReleases(releases: Release[]): Release[] {
     const patchReleases = group.filter((r) => isPatchRelease(r.gbVersion));
 
     if (patchReleases.length === 0) {
-      aggregated.push(baseRelease);
+      aggregated.push({
+        ...baseRelease,
+        gbVersion: minorVersion,
+      });
       continue;
     }
 
@@ -123,7 +195,7 @@ function aggregatePatchReleases(releases: Release[]): Release[] {
 
     aggregated.push({
       ...baseRelease,
-      gbVersion: `${minorVersion}.0`, // Normalize to x.y.0
+      gbVersion: minorVersion, // Normalize to x.y format
       totalPRs,
       categories,
       contributors: contributorsList.length,
@@ -132,7 +204,7 @@ function aggregatePatchReleases(releases: Release[]): Release[] {
       newContributorsList,
     });
 
-    console.log(`    Aggregated ${patchReleases.length} patch release(s) into ${minorVersion}.0`);
+    console.log(`    Aggregated ${patchReleases.length} patch release(s) into ${minorVersion}`);
   }
 
   return aggregated;
@@ -140,6 +212,7 @@ function aggregatePatchReleases(releases: Release[]): Release[] {
 
 /**
  * Load existing releases from JSON file.
+ * Handles both normalized format and legacy format.
  */
 function loadExistingReleases(outputPath: string): Release[] {
   if (!existsSync(outputPath)) {
@@ -148,7 +221,25 @@ function loadExistingReleases(outputPath: string): Release[] {
 
   try {
     const content = readFileSync(outputPath, 'utf-8');
-    return JSON.parse(content);
+    const data = JSON.parse(content);
+
+    // Handle both normalized format (version field) and internal format (gbVersion field)
+    return data.map((r: Record<string, unknown>) => ({
+      gbVersion: (r.version as string) || (r.gbVersion as string),
+      wpVersion: (r.memberOf as string) || (r.wpVersion as string) || null,
+      date: r.date as string,
+      isLastBeforeWPBeta: (r.isSpecialMarker as boolean) || (r.isLastBeforeWPBeta as boolean) || false,
+      totalPRs: r.totalPRs as number,
+      categories: (r.rawCategories as Record<string, number>) || (r.categories as Record<string, number>) || {},
+      contributors: r.contributors as number,
+      newContributors: r.newContributors as number,
+      contributorsList: r.contributorsList as string[] || [],
+      newContributorsList: r.newContributorsList as string[] || [],
+      contributorAggregates: r.contributorAggregates as Release['contributorAggregates'],
+      changelogUrl: r.changelogUrl as string,
+      parsedAt: r.parsedAt as string || '',
+      parserVersion: r.parserVersion as string || '',
+    }));
   } catch {
     console.warn(`Warning: Could not parse existing ${outputPath}, starting fresh`);
     return [];
@@ -162,14 +253,16 @@ function loadExistingReleases(outputPath: string): Release[] {
 function mergeReleases(existing: Release[], newReleases: Release[]): Release[] {
   const releaseMap = new Map<string, Release>();
 
-  // Add existing releases
+  // Add existing releases (keyed by minor version)
   for (const release of existing) {
-    releaseMap.set(release.gbVersion, release);
+    const minorVersion = getMinorVersion(release.gbVersion);
+    releaseMap.set(minorVersion, release);
   }
 
   // Override with new releases
   for (const release of newReleases) {
-    releaseMap.set(release.gbVersion, release);
+    const minorVersion = getMinorVersion(release.gbVersion);
+    releaseMap.set(minorVersion, release);
   }
 
   // Sort by version (newest first)
@@ -263,12 +356,13 @@ async function main() {
       mkdirSync(dir, { recursive: true });
     }
 
-    // Write output (only if changed)
-    const releasesWritten = writeJsonIfChanged(outputPath, mergedReleases);
+    // Convert to normalized format and write output
+    const normalizedReleases = mergedReleases.map(toNormalizedRelease);
+    const releasesWritten = writeJsonIfChanged(outputPath, normalizedReleases);
     console.log(
       releasesWritten
-        ? `\nWrote ${mergedReleases.length} releases to ${outputPath}`
-        : `\nNo changes to ${outputPath} (${mergedReleases.length} releases)`
+        ? `\nWrote ${normalizedReleases.length} releases to ${outputPath}`
+        : `\nNo changes to ${outputPath} (${normalizedReleases.length} releases)`
     );
 
     // Calculate unique contributors across all fetched releases

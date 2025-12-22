@@ -49,23 +49,19 @@ export interface TabConfig {
   title: string;
   /** Path to the data file relative to /data/ */
   dataEndpoint: string;
-  /** Field name in data objects containing the version (e.g., 'wpVersion', 'gbVersion') */
-  versionField: string;
-  /** Prefix for display labels (e.g., 'WP' for 'WP 6.7') */
+  /** Whether this tab shows aggregated data (AggregatedStats vs SourceRelease) */
+  isAggregated: boolean;
+  /** Prefix for display labels (e.g., 'WordPress' for 'WordPress 6.7') */
   versionPrefix: string;
-  /** Field name for related version in data (e.g., 'wpVersion' for GB releases to show WP inclusion) */
-  relatedVersionField: string | null;
   /** View modes available for this tab */
   supportedViewModes: ViewMode[];
   /** CSS class for the table card (null = no class) */
   tableCardClass: string | null;
-  /** URL parameter key for version selection (e.g., 'wp', 'gb') */
+  /** URL parameter key for version selection */
   urlParamKey: string;
   /** Summary field for default selected item (null = use first item) */
   defaultItemSummaryField: string | null;
-  /** Whether this tab shows aggregated data (affects stats display) */
-  isAggregated: boolean;
-  /** Whether to show reference lines on charts (e.g., beta cutoff markers) */
+  /** Whether to show reference lines on charts (e.g., special markers) */
   showReferenceLines: boolean;
   /** Labels for this tab's UI elements */
   labels: TabLabels;

@@ -1,12 +1,11 @@
 /**
- * Normalized data type for the presentation layer.
- * This is the unified interface that all UI components work with.
- * Data providers convert their specific formats to this type.
+ * Normalized data types for the presentation layer.
+ * JSON files match these types directly - no runtime transformation needed.
+ * UI components should only work with these types.
  */
 
 /**
- * Contributor aggregates - domain-agnostic breakdown data for the UI.
- * Data providers convert their specific formats to this structure.
+ * Contributor aggregates - breakdown data for sponsors/countries.
  */
 export interface ContributorAggregates {
   /** Sponsor breakdown: { "Company A": 15, "Unknown": 42, ... } */
@@ -16,23 +15,21 @@ export interface ContributorAggregates {
 }
 
 /**
- * Normalized release - unified interface for the presentation layer.
- * Represents either an aggregated view or an individual release.
- * UI components should only work with this type - never with raw data types.
+ * Normalized release - unified interface for all tab data.
+ * Represents either an aggregated view (by-wp-version) or individual release.
+ * JSON files match this structure exactly.
  */
 export interface NormalizedRelease {
   /** Unique identifier (same as version) */
   id: string;
-  /** Version string (raw, e.g., "19.0") */
+  /** Version string (e.g., "22.2" or "7.0") */
   version: string;
-  /** Display version without trailing .0 (e.g., "19") */
-  displayVersion: string;
-  /** Display label with prefix (e.g., "Gutenberg 19") */
+  /** Display label with prefix (e.g., "Gutenberg 22.2") */
   displayLabel: string;
   /** Whether this groups other items */
   isAggregated: boolean;
 
-  // Core stats - totals (always present)
+  // Core stats - totals
   /** Total PRs */
   totalPRs: number;
   /** Total contributors */
@@ -42,9 +39,9 @@ export interface NormalizedRelease {
   /** Whether contributor data is available */
   hasContributorData: boolean;
 
-  // Core stats - averages (pre-computed for UI)
-  // For aggregated: computed average per grouped item
-  // For individual: same as totals (no averaging possible)
+  // Core stats - averages (pre-computed)
+  // For aggregated: average per grouped item
+  // For individual: same as totals
   /** PRs for averages view */
   avgPRs: number;
   /** Contributors for averages view */
@@ -68,7 +65,7 @@ export interface NormalizedRelease {
   /** Range of grouped item versions */
   groupedRange?: string;
 
-  // Individual item fields (items that belong to a group)
+  // Individual item fields
   /** Release date (individual items only) */
   date?: string;
   /** Which group this item belongs to */
@@ -77,4 +74,33 @@ export interface NormalizedRelease {
   isSpecialMarker?: boolean;
   /** URL to changelog (individual items only) */
   changelogUrl?: string;
+}
+
+/**
+ * Summary statistics for the dashboard.
+ */
+export interface SourceSummary {
+  /** Current period identifier */
+  currentPeriod: string;
+  /** Last cutoff version */
+  lastCutoffVersion: string;
+  /** Number of releases since cutoff */
+  releasesSinceCutoff: number;
+  /** Since-cutoff averages */
+  avgPRsSinceCutoff: number;
+  avgContributorsSinceCutoff: number;
+  avgNewContributorsSinceCutoff: number;
+  /** Since-cutoff totals */
+  totalPRsSinceCutoff: number;
+  uniqueContributorsSinceCutoff: number;
+  uniqueNewContributorsSinceCutoff: number;
+  /** All-time averages */
+  avgPRsTotal: number;
+  avgContributorsTotal: number;
+  avgNewContributorsTotal: number;
+  /** Metadata */
+  latestRelease: string;
+  oldestRelease: string;
+  totalReleases: number;
+  lastUpdated: string;
 }

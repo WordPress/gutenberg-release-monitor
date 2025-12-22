@@ -14,7 +14,7 @@ import {
   __experimentalToggleGroupControl as ToggleGroupControl,
   __experimentalToggleGroupControlOption as ToggleGroupControlOption,
 } from '@wordpress/components';
-import { useReleases, useSummary, useAggregatedStats } from './hooks/useReleases';
+import { useTabData, useSummary } from './hooks/useReleases';
 import { useDarkMode } from './hooks/useDarkMode';
 import { useURLState } from './hooks/useURLState';
 import { SummaryStats } from './components/SummaryStats';
@@ -22,7 +22,6 @@ import { DataTable } from './components/DataTable';
 import { TrendChart } from './components/TrendChart';
 import { getDefaultCategoryIds } from './components/CategoryFilter';
 import { useConfig, useTabPanelTabs, useTabIds } from './config';
-import { normalizeWPVersionStats, normalizeGBReleases } from './data/providers';
 import type { ViewMode, ChartType, MetricType } from './config/types';
 
 // Re-export types for backward compatibility
@@ -145,36 +144,24 @@ function App() {
     },
     [defaultCategoryIds]
   );
+  // Fetch data for the active tab - returns pre-normalized NormalizedRelease[]
   const {
-    data: releases,
-    isLoading: releasesLoading,
-    error: releasesError,
-  } = useReleases();
+    data: tabData,
+    isLoading: tabDataLoading,
+    error: tabDataError,
+  } = useTabData(activeTab);
   const {
     data: summary,
     isLoading: summaryLoading,
     error: summaryError,
   } = useSummary();
-  const {
-    data: aggregatedStats,
-    isLoading: aggregatedStatsLoading,
-    error: aggregatedStatsError,
-  } = useAggregatedStats();
   const { isDark, toggle } = useDarkMode();
 
-  const isLoading = releasesLoading || summaryLoading || aggregatedStatsLoading;
-  const error = releasesError || summaryError || aggregatedStatsError;
+  const isLoading = tabDataLoading || summaryLoading;
+  const error = tabDataError || summaryError;
 
-  // Normalize data at the boundary - each provider converts its format
-  const normalizedData = useMemo(() => {
-    if (!aggregatedStats || !releases) return null;
-
-    const displayPrefix = tabConfig.versionPrefix ?? config.project.projectLabel;
-    if (tabConfig.isAggregated) {
-      return normalizeWPVersionStats(aggregatedStats, displayPrefix);
-    }
-    return normalizeGBReleases(releases, displayPrefix);
-  }, [aggregatedStats, releases, tabConfig, config.project.projectLabel]);
+  // Data is already normalized from the JSON files - no transformation needed
+  const normalizedData = tabData ?? null;
 
   return (
     <div className="app">
@@ -216,7 +203,7 @@ function App() {
         </div>
       )}
 
-      {!isLoading && !error && summary && aggregatedStats && releases && (
+      {!isLoading && !error && summary && normalizedData && (
         <>
           <main className="app-main">
             <TabPanel
