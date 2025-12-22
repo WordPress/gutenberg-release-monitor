@@ -25,9 +25,10 @@ const INLINE_PR_LINK_REGEX = /\[[^\]]+\]\(https:\/\/github\.com\/[^)]*\/pull\/\d
 const BULLET_POINT_REGEX = /^[*-]\s+.+/;
 
 /**
- * Regex to match a category header (### Category).
+ * Regex to match a category header (### Category or ## Category).
+ * Matches both modern format (###) and mid-era format (##).
  */
-const CATEGORY_HEADER_REGEX = /^###\s+(.+)$/;
+const CATEGORY_HEADER_REGEX = /^##?#\s+(.+)$/;
 
 /**
  * Regex to match a subcategory header (#### Subcategory).
@@ -139,7 +140,7 @@ export function parseModernChangelog(body: string): {
   const hasChangelogHeader = normalizedBody.includes('## Changelog');
   let inChangelog = !hasChangelogHeader; // Start in changelog mode for legacy format
 
-  // Check if there are any ### category headers
+  // Check if there are any category headers (## or ###)
   const hasCategoryHeaders = normalizedBody.match(CATEGORY_HEADER_REGEX);
 
   for (const line of lines) {
@@ -167,7 +168,7 @@ export function parseModernChangelog(body: string): {
 
     if (!inChangelog) continue;
 
-    // Check for category header (### Category)
+    // Check for category header (## or ### Category)
     const categoryMatch = line.match(CATEGORY_HEADER_REGEX);
     if (categoryMatch) {
       // Save previous category
