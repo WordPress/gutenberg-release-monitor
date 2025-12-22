@@ -74,8 +74,8 @@ export function TrendChart(props: TrendChartProps) {
   const [categoryConfig, setCategoryConfig] = useState<CategoryConfig | null>(null);
   // Local state for hidden breakdown items (resets when view mode changes)
   const [hiddenBreakdownItems, setHiddenBreakdownItems] = useState<Set<string>>(new Set());
-  // Local state for hiding "All PRs" line
-  const [showAllPRs, setShowAllPRs] = useState(true);
+  // Local state for hiding "All PRs" line (off by default for bar/line charts)
+  const [showAllPRs, setShowAllPRs] = useState(false);
   const prevViewModeRef = useRef(viewMode);
 
   useEffect(() => {
@@ -88,7 +88,7 @@ export function TrendChart(props: TrendChartProps) {
       prevViewModeRef.current = viewMode;
       /* eslint-disable react-hooks/set-state-in-effect -- Intentional reset on prop change, safe with ref guard */
       setHiddenBreakdownItems(new Set());
-      setShowAllPRs(true);
+      setShowAllPRs(false);
       /* eslint-enable react-hooks/set-state-in-effect */
     }
   }, [viewMode]);

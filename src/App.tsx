@@ -28,7 +28,7 @@ import type { ViewMode, ChartType, MetricType } from './config/types';
 export type { ViewMode, ChartType, MetricType } from './config/types';
 
 const VIEW_MODES: ViewMode[] = ['averages', 'totals', 'distribution', 'sponsors', 'countries'];
-const CHART_TYPES: ChartType[] = ['line', 'bar', 'area', 'stacked'];
+const CHART_TYPES: ChartType[] = ['stacked', 'area', 'bar', 'line'];
 const METRIC_TYPES: MetricType[] = ['prs', 'contributors'];
 
 const SunIcon = () => (
@@ -334,8 +334,8 @@ function App() {
                             >
                               <ToggleGroupControlOption value="stacked" label="Stacked" />
                               <ToggleGroupControlOption value="area" label="Area" />
-                              <ToggleGroupControlOption value="line" label="Line" />
                               <ToggleGroupControlOption value="bar" label="Bar" />
+                              <ToggleGroupControlOption value="line" label="Line" />
                             </ToggleGroupControl>
                           </div>
                           {totalItems > 10 && (
