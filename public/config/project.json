@@ -12,7 +12,7 @@
     {
       "id": "by-wp-version",
       "title": "By WP Version",
-      "dataEndpoint": "by-wp-version.json",
+      "dataEndpoint": "wp-cycles.json",
       "isAggregated": true,
       "versionPrefix": "WordPress",
       "supportedViewModes": ["averages", "totals", "distribution", "sponsors", "countries"],
@@ -36,7 +36,7 @@
     {
       "id": "by-gb-release",
       "title": "By GB Release",
-      "dataEndpoint": "releases.json",
+      "dataEndpoint": "gb-releases.json",
       "isAggregated": false,
       "versionPrefix": "Gutenberg",
       "supportedViewModes": ["averages", "distribution", "sponsors", "countries"],

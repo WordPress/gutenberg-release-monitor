@@ -64,7 +64,7 @@ async function main(): Promise<void> {
 	console.log('');
 
 	// Load data
-	const releases: Release[] = JSON.parse(readFileSync('public/data/releases.json', 'utf-8'));
+	const releases: Release[] = JSON.parse(readFileSync('public/data/gb-releases.json', 'utf-8'));
 	const mapping = loadUsernameMapping();
 	const wpSchedule = loadWPSchedule();
 	const sponsorNormalizer = new SponsorNormalizer();

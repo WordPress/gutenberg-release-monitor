@@ -35,7 +35,7 @@ interface Release {
 }
 ```
 
-**Source**: `public/data/releases.json`
+**Source**: `public/data/gb-releases.json`
 
 **Notes**:
 - `categories` is the source of truth for all PR breakdowns
@@ -85,24 +85,7 @@ interface WPVersionStats {
 }
 ```
 
-**Source**: `public/data/aggregated/by-wp-version.json`
-
-### TimeSeriesPoint
-
-Data point for trend charts.
-
-```typescript
-interface TimeSeriesPoint {
-  gbVersion: string;
-  date: string;
-  totalPRs: number;
-  categoryPRs: Record<string, number>;  // Keyed by category ID
-  isLastBeforeWPBeta: boolean;
-  wpVersion: string | null;
-}
-```
-
-**Source**: `public/data/aggregated/time-series.json`
+**Source**: `public/data/wp-cycles.json`
 
 ### Summary
 
@@ -151,7 +134,7 @@ interface Summary {
 }
 ```
 
-**Source**: `public/data/aggregated/summary.json`
+**Source**: `public/data/summary.json`
 
 ### WPRelease
 
@@ -181,7 +164,6 @@ Release ◄───────────────► WPVersionStats
   ▼                          ▼
 ReleaseContributorAggregates   WPVersionContributorAggregates
 
-TimeSeriesPoint ◄── derived from ── Release
 Summary ◄── aggregated from ── Release[]
 ```
 

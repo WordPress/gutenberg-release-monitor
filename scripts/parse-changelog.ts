@@ -1,6 +1,6 @@
 /**
  * Changelog parser script for Gutenberg releases.
- * Fetches releases from GitHub API, parses changelogs, and outputs releases.json.
+ * Fetches releases from GitHub API, parses changelogs, and outputs gb-releases.json.
  *
  * Outputs NormalizedRelease format for UI consumption.
  *
@@ -23,7 +23,7 @@ import {
   getMinorVersion,
   isPatchRelease,
 } from './utils/github-api.js';
-import { parseRelease, parseContributors } from './utils/changelog-parser.js';
+import { parseRelease } from './utils/changelog-parser.js';
 import type { ParseArgs } from './utils/types.js';
 import type { Release } from './types.js';
 import type { NormalizedRelease } from '../src/data/normalized.js';
@@ -47,7 +47,7 @@ function getArgs(): ParseArgs {
       version: { type: 'string', short: 'v' },
       from: { type: 'string', short: 'f' },
       to: { type: 'string', short: 't' },
-      output: { type: 'string', short: 'o', default: 'public/data/releases.json' },
+      output: { type: 'string', short: 'o', default: 'public/data/gb-releases.json' },
       verbose: { type: 'boolean', default: false },
     },
   });
@@ -260,7 +260,7 @@ function mergeReleases(existing: Release[], newReleases: Release[]): Release[] {
 
 async function main() {
   const args = getArgs();
-  const outputPath = args.output ?? 'data/releases.json';
+  const outputPath = args.output ?? 'data/gb-releases.json';
 
   console.log('Gutenberg Release Parser');
   console.log('========================');
@@ -343,38 +343,6 @@ async function main() {
         ? `\nWrote ${normalizedReleases.length} releases to ${outputPath}`
         : `\nNo changes to ${outputPath} (${normalizedReleases.length} releases)`
     );
-
-    // Calculate unique contributors across all fetched releases
-    console.log('\nCalculating unique contributors...');
-    const allContributors = new Set<string>();
-    for (const ghRelease of releases) {
-      const { contributorsList, newContributorsList } = parseContributors(ghRelease.body || '');
-      for (const c of contributorsList) allContributors.add(c);
-      for (const c of newContributorsList) allContributors.add(c);
-    }
-
-    // Write unique contributors count to a separate file (only if count changed)
-    const contributorsPath = dirname(outputPath) + '/contributors-meta.json';
-    let existingContributorsMeta: { uniqueCount?: number; calculatedAt?: string } = {};
-    if (existsSync(contributorsPath)) {
-      try {
-        existingContributorsMeta = JSON.parse(readFileSync(contributorsPath, 'utf-8'));
-      } catch {
-        // If parse fails, treat as empty
-      }
-    }
-
-    const countChanged = existingContributorsMeta.uniqueCount !== allContributors.size;
-    if (countChanged) {
-      const contributorsData = {
-        uniqueCount: allContributors.size,
-        calculatedAt: new Date().toISOString(),
-      };
-      writeJsonIfChanged(contributorsPath, contributorsData);
-      console.log(`  Found ${allContributors.size} unique contributors`);
-    } else {
-      console.log(`  Found ${allContributors.size} unique contributors (unchanged)`);
-    }
 
     // Summary - compute from categories
     const totalPRs = aggregatedReleases.reduce((sum, r) => sum + r.totalPRs, 0);

@@ -91,8 +91,6 @@ export interface ProjectInfo {
 export interface DataSources {
   /** Path to summary.json */
   summary: string;
-  /** Path to time-series.json */
-  timeSeries: string;
 }
 
 /**

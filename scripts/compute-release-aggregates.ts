@@ -2,7 +2,7 @@
  * Compute per-release and per-WP-version contributor aggregates without storing individual data.
  *
  * This script fetches WP.org profiles on-the-fly, computes aggregates, and
- * stores them directly in releases.json and by-wp-version.json.
+ * stores them directly in gb-releases.json and wp-cycles.json.
  * No individual contributor data is persisted.
  *
  * This is the privacy-first approach: only aggregate counts are stored,
@@ -297,7 +297,7 @@ async function main(): Promise< void > {
 	const args = getArgs();
 
 	// Load releases data
-	const releasesPath = 'public/data/releases.json';
+	const releasesPath = 'public/data/gb-releases.json';
 	if ( ! existsSync( releasesPath ) ) {
 		console.error( `\n❌ Releases file not found: ${ releasesPath }` );
 		process.exit( 1 );
@@ -479,7 +479,7 @@ async function main(): Promise< void > {
 
 	// Compute WP-level aggregates
 	let wpVersionData: NormalizedRelease[] = [];
-	const wpStatsPath = 'public/data/by-wp-version.json';
+	const wpStatsPath = 'public/data/wp-cycles.json';
 	if ( targetWPVersions.length > 0 ) {
 		console.log( '🔄 Computing WP version aggregates...' );
 
@@ -513,7 +513,7 @@ async function main(): Promise< void > {
 					countryBreakdown: wpAggregates.countryBreakdown,
 				};
 			} else {
-				console.warn( `   ⚠️  WP ${ wpVersion } not found in by-wp-version.json` );
+				console.warn( `   ⚠️  WP ${ wpVersion } not found in wp-cycles.json` );
 			}
 
 			console.log(
@@ -546,14 +546,14 @@ async function main(): Promise< void > {
 	if ( args.dryRun ) {
 		console.log( '\n🔍 Dry run - no changes written' );
 	} else {
-		// Write releases.json in normalized format
+		// Write gb-releases.json in normalized format
 		if ( gbProcessed > 0 ) {
 			const normalizedReleases = releases.map( toNormalizedRelease );
 			const written = writeJsonIfChanged( releasesPath, normalizedReleases );
 			console.log( written ? `\n✅ Updated ${ releasesPath }` : `\n✅ No changes to ${ releasesPath }` );
 		}
 
-		// Write by-wp-version.json (already in normalized format)
+		// Write wp-cycles.json (already in normalized format)
 		if ( targetWPVersions.length > 0 && wpVersionData.length > 0 ) {
 			const written = writeJsonIfChanged( wpStatsPath, wpVersionData );
 			console.log( written ? `✅ Updated ${ wpStatsPath }` : `✅ No changes to ${ wpStatsPath }` );

@@ -5,14 +5,14 @@
 Data flows through a series of scripts that fetch, parse, and aggregate release information.
 
 ```
-GitHub API ──► parse-changelog.ts ──► releases.json
+GitHub API ──► parse-changelog.ts ──► gb-releases.json
                                            │
                                            ▼
                                     aggregate-data.ts
                                            │
-                    ┌──────────────────────┼──────────────────────┐
-                    ▼                      ▼                      ▼
-             summary.json       by-wp-version.json        time-series.json
+                                ┌──────────┴──────────┐
+                                ▼                     ▼
+                          summary.json          wp-cycles.json
 ```
 
 ## Scripts
@@ -27,7 +27,7 @@ npm run parse
 
 **Input**: GitHub API (releases endpoint)
 
-**Output**: `public/data/releases.json`
+**Output**: `public/data/gb-releases.json`
 
 **Process**:
 1. Fetch all releases from `WordPress/gutenberg` repository
@@ -44,12 +44,11 @@ Computes aggregated statistics from parsed releases.
 npm run aggregate
 ```
 
-**Input**: `public/data/releases.json`
+**Input**: `public/data/gb-releases.json`
 
 **Output**:
-- `public/data/aggregated/summary.json` - Overall statistics
-- `public/data/aggregated/by-wp-version.json` - Per-WP-version aggregates
-- `public/data/aggregated/time-series.json` - Chart data points
+- `public/data/summary.json` - Overall statistics
+- `public/data/wp-cycles.json` - Per-WP-version aggregates
 
 **Computed Metrics**:
 - Total PRs, contributors, new contributors per WP cycle
@@ -123,7 +122,7 @@ Workflow options:
 
 ## Data Files
 
-### releases.json
+### gb-releases.json
 
 Array of `Release` objects with:
 - Version info (`gbVersion`, `wpVersion`, `date`)

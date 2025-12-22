@@ -45,6 +45,42 @@ const CONTRIBUTORS_SECTION_REGEX = /^##\s+Contributors/i;
 const FIRST_TIME_CONTRIBUTORS_REGEX = /^##\s+First[- ]time\s+[Cc]ontributors/i;
 
 /**
+ * Regex to match PR links in HTML format (pull/12345).
+ */
+const HTML_PR_LINK_REGEX = /pull\/(\d+)/g;
+
+/**
+ * Parse HTML-formatted changelog (v5.x releases).
+ * Handles both pure HTML (<h2>) and WordPress block markup (<!-- wp:heading -->).
+ */
+function parseHtmlChangelog(body: string): {
+  categories: Record<string, number>;
+  totalPRs: number;
+} {
+  const categories: Record<string, number> = {};
+
+  // Split by <h2> headers to find sections
+  const sections = body.split(/<h2>/i);
+
+  for (const section of sections) {
+    // Extract category name from content before </h2>
+    const headerMatch = section.match(/^([^<]+)<\/h2>/i);
+    if (!headerMatch) continue;
+
+    const category = headerMatch[1].trim();
+
+    // Count PR links in this section (pull/12345 format)
+    const prMatches = section.match(HTML_PR_LINK_REGEX) || [];
+    if (prMatches.length > 0) {
+      categories[category] = prMatches.length;
+    }
+  }
+
+  const totalPRs = Object.values(categories).reduce((sum, n) => sum + n, 0);
+  return { categories, totalPRs };
+}
+
+/**
  * Count PR references in a text block.
  * Supports multiple changelog formats:
  * - Modern (v8+): ([12345](url)) at end of line
@@ -86,6 +122,12 @@ export function parseModernChangelog(body: string): {
 } {
   // Normalize line endings (GitHub API returns \r\n)
   const normalizedBody = body.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+
+  // Detect HTML format (v5.x releases) - delegate to specialized parser
+  if (normalizedBody.includes('<h2>') && normalizedBody.includes('<ul>')) {
+    return parseHtmlChangelog(normalizedBody);
+  }
+
   const lines = normalizedBody.split('\n');
   const categories: Record<string, number> = {};
 
@@ -107,14 +149,20 @@ export function parseModernChangelog(body: string): {
       continue;
     }
 
-    // Stop at contributors section
+    // Stop at contributors section - but only if we've already parsed changelog content
+    // This handles cases where Contributors appears before Changelog (e.g., 15.8.0)
     if (CONTRIBUTORS_SECTION_REGEX.test(line) || FIRST_TIME_CONTRIBUTORS_REGEX.test(line)) {
-      // Save last category before exiting
-      if (currentCategory && currentCategoryContent) {
-        const count = countPRs(currentCategoryContent);
-        categories[currentCategory] = count;
+      const hasContent = Object.keys(categories).length > 0 || (currentCategory && currentCategoryContent);
+      if (hasContent) {
+        // Save last category before exiting
+        if (currentCategory && currentCategoryContent) {
+          const count = countPRs(currentCategoryContent);
+          categories[currentCategory] = count;
+        }
+        break;
       }
-      break;
+      // Otherwise, Contributors is before Changelog - skip it
+      continue;
     }
 
     if (!inChangelog) continue;
@@ -160,6 +208,68 @@ export function parseModernChangelog(body: string): {
     const uncategorizedPRs = countPRs(uncategorizedContent);
     if (uncategorizedPRs > 0) {
       categories['Uncategorized'] = uncategorizedPRs;
+    }
+  }
+
+  // Check for RC sections (format: = X.Y.Z-rc.N =) - these contain the main changelog
+  // This handles releases like 16.8.0, 17.2.0, 17.3.0 where the main changelog is in RC sections
+  // Some releases have multiple RC sections (e.g., 16.8.0 has rc.2 and rc.1)
+  const rcMatches = [...normalizedBody.matchAll(/^= \d+\.\d+\.\d+-rc\.\d+ =/gm)];
+  for (const rcMatch of rcMatches) {
+    const rcStart = rcMatch.index!;
+    // Find the end of this RC section (next RC section or end of body)
+    const nextRcIndex = rcMatches.find((m) => m.index! > rcStart)?.index;
+    const rcBody = nextRcIndex
+      ? normalizedBody.slice(rcStart, nextRcIndex)
+      : normalizedBody.slice(rcStart);
+
+    // Parse this RC section
+    const rcLines = rcBody.split('\n');
+    let rcInChangelog = false;
+    let rcCurrentCategory = '';
+    let rcCurrentCategoryContent = '';
+
+    for (const line of rcLines) {
+      if (line.match(/^##\s+Changelog/i)) {
+        rcInChangelog = true;
+        continue;
+      }
+
+      // Stop at contributors section in RC
+      if (CONTRIBUTORS_SECTION_REGEX.test(line) || FIRST_TIME_CONTRIBUTORS_REGEX.test(line)) {
+        if (rcCurrentCategory && rcCurrentCategoryContent) {
+          const count = countPRs(rcCurrentCategoryContent);
+          categories[rcCurrentCategory] = (categories[rcCurrentCategory] || 0) + count;
+        }
+        break;
+      }
+
+      if (!rcInChangelog) continue;
+
+      const categoryMatch = line.match(CATEGORY_HEADER_REGEX);
+      if (categoryMatch) {
+        if (rcCurrentCategory && rcCurrentCategoryContent) {
+          const count = countPRs(rcCurrentCategoryContent);
+          categories[rcCurrentCategory] = (categories[rcCurrentCategory] || 0) + count;
+        }
+        rcCurrentCategory = categoryMatch[1].trim();
+        rcCurrentCategoryContent = '';
+        continue;
+      }
+
+      if (SUBCATEGORY_HEADER_REGEX.test(line)) {
+        continue;
+      }
+
+      if (rcCurrentCategory) {
+        rcCurrentCategoryContent += line + '\n';
+      }
+    }
+
+    // Handle last category from this RC section
+    if (rcCurrentCategory && rcCurrentCategoryContent) {
+      const count = countPRs(rcCurrentCategoryContent);
+      categories[rcCurrentCategory] = (categories[rcCurrentCategory] || 0) + count;
     }
   }
 

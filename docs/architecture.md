@@ -23,12 +23,10 @@
             ▼                            ▼
 ┌─────────────────────────────────────────────────────────────────┐
 │                    JSON Data Files                               │
-│  ┌──────────────┐  ┌──────────────────────────────────────┐    │
-│  │ releases.json│  │ aggregated/                          │    │
-│  │              │  │   ├── summary.json                   │    │
-│  │              │  │   ├── by-wp-version.json             │    │
-│  │              │  │   └── time-series.json               │    │
-│  └──────────────┘  └──────────────────────────────────────┘    │
+│  ┌────────────────┐  ┌──────────────────────────────────┐      │
+│  │gb-releases.json│  │ summary.json                     │      │
+│  │                │  │ wp-cycles.json                   │      │
+│  └────────────────┘  └──────────────────────────────────┘      │
 └─────────────────────────────────────────────────────────────────┘
             │
             ▼
@@ -64,10 +62,8 @@ Custom hooks fetch and cache JSON data:
 
 | Hook | Data Source | Purpose |
 |------|-------------|---------|
-| `useReleases()` | releases.json | All parsed GB releases |
-| `useSummary()` | aggregated/summary.json | Overall statistics |
-| `useWPVersionStats()` | aggregated/by-wp-version.json | Per-WP-version aggregates |
-| `useTimeSeries()` | aggregated/time-series.json | Chart data points |
+| `useTabData()` | gb-releases.json / wp-cycles.json | Tab-specific release data |
+| `useSummary()` | summary.json | Overall statistics |
 
 ### State Management
 
@@ -158,8 +154,8 @@ src/
     └── categories.ts    # Category helpers
 
 scripts/
-├── parse-changelog.ts   # GitHub → releases.json
-├── aggregate-data.ts    # releases → aggregated/
+├── parse-changelog.ts   # GitHub → gb-releases.json
+├── aggregate-data.ts    # gb-releases → summary + wp-cycles
 ├── compute-release-aggregates.ts  # Contributor stats
 ├── build-username-mapping.ts
 └── utils/
@@ -173,12 +169,10 @@ scripts/
     └── file-utils.ts
 
 public/data/
-├── releases.json        # Parsed release data
+├── gb-releases.json     # Parsed release data
+├── wp-cycles.json       # Per-WP-version aggregates
+├── summary.json         # Overall statistics
 ├── wp-schedule.json     # WP release dates
 ├── category-config.json # Category definitions
-├── username-mapping.json
-└── aggregated/
-    ├── summary.json
-    ├── by-wp-version.json
-    └── time-series.json
+└── username-mapping.json
 ```

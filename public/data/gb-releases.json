@@ -5746,36 +5746,30 @@
     "version": "17.3",
     "displayLabel": "Gutenberg 17.3",
     "isAggregated": false,
-    "totalPRs": 4,
-    "contributors": 4,
+    "totalPRs": 169,
+    "contributors": 2,
     "newContributors": 0,
     "hasContributorData": true,
-    "avgPRs": 4,
-    "avgContributors": 4,
+    "avgPRs": 169,
+    "avgContributors": 2,
     "avgNewContributors": 0,
     "rawCategories": {
-      "Bug Fixes": 4
-    },
-    "contributorAggregates": {
-      "sponsorBreakdown": {
-        "Automattic": 3,
-        "Unknown": 1
-      },
-      "countryBreakdown": {
-        "Switzerland": 1,
-        "Australia": 1,
-        "New Zealand": 1,
-        "Unknown": 1
-      }
+      "Bug Fixes": 40,
+      "Enhancements": 28,
+      "Accessibility": 7,
+      "Performance": 16,
+      "Experiments": 19,
+      "Documentation": 15,
+      "Code Quality": 24,
+      "Tools": 10,
+      "Copy": 10
     },
     "date": "2023-12-20",
     "memberOf": "6.5",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v17.3.0",
     "contributorsList": [
       "fullofcaffeine",
-      "talldan",
-      "glendaviesnz",
-      "ellatrix"
+      "talldan"
     ],
     "newContributorsList": []
   },
@@ -5784,31 +5778,26 @@
     "version": "17.2",
     "displayLabel": "Gutenberg 17.2",
     "isAggregated": false,
-    "totalPRs": 9,
-    "contributors": 8,
+    "totalPRs": 173,
+    "contributors": 4,
     "newContributors": 0,
     "hasContributorData": true,
-    "avgPRs": 9,
-    "avgContributors": 8,
+    "avgPRs": 173,
+    "avgContributors": 4,
     "avgNewContributors": 0,
     "rawCategories": {
-      "Bug Fixes": 6,
-      "Documentation": 2,
-      "Tools": 1
-    },
-    "contributorAggregates": {
-      "sponsorBreakdown": {
-        "Automattic": 6,
-        "Unknown": 2
-      },
-      "countryBreakdown": {
-        "Australia": 2,
-        "Spain": 2,
-        "Chile": 1,
-        "New Zealand": 1,
-        "Switzerland": 1,
-        "Portugal": 1
-      }
+      "Bug Fixes": 34,
+      "Documentation": 32,
+      "Tools": 14,
+      "Features": 1,
+      "Enhancements": 36,
+      "New APIs": 2,
+      "Accessibility": 6,
+      "Performance": 3,
+      "Experiments": 13,
+      "Code Quality": 19,
+      "Security": 1,
+      "Various": 12
     },
     "date": "2023-12-06",
     "memberOf": "6.5",
@@ -5817,11 +5806,7 @@
       "andrewserong",
       "darerodz",
       "luisherranz",
-      "vcanales",
-      "glendaviesnz",
-      "talldan",
-      "fullofcaffeine",
-      "jorgefilipecosta"
+      "vcanales"
     ],
     "newContributorsList": []
   },
@@ -6211,38 +6196,32 @@
     "version": "16.8",
     "displayLabel": "Gutenberg 16.8",
     "isAggregated": false,
-    "totalPRs": 4,
-    "contributors": 3,
+    "totalPRs": 155,
+    "contributors": 2,
     "newContributors": 0,
     "hasContributorData": true,
-    "avgPRs": 4,
-    "avgContributors": 3,
+    "avgPRs": 155,
+    "avgContributors": 2,
     "avgNewContributors": 0,
     "rawCategories": {
-      "Tools": 1,
-      "Various": 1,
-      "Enhancements": 1,
-      "Code Quality": 1
-    },
-    "contributorAggregates": {
-      "sponsorBreakdown": {
-        "hamworks": 1,
-        "Automattic": 1,
-        "Unknown": 1
-      },
-      "countryBreakdown": {
-        "Switzerland": 1,
-        "Japan": 1,
-        "Portugal": 1
-      }
+      "Tools": 23,
+      "Various": 19,
+      "Features": 2,
+      "Enhancements": 28,
+      "Bug Fixes": 35,
+      "Accessibility": 7,
+      "Performance": 3,
+      "Experiments": 2,
+      "Documentation": 11,
+      "Code Quality": 24,
+      "Security": 1
     },
     "date": "2023-10-11",
     "memberOf": "6.5",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v16.8.0",
     "contributorsList": [
       "fullofcaffeine",
-      "torounit",
-      "jorgefilipecosta"
+      "torounit"
     ],
     "newContributorsList": []
   },
@@ -7473,19 +7452,22 @@
     "version": "15.8",
     "displayLabel": "Gutenberg 15.8",
     "isAggregated": false,
-    "totalPRs": 1,
+    "totalPRs": 178,
     "contributors": 0,
     "newContributors": 0,
     "hasContributorData": false,
-    "avgPRs": 1,
+    "avgPRs": 178,
     "avgContributors": 0,
     "avgNewContributors": 0,
     "rawCategories": {
-      "Uncategorized": 1
-    },
-    "contributorAggregates": {
-      "sponsorBreakdown": {},
-      "countryBreakdown": {}
+      "Features": 3,
+      "Enhancements": 43,
+      "Bug Fixes": 47,
+      "Performance": 1,
+      "Experiments": 10,
+      "Documentation": 16,
+      "Code Quality": 33,
+      "Tools": 25
     },
     "date": "2023-05-17",
     "memberOf": "6.3",
@@ -13544,17 +13526,19 @@
     "version": "5.4",
     "displayLabel": "Gutenberg 5.4",
     "isAggregated": false,
-    "totalPRs": 0,
+    "totalPRs": 88,
     "contributors": 0,
     "newContributors": 0,
     "hasContributorData": false,
-    "avgPRs": 0,
+    "avgPRs": 88,
     "avgContributors": 0,
     "avgNewContributors": 0,
-    "rawCategories": {},
-    "contributorAggregates": {
-      "sponsorBreakdown": {},
-      "countryBreakdown": {}
+    "rawCategories": {
+      "Features": 3,
+      "Enhancements": 9,
+      "Bug Fixes": 24,
+      "Documentation": 21,
+      "Various": 31
     },
     "date": "2019-04-03",
     "memberOf": "5.2",
@@ -13593,17 +13577,20 @@
     "version": "5.2",
     "displayLabel": "Gutenberg 5.2",
     "isAggregated": false,
-    "totalPRs": 0,
+    "totalPRs": 79,
     "contributors": 0,
     "newContributors": 0,
     "hasContributorData": false,
-    "avgPRs": 0,
+    "avgPRs": 79,
     "avgContributors": 0,
     "avgNewContributors": 0,
-    "rawCategories": {},
-    "contributorAggregates": {
-      "sponsorBreakdown": {},
-      "countryBreakdown": {}
+    "rawCategories": {
+      "Enhancements": 9,
+      "Bug Fixes": 14,
+      "Documentation": 12,
+      "Various": 12,
+      "Chore": 24,
+      "Mobile": 8
     },
     "date": "2019-03-06",
     "memberOf": "5.2",
@@ -13616,19 +13603,21 @@
     "version": "5.1",
     "displayLabel": "Gutenberg 5.1",
     "isAggregated": false,
-    "totalPRs": 1,
+    "totalPRs": 107,
     "contributors": 0,
     "newContributors": 0,
     "hasContributorData": false,
-    "avgPRs": 1,
+    "avgPRs": 107,
     "avgContributors": 0,
     "avgNewContributors": 0,
     "rawCategories": {
-      "Uncategorized": 1
-    },
-    "contributorAggregates": {
-      "sponsorBreakdown": {},
-      "countryBreakdown": {}
+      "Features": 3,
+      "Enhancements": 24,
+      "Bug Fixes": 22,
+      "Various": 11,
+      "Chore": 17,
+      "Documentation": 20,
+      "Mobile": 10
     },
     "date": "2019-02-20",
     "memberOf": "5.2",
