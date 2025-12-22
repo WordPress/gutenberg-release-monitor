@@ -2,8 +2,8 @@ name: Refresh Release Data
 
 on:
   schedule:
-    # Run weekly on Mondays at 9:00 UTC (after GB releases)
-    - cron: '0 9 * * 1'
+    # Run weekly on Thursdays at 9:00 UTC (after GB releases on Wednesday)
+    - cron: '0 9 * * 4'
   workflow_dispatch:
     inputs:
       from_version:
@@ -58,6 +58,8 @@ jobs:
 
       - name: Compute contributor aggregates
         if: ${{ github.event.inputs.contributor_aggregates != 'skip' }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           if [ "${{ github.event.inputs.contributor_aggregates }}" == "force-all" ]; then
             npm run compute-aggregates -- --force --delay 300
