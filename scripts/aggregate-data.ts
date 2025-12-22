@@ -17,7 +17,7 @@ import { loadCategoryConfig, getAggregatedPRs } from './utils/category-utils.js'
 import { writeJsonIfChanged } from './utils/file-utils.js';
 
 const RELEASES_PATH = 'public/data/releases.json';
-const WP_SCHEDULE_PATH = 'public/data/wp-schedule.json';
+const WP_SCHEDULE_PATH = 'scripts/data/wp-schedule.json';
 const OUTPUT_DIR = 'public/data';
 
 /**
@@ -209,8 +209,26 @@ function generateWPVersionStats(releases: Release[]): NormalizedRelease[] {
       wpReleases.reduce((sum, r) => sum + r.newContributors, 0) / releaseCount
     );
 
-    // Get contributor aggregates if any release has them
-    const releaseWithAggregates = wpReleases.find(r => r.contributorAggregates);
+    // Aggregate sponsor and country breakdowns from all releases
+    const sponsorBreakdown: Record<string, number> = {};
+    const countryBreakdown: Record<string, number> = {};
+    let hasAggregates = false;
+
+    for (const release of wpReleases) {
+      if (release.contributorAggregates) {
+        hasAggregates = true;
+        for (const [sponsor, count] of Object.entries(release.contributorAggregates.sponsorBreakdown || {})) {
+          sponsorBreakdown[sponsor] = (sponsorBreakdown[sponsor] || 0) + count;
+        }
+        for (const [country, count] of Object.entries(release.contributorAggregates.countryBreakdown || {})) {
+          countryBreakdown[country] = (countryBreakdown[country] || 0) + count;
+        }
+      }
+    }
+
+    // Sort breakdowns by count (descending)
+    const sortByValue = (obj: Record<string, number>) =>
+      Object.fromEntries(Object.entries(obj).sort((a, b) => b[1] - a[1]));
 
     stats.push({
       id: wpVersion,
@@ -225,9 +243,9 @@ function generateWPVersionStats(releases: Release[]): NormalizedRelease[] {
       avgContributors: avgContributorsPerRelease,
       avgNewContributors: avgNewContributorsPerRelease,
       categoryTotals,
-      contributorAggregates: releaseWithAggregates?.contributorAggregates ? {
-        sponsorBreakdown: {},  // Will be computed by compute-release-aggregates.ts
-        countryBreakdown: {},
+      contributorAggregates: hasAggregates ? {
+        sponsorBreakdown: sortByValue(sponsorBreakdown),
+        countryBreakdown: sortByValue(countryBreakdown),
       } : undefined,
       groupedCount: releaseCount,
       groupedRange: gbVersionRange,

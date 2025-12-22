@@ -1,7 +1,7 @@
 /**
  * Data fetching hooks for release statistics.
  * Uses React Query for caching and automatic refetching.
- * Paths are read from project-config.json for decoupled configuration.
+ * Paths are read from config/project.json for decoupled configuration.
  * @module hooks/useReleases
  */
 
@@ -9,15 +9,14 @@ import { useQuery } from '@tanstack/react-query';
 import { useConfig, useTabConfig } from '../config';
 import type { NormalizedRelease, SourceSummary } from '../data/normalized';
 
-const BASE_URL = import.meta.env.BASE_URL;
-
 /**
  * Generic data fetcher for JSON endpoints.
  * @param path - Relative path from data/ directory
  * @param errorMessage - Error message if fetch fails
  */
 async function fetchData<T>(path: string, errorMessage: string): Promise<T> {
-  const response = await fetch(`${BASE_URL}data/${path}`);
+  // Use relative path - resolves correctly from current page location
+  const response = await fetch(`data/${path}`);
   if (!response.ok) {
     throw new Error(errorMessage);
   }

@@ -24,7 +24,7 @@ export interface CategoryAggregation {
 }
 
 /**
- * Category configuration loaded from category-config.json.
+ * Category configuration loaded from config/categories.json.
  */
 export interface CategoryConfig {
   /** List of category aggregation definitions */
@@ -44,7 +44,7 @@ export function loadCategoryConfig(): CategoryConfig {
     return cachedConfig;
   }
 
-  const content = readFileSync('public/data/category-config.json', 'utf-8');
+  const content = readFileSync('public/config/categories.json', 'utf-8');
   cachedConfig = JSON.parse(content);
   return cachedConfig!;
 }

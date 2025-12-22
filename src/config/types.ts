@@ -1,6 +1,6 @@
 /**
  * Configuration types for the project.
- * These types define the structure of project-config.json.
+ * These types define the structure of config/project.json.
  * @module config/types
  */
 

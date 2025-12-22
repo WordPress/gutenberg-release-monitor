@@ -1,6 +1,6 @@
 /**
  * Configuration context provider and hooks.
- * Loads project-config.json and provides it to the component tree.
+ * Loads config/project.json and provides it to the component tree.
  * @module config/ConfigProvider
  */
 
@@ -17,7 +17,8 @@ const ConfigContext = createContext<ProjectConfig | null>(null);
  * Fetch the project configuration from the JSON file.
  */
 async function fetchConfig(): Promise<ProjectConfig> {
-  const response = await fetch('data/project-config.json');
+  // Use relative path - resolves correctly from current page location
+  const response = await fetch('config/project.json');
   if (!response.ok) {
     throw new Error(`Failed to load config: ${response.status}`);
   }

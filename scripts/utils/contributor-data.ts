@@ -42,7 +42,7 @@ export function delay( ms: number ): Promise< void > {
  * Load the username mapping file if it exists.
  */
 export function loadUsernameMapping(): UsernameMapping | null {
-	const mappingPath = 'public/data/username-mapping.json';
+	const mappingPath = 'scripts/data/username-mapping.json';
 	if ( ! existsSync( mappingPath ) ) {
 		return null;
 	}

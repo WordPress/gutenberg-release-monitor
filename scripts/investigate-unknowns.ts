@@ -22,7 +22,7 @@ function delay(ms: number): Promise<void> {
 }
 
 function loadUsernameMapping(): UsernameMapping | null {
-	const mappingPath = 'public/data/username-mapping.json';
+	const mappingPath = 'scripts/data/username-mapping.json';
 	if (!existsSync(mappingPath)) return null;
 	try {
 		return JSON.parse(readFileSync(mappingPath, 'utf-8'));
@@ -32,7 +32,7 @@ function loadUsernameMapping(): UsernameMapping | null {
 }
 
 function loadWPSchedule(): WPRelease[] {
-	const schedulePath = 'public/data/wp-schedule.json';
+	const schedulePath = 'scripts/data/wp-schedule.json';
 	if (!existsSync(schedulePath)) return [];
 	try {
 		return JSON.parse(readFileSync(schedulePath, 'utf-8'));

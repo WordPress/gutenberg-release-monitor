@@ -152,7 +152,7 @@ function compareGbVersions( a: string, b: string ): number {
  * Load WP schedule to get GB version ranges for WP versions.
  */
 function loadWPSchedule(): WPRelease[] {
-	const schedulePath = 'public/data/wp-schedule.json';
+	const schedulePath = 'scripts/data/wp-schedule.json';
 	if ( ! existsSync( schedulePath ) ) {
 		console.warn( '⚠️  WP schedule file not found' );
 		return [];

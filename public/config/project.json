@@ -22,15 +22,15 @@
       "showReferenceLines": false,
       "labels": {
         "averagesToggle": "Per Release",
-        "statsHeader": "Averages per release",
-        "childItem": "release",
+        "statsHeader": "Averages per Gutenberg release",
+        "childItem": "Gutenberg release",
         "versionColumn": "Version",
         "childVersionColumn": "Child Versions",
         "parentVersionColumn": null,
         "parentVersionPrefix": null,
         "itemContext": null,
         "specialMarkerTooltip": null,
-        "chartSecondaryLabel": "Releases included"
+        "chartSecondaryLabel": "Gutenberg releases included"
       }
     },
     {
@@ -56,35 +56,10 @@
         "specialMarkerTooltip": "Last version before parent release freeze",
         "chartSecondaryLabel": null
       }
-    },
-    {
-      "id": "by-year",
-      "title": "By Year",
-      "dataEndpoint": "by-year.json",
-      "isAggregated": true,
-      "versionPrefix": "",
-      "supportedViewModes": ["averages", "totals", "distribution", "sponsors", "countries"],
-      "tableCardClass": "aggregated-table-card",
-      "urlParamKey": "year",
-      "defaultItemSummaryField": "currentYear",
-      "showReferenceLines": false,
-      "labels": {
-        "averagesToggle": "Per Release",
-        "statsHeader": "Averages per release",
-        "childItem": "release",
-        "versionColumn": "Year",
-        "childVersionColumn": "Versions",
-        "parentVersionColumn": null,
-        "parentVersionPrefix": null,
-        "itemContext": null,
-        "specialMarkerTooltip": null,
-        "chartSecondaryLabel": "Releases included"
-      }
     }
   ],
   "dataSources": {
-    "summary": "summary.json",
-    "timeSeries": "time-series.json"
+    "summary": "summary.json"
   },
   "defaults": {
     "tab": "by-wp-version",

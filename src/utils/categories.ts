@@ -4,10 +4,8 @@
  * compute derived values on-the-fly.
  */
 
-const BASE_URL = import.meta.env.BASE_URL;
-
 /**
- * Category aggregation configuration loaded from category-config.json.
+ * Category aggregation configuration loaded from categories.json.
  */
 /** Category label variants */
 export interface CategoryLabels {
@@ -31,7 +29,7 @@ export interface CategoryAggregation {
 }
 
 /**
- * Category configuration loaded from category-config.json.
+ * Category configuration loaded from categories.json.
  */
 export interface CategoryConfig {
   /** List of category aggregation definitions */
@@ -52,7 +50,8 @@ export async function loadCategoryConfig(): Promise<CategoryConfig> {
     return cachedConfig;
   }
 
-  const response = await fetch(`${BASE_URL}data/category-config.json`);
+  // Use relative path - resolves correctly from current page location
+  const response = await fetch('config/categories.json');
   cachedConfig = await response.json();
   return cachedConfig!;
 }

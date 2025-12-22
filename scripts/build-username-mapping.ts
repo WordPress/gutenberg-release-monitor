@@ -33,7 +33,7 @@ function getArgs(): BuildArgs {
 			output: {
 				type: 'string',
 				short: 'o',
-				default: 'public/data/username-mapping.json',
+				default: 'scripts/data/username-mapping.json',
 			},
 		},
 	} );
