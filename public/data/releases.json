@@ -1,5 +1,119 @@
 [
   {
+    "gbVersion": "22.3.0",
+    "wpVersion": "7.0",
+    "date": "2025-12-17",
+    "isLastBeforeWPBeta": false,
+    "totalPRs": 128,
+    "categories": {
+      "Enhancements": 25,
+      "Bug Fixes": 36,
+      "Accessibility": 1,
+      "Performance": 2,
+      "Experiments": 13,
+      "Documentation": 10,
+      "Code Quality": 26,
+      "Tools": 15
+    },
+    "contributors": 43,
+    "newContributors": 4,
+    "contributorsList": [
+      "aduth",
+      "aljullu",
+      "andrewserong",
+      "annezazu",
+      "badasswp",
+      "cbravobernal",
+      "chriszarate",
+      "dhasilva",
+      "dmsnell",
+      "getdave",
+      "gigitux",
+      "huzaifaalmesbah",
+      "infinite-null",
+      "ingeniumed",
+      "jameskoster",
+      "jasmussen",
+      "jeryj",
+      "jonathanbossenger",
+      "jorgefilipecosta",
+      "jsnajdr",
+      "juanfra",
+      "lezama",
+      "mamaduka",
+      "manhphuc",
+      "mayank-tripathi32",
+      "metodiew",
+      "mikachan",
+      "mirka",
+      "ntsekouras",
+      "oandregal",
+      "ockham",
+      "priethor",
+      "ramonjd",
+      "ryelle",
+      "scruffian",
+      "shimotmk",
+      "sirlouen",
+      "t-hamano",
+      "tellthemachines",
+      "tyxla",
+      "utsav-ladani",
+      "yogeshbhutkar",
+      "youknowriad"
+    ],
+    "newContributorsList": [
+      "badasswp",
+      "dhasilva",
+      "manhphuc",
+      "metodiew"
+    ],
+    "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v22.3.0",
+    "parsedAt": "2025-12-22T09:24:23.337Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 43,
+        "newContributors": 4
+      },
+      "sponsorBreakdown": {
+        "Automattic": 28,
+        "rtCamp": 4,
+        "Buzz Geek, LLC": 1,
+        "Self-sponsored": 1,
+        "librecoop": 1,
+        "GoDaddy": 1,
+        "yivic": 1,
+        "DevriX": 1,
+        "The Open Sea": 1,
+        "Unknown": 4
+      },
+      "countryBreakdown": {
+        "United States": 6,
+        "Spain": 6,
+        "Australia": 4,
+        "United Kingdom": 4,
+        "India": 4,
+        "Japan": 3,
+        "Bulgaria": 2,
+        "Brazil": 1,
+        "Italy": 1,
+        "Bangladesh": 1,
+        "Denmark": 1,
+        "South Africa": 1,
+        "Portugal": 1,
+        "Czechia": 1,
+        "Georgia": 1,
+        "Vietnam": 1,
+        "Greece": 1,
+        "Germany": 1,
+        "Algeria": 1,
+        "Unknown": 2
+      },
+      "aggregatedAt": "2025-12-22T09:49:37.412Z"
+    }
+  },
+  {
     "gbVersion": "22.2.0",
     "wpVersion": "7.0",
     "date": "2025-12-03",
@@ -76,7 +190,7 @@
       "xristos3490"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v22.2.0",
-    "parsedAt": "2025-12-15T09:27:48.178Z",
+    "parsedAt": "2025-12-22T09:24:23.338Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -118,7 +232,7 @@
         "Bulgaria": 1,
         "Unknown": 2
       },
-      "aggregatedAt": "2025-12-19T23:20:59.369Z"
+      "aggregatedAt": "2025-12-22T09:49:37.413Z"
     }
   },
   {
@@ -199,7 +313,7 @@
       "pranvinit"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v22.1.0",
-    "parsedAt": "2025-12-15T09:27:48.180Z",
+    "parsedAt": "2025-12-22T09:24:23.339Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -240,7 +354,7 @@
         "Algeria": 1,
         "Unknown": 6
       },
-      "aggregatedAt": "2025-12-19T23:20:59.370Z"
+      "aggregatedAt": "2025-12-22T09:49:37.415Z"
     }
   },
   {
@@ -307,7 +421,7 @@
       "joshualip-plaudit"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v22.0.0",
-    "parsedAt": "2025-12-15T09:27:48.180Z",
+    "parsedAt": "2025-12-22T09:24:23.339Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -345,7 +459,7 @@
         "Algeria": 1,
         "Unknown": 4
       },
-      "aggregatedAt": "2025-12-19T23:20:59.370Z"
+      "aggregatedAt": "2025-12-22T09:49:37.416Z"
     }
   },
   {
@@ -431,7 +545,7 @@
       "sidharthpandita1"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v21.9.0",
-    "parsedAt": "2025-12-15T09:27:48.180Z",
+    "parsedAt": "2025-12-22T09:24:23.340Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -474,7 +588,7 @@
         "Algeria": 1,
         "Unknown": 1
       },
-      "aggregatedAt": "2025-12-19T23:32:26.756Z"
+      "aggregatedAt": "2025-12-22T09:49:37.417Z"
     }
   },
   {
@@ -554,7 +668,7 @@
       "utsav-ladani"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v21.8.0",
-    "parsedAt": "2025-12-15T09:27:48.181Z",
+    "parsedAt": "2025-12-22T09:24:23.340Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -569,12 +683,13 @@
         "Cross Media Cloud": 1,
         "Self-sponsored": 1,
         "GoDaddy": 1,
+        "Evermade": 1,
         "10up": 1,
         "Roxnor": 1,
-        "Unknown": 8
+        "Unknown": 7
       },
       "countryBreakdown": {
-        "India": 10,
+        "India": 11,
         "Spain": 8,
         "Australia": 6,
         "United Kingdom": 3,
@@ -591,9 +706,9 @@
         "Greece": 1,
         "Bangladesh": 1,
         "Algeria": 1,
-        "Unknown": 4
+        "Unknown": 3
       },
-      "aggregatedAt": "2025-12-19T23:32:26.756Z"
+      "aggregatedAt": "2025-12-22T09:49:37.418Z"
     }
   },
   {
@@ -663,7 +778,7 @@
       "xavier-lc"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v21.7.0",
-    "parsedAt": "2025-12-15T09:27:48.182Z",
+    "parsedAt": "2025-12-22T09:24:23.340Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -671,7 +786,7 @@
         "newContributors": 3
       },
       "sponsorBreakdown": {
-        "Automattic": 17,
+        "Automattic": 20,
         "rtCamp": 8,
         "Earthbound": 1,
         "EMRL": 1,
@@ -679,14 +794,14 @@
         "GoDaddy": 1,
         "Google": 1,
         "WP Engine": 1,
-        "Unknown": 9
+        "Unknown": 6
       },
       "countryBreakdown": {
-        "India": 9,
+        "India": 10,
         "United States": 6,
+        "Spain": 4,
         "Australia": 3,
         "Japan": 3,
-        "Spain": 3,
         "United Kingdom": 2,
         "Morocco": 1,
         "Italy": 1,
@@ -694,10 +809,12 @@
         "Georgia": 1,
         "Greece": 1,
         "Germany": 1,
+        "New Zealand": 1,
+        "Poland": 1,
         "Switzerland": 1,
-        "Unknown": 7
+        "Unknown": 3
       },
-      "aggregatedAt": "2025-12-19T23:32:26.757Z"
+      "aggregatedAt": "2025-12-22T09:49:37.419Z"
     }
   },
   {
@@ -759,7 +876,7 @@
       "levinbaria"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v21.6.0",
-    "parsedAt": "2025-12-15T09:27:48.182Z",
+    "parsedAt": "2025-12-22T09:24:23.341Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -767,16 +884,16 @@
         "newContributors": 1
       },
       "sponsorBreakdown": {
-        "Automattic": 18,
+        "Automattic": 19,
         "rtCamp": 7,
+        "Self-sponsored": 2,
         "Emilia Capital": 1,
         "Bluehost": 1,
-        "Self-sponsored": 1,
         "Multidots Inc": 1,
         "GoDaddy": 1,
         "Google": 1,
         "WP Engine": 1,
-        "Unknown": 4
+        "Unknown": 2
       },
       "countryBreakdown": {
         "India": 10,
@@ -796,7 +913,7 @@
         "Algeria": 1,
         "Unknown": 1
       },
-      "aggregatedAt": "2025-12-19T23:32:26.757Z"
+      "aggregatedAt": "2025-12-22T09:49:37.419Z"
     }
   },
   {
@@ -851,7 +968,7 @@
       "elazzabi"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v21.5.0",
-    "parsedAt": "2025-12-15T09:27:48.182Z",
+    "parsedAt": "2025-12-22T09:24:23.341Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -859,11 +976,11 @@
         "newContributors": 1
       },
       "sponsorBreakdown": {
-        "Automattic": 13,
+        "Automattic": 15,
         "rtCamp": 7,
         "Bluehost": 1,
         "GoDaddy": 1,
-        "Unknown": 7
+        "Unknown": 5
       },
       "countryBreakdown": {
         "India": 7,
@@ -871,15 +988,16 @@
         "United Kingdom": 3,
         "Japan": 3,
         "Spain": 3,
+        "Italy": 2,
         "United States": 2,
+        "Romania": 1,
         "Morocco": 1,
-        "Italy": 1,
         "Denmark": 1,
         "Georgia": 1,
-        "Algeria": 1,
-        "Unknown": 3
+        "New Zealand": 1,
+        "Algeria": 1
       },
-      "aggregatedAt": "2025-12-19T23:32:26.757Z"
+      "aggregatedAt": "2025-12-22T09:49:37.420Z"
     }
   },
   {
@@ -960,7 +1078,7 @@
       "sahil1617"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v21.4.0",
-    "parsedAt": "2025-12-15T09:27:48.182Z",
+    "parsedAt": "2025-12-22T09:24:23.341Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -968,21 +1086,23 @@
         "newContributors": 8
       },
       "sponsorBreakdown": {
-        "Automattic": 17,
+        "Automattic": 21,
         "rtCamp": 14,
         "Bluehost": 1,
+        "Self-sponsored": 1,
         "GoDaddy": 1,
         "mgn": 1,
+        "DW Innovation": 1,
         "WP Engine": 1,
-        "Unknown": 13
+        "Unknown": 7
       },
       "countryBreakdown": {
-        "India": 16,
+        "India": 18,
         "Australia": 4,
         "United States": 4,
         "Japan": 4,
         "United Kingdom": 3,
-        "Spain": 2,
+        "Spain": 3,
         "Poland": 1,
         "Taiwan": 1,
         "Portugal": 1,
@@ -990,10 +1110,11 @@
         "Czechia": 1,
         "Georgia": 1,
         "Germany": 1,
+        "New Zealand": 1,
         "Canada": 1,
-        "Unknown": 7
+        "Unknown": 3
       },
-      "aggregatedAt": "2025-12-19T23:32:26.757Z"
+      "aggregatedAt": "2025-12-22T09:49:37.420Z"
     }
   },
   {
@@ -1052,7 +1173,7 @@
     ],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v21.3.0",
-    "parsedAt": "2025-12-15T09:27:48.183Z",
+    "parsedAt": "2025-12-22T09:24:23.341Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -1060,30 +1181,31 @@
         "newContributors": 0
       },
       "sponsorBreakdown": {
-        "Automattic": 16,
+        "Automattic": 18,
         "rtCamp": 8,
         "Yoast": 1,
         "GoDaddy": 1,
+        "Evermade": 1,
         "The Open Sea": 1,
-        "Unknown": 7
+        "Unknown": 4
       },
       "countryBreakdown": {
-        "India": 9,
+        "India": 11,
         "United States": 4,
         "Spain": 4,
         "Australia": 2,
+        "Italy": 2,
         "Japan": 2,
         "Sweden": 1,
         "Taiwan": 1,
         "United Kingdom": 1,
-        "Italy": 1,
         "Czechia": 1,
         "Georgia": 1,
         "Finland": 1,
         "Algeria": 1,
-        "Unknown": 5
+        "Unknown": 2
       },
-      "aggregatedAt": "2025-12-19T23:32:26.758Z"
+      "aggregatedAt": "2025-12-22T09:49:37.421Z"
     }
   },
   {
@@ -1139,7 +1261,7 @@
       "usersatoshi"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v21.2.0",
-    "parsedAt": "2025-12-15T09:27:48.183Z",
+    "parsedAt": "2025-12-22T09:24:23.342Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -1148,14 +1270,14 @@
       },
       "sponsorBreakdown": {
         "rtCamp": 10,
-        "Automattic": 7,
+        "Automattic": 10,
         "Make IT Easy": 1,
         "GoDaddy": 1,
         "Google": 1,
-        "Unknown": 5
+        "Unknown": 2
       },
       "countryBreakdown": {
-        "India": 9,
+        "India": 10,
         "Spain": 3,
         "Japan": 2,
         "Taiwan": 1,
@@ -1163,11 +1285,12 @@
         "Denmark": 1,
         "Croatia": 1,
         "Georgia": 1,
+        "New Zealand": 1,
         "Switzerland": 1,
         "Algeria": 1,
-        "Unknown": 4
+        "Unknown": 2
       },
-      "aggregatedAt": "2025-12-19T23:32:26.758Z"
+      "aggregatedAt": "2025-12-22T09:49:37.421Z"
     }
   },
   {
@@ -1232,7 +1355,7 @@
       "yashjawale"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v21.1.0",
-    "parsedAt": "2025-12-15T09:27:48.183Z",
+    "parsedAt": "2025-12-22T09:24:23.342Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -1242,23 +1365,24 @@
       "sponsorBreakdown": {
         "rtCamp": 15,
         "Automattic": 7,
+        "CERN": 1,
         "GoDaddy": 1,
         "Multidots Inc": 1,
         "10up": 1,
         "WP Engine": 1,
-        "Unknown": 5
+        "Unknown": 4
       },
       "countryBreakdown": {
-        "India": 14,
+        "India": 16,
         "Australia": 5,
-        "Spain": 2,
+        "Spain": 3,
         "Japan": 2,
         "Czechia": 1,
         "Georgia": 1,
         "United States": 1,
-        "Unknown": 5
+        "Unknown": 2
       },
-      "aggregatedAt": "2025-12-19T23:32:26.758Z"
+      "aggregatedAt": "2025-12-22T09:49:37.422Z"
     }
   },
   {
@@ -1313,7 +1437,7 @@
       "ravigadhiya007"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v21.0.0",
-    "parsedAt": "2025-12-15T09:27:48.183Z",
+    "parsedAt": "2025-12-22T09:24:23.342Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -1325,20 +1449,22 @@
         "Aurooba Makes": 1,
         "Automattic": 1,
         "GoDaddy": 1,
+        "Prashant Baldha": 1,
+        "Self-sponsored": 1,
         "WP Engine": 1,
-        "Unknown": 8
+        "Unknown": 6
       },
       "countryBreakdown": {
-        "India": 12,
+        "India": 14,
+        "United States": 3,
         "Canada": 2,
         "Japan": 2,
-        "United States": 2,
         "Spain": 1,
         "Georgia": 1,
         "Bangladesh": 1,
-        "Unknown": 4
+        "Unknown": 1
       },
-      "aggregatedAt": "2025-12-19T23:32:26.758Z"
+      "aggregatedAt": "2025-12-22T09:49:37.423Z"
     }
   },
   {
@@ -1381,7 +1507,7 @@
       "jasalt"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v20.9.0",
-    "parsedAt": "2025-12-15T09:27:48.184Z",
+    "parsedAt": "2025-12-22T09:24:23.342Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -1412,7 +1538,7 @@
         "United States": 1,
         "Unknown": 1
       },
-      "aggregatedAt": "2025-12-19T23:32:26.758Z"
+      "aggregatedAt": "2025-12-22T09:49:37.423Z"
     }
   },
   {
@@ -1459,7 +1585,7 @@
       "maikuolan"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v20.8.0",
-    "parsedAt": "2025-12-15T09:27:48.184Z",
+    "parsedAt": "2025-12-22T09:24:23.343Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -1469,21 +1595,23 @@
       "sponsorBreakdown": {
         "rtCamp": 9,
         "Automattic": 1,
+        "Bethink Studio": 1,
         "Human Made Ltd": 1,
+        "bigbite": 1,
         "GoDaddy": 1,
         "TeamUpdraft": 1,
-        "Unknown": 6
+        "Unknown": 4
       },
       "countryBreakdown": {
-        "India": 9,
+        "India": 10,
         "United States": 2,
         "Japan": 2,
         "Germany": 1,
         "Australia": 1,
         "Georgia": 1,
-        "Unknown": 3
+        "Unknown": 2
       },
-      "aggregatedAt": "2025-12-19T23:32:26.758Z"
+      "aggregatedAt": "2025-12-22T09:49:37.424Z"
     }
   },
   {
@@ -1530,7 +1658,7 @@
       "karthikeya-io"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v20.7.0",
-    "parsedAt": "2025-12-15T09:27:48.184Z",
+    "parsedAt": "2025-12-22T09:24:23.343Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -1546,17 +1674,16 @@
         "Unknown": 5
       },
       "countryBreakdown": {
-        "India": 10,
+        "India": 13,
         "Japan": 2,
         "Sweden": 1,
         "South Africa": 1,
         "Georgia": 1,
         "United States": 1,
         "Switzerland": 1,
-        "Germany": 1,
-        "Unknown": 3
+        "Germany": 1
       },
-      "aggregatedAt": "2025-12-19T23:32:26.758Z"
+      "aggregatedAt": "2025-12-22T09:49:37.424Z"
     }
   },
   {
@@ -1603,7 +1730,7 @@
       "im3dabasia"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v20.6.0",
-    "parsedAt": "2025-12-15T09:27:48.184Z",
+    "parsedAt": "2025-12-22T09:24:23.343Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -1612,23 +1739,23 @@
       },
       "sponsorBreakdown": {
         "rtCamp": 9,
-        "Automattic": 2,
+        "Automattic": 3,
         "Google": 1,
         "Multidots Inc": 1,
         "GoDaddy": 1,
         "WP Engine": 1,
-        "Unknown": 5
+        "Unknown": 4
       },
       "countryBreakdown": {
-        "India": 8,
+        "India": 10,
         "United States": 3,
         "Japan": 2,
         "Germany": 1,
         "Spain": 1,
         "Georgia": 1,
-        "Unknown": 4
+        "Unknown": 2
       },
-      "aggregatedAt": "2025-12-19T23:32:26.758Z"
+      "aggregatedAt": "2025-12-22T09:49:37.424Z"
     }
   },
   {
@@ -1682,7 +1809,7 @@
       "sirlouen"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v20.5.0",
-    "parsedAt": "2025-12-15T09:27:48.185Z",
+    "parsedAt": "2025-12-22T09:24:23.344Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -1701,7 +1828,7 @@
         "Unknown": 4
       },
       "countryBreakdown": {
-        "India": 8,
+        "India": 9,
         "Spain": 3,
         "United States": 2,
         "Japan": 2,
@@ -1710,9 +1837,9 @@
         "Australia": 1,
         "Georgia": 1,
         "Bangladesh": 1,
-        "Unknown": 2
+        "Unknown": 1
       },
-      "aggregatedAt": "2025-12-19T23:32:26.759Z"
+      "aggregatedAt": "2025-12-22T09:49:37.425Z"
     }
   },
   {
@@ -1771,7 +1898,7 @@
       "kellymears"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v20.4.0",
-    "parsedAt": "2025-12-15T09:27:48.185Z",
+    "parsedAt": "2025-12-22T09:24:23.344Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -1780,29 +1907,36 @@
       },
       "sponsorBreakdown": {
         "rtCamp": 9,
-        "Automattic": 3,
+        "Automattic": 4,
         "Yoast": 2,
         "Google": 2,
         "Earthbound": 1,
-        "Unknown": 1,
+        "DWHITE": 1,
         "University of Wisconsin Madison": 1,
-        "Multidots": 1,
+        "Multidots Inc": 1,
         "Nelio Software": 1,
-        "10up": 1
+        "10up": 1,
+        "Convident": 1,
+        "oncarrot": 1,
+        "GoDaddy": 1,
+        "Unknown": 4
       },
       "countryBreakdown": {
-        "India": 8,
-        "United States": 4,
+        "India": 11,
+        "United States": 5,
+        "Spain": 2,
+        "Germany": 2,
         "Japan": 2,
         "Italy": 1,
         "Greece": 1,
         "Sweden": 1,
-        "Spain": 1,
-        "Germany": 1,
         "South Africa": 1,
-        "Switzerland": 1
+        "United Kingdom": 1,
+        "Georgia": 1,
+        "Switzerland": 1,
+        "Unknown": 1
       },
-      "aggregatedAt": "2025-12-15T16:42:24.255Z"
+      "aggregatedAt": "2025-12-22T09:49:37.425Z"
     }
   },
   {
@@ -1862,7 +1996,7 @@
       "srtfisher"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v20.3.0",
-    "parsedAt": "2025-12-15T09:27:48.185Z",
+    "parsedAt": "2025-12-22T09:24:23.345Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -1870,27 +2004,36 @@
         "newContributors": 6
       },
       "sponsorBreakdown": {
-        "rtCamp": 7,
+        "rtCamp": 8,
         "Automattic": 3,
         "Yoast": 2,
+        "Multidots Inc": 2,
         "Earthbound": 1,
-        "Multidots": 1,
         "Bluehost": 1,
         "KrishaWeb": 1,
         "Fueled": 1,
+        "GoDaddy": 1,
         "10up": 1,
-        "Google": 1
+        "alleyinteractive": 1,
+        "Google": 1,
+        "hamworks": 1,
+        "Unknown": 4
       },
       "countryBreakdown": {
-        "India": 8,
-        "United States": 3,
+        "India": 12,
+        "United States": 4,
         "Japan": 3,
         "Italy": 1,
         "Sweden": 1,
+        "Spain": 1,
+        "United Kingdom": 1,
+        "Georgia": 1,
+        "Germany": 1,
         "Australia": 1,
-        "Switzerland": 1
+        "Switzerland": 1,
+        "Unknown": 1
       },
-      "aggregatedAt": "2025-12-15T16:42:24.255Z"
+      "aggregatedAt": "2025-12-22T09:49:37.426Z"
     }
   },
   {
@@ -1933,7 +2076,7 @@
     ],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v20.2.0",
-    "parsedAt": "2025-12-15T09:27:48.186Z",
+    "parsedAt": "2025-12-22T09:24:23.345Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -1942,21 +2085,25 @@
       },
       "sponsorBreakdown": {
         "rtCamp": 8,
+        "Multidots Inc": 2,
         "Yoast": 1,
-        "Multidots": 2,
         "10up": 1,
+        "GoDaddy": 1,
         "ParshipMeet Group": 1,
-        "Self-sponsored": 1
+        "Spacedmonkey": 1,
+        "Unknown": 4
       },
       "countryBreakdown": {
-        "India": 9,
+        "India": 10,
         "Germany": 2,
         "Japan": 2,
         "Italy": 1,
         "Israel": 1,
-        "United Kingdom": 1
+        "Georgia": 1,
+        "United Kingdom": 1,
+        "United States": 1
       },
-      "aggregatedAt": "2025-12-15T16:42:24.255Z"
+      "aggregatedAt": "2025-12-22T09:49:37.426Z"
     }
   },
   {
@@ -2020,7 +2167,7 @@
       "szepeviktor"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v20.1.0",
-    "parsedAt": "2025-12-15T09:27:48.186Z",
+    "parsedAt": "2025-12-22T09:24:23.345Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -2029,25 +2176,30 @@
       },
       "sponsorBreakdown": {
         "rtCamp": 11,
-        "Automattic": 7,
+        "Automattic": 9,
         "Yoast": 2,
-        "Unknown": 1,
-        "Multidots": 2,
-        "Self-sponsored": 1
+        "Multidots Inc": 2,
+        "IT business": 1,
+        "Looking for the next opportunity": 1,
+        "Self-sponsored": 1,
+        "GoDaddy": 1,
+        "Unknown": 6
       },
       "countryBreakdown": {
-        "India": 11,
+        "India": 13,
         "Japan": 4,
-        "Spain": 3,
-        "Italy": 1,
+        "Spain": 4,
+        "United States": 3,
+        "Italy": 2,
         "Sweden": 1,
         "Portugal": 1,
         "Israel": 1,
-        "United States": 1,
+        "Georgia": 1,
         "Australia": 1,
-        "Hungary": 1
+        "Hungary": 1,
+        "Unknown": 2
       },
-      "aggregatedAt": "2025-12-15T16:42:24.255Z"
+      "aggregatedAt": "2025-12-22T09:49:37.426Z"
     }
   },
   {
@@ -2159,7 +2311,7 @@
       "vampdroid"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v20.0.0",
-    "parsedAt": "2025-12-15T09:27:48.186Z",
+    "parsedAt": "2025-12-22T09:24:23.346Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -2167,28 +2319,33 @@
         "newContributors": 13
       },
       "sponsorBreakdown": {
-        "Automattic": 27,
+        "Automattic": 30,
         "rtCamp": 15,
+        "Multidots Inc": 4,
         "Yoast": 1,
-        "Multidots": 3,
         "Inpsyde GmbH": 1,
         "10up": 1,
         "Self-sponsored": 1,
         "Make IT Easy": 1,
+        "GoDaddy": 1,
+        "IT Path Solutions": 1,
         "KrishaWeb": 1,
         "eLightUp": 1,
         "TeamUpdraft": 1,
-        "Google": 1
+        "Google": 1,
+        "Unknown": 10
       },
       "countryBreakdown": {
-        "India": 14,
-        "Germany": 4,
+        "India": 21,
+        "Germany": 5,
+        "Australia": 4,
+        "Spain": 4,
+        "Italy": 3,
         "United Kingdom": 3,
         "Portugal": 3,
-        "Spain": 3,
         "Japan": 3,
-        "Australia": 3,
-        "Italy": 1,
+        "United States": 2,
+        "Barbados": 1,
         "Romania": 1,
         "Poland": 1,
         "Denmark": 1,
@@ -2196,15 +2353,16 @@
         "Israel": 1,
         "Netherlands": 1,
         "Croatia": 1,
-        "United States": 1,
+        "Georgia": 1,
         "Argentina": 1,
         "Greece": 1,
         "Vietnam": 1,
         "Switzerland": 1,
         "Bulgaria": 1,
-        "Algeria": 1
+        "Algeria": 1,
+        "Unknown": 7
       },
-      "aggregatedAt": "2025-12-15T16:42:24.256Z"
+      "aggregatedAt": "2025-12-22T09:49:37.427Z"
     }
   },
   {
@@ -2298,7 +2456,7 @@
       "wwdes"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v19.9.0",
-    "parsedAt": "2025-12-15T09:27:48.187Z",
+    "parsedAt": "2025-12-22T09:24:23.347Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -2306,33 +2464,42 @@
         "newContributors": 8
       },
       "sponsorBreakdown": {
-        "Automattic": 26,
-        "rtCamp": 7,
+        "Automattic": 29,
+        "rtCamp": 8,
+        "Multidots Inc": 4,
         "Yoast": 1,
-        "Multidots": 1,
+        "Incsub": 1,
+        "New Local Media": 1,
         "10up": 1,
-        "Self-sponsored": 1
+        "Freelancing": 1,
+        "Self-sponsored": 1,
+        "GoDaddy": 1,
+        "weBaby LLC": 1,
+        "Unknown": 9
       },
       "countryBreakdown": {
-        "India": 7,
-        "Australia": 4,
-        "United States": 3,
-        "Portugal": 3,
-        "United Kingdom": 2,
-        "Spain": 2,
-        "Japan": 2,
-        "Italy": 1,
+        "India": 15,
+        "United States": 6,
+        "Australia": 5,
+        "Spain": 4,
+        "Portugal": 4,
+        "Italy": 3,
+        "United Kingdom": 3,
+        "Japan": 3,
+        "Germany": 2,
+        "Canada": 1,
         "Romania": 1,
-        "Germany": 1,
         "Poland": 1,
         "Czechia": 1,
         "Netherlands": 1,
+        "Georgia": 1,
         "Argentina": 1,
         "Greece": 1,
         "Bulgaria": 1,
-        "Algeria": 1
+        "Algeria": 1,
+        "Unknown": 3
       },
-      "aggregatedAt": "2025-12-15T16:42:24.256Z"
+      "aggregatedAt": "2025-12-22T09:49:37.428Z"
     }
   },
   {
@@ -2415,7 +2582,7 @@
       "sukhendu2002"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v19.8.0",
-    "parsedAt": "2025-12-15T09:27:48.188Z",
+    "parsedAt": "2025-12-22T09:24:23.348Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -2423,25 +2590,30 @@
         "newContributors": 6
       },
       "sponsorBreakdown": {
-        "Automattic": 21,
+        "Automattic": 24,
         "rtCamp": 11,
         "Yoast": 2,
-        "Multidots": 1,
+        "Multidots Inc": 2,
+        "KrishaWeb": 2,
         "Domaintechnik": 1,
         "Bluehost": 1,
-        "KrishaWeb": 2,
         "Premise Design Communications Inc.": 1,
         "Self-sponsored": 1,
-        "ParshipMeet Group": 1
+        "GoDaddy": 1,
+        "weBaby LLC": 1,
+        "ParshipMeet Group": 1,
+        "Fueled": 1,
+        "Unknown": 3
       },
       "countryBreakdown": {
-        "India": 11,
-        "United States": 4,
-        "Spain": 3,
-        "Australia": 3,
+        "India": 15,
+        "United States": 6,
+        "Australia": 4,
+        "Spain": 4,
+        "Japan": 3,
+        "Italy": 2,
         "Portugal": 2,
-        "Japan": 2,
-        "Italy": 1,
+        "Germany": 2,
         "Austria": 1,
         "Sweden": 1,
         "Canada": 1,
@@ -2449,13 +2621,14 @@
         "Poland": 1,
         "Czechia": 1,
         "Netherlands": 1,
+        "Georgia": 1,
         "Argentina": 1,
         "Greece": 1,
-        "Germany": 1,
         "Bulgaria": 1,
-        "Algeria": 1
+        "Algeria": 1,
+        "Unknown": 2
       },
-      "aggregatedAt": "2025-12-15T16:42:24.256Z"
+      "aggregatedAt": "2025-12-22T09:49:37.429Z"
     }
   },
   {
@@ -2534,7 +2707,7 @@
       "yogeshbhutkar"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v19.7.0",
-    "parsedAt": "2025-12-15T09:27:48.189Z",
+    "parsedAt": "2025-12-22T09:24:23.348Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -2542,25 +2715,28 @@
         "newContributors": 6
       },
       "sponsorBreakdown": {
-        "Automattic": 23,
+        "Automattic": 24,
         "rtCamp": 6,
         "Yoast": 2,
+        "Multidots Inc": 2,
         "Earthbound": 1,
         "Domaintechnik": 1,
         "10up": 1,
         "Self-sponsored": 1,
-        "Multidots": 2,
+        "GoDaddy": 1,
+        "Evermade": 1,
         "ParshipMeet Group": 1,
-        "Google": 1
+        "Google": 1,
+        "Unknown": 4
       },
       "countryBreakdown": {
-        "India": 6,
+        "India": 7,
+        "Spain": 5,
+        "Australia": 4,
         "United States": 4,
-        "Australia": 3,
-        "Spain": 3,
+        "Italy": 2,
         "Germany": 2,
         "Japan": 2,
-        "Italy": 1,
         "Austria": 1,
         "Sweden": 1,
         "Poland": 1,
@@ -2569,6 +2745,7 @@
         "Czechia": 1,
         "Taiwan": 1,
         "Netherlands": 1,
+        "Georgia": 1,
         "Argentina": 1,
         "United Kingdom": 1,
         "Finland": 1,
@@ -2576,9 +2753,10 @@
         "Brazil": 1,
         "Switzerland": 1,
         "Bulgaria": 1,
-        "Algeria": 1
+        "Algeria": 1,
+        "Unknown": 3
       },
-      "aggregatedAt": "2025-12-15T16:42:24.256Z"
+      "aggregatedAt": "2025-12-22T09:49:37.430Z"
     }
   },
   {
@@ -2669,7 +2847,7 @@
       "sh4lin"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v19.6.0",
-    "parsedAt": "2025-12-15T09:27:48.189Z",
+    "parsedAt": "2025-12-22T09:24:23.349Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -2677,37 +2855,42 @@
         "newContributors": 7
       },
       "sponsorBreakdown": {
-        "Automattic": 24,
+        "Automattic": 28,
         "rtCamp": 4,
+        "Multidots Inc": 4,
         "Yoast": 2,
         "KrishaWeb": 2,
-        "Self-sponsored": 1,
+        "Self-sponsored": 2,
+        "GoDaddy": 1,
         "CoLab Cooperative": 1,
         "10up": 1,
-        "Multidots": 2,
         "TeamUpdraft": 1,
         "Google": 1,
-        "WP Engine": 1
+        "hamworks": 1,
+        "WP Engine": 1,
+        "Unknown": 8
       },
       "countryBreakdown": {
-        "Australia": 5,
-        "Spain": 5,
-        "India": 5,
+        "United States": 7,
+        "India": 7,
+        "Australia": 6,
+        "Spain": 6,
+        "Italy": 3,
         "Canada": 3,
         "Japan": 3,
         "United Kingdom": 2,
         "Portugal": 2,
-        "United States": 2,
-        "Italy": 1,
         "Sweden": 1,
         "Czechia": 1,
+        "Georgia": 1,
         "Greece": 1,
         "Brazil": 1,
         "Switzerland": 1,
         "Bulgaria": 1,
-        "Algeria": 1
+        "Algeria": 1,
+        "Unknown": 10
       },
-      "aggregatedAt": "2025-12-15T16:42:24.256Z"
+      "aggregatedAt": "2025-12-22T09:49:37.431Z"
     }
   },
   {
@@ -2786,7 +2969,7 @@
       "vrishabhsk"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v19.5.0",
-    "parsedAt": "2025-12-15T09:27:48.190Z",
+    "parsedAt": "2025-12-22T09:24:23.350Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -2794,34 +2977,39 @@
         "newContributors": 6
       },
       "sponsorBreakdown": {
-        "Automattic": 24,
+        "Automattic": 26,
         "rtCamp": 5,
         "Yoast": 1,
+        "Multidots Inc": 1,
         "KrishaWeb": 1,
+        "GoDaddy": 1,
         "CoLab Cooperative": 1,
-        "Human Made": 1,
-        "WP Engine": 1
+        "Human Made Ltd": 1,
+        "WP Engine": 1,
+        "Unknown": 9
       },
       "countryBreakdown": {
-        "India": 6,
-        "United States": 5,
+        "United States": 7,
+        "India": 7,
+        "Spain": 5,
+        "Australia": 4,
         "United Kingdom": 4,
-        "Australia": 3,
-        "Spain": 3,
+        "Italy": 2,
         "Portugal": 2,
         "Canada": 2,
         "Japan": 2,
-        "Italy": 1,
         "Romania": 1,
         "Denmark": 1,
         "Czechia": 1,
+        "Georgia": 1,
         "Argentina": 1,
         "Greece": 1,
         "Brazil": 1,
         "Bulgaria": 1,
-        "Algeria": 1
+        "Algeria": 1,
+        "Unknown": 3
       },
-      "aggregatedAt": "2025-12-15T16:42:24.256Z"
+      "aggregatedAt": "2025-12-22T09:49:37.432Z"
     }
   },
   {
@@ -2909,7 +3097,7 @@
       "spadeshoe"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v19.4.0",
-    "parsedAt": "2025-12-15T09:27:48.190Z",
+    "parsedAt": "2025-12-22T09:24:23.350Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -2917,39 +3105,43 @@
         "newContributors": 6
       },
       "sponsorBreakdown": {
-        "Automattic": 27,
+        "Automattic": 32,
         "rtCamp": 3,
         "Yoast": 2,
         "KrishaWeb": 2,
         "imageDirect Pty Ltd": 1,
         "Advies en zo": 1,
+        "GoDaddy": 1,
         "10up": 1,
         "ParshipMeet Group": 1,
-        "Google": 1
+        "Google": 1,
+        "Unknown": 11
       },
       "countryBreakdown": {
-        "Spain": 6,
-        "India": 5,
-        "Australia": 5,
-        "United Kingdom": 2,
-        "United States": 2,
+        "Spain": 8,
+        "Australia": 6,
+        "India": 6,
+        "Italy": 4,
+        "United Kingdom": 3,
+        "United States": 3,
         "Netherlands": 2,
         "Japan": 2,
-        "Italy": 1,
+        "Germany": 2,
         "Sweden": 1,
         "Romania": 1,
         "Denmark": 1,
         "Czechia": 1,
         "Taiwan": 1,
+        "Georgia": 1,
         "Argentina": 1,
         "Portugal": 1,
-        "Germany": 1,
         "Switzerland": 1,
         "Bulgaria": 1,
         "Chile": 1,
-        "Algeria": 1
+        "Algeria": 1,
+        "Unknown": 8
       },
-      "aggregatedAt": "2025-12-15T16:42:24.256Z"
+      "aggregatedAt": "2025-12-22T09:49:37.433Z"
     }
   },
   {
@@ -3036,7 +3228,7 @@
       "rahulharpal1603"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v19.3.0",
-    "parsedAt": "2025-12-15T09:27:48.194Z",
+    "parsedAt": "2025-12-22T09:24:23.351Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -3044,32 +3236,37 @@
         "newContributors": 7
       },
       "sponsorBreakdown": {
-        "Automattic": 29,
+        "Automattic": 31,
         "rtCamp": 3,
         "Yoast": 2,
         "KrishaWeb": 1,
+        "GoDaddy": 1,
         "10up": 1,
-        "Google": 1
+        "Google": 1,
+        "Unknown": 12
       },
       "countryBreakdown": {
-        "India": 5,
-        "Spain": 5,
-        "Australia": 4,
+        "Spain": 8,
+        "India": 6,
+        "Australia": 5,
+        "United States": 5,
+        "Italy": 3,
         "United Kingdom": 3,
-        "United States": 2,
+        "Portugal": 2,
         "Japan": 2,
-        "Italy": 1,
         "Sweden": 1,
         "Poland": 1,
         "Denmark": 1,
-        "Portugal": 1,
         "Czechia": 1,
         "Taiwan": 1,
         "Netherlands": 1,
+        "Georgia": 1,
         "Greece": 1,
-        "Switzerland": 1
+        "Germany": 1,
+        "Switzerland": 1,
+        "Unknown": 8
       },
-      "aggregatedAt": "2025-12-15T16:42:24.256Z"
+      "aggregatedAt": "2025-12-22T09:49:37.433Z"
     }
   },
   {
@@ -3157,7 +3354,7 @@
       "rohitmathur-7"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v19.2.0",
-    "parsedAt": "2025-12-15T09:27:48.194Z",
+    "parsedAt": "2025-12-22T09:24:23.352Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -3165,35 +3362,43 @@
         "newContributors": 6
       },
       "sponsorBreakdown": {
-        "Automattic": 28,
+        "Automattic": 31,
         "Yoast": 2,
-        "Unknown": 1,
+        "Multidots Inc": 1,
+        "IT business": 1,
+        "BuxumLunic": 1,
         "Bluehost": 1,
         "rtCamp": 1,
-        "Self-sponsored": 1,
-        "Google": 1
+        "librecoop": 1,
+        "GoDaddy": 1,
+        "Spacedmonkey": 1,
+        "Google": 1,
+        "Unknown": 12
       },
       "countryBreakdown": {
-        "United Kingdom": 5,
-        "Australia": 4,
+        "United Kingdom": 7,
+        "Australia": 5,
+        "Spain": 5,
+        "United States": 5,
+        "India": 3,
         "Japan": 3,
-        "United States": 3,
-        "Switzerland": 2,
-        "Spain": 2,
-        "Italy": 1,
+        "Switzerland": 3,
+        "Italy": 2,
+        "Portugal": 2,
         "Sweden": 1,
         "Poland": 1,
         "Denmark": 1,
-        "Portugal": 1,
         "Czechia": 1,
         "Taiwan": 1,
+        "Georgia": 1,
         "Argentina": 1,
         "Greece": 1,
+        "Germany": 1,
         "Canada": 1,
-        "India": 1,
-        "Bulgaria": 1
+        "Bulgaria": 1,
+        "Unknown": 8
       },
-      "aggregatedAt": "2025-12-15T16:42:24.256Z"
+      "aggregatedAt": "2025-12-22T09:49:37.434Z"
     }
   },
   {
@@ -3272,7 +3477,7 @@
       "ssang"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v19.1.0",
-    "parsedAt": "2025-12-15T09:27:48.195Z",
+    "parsedAt": "2025-12-22T09:24:23.352Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -3280,28 +3485,35 @@
         "newContributors": 5
       },
       "sponsorBreakdown": {
-        "Automattic": 26,
+        "Automattic": 29,
         "rtCamp": 6,
         "Google": 2,
-        "RYPOX GmbH": 1
+        "Multidots Inc": 1,
+        "RYPOX GmbH": 1,
+        "GoDaddy": 1,
+        "Unknown": 7
       },
       "countryBreakdown": {
-        "India": 5,
-        "Spain": 4,
+        "India": 7,
+        "Spain": 7,
+        "Australia": 4,
         "United States": 4,
-        "United Kingdom": 3,
-        "Australia": 3,
+        "United Kingdom": 4,
         "Japan": 2,
+        "Italy": 1,
         "Denmark": 1,
         "France": 1,
         "Portugal": 1,
         "Czechia": 1,
+        "Georgia": 1,
         "Greece": 1,
+        "Germany": 1,
         "Switzerland": 1,
         "Bulgaria": 1,
-        "Algeria": 1
+        "Algeria": 1,
+        "Unknown": 8
       },
-      "aggregatedAt": "2025-12-15T16:42:24.256Z"
+      "aggregatedAt": "2025-12-22T09:49:37.434Z"
     }
   },
   {
@@ -3382,7 +3594,7 @@
       "wzieba"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v19.0.0",
-    "parsedAt": "2025-12-15T09:27:48.196Z",
+    "parsedAt": "2025-12-22T09:24:23.353Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -3390,38 +3602,43 @@
         "newContributors": 5
       },
       "sponsorBreakdown": {
-        "Automattic": 27,
+        "Automattic": 30,
         "rtCamp": 3,
         "Yoast": 2,
         "Earthbound": 1,
+        "Multidots Inc": 1,
         "Inpsyde GmbH": 1,
         "imageDirect Pty Ltd": 1,
         "NTNU": 1,
+        "GoDaddy": 1,
         "Stuurlui": 1,
-        "Human Made": 1
+        "HumanMade Ltd": 1,
+        "Unknown": 6
       },
       "countryBreakdown": {
-        "Australia": 5,
+        "Australia": 6,
+        "United States": 6,
+        "Spain": 6,
+        "India": 5,
         "United Kingdom": 4,
-        "United States": 3,
-        "India": 3,
-        "Spain": 3,
+        "Italy": 3,
         "Japan": 2,
-        "Italy": 1,
         "Sweden": 1,
         "Germany": 1,
         "Denmark": 1,
         "Portugal": 1,
         "Czechia": 1,
         "Norway": 1,
+        "Georgia": 1,
         "Argentina": 1,
         "Canada": 1,
         "Lithuania": 1,
         "Netherlands": 1,
         "Bulgaria": 1,
-        "Algeria": 1
+        "Algeria": 1,
+        "Unknown": 4
       },
-      "aggregatedAt": "2025-12-15T16:42:24.256Z"
+      "aggregatedAt": "2025-12-22T09:49:37.436Z"
     }
   },
   {
@@ -3510,7 +3727,7 @@
       "troychaplin"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v18.9.0",
-    "parsedAt": "2025-12-15T09:27:48.197Z",
+    "parsedAt": "2025-12-22T09:24:23.354Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -3518,37 +3735,43 @@
         "newContributors": 4
       },
       "sponsorBreakdown": {
-        "Automattic": 34,
+        "Automattic": 37,
         "rtCamp": 4,
         "Yoast": 2,
         "Earthbound": 1,
+        "Multidots Inc": 1,
         "Plugin Pizza": 1,
+        "Looking for the next opportunity": 1,
+        "GoDaddy": 1,
         "Google": 1,
-        "Syde GmbH": 1
+        "Syde GmbH": 1,
+        "Unknown": 8
       },
       "countryBreakdown": {
-        "India": 6,
-        "Australia": 5,
-        "Spain": 5,
-        "United States": 4,
-        "United Kingdom": 3,
+        "Spain": 8,
+        "India": 7,
+        "Australia": 6,
+        "United States": 6,
+        "United Kingdom": 4,
+        "Italy": 3,
         "Canada": 3,
+        "Germany": 2,
         "Japan": 2,
-        "Italy": 1,
-        "Germany": 1,
         "Sweden": 1,
         "Denmark": 1,
         "France": 1,
         "Portugal": 1,
         "Czechia": 1,
         "Taiwan": 1,
+        "Georgia": 1,
         "Argentina": 1,
         "Greece": 1,
         "Switzerland": 1,
         "Bulgaria": 1,
-        "Algeria": 1
+        "Algeria": 1,
+        "Unknown": 5
       },
-      "aggregatedAt": "2025-12-15T16:42:24.256Z"
+      "aggregatedAt": "2025-12-22T09:49:37.437Z"
     }
   },
   {
@@ -3645,7 +3868,7 @@
       "sejas"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v18.8.0",
-    "parsedAt": "2025-12-15T09:27:48.197Z",
+    "parsedAt": "2025-12-22T09:24:23.355Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -3653,40 +3876,46 @@
         "newContributors": 10
       },
       "sponsorBreakdown": {
-        "Automattic": 27,
+        "Automattic": 30,
         "rtCamp": 5,
         "Yoast": 2,
+        "Multidots Inc": 1,
         "Blockera AI": 1,
         "Inpsyde GmbH": 1,
         "Bluehost": 1,
+        "Looking for the next opportunity": 1,
         "SovWare": 1,
         "iWorks": 1,
+        "GoDaddy": 1,
         "10up": 1,
         "Google": 1,
-        "WP Engine": 1
+        "WP Engine": 1,
+        "Unknown": 11
       },
       "countryBreakdown": {
-        "India": 6,
-        "United States": 6,
-        "Spain": 5,
-        "Australia": 4,
-        "United Kingdom": 3,
+        "United States": 9,
+        "India": 7,
+        "Spain": 7,
+        "Australia": 5,
+        "United Kingdom": 4,
+        "Italy": 2,
+        "Germany": 2,
         "Portugal": 2,
         "Japan": 2,
-        "Italy": 1,
         "Sweden": 1,
-        "Germany": 1,
         "Poland": 1,
         "Denmark": 1,
         "Czechia": 1,
         "Taiwan": 1,
+        "Georgia": 1,
         "Argentina": 1,
         "Greece": 1,
         "Switzerland": 1,
         "Bulgaria": 1,
-        "Algeria": 1
+        "Algeria": 1,
+        "Unknown": 8
       },
-      "aggregatedAt": "2025-12-15T16:42:24.257Z"
+      "aggregatedAt": "2025-12-22T09:49:37.438Z"
     }
   },
   {
@@ -3770,7 +3999,7 @@
       "snehapatil2001"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v18.7.0",
-    "parsedAt": "2025-12-15T09:27:48.198Z",
+    "parsedAt": "2025-12-22T09:24:23.355Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -3778,33 +4007,39 @@
         "newContributors": 7
       },
       "sponsorBreakdown": {
-        "Automattic": 23,
+        "Automattic": 26,
         "rtCamp": 4,
         "Yoast": 2,
+        "Multidots Inc": 1,
+        "Looking for the next opportunity": 1,
         "Sunlab GmbH": 1,
         "10up": 1,
-        "Self-sponsored": 1,
-        "WP Engine": 1
+        "Spacedmonkey": 1,
+        "WP Engine": 1,
+        "Unknown": 12
       },
       "countryBreakdown": {
-        "India": 6,
-        "Spain": 6,
-        "Australia": 5,
-        "United States": 3,
-        "United Kingdom": 2,
+        "India": 8,
+        "Spain": 8,
+        "Australia": 6,
+        "United States": 5,
+        "United Kingdom": 3,
+        "Italy": 2,
         "Japan": 2,
-        "Italy": 1,
         "Sweden": 1,
+        "Switzerland": 1,
         "Poland": 1,
+        "Slovakia": 1,
         "Portugal": 1,
         "Taiwan": 1,
         "Argentina": 1,
         "Germany": 1,
         "Greece": 1,
         "Chile": 1,
-        "Algeria": 1
+        "Algeria": 1,
+        "Unknown": 5
       },
-      "aggregatedAt": "2025-12-15T16:42:24.257Z"
+      "aggregatedAt": "2025-12-22T09:49:37.438Z"
     }
   },
   {
@@ -3889,7 +4124,7 @@
       "up1512001"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v18.6.0",
-    "parsedAt": "2025-12-15T09:27:48.199Z",
+    "parsedAt": "2025-12-22T09:24:23.356Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -3897,34 +4132,40 @@
         "newContributors": 4
       },
       "sponsorBreakdown": {
-        "Automattic": 27,
+        "Automattic": 30,
         "rtCamp": 3,
         "Yoast": 2,
+        "Multidots Inc": 1,
         "Bluehost": 1,
         "10up": 1,
+        "Looking for the next opportunity": 1,
         "Fueled": 1,
+        "GoDaddy": 1,
         "QuillBot, a Learneo, Inc. business": 1,
-        "WP Engine": 1
+        "WP Engine": 1,
+        "Unknown": 10
       },
       "countryBreakdown": {
-        "United States": 7,
-        "India": 5,
-        "Australia": 5,
-        "Spain": 5,
-        "United Kingdom": 2,
+        "United States": 9,
+        "Spain": 7,
+        "Australia": 6,
+        "India": 6,
+        "United Kingdom": 4,
+        "Italy": 2,
+        "Germany": 2,
         "Portugal": 2,
         "Japan": 2,
-        "Italy": 1,
         "Sweden": 1,
-        "Germany": 1,
         "Poland": 1,
         "Denmark": 1,
         "Czechia": 1,
         "Taiwan": 1,
+        "Georgia": 1,
         "Greece": 1,
-        "Algeria": 1
+        "Algeria": 1,
+        "Unknown": 5
       },
-      "aggregatedAt": "2025-12-15T16:42:24.257Z"
+      "aggregatedAt": "2025-12-22T09:49:37.439Z"
     }
   },
   {
@@ -4032,7 +4273,7 @@
       "vipul0425"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v18.5.0",
-    "parsedAt": "2025-12-15T09:27:48.200Z",
+    "parsedAt": "2025-12-22T09:24:23.357Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -4040,37 +4281,44 @@
         "newContributors": 10
       },
       "sponsorBreakdown": {
-        "Automattic": 34,
+        "Automattic": 36,
         "Yoast": 2,
         "rtCamp": 2,
         "WP Engine": 2,
         "Awesome Motive": 1,
+        "Multidots Inc": 1,
         "10up": 1,
-        "QuillBot, a Learneo, Inc. business": 1
+        "Looking for the next opportunity": 1,
+        "GoDaddy": 1,
+        "QuillBot, a Learneo, Inc. business": 1,
+        "Unknown": 22
       },
       "countryBreakdown": {
-        "United States": 8,
-        "India": 5,
-        "Australia": 4,
-        "Spain": 4,
+        "United States": 11,
+        "Spain": 8,
+        "India": 6,
+        "Australia": 5,
         "Portugal": 4,
-        "United Kingdom": 2,
+        "United Kingdom": 3,
+        "Germany": 2,
         "Japan": 2,
         "Algeria": 2,
         "Italy": 1,
         "Sweden": 1,
         "Romania": 1,
-        "Germany": 1,
+        "Switzerland": 1,
         "New Zealand": 1,
         "Poland": 1,
         "Denmark": 1,
         "Czechia": 1,
         "Taiwan": 1,
+        "Georgia": 1,
         "Greece": 1,
         "Bulgaria": 1,
-        "Chile": 1
+        "Chile": 1,
+        "Unknown": 14
       },
-      "aggregatedAt": "2025-12-15T16:42:24.257Z"
+      "aggregatedAt": "2025-12-22T09:49:37.441Z"
     }
   },
   {
@@ -4164,7 +4412,7 @@
       "vipul0425"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v18.4.0",
-    "parsedAt": "2025-12-15T09:27:48.200Z",
+    "parsedAt": "2025-12-22T09:24:23.358Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -4172,35 +4420,40 @@
         "newContributors": 9
       },
       "sponsorBreakdown": {
-        "Automattic": 30,
+        "Automattic": 33,
         "rtCamp": 3,
         "Yoast": 2,
         "WooCommerce": 1,
         "Bluehost": 1,
+        "Looking for the next opportunity": 1,
         "News UK": 1,
-        "Human Made": 1,
-        "Google": 1
+        "Human Made Ltd": 1,
+        "GoDaddy": 1,
+        "Google": 1,
+        "Unknown": 13
       },
       "countryBreakdown": {
-        "United States": 7,
-        "Spain": 5,
-        "United Kingdom": 5,
+        "United States": 9,
+        "Spain": 8,
+        "United Kingdom": 6,
+        "Australia": 5,
         "India": 4,
-        "Australia": 4,
         "Portugal": 3,
-        "Italy": 1,
+        "Italy": 2,
+        "Switzerland": 2,
         "Sweden": 1,
         "Romania": 1,
         "Denmark": 1,
         "Czechia": 1,
         "Taiwan": 1,
+        "Georgia": 1,
         "Greece": 1,
-        "Switzerland": 1,
         "Japan": 1,
         "Bulgaria": 1,
-        "Algeria": 1
+        "Algeria": 1,
+        "Unknown": 9
       },
-      "aggregatedAt": "2025-12-15T16:42:24.257Z"
+      "aggregatedAt": "2025-12-22T09:49:37.441Z"
     }
   },
   {
@@ -4273,7 +4526,7 @@
       "lanresmith"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v18.3.0",
-    "parsedAt": "2025-12-15T09:27:48.201Z",
+    "parsedAt": "2025-12-22T09:24:23.358Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -4281,35 +4534,41 @@
         "newContributors": 3
       },
       "sponsorBreakdown": {
-        "Automattic": 23,
+        "Automattic": 26,
         "Yoast": 2,
         "Bluehost": 1,
         "10up": 1,
+        "Looking for the next opportunity": 1,
+        "Convident": 1,
         "Self-sponsored": 1,
-        "Multidots": 1,
-        "Google": 1
+        "GoDaddy": 1,
+        "Multidots Inc": 1,
+        "Google": 1,
+        "Unknown": 8
       },
       "countryBreakdown": {
-        "Spain": 6,
-        "United States": 4,
+        "Spain": 8,
+        "United States": 6,
+        "Australia": 3,
         "India": 3,
-        "United Kingdom": 2,
+        "United Kingdom": 3,
+        "Germany": 2,
+        "Switzerland": 2,
         "Portugal": 2,
         "Japan": 2,
-        "Australia": 2,
         "Italy": 1,
         "Sweden": 1,
         "Romania": 1,
-        "Germany": 1,
         "Denmark": 1,
         "Czechia": 1,
         "Nigeria": 1,
+        "Georgia": 1,
         "Greece": 1,
-        "Switzerland": 1,
         "Bulgaria": 1,
-        "Algeria": 1
+        "Algeria": 1,
+        "Unknown": 3
       },
-      "aggregatedAt": "2025-12-15T16:42:24.257Z"
+      "aggregatedAt": "2025-12-22T09:49:37.442Z"
     }
   },
   {
@@ -4394,7 +4653,7 @@
       "xhemals"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v18.2.0",
-    "parsedAt": "2025-12-15T09:27:48.202Z",
+    "parsedAt": "2025-12-22T09:24:23.359Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -4402,26 +4661,29 @@
         "newContributors": 4
       },
       "sponsorBreakdown": {
-        "Automattic": 27,
+        "Automattic": 29,
         "Yoast": 2,
+        "Multidots Inc": 2,
         "ThemeGrill Pvt Ltd": 1,
-        "Unknown": 1,
+        "IT business": 1,
         "10up": 1,
         "Flex Perception": 1,
+        "Looking for the next opportunity": 1,
         "KITERETZ inc.": 1,
+        "GoDaddy": 1,
         "Infi": 1,
         "required": 1,
         "ParshipMeet Group": 1,
-        "Multidots": 1
+        "Unknown": 11
       },
       "countryBreakdown": {
-        "Australia": 5,
+        "Australia": 6,
+        "Spain": 6,
         "Japan": 5,
+        "United States": 4,
         "United Kingdom": 4,
-        "United States": 3,
-        "Spain": 3,
         "Germany": 3,
-        "India": 2,
+        "India": 3,
         "Italy": 1,
         "Nepal": 1,
         "Sweden": 1,
@@ -4430,14 +4692,16 @@
         "Portugal": 1,
         "Czechia": 1,
         "Taiwan": 1,
+        "Georgia": 1,
         "Argentina": 1,
         "Netherlands": 1,
         "Greece": 1,
         "Canada": 1,
         "Bulgaria": 1,
-        "Algeria": 1
+        "Algeria": 1,
+        "Unknown": 8
       },
-      "aggregatedAt": "2025-12-15T16:42:24.257Z"
+      "aggregatedAt": "2025-12-22T09:49:37.443Z"
     }
   },
   {
@@ -4522,7 +4786,7 @@
       "steveariss"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v18.1.0",
-    "parsedAt": "2025-12-15T09:27:48.202Z",
+    "parsedAt": "2025-12-22T09:24:23.360Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -4530,35 +4794,42 @@
         "newContributors": 5
       },
       "sponsorBreakdown": {
-        "Automattic": 30,
+        "Automattic": 32,
         "10up": 2,
         "Yoast": 1,
+        "Looking for the next opportunity": 1,
         "Trevenque Group": 1,
+        "GoDaddy": 1,
         "WebToffee": 1,
-        "ParshipMeet Group": 1
+        "Evermade": 1,
+        "ParshipMeet Group": 1,
+        "hamworks": 1,
+        "Unknown": 9
       },
       "countryBreakdown": {
-        "Australia": 6,
+        "Australia": 7,
+        "Germany": 4,
+        "Spain": 4,
         "United Kingdom": 4,
-        "Germany": 3,
+        "United States": 3,
         "India": 3,
         "Japan": 3,
         "Portugal": 2,
-        "Spain": 2,
         "Italy": 1,
         "Romania": 1,
         "New Zealand": 1,
         "Denmark": 1,
         "Czechia": 1,
+        "Georgia": 1,
         "Argentina": 1,
         "Finland": 1,
         "Greece": 1,
-        "United States": 1,
         "Canada": 1,
         "Bulgaria": 1,
-        "Algeria": 1
+        "Algeria": 1,
+        "Unknown": 9
       },
-      "aggregatedAt": "2025-12-15T16:42:24.258Z"
+      "aggregatedAt": "2025-12-22T09:49:37.443Z"
     }
   },
   {
@@ -4674,7 +4945,7 @@
       "tomepajk"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v18.0.0",
-    "parsedAt": "2025-12-15T09:27:48.203Z",
+    "parsedAt": "2025-12-22T09:24:23.360Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -4682,30 +4953,34 @@
         "newContributors": 17
       },
       "sponsorBreakdown": {
-        "Automattic": 27,
+        "Automattic": 28,
         "Yoast": 2,
         "Git Updater": 1,
         "Waystar": 1,
         "WooCommerce": 1,
         "Flex Perception": 1,
+        "Bethink Studio": 1,
+        "Looking for the next opportunity": 1,
         "Buzz Geek, LLC": 1,
         "Monkey Wrench Inc.": 1,
-        "Unknown": 1,
+        "GoDaddy": 1,
+        "mgn": 1,
         "WebToffee": 1,
         "ParshipMeet Group": 1,
-        "Multidots": 1,
+        "Multidots Inc": 1,
         "Google": 1,
-        "WP Engine": 1
+        "WP Engine": 1,
+        "Unknown": 29
       },
       "countryBreakdown": {
-        "United States": 9,
+        "United States": 12,
+        "Australia": 5,
+        "Spain": 4,
+        "United Kingdom": 4,
         "Japan": 4,
-        "Australia": 4,
-        "United Kingdom": 3,
         "Portugal": 3,
         "India": 3,
         "Germany": 2,
-        "Spain": 2,
         "Italy": 1,
         "Sweden": 1,
         "Romania": 1,
@@ -4714,14 +4989,16 @@
         "Denmark": 1,
         "Czechia": 1,
         "Taiwan": 1,
+        "Georgia": 1,
         "Argentina": 1,
         "Greece": 1,
         "Switzerland": 1,
         "Bulgaria": 1,
         "Chile": 1,
-        "Algeria": 1
+        "Algeria": 1,
+        "Unknown": 22
       },
-      "aggregatedAt": "2025-12-15T16:42:24.258Z"
+      "aggregatedAt": "2025-12-22T09:49:37.445Z"
     }
   },
   {
@@ -4812,7 +5089,7 @@
       "teresagobble"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v17.9.0",
-    "parsedAt": "2025-12-15T09:27:48.204Z",
+    "parsedAt": "2025-12-22T09:24:23.361Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -4820,25 +5097,28 @@
         "newContributors": 5
       },
       "sponsorBreakdown": {
-        "Automattic": 32,
+        "Automattic": 36,
         "Yoast": 2,
         "WooCommerce": 1,
         "Bluehost": 1,
         "Buzz Geek, LLC": 1,
         "Monkey Wrench Inc.": 1,
         "Self-sponsored": 1,
+        "GoDaddy": 1,
         "10up": 1,
-        "Multidots": 1,
-        "WP Engine": 1
+        "Multidots Inc": 1,
+        "WP Engine": 1,
+        "hamworks": 1,
+        "Unknown": 11
       },
       "countryBreakdown": {
-        "United States": 6,
+        "United States": 9,
         "Australia": 6,
+        "Spain": 5,
         "India": 4,
         "United Kingdom": 4,
         "Japan": 4,
         "Portugal": 3,
-        "Spain": 3,
         "Italy": 1,
         "Sweden": 1,
         "Romania": 1,
@@ -4847,12 +5127,16 @@
         "Denmark": 1,
         "Czechia": 1,
         "Taiwan": 1,
+        "Georgia": 1,
         "Argentina": 1,
         "Greece": 1,
+        "Germany": 1,
+        "Indonesia": 1,
         "Bulgaria": 1,
-        "Algeria": 1
+        "Algeria": 1,
+        "Unknown": 9
       },
-      "aggregatedAt": "2025-12-15T16:42:24.258Z"
+      "aggregatedAt": "2025-12-22T09:49:37.445Z"
     }
   },
   {
@@ -4922,7 +5206,7 @@
     ],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v17.8.0",
-    "parsedAt": "2025-12-15T09:27:48.204Z",
+    "parsedAt": "2025-12-22T09:24:23.361Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -4930,22 +5214,24 @@
         "newContributors": 0
       },
       "sponsorBreakdown": {
-        "Automattic": 26,
+        "Automattic": 28,
         "Yoast": 1,
         "Waystar": 1,
         "Bluehost": 1,
         "10up": 1,
-        "Self-sponsored": 1
+        "Self-sponsored": 1,
+        "GoDaddy": 1,
+        "Unknown": 11
       },
       "countryBreakdown": {
-        "Australia": 6,
-        "United States": 3,
+        "Australia": 7,
+        "United States": 5,
+        "Spain": 4,
+        "Italy": 2,
+        "Germany": 2,
         "United Kingdom": 2,
-        "Spain": 2,
         "Japan": 2,
-        "Italy": 1,
         "Romania": 1,
-        "Germany": 1,
         "Austria": 1,
         "New Zealand": 1,
         "Belgium": 1,
@@ -4953,13 +5239,15 @@
         "Portugal": 1,
         "Czechia": 1,
         "Taiwan": 1,
+        "Georgia": 1,
         "Argentina": 1,
         "Greece": 1,
         "India": 1,
         "Bulgaria": 1,
-        "Algeria": 1
+        "Algeria": 1,
+        "Unknown": 7
       },
-      "aggregatedAt": "2025-12-15T16:42:24.258Z"
+      "aggregatedAt": "2025-12-22T09:49:37.446Z"
     }
   },
   {
@@ -5062,7 +5350,7 @@
       "shreyash3087"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v17.7.0",
-    "parsedAt": "2025-12-15T09:27:48.205Z",
+    "parsedAt": "2025-12-22T09:24:23.362Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -5070,41 +5358,45 @@
         "newContributors": 3
       },
       "sponsorBreakdown": {
-        "Automattic": 40,
+        "Automattic": 42,
         "Yoast": 2,
         "Emilia Capital": 1,
         "Bluehost": 1,
         "10up": 1,
         "Dreamers of Day": 1,
         "Self-sponsored": 1,
-        "Human Made": 1,
-        "WP Engine": 1
+        "GoDaddy": 1,
+        "HumanMade Ltd": 1,
+        "WP Engine": 1,
+        "Unknown": 19
       },
       "countryBreakdown": {
-        "United States": 9,
-        "Australia": 7,
-        "United Kingdom": 5,
-        "Spain": 4,
+        "United States": 12,
+        "Australia": 8,
+        "Spain": 6,
+        "United Kingdom": 6,
+        "Italy": 2,
         "Greece": 2,
+        "Germany": 2,
         "Portugal": 2,
         "India": 2,
         "Japan": 2,
-        "Italy": 1,
         "Sweden": 1,
         "Romania": 1,
-        "Germany": 1,
         "Austria": 1,
         "New Zealand": 1,
         "Denmark": 1,
         "France": 1,
         "Czechia": 1,
         "Taiwan": 1,
+        "Georgia": 1,
         "Argentina": 1,
         "Bulgaria": 1,
         "Chile": 1,
-        "Algeria": 1
+        "Algeria": 1,
+        "Unknown": 14
       },
-      "aggregatedAt": "2025-12-15T16:42:24.258Z"
+      "aggregatedAt": "2025-12-22T09:49:37.447Z"
     }
   },
   {
@@ -5207,7 +5499,7 @@
       "wordpress"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v17.6.0",
-    "parsedAt": "2025-12-15T09:27:48.206Z",
+    "parsedAt": "2025-12-22T09:24:23.363Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -5215,22 +5507,26 @@
         "newContributors": 3
       },
       "sponsorBreakdown": {
-        "Automattic": 41,
+        "Automattic": 44,
         "Yoast": 2,
-        "Unknown": 1,
+        "IT business": 1,
         "WooCommerce": 1,
+        "Looking for the next opportunity": 1,
         "Monkey Wrench Inc.": 1,
-        "Google": 1
+        "GoDaddy": 1,
+        "Google": 1,
+        "Unknown": 19
       },
       "countryBreakdown": {
-        "United States": 7,
-        "Australia": 7,
-        "United Kingdom": 5,
+        "United States": 10,
+        "Australia": 8,
+        "Spain": 7,
+        "United Kingdom": 6,
         "Japan": 4,
-        "Spain": 4,
         "Portugal": 3,
-        "Italy": 1,
-        "Germany": 1,
+        "Italy": 2,
+        "Germany": 2,
+        "Switzerland": 2,
         "Sweden": 1,
         "Romania": 1,
         "Malaysia": 1,
@@ -5239,14 +5535,15 @@
         "Czechia": 1,
         "Taiwan": 1,
         "India": 1,
+        "Georgia": 1,
         "Argentina": 1,
         "Greece": 1,
-        "Switzerland": 1,
         "Bulgaria": 1,
         "Chile": 1,
-        "Algeria": 1
+        "Algeria": 1,
+        "Unknown": 13
       },
-      "aggregatedAt": "2025-12-15T16:42:24.258Z"
+      "aggregatedAt": "2025-12-22T09:49:37.448Z"
     }
   },
   {
@@ -5319,7 +5616,7 @@
       "muhme"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v17.5.0",
-    "parsedAt": "2025-12-15T09:27:48.207Z",
+    "parsedAt": "2025-12-22T09:24:23.364Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -5327,33 +5624,40 @@
         "newContributors": 2
       },
       "sponsorBreakdown": {
-        "Automattic": 26,
+        "Automattic": 28,
         "Yoast": 2,
-        "Unknown": 1,
+        "IT business": 1,
         "Bluehost": 1,
+        "Looking for the next opportunity": 1,
         "rtCamp": 1,
-        "ParshipMeet Group": 1
+        "GoDaddy": 1,
+        "ParshipMeet Group": 1,
+        "Unknown": 10
       },
       "countryBreakdown": {
         "Australia": 5,
+        "Spain": 4,
+        "United States": 4,
+        "United Kingdom": 4,
         "Japan": 3,
-        "United States": 3,
-        "United Kingdom": 3,
         "Portugal": 3,
-        "Spain": 2,
-        "Italy": 1,
+        "Italy": 2,
+        "Germany": 2,
         "Sweden": 1,
         "New Zealand": 1,
         "Poland": 1,
         "India": 1,
         "Czechia": 1,
         "Taiwan": 1,
+        "Georgia": 1,
         "Argentina": 1,
+        "Colombia": 1,
         "Greece": 1,
-        "Germany": 1,
-        "Algeria": 1
+        "Algeria": 1,
+        "Switzerland": 1,
+        "Unknown": 7
       },
-      "aggregatedAt": "2025-12-15T16:42:24.258Z"
+      "aggregatedAt": "2025-12-22T09:49:37.449Z"
     }
   },
   {
@@ -5435,7 +5739,7 @@
       "kurudrive"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v17.4.0",
-    "parsedAt": "2025-12-15T09:27:48.207Z",
+    "parsedAt": "2025-12-22T09:24:23.366Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -5443,34 +5747,43 @@
         "newContributors": 3
       },
       "sponsorBreakdown": {
-        "Automattic": 26,
-        "Unknown": 1,
+        "Automattic": 29,
+        "IT business": 1,
         "WooCommerce": 1,
         "Kreo Pulse": 1,
         "Bluehost": 1,
+        "Looking for the next opportunity": 1,
+        "Freelancing": 1,
         "tyCoon Media": 1,
         "Vektor,Inc.": 1,
-        "ultraDevs": 1
+        "GoDaddy": 1,
+        "ultraDevs": 1,
+        "Unknown": 14
       },
       "countryBreakdown": {
-        "United States": 6,
+        "United States": 8,
+        "Spain": 5,
         "Australia": 4,
         "Japan": 4,
-        "Spain": 3,
-        "United Kingdom": 2,
+        "United Kingdom": 3,
+        "Germany": 2,
         "Portugal": 2,
-        "Germany": 1,
+        "Italy": 1,
         "New Zealand": 1,
+        "India": 1,
         "Denmark": 1,
         "Czechia": 1,
         "Taiwan": 1,
         "Netherlands": 1,
+        "Georgia": 1,
         "Argentina": 1,
+        "Bangladesh": 1,
         "Greece": 1,
         "Algeria": 1,
-        "Bulgaria": 1
+        "Bulgaria": 1,
+        "Unknown": 12
       },
-      "aggregatedAt": "2025-12-15T16:42:24.258Z"
+      "aggregatedAt": "2025-12-22T09:49:37.449Z"
     }
   },
   {
@@ -5492,7 +5805,7 @@
     ],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v17.3.0",
-    "parsedAt": "2025-12-15T09:27:48.208Z",
+    "parsedAt": "2025-12-22T09:24:23.367Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -5500,13 +5813,16 @@
         "newContributors": 0
       },
       "sponsorBreakdown": {
-        "Automattic": 3
+        "Automattic": 3,
+        "Unknown": 1
       },
       "countryBreakdown": {
+        "Switzerland": 1,
         "Australia": 1,
-        "New Zealand": 1
+        "New Zealand": 1,
+        "Unknown": 1
       },
-      "aggregatedAt": "2025-12-15T16:42:24.258Z"
+      "aggregatedAt": "2025-12-22T09:49:37.450Z"
     }
   },
   {
@@ -5534,7 +5850,7 @@
     ],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v17.2.0",
-    "parsedAt": "2025-12-15T09:27:48.208Z",
+    "parsedAt": "2025-12-22T09:24:23.367Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -5542,16 +5858,18 @@
         "newContributors": 0
       },
       "sponsorBreakdown": {
-        "Automattic": 6
+        "Automattic": 6,
+        "Unknown": 2
       },
       "countryBreakdown": {
         "Australia": 2,
-        "Spain": 1,
+        "Spain": 2,
         "Chile": 1,
         "New Zealand": 1,
+        "Switzerland": 1,
         "Portugal": 1
       },
-      "aggregatedAt": "2025-12-15T16:42:24.258Z"
+      "aggregatedAt": "2025-12-22T09:49:37.450Z"
     }
   },
   {
@@ -5640,7 +5958,7 @@
       "sacerro"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v17.1.0",
-    "parsedAt": "2025-12-15T09:27:48.209Z",
+    "parsedAt": "2025-12-22T09:24:23.368Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -5648,37 +5966,42 @@
         "newContributors": 3
       },
       "sponsorBreakdown": {
-        "Automattic": 28,
+        "Automattic": 31,
         "Yoast": 1,
         "Emilia Capital": 1,
         "Sirvelia": 1,
+        "GoDaddy": 1,
         "10up": 1,
         "ParshipMeet Group": 1,
-        "Google": 1
+        "Google": 1,
+        "hamworks": 1,
+        "Unknown": 18
       },
       "countryBreakdown": {
         "Australia": 5,
-        "United States": 3,
-        "United Kingdom": 3,
-        "Spain": 3,
+        "Spain": 5,
+        "United States": 4,
+        "United Kingdom": 4,
         "Japan": 3,
+        "Italy": 2,
         "Greece": 2,
         "Germany": 2,
-        "Italy": 1,
+        "Switzerland": 2,
         "Austria": 1,
         "New Zealand": 1,
         "Poland": 1,
         "Portugal": 1,
         "Czechia": 1,
         "Taiwan": 1,
+        "Georgia": 1,
         "Liechtenstein": 1,
         "Argentina": 1,
         "Brazil": 1,
-        "Switzerland": 1,
         "Bulgaria": 1,
-        "Algeria": 1
+        "Algeria": 1,
+        "Unknown": 16
       },
-      "aggregatedAt": "2025-12-15T16:42:24.259Z"
+      "aggregatedAt": "2025-12-22T09:49:37.450Z"
     }
   },
   {
@@ -5755,7 +6078,7 @@
       "strarsis"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v17.0.0",
-    "parsedAt": "2025-12-15T09:27:48.210Z",
+    "parsedAt": "2025-12-22T09:24:23.369Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -5763,34 +6086,41 @@
         "newContributors": 4
       },
       "sponsorBreakdown": {
-        "Automattic": 21,
+        "Automattic": 24,
+        "Yoast": 2,
         "Waystar": 1,
         "Emilia Capital": 1,
         "Aurooba Makes": 1,
-        "Yoast": 1,
         "Refineria": 1,
+        "Looking for the next opportunity": 1,
+        "GoDaddy": 1,
         "10up": 1,
         "ParshipMeet Group": 1,
-        "Google": 1
+        "Google": 1,
+        "Unknown": 12
       },
       "countryBreakdown": {
-        "United States": 6,
-        "Australia": 4,
-        "Spain": 3,
+        "United States": 7,
+        "Australia": 5,
+        "Spain": 5,
         "Greece": 2,
+        "United Kingdom": 2,
         "Canada": 1,
         "Sweden": 1,
+        "Italy": 1,
         "New Zealand": 1,
-        "United Kingdom": 1,
         "Portugal": 1,
         "Czechia": 1,
         "Taiwan": 1,
+        "Georgia": 1,
+        "Russia": 1,
         "Germany": 1,
         "Switzerland": 1,
         "Japan": 1,
-        "Algeria": 1
+        "Algeria": 1,
+        "Unknown": 13
       },
-      "aggregatedAt": "2025-12-15T16:42:24.259Z"
+      "aggregatedAt": "2025-12-22T09:49:37.451Z"
     }
   },
   {
@@ -5880,7 +6210,7 @@
       "unscripted"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v16.9.0",
-    "parsedAt": "2025-12-15T09:27:48.210Z",
+    "parsedAt": "2025-12-22T09:24:23.369Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -5888,22 +6218,23 @@
         "newContributors": 1
       },
       "sponsorBreakdown": {
-        "Automattic": 32,
+        "Automattic": 34,
         "Yoast": 2,
+        "GoDaddy": 2,
         "Emilia Capital": 1,
-        "Human Made": 1,
-        "GoDaddy": 1,
+        "Human Made Ltd": 1,
         "10up": 1,
         "Pew Research Center": 1,
-        "Self-sponsored": 1,
-        "Matchbox Design Group": 1
+        "Spacedmonkey": 1,
+        "Matchbox Design Group": 1,
+        "Unknown": 16
       },
       "countryBreakdown": {
-        "United States": 8,
-        "Australia": 5,
-        "United Kingdom": 4,
+        "United States": 9,
+        "Australia": 6,
+        "United Kingdom": 5,
         "Portugal": 4,
-        "Spain": 3,
+        "Spain": 4,
         "Italy": 2,
         "Canada": 2,
         "Greece": 2,
@@ -5915,11 +6246,14 @@
         "Czechia": 1,
         "Taiwan": 1,
         "India": 1,
+        "Georgia": 1,
         "Argentina": 1,
+        "Germany": 1,
         "Bulgaria": 1,
-        "Algeria": 1
+        "Algeria": 1,
+        "Unknown": 12
       },
-      "aggregatedAt": "2025-12-15T16:42:24.259Z"
+      "aggregatedAt": "2025-12-22T09:49:37.452Z"
     }
   },
   {
@@ -5943,7 +6277,7 @@
     ],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v16.8.0",
-    "parsedAt": "2025-12-15T09:27:48.211Z",
+    "parsedAt": "2025-12-22T09:24:23.370Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -5951,13 +6285,16 @@
         "newContributors": 0
       },
       "sponsorBreakdown": {
-        "Automattic": 1
+        "hamworks": 1,
+        "Automattic": 1,
+        "Unknown": 1
       },
       "countryBreakdown": {
+        "Switzerland": 1,
         "Japan": 1,
         "Portugal": 1
       },
-      "aggregatedAt": "2025-12-15T16:42:24.259Z"
+      "aggregatedAt": "2025-12-22T09:49:37.452Z"
     }
   },
   {
@@ -6082,7 +6419,7 @@
       "toolstack"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v16.7.0",
-    "parsedAt": "2025-12-15T09:27:48.211Z",
+    "parsedAt": "2025-12-22T09:24:23.370Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -6090,53 +6427,59 @@
         "newContributors": 7
       },
       "sponsorBreakdown": {
-        "Automattic": 35,
+        "Automattic": 39,
         "Yoast": 2,
         "rtCamp": 2,
+        "GoDaddy": 2,
         "Waystar": 1,
         "Emilia Capital": 1,
-        "Unknown": 1,
+        "IT business": 1,
         "Gambit Technologies, Inc": 1,
+        "Looking for the next opportunity": 1,
+        "Freelancing": 1,
         "Dreamers of Day": 1,
-        "GoDaddy": 1,
         "Alpha Particle": 1,
         "ultraDevs": 1,
         "BeAPI": 1,
         "FlyingWeb": 1,
-        "Self-sponsored": 1,
-        "Google": 1
+        "Spacedmonkey": 1,
+        "Google": 1,
+        "hamworks": 1,
+        "Unknown": 30
       },
       "countryBreakdown": {
+        "United States": 10,
         "United Kingdom": 9,
-        "United States": 8,
-        "Australia": 6,
+        "Australia": 7,
+        "Spain": 5,
         "Japan": 3,
+        "India": 3,
         "Portugal": 3,
+        "Italy": 2,
         "Greece": 2,
+        "Bangladesh": 2,
         "France": 2,
-        "Spain": 2,
-        "India": 2,
-        "Italy": 1,
+        "Switzerland": 2,
         "Philippines": 1,
         "Germany": 1,
         "Sweden": 1,
         "Romania": 1,
-        "Bangladesh": 1,
         "Austria": 1,
         "New Zealand": 1,
         "Poland": 1,
         "Czechia": 1,
         "Taiwan": 1,
+        "Georgia": 1,
         "Liechtenstein": 1,
         "Argentina": 1,
         "Canada": 1,
-        "Switzerland": 1,
         "Bulgaria": 1,
         "Chile": 1,
         "Norway": 1,
-        "Algeria": 1
+        "Algeria": 1,
+        "Unknown": 22
       },
-      "aggregatedAt": "2025-12-15T16:42:24.259Z"
+      "aggregatedAt": "2025-12-22T09:49:37.453Z"
     }
   },
   {
@@ -6216,7 +6559,7 @@
       "mklute101"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v16.6.0",
-    "parsedAt": "2025-12-15T09:27:48.212Z",
+    "parsedAt": "2025-12-22T09:24:23.371Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -6224,33 +6567,39 @@
         "newContributors": 3
       },
       "sponsorBreakdown": {
-        "Automattic": 23,
+        "Automattic": 24,
         "Yoast": 1,
         "Google": 1,
+        "Looking for the next opportunity": 1,
         "Dreamers of Day": 1,
         "WPVIP": 1,
-        "required": 1
+        "GoDaddy": 1,
+        "required": 1,
+        "hamworks": 1,
+        "Unknown": 17
       },
       "countryBreakdown": {
-        "United States": 7,
+        "United States": 8,
         "Australia": 5,
+        "Spain": 5,
+        "Germany": 3,
         "Japan": 3,
-        "Germany": 2,
-        "Spain": 2,
-        "Italy": 1,
+        "Italy": 2,
+        "United Kingdom": 2,
         "New Zealand": 1,
         "Poland": 1,
         "Denmark": 1,
         "Portugal": 1,
         "Czechia": 1,
+        "Georgia": 1,
         "Argentina": 1,
-        "United Kingdom": 1,
         "Greece": 1,
         "Bulgaria": 1,
         "Norway": 1,
-        "Algeria": 1
+        "Algeria": 1,
+        "Unknown": 10
       },
-      "aggregatedAt": "2025-12-15T16:42:24.259Z"
+      "aggregatedAt": "2025-12-22T09:49:37.454Z"
     }
   },
   {
@@ -6346,7 +6695,7 @@
       "rtro92"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v16.5.0",
-    "parsedAt": "2025-12-15T09:27:48.212Z",
+    "parsedAt": "2025-12-22T09:24:23.371Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -6354,35 +6703,40 @@
         "newContributors": 5
       },
       "sponsorBreakdown": {
-        "Automattic": 34,
+        "Automattic": 36,
         "Waystar": 1,
-        "Unknown": 1,
+        "IT business": 1,
         "XWP": 1,
         "Yoast": 1,
         "10up": 1,
+        "Looking for the next opportunity": 1,
+        "GoDaddy": 1,
         "Google": 1,
-        "Human Made": 1
+        "HumanMade Ltd": 1,
+        "Unknown": 18
       },
       "countryBreakdown": {
-        "United States": 8,
-        "United Kingdom": 7,
-        "Australia": 6,
+        "United States": 10,
+        "United Kingdom": 9,
+        "Australia": 7,
+        "Spain": 6,
         "Japan": 3,
+        "Germany": 2,
+        "Switzerland": 2,
         "Portugal": 2,
-        "Spain": 2,
         "Sweden": 1,
         "Romania": 1,
-        "Germany": 1,
         "New Zealand": 1,
         "Poland": 1,
         "Czechia": 1,
         "Taiwan": 1,
+        "Georgia": 1,
         "Argentina": 1,
-        "Switzerland": 1,
         "Bulgaria": 1,
-        "Algeria": 1
+        "Algeria": 1,
+        "Unknown": 12
       },
-      "aggregatedAt": "2025-12-15T16:42:24.259Z"
+      "aggregatedAt": "2025-12-22T09:49:37.455Z"
     }
   },
   {
@@ -6471,7 +6825,7 @@
       "lunaluna"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v16.4.0",
-    "parsedAt": "2025-12-15T09:27:48.213Z",
+    "parsedAt": "2025-12-22T09:24:23.372Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -6479,22 +6833,27 @@
         "newContributors": 2
       },
       "sponsorBreakdown": {
-        "Automattic": 33,
+        "Automattic": 35,
         "Yoast": 2,
         "Selise Digital Platforms": 1,
         "Whodunit": 1,
+        "Looking for the next opportunity": 1,
         "Dreamers of Day": 1,
+        "GoDaddy": 1,
         "ParshipMeet Group": 1,
         "Google": 1,
-        "WP Engine": 1
+        "hamworks": 1,
+        "WP Engine": 1,
+        "Unknown": 14
       },
       "countryBreakdown": {
-        "United States": 7,
-        "Australia": 6,
-        "United Kingdom": 5,
+        "United States": 9,
+        "Australia": 7,
+        "United Kingdom": 6,
+        "Spain": 4,
         "Japan": 4,
+        "Germany": 3,
         "France": 2,
-        "Germany": 2,
         "Portugal": 2,
         "Italy": 1,
         "Bangladesh": 1,
@@ -6504,13 +6863,14 @@
         "Denmark": 1,
         "Czechia": 1,
         "Taiwan": 1,
-        "Spain": 1,
+        "Georgia": 1,
         "Greece": 1,
         "Canada": 1,
         "Switzerland": 1,
-        "Bulgaria": 1
+        "Bulgaria": 1,
+        "Unknown": 10
       },
-      "aggregatedAt": "2025-12-15T16:42:24.259Z"
+      "aggregatedAt": "2025-12-22T09:49:37.455Z"
     }
   },
   {
@@ -6592,7 +6952,7 @@
       "sethrubenstein"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v16.3.0",
-    "parsedAt": "2025-12-15T09:27:48.213Z",
+    "parsedAt": "2025-12-22T09:24:23.372Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -6600,27 +6960,31 @@
         "newContributors": 3
       },
       "sponsorBreakdown": {
-        "Automattic": 23,
+        "Automattic": 28,
         "Yoast": 2,
         "Kreo Pulse": 1,
         "Gambit Technologies, Inc": 1,
         "Dekode Interaktiv AS": 1,
+        "Looking for the next opportunity": 1,
         "JNext Service PVT LTD": 1,
         "Dreamers of Day": 1,
+        "GoDaddy": 1,
         "10up": 1,
         "Parared": 1,
         "Pew Research Center": 1,
-        "Self-sponsored": 1,
+        "Spacedmonkey": 1,
         "Google": 1,
-        "WP Engine": 1
+        "WP Engine": 1,
+        "Unknown": 11
       },
       "countryBreakdown": {
-        "Australia": 6,
-        "United States": 5,
-        "United Kingdom": 5,
+        "Australia": 7,
+        "United States": 6,
+        "United Kingdom": 6,
+        "Spain": 5,
         "Norway": 2,
+        "Switzerland": 2,
         "Portugal": 2,
-        "Spain": 2,
         "Japan": 2,
         "Italy": 1,
         "Germany": 1,
@@ -6630,14 +6994,15 @@
         "New Zealand": 1,
         "Czechia": 1,
         "Taiwan": 1,
+        "Georgia": 1,
         "Greece": 1,
         "Croatia": 1,
         "Thailand": 1,
-        "Switzerland": 1,
         "Bulgaria": 1,
-        "Algeria": 1
+        "Algeria": 1,
+        "Unknown": 8
       },
-      "aggregatedAt": "2025-12-15T16:42:24.259Z"
+      "aggregatedAt": "2025-12-22T09:49:37.456Z"
     }
   },
   {
@@ -6709,7 +7074,7 @@
     ],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v16.2.0",
-    "parsedAt": "2025-12-15T09:27:48.214Z",
+    "parsedAt": "2025-12-22T09:24:23.373Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -6717,31 +7082,39 @@
         "newContributors": 0
       },
       "sponsorBreakdown": {
-        "Automattic": 29,
+        "Automattic": 31,
         "Yoast": 1,
         "Dreamers of Day": 1,
-        "Self-sponsored": 2,
-        "10up": 1
+        "Self-sponsored": 1,
+        "GoDaddy": 1,
+        "weBaby LLC": 1,
+        "10up": 1,
+        "Spacedmonkey": 1,
+        "Unknown": 7
       },
       "countryBreakdown": {
-        "Australia": 5,
-        "United States": 4,
-        "United Kingdom": 4,
-        "Spain": 3,
+        "United States": 7,
+        "Australia": 6,
+        "Spain": 5,
+        "United Kingdom": 5,
         "Portugal": 2,
+        "Japan": 2,
         "Sweden": 1,
         "Romania": 1,
+        "Switzerland": 1,
         "New Zealand": 1,
         "Denmark": 1,
         "Czechia": 1,
         "Taiwan": 1,
+        "Georgia": 1,
         "Greece": 1,
+        "Germany": 1,
         "Canada": 1,
-        "Japan": 1,
         "Bulgaria": 1,
-        "Algeria": 1
+        "Algeria": 1,
+        "Unknown": 5
       },
-      "aggregatedAt": "2025-12-15T16:42:24.260Z"
+      "aggregatedAt": "2025-12-22T09:49:37.457Z"
     }
   },
   {
@@ -6841,7 +7214,7 @@
       "xerpa43"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v16.1.0",
-    "parsedAt": "2025-12-15T09:27:48.214Z",
+    "parsedAt": "2025-12-22T09:24:23.373Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -6849,22 +7222,27 @@
         "newContributors": 3
       },
       "sponsorBreakdown": {
-        "Automattic": 31,
+        "Automattic": 33,
         "Yoast": 2,
         "10up": 2,
         "Waystar": 1,
         "Emilia Capital": 1,
         "Aurooba Makes": 1,
-        "Self-sponsored": 2
+        "Looking for the next opportunity": 1,
+        "Self-sponsored": 1,
+        "GoDaddy": 1,
+        "Evermade": 1,
+        "Spacedmonkey": 1,
+        "Unknown": 24
       },
       "countryBreakdown": {
-        "Australia": 7,
-        "United States": 5,
+        "Australia": 8,
+        "United States": 7,
+        "Spain": 7,
         "United Kingdom": 5,
-        "Spain": 4,
         "Japan": 3,
+        "Italy": 2,
         "Greece": 2,
-        "Italy": 1,
         "Canada": 1,
         "Sweden": 1,
         "Romania": 1,
@@ -6872,6 +7250,7 @@
         "New Zealand": 1,
         "Denmark": 1,
         "Czechia": 1,
+        "Georgia": 1,
         "Argentina": 1,
         "Portugal": 1,
         "Finland": 1,
@@ -6879,9 +7258,10 @@
         "Thailand": 1,
         "Bulgaria": 1,
         "Norway": 1,
-        "Algeria": 1
+        "Algeria": 1,
+        "Unknown": 19
       },
-      "aggregatedAt": "2025-12-15T16:42:24.260Z"
+      "aggregatedAt": "2025-12-22T09:49:37.457Z"
     }
   },
   {
@@ -6965,7 +7345,7 @@
       "wayheming"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v16.0.0",
-    "parsedAt": "2025-12-15T09:27:48.215Z",
+    "parsedAt": "2025-12-22T09:24:23.374Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -6973,31 +7353,39 @@
         "newContributors": 4
       },
       "sponsorBreakdown": {
-        "Automattic": 30,
+        "Automattic": 32,
         "Yoast": 2,
         "Waystar": 1,
         "10up": 1,
+        "Looking for the next opportunity": 1,
         "Self-sponsored": 1,
-        "WP Engine": 1
+        "GoDaddy": 1,
+        "rtCamp": 1,
+        "WP Engine": 1,
+        "Unknown": 13
       },
       "countryBreakdown": {
-        "United States": 5,
-        "Australia": 5,
+        "Australia": 6,
+        "United States": 6,
+        "Spain": 6,
         "United Kingdom": 4,
-        "Spain": 4,
+        "Italy": 3,
         "Portugal": 2,
         "Japan": 2,
-        "Italy": 1,
         "Sweden": 1,
         "New Zealand": 1,
         "Poland": 1,
         "Czechia": 1,
         "Taiwan": 1,
+        "Georgia": 1,
         "Greece": 1,
+        "Germany": 1,
+        "India": 1,
         "Bulgaria": 1,
-        "Algeria": 1
+        "Algeria": 1,
+        "Unknown": 14
       },
-      "aggregatedAt": "2025-12-15T16:42:24.260Z"
+      "aggregatedAt": "2025-12-22T09:49:37.458Z"
     }
   },
   {
@@ -7089,7 +7477,7 @@
       "worldomonation"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v15.9.0",
-    "parsedAt": "2025-12-15T09:27:48.215Z",
+    "parsedAt": "2025-12-22T09:24:23.374Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -7097,26 +7485,30 @@
         "newContributors": 7
       },
       "sponsorBreakdown": {
-        "Automattic": 27,
+        "Automattic": 30,
         "Yoast": 2,
         "WP Engine": 1,
         "Emilia Capital": 1,
         "WooCommerce": 1,
         "10up": 1,
         "Google": 1,
+        "Looking for the next opportunity": 1,
         "Self-sponsored": 1,
+        "GoDaddy": 1,
         "Alley Interactive": 1,
-        "Unknown": 1,
-        "Dreamers of Day": 1
+        "mgn": 1,
+        "Evermade": 1,
+        "Dreamers of Day": 1,
+        "Unknown": 16
       },
       "countryBreakdown": {
-        "United States": 10,
-        "Australia": 5,
+        "United States": 11,
+        "Australia": 6,
+        "Spain": 5,
         "United Kingdom": 4,
         "Japan": 4,
-        "Spain": 3,
+        "Italy": 2,
         "Greece": 2,
-        "Italy": 1,
         "Sweden": 1,
         "Germany": 1,
         "India": 1,
@@ -7124,12 +7516,14 @@
         "Poland": 1,
         "Denmark": 1,
         "Taiwan": 1,
+        "Georgia": 1,
         "Portugal": 1,
         "Finland": 1,
         "Bulgaria": 1,
-        "Algeria": 1
+        "Algeria": 1,
+        "Unknown": 14
       },
-      "aggregatedAt": "2025-12-15T16:42:24.260Z"
+      "aggregatedAt": "2025-12-22T09:49:37.459Z"
     }
   },
   {
@@ -7146,7 +7540,7 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v15.8.0",
-    "parsedAt": "2025-12-15T09:27:48.216Z",
+    "parsedAt": "2025-12-22T09:24:23.375Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -7155,7 +7549,7 @@
       },
       "sponsorBreakdown": {},
       "countryBreakdown": {},
-      "aggregatedAt": "2025-12-19T19:58:48.345Z"
+      "aggregatedAt": "2025-12-22T09:49:37.459Z"
     }
   },
   {
@@ -7252,7 +7646,7 @@
       "wtower"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v15.7.0",
-    "parsedAt": "2025-12-15T09:27:48.216Z",
+    "parsedAt": "2025-12-22T09:24:23.375Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -7260,37 +7654,44 @@
         "newContributors": 8
       },
       "sponsorBreakdown": {
-        "Automattic": 32,
+        "Automattic": 34,
+        "GoDaddy": 2,
         "Waystar": 1,
         "Aurooba Makes": 1,
         "Yoast": 1,
-        "GoDaddy": 1,
+        "Looking for the next opportunity": 1,
+        "Freelancing": 1,
         "Dreamers of Day": 1,
         "ParshipMeet Group": 1,
-        "Syde GmbH": 1
+        "Syde GmbH": 1,
+        "Unknown": 19
       },
       "countryBreakdown": {
-        "United States": 6,
-        "Australia": 6,
-        "United Kingdom": 5,
+        "United States": 8,
+        "Australia": 7,
+        "United Kingdom": 6,
+        "Spain": 4,
         "Poland": 3,
         "Germany": 2,
-        "Spain": 2,
+        "Italy": 2,
         "Japan": 2,
         "Canada": 1,
         "Sweden": 1,
         "Romania": 1,
         "Austria": 1,
+        "India": 1,
         "Denmark": 1,
         "Czechia": 1,
         "Taiwan": 1,
+        "Georgia": 1,
         "Liechtenstein": 1,
         "Portugal": 1,
         "Greece": 1,
         "Bulgaria": 1,
-        "Algeria": 1
+        "Algeria": 1,
+        "Unknown": 15
       },
-      "aggregatedAt": "2025-12-15T16:42:24.260Z"
+      "aggregatedAt": "2025-12-22T09:49:37.460Z"
     }
   },
   {
@@ -7369,7 +7770,7 @@
       "thealexandrelara"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v15.6.0",
-    "parsedAt": "2025-12-15T09:27:48.217Z",
+    "parsedAt": "2025-12-22T09:24:23.375Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -7381,31 +7782,37 @@
         "Yoast": 2,
         "Emilia Capital": 1,
         "Aurooba Makes": 1,
+        "Looking for the next opportunity": 1,
         "Dreamers of Day": 1,
         "rtCamp": 1,
-        "ParshipMeet Group": 1
+        "GoDaddy": 1,
+        "ParshipMeet Group": 1,
+        "Unknown": 14
       },
       "countryBreakdown": {
-        "Australia": 6,
+        "Australia": 7,
         "United States": 4,
         "United Kingdom": 3,
+        "Italy": 2,
         "Greece": 2,
         "Canada": 2,
         "India": 2,
         "Japan": 2,
-        "Italy": 1,
+        "Germany": 2,
         "Sweden": 1,
         "Romania": 1,
+        "Spain": 1,
         "New Zealand": 1,
         "Denmark": 1,
         "Portugal": 1,
+        "Georgia": 1,
         "Thailand": 1,
-        "Germany": 1,
         "Bulgaria": 1,
         "Algeria": 1,
-        "Czechia": 1
+        "Czechia": 1,
+        "Unknown": 9
       },
-      "aggregatedAt": "2025-12-15T16:42:24.260Z"
+      "aggregatedAt": "2025-12-22T09:49:37.460Z"
     }
   },
   {
@@ -7490,7 +7897,7 @@
       "sque89"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v15.5.0",
-    "parsedAt": "2025-12-15T09:27:48.217Z",
+    "parsedAt": "2025-12-22T09:24:23.376Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -7498,39 +7905,43 @@
         "newContributors": 8
       },
       "sponsorBreakdown": {
-        "Automattic": 25,
+        "Automattic": 26,
         "Emilia Capital": 1,
         "Yoast": 1,
         "Google": 1,
         "Kilofarms": 1,
-        "Human Made": 1,
+        "Human Made Ltd": 1,
+        "GoDaddy": 1,
         "ParshipMeet Group": 1,
-        "Stuurlui": 1
+        "Stuurlui": 1,
+        "Unknown": 18
       },
       "countryBreakdown": {
-        "United States": 6,
-        "Australia": 3,
+        "United States": 8,
+        "Australia": 4,
         "Greece": 2,
         "India": 2,
+        "Portugal": 2,
         "Spain": 2,
         "United Kingdom": 2,
         "Japan": 2,
         "Sweden": 1,
+        "Italy": 1,
         "Romania": 1,
         "New Zealand": 1,
         "Poland": 1,
         "Belgium": 1,
-        "Italy": 1,
-        "Portugal": 1,
         "Czechia": 1,
         "Taiwan": 1,
+        "Georgia": 1,
         "Canada": 1,
         "Germany": 1,
         "Netherlands": 1,
         "Bulgaria": 1,
-        "Algeria": 1
+        "Algeria": 1,
+        "Unknown": 14
       },
-      "aggregatedAt": "2025-12-15T16:42:24.260Z"
+      "aggregatedAt": "2025-12-22T09:49:37.461Z"
     }
   },
   {
@@ -7617,7 +8028,7 @@
       "tylerb24890"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v15.4.0",
-    "parsedAt": "2025-12-15T09:27:48.218Z",
+    "parsedAt": "2025-12-22T09:24:23.376Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -7625,39 +8036,48 @@
         "newContributors": 6
       },
       "sponsorBreakdown": {
-        "Automattic": 29,
+        "Automattic": 30,
         "Google": 2,
         "Yoast": 1,
         "Emilia Capital": 1,
         "10up": 1,
+        "Looking for the next opportunity": 1,
+        "Freelancing": 1,
+        "GoDaddy": 1,
         "Liquid Web": 1,
-        "Stuurlui": 1
+        "Stuurlui": 1,
+        "Fueled": 1,
+        "Unknown": 16
       },
       "countryBreakdown": {
-        "United States": 5,
+        "United States": 7,
+        "Australia": 4,
         "United Kingdom": 4,
-        "Australia": 3,
+        "Italy": 3,
+        "Spain": 3,
         "Greece": 2,
-        "Spain": 2,
         "Japan": 2,
-        "Italy": 1,
         "Romania": 1,
         "Germany": 1,
         "New Zealand": 1,
+        "India": 1,
         "Poland": 1,
         "Denmark": 1,
         "Portugal": 1,
         "Czechia": 1,
         "Taiwan": 1,
         "Nepal": 1,
+        "Georgia": 1,
+        "Brazil": 1,
         "Canada": 1,
         "Thailand": 1,
         "Switzerland": 1,
         "Netherlands": 1,
         "Bulgaria": 1,
-        "Algeria": 1
+        "Algeria": 1,
+        "Unknown": 14
       },
-      "aggregatedAt": "2025-12-15T16:42:24.260Z"
+      "aggregatedAt": "2025-12-22T09:49:37.462Z"
     }
   },
   {
@@ -7730,7 +8150,7 @@
       "tomdevisser"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v15.3.0",
-    "parsedAt": "2025-12-15T09:27:48.219Z",
+    "parsedAt": "2025-12-22T09:24:23.377Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -7742,32 +8162,39 @@
         "Yoast": 2,
         "Awesome Motive": 1,
         "Waystar": 1,
+        "Looking for the next opportunity": 1,
+        "Freelancing": 1,
         "rtCamp": 1,
+        "GoDaddy": 1,
         "Trendwerk": 1,
-        "Self-sponsored": 1,
-        "Stuurlui": 1
+        "Spacedmonkey": 1,
+        "Stuurlui": 1,
+        "Unknown": 7
       },
       "countryBreakdown": {
-        "United States": 4,
+        "United States": 5,
+        "Australia": 3,
+        "Spain": 3,
         "United Kingdom": 3,
         "Poland": 2,
-        "Australia": 2,
+        "Italy": 2,
+        "India": 2,
         "Czechia": 2,
-        "Spain": 2,
-        "Italy": 1,
         "Sweden": 1,
         "Romania": 1,
-        "India": 1,
         "Portugal": 1,
         "Taiwan": 1,
+        "Georgia": 1,
         "Greece": 1,
+        "Germany": 1,
         "France": 1,
         "Japan": 1,
         "Netherlands": 1,
         "Bulgaria": 1,
-        "Algeria": 1
+        "Algeria": 1,
+        "Unknown": 8
       },
-      "aggregatedAt": "2025-12-15T16:42:24.260Z"
+      "aggregatedAt": "2025-12-22T09:49:37.463Z"
     }
   },
   {
@@ -7856,7 +8283,7 @@
       "mike-day"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v15.2.0",
-    "parsedAt": "2025-12-15T09:27:48.220Z",
+    "parsedAt": "2025-12-22T09:24:23.378Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -7868,33 +8295,41 @@
         "Yoast": 2,
         "Waystar": 1,
         "Emilia Capital": 1,
+        "Looking for the next opportunity": 1,
         "Dreamers of Day": 1,
         "NTNU": 1,
+        "GoDaddy": 1,
         "XWP": 1,
-        "Self-sponsored": 2
+        "Spacedmonkey": 1,
+        "Self-sponsored": 1,
+        "Unknown": 20
       },
       "countryBreakdown": {
         "United States": 8,
-        "Australia": 4,
+        "Australia": 5,
+        "Spain": 3,
         "United Kingdom": 3,
+        "Portugal": 3,
         "Poland": 2,
+        "Italy": 2,
         "Greece": 2,
-        "Portugal": 2,
         "Czechia": 2,
-        "Spain": 2,
         "Japan": 2,
-        "Italy": 1,
         "Sweden": 1,
+        "Barbados": 1,
         "Romania": 1,
         "New Zealand": 1,
         "Norway": 1,
         "Taiwan": 1,
         "India": 1,
+        "Georgia": 1,
         "Germany": 1,
         "Bulgaria": 1,
-        "Algeria": 1
+        "Algeria": 1,
+        "Switzerland": 1,
+        "Unknown": 15
       },
-      "aggregatedAt": "2025-12-15T16:42:24.260Z"
+      "aggregatedAt": "2025-12-22T09:49:37.464Z"
     }
   },
   {
@@ -7978,7 +8413,7 @@
       "rodage"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v15.1.0",
-    "parsedAt": "2025-12-15T09:27:48.220Z",
+    "parsedAt": "2025-12-22T09:24:23.379Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -7991,17 +8426,21 @@
         "Whodunit": 1,
         "10up": 1,
         "Google": 1,
+        "Looking for the next opportunity": 1,
         "Dreamers of Day": 1,
-        "ParshipMeet Group": 1
+        "GoDaddy": 1,
+        "ParshipMeet Group": 1,
+        "Unknown": 15
       },
       "countryBreakdown": {
-        "United States": 7,
-        "Australia": 4,
+        "United States": 8,
+        "Australia": 5,
+        "Germany": 3,
         "United Kingdom": 3,
-        "Germany": 2,
+        "Italy": 2,
+        "Spain": 2,
         "Japan": 2,
         "Poland": 1,
-        "Italy": 1,
         "Canada": 1,
         "France": 1,
         "Sweden": 1,
@@ -8012,12 +8451,14 @@
         "Czechia": 1,
         "Taiwan": 1,
         "India": 1,
+        "Georgia": 1,
         "Greece": 1,
-        "Spain": 1,
+        "Brazil": 1,
         "Bulgaria": 1,
-        "Algeria": 1
+        "Algeria": 1,
+        "Unknown": 14
       },
-      "aggregatedAt": "2025-12-15T16:42:24.260Z"
+      "aggregatedAt": "2025-12-22T09:49:37.465Z"
     }
   },
   {
@@ -8092,7 +8533,7 @@
       "tonygravagno"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v15.0.0",
-    "parsedAt": "2025-12-15T09:27:48.221Z",
+    "parsedAt": "2025-12-22T09:24:23.379Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -8100,36 +8541,43 @@
         "newContributors": 7
       },
       "sponsorBreakdown": {
-        "Automattic": 21,
+        "Automattic": 22,
         "Waystar": 1,
         "Shortie Designs": 1,
+        "Looking for the next opportunity": 1,
         "Self-sponsored": 1,
+        "GoDaddy": 1,
         "Infi": 1,
         "ParshipMeet Group": 1,
-        "Human Made": 1,
-        "Yoast": 1
+        "HumanMade Ltd": 1,
+        "Yoast": 1,
+        "Unknown": 12
       },
       "countryBreakdown": {
-        "Australia": 4,
+        "Australia": 5,
         "United Kingdom": 4,
-        "Spain": 2,
+        "United States": 3,
+        "Spain": 3,
+        "Romania": 2,
         "Japan": 2,
+        "Germany": 2,
         "India": 1,
-        "United States": 1,
         "Canada": 1,
-        "Romania": 1,
+        "Italy": 1,
+        "Barbados": 1,
         "Denmark": 1,
         "Portugal": 1,
         "Czechia": 1,
         "Taiwan": 1,
+        "Georgia": 1,
         "Netherlands": 1,
         "Greece": 1,
-        "Germany": 1,
         "Bulgaria": 1,
         "Algeria": 1,
-        "Sweden": 1
+        "Sweden": 1,
+        "Unknown": 8
       },
-      "aggregatedAt": "2025-12-15T16:42:24.261Z"
+      "aggregatedAt": "2025-12-22T09:49:37.465Z"
     }
   },
   {
@@ -8205,7 +8653,7 @@
       "websitegenii"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v14.9.0",
-    "parsedAt": "2025-12-15T09:27:48.221Z",
+    "parsedAt": "2025-12-22T09:24:23.379Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -8215,28 +8663,36 @@
       "sponsorBreakdown": {
         "Automattic": 29,
         "Waystar": 1,
+        "Looking for the next opportunity": 1,
         "Dreamers of Day": 1,
-        "Website Genii": 1
+        "GoDaddy": 1,
+        "Multidots Inc": 1,
+        "Website Genii": 1,
+        "Unknown": 9
       },
       "countryBreakdown": {
         "United States": 7,
+        "Australia": 4,
+        "Spain": 4,
         "United Kingdom": 3,
-        "Australia": 3,
         "Czechia": 2,
-        "Spain": 2,
+        "India": 2,
         "Japan": 2,
         "Poland": 1,
         "Romania": 1,
+        "Switzerland": 1,
+        "Italy": 1,
         "Denmark": 1,
         "Portugal": 1,
         "Taiwan": 1,
-        "India": 1,
+        "Georgia": 1,
         "Greece": 1,
         "Canada": 1,
         "Bulgaria": 1,
-        "Algeria": 1
+        "Algeria": 1,
+        "Unknown": 8
       },
-      "aggregatedAt": "2025-12-15T16:42:24.261Z"
+      "aggregatedAt": "2025-12-22T09:49:37.466Z"
     }
   },
   {
@@ -8271,7 +8727,7 @@
     ],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v14.8.0",
-    "parsedAt": "2025-12-15T09:27:48.222Z",
+    "parsedAt": "2025-12-22T09:24:23.380Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -8280,17 +8736,21 @@
       },
       "sponsorBreakdown": {
         "Automattic": 5,
-        "Nelio Software": 1
+        "Looking for the next opportunity": 1,
+        "GoDaddy": 1,
+        "Nelio Software": 1,
+        "Unknown": 1
       },
       "countryBreakdown": {
-        "Spain": 2,
+        "Spain": 3,
         "Australia": 1,
         "New Zealand": 1,
         "India": 1,
+        "Georgia": 1,
         "United States": 1,
         "Algeria": 1
       },
-      "aggregatedAt": "2025-12-15T16:42:24.261Z"
+      "aggregatedAt": "2025-12-22T09:49:37.466Z"
     }
   },
   {
@@ -8375,7 +8835,7 @@
       "tobiasbg"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v14.7.0",
-    "parsedAt": "2025-12-15T09:27:48.223Z",
+    "parsedAt": "2025-12-22T09:24:23.381Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -8389,28 +8849,36 @@
         "EMRL": 1,
         "Google": 1,
         "Flex Perception": 1,
+        "Looking for the next opportunity": 1,
+        "Freelancing": 1,
+        "GoDaddy": 1,
         "required": 1,
-        "Self-sponsored": 1,
-        "TablePress": 1
+        "Spacedmonkey": 1,
+        "TablePress": 1,
+        "Unknown": 16
       },
       "countryBreakdown": {
-        "United States": 7,
+        "United States": 8,
+        "Australia": 4,
         "United Kingdom": 4,
-        "Australia": 3,
-        "Spain": 2,
+        "Spain": 3,
+        "Italy": 2,
         "Japan": 2,
         "Germany": 2,
         "Poland": 1,
-        "Italy": 1,
         "Romania": 1,
+        "Switzerland": 1,
         "New Zealand": 1,
+        "India": 1,
         "Czechia": 1,
+        "Georgia": 1,
         "Greece": 1,
         "Bulgaria": 1,
         "Norway": 1,
-        "Algeria": 1
+        "Algeria": 1,
+        "Unknown": 13
       },
-      "aggregatedAt": "2025-12-15T16:42:24.261Z"
+      "aggregatedAt": "2025-12-22T09:49:37.467Z"
     }
   },
   {
@@ -8495,7 +8963,7 @@
       "wojtekn"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v14.6.0",
-    "parsedAt": "2025-12-15T09:27:48.224Z",
+    "parsedAt": "2025-12-22T09:24:23.381Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -8503,37 +8971,43 @@
         "newContributors": 3
       },
       "sponsorBreakdown": {
-        "Automattic": 31,
+        "Automattic": 33,
         "Yoast": 2,
         "Bluehost": 1,
+        "rtCamp": 1,
+        "GoDaddy": 1,
         "10up": 1,
-        "Self-sponsored": 1
+        "Spacedmonkey": 1,
+        "Unknown": 16
       },
       "countryBreakdown": {
-        "United States": 5,
-        "United Kingdom": 5,
-        "Australia": 4,
+        "United Kingdom": 7,
+        "United States": 6,
+        "Australia": 5,
+        "Italy": 3,
         "Germany": 2,
         "Japan": 2,
         "Bulgaria": 2,
-        "Italy": 1,
         "Sweden": 1,
         "Vietnam": 1,
         "Romania": 1,
         "New Zealand": 1,
+        "Bangladesh": 1,
         "Denmark": 1,
         "South Africa": 1,
         "Portugal": 1,
         "Czechia": 1,
         "Taiwan": 1,
+        "Georgia": 1,
         "Argentina": 1,
         "Greece": 1,
         "Chile": 1,
         "Norway": 1,
         "Algeria": 1,
-        "Spain": 1
+        "Spain": 1,
+        "Unknown": 12
       },
-      "aggregatedAt": "2025-12-15T16:42:24.261Z"
+      "aggregatedAt": "2025-12-22T09:49:37.468Z"
     }
   },
   {
@@ -8609,7 +9083,7 @@
       "pkorzelius"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v14.5.0",
-    "parsedAt": "2025-12-15T09:27:48.224Z",
+    "parsedAt": "2025-12-22T09:24:23.382Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -8617,32 +9091,39 @@
         "newContributors": 5
       },
       "sponsorBreakdown": {
-        "Automattic": 26,
+        "Automattic": 28,
+        "TrewKnowledge": 1,
         "Emilia Capital": 1,
         "Yoast": 1,
-        "ParshipMeet Group": 1
+        "GoDaddy": 1,
+        "ParshipMeet Group": 1,
+        "Unknown": 13
       },
       "countryBreakdown": {
-        "Australia": 5,
+        "Australia": 6,
+        "United States": 4,
         "United Kingdom": 3,
         "Greece": 2,
         "Germany": 2,
-        "United States": 2,
         "Japan": 2,
+        "Canada": 1,
         "Sweden": 1,
+        "Italy": 1,
         "New Zealand": 1,
         "Poland": 1,
         "Panama": 1,
         "Portugal": 1,
         "Czechia": 1,
         "Taiwan": 1,
+        "Georgia": 1,
         "Spain": 1,
         "Thailand": 1,
         "Bulgaria": 1,
         "Norway": 1,
-        "Algeria": 1
+        "Algeria": 1,
+        "Unknown": 12
       },
-      "aggregatedAt": "2025-12-15T16:42:24.261Z"
+      "aggregatedAt": "2025-12-22T09:49:37.469Z"
     }
   },
   {
@@ -8728,7 +9209,7 @@
       "thelovekesh"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v14.4.0",
-    "parsedAt": "2025-12-15T09:27:48.225Z",
+    "parsedAt": "2025-12-22T09:24:23.382Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -8736,24 +9217,32 @@
         "newContributors": 4
       },
       "sponsorBreakdown": {
-        "Automattic": 32,
+        "Automattic": 33,
         "Yoast": 2,
         "Bluehost": 1,
         "10up": 1,
+        "Looking for the next opportunity": 1,
+        "Freelancing": 1,
+        "Viewpoint Digital": 1,
         "Advies en zo": 1,
+        "GoDaddy": 1,
+        "Brilliant Future AB": 1,
         "ParshipMeet Group": 1,
-        "rtCamp": 1
+        "rtCamp": 1,
+        "Unknown": 12
       },
       "countryBreakdown": {
-        "Australia": 6,
-        "United States": 5,
+        "Australia": 7,
+        "United States": 6,
+        "Italy": 3,
+        "India": 3,
+        "Germany": 3,
+        "Spain": 3,
         "United Kingdom": 3,
-        "India": 2,
-        "Germany": 2,
+        "Sweden": 2,
+        "Canada": 2,
         "Japan": 2,
         "Poland": 1,
-        "Italy": 1,
-        "Sweden": 1,
         "Ireland": 1,
         "Vietnam": 1,
         "Romania": 1,
@@ -8763,14 +9252,14 @@
         "Netherlands": 1,
         "Czechia": 1,
         "Taiwan": 1,
+        "Georgia": 1,
         "Greece": 1,
-        "Spain": 1,
-        "Canada": 1,
         "Bulgaria": 1,
         "Norway": 1,
-        "Algeria": 1
+        "Algeria": 1,
+        "Unknown": 8
       },
-      "aggregatedAt": "2025-12-15T16:42:24.261Z"
+      "aggregatedAt": "2025-12-22T09:49:37.469Z"
     }
   },
   {
@@ -8852,7 +9341,7 @@
       "philwp"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v14.3.0",
-    "parsedAt": "2025-12-15T09:27:48.225Z",
+    "parsedAt": "2025-12-22T09:24:23.383Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -8860,36 +9349,48 @@
         "newContributors": 7
       },
       "sponsorBreakdown": {
-        "Automattic": 28,
+        "Automattic": 30,
+        "datadog": 1,
         "Yoast": 1,
         "Monkey Wrench Inc.": 1,
         "Advies en zo": 1,
+        "Gecka Apps": 1,
+        "codeablehq": 1,
+        "GoDaddy": 1,
         "Épico Studio": 1,
-        "ParshipMeet Group": 1
+        "TrewKnowledge": 1,
+        "ParshipMeet Group": 1,
+        "Unknown": 10
       },
       "countryBreakdown": {
-        "Australia": 6,
+        "Australia": 7,
         "United States": 3,
         "United Kingdom": 3,
+        "Spain": 3,
         "Poland": 2,
         "Japan": 2,
         "Portugal": 2,
-        "Spain": 2,
+        "Colombia": 1,
+        "France": 1,
         "Sweden": 1,
+        "Italy": 1,
         "New Zealand": 1,
         "India": 1,
         "Denmark": 1,
         "Netherlands": 1,
         "Taiwan": 1,
+        "Georgia": 1,
         "Greece": 1,
         "Brazil": 1,
+        "Bangladesh": 1,
         "Canada": 1,
         "Germany": 1,
         "Bulgaria": 1,
         "Chile": 1,
-        "Algeria": 1
+        "Algeria": 1,
+        "Unknown": 10
       },
-      "aggregatedAt": "2025-12-15T16:42:24.261Z"
+      "aggregatedAt": "2025-12-22T09:49:37.470Z"
     }
   },
   {
@@ -8950,7 +9451,7 @@
       "pagelab"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v14.2.0",
-    "parsedAt": "2025-12-15T09:27:48.226Z",
+    "parsedAt": "2025-12-22T09:24:23.383Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -8961,28 +9462,35 @@
         "Automattic": 23,
         "Emilia Capital": 1,
         "Yoast": 1,
+        "Looking for the next opportunity": 1,
         "NTNU": 1,
         "Alpha Particle": 1,
-        "Épico Studio": 1
+        "GoDaddy": 1,
+        "Épico Studio": 1,
+        "Unknown": 5
       },
       "countryBreakdown": {
-        "Australia": 4,
-        "United States": 3,
+        "Australia": 5,
+        "United States": 4,
         "Portugal": 3,
         "Greece": 2,
+        "Italy": 2,
         "Norway": 2,
         "Japan": 2,
         "Sweden": 1,
         "Romania": 1,
+        "Spain": 1,
         "New Zealand": 1,
         "Poland": 1,
         "Denmark": 1,
+        "Georgia": 1,
         "Argentina": 1,
         "Brazil": 1,
         "Bulgaria": 1,
-        "Algeria": 1
+        "Algeria": 1,
+        "Unknown": 4
       },
-      "aggregatedAt": "2025-12-15T16:42:24.261Z"
+      "aggregatedAt": "2025-12-22T09:49:37.470Z"
     }
   },
   {
@@ -9075,7 +9583,7 @@
       "rahidroid"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v14.1.0",
-    "parsedAt": "2025-12-15T09:27:48.227Z",
+    "parsedAt": "2025-12-22T09:24:23.383Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -9083,41 +9591,51 @@
         "newContributors": 7
       },
       "sponsorBreakdown": {
-        "Automattic": 34,
+        "Automattic": 35,
         "Git Updater": 1,
         "Emilia Capital": 1,
         "Yoast": 1,
         "wpgoplugins.com and wpgothemes.com": 1,
         "10up": 1,
+        "Looking for the next opportunity": 1,
         "Alpha Particle": 1,
+        "GoDaddy": 1,
+        "Anchour": 1,
+        "eedee.net": 1,
         "Trew Knowledge Inc.": 1,
         "BeAPI": 1,
-        "Self-sponsored": 1
+        "rtCamp": 1,
+        "Spacedmonkey": 1,
+        "hamworks": 1,
+        "Unknown": 9
       },
       "countryBreakdown": {
-        "Australia": 5,
+        "United States": 8,
+        "Australia": 6,
         "United Kingdom": 5,
-        "United States": 4,
+        "Spain": 4,
+        "Germany": 3,
         "Japan": 3,
         "Poland": 2,
         "Greece": 2,
-        "Spain": 2,
+        "India": 2,
         "Sweden": 1,
+        "Italy": 1,
         "Romania": 1,
-        "Germany": 1,
         "New Zealand": 1,
         "Denmark": 1,
         "South Africa": 1,
         "Portugal": 1,
         "Taiwan": 1,
-        "India": 1,
+        "Georgia": 1,
         "Argentina": 1,
         "France": 1,
         "Canada": 1,
         "Bulgaria": 1,
-        "Algeria": 1
+        "Algeria": 1,
+        "Unknown": 10
       },
-      "aggregatedAt": "2025-12-15T16:42:24.261Z"
+      "aggregatedAt": "2025-12-22T09:49:37.471Z"
     }
   },
   {
@@ -9198,7 +9716,7 @@
       "titusdmoore"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v14.0.0",
-    "parsedAt": "2025-12-15T09:27:48.227Z",
+    "parsedAt": "2025-12-22T09:24:23.384Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -9209,36 +9727,44 @@
         "Automattic": 26,
         "Yoast": 2,
         "Emilia Capital": 1,
+        "Looking for the next opportunity": 1,
         "Dreamers of Day": 1,
         "Illustrate Digital": 1,
+        "GoDaddy": 1,
         "Express Tech": 1,
-        "ParshipMeet Group": 1
+        "TrewKnowledge": 1,
+        "ParshipMeet Group": 1,
+        "hamworks": 1,
+        "Unknown": 13
       },
       "countryBreakdown": {
-        "Australia": 6,
+        "Australia": 7,
         "United States": 4,
+        "Spain": 3,
         "Japan": 3,
         "Poland": 2,
+        "Italy": 2,
         "Greece": 2,
+        "Bangladesh": 2,
         "United Kingdom": 2,
-        "Spain": 2,
-        "Italy": 1,
+        "Germany": 2,
         "Sweden": 1,
         "Vietnam": 1,
         "Romania": 1,
         "New Zealand": 1,
         "Denmark": 1,
         "Malaysia": 1,
+        "Georgia": 1,
         "Argentina": 1,
         "Portugal": 1,
         "Brazil": 1,
         "India": 1,
         "Canada": 1,
-        "Germany": 1,
         "Bulgaria": 1,
-        "Norway": 1
+        "Norway": 1,
+        "Unknown": 7
       },
-      "aggregatedAt": "2025-12-15T16:42:24.261Z"
+      "aggregatedAt": "2025-12-22T09:49:37.472Z"
     }
   },
   {
@@ -9316,7 +9842,7 @@
       "theminaldiwan"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v13.9.0",
-    "parsedAt": "2025-12-15T09:27:48.228Z",
+    "parsedAt": "2025-12-22T09:24:23.384Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -9324,37 +9850,44 @@
         "newContributors": 4
       },
       "sponsorBreakdown": {
-        "Automattic": 25,
+        "Automattic": 26,
         "Emilia Capital": 1,
         "Yoast": 1,
         "Premise Design Communications Inc.": 1,
+        "Looking for the next opportunity": 1,
         "Dreamers of Day": 1,
         "WebDevStudios": 1,
+        "GoDaddy": 1,
         "Trew Knowledge Inc.": 1,
         "ParshipMeet Group": 1,
-        "Multidots": 1
+        "Multidots Inc": 1,
+        "Unknown": 12
       },
       "countryBreakdown": {
-        "Australia": 5,
+        "Australia": 6,
         "United Kingdom": 4,
         "United States": 4,
         "Canada": 3,
         "Portugal": 3,
+        "India": 3,
         "Japan": 3,
         "Greece": 2,
         "Poland": 1,
         "Sweden": 1,
+        "Italy": 1,
+        "Spain": 1,
         "New Zealand": 1,
         "Denmark": 1,
         "Benin": 1,
+        "Georgia": 1,
         "Argentina": 1,
         "Thailand": 1,
         "Germany": 1,
-        "India": 1,
         "Bulgaria": 1,
-        "Norway": 1
+        "Norway": 1,
+        "Unknown": 7
       },
-      "aggregatedAt": "2025-12-15T16:42:24.261Z"
+      "aggregatedAt": "2025-12-22T09:49:37.473Z"
     }
   },
   {
@@ -9428,7 +9961,7 @@
       "paulopmt1"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v13.8.0",
-    "parsedAt": "2025-12-15T09:27:48.229Z",
+    "parsedAt": "2025-12-22T09:24:23.385Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -9440,13 +9973,17 @@
         "Yoast": 2,
         "Emilia Capital": 1,
         "10up": 1,
-        "Human Made": 1,
-        "Multidots": 1,
-        "WP Engine": 1
+        "Looking for the next opportunity": 1,
+        "Human Made Ltd": 1,
+        "GoDaddy": 1,
+        "Multidots Inc": 1,
+        "WP Engine": 1,
+        "Unknown": 9
       },
       "countryBreakdown": {
+        "Australia": 6,
         "United States": 5,
-        "Australia": 5,
+        "Spain": 4,
         "United Kingdom": 3,
         "Italy": 2,
         "Greece": 2,
@@ -9455,16 +9992,17 @@
         "Sweden": 1,
         "Poland": 1,
         "Portugal": 1,
+        "Georgia": 1,
         "Argentina": 1,
-        "Spain": 1,
         "Brazil": 1,
         "Canada": 1,
         "India": 1,
         "Bulgaria": 1,
         "Chile": 1,
-        "Norway": 1
+        "Norway": 1,
+        "Unknown": 10
       },
-      "aggregatedAt": "2025-12-15T16:42:24.261Z"
+      "aggregatedAt": "2025-12-22T09:49:37.473Z"
     }
   },
   {
@@ -9552,7 +10090,7 @@
       "welenofsky"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v13.7.0",
-    "parsedAt": "2025-12-15T09:27:48.229Z",
+    "parsedAt": "2025-12-22T09:24:23.385Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -9564,32 +10102,42 @@
         "Yoast": 2,
         "Waystar": 1,
         "Emilia Capital": 1,
+        "Looking for the next opportunity": 1,
+        "GoDaddy": 1,
         "Trew Knowledge Inc.": 1,
-        "NEOK IT": 1
+        "hamworks": 1,
+        "NEOK IT": 1,
+        "Unknown": 17
       },
       "countryBreakdown": {
-        "United States": 4,
-        "Australia": 4,
+        "United States": 6,
+        "Australia": 5,
         "United Kingdom": 4,
         "Japan": 3,
         "Poland": 2,
+        "Italy": 2,
         "Greece": 2,
+        "Germany": 2,
         "Portugal": 2,
-        "Italy": 1,
-        "Germany": 1,
         "Sweden": 1,
         "Romania": 1,
+        "Switzerland": 1,
+        "Spain": 1,
         "New Zealand": 1,
+        "Bangladesh": 1,
         "Czechia": 1,
         "Taiwan": 1,
+        "Georgia": 1,
+        "India": 1,
         "Brazil": 1,
         "Canada": 1,
         "Bulgaria": 1,
         "Belgium": 1,
         "Norway": 1,
-        "Algeria": 1
+        "Algeria": 1,
+        "Unknown": 12
       },
-      "aggregatedAt": "2025-12-15T16:42:24.262Z"
+      "aggregatedAt": "2025-12-22T09:49:37.474Z"
     }
   },
   {
@@ -9683,7 +10231,7 @@
       "zaerl"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v13.6.0",
-    "parsedAt": "2025-12-15T09:27:48.230Z",
+    "parsedAt": "2025-12-22T09:24:23.386Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -9698,32 +10246,38 @@
         "Extendify": 1,
         "10up": 1,
         "Monkey Wrench Inc.": 1,
+        "GoDaddy": 1,
+        "weBaby LLC": 1,
         "Trew Knowledge Inc.": 1,
         "BeAPI": 1,
-        "Self-sponsored": 1,
-        "Multidots": 1,
-        "Human Made": 1
+        "Spacedmonkey": 1,
+        "Multidots Inc": 1,
+        "HumanMade Ltd": 1,
+        "Unknown": 18
       },
       "countryBreakdown": {
-        "Australia": 6,
+        "Australia": 7,
         "United Kingdom": 5,
-        "United States": 3,
-        "Japan": 3,
+        "Italy": 4,
+        "United States": 4,
+        "Japan": 4,
         "Greece": 2,
+        "Germany": 2,
         "Portugal": 2,
+        "India": 2,
         "Poland": 1,
-        "Italy": 1,
-        "Germany": 1,
         "New Zealand": 1,
+        "Bangladesh": 1,
         "Taiwan": 1,
         "Spain": 1,
+        "Georgia": 1,
         "Argentina": 1,
         "France": 1,
-        "India": 1,
         "Bulgaria": 1,
-        "Norway": 1
+        "Norway": 1,
+        "Unknown": 15
       },
-      "aggregatedAt": "2025-12-15T16:42:24.262Z"
+      "aggregatedAt": "2025-12-22T09:49:37.475Z"
     }
   },
   {
@@ -9791,7 +10345,7 @@
       "tharsheblows"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v13.5.0",
-    "parsedAt": "2025-12-15T09:27:48.230Z",
+    "parsedAt": "2025-12-22T09:24:23.386Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -9801,21 +10355,27 @@
       "sponsorBreakdown": {
         "Automattic": 19,
         "Waystar": 1,
+        "Looking for the next opportunity": 1,
+        "GoDaddy": 1,
         "Incsub": 1,
         "WP SYNTEX": 1,
-        "Multidots": 1
+        "Multidots Inc": 1,
+        "hamworks": 1,
+        "Unknown": 10
       },
       "countryBreakdown": {
-        "Australia": 4,
-        "Spain": 3,
+        "Australia": 5,
+        "Spain": 4,
         "Japan": 3,
         "United States": 2,
         "United Kingdom": 2,
         "Poland": 1,
+        "Italy": 1,
         "Romania": 1,
         "New Zealand": 1,
         "Malaysia": 1,
         "Czechia": 1,
+        "Georgia": 1,
         "Bangladesh": 1,
         "Argentina": 1,
         "Portugal": 1,
@@ -9824,9 +10384,10 @@
         "France": 1,
         "India": 1,
         "Bulgaria": 1,
-        "Norway": 1
+        "Norway": 1,
+        "Unknown": 4
       },
-      "aggregatedAt": "2025-12-15T16:42:24.262Z"
+      "aggregatedAt": "2025-12-22T09:49:37.475Z"
     }
   },
   {
@@ -9903,7 +10464,7 @@
       "xconsau"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v13.4.0",
-    "parsedAt": "2025-12-15T09:27:48.232Z",
+    "parsedAt": "2025-12-22T09:24:23.386Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -9914,29 +10475,39 @@
         "Automattic": 25,
         "Emilia Capital": 1,
         "Self-sponsored": 1,
+        "Looking for the next opportunity": 1,
+        "Freelancing": 1,
         "WebDevStudios": 1,
-        "Liquid Web": 1
+        "GoDaddy": 1,
+        "Liquid Web": 1,
+        "hamworks": 1,
+        "Unknown": 13
       },
       "countryBreakdown": {
-        "Australia": 7,
+        "Australia": 8,
+        "United States": 4,
         "Poland": 3,
-        "United States": 3,
         "United Kingdom": 3,
         "Japan": 3,
         "Greece": 2,
+        "Italy": 1,
         "Germany": 1,
         "Romania": 1,
+        "Spain": 1,
         "New Zealand": 1,
+        "India": 1,
         "Portugal": 1,
         "Malaysia": 1,
         "Benin": 1,
         "Taiwan": 1,
+        "Georgia": 1,
         "Argentina": 1,
         "Thailand": 1,
         "Norway": 1,
-        "Algeria": 1
+        "Algeria": 1,
+        "Unknown": 8
       },
-      "aggregatedAt": "2025-12-15T16:42:24.262Z"
+      "aggregatedAt": "2025-12-22T09:49:37.476Z"
     }
   },
   {
@@ -10024,7 +10595,7 @@
       "tomjdv"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v13.3.0",
-    "parsedAt": "2025-12-15T09:27:48.232Z",
+    "parsedAt": "2025-12-22T09:24:23.387Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -10032,38 +10603,44 @@
         "newContributors": 8
       },
       "sponsorBreakdown": {
-        "Automattic": 25,
+        "Automattic": 26,
         "Waystar": 1,
         "Emilia Capital": 1,
         "Yoast": 1,
         "10up": 1,
+        "Looking for the next opportunity": 1,
         "Greyd GmbH": 1,
+        "GoDaddy": 1,
         "Brainstorm Force": 1,
         "ParshipMeet Group": 1,
-        "Self-sponsored": 1
+        "Spacedmonkey": 1,
+        "Unknown": 19
       },
       "countryBreakdown": {
+        "Australia": 5,
         "United Kingdom": 5,
-        "Australia": 4,
+        "Germany": 4,
         "Poland": 3,
         "United States": 3,
-        "Germany": 3,
+        "Spain": 3,
         "Portugal": 3,
         "Greece": 2,
         "Sweden": 1,
+        "Italy": 1,
         "Romania": 1,
         "New Zealand": 1,
         "Malaysia": 1,
         "Czechia": 1,
         "Taiwan": 1,
-        "Spain": 1,
+        "Georgia": 1,
         "Thailand": 1,
         "Bangladesh": 1,
         "Japan": 1,
         "Norway": 1,
-        "Algeria": 1
+        "Algeria": 1,
+        "Unknown": 14
       },
-      "aggregatedAt": "2025-12-15T16:42:24.262Z"
+      "aggregatedAt": "2025-12-22T09:49:37.476Z"
     }
   },
   {
@@ -10097,7 +10674,7 @@
       "trapsta"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v13.2.0",
-    "parsedAt": "2025-12-15T09:27:48.232Z",
+    "parsedAt": "2025-12-22T09:24:23.387Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -10110,7 +10687,7 @@
       "countryBreakdown": {
         "Australia": 1
       },
-      "aggregatedAt": "2025-12-15T16:42:24.262Z"
+      "aggregatedAt": "2025-12-22T09:49:37.476Z"
     }
   },
   {
@@ -10187,7 +10764,7 @@
       "zutigrm"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v13.1.0",
-    "parsedAt": "2025-12-15T09:27:48.233Z",
+    "parsedAt": "2025-12-22T09:24:23.387Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -10199,30 +10776,37 @@
         "10up": 2,
         "Waystar": 1,
         "Emilia Capital": 1,
+        "Looking for the next opportunity": 1,
         "WebDevStudios": 1,
         "CODE TOT JSC": 1,
-        "Fueled": 1
+        "GoDaddy": 1,
+        "Fueled": 1,
+        "hamworks": 1,
+        "Unknown": 13
       },
       "countryBreakdown": {
+        "Australia": 4,
         "United States": 4,
         "Poland": 3,
         "Japan": 3,
-        "Australia": 3,
         "Greece": 2,
-        "Germany": 1,
+        "Germany": 2,
+        "Spain": 2,
+        "Italy": 1,
         "New Zealand": 1,
         "Denmark": 1,
         "Czechia": 1,
         "Benin": 1,
         "Taiwan": 1,
         "Vietnam": 1,
+        "Georgia": 1,
         "Portugal": 1,
-        "Spain": 1,
         "United Kingdom": 1,
         "Algeria": 1,
-        "Serbia": 1
+        "Serbia": 1,
+        "Unknown": 10
       },
-      "aggregatedAt": "2025-12-15T16:42:24.262Z"
+      "aggregatedAt": "2025-12-22T09:49:37.477Z"
     }
   },
   {
@@ -10319,7 +10903,7 @@
     ],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v13.0.0",
-    "parsedAt": "2025-12-15T09:27:48.233Z",
+    "parsedAt": "2025-12-22T09:24:23.388Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -10327,29 +10911,33 @@
         "newContributors": 0
       },
       "sponsorBreakdown": {
-        "Automattic": 34,
+        "Automattic": 35,
         "rtCamp": 2,
         "Waystar": 1,
         "Emilia Capital": 1,
-        "Unknown": 1,
+        "IT business": 1,
         "Yoast": 1,
+        "Looking for the next opportunity": 1,
         "GitHub": 1,
+        "Bates College": 1,
         "WebDevStudios": 1,
-        "Kunsthumaniora Sint-Lucas Gent": 1,
-        "Multidots": 1,
-        "WP Engine": 1
+        "GoDaddy": 1,
+        "Multidots Inc": 1,
+        "WP Engine": 1,
+        "Unknown": 22
       },
       "countryBreakdown": {
-        "United States": 7,
-        "Australia": 5,
+        "United States": 8,
+        "Australia": 6,
+        "Spain": 5,
         "Japan": 4,
         "United Kingdom": 4,
         "Poland": 3,
         "Greece": 2,
         "India": 2,
         "Portugal": 2,
-        "Spain": 2,
         "Sweden": 1,
+        "Italy": 1,
         "Bangladesh": 1,
         "Romania": 1,
         "New Zealand": 1,
@@ -10358,11 +10946,14 @@
         "Czechia": 1,
         "Benin": 1,
         "Taiwan": 1,
+        "Georgia": 1,
         "Belgium": 1,
+        "Germany": 1,
         "Canada": 1,
-        "Algeria": 1
+        "Algeria": 1,
+        "Unknown": 19
       },
-      "aggregatedAt": "2025-12-15T16:42:24.262Z"
+      "aggregatedAt": "2025-12-22T09:49:37.478Z"
     }
   },
   {
@@ -10453,7 +11044,7 @@
       "stefanolissa"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v12.9.0",
-    "parsedAt": "2025-12-15T09:27:48.233Z",
+    "parsedAt": "2025-12-22T09:24:23.388Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -10461,37 +11052,43 @@
         "newContributors": 8
       },
       "sponsorBreakdown": {
-        "Automattic": 26,
+        "Automattic": 28,
         "rtCamp": 2,
         "Waystar": 1,
         "Emilia Capital": 1,
         "Yoast": 1,
         "Self-sponsored": 1,
         "Shopify": 1,
-        "ultraDevs": 1
+        "GoDaddy": 1,
+        "ultraDevs": 1,
+        "Unknown": 19
       },
       "countryBreakdown": {
-        "Australia": 6,
-        "United States": 4,
+        "Australia": 7,
+        "United States": 5,
+        "United Kingdom": 3,
         "Portugal": 3,
         "Poland": 2,
         "Greece": 2,
-        "United Kingdom": 2,
+        "Bangladesh": 2,
         "France": 2,
         "Japan": 2,
         "Brazil": 1,
         "Sweden": 1,
-        "Bangladesh": 1,
+        "Italy": 1,
         "New Zealand": 1,
         "India": 1,
         "Denmark": 1,
         "Malaysia": 1,
         "Czechia": 1,
         "Taiwan": 1,
+        "Georgia": 1,
+        "Spain": 1,
         "Chile": 1,
-        "Algeria": 1
+        "Algeria": 1,
+        "Unknown": 15
       },
-      "aggregatedAt": "2025-12-15T16:42:24.262Z"
+      "aggregatedAt": "2025-12-22T09:49:37.478Z"
     }
   },
   {
@@ -10581,7 +11178,7 @@
       "tumas2"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v12.8.0",
-    "parsedAt": "2025-12-15T09:27:48.233Z",
+    "parsedAt": "2025-12-22T09:24:23.388Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -10596,29 +11193,34 @@
         "rtCamp": 1,
         "GitHub": 1,
         "Self-sponsored": 1,
+        "GoDaddy": 1,
         "required": 1,
-        "WebMan Design": 1
+        "WebMan Design": 1,
+        "Unknown": 21
       },
       "countryBreakdown": {
-        "United States": 6,
+        "United States": 7,
         "Australia": 5,
         "Poland": 3,
         "Greece": 2,
         "United Kingdom": 2,
+        "Spain": 2,
         "Sweden": 1,
+        "Italy": 1,
         "Bangladesh": 1,
         "Romania": 1,
         "Denmark": 1,
         "Malaysia": 1,
         "Czechia": 1,
+        "Georgia": 1,
         "Japan": 1,
-        "Spain": 1,
         "Germany": 1,
         "Canada": 1,
         "Norway": 1,
-        "Slovakia": 1
+        "Slovakia": 1,
+        "Unknown": 20
       },
-      "aggregatedAt": "2025-12-15T16:42:24.262Z"
+      "aggregatedAt": "2025-12-22T09:49:37.479Z"
     }
   },
   {
@@ -10702,7 +11304,7 @@
       "sisanu"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v12.7.0",
-    "parsedAt": "2025-12-15T09:27:48.234Z",
+    "parsedAt": "2025-12-22T09:24:23.389Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -10714,31 +11316,37 @@
         "Waystar": 1,
         "Whodunit": 1,
         "rtCamp": 1,
+        "Looking for the next opportunity": 1,
+        "GoDaddy": 1,
         "required": 1,
         "WebMan Design": 1,
-        "WP Engine": 1
+        "WP Engine": 1,
+        "Unknown": 17
       },
       "countryBreakdown": {
-        "United States": 6,
-        "Australia": 3,
+        "United States": 8,
+        "Australia": 4,
+        "Spain": 4,
         "Poland": 2,
         "France": 2,
         "Germany": 2,
         "Portugal": 2,
-        "Spain": 2,
         "Japan": 2,
+        "Italy": 1,
         "Bangladesh": 1,
         "United Kingdom": 1,
         "New Zealand": 1,
         "Pakistan": 1,
         "Denmark": 1,
         "Czechia": 1,
+        "Georgia": 1,
         "Greece": 1,
         "Canada": 1,
         "Slovakia": 1,
-        "Algeria": 1
+        "Algeria": 1,
+        "Unknown": 14
       },
-      "aggregatedAt": "2025-12-15T16:42:24.263Z"
+      "aggregatedAt": "2025-12-22T09:49:37.479Z"
     }
   },
   {
@@ -10766,7 +11374,7 @@
       "sunyatasattva"
     ],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v12.6.0",
-    "parsedAt": "2025-12-15T09:27:48.234Z",
+    "parsedAt": "2025-12-22T09:24:23.389Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -10775,7 +11383,7 @@
       },
       "sponsorBreakdown": {},
       "countryBreakdown": {},
-      "aggregatedAt": "2025-12-19T19:58:48.345Z"
+      "aggregatedAt": "2025-12-22T09:49:37.479Z"
     }
   },
   {
@@ -10798,7 +11406,7 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v12.5.0",
-    "parsedAt": "2025-12-15T09:27:48.234Z",
+    "parsedAt": "2025-12-22T09:24:23.390Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -10807,7 +11415,7 @@
       },
       "sponsorBreakdown": {},
       "countryBreakdown": {},
-      "aggregatedAt": "2025-12-19T19:58:48.345Z"
+      "aggregatedAt": "2025-12-22T09:49:37.479Z"
     }
   },
   {
@@ -10828,7 +11436,7 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v12.4.0",
-    "parsedAt": "2025-12-15T09:27:48.235Z",
+    "parsedAt": "2025-12-22T09:24:23.390Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -10837,7 +11445,7 @@
       },
       "sponsorBreakdown": {},
       "countryBreakdown": {},
-      "aggregatedAt": "2025-12-19T19:58:48.345Z"
+      "aggregatedAt": "2025-12-22T09:49:37.479Z"
     }
   },
   {
@@ -10859,7 +11467,7 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v12.3.0",
-    "parsedAt": "2025-12-15T09:27:48.235Z",
+    "parsedAt": "2025-12-22T09:24:23.390Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -10868,7 +11476,7 @@
       },
       "sponsorBreakdown": {},
       "countryBreakdown": {},
-      "aggregatedAt": "2025-12-19T19:58:48.345Z"
+      "aggregatedAt": "2025-12-22T09:49:37.479Z"
     }
   },
   {
@@ -10889,7 +11497,7 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v12.2.0",
-    "parsedAt": "2025-12-15T09:27:48.235Z",
+    "parsedAt": "2025-12-22T09:24:23.391Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -10898,7 +11506,7 @@
       },
       "sponsorBreakdown": {},
       "countryBreakdown": {},
-      "aggregatedAt": "2025-12-19T19:58:48.345Z"
+      "aggregatedAt": "2025-12-22T09:49:37.479Z"
     }
   },
   {
@@ -10920,7 +11528,7 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v12.1.0",
-    "parsedAt": "2025-12-15T09:27:48.236Z",
+    "parsedAt": "2025-12-22T09:24:23.391Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -10929,7 +11537,7 @@
       },
       "sponsorBreakdown": {},
       "countryBreakdown": {},
-      "aggregatedAt": "2025-12-19T19:58:48.345Z"
+      "aggregatedAt": "2025-12-22T09:49:37.479Z"
     }
   },
   {
@@ -10952,7 +11560,7 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v12.0.0",
-    "parsedAt": "2025-12-15T09:27:48.236Z",
+    "parsedAt": "2025-12-22T09:24:23.391Z",
     "parserVersion": "1.0.0",
     "contributorAggregates": {
       "stats": {
@@ -10961,7 +11569,7 @@
       },
       "sponsorBreakdown": {},
       "countryBreakdown": {},
-      "aggregatedAt": "2025-12-19T19:58:48.345Z"
+      "aggregatedAt": "2025-12-22T09:49:37.479Z"
     }
   },
   {
@@ -10986,8 +11594,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v11.9.0",
-    "parsedAt": "2025-12-15T09:27:48.236Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.391Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.479Z"
+    }
   },
   {
     "gbVersion": "11.8.0",
@@ -11011,8 +11628,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v11.8.0",
-    "parsedAt": "2025-12-15T09:27:48.237Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.392Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.479Z"
+    }
   },
   {
     "gbVersion": "11.7.0",
@@ -11034,8 +11660,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v11.7.0",
-    "parsedAt": "2025-12-15T09:27:48.237Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.392Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.479Z"
+    }
   },
   {
     "gbVersion": "11.6.0",
@@ -11059,8 +11694,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v11.6.0",
-    "parsedAt": "2025-12-15T09:27:48.238Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.393Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.479Z"
+    }
   },
   {
     "gbVersion": "11.5.0",
@@ -11085,8 +11729,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v11.5.0",
-    "parsedAt": "2025-12-15T09:27:48.238Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.395Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.479Z"
+    }
   },
   {
     "gbVersion": "11.4.0",
@@ -11108,8 +11761,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v11.4.0",
-    "parsedAt": "2025-12-15T09:27:48.238Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.395Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.479Z"
+    }
   },
   {
     "gbVersion": "11.3.0",
@@ -11131,8 +11793,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v11.3.0",
-    "parsedAt": "2025-12-15T09:27:48.238Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.395Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.479Z"
+    }
   },
   {
     "gbVersion": "11.2.0",
@@ -11155,8 +11826,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v11.2.0",
-    "parsedAt": "2025-12-15T09:27:48.239Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.396Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.479Z"
+    }
   },
   {
     "gbVersion": "11.1.0",
@@ -11180,8 +11860,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v11.1.0",
-    "parsedAt": "2025-12-15T09:27:48.239Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.396Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.479Z"
+    }
   },
   {
     "gbVersion": "11.0.0",
@@ -11205,8 +11894,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v11.0.0",
-    "parsedAt": "2025-12-15T09:27:48.239Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.396Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.479Z"
+    }
   },
   {
     "gbVersion": "10.9.0",
@@ -11228,8 +11926,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v10.9.0",
-    "parsedAt": "2025-12-15T09:27:48.240Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.396Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.479Z"
+    }
   },
   {
     "gbVersion": "10.8.0",
@@ -11252,8 +11959,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v10.8.0",
-    "parsedAt": "2025-12-15T09:27:48.240Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.397Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.479Z"
+    }
   },
   {
     "gbVersion": "10.7.0",
@@ -11277,8 +11993,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v10.7.0",
-    "parsedAt": "2025-12-15T09:27:48.241Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.397Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.479Z"
+    }
   },
   {
     "gbVersion": "10.6.0",
@@ -11302,8 +12027,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v10.6.0",
-    "parsedAt": "2025-12-15T09:27:48.241Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.397Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.479Z"
+    }
   },
   {
     "gbVersion": "10.5.0",
@@ -11325,8 +12059,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v10.5.0",
-    "parsedAt": "2025-12-15T09:27:48.242Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.398Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.479Z"
+    }
   },
   {
     "gbVersion": "10.4.0",
@@ -11348,8 +12091,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v10.4.0",
-    "parsedAt": "2025-12-15T09:27:48.242Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.398Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.479Z"
+    }
   },
   {
     "gbVersion": "10.3.0",
@@ -11372,8 +12124,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v10.3.0",
-    "parsedAt": "2025-12-15T09:27:48.242Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.398Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.479Z"
+    }
   },
   {
     "gbVersion": "10.2.0",
@@ -11398,8 +12159,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v10.2.0",
-    "parsedAt": "2025-12-15T09:27:48.243Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.398Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.479Z"
+    }
   },
   {
     "gbVersion": "10.1.0",
@@ -11423,8 +12193,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v10.1.0",
-    "parsedAt": "2025-12-15T09:27:48.243Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.399Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.479Z"
+    }
   },
   {
     "gbVersion": "10.0.0",
@@ -11448,8 +12227,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v10.0.0",
-    "parsedAt": "2025-12-15T09:27:48.243Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.399Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.479Z"
+    }
   },
   {
     "gbVersion": "9.9.0",
@@ -11474,8 +12262,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v9.9.0",
-    "parsedAt": "2025-12-15T09:27:48.244Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.399Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.479Z"
+    }
   },
   {
     "gbVersion": "9.8.0",
@@ -11499,8 +12296,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v9.8.0",
-    "parsedAt": "2025-12-15T09:27:48.244Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.400Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.479Z"
+    }
   },
   {
     "gbVersion": "9.7.0",
@@ -11524,8 +12330,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v9.7.0",
-    "parsedAt": "2025-12-15T09:27:48.244Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.400Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.479Z"
+    }
   },
   {
     "gbVersion": "9.6.0",
@@ -11551,8 +12366,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v9.6.0",
-    "parsedAt": "2025-12-15T09:27:48.245Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.400Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.479Z"
+    }
   },
   {
     "gbVersion": "9.5.0",
@@ -11578,8 +12402,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v9.5.0",
-    "parsedAt": "2025-12-15T09:27:48.245Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.400Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.479Z"
+    }
   },
   {
     "gbVersion": "9.4.0",
@@ -11605,8 +12438,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v9.4.0",
-    "parsedAt": "2025-12-15T09:27:48.245Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.401Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.479Z"
+    }
   },
   {
     "gbVersion": "9.3.0",
@@ -11629,8 +12471,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v9.3.0",
-    "parsedAt": "2025-12-15T09:27:48.246Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.401Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.479Z"
+    }
   },
   {
     "gbVersion": "9.2.0",
@@ -11656,8 +12507,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v9.2.0",
-    "parsedAt": "2025-12-15T09:27:48.246Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.401Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.479Z"
+    }
   },
   {
     "gbVersion": "9.1.0",
@@ -11681,8 +12541,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v9.1.0",
-    "parsedAt": "2025-12-15T09:27:48.246Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.401Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.479Z"
+    }
   },
   {
     "gbVersion": "9.0.0",
@@ -11705,8 +12574,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v9.0.0",
-    "parsedAt": "2025-12-15T09:27:48.246Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.401Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.479Z"
+    }
   },
   {
     "gbVersion": "8.9.0",
@@ -11731,8 +12609,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v8.9.0",
-    "parsedAt": "2025-12-15T09:27:48.247Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.402Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.479Z"
+    }
   },
   {
     "gbVersion": "8.8.0",
@@ -11754,8 +12641,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v8.8.0",
-    "parsedAt": "2025-12-15T09:27:48.247Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.402Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.479Z"
+    }
   },
   {
     "gbVersion": "8.7.0",
@@ -11778,8 +12674,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v8.7.0",
-    "parsedAt": "2025-12-15T09:27:48.247Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.402Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.479Z"
+    }
   },
   {
     "gbVersion": "8.6.0",
@@ -11805,8 +12710,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v8.6.0",
-    "parsedAt": "2025-12-15T09:27:48.247Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.402Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.479Z"
+    }
   },
   {
     "gbVersion": "8.5.0",
@@ -11831,8 +12745,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v8.5.0",
-    "parsedAt": "2025-12-15T09:27:48.248Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.402Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.479Z"
+    }
   },
   {
     "gbVersion": "8.4.0",
@@ -11858,8 +12781,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v8.4.0",
-    "parsedAt": "2025-12-15T09:27:48.248Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.402Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.479Z"
+    }
   },
   {
     "gbVersion": "8.3.0",
@@ -11875,8 +12807,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v8.3.0",
-    "parsedAt": "2025-12-15T09:27:48.248Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.403Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.479Z"
+    }
   },
   {
     "gbVersion": "8.2.0",
@@ -11901,8 +12842,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v8.2.0",
-    "parsedAt": "2025-12-15T09:27:48.248Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.403Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.479Z"
+    }
   },
   {
     "gbVersion": "8.1.0",
@@ -11928,8 +12878,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v8.1.0",
-    "parsedAt": "2025-12-15T09:27:48.249Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.403Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.479Z"
+    }
   },
   {
     "gbVersion": "8.0.0",
@@ -11954,8 +12913,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v8.0.0",
-    "parsedAt": "2025-12-15T09:27:48.249Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.403Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.479Z"
+    }
   },
   {
     "gbVersion": "7.9.0",
@@ -11979,8 +12947,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v7.9.0",
-    "parsedAt": "2025-12-15T09:27:48.249Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.403Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.479Z"
+    }
   },
   {
     "gbVersion": "7.8.0",
@@ -11996,8 +12973,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v7.8.0",
-    "parsedAt": "2025-12-15T09:27:48.249Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.403Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.479Z"
+    }
   },
   {
     "gbVersion": "7.7.0",
@@ -12020,8 +13006,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v7.7.0",
-    "parsedAt": "2025-12-15T09:27:48.250Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.404Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.479Z"
+    }
   },
   {
     "gbVersion": "7.6.0",
@@ -12037,8 +13032,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v7.6.0",
-    "parsedAt": "2025-12-15T09:27:48.250Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.404Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.479Z"
+    }
   },
   {
     "gbVersion": "7.5.0",
@@ -12054,8 +13058,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v7.5.0",
-    "parsedAt": "2025-12-15T09:27:48.250Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.404Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.479Z"
+    }
   },
   {
     "gbVersion": "7.4.0",
@@ -12077,8 +13090,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v7.4.0",
-    "parsedAt": "2025-12-15T09:27:48.250Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.404Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.479Z"
+    }
   },
   {
     "gbVersion": "7.3.0",
@@ -12094,8 +13116,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v7.3.0",
-    "parsedAt": "2025-12-15T09:27:48.250Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.404Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.480Z"
+    }
   },
   {
     "gbVersion": "7.2.0",
@@ -12118,8 +13149,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v7.2.0",
-    "parsedAt": "2025-12-15T09:27:48.251Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.404Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.480Z"
+    }
   },
   {
     "gbVersion": "7.1.0",
@@ -12142,8 +13182,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v7.1.0",
-    "parsedAt": "2025-12-15T09:27:48.251Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.404Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.480Z"
+    }
   },
   {
     "gbVersion": "7.0.0",
@@ -12165,8 +13214,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v7.0.0",
-    "parsedAt": "2025-12-15T09:27:48.251Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.404Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.480Z"
+    }
   },
   {
     "gbVersion": "6.9.0",
@@ -12188,8 +13246,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v6.9.0",
-    "parsedAt": "2025-12-15T09:27:48.251Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.405Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.480Z"
+    }
   },
   {
     "gbVersion": "6.8.0",
@@ -12210,8 +13277,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v6.8.0",
-    "parsedAt": "2025-12-15T09:27:48.251Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.405Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.480Z"
+    }
   },
   {
     "gbVersion": "6.7.0",
@@ -12233,8 +13309,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v6.7.0",
-    "parsedAt": "2025-12-15T09:27:48.252Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.405Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.480Z"
+    }
   },
   {
     "gbVersion": "6.6.0",
@@ -12257,8 +13342,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v6.6.0",
-    "parsedAt": "2025-12-15T09:27:48.252Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.405Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.480Z"
+    }
   },
   {
     "gbVersion": "6.5.0",
@@ -12280,8 +13374,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v6.5.0",
-    "parsedAt": "2025-12-15T09:27:48.252Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.405Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.480Z"
+    }
   },
   {
     "gbVersion": "6.4.0",
@@ -12304,8 +13407,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v6.4.0",
-    "parsedAt": "2025-12-15T09:27:48.252Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.405Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.480Z"
+    }
   },
   {
     "gbVersion": "6.3.0",
@@ -12328,8 +13440,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v6.3.0",
-    "parsedAt": "2025-12-15T09:27:48.252Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.405Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.480Z"
+    }
   },
   {
     "gbVersion": "6.2.0",
@@ -12349,8 +13470,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v6.2.0",
-    "parsedAt": "2025-12-15T09:27:48.253Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.405Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.480Z"
+    }
   },
   {
     "gbVersion": "6.1.0",
@@ -12372,8 +13502,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v6.1.0",
-    "parsedAt": "2025-12-15T09:27:48.253Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.405Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.480Z"
+    }
   },
   {
     "gbVersion": "6.0.0",
@@ -12394,8 +13533,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v6.0.0",
-    "parsedAt": "2025-12-15T09:27:48.253Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.406Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.480Z"
+    }
   },
   {
     "gbVersion": "5.9.0",
@@ -12416,8 +13564,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v5.9.0",
-    "parsedAt": "2025-12-15T09:27:48.253Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.406Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.480Z"
+    }
   },
   {
     "gbVersion": "5.8.0",
@@ -12438,8 +13595,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v5.8.0",
-    "parsedAt": "2025-12-15T09:27:48.254Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.406Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.480Z"
+    }
   },
   {
     "gbVersion": "5.7.0",
@@ -12460,8 +13626,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v5.7.0",
-    "parsedAt": "2025-12-15T09:27:48.254Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.406Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.480Z"
+    }
   },
   {
     "gbVersion": "5.6.0",
@@ -12478,8 +13653,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v5.6.0",
-    "parsedAt": "2025-12-15T09:27:48.254Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.406Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.480Z"
+    }
   },
   {
     "gbVersion": "5.5.0",
@@ -12495,8 +13679,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v5.5.0",
-    "parsedAt": "2025-12-15T09:27:48.254Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.406Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.480Z"
+    }
   },
   {
     "gbVersion": "5.4.0",
@@ -12510,8 +13703,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v5.4.0",
-    "parsedAt": "2025-12-15T09:27:48.254Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.406Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.480Z"
+    }
   },
   {
     "gbVersion": "5.3.0",
@@ -12527,8 +13729,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v5.3.0",
-    "parsedAt": "2025-12-15T09:27:48.255Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.407Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.480Z"
+    }
   },
   {
     "gbVersion": "5.2.0",
@@ -12542,8 +13753,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v5.2.0",
-    "parsedAt": "2025-12-15T09:27:48.255Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.407Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.480Z"
+    }
   },
   {
     "gbVersion": "5.1.0",
@@ -12559,8 +13779,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v5.1.0",
-    "parsedAt": "2025-12-15T09:27:48.255Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.407Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.480Z"
+    }
   },
   {
     "gbVersion": "5.0.0",
@@ -12582,8 +13811,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v5.0.0",
-    "parsedAt": "2025-12-15T09:27:48.255Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.407Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.480Z"
+    }
   },
   {
     "gbVersion": "4.9.0",
@@ -12599,8 +13837,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v4.9.0",
-    "parsedAt": "2025-12-15T09:27:48.256Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.407Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.480Z"
+    }
   },
   {
     "gbVersion": "4.8.0",
@@ -12616,8 +13863,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v4.8.0",
-    "parsedAt": "2025-12-15T09:27:48.256Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.407Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.480Z"
+    }
   },
   {
     "gbVersion": "4.7.0",
@@ -12633,8 +13889,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v4.7.0",
-    "parsedAt": "2025-12-15T09:27:48.256Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.407Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.480Z"
+    }
   },
   {
     "gbVersion": "4.6.0",
@@ -12650,8 +13915,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v4.6.0",
-    "parsedAt": "2025-12-15T09:27:48.256Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.408Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.480Z"
+    }
   },
   {
     "gbVersion": "4.5.0",
@@ -12667,8 +13941,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v4.5.0",
-    "parsedAt": "2025-12-15T09:27:48.256Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.408Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.480Z"
+    }
   },
   {
     "gbVersion": "4.4.0",
@@ -12684,8 +13967,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v4.4.0",
-    "parsedAt": "2025-12-15T09:27:48.257Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.408Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.480Z"
+    }
   },
   {
     "gbVersion": "4.3.0",
@@ -12701,8 +13993,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v4.3.0",
-    "parsedAt": "2025-12-15T09:27:48.257Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.408Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.480Z"
+    }
   },
   {
     "gbVersion": "4.2.0",
@@ -12718,8 +14019,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v4.2.0",
-    "parsedAt": "2025-12-15T09:27:48.257Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.408Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.480Z"
+    }
   },
   {
     "gbVersion": "4.1.0",
@@ -12735,8 +14045,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v4.1.0",
-    "parsedAt": "2025-12-15T09:27:48.257Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.408Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.480Z"
+    }
   },
   {
     "gbVersion": "4.0.0",
@@ -12756,8 +14075,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v4.0.0",
-    "parsedAt": "2025-12-15T09:27:48.258Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.409Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.480Z"
+    }
   },
   {
     "gbVersion": "3.9.0",
@@ -12773,8 +14101,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v3.9.0",
-    "parsedAt": "2025-12-15T09:27:48.258Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.409Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.480Z"
+    }
   },
   {
     "gbVersion": "3.8.0",
@@ -12790,8 +14127,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v3.8.0",
-    "parsedAt": "2025-12-15T09:27:48.258Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.409Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.480Z"
+    }
   },
   {
     "gbVersion": "3.7.1",
@@ -12807,8 +14153,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v3.7.1",
-    "parsedAt": "2025-12-15T09:27:48.257Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.408Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.480Z"
+    }
   },
   {
     "gbVersion": "3.6.3",
@@ -12824,8 +14179,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v3.6.3",
-    "parsedAt": "2025-12-15T09:27:48.257Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.408Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.480Z"
+    }
   },
   {
     "gbVersion": "3.5.0",
@@ -12841,8 +14205,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v3.5.0",
-    "parsedAt": "2025-12-15T09:27:48.258Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.409Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.480Z"
+    }
   },
   {
     "gbVersion": "3.4.0",
@@ -12858,8 +14231,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v3.4.0",
-    "parsedAt": "2025-12-15T09:27:48.258Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.409Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.480Z"
+    }
   },
   {
     "gbVersion": "3.3.0",
@@ -12875,8 +14257,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v3.3.0",
-    "parsedAt": "2025-12-15T09:27:48.258Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.409Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.480Z"
+    }
   },
   {
     "gbVersion": "3.1.1",
@@ -12892,8 +14283,17 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v3.1.1",
-    "parsedAt": "2025-12-15T09:27:48.258Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.409Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.480Z"
+    }
   },
   {
     "gbVersion": "1.0.0",
@@ -12907,7 +14307,16 @@
     "contributorsList": [],
     "newContributorsList": [],
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v1.0.0",
-    "parsedAt": "2025-12-15T09:27:48.258Z",
-    "parserVersion": "1.0.0"
+    "parsedAt": "2025-12-22T09:24:23.409Z",
+    "parserVersion": "1.0.0",
+    "contributorAggregates": {
+      "stats": {
+        "total": 0,
+        "newContributors": 0
+      },
+      "sponsorBreakdown": {},
+      "countryBreakdown": {},
+      "aggregatedAt": "2025-12-22T09:49:37.480Z"
+    }
   }
 ]

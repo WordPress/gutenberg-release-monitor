@@ -3070,5 +3070,21 @@
     },
     "isLastBeforeWPBeta": false,
     "wpVersion": "7.0"
+  },
+  {
+    "gbVersion": "22.3.0",
+    "date": "2025-12-17",
+    "totalPRs": 128,
+    "categoryPRs": {
+      "features": 38,
+      "bugs": 36,
+      "codeQuality": 41,
+      "a11y": 1,
+      "performance": 2,
+      "documentation": 10,
+      "other": 0
+    },
+    "isLastBeforeWPBeta": false,
+    "wpVersion": "7.0"
   }
 ]
