@@ -381,6 +381,15 @@ body {
   outline: none;
 }
 
+.app-title-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.app-title-link:hover {
+  text-decoration: none;
+}
+
 .app-header h1 {
   font-size: 1.75rem;
   font-weight: 600;

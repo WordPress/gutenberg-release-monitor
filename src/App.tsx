@@ -167,7 +167,9 @@ function App() {
     <div className="app">
       <header className="app-header">
         <div className="app-header-top">
-          <Heading level={1}>{config.project.name}</Heading>
+          <a href={import.meta.env.BASE_URL} className="app-title-link">
+            <Heading level={1}>{config.project.name}</Heading>
+          </a>
           <Button
             variant="tertiary"
             onClick={toggle}
