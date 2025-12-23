@@ -57,6 +57,8 @@ export function ConfigProvider({ children }: ConfigProviderProps) {
 
 /**
  * Hook to access the full project configuration.
+ *
+ * @returns The complete ProjectConfig object
  * @throws Error if used outside of ConfigProvider
  */
 export function useConfig(): ProjectConfig {
@@ -84,6 +86,8 @@ export function useTabConfig(tabId: string): TabConfig {
 
 /**
  * Hook to get the list of tab IDs from configuration.
+ *
+ * @returns Array of tab ID strings (e.g., `['by-wp-version', 'by-gb-release']`)
  */
 export function useTabIds(): string[] {
   const config = useConfig();
@@ -91,7 +95,9 @@ export function useTabIds(): string[] {
 }
 
 /**
- * Hook to get tabs formatted for TabPanel component.
+ * Hook to get tabs formatted for @wordpress/components TabPanel.
+ *
+ * @returns Array of tab objects with `name` and `title` properties
  */
 export function useTabPanelTabs(): Array<{ name: string; title: string }> {
   const config = useConfig();

@@ -5,6 +5,20 @@ import { useState, useEffect, useCallback, useMemo } from 'react';
  * Hook for managing state that syncs with URL query parameters.
  * Removes the parameter when value equals defaultValue for cleaner URLs.
  * Re-validates and updates when paramName, defaultValue, or validValues change.
+ *
+ * @param paramName - URL query parameter name (e.g., 'tab', 'view')
+ * @param defaultValue - Default value when parameter is absent from URL
+ * @param validValues - Optional array of valid values for validation
+ * @returns Tuple of [currentValue, setValue] for state management
+ *
+ * @example
+ * ```tsx
+ * // Basic usage
+ * const [tab, setTab] = useURLState('tab', 'home');
+ *
+ * // With validation
+ * const [view, setView] = useURLState('view', 'grid', ['grid', 'list']);
+ * ```
  */
 export function useURLState(
   paramName: string,

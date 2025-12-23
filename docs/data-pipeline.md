@@ -1,138 +1,226 @@
 # Data Pipeline
 
+This document describes the scripts that fetch, parse, and aggregate release data.
+
 ## Overview
 
-Data flows through a series of scripts that fetch, parse, and aggregate release information.
+```text
+GitHub API ─────► build-gb-releases.ts ─────► gb-releases.json
+                                                    │
+                                                    ▼
+                                          build-wp-cycles.ts
+                                                    │
+                                    ┌───────────────┴───────────────┐
+                                    ▼                               ▼
+                              wp-cycles.json                  summary.json
 
-```
-GitHub API ──► parse-changelog.ts ──► gb-releases.json
-                                           │
-                                           ▼
-                                    aggregate-data.ts
-                                           │
-                                ┌──────────┴──────────┐
-                                ▼                     ▼
-                          summary.json          wp-cycles.json
+                        compute-contributor-stats.ts
+                                    │
+                                    ▼
+                      (updates gb-releases.json and wp-cycles.json
+                       with contributorAggregates)
 ```
 
 ## Scripts
 
-### parse-changelog.ts
+### build-gb-releases.ts
 
 Fetches Gutenberg releases from GitHub and parses changelog markdown.
 
+**Location**: `scripts/build-gb-releases.ts`
+
+**npm script**:
+
 ```bash
-npm run parse
+npm run data-sync:gb-releases
 ```
 
-**Input**: GitHub API (releases endpoint)
+**Input**: GitHub API (releases endpoint for `WordPress/gutenberg`)
 
 **Output**: `public/data/gb-releases.json`
 
 **Process**:
-1. Fetch all releases from `WordPress/gutenberg` repository
-2. Parse each release's changelog markdown
-3. Extract PR counts by category
-4. Extract contributor usernames
-5. Map to WordPress versions using `wp-schedule.json`
 
-### aggregate-data.ts
+1. Fetch all releases from GitHub API
+1. Parse each release's changelog markdown
+1. Extract PR counts by category
+1. Extract contributor usernames from `@mentions`
+1. Map to WordPress versions using `scripts/data/wp-schedule.json`
+1. Transform to `NormalizedRelease[]` format
 
-Computes aggregated statistics from parsed releases.
+**Environment Variables**:
+
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `GITHUB_TOKEN` | Recommended | Increases API rate limit from 60 to 5000 requests/hour |
+
+---
+
+### build-wp-cycles.ts
+
+Computes aggregated statistics by WordPress version.
+
+**Location**: `scripts/build-wp-cycles.ts`
+
+**npm script**:
 
 ```bash
-npm run aggregate
+npm run data-sync:wp-cycles
 ```
 
 **Input**: `public/data/gb-releases.json`
 
 **Output**:
-- `public/data/summary.json` - Overall statistics
+
 - `public/data/wp-cycles.json` - Per-WP-version aggregates
+- `public/data/summary.json` - Overall statistics
 
 **Computed Metrics**:
+
 - Total PRs, contributors, new contributors per WP cycle
 - Average PRs per release
-- Category distribution (features, bugs, a11y, performance, etc.)
+- Category totals (pre-aggregated using category config)
 - Current WP cycle progress
+- Since-cutoff vs all-time comparisons
 
-### compute-release-aggregates.ts
+---
 
-Computes privacy-first contributor statistics (sponsor/country breakdowns).
+### compute-contributor-stats.ts
+
+Computes privacy-preserving contributor statistics (sponsor/country breakdowns).
+
+**Location**: `scripts/compute-contributor-stats.ts`
+
+**npm script**:
 
 ```bash
-# Compute for specific WP versions
-npm run compute-aggregates:wp
-
-# Compute for all releases (use sparingly)
-npm run compute-aggregates
+npm run data-sync:contributor-stats
 ```
 
-**Options**:
-| Flag | Description |
-|------|-------------|
-| `--wp-version 6.9,7.0` | Target specific WP versions |
-| `--gb-version 19.0.0` | Target specific GB version |
-| `--from-gb 19.0.0` | Start of GB version range |
-| `--to-gb 20.0.0` | End of GB version range |
-| `--force` | Recompute even if aggregates exist |
+**Input**:
+
+- `public/data/gb-releases.json` - For contributor lists
+- WP.org API - For contributor profiles
+- GitHub API - For fallback profile data
+
+**Output**: Updates `gb-releases.json` and `wp-cycles.json` with `contributorAggregates`
 
 **Process**:
-1. Load contributor list from release changelog
-2. Fetch WP.org profile for each contributor
-3. Extract company/sponsor from profile
-4. Geocode location to country
-5. Aggregate counts (no individual data stored)
-6. Write aggregates to release data
 
-**Privacy**: Only aggregate counts are stored. Individual contributor data is fetched on-demand and discarded after aggregation.
+1. Load contributor list from release changelog
+1. Fetch WP.org profile for each contributor
+1. Extract company/sponsor from profile
+1. Geocode location to country
+1. Aggregate counts (no individual data stored)
+1. Write aggregates back to release data
+
+**Privacy Model**:
+
+Only aggregate counts are stored. Individual contributor data is fetched on-demand and discarded after aggregation.
+
+```text
+Individual: @user1 → "Automattic" → counted
+            @user2 → "Unknown" → counted
+
+Stored: { "Automattic": 1, "Unknown": 1 }
+```
+
+---
 
 ### build-username-mapping.ts
 
-Creates mapping between GitHub usernames and display names.
+Creates mapping between GitHub usernames and WP.org profiles.
+
+**Location**: `scripts/build-username-mapping.ts`
+
+**npm script**:
 
 ```bash
 npm run build-mapping
 ```
 
-**Input**: GitHub API (contributor profiles)
+**Output**: `scripts/data/username-mapping.json`
 
-**Output**: `public/data/username-mapping.json`
+---
 
 ## Combined Commands
 
-### Full Refresh
+### Full Data Refresh
 
 ```bash
-npm run refresh
+npm run data-sync:all
 ```
 
-Runs `parse` + `aggregate` in sequence. Use for routine data updates.
+Runs `data-sync:gb-releases` + `data-sync:wp-cycles` in sequence.
 
-### GitHub Actions
+### Complete Refresh with Contributors
 
-Automated refresh runs **Mondays at 9:00 UTC** via `.github/workflows/refresh-data.yml`.
-
-Workflow options:
-| Option | Behavior |
-|--------|----------|
-| `auto` | Compute aggregates for new releases only |
-| `skip` | Skip contributor aggregates (fast) |
-| `force-all` | Recompute ALL aggregates |
+```bash
+npm run data-sync:all
+npm run data-sync:contributor-stats
+```
 
 ## Data Files
 
 ### gb-releases.json
 
-Array of `Release` objects with:
-- Version info (`gbVersion`, `wpVersion`, `date`)
-- PR metrics (`totalPRs`, `categories`)
-- Contributor counts (`contributors`, `newContributors`)
-- Optional `contributorAggregates` (sponsor/country breakdowns)
+Array of `NormalizedRelease` objects representing individual Gutenberg releases.
+
+```typescript
+{
+  id: "22.2",
+  version: "22.2",
+  displayLabel: "Gutenberg 22.2",
+  isAggregated: false,
+  totalPRs: 150,
+  contributors: 45,
+  newContributors: 5,
+  date: "2024-12-15",
+  memberOf: "6.9",
+  rawCategories: { "Enhancements": 32, "Bug Fixes": 49, ... },
+  contributorAggregates: { ... }
+}
+```
+
+### wp-cycles.json
+
+Array of `NormalizedRelease` objects representing aggregated WP version data.
+
+```typescript
+{
+  id: "6.9",
+  version: "6.9",
+  displayLabel: "WordPress 6.9",
+  isAggregated: true,
+  totalPRs: 850,
+  avgPRs: 141.67,
+  groupedCount: 6,
+  groupedRange: "22.0-22.5",
+  categoryTotals: { "features": 200, "bugs": 300, ... },
+  contributorAggregates: { ... }
+}
+```
+
+### summary.json
+
+Single `SourceSummary` object with overall statistics.
+
+```typescript
+{
+  currentPeriod: "6.9",
+  releasesSinceCutoff: 6,
+  avgPRsSinceCutoff: 141.67,
+  avgPRsTotal: 125.3,
+  totalReleases: 150,
+  lastUpdated: "2024-12-23T10:00:00Z"
+}
+```
 
 ### wp-schedule.json
 
-WordPress release schedule mapping GB versions to WP versions:
+WordPress release schedule mapping.
+
+**Location**: `scripts/data/wp-schedule.json`
 
 ```json
 {
@@ -147,24 +235,23 @@ WordPress release schedule mapping GB versions to WP versions:
 }
 ```
 
-**Note**: Currently maintained manually. Auto-update planned.
+**Note**: This file is maintained manually. Update it when new WordPress releases are scheduled.
 
-### category-config.json
+## Script Utilities
 
-Category aggregation definitions:
+Located in `scripts/utils/`:
 
-```json
-{
-  "aggregations": [
-    {
-      "id": "features",
-      "label": "Features",
-      "color": "#4CAF50",
-      "rawCategories": ["Enhancements", "New APIs", ...]
-    }
-  ]
-}
-```
+| Utility | Purpose |
+|---------|---------|
+| `changelog-parser.ts` | Parse changelog markdown |
+| `github-api.ts` | GitHub API client |
+| `wporg-api.ts` | WP.org API client |
+| `contributor-data.ts` | Profile fetching |
+| `sponsor-normalization.ts` | Company name normalization |
+| `geocoding.ts` | Location → country mapping |
+| `category-utils.ts` | Category aggregation |
+| `release-utils.ts` | Release data utilities |
+| `file-utils.ts` | JSON I/O with change detection |
 
 ## Sponsor Normalization
 
@@ -175,5 +262,43 @@ Company names are normalized for consistent aggregation:
 | "Automattic, Inc." | "Automattic" |
 | "Lead Engineer @bigbite" | "bigbite" |
 | "Freelance", "#opentowork" | "Self-sponsored" |
+| "", null, undefined | "Unknown" |
 
-See `scripts/utils/sponsor-normalization.ts`.
+See `scripts/utils/sponsor-normalization.ts` for the full mapping.
+
+## Customization
+
+### Changelog Parser
+
+The parser in `scripts/utils/changelog-parser.ts` handles multiple changelog formats:
+
+- Modern format (v8+): `### Category` headers
+- Mid-era format (v6-v7): `## Category` headers
+- Legacy format (v5-): Various formats
+
+To adapt for another project, modify:
+
+1. `parseChangelog()` - Main entry point
+1. `extractCategories()` - Category detection
+1. `extractContributors()` - Contributor extraction
+
+### Category Mapping
+
+Raw changelog categories are mapped using `public/config/categories.json`. The scripts use this configuration to:
+
+1. Map raw category names to aggregation IDs
+1. Compute totals for aggregated views
+1. Maintain consistent category groupings
+
+### Adding New Data Sources
+
+To add a new data source:
+
+1. Create a new script in `scripts/`
+1. Add npm script to `package.json`
+1. Output data to `public/data/`
+1. Update the appropriate tab config to use the new endpoint
+
+## Automated Refresh
+
+See [Deployment](deployment.md) for GitHub Actions workflow that runs weekly data refresh.

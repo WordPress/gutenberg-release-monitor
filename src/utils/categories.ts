@@ -58,6 +58,10 @@ export async function loadCategoryConfig(): Promise<CategoryConfig> {
 
 /**
  * Sum PR counts for specific raw category names.
+ *
+ * @param categories - Raw category counts from changelog (e.g., `{ "Bug Fixes": 10 }`)
+ * @param rawCategoryNames - Category names to sum (e.g., `["Bug Fixes", "Bugfixes"]`)
+ * @returns Total count across all matching categories
  */
 export function sumCategories(
   categories: Record<string, number>,
@@ -72,6 +76,11 @@ export function sumCategories(
 /**
  * Get aggregated PR count for a specific aggregation ID.
  * Requires config to be loaded first via loadCategoryConfig().
+ *
+ * @param categories - Raw category counts from release data
+ * @param config - Loaded category configuration
+ * @param aggregationId - Aggregation ID (e.g., "features", "bugs")
+ * @returns Summed count for the aggregation, or 0 if not found
  */
 export function getAggregatedPRs(
   categories: Record<string, number>,
@@ -85,7 +94,10 @@ export function getAggregatedPRs(
 
 /**
  * Aggregate raw categories into configured groups.
- * Returns a map of aggregation id -> total count.
+ *
+ * @param categories - Raw category counts from release data
+ * @param config - Loaded category configuration
+ * @returns Map of aggregation ID to total count (e.g., `{ features: 42, bugs: 28 }`)
  */
 export function aggregateCategories(
   categories: Record<string, number>,
@@ -104,6 +116,10 @@ export function aggregateCategories(
  * Calculate percentages for aggregated categories.
  * Only includes categories in the selectedIds array.
  * Percentages are relative to the total of selected categories (sums to 100%).
+ *
+ * @param aggregated - Map of aggregation ID to count
+ * @param selectedIds - Category IDs to include in percentage calculation
+ * @returns Map of category ID to percentage (rounded to whole number)
  */
 export function calculateCategoryPercentages(
   aggregated: Record<string, number>,
@@ -128,6 +144,10 @@ export function calculateCategoryPercentages(
 
 /**
  * Get the color for a category by its aggregation id.
+ *
+ * @param config - Loaded category configuration
+ * @param categoryId - Aggregation ID to look up
+ * @returns Hex color string (e.g., "#4CAF50"), defaults to gray if not found
  */
 export function getCategoryColor(
   config: CategoryConfig,
@@ -139,6 +159,9 @@ export function getCategoryColor(
 
 /**
  * Get default selected category IDs from config.
+ *
+ * @param config - Loaded category configuration
+ * @returns Array of category IDs where `includeByDefault` is true
  */
 export function getDefaultSelectedCategories(config: CategoryConfig): string[] {
   return config.aggregations.filter((a) => a.includeByDefault).map((a) => a.id);

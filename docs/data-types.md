@@ -2,127 +2,106 @@
 
 TypeScript interfaces defining the data structures used throughout the application.
 
-## Core Types
+## Overview
 
-### Release
+The codebase uses two sets of types:
 
-A single Gutenberg release with parsed changelog data.
+| Layer | Location | Purpose |
+|-------|----------|---------|
+| **Presentation** | `src/data/normalized.ts` | Types for UI components, match JSON files directly |
+| **Scripts** | `scripts/types.ts` | Types for data processing scripts |
+
+## Presentation Layer Types
+
+These types are used by React components. JSON data files match these interfaces directly.
+
+### NormalizedRelease
+
+The main data interface used by all visualization components.
 
 ```typescript
-interface Release {
-  gbVersion: string;           // e.g. "22.2.0"
-  wpVersion: string | null;    // e.g. "6.9" or null if not in WP yet
-  date: string;                // ISO format, e.g. "2025-01-15"
-  isLastBeforeWPBeta: boolean; // True if last GB before WP beta freeze
+interface NormalizedRelease {
+  // Identity
+  id: string;              // Unique identifier (same as version)
+  version: string;         // Version string (e.g., "22.2" or "7.0")
+  displayLabel: string;    // With prefix (e.g., "Gutenberg 22.2")
+  isAggregated: boolean;   // Whether this groups other items
 
-  // PR metrics
+  // Core stats - totals
   totalPRs: number;
-  categories: Record<string, number>;  // e.g. { "Enhancements": 32, "Bug Fixes": 49 }
-
-  // Contributors
   contributors: number;
   newContributors: number;
-  contributorsList: string[];
-  newContributorsList: string[];
+  hasContributorData: boolean;
 
-  // Privacy-preserving aggregates (optional)
-  contributorAggregates?: ReleaseContributorAggregates;
+  // Core stats - averages (pre-computed)
+  avgPRs: number;          // For aggregated: per grouped item; individual: same as total
+  avgContributors: number;
+  avgNewContributors: number;
 
-  // Metadata
-  changelogUrl: string;
-  parsedAt: string;
-  parserVersion: string;
+  // Category data
+  rawCategories?: Record<string, number>;   // Individual items only
+  categoryTotals?: Record<string, number>;  // Aggregated items only
+
+  // Contributor breakdown (when available)
+  contributorAggregates?: ContributorAggregates;
+
+  // Aggregated view fields
+  groupedCount?: number;   // Number of items in this group
+  groupedRange?: string;   // Range of grouped item versions
+
+  // Individual item fields
+  date?: string;           // Release date
+  memberOf?: string;       // Which group this belongs to
+  isSpecialMarker?: boolean;  // Has special marker (e.g., beta cutoff)
+  changelogUrl?: string;   // URL to changelog
 }
 ```
 
-**Source**: `public/data/gb-releases.json`
+**Source**: `public/data/gb-releases.json` and `public/data/wp-cycles.json`
 
 **Notes**:
-- `categories` is the source of truth for all PR breakdowns
-- `contributorAggregates` is computed separately and may not exist for all releases
 
-### ReleaseContributorAggregates
+- For aggregated items (WP versions), `avgPRs` = average per grouped release
+- For individual items, `avgPRs` = `totalPRs` (same value)
+- `categoryTotals` is pre-aggregated using category config
+- `rawCategories` is the raw changelog breakdown
 
-Privacy-preserving contributor statistics for a single release.
+### ContributorAggregates
+
+Privacy-preserving contributor statistics.
 
 ```typescript
-interface ReleaseContributorAggregates {
-  stats: {
-    total: number;
-    newContributors: number;
-  };
-  sponsorBreakdown: Record<string, number>;  // { "Automattic": 15, "Unknown": 42 }
-  countryBreakdown: Record<string, number>;  // { "United States": 20, "Unknown": 16 }
-  aggregatedAt: string;                      // ISO timestamp
+interface ContributorAggregates {
+  sponsorBreakdown: Record<string, number>;  // { "Automattic": 15, "Unknown": 42, ... }
+  countryBreakdown: Record<string, number>;  // { "United States": 20, "Unknown": 16, ... }
 }
 ```
 
-**Privacy**: Only aggregate counts are stored. Sum of breakdown values equals `stats.total`.
+**Privacy**: Only aggregate counts are stored. Individual contributor information is never persisted.
 
-### WPVersionStats
+### SourceSummary
 
-Aggregated statistics for a WordPress version cycle.
-
-```typescript
-interface WPVersionStats {
-  wpVersion: string;        // e.g. "6.9"
-  gbVersionRange: string;   // e.g. "20.5-21.9"
-  releaseCount: number;     // Number of GB releases in this WP cycle
-
-  // Totals across all releases
-  totalPRs: number;
-  totalContributors: number;
-  totalNewContributors: number;
-  categoryTotals: Record<string, number>;  // Keyed by category ID
-
-  // Averages per release
-  avgPRsPerRelease: number;
-  avgContributorsPerRelease: number;
-  avgNewContributorsPerRelease: number;
-
-  // Privacy-preserving aggregates (optional)
-  contributorAggregates?: WPVersionContributorAggregates;
-}
-```
-
-**Source**: `public/data/wp-cycles.json`
-
-### Summary
-
-Overall statistics across all releases.
+Overall dashboard statistics for comparisons.
 
 ```typescript
-interface Summary {
-  // Current WP cycle info
-  currentWPCycle: string;       // e.g. "6.9"
-  lastCutoffVersion: string;    // Last GB version in previous WP
-  releasesSinceCutoff: number;  // Releases in current cycle
+interface SourceSummary {
+  // Current period info
+  currentPeriod: string;       // e.g., "6.9"
+  lastCutoffVersion: string;   // Last version in previous period
+  releasesSinceCutoff: number;
 
-  // Current cycle averages
+  // Since-cutoff averages
   avgPRsSinceCutoff: number;
-  avgFeaturesSinceCutoff: number;
-  avgBugsSinceCutoff: number;
-  avgA11ySinceCutoff: number;
-  avgPerfSinceCutoff: number;
   avgContributorsSinceCutoff: number;
   avgNewContributorsSinceCutoff: number;
 
-  // Current cycle totals
+  // Since-cutoff totals
   totalPRsSinceCutoff: number;
-  totalFeaturesSinceCutoff: number;
-  totalBugsSinceCutoff: number;
-  totalA11ySinceCutoff: number;
-  totalPerfSinceCutoff: number;
   uniqueContributorsSinceCutoff: number;
   uniqueNewContributorsSinceCutoff: number;
 
   // All-time averages
   avgPRsTotal: number;
-  avgFeaturesTotal: number;
-  avgBugsTotal: number;
-  avgCodeQualityTotal: number;
-  avgA11yTotal: number;
-  avgPerfTotal: number;
   avgContributorsTotal: number;
   avgNewContributorsTotal: number;
 
@@ -136,55 +115,204 @@ interface Summary {
 
 **Source**: `public/data/summary.json`
 
+## Configuration Types
+
+See [Configuration Guide](configuration.md) for full documentation. Key types:
+
+### ProjectConfig
+
+```typescript
+interface ProjectConfig {
+  version: string;
+  project: ProjectInfo;
+  tabs: TabConfig[];
+  dataSources: DataSources;
+  defaults: Defaults;
+}
+```
+
+### TabConfig
+
+```typescript
+interface TabConfig {
+  id: string;
+  title: string;
+  dataEndpoint: string;
+  isAggregated: boolean;
+  versionPrefix: string;
+  supportedViewModes: ViewMode[];
+  tableCardClass: string | null;
+  urlParamKey: string;
+  defaultItemSummaryField: string | null;
+  showReferenceLines: boolean;
+  labels: TabLabels;
+}
+```
+
+### CategoryConfig
+
+```typescript
+interface CategoryConfig {
+  aggregations: CategoryAggregation[];
+  version: string;
+}
+
+interface CategoryAggregation {
+  id: string;
+  labels: { full: string; short: string };
+  color: string;
+  rawCategories: string[];
+  includeByDefault: boolean;
+}
+```
+
+## Script Types
+
+Types used internally by data processing scripts.
+
+### Release
+
+Raw parsed release data from GitHub.
+
+```typescript
+interface Release {
+  gbVersion: string;           // e.g., "22.2.0"
+  wpVersion: string | null;    // e.g., "6.9" or null
+  date: string;                // ISO format
+  isLastBeforeWPBeta: boolean;
+
+  // PR metrics
+  totalPRs: number;
+  categories: Record<string, number>;  // Raw changelog categories
+
+  // Contributors
+  contributors: number;
+  newContributors: number;
+  contributorsList: string[];      // GitHub usernames
+  newContributorsList: string[];
+
+  // Optional aggregates
+  contributorAggregates?: ReleaseContributorAggregates;
+
+  // Metadata
+  changelogUrl: string;
+  parsedAt: string;
+  parserVersion: string;
+}
+```
+
+### ReleaseContributorAggregates
+
+Script-internal format for contributor aggregates.
+
+```typescript
+interface ReleaseContributorAggregates {
+  stats: {
+    total: number;
+    newContributors: number;
+  };
+  sponsorBreakdown: Record<string, number>;
+  countryBreakdown: Record<string, number>;
+  aggregatedAt: string;  // ISO timestamp
+}
+```
+
 ### WPRelease
 
 WordPress release schedule entry.
 
 ```typescript
 interface WPRelease {
-  wpVersion: string;      // e.g. "6.9"
+  wpVersion: string;      // e.g., "6.9"
   beta1Date: string;      // ISO format
   stableDate: string;     // ISO format
-  lastGBVersion: string;  // e.g. "21.9"
-  gbVersionRange: string; // e.g. "20.5-21.9"
+  lastGBVersion: string;  // e.g., "21.9"
+  gbVersionRange: string; // e.g., "20.5-21.9"
 }
 ```
 
-**Source**: `public/data/wp-schedule.json`
+**Source**: `scripts/data/wp-schedule.json`
 
 ## Type Relationships
 
+```text
+                                 ┌─────────────────────┐
+                                 │ scripts/data/       │
+                                 │ wp-schedule.json    │
+                                 │ (WPRelease[])       │
+                                 └──────────┬──────────┘
+                                            │ used by
+                                            ▼
+┌─────────────────────┐         ┌─────────────────────┐
+│ GitHub API          │────────▶│ build-gb-releases   │
+│ (releases endpoint) │         │ (creates Release[]) │
+└─────────────────────┘         └──────────┬──────────┘
+                                           │
+                                           ▼
+                              ┌─────────────────────────┐
+                              │ public/data/            │
+                              │ gb-releases.json        │
+                              │ (NormalizedRelease[])   │
+                              └────────────┬────────────┘
+                                           │
+                    ┌──────────────────────┼──────────────────────┐
+                    ▼                      ▼                      ▼
+         ┌──────────────────┐   ┌──────────────────┐   ┌──────────────────┐
+         │ build-wp-cycles  │   │ compute-         │   │ React App        │
+         │ (aggregates by   │   │ contributor-     │   │ (useTabData)     │
+         │ WP version)      │   │ stats            │   └──────────────────┘
+         └────────┬─────────┘   └────────┬─────────┘
+                  │                      │
+                  ▼                      ▼
+       ┌──────────────────┐   ┌──────────────────┐
+       │ wp-cycles.json   │   │ Updated with     │
+       │ summary.json     │   │ ContributorAggs  │
+       └──────────────────┘   └──────────────────┘
 ```
-WPRelease ──────────────────┐
-  (schedule)                │
-                            ▼
-Release ◄───────────────► WPVersionStats
-  │                          │
-  │ contributorAggregates    │ contributorAggregates
-  ▼                          ▼
-ReleaseContributorAggregates   WPVersionContributorAggregates
 
-Summary ◄── aggregated from ── Release[]
-```
+## Enums and Unions
 
-## Category Configuration
-
-Categories are configured in `public/data/category-config.json`:
+### ViewMode
 
 ```typescript
-interface CategoryConfig {
-  aggregations: CategoryAggregation[];
-}
-
-interface CategoryAggregation {
-  id: string;              // e.g. "features"
-  label: string;           // e.g. "Features"
-  color: string;           // CSS color
-  rawCategories: string[]; // Changelog categories to sum
-  defaultVisible: boolean;
-}
+type ViewMode = 'averages' | 'totals' | 'distribution' | 'sponsors' | 'countries';
 ```
 
-**Default visible categories**: features, bugs, accessibility, performance, code-quality
+### ChartType
 
-**Available but hidden by default**: documentation, tools, experiments, mobile
+```typescript
+type ChartType = 'line' | 'bar' | 'area' | 'stacked';
+```
+
+### MetricType
+
+```typescript
+type MetricType = 'prs' | 'contributors';
+```
+
+## JSON File Schemas
+
+### gb-releases.json
+
+```typescript
+type GBReleasesFile = NormalizedRelease[];
+// Array of individual Gutenberg releases
+// isAggregated: false
+// Has: date, memberOf, rawCategories, changelogUrl
+```
+
+### wp-cycles.json
+
+```typescript
+type WPCyclesFile = NormalizedRelease[];
+// Array of aggregated WP version entries
+// isAggregated: true
+// Has: groupedCount, groupedRange, categoryTotals
+```
+
+### summary.json
+
+```typescript
+type SummaryFile = SourceSummary;
+// Single object with dashboard statistics
+```
