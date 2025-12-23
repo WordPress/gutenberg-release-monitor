@@ -24,7 +24,6 @@ import {
   toNormalizedRelease,
   loadReleases,
   getMinorVersion,
-  isPatchRelease,
   aggregatePatchReleases,
 } from './utils/release-utils.js';
 import type { ParseArgs } from './utils/types.js';
