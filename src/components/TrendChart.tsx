@@ -175,6 +175,7 @@ export function TrendChart(props: TrendChartProps) {
   }, [isBreakdownMode, isSponsorBreakdown, data, releaseCount]);
 
   // Configuration based on tabConfig (no isAggregated checks)
+  // eslint-disable-next-line react-hooks/preserve-manual-memoization -- All deps are used: viewMode for showReleasesLine, versionPrefix for labels, childItemLabel and chartSecondaryLabel for childReleasesLabel
   const chartConfig = useMemo(() => {
     // Use chartSecondaryLabel from config if available, otherwise compute from childItemLabel
     const childReleasesLabel = tabConfig?.labels?.chartSecondaryLabel ?? `${childItemLabel}s included`;
