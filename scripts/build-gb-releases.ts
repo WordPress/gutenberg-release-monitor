@@ -1,20 +1,18 @@
 /**
- * Changelog parser script for Gutenberg releases.
- * Fetches releases from GitHub API, parses changelogs, and outputs gb-releases.json.
- *
- * Outputs NormalizedRelease format for UI consumption.
+ * Builds gb-releases.json from GitHub release changelogs.
+ * Fetches releases from GitHub API, parses changelogs, and outputs normalized release data.
  *
  * Usage:
  *   npm run parse                    # Parse all releases
  *   npm run parse -- --version 20.0  # Parse specific version
  *   npm run parse -- --from 19.0 --to 20.0  # Parse range
  *
- * @module scripts/parse-changelog
+ * @module scripts/build-gb-releases
  */
 
 import { parseArgs } from 'node:util';
-import { readFileSync, existsSync, mkdirSync } from 'node:fs';
-import { dirname } from 'node:path';
+import { existsSync, mkdirSync } from 'node:fs';
+import { dirname, basename } from 'node:path';
 import { writeJsonIfChanged } from './utils/file-utils.js';
 import {
   fetchAllReleases,
@@ -24,19 +22,14 @@ import {
   isPatchRelease,
 } from './utils/github-api.js';
 import { parseRelease } from './utils/changelog-parser.js';
+import {
+  toNormalizedRelease,
+  loadReleases,
+} from './utils/release-utils.js';
 import type { ParseArgs } from './utils/types.js';
 import type { Release } from './types.js';
-import type { NormalizedRelease } from '../src/data/normalized.js';
 
 const PARSER_VERSION = '1.0.0';
-
-/**
- * Extended NormalizedRelease with contributor lists for internal script use.
- */
-type NormalizedReleaseWithContributors = NormalizedRelease & {
-  contributorsList?: string[];
-  newContributorsList?: string[];
-};
 
 /**
  * Parse command line arguments.
@@ -73,39 +66,6 @@ function toRelease(parsed: ReturnType<typeof parseRelease>): Release {
     changelogUrl: parsed.changelogUrl,
     parsedAt: new Date().toISOString(),
     parserVersion: PARSER_VERSION,
-  };
-}
-
-/**
- * Convert internal Release to NormalizedRelease format for JSON output.
- */
-function toNormalizedRelease(release: Release): NormalizedReleaseWithContributors {
-  const version = getMinorVersion(release.gbVersion);
-
-  return {
-    id: version,
-    version,
-    displayLabel: `Gutenberg ${version}`,
-    isAggregated: false,
-    totalPRs: release.totalPRs,
-    contributors: release.contributors,
-    newContributors: release.newContributors,
-    hasContributorData: release.contributors > 0,
-    avgPRs: release.totalPRs,
-    avgContributors: release.contributors,
-    avgNewContributors: release.newContributors,
-    rawCategories: release.categories,
-    contributorAggregates: release.contributorAggregates ? {
-      sponsorBreakdown: release.contributorAggregates.sponsorBreakdown,
-      countryBreakdown: release.contributorAggregates.countryBreakdown,
-    } : undefined,
-    date: release.date,
-    memberOf: release.wpVersion || undefined,
-    isSpecialMarker: release.isLastBeforeWPBeta || undefined,
-    changelogUrl: release.changelogUrl,
-    // Include for script use
-    contributorsList: release.contributorsList,
-    newContributorsList: release.newContributorsList,
   };
 }
 
@@ -199,26 +159,7 @@ function loadExistingReleases(outputPath: string): Release[] {
   }
 
   try {
-    const content = readFileSync(outputPath, 'utf-8');
-    const data = JSON.parse(content);
-
-    // Handle both normalized format (version field) and internal format (gbVersion field)
-    return data.map((r: Record<string, unknown>) => ({
-      gbVersion: (r.version as string) || (r.gbVersion as string),
-      wpVersion: (r.memberOf as string) || (r.wpVersion as string) || null,
-      date: r.date as string,
-      isLastBeforeWPBeta: (r.isSpecialMarker as boolean) || (r.isLastBeforeWPBeta as boolean) || false,
-      totalPRs: r.totalPRs as number,
-      categories: (r.rawCategories as Record<string, number>) || (r.categories as Record<string, number>) || {},
-      contributors: r.contributors as number,
-      newContributors: r.newContributors as number,
-      contributorsList: r.contributorsList as string[] || [],
-      newContributorsList: r.newContributorsList as string[] || [],
-      contributorAggregates: r.contributorAggregates as Release['contributorAggregates'],
-      changelogUrl: r.changelogUrl as string,
-      parsedAt: r.parsedAt as string || '',
-      parserVersion: r.parserVersion as string || '',
-    }));
+    return loadReleases(outputPath);
   } catch {
     console.warn(`Warning: Could not parse existing ${outputPath}, starting fresh`);
     return [];
@@ -227,7 +168,7 @@ function loadExistingReleases(outputPath: string): Release[] {
 
 /**
  * Merge new releases with existing ones.
- * New data takes precedence for versions that already exist.
+ * New data takes precedence, but preserves contributorAggregates from existing.
  */
 function mergeReleases(existing: Release[], newReleases: Release[]): Release[] {
   const releaseMap = new Map<string, Release>();
@@ -238,10 +179,20 @@ function mergeReleases(existing: Release[], newReleases: Release[]): Release[] {
     releaseMap.set(minorVersion, release);
   }
 
-  // Override with new releases
+  // Override with new releases, preserving contributorAggregates from existing
   for (const release of newReleases) {
     const minorVersion = getMinorVersion(release.gbVersion);
-    releaseMap.set(minorVersion, release);
+    const existingRelease = releaseMap.get(minorVersion);
+
+    // Preserve contributorAggregates from existing release if new doesn't have it
+    if (existingRelease?.contributorAggregates && !release.contributorAggregates) {
+      releaseMap.set(minorVersion, {
+        ...release,
+        contributorAggregates: existingRelease.contributorAggregates,
+      });
+    } else {
+      releaseMap.set(minorVersion, release);
+    }
   }
 
   // Sort by version (newest first)
@@ -336,7 +287,8 @@ async function main() {
     }
 
     // Convert to normalized format and write output
-    const normalizedReleases = mergedReleases.map(toNormalizedRelease);
+    const dataEndpoint = basename(outputPath);
+    const normalizedReleases = mergedReleases.map((r) => toNormalizedRelease(r, dataEndpoint));
     const releasesWritten = writeJsonIfChanged(outputPath, normalizedReleases);
     console.log(
       releasesWritten

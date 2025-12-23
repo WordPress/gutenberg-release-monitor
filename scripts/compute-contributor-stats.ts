@@ -1,20 +1,20 @@
 /**
- * Compute per-release and per-WP-version contributor aggregates without storing individual data.
+ * Computes contributor sponsor/country statistics for releases.
  *
- * This script fetches WP.org profiles on-the-fly, computes aggregates, and
- * stores them directly in gb-releases.json and wp-cycles.json.
- * No individual contributor data is persisted.
- *
- * This is the privacy-first approach: only aggregate counts are stored,
- * e.g. "15 Automattic, 3 Google" not "alice@automattic, bob@google".
+ * Fetches WP.org profiles on-the-fly, computes aggregates, and stores them
+ * in gb-releases.json and wp-cycles.json. Only aggregate counts are stored
+ * (privacy-first): e.g. "15 Automattic, 3 Google" not individual usernames.
  *
  * Usage:
- *   npx tsx scripts/compute-release-aggregates.ts [--gb-version 21.0] [--from-gb 20.0] [--to-gb 21.9] [--delay 500]
- *   npx tsx scripts/compute-release-aggregates.ts --wp-version 7.0  # Computes GB + WP aggregates for all releases in WP 7.0
+ *   npm run compute-aggregates -- --gb-version 21.0           # Single GB release
+ *   npm run compute-aggregates -- --from-gb 20.0 --to-gb 21.9 # GB range
+ *   npm run compute-aggregates -- --wp-version 7.0            # All releases in WP 7.0
+ *
+ * @module scripts/compute-contributor-stats
  */
 
 import { parseArgs } from 'node:util';
-import { readFileSync, existsSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { writeJsonIfChanged } from './utils/file-utils.js';
 import { extractCountry, batchGeocodeLocations } from './utils/geocoding.js';
 import { SponsorNormalizer } from './utils/sponsor-normalization.js';
@@ -23,8 +23,14 @@ import {
 	fetchContributorProfiles,
 	type ContributorData,
 } from './utils/contributor-data.js';
+import {
+	loadReleases,
+	loadWPSchedule,
+	toNormalizedRelease,
+	compareVersions,
+} from './utils/release-utils.js';
 import type { Release, ReleaseContributorAggregates, WPRelease } from './types.js';
-import type { NormalizedRelease, ContributorAggregates } from '../src/data/normalized.js';
+import type { NormalizedRelease } from '../src/data/normalized.js';
 
 interface ComputeArgs {
 	wpVersion?: string[];
@@ -67,103 +73,6 @@ function getArgs(): ComputeArgs {
 		dryRun: values[ 'dry-run' ] as boolean,
 		verbose: values.verbose as boolean,
 	};
-}
-
-/**
- * Convert internal Release to NormalizedRelease for JSON output.
- */
-function toNormalizedRelease( release: Release ): NormalizedRelease & { contributorsList?: string[]; newContributorsList?: string[] } {
-	const version = release.gbVersion.split( '.' ).slice( 0, 2 ).join( '.' );
-
-	const contributorAggregates: ContributorAggregates | undefined = release.contributorAggregates
-		? {
-				sponsorBreakdown: release.contributorAggregates.sponsorBreakdown,
-				countryBreakdown: release.contributorAggregates.countryBreakdown,
-		  }
-		: undefined;
-
-	return {
-		id: version,
-		version,
-		displayLabel: `Gutenberg ${ version }`,
-		isAggregated: false,
-		totalPRs: release.totalPRs,
-		contributors: release.contributors,
-		newContributors: release.newContributors,
-		hasContributorData: release.contributors > 0,
-		avgPRs: release.totalPRs,
-		avgContributors: release.contributors,
-		avgNewContributors: release.newContributors,
-		rawCategories: release.categories,
-		contributorAggregates,
-		date: release.date,
-		memberOf: release.wpVersion || undefined,
-		isSpecialMarker: release.isLastBeforeWPBeta || undefined,
-		changelogUrl: release.changelogUrl,
-		// Keep these for internal script use (not part of NormalizedRelease but useful for compute-release-aggregates)
-		contributorsList: release.contributorsList,
-		newContributorsList: release.newContributorsList,
-	};
-}
-
-/**
- * Load releases from JSON file (handles both normalized and legacy format).
- */
-function loadReleases( releasesPath: string ): Release[] {
-	const content = readFileSync( releasesPath, 'utf-8' );
-	const data = JSON.parse( content );
-
-	// Handle both normalized format (version field) and internal format (gbVersion field)
-	return data.map( ( r: Record< string, unknown > ) => ( {
-		gbVersion: ( r.version as string ) || ( r.gbVersion as string ),
-		wpVersion: ( r.memberOf as string ) || ( r.wpVersion as string ) || null,
-		date: r.date as string,
-		isLastBeforeWPBeta:
-			( r.isSpecialMarker as boolean ) ||
-			( r.isLastBeforeWPBeta as boolean ) ||
-			false,
-		totalPRs: r.totalPRs as number,
-		categories:
-			( r.rawCategories as Record< string, number > ) ||
-			( r.categories as Record< string, number > ) ||
-			{},
-		contributors: r.contributors as number,
-		newContributors: r.newContributors as number,
-		contributorsList: ( r.contributorsList as string[] ) || [],
-		newContributorsList: ( r.newContributorsList as string[] ) || [],
-		contributorAggregates: r.contributorAggregates as Release[ 'contributorAggregates' ],
-		changelogUrl: r.changelogUrl as string,
-		parsedAt: ( r.parsedAt as string ) || '',
-		parserVersion: ( r.parserVersion as string ) || '',
-	} ) );
-}
-
-/**
- * Compare GB version strings (e.g., "20.0" vs "21.5").
- */
-function compareGbVersions( a: string, b: string ): number {
-	const [ aMajor, aMinor ] = a.split( '.' ).map( Number );
-	const [ bMajor, bMinor ] = b.split( '.' ).map( Number );
-	if ( aMajor !== bMajor ) return aMajor - bMajor;
-	return ( aMinor || 0 ) - ( bMinor || 0 );
-}
-
-/**
- * Load WP schedule to get GB version ranges for WP versions.
- */
-function loadWPSchedule(): WPRelease[] {
-	const schedulePath = 'scripts/data/wp-schedule.json';
-	if ( ! existsSync( schedulePath ) ) {
-		console.warn( '⚠️  WP schedule file not found' );
-		return [];
-	}
-
-	try {
-		return JSON.parse( readFileSync( schedulePath, 'utf-8' ) );
-	} catch {
-		console.warn( '⚠️  Failed to parse WP schedule file' );
-		return [];
-	}
 }
 
 /**
@@ -335,8 +244,8 @@ async function main(): Promise< void > {
 			// Add all releases in this GB range
 			const wpReleases = releases.filter( ( r ) => {
 				return (
-					compareGbVersions( r.gbVersion, range.fromGb ) >= 0 &&
-					compareGbVersions( r.gbVersion, range.toGb ) <= 0
+					compareVersions( r.gbVersion, range.fromGb ) >= 0 &&
+					compareVersions( r.gbVersion, range.toGb ) <= 0
 				);
 			} );
 			targetReleases.push( ...wpReleases );
@@ -352,10 +261,10 @@ async function main(): Promise< void > {
 	} else if ( args.fromGb || args.toGb ) {
 		// GB version range
 		targetReleases = releases.filter( ( r ) => {
-			if ( args.fromGb && compareGbVersions( r.gbVersion, args.fromGb ) < 0 ) {
+			if ( args.fromGb && compareVersions( r.gbVersion, args.fromGb ) < 0 ) {
 				return false;
 			}
-			if ( args.toGb && compareGbVersions( r.gbVersion, args.toGb ) > 0 ) {
+			if ( args.toGb && compareVersions( r.gbVersion, args.toGb ) > 0 ) {
 				return false;
 			}
 			return true;
@@ -548,7 +457,7 @@ async function main(): Promise< void > {
 	} else {
 		// Write gb-releases.json in normalized format
 		if ( gbProcessed > 0 ) {
-			const normalizedReleases = releases.map( toNormalizedRelease );
+			const normalizedReleases = releases.map( ( r ) => toNormalizedRelease( r, 'gb-releases.json' ) );
 			const written = writeJsonIfChanged( releasesPath, normalizedReleases );
 			console.log( written ? `\n✅ Updated ${ releasesPath }` : `\n✅ No changes to ${ releasesPath }` );
 		}
