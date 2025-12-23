@@ -46,6 +46,98 @@ export function getMinorVersion(version: string): string {
 }
 
 /**
+ * Check if a version is a patch release (not x.y.0).
+ * e.g., "21.1.1" -> true, "21.1.0" -> false, "21.1" -> false
+ */
+export function isPatchRelease(version: string): boolean {
+  const cleanVersion = version.replace(/^v/, '');
+  const parts = cleanVersion.split('.');
+  const patch = parseInt(parts[2] ?? '0', 10);
+  return patch > 0;
+}
+
+/**
+ * Aggregate patch releases into their minor version.
+ * e.g., 20.1.0, 20.1.1, 20.1.2 -> single 20.1 with combined PRs and contributors
+ *
+ * @param releases - Array of Release objects (may include patch versions)
+ * @returns Array with patch releases merged into their base minor version
+ */
+export function aggregatePatchReleases(releases: Release[]): Release[] {
+  const minorVersionMap = new Map<string, Release[]>();
+
+  // Group releases by minor version
+  for (const release of releases) {
+    const minorVersion = getMinorVersion(release.gbVersion);
+    const existing = minorVersionMap.get(minorVersion) || [];
+    existing.push(release);
+    minorVersionMap.set(minorVersion, existing);
+  }
+
+  // Aggregate each group
+  const aggregated: Release[] = [];
+  for (const [minorVersion, group] of minorVersionMap) {
+    // Find the base release (x.y.0) or use the first one
+    const baseRelease = group.find((r) => !isPatchRelease(r.gbVersion)) || group[0];
+
+    // If there's only one release and it's the base, no aggregation needed
+    if (group.length === 1) {
+      // Normalize version to x.y format
+      aggregated.push({
+        ...baseRelease,
+        gbVersion: minorVersion,
+      });
+      continue;
+    }
+
+    // Find patch releases to add (excluding the base release to avoid double counting)
+    const patchReleases = group.filter((r) => r !== baseRelease && isPatchRelease(r.gbVersion));
+
+    if (patchReleases.length === 0) {
+      aggregated.push({
+        ...baseRelease,
+        gbVersion: minorVersion,
+      });
+      continue;
+    }
+
+    // Aggregate PR counts from patch releases into the base
+    const totalPRs = baseRelease.totalPRs + patchReleases.reduce((sum, r) => sum + r.totalPRs, 0);
+
+    // Merge categories from all releases
+    const categories: Record<string, number> = { ...(baseRelease.categories || {}) };
+    for (const patch of patchReleases) {
+      for (const [cat, count] of Object.entries(patch.categories || {})) {
+        categories[cat] = (categories[cat] || 0) + count;
+      }
+    }
+
+    // Combine contributor lists and deduplicate
+    const allContributors = new Set<string>(baseRelease.contributorsList || []);
+    const allNewContributors = new Set<string>(baseRelease.newContributorsList || []);
+    for (const patch of patchReleases) {
+      for (const c of patch.contributorsList || []) allContributors.add(c);
+      for (const c of patch.newContributorsList || []) allNewContributors.add(c);
+    }
+    const contributorsList = Array.from(allContributors);
+    const newContributorsList = Array.from(allNewContributors);
+
+    aggregated.push({
+      ...baseRelease,
+      gbVersion: minorVersion, // Normalize to x.y format
+      totalPRs,
+      categories,
+      contributors: contributorsList.length,
+      newContributors: newContributorsList.length,
+      contributorsList,
+      newContributorsList,
+    });
+  }
+
+  return aggregated;
+}
+
+/**
  * Load releases from JSON file.
  * Handles both normalized format (version, memberOf) and internal format (gbVersion, wpVersion).
  * This provides backward compatibility during the transition period.

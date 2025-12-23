@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { compareVersions, getMinorVersion, toNormalizedRelease } from '../../../scripts/utils/release-utils.js';
+import { compareVersions, getMinorVersion, isPatchRelease, aggregatePatchReleases, toNormalizedRelease } from '../../../scripts/utils/release-utils.js';
 import type { Release } from '../../../scripts/types.js';
 
 describe('compareVersions', () => {
@@ -96,6 +96,210 @@ describe('getMinorVersion', () => {
     expect(getMinorVersion('0.0.0')).toBe('0.0');
     expect(getMinorVersion('1.0')).toBe('1.0');
     expect(getMinorVersion('100.99.88')).toBe('100.99');
+  });
+});
+
+describe('isPatchRelease', () => {
+  it('should return true for patch versions (x.y.z where z > 0)', () => {
+    expect(isPatchRelease('21.1.1')).toBe(true);
+    expect(isPatchRelease('21.1.2')).toBe(true);
+    expect(isPatchRelease('20.0.1')).toBe(true);
+    expect(isPatchRelease('5.9.3')).toBe(true);
+  });
+
+  it('should return false for base versions (x.y.0)', () => {
+    expect(isPatchRelease('21.1.0')).toBe(false);
+    expect(isPatchRelease('20.0.0')).toBe(false);
+    expect(isPatchRelease('5.9.0')).toBe(false);
+  });
+
+  it('should return false for two-part versions (treated as x.y.0)', () => {
+    expect(isPatchRelease('21.1')).toBe(false);
+    expect(isPatchRelease('20.0')).toBe(false);
+  });
+
+  it('should handle v prefix', () => {
+    expect(isPatchRelease('v21.1.1')).toBe(true);
+    expect(isPatchRelease('v21.1.0')).toBe(false);
+    expect(isPatchRelease('v21.1')).toBe(false);
+  });
+});
+
+describe('aggregatePatchReleases', () => {
+  const createMockRelease = (version: string, overrides: Partial<Release> = {}): Release => ({
+    gbVersion: version,
+    wpVersion: null,
+    date: '2024-12-01',
+    isLastBeforeWPBeta: false,
+    totalPRs: 10,
+    categories: { 'Bug Fixes': 5, 'Enhancements': 5 },
+    contributors: 5,
+    newContributors: 1,
+    contributorsList: [`user-${version}`],
+    newContributorsList: [`new-${version}`],
+    changelogUrl: `https://example.com/${version}`,
+    parsedAt: '2024-12-01T00:00:00Z',
+    parserVersion: '1.0.0',
+    ...overrides,
+  });
+
+  it('should aggregate patch releases into base version', () => {
+    const releases = [
+      createMockRelease('21.1.0', { totalPRs: 100, categories: { 'Bug Fixes': 50, 'Enhancements': 50 } }),
+      createMockRelease('21.1.1', { totalPRs: 20, categories: { 'Bug Fixes': 20 } }),
+      createMockRelease('21.1.2', { totalPRs: 15, categories: { 'Bug Fixes': 10, 'Security': 5 } }),
+    ];
+
+    const result = aggregatePatchReleases(releases);
+
+    expect(result).toHaveLength(1);
+    expect(result[0].gbVersion).toBe('21.1');
+    expect(result[0].totalPRs).toBe(135); // 100 + 20 + 15
+    expect(result[0].categories).toEqual({
+      'Bug Fixes': 80, // 50 + 20 + 10
+      'Enhancements': 50,
+      'Security': 5,
+    });
+  });
+
+  it('should deduplicate contributors across patch releases', () => {
+    const releases = [
+      createMockRelease('21.1.0', {
+        contributorsList: ['alice', 'bob'],
+        newContributorsList: ['alice'],
+      }),
+      createMockRelease('21.1.1', {
+        contributorsList: ['bob', 'charlie'], // bob is duplicate
+        newContributorsList: ['charlie'],
+      }),
+      createMockRelease('21.1.2', {
+        contributorsList: ['alice', 'dave'], // alice is duplicate
+        newContributorsList: [],
+      }),
+    ];
+
+    const result = aggregatePatchReleases(releases);
+
+    expect(result[0].contributorsList).toHaveLength(4); // alice, bob, charlie, dave
+    expect(result[0].contributorsList).toContain('alice');
+    expect(result[0].contributorsList).toContain('bob');
+    expect(result[0].contributorsList).toContain('charlie');
+    expect(result[0].contributorsList).toContain('dave');
+    expect(result[0].contributors).toBe(4);
+
+    expect(result[0].newContributorsList).toHaveLength(2); // alice, charlie
+    expect(result[0].newContributors).toBe(2);
+  });
+
+  it('should handle releases without patch versions (single release)', () => {
+    const releases = [
+      createMockRelease('21.1.0'),
+      createMockRelease('21.2.0'),
+    ];
+
+    const result = aggregatePatchReleases(releases);
+
+    expect(result).toHaveLength(2);
+    expect(result.map(r => r.gbVersion).sort()).toEqual(['21.1', '21.2']);
+  });
+
+  it('should normalize version to minor format (x.y)', () => {
+    const releases = [createMockRelease('21.1.0')];
+
+    const result = aggregatePatchReleases(releases);
+
+    expect(result[0].gbVersion).toBe('21.1'); // Not 21.1.0
+  });
+
+  it('should use base release metadata when aggregating', () => {
+    const releases = [
+      createMockRelease('21.1.0', {
+        date: '2024-12-01',
+        wpVersion: '6.8',
+        isLastBeforeWPBeta: true,
+        changelogUrl: 'https://example.com/v21.1.0',
+      }),
+      createMockRelease('21.1.1', {
+        date: '2024-12-15', // Later date
+        wpVersion: '6.8',
+        isLastBeforeWPBeta: false,
+        changelogUrl: 'https://example.com/v21.1.1',
+      }),
+    ];
+
+    const result = aggregatePatchReleases(releases);
+
+    // Should use base release (21.1.0) metadata
+    expect(result[0].date).toBe('2024-12-01');
+    expect(result[0].wpVersion).toBe('6.8');
+    expect(result[0].isLastBeforeWPBeta).toBe(true);
+    expect(result[0].changelogUrl).toBe('https://example.com/v21.1.0');
+  });
+
+  it('should handle only patch releases (no base x.y.0)', () => {
+    const releases = [
+      createMockRelease('21.1.1', { totalPRs: 20 }),
+      createMockRelease('21.1.2', { totalPRs: 15 }),
+    ];
+
+    const result = aggregatePatchReleases(releases);
+
+    // Should use first release as base
+    expect(result).toHaveLength(1);
+    expect(result[0].gbVersion).toBe('21.1');
+    expect(result[0].totalPRs).toBe(35); // 20 + 15
+  });
+
+  it('should handle multiple minor versions with patches', () => {
+    const releases = [
+      createMockRelease('21.1.0', { totalPRs: 100 }),
+      createMockRelease('21.1.1', { totalPRs: 10 }),
+      createMockRelease('21.2.0', { totalPRs: 80 }),
+      createMockRelease('21.2.1', { totalPRs: 5 }),
+      createMockRelease('21.3.0', { totalPRs: 120 }),
+    ];
+
+    const result = aggregatePatchReleases(releases);
+
+    expect(result).toHaveLength(3);
+
+    const v21_1 = result.find(r => r.gbVersion === '21.1');
+    const v21_2 = result.find(r => r.gbVersion === '21.2');
+    const v21_3 = result.find(r => r.gbVersion === '21.3');
+
+    expect(v21_1?.totalPRs).toBe(110); // 100 + 10
+    expect(v21_2?.totalPRs).toBe(85);  // 80 + 5
+    expect(v21_3?.totalPRs).toBe(120); // No patches
+  });
+
+  it('should handle empty categories', () => {
+    const releases = [
+      createMockRelease('21.1.0', { categories: {} }),
+      createMockRelease('21.1.1', { categories: { 'Bug Fixes': 5 } }),
+    ];
+
+    const result = aggregatePatchReleases(releases);
+
+    expect(result[0].categories).toEqual({ 'Bug Fixes': 5 });
+  });
+
+  it('should handle empty contributor lists', () => {
+    const releases = [
+      createMockRelease('21.1.0', { contributorsList: [], newContributorsList: [] }),
+      createMockRelease('21.1.1', { contributorsList: ['alice'], newContributorsList: ['alice'] }),
+    ];
+
+    const result = aggregatePatchReleases(releases);
+
+    expect(result[0].contributorsList).toEqual(['alice']);
+    expect(result[0].newContributorsList).toEqual(['alice']);
+    expect(result[0].contributors).toBe(1);
+    expect(result[0].newContributors).toBe(1);
+  });
+
+  it('should return empty array for empty input', () => {
+    const result = aggregatePatchReleases([]);
+    expect(result).toEqual([]);
   });
 });
 
