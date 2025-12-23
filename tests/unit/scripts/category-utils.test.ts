@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { sumCategories, getAggregatedPRs, loadCategoryConfig } from '../../../scripts/utils/category-utils.js';
 import type { Release } from '../../../scripts/types.js';
 

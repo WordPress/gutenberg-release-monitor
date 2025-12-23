@@ -1,5 +1,4 @@
-import { describe, it, expect, beforeEach, afterEach } from 'vitest';
-import { writeFileSync, unlinkSync, existsSync } from 'node:fs';
+import { describe, it, expect } from 'vitest';
 import { compareVersions, getMinorVersion, toNormalizedRelease } from '../../../scripts/utils/release-utils.js';
 import type { Release } from '../../../scripts/types.js';
 
