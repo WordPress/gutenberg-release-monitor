@@ -1,0 +1,71 @@
+{
+  "version": "1.0.0",
+  "project": {
+    "name": "Test Project Monitor",
+    "description": "Track release statistics and changelog data.",
+    "projectUrl": "https://example.com/project",
+    "projectLabel": "Alpha",
+    "disclaimer": "This is test data for E2E testing purposes.",
+    "learnMoreUrl": "https://example.com/docs"
+  },
+  "tabs": [
+    {
+      "id": "by-cycle",
+      "title": "By Cycle",
+      "dataEndpoint": "cycles.json",
+      "isAggregated": true,
+      "versionPrefix": "Cycle",
+      "supportedViewModes": ["averages", "totals", "distribution", "sponsors", "countries"],
+      "tableCardClass": "aggregated-table-card",
+      "urlParamKey": "cycle",
+      "defaultItemSummaryField": "currentPeriod",
+      "showReferenceLines": false,
+      "labels": {
+        "averagesToggle": "Per Release",
+        "statsHeader": "Averages per release",
+        "childItem": "release",
+        "versionColumn": "Cycle",
+        "childVersionColumn": "Releases",
+        "parentVersionColumn": null,
+        "parentVersionPrefix": null,
+        "itemContext": null,
+        "specialMarkerTooltip": null,
+        "chartSecondaryLabel": "Releases included"
+      }
+    },
+    {
+      "id": "by-release",
+      "title": "By Release",
+      "dataEndpoint": "releases.json",
+      "isAggregated": false,
+      "versionPrefix": "Release",
+      "supportedViewModes": ["averages", "distribution", "sponsors", "countries"],
+      "tableCardClass": null,
+      "urlParamKey": "release",
+      "defaultItemSummaryField": null,
+      "showReferenceLines": true,
+      "labels": {
+        "averagesToggle": null,
+        "statsHeader": null,
+        "childItem": null,
+        "versionColumn": "Version",
+        "childVersionColumn": null,
+        "parentVersionColumn": "Cycle",
+        "parentVersionPrefix": "",
+        "itemContext": "Included in {version}",
+        "specialMarkerTooltip": "Special marker",
+        "chartSecondaryLabel": null
+      }
+    }
+  ],
+  "dataSources": {
+    "summary": "summary.json"
+  },
+  "defaults": {
+    "tab": "by-cycle",
+    "viewMode": "averages",
+    "chartType": "stacked",
+    "metric": "prs",
+    "releaseCount": 50
+  }
+}

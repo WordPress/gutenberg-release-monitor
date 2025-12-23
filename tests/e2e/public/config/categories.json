@@ -1,0 +1,60 @@
+{
+  "aggregations": [
+    {
+      "id": "features",
+      "labels": {
+        "full": "Features",
+        "short": "Features"
+      },
+      "color": "#4CAF50",
+      "rawCategories": [
+        "Features",
+        "Enhancements",
+        "New Features"
+      ],
+      "includeByDefault": true
+    },
+    {
+      "id": "fixes",
+      "labels": {
+        "full": "Bug Fixes",
+        "short": "Fixes"
+      },
+      "color": "#F44336",
+      "rawCategories": [
+        "Bug Fixes",
+        "Fixes",
+        "Bugs"
+      ],
+      "includeByDefault": true
+    },
+    {
+      "id": "docs",
+      "labels": {
+        "full": "Documentation",
+        "short": "Docs"
+      },
+      "color": "#2196F3",
+      "rawCategories": [
+        "Documentation",
+        "Docs"
+      ],
+      "includeByDefault": false
+    },
+    {
+      "id": "other",
+      "labels": {
+        "full": "Other",
+        "short": "Other"
+      },
+      "color": "#9E9E9E",
+      "rawCategories": [
+        "Various",
+        "Uncategorized",
+        "Other"
+      ],
+      "includeByDefault": false
+    }
+  ],
+  "version": "1.0.0"
+}

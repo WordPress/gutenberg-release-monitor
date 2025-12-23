@@ -1,0 +1,18 @@
+{
+  "currentPeriod": "B",
+  "lastCutoffVersion": "2.1",
+  "releasesSinceCutoff": 2,
+  "avgPRsSinceCutoff": 137.5,
+  "avgContributorsSinceCutoff": 46.5,
+  "avgNewContributorsSinceCutoff": 4.5,
+  "totalPRsSinceCutoff": 275,
+  "uniqueContributorsSinceCutoff": 65,
+  "uniqueNewContributorsSinceCutoff": 7,
+  "avgPRsTotal": 130,
+  "avgContributorsTotal": 45,
+  "avgNewContributorsTotal": 4.6,
+  "latestRelease": "3.0",
+  "oldestRelease": "1.0",
+  "totalReleases": 5,
+  "lastUpdated": "2024-12-23T12:00:00.000Z"
+}

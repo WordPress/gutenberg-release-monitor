@@ -1,0 +1,79 @@
+[
+  {
+    "id": "B",
+    "version": "B",
+    "displayLabel": "Cycle B",
+    "isAggregated": true,
+    "totalPRs": 275,
+    "contributors": 65,
+    "newContributors": 7,
+    "hasContributorData": true,
+    "avgPRs": 137.5,
+    "avgContributors": 46.5,
+    "avgNewContributors": 4.5,
+    "categoryTotals": {
+      "features": 55,
+      "fixes": 95,
+      "docs": 25,
+      "other": 100
+    },
+    "contributorAggregates": {
+      "sponsorBreakdown": {
+        "Company A": 38,
+        "Company B": 22,
+        "Company C": 5,
+        "Self-sponsored": 5,
+        "Unknown": 23
+      },
+      "countryBreakdown": {
+        "United States": 27,
+        "Canada": 18,
+        "United Kingdom": 15,
+        "Germany": 5,
+        "France": 6,
+        "India": 5,
+        "Unknown": 17
+      }
+    },
+    "groupedCount": 2,
+    "groupedRange": "2.1 - 3.0"
+  },
+  {
+    "id": "A",
+    "version": "A",
+    "displayLabel": "Cycle A",
+    "isAggregated": true,
+    "totalPRs": 375,
+    "contributors": 78,
+    "newContributors": 10,
+    "hasContributorData": true,
+    "avgPRs": 125,
+    "avgContributors": 44,
+    "avgNewContributors": 4.3,
+    "categoryTotals": {
+      "features": 73,
+      "fixes": 143,
+      "docs": 30,
+      "other": 129
+    },
+    "contributorAggregates": {
+      "sponsorBreakdown": {
+        "Company A": 49,
+        "Company B": 33,
+        "Company C": 8,
+        "Self-sponsored": 10,
+        "Unknown": 32
+      },
+      "countryBreakdown": {
+        "United States": 36,
+        "Canada": 27,
+        "United Kingdom": 21,
+        "Germany": 13,
+        "India": 4,
+        "Unknown": 31
+      }
+    },
+    "groupedCount": 3,
+    "groupedRange": "1.0 - 2.0"
+  }
+]

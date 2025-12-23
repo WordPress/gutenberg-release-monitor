@@ -25,3 +25,7 @@ npm-debug.log*
 
 # TypeScript
 *.tsbuildinfo
+
+# Playwright
+playwright-report/
+tests/e2e/results/

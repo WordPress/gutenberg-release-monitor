@@ -1,0 +1,190 @@
+[
+  {
+    "id": "3.0",
+    "version": "3.0",
+    "displayLabel": "Release 3.0",
+    "isAggregated": false,
+    "totalPRs": 145,
+    "contributors": 48,
+    "newContributors": 5,
+    "hasContributorData": true,
+    "avgPRs": 145,
+    "avgContributors": 48,
+    "avgNewContributors": 5,
+    "rawCategories": {
+      "Features": 30,
+      "Bug Fixes": 45,
+      "Documentation": 15,
+      "Other": 55
+    },
+    "contributorAggregates": {
+      "sponsorBreakdown": {
+        "Company A": 20,
+        "Company B": 10,
+        "Self-sponsored": 5,
+        "Unknown": 13
+      },
+      "countryBreakdown": {
+        "United States": 15,
+        "Canada": 8,
+        "United Kingdom": 7,
+        "Germany": 5,
+        "India": 5,
+        "Unknown": 8
+      }
+    },
+    "date": "2024-12-01",
+    "memberOf": "B",
+    "changelogUrl": "https://example.com/changelog/3.0"
+  },
+  {
+    "id": "2.1",
+    "version": "2.1",
+    "displayLabel": "Release 2.1",
+    "isAggregated": false,
+    "totalPRs": 130,
+    "contributors": 45,
+    "newContributors": 4,
+    "hasContributorData": true,
+    "avgPRs": 130,
+    "avgContributors": 45,
+    "avgNewContributors": 4,
+    "rawCategories": {
+      "Features": 25,
+      "Bug Fixes": 50,
+      "Documentation": 10,
+      "Other": 45
+    },
+    "contributorAggregates": {
+      "sponsorBreakdown": {
+        "Company A": 18,
+        "Company B": 12,
+        "Company C": 5,
+        "Unknown": 10
+      },
+      "countryBreakdown": {
+        "United States": 12,
+        "Canada": 10,
+        "United Kingdom": 8,
+        "France": 6,
+        "Unknown": 9
+      }
+    },
+    "date": "2024-11-15",
+    "memberOf": "B",
+    "isSpecialMarker": true,
+    "changelogUrl": "https://example.com/changelog/2.1"
+  },
+  {
+    "id": "2.0",
+    "version": "2.0",
+    "displayLabel": "Release 2.0",
+    "isAggregated": false,
+    "totalPRs": 155,
+    "contributors": 52,
+    "newContributors": 6,
+    "hasContributorData": true,
+    "avgPRs": 155,
+    "avgContributors": 52,
+    "avgNewContributors": 6,
+    "rawCategories": {
+      "Features": 35,
+      "Bug Fixes": 55,
+      "Documentation": 12,
+      "Other": 53
+    },
+    "contributorAggregates": {
+      "sponsorBreakdown": {
+        "Company A": 22,
+        "Company B": 15,
+        "Company C": 8,
+        "Self-sponsored": 4,
+        "Unknown": 3
+      },
+      "countryBreakdown": {
+        "United States": 18,
+        "Canada": 12,
+        "United Kingdom": 10,
+        "Germany": 8,
+        "India": 4,
+        "Unknown": 0
+      }
+    },
+    "date": "2024-10-20",
+    "memberOf": "A",
+    "changelogUrl": "https://example.com/changelog/2.0"
+  },
+  {
+    "id": "1.1",
+    "version": "1.1",
+    "displayLabel": "Release 1.1",
+    "isAggregated": false,
+    "totalPRs": 120,
+    "contributors": 42,
+    "newContributors": 3,
+    "hasContributorData": true,
+    "avgPRs": 120,
+    "avgContributors": 42,
+    "avgNewContributors": 3,
+    "rawCategories": {
+      "Features": 20,
+      "Bug Fixes": 48,
+      "Documentation": 8,
+      "Other": 44
+    },
+    "contributorAggregates": {
+      "sponsorBreakdown": {
+        "Company A": 15,
+        "Company B": 10,
+        "Unknown": 17
+      },
+      "countryBreakdown": {
+        "United States": 10,
+        "Canada": 8,
+        "United Kingdom": 6,
+        "Germany": 5,
+        "Unknown": 13
+      }
+    },
+    "date": "2024-09-30",
+    "memberOf": "A",
+    "isSpecialMarker": true,
+    "changelogUrl": "https://example.com/changelog/1.1"
+  },
+  {
+    "id": "1.0",
+    "version": "1.0",
+    "displayLabel": "Release 1.0",
+    "isAggregated": false,
+    "totalPRs": 100,
+    "contributors": 38,
+    "newContributors": 5,
+    "hasContributorData": true,
+    "avgPRs": 100,
+    "avgContributors": 38,
+    "avgNewContributors": 5,
+    "rawCategories": {
+      "Features": 18,
+      "Bug Fixes": 40,
+      "Documentation": 10,
+      "Other": 32
+    },
+    "contributorAggregates": {
+      "sponsorBreakdown": {
+        "Company A": 12,
+        "Company B": 8,
+        "Self-sponsored": 6,
+        "Unknown": 12
+      },
+      "countryBreakdown": {
+        "United States": 8,
+        "Canada": 7,
+        "United Kingdom": 5,
+        "Unknown": 18
+      }
+    },
+    "date": "2024-09-01",
+    "memberOf": "A",
+    "changelogUrl": "https://example.com/changelog/1.0"
+  }
+]

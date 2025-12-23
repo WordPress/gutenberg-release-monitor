@@ -16,7 +16,9 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui"
   },
   "dependencies": {
     "@automattic/charts": "^0.51.0",
@@ -31,6 +33,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.2",
+    "@playwright/test": "^1.57.0",
     "@tanstack/react-query-devtools": "^5.59.20",
     "@types/node": "^25.0.0",
     "@types/react": "^18.3.12",
