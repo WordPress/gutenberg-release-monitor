@@ -227,6 +227,17 @@ describe('parseContributors', () => {
     expect(result.contributorsList).toEqual(['user-name', 'user_name', 'user123']);
   });
 
+  it('should parse contributors from RC sections', () => {
+    const result = parseContributors(CHANGELOG_WITH_RC);
+
+    // Should aggregate contributors from both RC sections: @dev1, @dev2 (rc.2) + @dev3, @dev4 (rc.1)
+    expect(result.contributors).toBe(4);
+    expect(result.contributorsList).toContain('dev1');
+    expect(result.contributorsList).toContain('dev2');
+    expect(result.contributorsList).toContain('dev3');
+    expect(result.contributorsList).toContain('dev4');
+  });
+
   it('should normalize line endings', () => {
     const withCRLF = MODERN_CHANGELOG.replace(/\n/g, '\r\n');
     const result = parseContributors(withCRLF);

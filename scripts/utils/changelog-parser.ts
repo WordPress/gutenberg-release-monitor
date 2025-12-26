@@ -283,17 +283,13 @@ export function parseModernChangelog(body: string): {
 }
 
 /**
- * Parse contributors from changelog.
+ * Parse contributors from a single section of changelog text.
  */
-export function parseContributors(body: string): {
-  contributors: number;
-  newContributors: number;
-  contributorsList: string[];
-  newContributorsList: string[];
+function parseContributorsFromSection(text: string): {
+  contributorsList: string;
+  firstTimeList: string;
 } {
-  // Normalize line endings (GitHub API returns \r\n)
-  const normalizedBody = body.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
-  const lines = normalizedBody.split('\n');
+  const lines = text.split('\n');
   let inContributors = false;
   let inFirstTime = false;
   let contributorsList = '';
@@ -312,7 +308,7 @@ export function parseContributors(body: string): {
       continue;
     }
 
-    // Stop at next major section
+    // Stop at next major section (but not Contributors/First-time sections)
     if (line.startsWith('## ') && !CONTRIBUTORS_SECTION_REGEX.test(line) && !FIRST_TIME_CONTRIBUTORS_REGEX.test(line)) {
       if (inContributors || inFirstTime) break;
     }
@@ -325,13 +321,49 @@ export function parseContributors(body: string): {
     }
   }
 
+  return { contributorsList, firstTimeList };
+}
+
+/**
+ * Parse contributors from changelog.
+ * Handles both top-level and RC section contributors (for releases like 16.8, 17.2, 17.3).
+ */
+export function parseContributors(body: string): {
+  contributors: number;
+  newContributors: number;
+  contributorsList: string[];
+  newContributorsList: string[];
+} {
+  // Normalize line endings (GitHub API returns \r\n)
+  const normalizedBody = body.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+
+  // Parse top-level contributors
+  let { contributorsList, firstTimeList } = parseContributorsFromSection(normalizedBody);
+
+  // Also parse contributors from RC sections (format: = X.Y.Z-rc.N =)
+  // This handles releases like 16.8.0, 17.2.0, 17.3.0 where contributors are in RC sections
+  const rcMatches = [...normalizedBody.matchAll(/^= \d+\.\d+\.\d+-rc\.\d+ =/gm)];
+  for (const rcMatch of rcMatches) {
+    const rcStart = rcMatch.index!;
+    // Find the end of this RC section (next RC section or end of body)
+    const nextRcIndex = rcMatches.find((m) => m.index! > rcStart)?.index;
+    const rcBody = nextRcIndex
+      ? normalizedBody.slice(rcStart, nextRcIndex)
+      : normalizedBody.slice(rcStart);
+
+    // Parse contributors from this RC section
+    const rcContributors = parseContributorsFromSection(rcBody);
+    contributorsList += rcContributors.contributorsList;
+    firstTimeList += rcContributors.firstTimeList;
+  }
+
   // Extract @mentions as contributors (normalize to lowercase for deduplication)
   const contributorMatches = contributorsList.match(/@[\w-]+/g) || [];
   const firstTimeMatches = firstTimeList.match(/@[\w-]+/g) || [];
 
-  // Normalize mentions (remove @ and lowercase)
-  const normalizedContributors = contributorMatches.map((m) => m.slice(1).toLowerCase());
-  const normalizedNewContributors = firstTimeMatches.map((m) => m.slice(1).toLowerCase());
+  // Normalize mentions (remove @ and lowercase) and deduplicate
+  const normalizedContributors = [...new Set(contributorMatches.map((m) => m.slice(1).toLowerCase()))];
+  const normalizedNewContributors = [...new Set(firstTimeMatches.map((m) => m.slice(1).toLowerCase()))];
 
   return {
     contributors: normalizedContributors.length,
