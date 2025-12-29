@@ -397,6 +397,12 @@ function App() {
                 day: 'numeric',
               })}
             </Text>
+            <Text>
+              @priethor -{' '}
+              <a href="https://github.com/priethor/gutenberg-release-monitor" target="_blank" rel="noopener noreferrer">
+                source code
+              </a>
+            </Text>
           </footer>
         </>
       )}

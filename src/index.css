@@ -870,6 +870,15 @@ body {
   color: var(--color-text-muted);
 }
 
+.app-footer a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+.app-footer a:hover {
+  text-decoration: none;
+}
+
 /* Summary Chart Section */
 .summary-chart-section {
   margin-top: 1.5rem;
