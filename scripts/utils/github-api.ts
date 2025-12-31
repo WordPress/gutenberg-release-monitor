@@ -4,7 +4,13 @@
  * @module scripts/utils/github-api
  */
 
-import type { GitHubRelease, GitHubUserProfile } from './types.js';
+import type {
+  GitHubRelease,
+  GitHubUserProfile,
+  GitHubMilestone,
+  GitHubIssue,
+  RepoIdentifier,
+} from './types.js';
 
 const GITHUB_API_BASE = 'https://api.github.com';
 const REPO_OWNER = 'WordPress';
@@ -217,4 +223,116 @@ export async function fetchGitHubUserProfile(
     location: data.location || null,
     bio: data.bio || null,
   };
+}
+
+/**
+ * Default repository (Gutenberg) for backward compatibility.
+ */
+export const DEFAULT_REPO: RepoIdentifier = {
+  owner: REPO_OWNER,
+  name: REPO_NAME,
+};
+
+/**
+ * Fetch all milestones from a repository.
+ * Includes both open and closed milestones.
+ */
+export async function fetchMilestones(
+  repo: RepoIdentifier = DEFAULT_REPO
+): Promise<GitHubMilestone[]> {
+  const milestones: GitHubMilestone[] = [];
+  let page = 1;
+  const perPage = 100;
+
+  console.log(`Fetching milestones from ${repo.owner}/${repo.name}...`);
+
+  while (true) {
+    const url = `${GITHUB_API_BASE}/repos/${repo.owner}/${repo.name}/milestones?state=all&page=${page}&per_page=${perPage}`;
+    const response = await fetch(url, { headers: getHeaders() });
+
+    if (!response.ok) {
+      const remaining = response.headers.get('x-ratelimit-remaining');
+      if (response.status === 403 && remaining === '0') {
+        const resetTime = response.headers.get('x-ratelimit-reset');
+        const resetDate = resetTime ? new Date(parseInt(resetTime) * 1000) : null;
+        throw new Error(
+          `GitHub API rate limit exceeded. Resets at ${resetDate?.toISOString() ?? 'unknown'}`
+        );
+      }
+      throw new Error(`GitHub API error: ${response.status} ${response.statusText}`);
+    }
+
+    const data = (await response.json()) as GitHubMilestone[];
+
+    if (data.length === 0) {
+      break;
+    }
+
+    milestones.push(...data);
+    console.log(`  Fetched page ${page} (${data.length} milestones)`);
+
+    if (data.length < perPage) {
+      break;
+    }
+
+    page++;
+  }
+
+  console.log(`Total milestones fetched: ${milestones.length}`);
+  return milestones;
+}
+
+/**
+ * Fetch all issues/PRs for a specific milestone.
+ * Returns only closed items (issues and PRs).
+ */
+export async function fetchMilestoneIssues(
+  repo: RepoIdentifier,
+  milestoneNumber: number
+): Promise<GitHubIssue[]> {
+  const issues: GitHubIssue[] = [];
+  let page = 1;
+  const perPage = 100;
+
+  while (true) {
+    const url = `${GITHUB_API_BASE}/repos/${repo.owner}/${repo.name}/issues?milestone=${milestoneNumber}&state=closed&page=${page}&per_page=${perPage}`;
+    const response = await fetch(url, { headers: getHeaders() });
+
+    if (!response.ok) {
+      const remaining = response.headers.get('x-ratelimit-remaining');
+      if (response.status === 403 && remaining === '0') {
+        const resetTime = response.headers.get('x-ratelimit-reset');
+        const resetDate = resetTime ? new Date(parseInt(resetTime) * 1000) : null;
+        throw new Error(
+          `GitHub API rate limit exceeded. Resets at ${resetDate?.toISOString() ?? 'unknown'}`
+        );
+      }
+      throw new Error(`GitHub API error: ${response.status} ${response.statusText}`);
+    }
+
+    const data = (await response.json()) as GitHubIssue[];
+
+    if (data.length === 0) {
+      break;
+    }
+
+    issues.push(...data);
+
+    if (data.length < perPage) {
+      break;
+    }
+
+    page++;
+  }
+
+  return issues;
+}
+
+/**
+ * Filter issues to get only merged PRs.
+ */
+export function filterMergedPRs(issues: GitHubIssue[]): GitHubIssue[] {
+  return issues.filter(
+    (issue) => issue.pull_request && issue.pull_request.merged_at !== null
+  );
 }

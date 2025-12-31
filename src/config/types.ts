@@ -51,6 +51,8 @@ export interface TabConfig {
   dataEndpoint: string;
   /** Whether this tab shows aggregated data (AggregatedStats vs SourceRelease) */
   isAggregated: boolean;
+  /** Whether this tab is hidden by default (only visible when explicitly requested via URL) */
+  hidden?: boolean;
   /** Prefix for display labels (e.g., 'WordPress' for 'WordPress 6.7') */
   versionPrefix: string;
   /** View modes available for this tab */

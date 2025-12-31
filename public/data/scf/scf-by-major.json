@@ -1,0 +1,238 @@
+[
+  {
+    "id": "6.9",
+    "version": "6.9",
+    "displayLabel": "SCF 6.9",
+    "isAggregated": false,
+    "totalPRs": 2,
+    "contributors": 1,
+    "newContributors": 0,
+    "hasContributorData": true,
+    "avgPRs": 2,
+    "avgContributors": 1,
+    "avgNewContributors": 0,
+    "rawCategories": {
+      "Code Quality": 2
+    },
+    "categoryTotals": {
+      "features": 0,
+      "bugs": 0,
+      "codeQuality": 2,
+      "a11y": 0,
+      "performance": 0,
+      "documentation": 0,
+      "other": 0
+    },
+    "date": "2025-12-31",
+    "contributorAggregates": {
+      "sponsorBreakdown": {
+        "Automattic": 1
+      },
+      "countryBreakdown": {
+        "Spain": 1
+      }
+    }
+  },
+  {
+    "id": "6.8",
+    "version": "6.8",
+    "displayLabel": "SCF 6.8",
+    "isAggregated": false,
+    "totalPRs": 40,
+    "contributors": 4,
+    "newContributors": 0,
+    "hasContributorData": true,
+    "avgPRs": 40,
+    "avgContributors": 4,
+    "avgNewContributors": 0,
+    "rawCategories": {
+      "Code Quality": 12,
+      "Other": 5,
+      "Bug Fixes": 7,
+      "Enhancements": 16
+    },
+    "categoryTotals": {
+      "features": 16,
+      "bugs": 7,
+      "codeQuality": 12,
+      "a11y": 0,
+      "performance": 0,
+      "documentation": 0,
+      "other": 5
+    },
+    "date": "2025-12-29",
+    "contributorAggregates": {
+      "sponsorBreakdown": {
+        "Automattic": 2,
+        "ib3 Limited": 1,
+        "Unknown": 1
+      },
+      "countryBreakdown": {
+        "Spain": 2,
+        "Finland": 1,
+        "Unknown": 1
+      }
+    }
+  },
+  {
+    "id": "6.7",
+    "version": "6.7",
+    "displayLabel": "SCF 6.7",
+    "isAggregated": false,
+    "totalPRs": 23,
+    "contributors": 3,
+    "newContributors": 0,
+    "hasContributorData": true,
+    "avgPRs": 23,
+    "avgContributors": 3,
+    "avgNewContributors": 0,
+    "rawCategories": {
+      "Bug Fixes": 6,
+      "Other": 5,
+      "Code Quality": 9,
+      "Enhancements": 3
+    },
+    "categoryTotals": {
+      "features": 3,
+      "bugs": 6,
+      "codeQuality": 9,
+      "a11y": 0,
+      "performance": 0,
+      "documentation": 0,
+      "other": 5
+    },
+    "date": "2025-12-31",
+    "contributorAggregates": {
+      "sponsorBreakdown": {
+        "Automattic": 5,
+        "Unknown": 1
+      },
+      "countryBreakdown": {
+        "Spain": 5,
+        "Unknown": 1
+      }
+    }
+  },
+  {
+    "id": "6.6",
+    "version": "6.6",
+    "displayLabel": "SCF 6.6",
+    "isAggregated": false,
+    "totalPRs": 20,
+    "contributors": 5,
+    "newContributors": 0,
+    "hasContributorData": true,
+    "avgPRs": 20,
+    "avgContributors": 5,
+    "avgNewContributors": 0,
+    "rawCategories": {
+      "Bug Fixes": 7,
+      "Code Quality": 3,
+      "Other": 7,
+      "Enhancements": 1,
+      "Documentation": 2
+    },
+    "categoryTotals": {
+      "features": 1,
+      "bugs": 7,
+      "codeQuality": 3,
+      "a11y": 0,
+      "performance": 0,
+      "documentation": 2,
+      "other": 7
+    },
+    "date": "2025-11-18",
+    "contributorAggregates": {
+      "sponsorBreakdown": {
+        "Unknown": 3,
+        "Automattic": 2
+      },
+      "countryBreakdown": {
+        "Unknown": 3,
+        "Spain": 2
+      }
+    }
+  },
+  {
+    "id": "6.5",
+    "version": "6.5",
+    "displayLabel": "SCF 6.5",
+    "isAggregated": false,
+    "totalPRs": 63,
+    "contributors": 7,
+    "newContributors": 0,
+    "hasContributorData": true,
+    "avgPRs": 63,
+    "avgContributors": 7,
+    "avgNewContributors": 0,
+    "rawCategories": {
+      "Other": 23,
+      "Enhancements": 14,
+      "Bug Fixes": 13,
+      "Code Quality": 13
+    },
+    "categoryTotals": {
+      "features": 14,
+      "bugs": 13,
+      "codeQuality": 13,
+      "a11y": 0,
+      "performance": 0,
+      "documentation": 0,
+      "other": 23
+    },
+    "date": "2025-07-30",
+    "contributorAggregates": {
+      "sponsorBreakdown": {
+        "Automattic": 11,
+        "Unknown": 2
+      },
+      "countryBreakdown": {
+        "Spain": 8,
+        "Unknown": 3,
+        "United States": 1,
+        "Pakistan": 1
+      }
+    }
+  },
+  {
+    "id": "6.4",
+    "version": "6.4",
+    "displayLabel": "SCF 6.4",
+    "isAggregated": false,
+    "totalPRs": 34,
+    "contributors": 6,
+    "newContributors": 0,
+    "hasContributorData": true,
+    "avgPRs": 34,
+    "avgContributors": 6,
+    "avgNewContributors": 0,
+    "rawCategories": {
+      "Other": 29,
+      "Bug Fixes": 3,
+      "Documentation": 1,
+      "Enhancements": 1
+    },
+    "categoryTotals": {
+      "features": 1,
+      "bugs": 3,
+      "codeQuality": 0,
+      "a11y": 0,
+      "performance": 0,
+      "documentation": 1,
+      "other": 29
+    },
+    "date": "2025-04-13",
+    "contributorAggregates": {
+      "sponsorBreakdown": {
+        "Automattic": 5,
+        "Unknown": 2
+      },
+      "countryBreakdown": {
+        "Spain": 3,
+        "Unknown": 2,
+        "United States": 1,
+        "India": 1
+      }
+    }
+  }
+]

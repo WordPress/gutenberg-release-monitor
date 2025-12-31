@@ -85,23 +85,41 @@ export function useTabConfig(tabId: string): TabConfig {
 }
 
 /**
+ * Get the set of tab IDs that should be visible based on URL params.
+ * Hidden tabs are only visible if explicitly requested via ?tab=<tabId>.
+ */
+function getVisibleTabs(tabs: ProjectConfig['tabs']): ProjectConfig['tabs'] {
+  const params = new URLSearchParams(window.location.search);
+  const requestedTab = params.get('tab');
+
+  return tabs.filter((tab) => {
+    // Show non-hidden tabs always
+    if (!tab.hidden) return true;
+    // Show hidden tabs only if explicitly requested via URL
+    return requestedTab === tab.id;
+  });
+}
+
+/**
  * Hook to get the list of tab IDs from configuration.
+ * Hidden tabs are excluded unless explicitly requested via URL.
  *
  * @returns Array of tab ID strings (e.g., `['by-wp-version', 'by-gb-release']`)
  */
 export function useTabIds(): string[] {
   const config = useConfig();
-  return config.tabs.map((tab) => tab.id);
+  return getVisibleTabs(config.tabs).map((tab) => tab.id);
 }
 
 /**
  * Hook to get tabs formatted for @wordpress/components TabPanel.
+ * Hidden tabs are excluded unless explicitly requested via URL.
  *
  * @returns Array of tab objects with `name` and `title` properties
  */
 export function useTabPanelTabs(): Array<{ name: string; title: string }> {
   const config = useConfig();
-  return config.tabs.map((tab) => ({
+  return getVisibleTabs(config.tabs).map((tab) => ({
     name: tab.id,
     title: tab.title,
   }));

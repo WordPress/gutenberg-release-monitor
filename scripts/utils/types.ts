@@ -110,3 +110,47 @@ export interface GitHubUserProfile {
   location: string | null;
   bio: string | null;
 }
+
+/**
+ * GitHub milestone data from the API.
+ */
+export interface GitHubMilestone {
+  number: number;
+  title: string;
+  description: string | null;
+  state: 'open' | 'closed';
+  open_issues: number;
+  closed_issues: number;
+  created_at: string;
+  updated_at: string;
+  due_on: string | null;
+  closed_at: string | null;
+}
+
+/**
+ * GitHub issue/PR data from the API (subset of fields we care about).
+ */
+export interface GitHubIssue {
+  number: number;
+  title: string;
+  state: 'open' | 'closed';
+  user: {
+    login: string;
+  } | null;
+  labels: Array<{
+    name: string;
+  }>;
+  pull_request?: {
+    merged_at: string | null;
+  };
+  created_at: string;
+  closed_at: string | null;
+}
+
+/**
+ * Repository identifier for multi-repo support.
+ */
+export interface RepoIdentifier {
+  owner: string;
+  name: string;
+}

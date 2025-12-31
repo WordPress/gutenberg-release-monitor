@@ -5,7 +5,7 @@
     "description": "Track Gutenberg release statistics and changelog data.",
     "projectUrl": "https://github.com/WordPress/gutenberg",
     "projectLabel": "Gutenberg",
-    "disclaimer": "This data is an approximation based on parsing Gutenberg release changelogs, and doesn't include cherry-picks to WordPress release branches after the Beta1 cutoff. Contributor sponsor and country data for releases before WP 6.9 / GB 20.5 was collected retroactively and reflects current profiles, not historical affiliations.",
+    "disclaimer": "This data is an approximation based on parsing Gutenberg release changelogs and doesn't include cherry-picks to WordPress release branches after the Beta1 cutoff. Contributor sponsor and country data for releases before WP 6.9 / GB 20.5 was collected retroactively and reflects current profiles, not historical affiliations.",
     "learnMoreUrl": "https://developer.wordpress.org/block-editor/contributors/versions-in-wordpress/"
   },
   "tabs": [
@@ -54,6 +54,32 @@
         "parentVersionPrefix": "",
         "itemContext": "Included in {version}",
         "specialMarkerTooltip": "Last version before parent release freeze",
+        "chartSecondaryLabel": null
+      }
+    },
+    {
+      "id": "scf-releases",
+      "title": "SCF Releases",
+      "dataEndpoint": "scf/scf-by-major.json",
+      "summaryEndpoint": "scf/scf-summary.json",
+      "isAggregated": false,
+      "hidden": true,
+      "versionPrefix": "SCF",
+      "supportedViewModes": ["averages", "distribution", "sponsors", "countries"],
+      "tableCardClass": null,
+      "urlParamKey": "scf",
+      "defaultItemSummaryField": null,
+      "showReferenceLines": false,
+      "labels": {
+        "averagesToggle": null,
+        "statsHeader": null,
+        "childItem": null,
+        "versionColumn": "Version",
+        "childVersionColumn": null,
+        "parentVersionColumn": null,
+        "parentVersionPrefix": null,
+        "itemContext": null,
+        "specialMarkerTooltip": null,
         "chartSecondaryLabel": null
       }
     }
