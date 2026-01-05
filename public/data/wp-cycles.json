@@ -386,12 +386,12 @@
     "avgNewContributors": 7,
     "categoryTotals": {
       "features": 354,
-      "bugs": 456,
+      "bugs": 460,
       "codeQuality": 386,
       "a11y": 41,
       "performance": 43,
       "documentation": 179,
-      "other": 55
+      "other": 51
     },
     "contributorAggregates": {
       "sponsorBreakdown": {
@@ -475,17 +475,17 @@
     "version": "6.5",
     "displayLabel": "WordPress 6.5",
     "isAggregated": true,
-    "totalPRs": 1882,
+    "totalPRs": 1890,
     "contributors": 159,
     "newContributors": 26,
     "hasContributorData": true,
-    "avgPRs": 188,
-    "avgContributors": 57,
+    "avgPRs": 189,
+    "avgContributors": 58,
     "avgNewContributors": 3,
     "categoryTotals": {
-      "features": 509,
-      "bugs": 479,
-      "codeQuality": 476,
+      "features": 510,
+      "bugs": 485,
+      "codeQuality": 477,
       "a11y": 55,
       "performance": 101,
       "documentation": 192,
@@ -682,11 +682,11 @@
     "version": "6.3",
     "displayLabel": "WordPress 6.3",
     "isAggregated": true,
-    "totalPRs": 1734,
+    "totalPRs": 1735,
     "contributors": 172,
     "newContributors": 50,
     "hasContributorData": true,
-    "avgPRs": 173,
+    "avgPRs": 174,
     "avgContributors": 50,
     "avgNewContributors": 5,
     "categoryTotals": {
@@ -696,7 +696,7 @@
       "a11y": 33,
       "performance": 84,
       "documentation": 137,
-      "other": 0
+      "other": 1
     },
     "contributorAggregates": {
       "sponsorBreakdown": {
@@ -778,21 +778,21 @@
     "version": "6.2",
     "displayLabel": "WordPress 6.2",
     "isAggregated": true,
-    "totalPRs": 1463,
-    "contributors": 162,
-    "newContributors": 44,
+    "totalPRs": 1636,
+    "contributors": 168,
+    "newContributors": 47,
     "hasContributorData": true,
-    "avgPRs": 146,
-    "avgContributors": 44,
+    "avgPRs": 164,
+    "avgContributors": 48,
     "avgNewContributors": 5,
     "categoryTotals": {
-      "features": 365,
-      "bugs": 416,
-      "codeQuality": 458,
+      "features": 406,
+      "bugs": 464,
+      "codeQuality": 498,
       "a11y": 11,
-      "performance": 110,
-      "documentation": 90,
-      "other": 13
+      "performance": 133,
+      "documentation": 99,
+      "other": 25
     },
     "contributorAggregates": {
       "sponsorBreakdown": {
@@ -1001,7 +1001,7 @@
     "categoryTotals": {
       "features": 455,
       "bugs": 514,
-      "codeQuality": 371,
+      "codeQuality": 367,
       "a11y": 11,
       "performance": 13,
       "documentation": 184,
@@ -1109,12 +1109,12 @@
     "avgNewContributors": 0,
     "categoryTotals": {
       "features": 552,
-      "bugs": 262,
+      "bugs": 264,
       "codeQuality": 307,
       "a11y": 0,
       "performance": 9,
       "documentation": 124,
-      "other": 69
+      "other": 67
     },
     "contributorAggregates": {
       "sponsorBreakdown": {},
@@ -1192,13 +1192,13 @@
     "avgContributors": 0,
     "avgNewContributors": 0,
     "categoryTotals": {
-      "features": 343,
-      "bugs": 205,
-      "codeQuality": 182,
+      "features": 431,
+      "bugs": 263,
+      "codeQuality": 221,
       "a11y": 0,
-      "performance": 17,
-      "documentation": 91,
-      "other": 424
+      "performance": 19,
+      "documentation": 143,
+      "other": 185
     },
     "contributorAggregates": {
       "sponsorBreakdown": {},
@@ -1220,13 +1220,13 @@
     "avgContributors": 0,
     "avgNewContributors": 0,
     "categoryTotals": {
-      "features": 256,
-      "bugs": 201,
+      "features": 324,
+      "bugs": 245,
       "codeQuality": 0,
       "a11y": 0,
-      "performance": 9,
-      "documentation": 88,
-      "other": 423
+      "performance": 20,
+      "documentation": 113,
+      "other": 275
     },
     "contributorAggregates": {
       "sponsorBreakdown": {},
@@ -1248,13 +1248,13 @@
     "avgContributors": 0,
     "avgNewContributors": 0,
     "categoryTotals": {
-      "features": 152,
-      "bugs": 196,
+      "features": 176,
+      "bugs": 229,
       "codeQuality": 0,
       "a11y": 0,
       "performance": 3,
-      "documentation": 122,
-      "other": 400
+      "documentation": 150,
+      "other": 315
     },
     "contributorAggregates": {
       "sponsorBreakdown": {},
@@ -1268,7 +1268,7 @@
     "version": "5.2",
     "displayLabel": "WordPress 5.2",
     "isAggregated": true,
-    "totalPRs": 600,
+    "totalPRs": 601,
     "contributors": 0,
     "newContributors": 0,
     "hasContributorData": false,
@@ -1276,13 +1276,13 @@
     "avgContributors": 0,
     "avgNewContributors": 0,
     "categoryTotals": {
-      "features": 71,
-      "bugs": 81,
-      "codeQuality": 81,
+      "features": 108,
+      "bugs": 120,
+      "codeQuality": 86,
       "a11y": 0,
-      "performance": 0,
-      "documentation": 75,
-      "other": 292
+      "performance": 7,
+      "documentation": 144,
+      "other": 129
     },
     "contributorAggregates": {
       "sponsorBreakdown": {},
@@ -1304,13 +1304,13 @@
     "avgContributors": 0,
     "avgNewContributors": 0,
     "categoryTotals": {
-      "features": 0,
-      "bugs": 0,
-      "codeQuality": 0,
+      "features": 6,
+      "bugs": 11,
+      "codeQuality": 12,
       "a11y": 0,
-      "performance": 0,
-      "documentation": 0,
-      "other": 62
+      "performance": 6,
+      "documentation": 17,
+      "other": 10
     },
     "contributorAggregates": {
       "sponsorBreakdown": {},
@@ -1333,12 +1333,12 @@
     "avgNewContributors": 0,
     "categoryTotals": {
       "features": 57,
-      "bugs": 44,
+      "bugs": 75,
       "codeQuality": 0,
       "a11y": 0,
       "performance": 0,
       "documentation": 0,
-      "other": 515
+      "other": 470
     },
     "contributorAggregates": {
       "sponsorBreakdown": {},

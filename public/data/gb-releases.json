@@ -4681,15 +4681,14 @@
     "rawCategories": {
       "Enhancements": 58,
       "New APIs": 1,
-      "Bug Fixes": 32,
+      "Bug Fixes": 36,
       "Accessibility": 6,
       "Performance": 0,
       "Block Editor": 6,
       "Experiments": 1,
       "Documentation": 13,
       "Code Quality": 27,
-      "Tools": 5,
-      "Uncategorized": 4
+      "Tools": 5
     },
     "contributorAggregates": {
       "sponsorBreakdown": {
@@ -4812,7 +4811,8 @@
       "Accessibility": 3,
       "Documentation": 35,
       "Code Quality": 39,
-      "Tools": 11
+      "Tools": 11,
+      "Bug fixes": 0
     },
     "contributorAggregates": {
       "sponsorBreakdown": {
@@ -5746,15 +5746,15 @@
     "version": "17.3",
     "displayLabel": "Gutenberg 17.3",
     "isAggregated": false,
-    "totalPRs": 169,
-    "contributors": 56,
+    "totalPRs": 171,
+    "contributors": 57,
     "newContributors": 6,
     "hasContributorData": true,
-    "avgPRs": 169,
-    "avgContributors": 56,
+    "avgPRs": 171,
+    "avgContributors": 57,
     "avgNewContributors": 6,
     "rawCategories": {
-      "Bug Fixes": 40,
+      "Bug Fixes": 42,
       "Enhancements": 28,
       "Accessibility": 7,
       "Performance": 16,
@@ -5864,7 +5864,8 @@
       "tyxla",
       "valerogarte",
       "wunderbart",
-      "youknowriad"
+      "youknowriad",
+      "glendaviesnz"
     ],
     "newContributorsList": [
       "benoitchantre",
@@ -5880,15 +5881,15 @@
     "version": "17.2",
     "displayLabel": "Gutenberg 17.2",
     "isAggregated": false,
-    "totalPRs": 173,
+    "totalPRs": 177,
     "contributors": 49,
     "newContributors": 0,
     "hasContributorData": true,
-    "avgPRs": 173,
+    "avgPRs": 177,
     "avgContributors": 49,
     "avgNewContributors": 0,
     "rawCategories": {
-      "Bug Fixes": 34,
+      "Bug Fixes": 38,
       "Documentation": 32,
       "Tools": 14,
       "Features": 1,
@@ -6381,24 +6382,24 @@
     "version": "16.8",
     "displayLabel": "Gutenberg 16.8",
     "isAggregated": false,
-    "totalPRs": 155,
-    "contributors": 63,
+    "totalPRs": 157,
+    "contributors": 64,
     "newContributors": 1,
     "hasContributorData": true,
-    "avgPRs": 155,
-    "avgContributors": 63,
+    "avgPRs": 157,
+    "avgContributors": 64,
     "avgNewContributors": 1,
     "rawCategories": {
       "Tools": 23,
       "Various": 19,
       "Features": 2,
-      "Enhancements": 28,
+      "Enhancements": 29,
       "Bug Fixes": 35,
       "Accessibility": 7,
       "Performance": 3,
       "Experiments": 2,
       "Documentation": 11,
-      "Code Quality": 24,
+      "Code Quality": 25,
       "Security": 1
     },
     "contributorAggregates": {
@@ -6514,7 +6515,8 @@
       "tyxla",
       "westonruter",
       "wunderbart",
-      "youknowriad"
+      "youknowriad",
+      "jorgefilipecosta"
     ],
     "newContributorsList": [
       "leemyongpakvn"
@@ -7747,11 +7749,11 @@
     "version": "15.8",
     "displayLabel": "Gutenberg 15.8",
     "isAggregated": false,
-    "totalPRs": 178,
+    "totalPRs": 179,
     "contributors": 0,
     "newContributors": 0,
     "hasContributorData": false,
-    "avgPRs": 178,
+    "avgPRs": 179,
     "avgContributors": 0,
     "avgNewContributors": 0,
     "rawCategories": {
@@ -7762,7 +7764,8 @@
       "Experiments": 10,
       "Documentation": 16,
       "Code Quality": 33,
-      "Tools": 25
+      "Tools": 25,
+      "Uncategorized": 1
     },
     "date": "2023-05-17",
     "memberOf": "6.3",
@@ -8910,22 +8913,22 @@
     "version": "14.8",
     "displayLabel": "Gutenberg 14.8",
     "isAggregated": false,
-    "totalPRs": 175,
-    "contributors": 9,
-    "newContributors": 0,
+    "totalPRs": 348,
+    "contributors": 44,
+    "newContributors": 3,
     "hasContributorData": true,
-    "avgPRs": 175,
-    "avgContributors": 9,
-    "avgNewContributors": 0,
+    "avgPRs": 348,
+    "avgContributors": 44,
+    "avgNewContributors": 3,
     "rawCategories": {
-      "Enhancements": 40,
-      "Icons": 11,
-      "Bug Fixes": 54,
-      "Performance": 23,
-      "Experiments": 2,
-      "Documentation": 9,
-      "Code Quality": 30,
-      "Tools": 5,
+      "Enhancements": 79,
+      "Icons": 23,
+      "Bug Fixes": 102,
+      "Performance": 46,
+      "Experiments": 4,
+      "Documentation": 18,
+      "Code Quality": 60,
+      "Tools": 15,
       "Various": 1
     },
     "contributorAggregates": {
@@ -8952,15 +8955,54 @@
     "contributorsList": [
       "andrewserong",
       "glendaviesnz",
-      "madhusudhand",
+      "aaronrobertshaw",
+      "ajlende",
+      "aristath",
+      "chad1008",
+      "chintu51",
+      "corentin-gautier",
+      "derekblank",
+      "draganescu",
+      "ellatrix",
       "geriux",
+      "getdave",
+      "hideokamoto",
+      "ingeniumed",
+      "jameskoster",
+      "janusqa",
+      "jasmussen",
+      "jffng",
+      "jorgefilipecosta",
+      "jsnajdr",
+      "madhusudhand",
+      "maggiecabrera",
       "mamaduka",
+      "matiasbenedetto",
+      "mburridge",
+      "mikachan",
+      "mirka",
+      "noisysocks",
+      "ntsekouras",
       "oandregal",
+      "oguzkocer",
+      "ramonjd",
+      "scruffian",
+      "siobhyb",
+      "spacedmonkey",
+      "t-hamano",
+      "talldan",
+      "tellthemachines",
+      "tyxla",
+      "wunderbart",
+      "youknowriad",
       "noahtallen",
-      "davilera",
-      "youknowriad"
+      "davilera"
     ],
-    "newContributorsList": []
+    "newContributorsList": [
+      "corentin-gautier",
+      "ingeniumed",
+      "janusqa"
+    ]
   },
   {
     "id": "14.7",
@@ -11162,6 +11204,7 @@
     "avgContributors": 56,
     "avgNewContributors": 8,
     "rawCategories": {
+      "**Changelog**": 0,
       "**Features**": 3,
       "**Enhancements**": 39,
       "**New APIs**": 4,
@@ -11594,7 +11637,8 @@
       "Performance": 2,
       "Documentation": 19,
       "Code Quality": 20,
-      "Tools": 24
+      "Tools": 20,
+      "The following PRs were merged by first time contrbutors:": 4
     },
     "contributorAggregates": {
       "sponsorBreakdown": {},
@@ -12224,12 +12268,11 @@
     "avgNewContributors": 0,
     "rawCategories": {
       "Enhancements": 44,
-      "Bug Fixes": 25,
+      "Bug Fixes": 27,
       "Experiments": 28,
       "Documentation": 26,
       "Code Quality": 24,
-      "Tools": 24,
-      "Uncategorized": 2
+      "Tools": 24
     },
     "contributorAggregates": {
       "sponsorBreakdown": {},
@@ -12958,7 +13001,17 @@
     "avgContributors": 0,
     "avgNewContributors": 0,
     "rawCategories": {
-      "Uncategorized": 140
+      "Features": 2,
+      "Enhancements": 18,
+      "New APIs": 1,
+      "Experimental": 18,
+      "Bug Fixes": 20,
+      "Performance": 2,
+      "Documentation": 27,
+      "Code Quality": 16,
+      "Breaking Change": 2,
+      "Build Tooling": 14,
+      "Various": 20
     },
     "contributorAggregates": {
       "sponsorBreakdown": {},
@@ -13119,7 +13172,13 @@
     "avgContributors": 0,
     "avgNewContributors": 0,
     "rawCategories": {
-      "Uncategorized": 110
+      "Enhancements": 15,
+      "Bug Fixes": 22,
+      "New APIs": 2,
+      "Experiments": 15,
+      "Documentation": 10,
+      "Code Quality": 9,
+      "Various": 37
     },
     "contributorAggregates": {
       "sponsorBreakdown": {},
@@ -13176,7 +13235,13 @@
     "avgContributors": 0,
     "avgNewContributors": 0,
     "rawCategories": {
-      "Uncategorized": 58
+      "Features": 1,
+      "Enhancements": 1,
+      "New APIs": 5,
+      "Experimental": 10,
+      "Bug Fixes": 16,
+      "Documentation": 15,
+      "Various": 10
     },
     "contributorAggregates": {
       "sponsorBreakdown": {},
@@ -13201,7 +13266,13 @@
     "avgContributors": 0,
     "avgNewContributors": 0,
     "rawCategories": {
-      "Uncategorized": 86
+      "Features": 9,
+      "Enhancements": 17,
+      "New APIs": 5,
+      "Experimental": 3,
+      "Bug Fixes": 14,
+      "Documentation": 10,
+      "Various": 28
     },
     "contributorAggregates": {
       "sponsorBreakdown": {},
@@ -13258,7 +13329,13 @@
     "avgContributors": 0,
     "avgNewContributors": 0,
     "rawCategories": {
-      "Uncategorized": 137
+      "Enhancements": 14,
+      "Performance": 11,
+      "Bug Fixes": 35,
+      "New APIs": 5,
+      "Experiments": 10,
+      "Documentation": 15,
+      "Various": 47
     },
     "contributorAggregates": {
       "sponsorBreakdown": {},
@@ -13411,7 +13488,8 @@
     "rawCategories": {
       "Features": 2,
       "Enhancements": 6,
-      "Bugs": 23,
+      "Bugs": 18,
+      "Experiments": 5,
       "New APIs": 8,
       "Various": 20,
       "Documentation": 4
@@ -13778,7 +13856,11 @@
     "avgContributors": 0,
     "avgNewContributors": 0,
     "rawCategories": {
-      "Uncategorized": 56,
+      "Enhancements": 8,
+      "Bug Fixes": 10,
+      "Various": 13,
+      "Documentation": 12,
+      "Mobile": 13,
       "Miscellaneous": 1
     },
     "contributorAggregates": {
@@ -13804,7 +13886,12 @@
     "avgContributors": 0,
     "avgNewContributors": 0,
     "rawCategories": {
-      "Uncategorized": 91
+      "Features": 4,
+      "Enhancements": 12,
+      "Bug Fixes": 23,
+      "Documentation": 16,
+      "Various": 24,
+      "Mobile": 12
     },
     "contributorAggregates": {
       "sponsorBreakdown": {},
@@ -13855,7 +13942,11 @@
     "avgContributors": 0,
     "avgNewContributors": 0,
     "rawCategories": {
-      "Uncategorized": 127
+      "Features": 3,
+      "Enhancements": 19,
+      "Bug Fixes": 24,
+      "Documentation": 46,
+      "Various": 35
     },
     "contributorAggregates": {
       "sponsorBreakdown": {},
@@ -13898,17 +13989,17 @@
     "version": "5.1",
     "displayLabel": "Gutenberg 5.1",
     "isAggregated": false,
-    "totalPRs": 107,
+    "totalPRs": 108,
     "contributors": 0,
     "newContributors": 0,
     "hasContributorData": false,
-    "avgPRs": 107,
+    "avgPRs": 108,
     "avgContributors": 0,
     "avgNewContributors": 0,
     "rawCategories": {
       "Features": 3,
       "Enhancements": 24,
-      "Bug Fixes": 22,
+      "Bug Fixes": 23,
       "Various": 11,
       "Chore": 17,
       "Documentation": 20,
@@ -13964,7 +14055,13 @@
     "avgContributors": 0,
     "avgNewContributors": 0,
     "rawCategories": {
-      "Uncategorized": 73
+      "Performance": 7,
+      "Bug Fixes": 14,
+      "Enhancements": 15,
+      "Extensibility": 7,
+      "Documentation": 23,
+      "Chore": 5,
+      "Mobile": 2
     },
     "contributorAggregates": {
       "sponsorBreakdown": {},
@@ -13989,7 +14086,13 @@
     "avgContributors": 0,
     "avgNewContributors": 0,
     "rawCategories": {
-      "Uncategorized": 62
+      "Performance": 6,
+      "Enhancements": 6,
+      "Bug Fixes": 11,
+      "Various": 2,
+      "Documentation": 17,
+      "Chore": 12,
+      "Mobile": 8
     },
     "contributorAggregates": {
       "sponsorBreakdown": {},
@@ -14015,7 +14118,9 @@
     "avgContributors": 0,
     "avgNewContributors": 0,
     "rawCategories": {
-      "Uncategorized": 46
+      "Performance improvements": 14,
+      "Bug fixes": 31,
+      "Uncategorized": 1
     },
     "contributorAggregates": {
       "sponsorBreakdown": {},
