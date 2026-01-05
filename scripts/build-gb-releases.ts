@@ -3,9 +3,9 @@
  * Fetches releases from GitHub API, parses changelogs, and outputs normalized release data.
  *
  * Usage:
- *   npm run parse                    # Parse all releases
- *   npm run parse -- --version 20.0  # Parse specific version
- *   npm run parse -- --from 19.0 --to 20.0  # Parse range
+ *   npm run data-sync:gb-releases                    # Parse all releases
+ *   npm run data-sync:gb-releases -- --version 20.0  # Parse specific version
+ *   npm run data-sync:gb-releases -- --from 19.0 --to 20.0  # Parse range
  *
  * @module scripts/build-gb-releases
  */

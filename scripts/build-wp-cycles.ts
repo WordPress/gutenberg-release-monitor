@@ -3,7 +3,7 @@
  * Groups Gutenberg releases by WordPress version and computes aggregate statistics.
  *
  * Usage:
- *   npm run aggregate  # Regenerate wp-cycles.json and summary.json
+ *   npm run data-sync:wp-cycles  # Regenerate wp-cycles.json and summary.json
  *
  * @module scripts/build-wp-cycles
  */
