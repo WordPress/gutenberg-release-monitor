@@ -48,13 +48,13 @@ jobs:
             ARGS=""
             [ -n "${{ github.event.inputs.from_version }}" ] && ARGS="$ARGS --from ${{ github.event.inputs.from_version }}"
             [ -n "${{ github.event.inputs.to_version }}" ] && ARGS="$ARGS --to ${{ github.event.inputs.to_version }}"
-            npm run parse -- $ARGS
+            npm run data-sync:gb-releases -- $ARGS
           else
-            npm run parse
+            npm run data-sync:gb-releases
           fi
 
       - name: Aggregate data
-        run: npm run aggregate
+        run: npm run data-sync:wp-cycles
 
       - name: Compute contributor aggregates
         if: ${{ github.event.inputs.contributor_aggregates != 'skip' }}
@@ -62,9 +62,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           if [ "${{ github.event.inputs.contributor_aggregates }}" == "force-all" ]; then
-            npm run compute-aggregates -- --force --delay 300
+            npm run data-sync:contributor-stats -- --force --delay 300
           else
-            npm run compute-aggregates -- --delay 300
+            npm run data-sync:contributor-stats -- --delay 300
           fi
 
       - name: Check for changes
