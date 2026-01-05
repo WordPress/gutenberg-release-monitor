@@ -136,8 +136,15 @@ async function main() {
   console.log('Gutenberg Release Parser');
   console.log('========================');
 
+  // Check if --version is a minor version (e.g., "20.0") or patch version (e.g., "20.0.1")
+  const isMinorVersion = args.version && args.version.split('.').length === 2;
+
   if (args.version) {
-    console.log(`Parsing single version: ${args.version}`);
+    if (isMinorVersion) {
+      console.log(`Parsing minor version: ${args.version} (all patch releases)`);
+    } else {
+      console.log(`Parsing single version: ${args.version}`);
+    }
   } else if (args.from || args.to) {
     console.log(`Parsing version range: ${args.from ?? 'earliest'} to ${args.to ?? 'latest'}`);
   } else {
@@ -149,11 +156,28 @@ async function main() {
   try {
     // Fetch releases
     let releases;
-    if (args.version) {
+    if (args.version && !isMinorVersion) {
+      // Exact patch version lookup (e.g., "20.0.1")
       const release = await fetchReleaseByTag(args.version);
       releases = release ? [release] : [];
       if (releases.length === 0) {
         console.error(`Release not found: ${args.version}`);
+        process.exit(1);
+      }
+    } else if (args.version && isMinorVersion) {
+      // Minor version: fetch all and filter by matching minor version
+      const allReleases = await fetchAllReleases();
+      releases = allReleases.filter((r) => {
+        const releaseVersion = r.tag_name.replace(/^v/, '');
+        // Skip release candidates
+        if (releaseVersion.includes('-rc') || releaseVersion.includes('-RC')) {
+          return false;
+        }
+        // Match by minor version (e.g., "20.0" matches "20.0.0", "20.0.1", etc.)
+        return getMinorVersion(releaseVersion) === args.version;
+      });
+      if (releases.length === 0) {
+        console.error(`No releases found for minor version: ${args.version}`);
         process.exit(1);
       }
     } else {
