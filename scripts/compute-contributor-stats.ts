@@ -6,9 +6,9 @@
  * (privacy-first): e.g. "15 Automattic, 3 Google" not individual usernames.
  *
  * Usage:
- *   npm run compute-aggregates -- --gb-version 21.0           # Single GB release
- *   npm run compute-aggregates -- --from-gb 20.0 --to-gb 21.9 # GB range
- *   npm run compute-aggregates -- --wp-version 7.0            # All releases in WP 7.0
+ *   npm run data-sync:contributor-stats -- --gb-version 21.0           # Single GB release
+ *   npm run data-sync:contributor-stats -- --from-gb 20.0 --to-gb 21.9 # GB range
+ *   npm run data-sync:contributor-stats -- --wp-version 7.0            # All releases in WP 7.0
  *
  * @module scripts/compute-contributor-stats
  */
