@@ -4,7 +4,7 @@
     "version": "7.0",
     "displayLabel": "WordPress 7.0",
     "isAggregated": true,
-    "totalPRs": 1161,
+    "totalPRs": 1162,
     "contributors": 137,
     "newContributors": 38,
     "hasContributorData": true,
@@ -13,7 +13,7 @@
     "avgNewContributors": 7,
     "categoryTotals": {
       "features": 373,
-      "bugs": 351,
+      "bugs": 352,
       "codeQuality": 299,
       "a11y": 16,
       "performance": 27,
