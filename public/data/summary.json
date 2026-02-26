@@ -1,18 +1,18 @@
 {
   "currentPeriod": "7.0",
   "lastCutoffVersion": "21.9",
-  "releasesSinceCutoff": 6,
-  "avgPRsSinceCutoff": 194,
-  "avgContributorsSinceCutoff": 52,
+  "releasesSinceCutoff": 7,
+  "avgPRsSinceCutoff": 219,
+  "avgContributorsSinceCutoff": 55,
   "avgNewContributorsSinceCutoff": 7,
-  "totalPRsSinceCutoff": 1162,
-  "uniqueContributorsSinceCutoff": 137,
-  "uniqueNewContributorsSinceCutoff": 38,
-  "avgPRsTotal": 136,
+  "totalPRsSinceCutoff": 1531,
+  "uniqueContributorsSinceCutoff": 150,
+  "uniqueNewContributorsSinceCutoff": 45,
+  "avgPRsTotal": 137,
   "avgContributorsTotal": 49,
   "avgNewContributorsTotal": 5,
-  "latestRelease": "22.5",
+  "latestRelease": "22.6",
   "oldestRelease": "1.0",
-  "totalReleases": 195,
-  "lastUpdated": "2026-02-05T09:55:56.100Z"
+  "totalReleases": 196,
+  "lastUpdated": "2026-02-26T09:58:53.032Z"
 }
