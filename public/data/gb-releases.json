@@ -4,16 +4,16 @@
     "version": "22.7",
     "displayLabel": "Gutenberg 22.7",
     "isAggregated": false,
-    "totalPRs": 170,
-    "contributors": 53,
+    "totalPRs": 172,
+    "contributors": 54,
     "newContributors": 3,
     "hasContributorData": true,
-    "avgPRs": 170,
-    "avgContributors": 53,
+    "avgPRs": 172,
+    "avgContributors": 54,
     "avgNewContributors": 3,
     "rawCategories": {
       "Enhancements": 39,
-      "Bug Fixes": 76,
+      "Bug Fixes": 78,
       "Accessibility": 3,
       "Performance": 2,
       "Experiments": 2,
@@ -93,7 +93,8 @@
       "talldan",
       "tellthemachines",
       "xristos3490",
-      "youknowriad"
+      "youknowriad",
+      "westonruter"
     ],
     "newContributorsList": [
       "aagam-shah",
