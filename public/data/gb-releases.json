@@ -4,23 +4,24 @@
     "version": "22.8",
     "displayLabel": "Gutenberg 22.8",
     "isAggregated": false,
-    "totalPRs": 233,
-    "contributors": 67,
+    "totalPRs": 249,
+    "contributors": 68,
     "newContributors": 8,
     "hasContributorData": true,
-    "avgPRs": 233,
-    "avgContributors": 67,
+    "avgPRs": 249,
+    "avgContributors": 68,
     "avgNewContributors": 8,
     "rawCategories": {
       "Features": 1,
-      "Enhancements": 67,
-      "Bug Fixes": 83,
+      "Enhancements": 71,
+      "Bug Fixes": 92,
       "Accessibility": 2,
       "Performance": 8,
       "Experiments": 7,
       "Documentation": 13,
       "Code Quality": 22,
-      "Tools": 30
+      "Tools": 30,
+      "Tests": 3
     },
     "contributorAggregates": {
       "sponsorBreakdown": {
@@ -114,7 +115,8 @@
       "westonruter",
       "wwahammy",
       "youknowriad",
-      "yuliyan"
+      "yuliyan",
+      "peterwilsoncc"
     ],
     "newContributorsList": [
       "apermo",
