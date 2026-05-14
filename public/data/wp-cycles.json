@@ -4,20 +4,20 @@
     "version": "7.0",
     "displayLabel": "WordPress 7.0",
     "isAggregated": true,
-    "totalPRs": 2254,
-    "contributors": 195,
-    "newContributors": 69,
+    "totalPRs": 2446,
+    "contributors": 203,
+    "newContributors": 74,
     "hasContributorData": true,
-    "avgPRs": 205,
-    "avgContributors": 56,
+    "avgPRs": 204,
+    "avgContributors": 55,
     "avgNewContributors": 7,
     "categoryTotals": {
-      "features": 732,
-      "bugs": 749,
-      "codeQuality": 530,
-      "a11y": 29,
-      "performance": 47,
-      "documentation": 145,
+      "features": 809,
+      "bugs": 794,
+      "codeQuality": 587,
+      "a11y": 35,
+      "performance": 50,
+      "documentation": 149,
       "other": 19
     },
     "contributorAggregates": {
@@ -108,8 +108,8 @@
         "Morocco": 1
       }
     },
-    "groupedCount": 11,
-    "groupedRange": "22.0-23.0"
+    "groupedCount": 12,
+    "groupedRange": "22.0-23.1"
   },
   {
     "id": "6.9",
