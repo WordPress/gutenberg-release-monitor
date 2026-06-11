@@ -67,6 +67,12 @@ jobs:
             npm run data-sync:contributor-stats -- --delay 300
           fi
 
+      # Runs last so nothing downstream overwrites the injected aiPRs fields.
+      - name: Sync AI-assisted PRs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npm run data-sync:ai-prs
+
       - name: Check for changes
         id: changes
         run: |

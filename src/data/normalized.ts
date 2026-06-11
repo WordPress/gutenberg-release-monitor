@@ -15,6 +15,19 @@ export interface ContributorAggregates {
 }
 
 /**
+ * AI involvement breakdown for a release or cycle.
+ * Counts only *disclosed* AI use (body markers / agent authors), so it is a lower bound.
+ */
+export interface AIBreakdown {
+  /** PRs per tool. A PR using two tools counts in both, so this can exceed aiPRs. */
+  byTool: Record<string, number>;
+  /** PRs where a human author disclosed AI use. */
+  assisted: number;
+  /** PRs opened directly by an autonomous agent. */
+  autonomous: number;
+}
+
+/**
  * Normalized release - unified interface for all tab data.
  * Represents either an aggregated view (by-wp-version) or individual release.
  * JSON files match this structure exactly.
@@ -74,6 +87,12 @@ export interface NormalizedRelease {
   isSpecialMarker?: boolean;
   /** URL to changelog (individual items only) */
   changelogUrl?: string;
+
+  // AI involvement (disclosed)
+  /** Merged PRs in this release/group with disclosed AI involvement. */
+  aiPRs?: number;
+  /** Breakdown of those AI PRs by tool and by mode. */
+  aiBreakdown?: AIBreakdown;
 }
 
 /**
