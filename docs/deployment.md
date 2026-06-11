@@ -7,14 +7,18 @@ This guide covers the CI/CD pipelines, deployment process, and data refresh auto
 The project uses GitHub Actions for:
 
 - **Continuous Integration**: Lint, type check, and test on every push/PR
-- **Deployment**: Automatic deployment to GitHub Pages on trunk
+- **Deployment**: Automatic deployment to GitHub Pages on pushes to `trunk` and after successful data refresh runs
 - **Data Refresh**: Weekly automated data updates
 
 ## CI/CD Pipeline
 
 ### Workflow: deploy.yml
 
-**Trigger**: Push to `trunk` branch
+**Triggers**:
+
+- Push to `trunk`
+- Manual `workflow_dispatch`
+- Successful completion of `Refresh Release Data` on `trunk`
 
 **Pipeline Structure**:
 
@@ -78,16 +82,7 @@ Runs Playwright E2E tests:
 
 **Artifacts**: Test results uploaded on failure for debugging.
 
-#### 4. Type Check
-
-Runs TypeScript compiler in check mode:
-
-```yaml
-- run: npm ci
-- run: npm run typecheck
-```
-
-#### 5. Build
+#### 4. Build
 
 Creates production build:
 
@@ -98,7 +93,7 @@ Creates production build:
 
 **Output**: `dist/` directory uploaded as artifact.
 
-#### 6. Deploy
+#### 5. Deploy
 
 Deploys to GitHub Pages:
 
@@ -121,7 +116,8 @@ Deploys to GitHub Pages:
 
 | Input | Options | Description |
 |-------|---------|-------------|
-| `gb_version_range` | `auto`, custom range | GB versions to process |
+| `from_version` | free text | Optional lower bound version |
+| `to_version` | free text | Optional upper bound version |
 | `contributor_aggregates` | `auto`, `skip`, `force-all` | Contributor data mode |
 
 ### Contributor Aggregate Modes
@@ -143,6 +139,7 @@ jobs:
       - npm run data-sync:wp-cycles
       - npm run data-sync:contributor-stats  # conditional
       - git commit and push changes
+      - deploy.yml runs via workflow_run after a successful refresh
 ```
 
 ### Environment Variables
@@ -159,7 +156,7 @@ jobs:
 
 2. Under **Source**, select **GitHub Actions**
 
-3. The `deploy.yml` workflow handles deployment automatically
+3. The `deploy.yml` workflow handles deployment automatically for `trunk` pushes and successful scheduled refreshes
 
 ### Custom Domain (Optional)
 
@@ -294,4 +291,3 @@ To add a new data source to the refresh pipeline:
 2. Add npm script to `package.json`
 3. Add step to `refresh-data.yml`
 4. Update documentation
-
