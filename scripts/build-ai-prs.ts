@@ -22,11 +22,12 @@
 
 import { readFileSync } from 'node:fs';
 import { parseArgs } from 'node:util';
-import { searchMergedPRs } from './utils/github-api.js';
+import { searchMergedPRs, fetchCommits } from './utils/github-api.js';
 import { writeJsonIfChanged } from './utils/file-utils.js';
 import { AI_MARKERS, BOT_AUTHOR_LOGINS } from './utils/ai-markers.js';
 import {
   resolveMode,
+  extractPRNumber,
   rollupByRelease,
   sumBreakdowns,
   type AIPullRequest,
@@ -34,11 +35,14 @@ import {
   type ReleaseWindow,
 } from './utils/ai-prs-utils.js';
 
+const REPO_PR_URL = 'https://github.com/WordPress/gutenberg/pull';
+
 interface ParseArgs {
   releases: string;
   cycles: string;
   output: string;
   delay: string;
+  commitsSince: string;
   verbose: boolean;
 }
 
@@ -49,10 +53,20 @@ function getArgs(): ParseArgs {
       cycles: { type: 'string', default: 'public/data/wp-cycles.json' },
       output: { type: 'string', short: 'o', default: 'public/data/ai-prs.json' },
       delay: { type: 'string', short: 'd', default: '1000' },
+      // AI commit trailers start appearing in 2024; no point scanning older history.
+      'commits-since': { type: 'string', default: '2024-01-01T00:00:00Z' },
       verbose: { type: 'boolean', default: false },
     },
   });
-  return values as ParseArgs;
+  const v = values as Record<string, unknown>;
+  return {
+    releases: v.releases as string,
+    cycles: v.cycles as string,
+    output: v.output as string,
+    delay: v.delay as string,
+    commitsSince: v['commits-since'] as string,
+    verbose: v.verbose as boolean,
+  };
 }
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -82,7 +96,7 @@ async function main(): Promise<void> {
   const upsert = (
     pr: { number: number; title: string; url: string; author: string; mergedAt: string },
     toolId: string,
-    via: 'body' | 'author'
+    via: 'body' | 'author' | 'commit'
   ) => {
     const existing = detected.get(pr.number);
     if (existing) {
@@ -90,6 +104,8 @@ async function main(): Promise<void> {
       if (via === 'author') {
         existing.detectedVia = 'author';
         existing.mode = 'autonomous';
+      } else if (via === 'commit' && existing.detectedVia === 'body') {
+        existing.detectedVia = 'commit';
       }
       return;
     }
@@ -138,6 +154,34 @@ async function main(): Promise<void> {
       console.log(`   [${i + 1}/${queries.length}] ${toolId} via ${via}: ${found.length} hits (${q})`);
     }
     if (i < queries.length - 1) await sleep(delayMs);
+  }
+
+  // Commit channel: scan commit messages on trunk for AI co-author trailers that
+  // the Search API can't see (it indexes the PR body, not commit messages). Each
+  // squash commit carries the PR number in its subject, so no clone is needed.
+  console.log(`🔎 Scanning commit trailers since ${args.commitsSince}...`);
+  const beforeCommitScan = detected.size;
+  const commits = await fetchCommits(args.commitsSince);
+  for (const commit of commits) {
+    const number = extractPRNumber(commit.message);
+    if (!number) continue;
+    for (const marker of AI_MARKERS) {
+      if (!marker.commitTrailers.some((re) => re.test(commit.message))) continue;
+      upsert(
+        {
+          number,
+          title: commit.message.split('\n', 1)[0].replace(/\s*\(#\d+\)\s*$/, ''),
+          url: `${REPO_PR_URL}/${number}`,
+          author: commit.authorLogin ?? 'unknown',
+          mergedAt: commit.date.slice(0, 10),
+        },
+        marker.id,
+        'commit'
+      );
+    }
+  }
+  if (args.verbose) {
+    console.log(`   scanned ${commits.length} commits; +${detected.size - beforeCommitScan} new PRs from trailers`);
   }
 
   const prs = [...detected.values()].sort((a, b) => b.number - a.number);

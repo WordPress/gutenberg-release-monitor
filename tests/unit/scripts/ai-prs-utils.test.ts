@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import {
   classifyMode,
   resolveMode,
+  extractPRNumber,
   attributeToRelease,
   rollupByRelease,
   sumBreakdowns,
@@ -55,6 +56,28 @@ describe('resolveMode', () => {
   it('falls back to the author login for body-channel detections', () => {
     expect(resolveMode('body', 'tyxla', BOTS)).toBe('assisted');
     expect(resolveMode('body', 'copilot-swe-agent[bot]', BOTS)).toBe('autonomous');
+  });
+
+  it('treats a commit-trailer detection as assisted for a human author', () => {
+    expect(resolveMode('commit', 'tyxla', BOTS)).toBe('assisted');
+  });
+});
+
+describe('extractPRNumber', () => {
+  it('reads the PR number from a squash commit subject', () => {
+    expect(extractPRNumber('Popover: fix re-anchor (#78885)\n\nCo-authored-by: x')).toBe(78885);
+  });
+
+  it('uses the last reference so reverts attribute to the revert PR', () => {
+    expect(extractPRNumber('Revert "Add thing (#100)" (#205)')).toBe(205);
+  });
+
+  it('ignores PR references that appear only in the body', () => {
+    expect(extractPRNumber('Fix something\n\nRelated to (#999)')).toBeNull();
+  });
+
+  it('returns null when there is no PR reference', () => {
+    expect(extractPRNumber('Direct push to trunk')).toBeNull();
   });
 });
 

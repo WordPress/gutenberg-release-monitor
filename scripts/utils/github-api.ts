@@ -106,6 +106,69 @@ export async function searchMergedPRs(queryFragment: string): Promise<SearchedPR
   return results;
 }
 
+/** A commit on the default branch, reduced to what AI detection needs. */
+export interface RepoCommit {
+  /** Full commit message (subject + body, incl. co-author trailers). */
+  message: string;
+  /** Commit (committer) date, ISO. */
+  date: string;
+  /** GitHub login of the commit author, when GitHub resolved one. */
+  authorLogin: string | null;
+}
+
+/**
+ * List commits on a branch since a date, newest first.
+ * Returns commit messages (which carry the squashed PR number and co-author
+ * trailers), so the AI commit channel needs no clone or checkout.
+ */
+export async function fetchCommits(
+  sinceISO: string,
+  branch = 'trunk'
+): Promise<RepoCommit[]> {
+  const commits: RepoCommit[] = [];
+  let page = 1;
+  const perPage = 100;
+
+  while (true) {
+    const url = `${GITHUB_API_BASE}/repos/${REPO_OWNER}/${REPO_NAME}/commits?sha=${branch}&since=${encodeURIComponent(sinceISO)}&per_page=${perPage}&page=${page}`;
+    const response = await fetch(url, { headers: getHeaders() });
+
+    if (!response.ok) {
+      const remaining = response.headers.get('x-ratelimit-remaining');
+      if (response.status === 403 && remaining === '0') {
+        const resetTime = response.headers.get('x-ratelimit-reset');
+        const resetDate = resetTime
+          ? new Date(parseInt(resetTime) * 1000)
+          : null;
+        throw new Error(
+          `GitHub API rate limit exceeded. Resets at ${resetDate?.toISOString() ?? 'unknown'}`
+        );
+      }
+      throw new Error(`GitHub API error: ${response.status} ${response.statusText}`);
+    }
+
+    const data = (await response.json()) as Array<{
+      commit: { message: string; committer: { date: string } };
+      author: { login: string } | null;
+    }>;
+
+    if (data.length === 0) break;
+
+    for (const item of data) {
+      commits.push({
+        message: item.commit.message,
+        date: item.commit.committer.date,
+        authorLogin: item.author?.login ?? null,
+      });
+    }
+
+    if (data.length < perPage) break;
+    page++;
+  }
+
+  return commits;
+}
+
 /**
  * Fetch all releases from the Gutenberg repository.
  * Handles pagination automatically.

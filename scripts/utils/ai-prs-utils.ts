@@ -16,8 +16,8 @@ export interface AIPullRequest {
   mode: AIMode;
   /** Marker ids that matched (a PR can use more than one tool). */
   tools: string[];
-  /** Which channel surfaced it. "author" wins when both matched. */
-  detectedVia: 'body' | 'author';
+  /** Which channel surfaced it. Precedence when several match: author > commit > body. */
+  detectedVia: 'body' | 'author' | 'commit';
   /** Merge date, YYYY-MM-DD. */
   mergedAt: string;
 }
@@ -52,12 +52,25 @@ export function classifyMode(
  * login alone can't be trusted. Otherwise fall back to the author login.
  */
 export function resolveMode(
-  via: 'body' | 'author',
+  via: 'body' | 'author' | 'commit',
   authorLogin: string,
   botLogins: Set<string>
 ): AIMode {
   if (via === 'author') return 'autonomous';
   return classifyMode(authorLogin, botLogins);
+}
+
+/**
+ * Pull the PR number out of a squash-merge commit subject, e.g.
+ * "Popover: fix re-anchor (#78885)" -> 78885. Uses the last `(#N)` on the first
+ * line, so a revert like `Revert "X (#1)" (#2)` attributes to the revert PR (#2).
+ * Returns null when the subject has no PR reference (e.g. a direct push).
+ */
+export function extractPRNumber(commitMessage: string): number | null {
+  const subject = commitMessage.split('\n', 1)[0];
+  const matches = [...subject.matchAll(/\(#(\d+)\)/g)];
+  if (matches.length === 0) return null;
+  return parseInt(matches[matches.length - 1][1], 10);
 }
 
 /**
