@@ -2,17 +2,19 @@
  * Detect merged PRs in WordPress/gutenberg that disclose AI involvement and turn
  * them into release metrics.
  *
- * Two cheap Search API channels are used:
+ * Two Search API channels plus one commit channel are used:
  *   - body markers (a phrase the tool writes into the PR title/body)
- *   - bot authors (PRs opened directly by a coding agent -> "autonomous")
+ *   - bot authors (PRs opened directly by a known agent account -> "agent")
+ *   - commit trailers (squash-merge commits with tool-specific co-author markers)
  *
  * Output:
  *   - public/data/ai-prs.json: the raw detected PR list plus totals.
  *   - aiPRs / aiBreakdown injected per release into gb-releases.json.
  *   - aiPRs / aiBreakdown injected per WP cycle into wp-cycles.json.
  *
- * This measures *disclosed* AI use, so the numbers are a lower bound: the Search
- * API does not index commit messages, and not everyone discloses.
+ * This measures disclosed or otherwise detected AI use, so the numbers are a
+ * lower bound: not everyone discloses, and the commit scan only covers commits
+ * after the configured --commits-since date.
  *
  * Usage:
  *   GITHUB_TOKEN=... npm run data-sync:ai-prs
@@ -103,7 +105,7 @@ async function main(): Promise<void> {
       if (!existing.tools.includes(toolId)) existing.tools.push(toolId);
       if (via === 'author') {
         existing.detectedVia = 'author';
-        existing.mode = 'autonomous';
+        existing.mode = 'agent';
       } else if (via === 'commit' && existing.detectedVia === 'body') {
         existing.detectedVia = 'commit';
       }
@@ -206,8 +208,8 @@ async function main(): Promise<void> {
   const output = {
     totals: {
       aiPRs: prs.length,
-      assisted: prs.filter((p) => p.mode === 'assisted').length,
-      autonomous: prs.filter((p) => p.mode === 'autonomous').length,
+      nonAgent: prs.filter((p) => p.mode === 'non-agent').length,
+      agent: prs.filter((p) => p.mode === 'agent').length,
       byTool: totals.byTool,
     },
     prs,
@@ -220,7 +222,7 @@ async function main(): Promise<void> {
     const agg = perRelease.get(release.version);
     release.aiPRs = agg ? agg.aiPRs : 0;
     if (agg && agg.aiPRs > 0) {
-      release.aiBreakdown = { byTool: agg.byTool, assisted: agg.assisted, autonomous: agg.autonomous };
+      release.aiBreakdown = { byTool: agg.byTool, nonAgent: agg.nonAgent, agent: agg.agent };
     } else {
       delete release.aiBreakdown;
     }
@@ -244,7 +246,7 @@ async function main(): Promise<void> {
     if (parts && parts.length > 0) {
       const summed = sumBreakdowns(parts);
       cycle.aiPRs = summed.aiPRs;
-      cycle.aiBreakdown = { byTool: summed.byTool, assisted: summed.assisted, autonomous: summed.autonomous };
+      cycle.aiBreakdown = { byTool: summed.byTool, nonAgent: summed.nonAgent, agent: summed.agent };
     } else {
       cycle.aiPRs = 0;
       delete cycle.aiBreakdown;

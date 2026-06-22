@@ -41,6 +41,14 @@ interface TableRow {
   memberOf?: string;
   // Unified category data (aggregated counts)
   categoryTotals: Record<string, number>;
+  aiPRs: number;
+  aiShare: number;
+  aiNonAgent: number;
+  aiAgent: number;
+  aiAgentShare: number;
+  aiNotDetected: number;
+  aiTools: string;
+  aiToolCounts: Record<string, number>;
   // For conditional rendering
   isAggregated: boolean;
 }
@@ -68,6 +76,15 @@ const defaultLayouts = {
 };
 
 const CONTRIBUTOR_FIELDS = ['contributors', 'newContributors'];
+const AI_USAGE_FIELDS = ['aiPRs', 'aiShare', 'aiNotDetected', 'aiNonAgent', 'aiAgent'];
+const AI_TOOLS_FIELDS = ['aiPRs', 'aiShare', 'aiTools'];
+const AI_AGENTS_FIELDS = ['aiAgent', 'aiAgentShare', 'aiPRs', 'aiNonAgent'];
+
+function formatCompactNumber(value: number): string {
+  if (value === 0) return '0';
+  if (Number.isInteger(value)) return value.toLocaleString();
+  return value.toLocaleString(undefined, { maximumFractionDigits: 1 });
+}
 
 export function DataTable(props: DataTableProps) {
   const { data, viewMode, metric, tabConfig } = props;
@@ -75,9 +92,10 @@ export function DataTable(props: DataTableProps) {
   // Use tabConfig for display logic (no domain knowledge)
   const isAggregated = tabConfig?.isAggregated ?? false;
   const isContributorMetric = metric === 'contributors';
+  const isAIMetric = metric === 'ai';
 
   // Track context changes to reset fields only when necessary
-  const contextKey = `${tabConfig?.id ?? 'default'}-${metric}`;
+  const contextKey = `${tabConfig?.id ?? 'default'}-${metric}${isAIMetric ? `-${viewMode}` : ''}`;
   const prevContextKey = useRef<string | null>(null);
 
   const [categoryConfig, setCategoryConfig] = useState<CategoryConfig | null>(null);
@@ -111,6 +129,14 @@ export function DataTable(props: DataTableProps) {
         }
       });
 
+      const aiPRs = item.aiPRs ?? 0;
+      const aiAgent = item.aiBreakdown?.agent ?? 0;
+      const aiToolCounts = item.aiBreakdown?.byTool ?? {};
+      const aiTools = Object.entries(aiToolCounts)
+        .sort(([, a], [, b]) => b - a)
+        .map(([tool]) => tool)
+        .join(', ');
+
       return {
         id: item.id,
         version: item.version,
@@ -128,6 +154,14 @@ export function DataTable(props: DataTableProps) {
         isSpecialMarker: item.isSpecialMarker,
         memberOf: item.memberOf,
         categoryTotals,
+        aiPRs,
+        aiShare: item.totalPRs > 0 ? (aiPRs / item.totalPRs) * 100 : 0,
+        aiNonAgent: item.aiBreakdown?.nonAgent ?? 0,
+        aiAgent,
+        aiAgentShare: aiPRs > 0 ? (aiAgent / aiPRs) * 100 : 0,
+        aiNotDetected: Math.max(0, item.totalPRs - aiPRs),
+        aiTools,
+        aiToolCounts,
         isAggregated: item.isAggregated,
       };
     });
@@ -166,6 +200,18 @@ export function DataTable(props: DataTableProps) {
       : ['version', 'memberOf', 'date'];
 
     // Metric-specific fields
+    if (isAIMetric) {
+      return [
+        ...baseFields,
+        'totalPRs',
+        ...(viewMode === 'ai-tools'
+          ? AI_TOOLS_FIELDS
+          : viewMode === 'ai-agents'
+            ? AI_AGENTS_FIELDS
+            : AI_USAGE_FIELDS),
+      ];
+    }
+
     if (isContributorMetric) {
       // Contributor metric: show contributor fields only
       return [...baseFields, ...CONTRIBUTOR_FIELDS];
@@ -173,7 +219,7 @@ export function DataTable(props: DataTableProps) {
 
     // PR metric: show totalPRs and category breakdown
     return [...baseFields, 'totalPRs', ...categoryFieldIds];
-  }, [isAggregated, defaultVisibleCategories, isContributorMetric]);
+  }, [isAggregated, defaultVisibleCategories, isContributorMetric, isAIMetric, viewMode]);
 
   const defaultSortField = 'version';
 
@@ -409,7 +455,92 @@ export function DataTable(props: DataTableProps) {
         },
       });
 
-    return [...baseFields, ...categoryFields, ...contributorFields];
+    const getAIDivisor = (item: TableRow) =>
+      isAggregated && viewMode === 'averages' && item.groupedCount
+        ? item.groupedCount
+        : 1;
+
+    const aiFields = [
+      {
+        id: 'aiPRs',
+        label: isAggregated && viewMode === 'averages' ? 'Detected AI / Release' : 'Detected AI PRs',
+        enableSorting: true,
+        getValue: ({ item }: { item: TableRow }) => item.aiPRs / getAIDivisor(item),
+        render: ({ item }: { item: TableRow }) => {
+          const value = item.aiPRs / getAIDivisor(item);
+          return <span className="release-ai-prs">{formatCompactNumber(value)}</span>;
+        },
+      },
+      {
+        id: 'aiShare',
+        label: 'Detected AI %',
+        enableSorting: true,
+        render: ({ item }: { item: TableRow }) =>
+          item.totalPRs > 0 ? `${item.aiShare.toFixed(1)}%` : '—',
+      },
+      {
+        id: 'aiNonAgent',
+        label: 'Other detected AI',
+        enableSorting: true,
+        getValue: ({ item }: { item: TableRow }) => item.aiNonAgent / getAIDivisor(item),
+        render: ({ item }: { item: TableRow }) => {
+          const value = item.aiNonAgent / getAIDivisor(item);
+          return value > 0 ? formatCompactNumber(value) : '—';
+        },
+      },
+      {
+        id: 'aiAgent',
+        label: 'Known agent account',
+        enableSorting: true,
+        getValue: ({ item }: { item: TableRow }) => item.aiAgent / getAIDivisor(item),
+        render: ({ item }: { item: TableRow }) => {
+          const value = item.aiAgent / getAIDivisor(item);
+          return value > 0 ? formatCompactNumber(value) : '—';
+        },
+      },
+      {
+        id: 'aiAgentShare',
+        label: 'Known agent %',
+        enableSorting: true,
+        render: ({ item }: { item: TableRow }) =>
+          item.aiPRs > 0 ? `${item.aiAgentShare.toFixed(1)}%` : '—',
+      },
+      {
+        id: 'aiNotDetected',
+        label: isAggregated && viewMode === 'averages' ? 'Not detected / Release' : 'Not detected',
+        enableSorting: true,
+        getValue: ({ item }: { item: TableRow }) => item.aiNotDetected / getAIDivisor(item),
+        render: ({ item }: { item: TableRow }) => {
+          const value = item.aiNotDetected / getAIDivisor(item);
+          return formatCompactNumber(value);
+        },
+      },
+      {
+        id: 'aiTools',
+        label: 'Tools',
+        enableSorting: true,
+        render: ({ item }: { item: TableRow }) => {
+          const divisor = getAIDivisor(item);
+          const tools = Object.entries(item.aiToolCounts)
+            .sort(([, a], [, b]) => b - a)
+            .filter(([, count]) => count > 0);
+
+          if (tools.length === 0) return '—';
+
+          return (
+            <span className="ai-tool-list">
+              {tools.map(([tool, count]) => (
+                <span key={tool} className="ai-tool-chip">
+                  {tool} {formatCompactNumber(count / divisor)}
+                </span>
+              ))}
+            </span>
+          );
+        },
+      },
+    ];
+
+    return [...baseFields, ...categoryFields, ...contributorFields, ...aiFields];
   }, [categoryConfig, isAggregated, tabConfig, viewMode, memberOfOptions]);
 
   // Process data (filter, search, sort)
@@ -422,6 +553,7 @@ export function DataTable(props: DataTableProps) {
         if (row.version.toLowerCase().includes(searchLower)) return true;
         if (row.groupedRange?.toLowerCase().includes(searchLower)) return true;
         if (row.memberOf?.toLowerCase().includes(searchLower)) return true;
+        if (row.aiTools.toLowerCase().includes(searchLower)) return true;
         return false;
       });
     }

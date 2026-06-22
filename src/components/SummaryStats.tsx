@@ -13,7 +13,7 @@ import { loadCategoryConfig, aggregateCategories, type CategoryConfig } from '..
 import { CategoryPieChart } from './CategoryPieChart';
 import { useURLState } from '../hooks/useURLState';
 import { useConfig } from '../config';
-import type { TabConfig } from '../config/types';
+import type { MetricType, TabConfig, ViewMode } from '../config/types';
 
 interface SummaryStatsProps {
   /** Normalized release data */
@@ -27,9 +27,9 @@ interface SummaryStatsProps {
   /** Callback when a category is toggled via legend click */
   onCategoryToggle?: (categoryId: string, isVisible: boolean) => void;
   /** Current view mode (to sync breakdown selection when sponsors/countries) */
-  viewMode?: 'averages' | 'totals' | 'distribution' | 'sponsors' | 'countries';
+  viewMode?: ViewMode;
   /** Current metric type */
-  metric?: 'prs' | 'contributors';
+  metric?: MetricType;
 }
 
 interface StatItem {
@@ -62,8 +62,26 @@ function formatDate(dateStr: string): string {
   });
 }
 
+function formatCompactNumber(value: number): string {
+  if (value === 0) return '0';
+  if (Number.isInteger(value)) return value.toLocaleString();
+  return value.toLocaleString(undefined, { maximumFractionDigits: 1 });
+}
+
+function formatPercent(value: number): string {
+  return `${value.toFixed(1)}%`;
+}
+
 export function SummaryStats(props: SummaryStatsProps) {
-  const { summary, tabConfig, visibleCategories, onCategoryToggle, data } = props;
+  const {
+    summary,
+    tabConfig,
+    visibleCategories,
+    onCategoryToggle,
+    data,
+    metric = 'prs',
+    viewMode = 'averages',
+  } = props;
   const config = useConfig();
 
   // Use tabConfig for all display logic (no domain knowledge)
@@ -197,6 +215,36 @@ export function SummaryStats(props: SummaryStatsProps) {
     [data]
   );
 
+  const aiSummary = useMemo(() => {
+    if (!selectedItem) {
+      return {
+        divisor: 1,
+        aiPRs: 0,
+        aiShare: 0,
+        nonAgent: 0,
+        agent: 0,
+        notDetected: 0,
+        tools: [] as Array<[string, number]>,
+      };
+    }
+
+    const divisor = selectedItem.isAggregated && viewMode === 'averages' && selectedItem.groupedCount
+      ? selectedItem.groupedCount
+      : 1;
+    const aiPRs = selectedItem.aiPRs ?? 0;
+    return {
+      divisor,
+      aiPRs: aiPRs / divisor,
+      aiShare: selectedItem.totalPRs > 0 ? (aiPRs / selectedItem.totalPRs) * 100 : 0,
+      nonAgent: (selectedItem.aiBreakdown?.nonAgent ?? 0) / divisor,
+      agent: (selectedItem.aiBreakdown?.agent ?? 0) / divisor,
+      notDetected: Math.max(0, (viewMode === 'averages' ? selectedItem.avgPRs : selectedItem.totalPRs) - (aiPRs / divisor)),
+      tools: Object.entries(selectedItem.aiBreakdown?.byTool ?? {})
+        .sort(([, a], [, b]) => b - a)
+        .map(([tool, count]) => [tool, count / divisor] as [string, number]),
+    };
+  }, [selectedItem, viewMode]);
+
   // Navigation helpers
   const currentIndex = data.findIndex((item) => item.version === selectedVersion);
   const hasPrevious = currentIndex < data.length - 1;
@@ -256,6 +304,13 @@ export function SummaryStats(props: SummaryStatsProps) {
       </div>
     );
   };
+
+  const renderAIStat = (label: string, value: string) => (
+    <div key={label} className="summary-stat">
+      <div className="summary-stat-label">{label}</div>
+      <div className="summary-stat-value">{value}</div>
+    </div>
+  );
 
   return (
     <Card className="summary-section">
@@ -332,66 +387,103 @@ export function SummaryStats(props: SummaryStatsProps) {
             </Text>
           </div>
 
-          <div className="summary-content">
-            <div className="summary-pie-charts">
-              {categoryConfig && (
-                <>
-                  <div className="summary-pie-chart-item">
-                    <Text className="summary-pie-chart-title">Categories</Text>
-                    <CategoryPieChart
-                      breakdownType="categories"
-                      categoryTotals={categoryTotals}
-                      categoryConfig={categoryConfig}
-                      size={200}
-                      groupedCount={selectedItem.groupedCount}
-                      visibleCategories={visibleCategories}
-                      onCategoryToggle={onCategoryToggle}
-                    />
-                  </div>
-                  <div className="summary-pie-chart-item">
-                    <Text className="summary-pie-chart-title">Sponsors</Text>
-                    <CategoryPieChart
-                      breakdownType="sponsors"
-                      breakdownData={sponsorData}
-                      categoryTotals={categoryTotals}
-                      categoryConfig={categoryConfig}
-                      size={200}
-                      groupedCount={selectedItem.groupedCount}
-                    />
-                  </div>
-                  <div className="summary-pie-chart-item">
-                    <Text className="summary-pie-chart-title">Countries</Text>
-                    <CategoryPieChart
-                      breakdownType="countries"
-                      breakdownData={countryData}
-                      categoryTotals={categoryTotals}
-                      categoryConfig={categoryConfig}
-                      size={200}
-                      groupedCount={selectedItem.groupedCount}
-                    />
-                  </div>
-                </>
-              )}
+          {metric === 'ai' ? (
+            <div className="summary-content summary-content--ai">
+              <div className="summary-stats-container">
+                <div className="summary-stats-header">Detected AI usage</div>
+                <div className="summary-stats ai-summary-stats">
+                  {renderAIStat(
+                    selectedItem.isAggregated && viewMode === 'averages'
+                      ? 'Detected AI PRs / release'
+                      : 'Detected AI PRs',
+                    formatCompactNumber(aiSummary.aiPRs)
+                  )}
+                  {renderAIStat('Detected share', formatPercent(aiSummary.aiShare))}
+                  {renderAIStat('Other detected AI', formatCompactNumber(aiSummary.nonAgent))}
+                  {renderAIStat('Known agent account', formatCompactNumber(aiSummary.agent))}
+                  {renderAIStat('Not detected', formatCompactNumber(aiSummary.notDetected))}
+                </div>
+                <div className="ai-tool-summary">
+                  <div className="summary-stats-header">AI tools detected</div>
+                  {aiSummary.tools.length > 0 ? (
+                    <div className="ai-tool-list ai-tool-list--summary">
+                      {aiSummary.tools.map(([tool, count]) => (
+                        <span key={tool} className="ai-tool-chip">
+                          {tool} {formatCompactNumber(count)}
+                        </span>
+                      ))}
+                    </div>
+                  ) : (
+                    <Text className="ai-disclosure-copy">No disclosed AI tools detected for this item.</Text>
+                  )}
+                </div>
+                <Text className="ai-disclosure-copy">
+                  This does not classify every PR. Detected AI means a PR text marker, commit trailer, or known agent author matched. Known agent account means detected AI PRs opened by known agent accounts; Other detected AI means no known agent author matched. Not detected is the remaining PRs without AI markers, not confirmed non-AI.
+                </Text>
+              </div>
             </div>
-
-            <div className="summary-stats-container">
-              {tabConfig?.labels?.statsHeader && (
-                <div className="summary-stats-header">{tabConfig.labels.statsHeader}</div>
-              )}
-              <div className="summary-stats">
-                {primaryStats.map((stat) => renderStatItem(stat, true))}
+          ) : (
+            <div className="summary-content">
+              <div className="summary-pie-charts">
+                {categoryConfig && (
+                  <>
+                    <div className="summary-pie-chart-item">
+                      <Text className="summary-pie-chart-title">Categories</Text>
+                      <CategoryPieChart
+                        breakdownType="categories"
+                        categoryTotals={categoryTotals}
+                        categoryConfig={categoryConfig}
+                        size={200}
+                        groupedCount={selectedItem.groupedCount}
+                        visibleCategories={visibleCategories}
+                        onCategoryToggle={onCategoryToggle}
+                      />
+                    </div>
+                    <div className="summary-pie-chart-item">
+                      <Text className="summary-pie-chart-title">Sponsors</Text>
+                      <CategoryPieChart
+                        breakdownType="sponsors"
+                        breakdownData={sponsorData}
+                        categoryTotals={categoryTotals}
+                        categoryConfig={categoryConfig}
+                        size={200}
+                        groupedCount={selectedItem.groupedCount}
+                      />
+                    </div>
+                    <div className="summary-pie-chart-item">
+                      <Text className="summary-pie-chart-title">Countries</Text>
+                      <CategoryPieChart
+                        breakdownType="countries"
+                        breakdownData={countryData}
+                        categoryTotals={categoryTotals}
+                        categoryConfig={categoryConfig}
+                        size={200}
+                        groupedCount={selectedItem.groupedCount}
+                      />
+                    </div>
+                  </>
+                )}
               </div>
 
-              {secondaryStats.length > 0 && (
-                <>
-                  <div className="summary-stats-header">Totals</div>
-                  <div className="summary-stats summary-stats-totals">
-                    {secondaryStats.map((stat) => renderStatItem(stat, false))}
-                  </div>
-                </>
-              )}
+              <div className="summary-stats-container">
+                {tabConfig?.labels?.statsHeader && (
+                  <div className="summary-stats-header">{tabConfig.labels.statsHeader}</div>
+                )}
+                <div className="summary-stats">
+                  {primaryStats.map((stat) => renderStatItem(stat, true))}
+                </div>
+
+                {secondaryStats.length > 0 && (
+                  <>
+                    <div className="summary-stats-header">Totals</div>
+                    <div className="summary-stats summary-stats-totals">
+                      {secondaryStats.map((stat) => renderStatItem(stat, false))}
+                    </div>
+                  </>
+                )}
+              </div>
             </div>
-          </div>
+          )}
         </CardBody>
       )}
     </Card>

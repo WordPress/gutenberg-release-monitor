@@ -1,8 +1,8 @@
 {
   "totals": {
     "aiPRs": 287,
-    "assisted": 256,
-    "autonomous": 31,
+    "nonAgent": 256,
+    "agent": 31,
     "byTool": {
       "claude-code": 209,
       "cursor": 10,
@@ -15,7 +15,7 @@
       "title": "Components: Make ResizableBox children prop optional",
       "url": "https://github.com/WordPress/gutenberg/pull/79370",
       "author": "t-hamano",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -27,7 +27,7 @@
       "title": "Storybook: Reorganize design system introduction for first touch-point usefulness",
       "url": "https://github.com/WordPress/gutenberg/pull/79360",
       "author": "aduth",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "copilot"
       ],
@@ -39,7 +39,7 @@
       "title": "Widget Primitives: decouple discovery from a hardcoded endpoint",
       "url": "https://github.com/WordPress/gutenberg/pull/79322",
       "author": "retrofox",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "copilot"
       ],
@@ -51,7 +51,7 @@
       "title": "CI: Run PHP unit tests on PHP 8.4 and 8.5",
       "url": "https://github.com/WordPress/gutenberg/pull/79260",
       "author": "t-hamano",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -63,7 +63,7 @@
       "title": "Grid overlays: Use canvas iframe window for viewport visibility detection",
       "url": "https://github.com/WordPress/gutenberg/pull/79255",
       "author": "t-hamano",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -75,7 +75,7 @@
       "title": "Plugin: Bump minimum required WordPress version to 6.9",
       "url": "https://github.com/WordPress/gutenberg/pull/79196",
       "author": "t-hamano",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -87,7 +87,7 @@
       "title": "KSES: Allow SVG-specific presentation attributes in safe_style_css",
       "url": "https://github.com/WordPress/gutenberg/pull/79172",
       "author": "t-hamano",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -99,7 +99,7 @@
       "title": "Icons: Use snake_case `file_path` key in icon registry",
       "url": "https://github.com/WordPress/gutenberg/pull/79100",
       "author": "t-hamano",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -111,7 +111,7 @@
       "title": "Block Fields: Fix crash resolving pattern overrides bindings",
       "url": "https://github.com/WordPress/gutenberg/pull/79092",
       "author": "cbravobernal",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -123,7 +123,7 @@
       "title": "Style Engine: Export public TypeScript types",
       "url": "https://github.com/WordPress/gutenberg/pull/79079",
       "author": "ralucaStan",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -135,7 +135,7 @@
       "title": "Image: Fix pasted images stretching when dimensions are preserved",
       "url": "https://github.com/WordPress/gutenberg/pull/79067",
       "author": "taipeicoder",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -147,7 +147,7 @@
       "title": "Rich text: use subscribeDelegatedListener for element event listeners",
       "url": "https://github.com/WordPress/gutenberg/pull/79047",
       "author": "ellatrix",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -159,7 +159,7 @@
       "title": "Release: Drop mobile-specific changelog omit rules",
       "url": "https://github.com/WordPress/gutenberg/pull/79042",
       "author": "tyxla",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -171,7 +171,7 @@
       "title": "Docs: Remove stale mobile references from tooling and primitives docs",
       "url": "https://github.com/WordPress/gutenberg/pull/79041",
       "author": "tyxla",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -183,7 +183,7 @@
       "title": "Editor: Remove dead native guard in block removal warnings",
       "url": "https://github.com/WordPress/gutenberg/pull/79039",
       "author": "tyxla",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -195,7 +195,7 @@
       "title": "Remove orphaned mobile bug report issue template",
       "url": "https://github.com/WordPress/gutenberg/pull/79038",
       "author": "tyxla",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -207,7 +207,7 @@
       "title": "RichText: Remove dead native-only prop filtering",
       "url": "https://github.com/WordPress/gutenberg/pull/79037",
       "author": "tyxla",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -219,7 +219,7 @@
       "title": "Remove orphaned README files for deleted native-only components",
       "url": "https://github.com/WordPress/gutenberg/pull/79035",
       "author": "tyxla",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -231,7 +231,7 @@
       "title": "Remove dead native code branches from Platform usages",
       "url": "https://github.com/WordPress/gutenberg/pull/79031",
       "author": "tyxla",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -243,7 +243,7 @@
       "title": "CI: Remove Validate Gradle Wrapper workflow",
       "url": "https://github.com/WordPress/gutenberg/pull/79030",
       "author": "tyxla",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -255,7 +255,7 @@
       "title": "Elements: Align class name parsing with custom CSS implementation",
       "url": "https://github.com/WordPress/gutenberg/pull/79023",
       "author": "westonruter",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -267,7 +267,7 @@
       "title": "Storybook: Declare workspace dependencies for theme example story.",
       "url": "https://github.com/WordPress/gutenberg/pull/78979",
       "author": "jameskoster",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "cursor"
       ],
@@ -279,7 +279,7 @@
       "title": "List View block support: Hide list tab when allowedBlocks is empty, with no children",
       "url": "https://github.com/WordPress/gutenberg/pull/78932",
       "author": "andrewserong",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -291,7 +291,7 @@
       "title": "Fix experiments page form layout with box-sizing and width",
       "url": "https://github.com/WordPress/gutenberg/pull/78910",
       "author": "oandregal",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -303,7 +303,7 @@
       "title": "Autocomplete: Add Group and GroupLabel primitives",
       "url": "https://github.com/WordPress/gutenberg/pull/78901",
       "author": "t-hamano",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -315,7 +315,7 @@
       "title": "Fix playlist metadata edits recreating player",
       "url": "https://github.com/WordPress/gutenberg/pull/78876",
       "author": "scruffian",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -327,7 +327,7 @@
       "title": "env: Replace extract-zip with adm-zip to fix hang on Node 24.16",
       "url": "https://github.com/WordPress/gutenberg/pull/78828",
       "author": "torounit",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -339,7 +339,7 @@
       "title": "Abilities: Add validation tests pinning behavior for WP-specific schema keywords",
       "url": "https://github.com/WordPress/gutenberg/pull/78783",
       "author": "gziolo",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -351,7 +351,7 @@
       "title": "Icons: maintain absolute stroke-width regardless of icon-size",
       "url": "https://github.com/WordPress/gutenberg/pull/78774",
       "author": "jasmussen",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -363,7 +363,7 @@
       "title": "Global Styles: Fix CSS not applying to Custom CSS textarea in Advanced panel",
       "url": "https://github.com/WordPress/gutenberg/pull/78773",
       "author": "t-hamano",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -375,7 +375,7 @@
       "title": "Compose: Fix SSR crash in useMediaQuery and useViewportMatch",
       "url": "https://github.com/WordPress/gutenberg/pull/78725",
       "author": "xavier-lc",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -387,7 +387,7 @@
       "title": "Fix Gutenberg plugin assuming its directory is named \"gutenberg\"",
       "url": "https://github.com/WordPress/gutenberg/pull/78705",
       "author": "t-hamano",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -399,7 +399,7 @@
       "title": "Docs: Fix stale, incorrect, or missing documentation",
       "url": "https://github.com/WordPress/gutenberg/pull/78686",
       "author": "sirreal",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "copilot"
       ],
@@ -411,7 +411,7 @@
       "title": "Guidelines: Add data-slug attribute to settings list items",
       "url": "https://github.com/WordPress/gutenberg/pull/78676",
       "author": "aagam-shah",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -423,7 +423,7 @@
       "title": "Docs: Mark React Native mobile editor as unmaintained on trunk after React 19 upgrade",
       "url": "https://github.com/WordPress/gutenberg/pull/78673",
       "author": "tyxla",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -435,7 +435,7 @@
       "title": "Classic Block: Use `get_post()` in `wp_declare_classic_block_necessary`",
       "url": "https://github.com/WordPress/gutenberg/pull/78613",
       "author": "tyxla",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -447,7 +447,7 @@
       "title": "Image: Preserve width/height when converting Classic blocks to blocks",
       "url": "https://github.com/WordPress/gutenberg/pull/78610",
       "author": "tyxla",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -459,7 +459,7 @@
       "title": "RTC: Fix Edit/Join row action invisible on mobile in post list",
       "url": "https://github.com/WordPress/gutenberg/pull/78597",
       "author": "taipeicoder",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -471,7 +471,7 @@
       "title": "Post Taxonomies: Drop redundant `per_page: -1` from taxonomy queries",
       "url": "https://github.com/WordPress/gutenberg/pull/78569",
       "author": "ellatrix",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -483,7 +483,7 @@
       "title": "Editor / Block Editor: Lazy-fetch user pattern categories",
       "url": "https://github.com/WordPress/gutenberg/pull/78568",
       "author": "ellatrix",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -495,7 +495,7 @@
       "title": "Edit Post Preload: Cover remaining bound GET/OPTIONS requests on load",
       "url": "https://github.com/WordPress/gutenberg/pull/78565",
       "author": "ellatrix",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -507,7 +507,7 @@
       "title": "Preload: Backport user global styles entry for classic themes on WP 6.9",
       "url": "https://github.com/WordPress/gutenberg/pull/78546",
       "author": "ellatrix",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -519,7 +519,7 @@
       "title": "Guidelines: Fix fatal when `rest_api_init` fires before init (cherry-pick #78350)",
       "url": "https://github.com/WordPress/gutenberg/pull/78477",
       "author": "paulopmt1",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -531,7 +531,7 @@
       "title": "CI: Skip plugin repo release when SVN tag already exists",
       "url": "https://github.com/WordPress/gutenberg/pull/78476",
       "author": "paulopmt1",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code",
         "copilot",
@@ -545,7 +545,7 @@
       "title": "Dashboard: per-instance widget settings drawer",
       "url": "https://github.com/WordPress/gutenberg/pull/78465",
       "author": "retrofox",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "copilot"
       ],
@@ -557,7 +557,7 @@
       "title": "Grid: fix immutability lint warning for react hook",
       "url": "https://github.com/WordPress/gutenberg/pull/78431",
       "author": "simison",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "copilot"
       ],
@@ -569,7 +569,7 @@
       "title": "Add `Quick draft` widget",
       "url": "https://github.com/WordPress/gutenberg/pull/78408",
       "author": "retrofox",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "copilot"
       ],
@@ -581,7 +581,7 @@
       "title": "Media: Send Document-Isolation-Policy header on the site preview frame",
       "url": "https://github.com/WordPress/gutenberg/pull/78404",
       "author": "t-hamano",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -593,7 +593,7 @@
       "title": "Grid: don't allow resizing tile beyond min row height or column width",
       "url": "https://github.com/WordPress/gutenberg/pull/78402",
       "author": "simison",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "copilot"
       ],
@@ -605,7 +605,7 @@
       "title": "Docs: Update iframe editor migration guide for WordPress 7.0/7.1",
       "url": "https://github.com/WordPress/gutenberg/pull/78401",
       "author": "t-hamano",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -617,7 +617,7 @@
       "title": "useCopyToClipboard: Always call onSuccess callback",
       "url": "https://github.com/WordPress/gutenberg/pull/78387",
       "author": "t-hamano",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -629,7 +629,7 @@
       "title": "Tests: Add post-editor preload spec",
       "url": "https://github.com/WordPress/gutenberg/pull/78318",
       "author": "ellatrix",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -641,7 +641,7 @@
       "title": "Core Abilities: Defer fetch until workflow palette opens",
       "url": "https://github.com/WordPress/gutenberg/pull/78316",
       "author": "ellatrix",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -653,7 +653,7 @@
       "title": "Guidelines: Refine access policy",
       "url": "https://github.com/WordPress/gutenberg/pull/78296",
       "author": "gziolo",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -665,7 +665,7 @@
       "title": "Revisions: Scale diff markers width with user text-size preference",
       "url": "https://github.com/WordPress/gutenberg/pull/78273",
       "author": "ellatrix",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -677,7 +677,7 @@
       "title": "Publishing packages: defer pushing tags until lerna publish succeeds",
       "url": "https://github.com/WordPress/gutenberg/pull/78253",
       "author": "paulopmt1",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "copilot",
         "claude-code"
@@ -690,7 +690,7 @@
       "title": "Block supports: Optimize custom CSS class rendering and parsing",
       "url": "https://github.com/WordPress/gutenberg/pull/78217",
       "author": "westonruter",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -702,7 +702,7 @@
       "title": "Widget Types: declarative presentation hint (full-bleed support)",
       "url": "https://github.com/WordPress/gutenberg/pull/78209",
       "author": "retrofox",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "copilot"
       ],
@@ -714,7 +714,7 @@
       "title": "Script Loader: Defer single-page admin init until DOMContentLoaded (Trac #65103)",
       "url": "https://github.com/WordPress/gutenberg/pull/78136",
       "author": "westonruter",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -726,7 +726,7 @@
       "title": "Content Types: Abstract and reuse label autofilling for post types",
       "url": "https://github.com/WordPress/gutenberg/pull/78099",
       "author": "tyxla",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -738,7 +738,7 @@
       "title": "bin/dev.mjs: warn (not exit) on stale webpack watching this checkout",
       "url": "https://github.com/WordPress/gutenberg/pull/78098",
       "author": "scruffian",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -750,7 +750,7 @@
       "title": "Make RTC-related APIs private",
       "url": "https://github.com/WordPress/gutenberg/pull/78097",
       "author": "t-hamano",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -762,7 +762,7 @@
       "title": "Dashboard: REST endpoint for the default layout",
       "url": "https://github.com/WordPress/gutenberg/pull/78066",
       "author": "retrofox",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "copilot"
       ],
@@ -774,7 +774,7 @@
       "title": "Image block: Add \"Mark as decorative\" toggle for accessibility",
       "url": "https://github.com/WordPress/gutenberg/pull/78064",
       "author": "SteveJonesDev",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -786,7 +786,7 @@
       "title": "Content types: flush rewrite rules on rewrite-impacting changes",
       "url": "https://github.com/WordPress/gutenberg/pull/78058",
       "author": "tyxla",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -798,7 +798,7 @@
       "title": "RTC: Fix find_canonical_storage_post_id() always returning null",
       "url": "https://github.com/WordPress/gutenberg/pull/78053",
       "author": "t-hamano",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -810,7 +810,7 @@
       "title": "Core Data: Share parsed blocks cache between resolver and editor hook",
       "url": "https://github.com/WordPress/gutenberg/pull/78026",
       "author": "ellatrix",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -822,7 +822,7 @@
       "title": "Admin UI: Fix nested landmark in Page header",
       "url": "https://github.com/WordPress/gutenberg/pull/78001",
       "author": "t-hamano",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -834,7 +834,7 @@
       "title": "Media Editor Experiment: Add a route, based on the media editor modal, refactor the modal components",
       "url": "https://github.com/WordPress/gutenberg/pull/77994",
       "author": "andrewserong",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "copilot"
       ],
@@ -846,7 +846,7 @@
       "title": "RTC: Attach sync observers after hydrating persisted CRDT doc",
       "url": "https://github.com/WordPress/gutenberg/pull/77966",
       "author": "ellatrix",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -858,7 +858,7 @@
       "title": "ui/CollapsibleCard: support rendering Header as a heading element",
       "url": "https://github.com/WordPress/gutenberg/pull/77962",
       "author": "t-hamano",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -870,7 +870,7 @@
       "title": "Modal: Render as a bottom sheet on mobile",
       "url": "https://github.com/WordPress/gutenberg/pull/77956",
       "author": "crisbusquets",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -882,7 +882,7 @@
       "title": "ExternalLink: Fix focus outline under wp-admin",
       "url": "https://github.com/WordPress/gutenberg/pull/77935",
       "author": "t-hamano",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -894,7 +894,7 @@
       "title": "Guidelines: Refactor accordion to use CollapsibleCard",
       "url": "https://github.com/WordPress/gutenberg/pull/77903",
       "author": "t-hamano",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -906,7 +906,7 @@
       "title": "Taxonomy edit route: declare @wordpress/base-styles as dependency",
       "url": "https://github.com/WordPress/gutenberg/pull/77901",
       "author": "tyxla",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -918,7 +918,7 @@
       "title": "Connectors: Add is_active callback support to plugin registration",
       "url": "https://github.com/WordPress/gutenberg/pull/77897",
       "author": "t-hamano",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -930,7 +930,7 @@
       "title": "Content Types: Add Duplicate action to post type management",
       "url": "https://github.com/WordPress/gutenberg/pull/77844",
       "author": "tyxla",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -942,7 +942,7 @@
       "title": "User Taxonomies: show Public field in create/edit form",
       "url": "https://github.com/WordPress/gutenberg/pull/77802",
       "author": "tyxla",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -954,7 +954,7 @@
       "title": "Guidelines: Split singleton REST API into dedicated /content-guidelines route",
       "url": "https://github.com/WordPress/gutenberg/pull/77734",
       "author": "gziolo",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -966,7 +966,7 @@
       "title": "Revisions: Add tooltip to diff marker buttons",
       "url": "https://github.com/WordPress/gutenberg/pull/77690",
       "author": "himanshupathak95",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "copilot"
       ],
@@ -978,7 +978,7 @@
       "title": "Revisions: Improve screen reader accessibility for diff markers region and slider",
       "url": "https://github.com/WordPress/gutenberg/pull/77660",
       "author": "himanshupathak95",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "copilot"
       ],
@@ -990,7 +990,7 @@
       "title": "Tabs: Simplify layout and prune redundant block supports",
       "url": "https://github.com/WordPress/gutenberg/pull/77646",
       "author": "t-hamano",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1002,7 +1002,7 @@
       "title": "Guidelines: Extract initial public API methods",
       "url": "https://github.com/WordPress/gutenberg/pull/77643",
       "author": "gziolo",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1014,7 +1014,7 @@
       "title": "Docs: Auto-generate per-block API reference pages from block.json",
       "url": "https://github.com/WordPress/gutenberg/pull/77612",
       "author": "juanmaguitar",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code",
         "copilot"
@@ -1027,7 +1027,7 @@
       "title": "Tabs: Add classic theme styles to reset button defaults",
       "url": "https://github.com/WordPress/gutenberg/pull/77607",
       "author": "t-hamano",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1039,7 +1039,7 @@
       "title": "Guidelines: Drop default_term from wp_guideline_type taxonomy",
       "url": "https://github.com/WordPress/gutenberg/pull/77592",
       "author": "gziolo",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1051,7 +1051,7 @@
       "title": "docgen: Automatic documentation handle for TypeScript overloads",
       "url": "https://github.com/WordPress/gutenberg/pull/77558",
       "author": "Infinite-Null",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "copilot"
       ],
@@ -1063,7 +1063,7 @@
       "title": "Connectors: keep focus on action Button during install",
       "url": "https://github.com/WordPress/gutenberg/pull/77544",
       "author": "t-hamano",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1075,7 +1075,7 @@
       "title": "Guidelines: Make the CPT type-aware",
       "url": "https://github.com/WordPress/gutenberg/pull/77491",
       "author": "gziolo",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1087,7 +1087,7 @@
       "title": "Guidelines CPT: Skip registration when post type already exists",
       "url": "https://github.com/WordPress/gutenberg/pull/77486",
       "author": "gziolo",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1099,7 +1099,7 @@
       "title": "Writing Flow: fix arrow keys skipping paragraph containing link",
       "url": "https://github.com/WordPress/gutenberg/pull/77474",
       "author": "mcsf",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1111,7 +1111,7 @@
       "title": "Experiments: Rebuild the wp-admin Experiments screen on the wp-build routes pattern",
       "url": "https://github.com/WordPress/gutenberg/pull/77443",
       "author": "t-hamano",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1123,7 +1123,7 @@
       "title": "Try: Remove Tab (Tab list item) block",
       "url": "https://github.com/WordPress/gutenberg/pull/77439",
       "author": "t-hamano",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1135,7 +1135,7 @@
       "title": "Tabs: Clean up Edit components",
       "url": "https://github.com/WordPress/gutenberg/pull/77426",
       "author": "t-hamano",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1147,7 +1147,7 @@
       "title": "Storybook: Upgrade Storybook to 10.4",
       "url": "https://github.com/WordPress/gutenberg/pull/77382",
       "author": "aduth",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1159,7 +1159,7 @@
       "title": "Tabs: Lock top-level structure and disable visibility controls",
       "url": "https://github.com/WordPress/gutenberg/pull/77370",
       "author": "t-hamano",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1171,7 +1171,7 @@
       "title": "Docs: Auto-generate per-block API reference pages from block.json",
       "url": "https://github.com/WordPress/gutenberg/pull/77350",
       "author": "juanmaguitar",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "copilot"
       ],
@@ -1183,7 +1183,7 @@
       "title": "Block Editor: Extract getElementCSSRules from useBlockProps",
       "url": "https://github.com/WordPress/gutenberg/pull/77327",
       "author": "scruffian",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1195,7 +1195,7 @@
       "title": "[WP 7.0] Fix failing 'WP_HTTP_Polling_Sync_Server' unit test",
       "url": "https://github.com/WordPress/gutenberg/pull/77325",
       "author": "t-hamano",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1207,7 +1207,7 @@
       "title": "Tabs: remove sequential numbering from new tab labels",
       "url": "https://github.com/WordPress/gutenberg/pull/77321",
       "author": "t-hamano",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1219,7 +1219,7 @@
       "title": "Core Abilities: Export initialization promise as `ready`",
       "url": "https://github.com/WordPress/gutenberg/pull/77254",
       "author": "westonruter",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1231,7 +1231,7 @@
       "title": "RTC: Fix disconnect dialog due to uneditable entity",
       "url": "https://github.com/WordPress/gutenberg/pull/77242",
       "author": "alecgeatches",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1243,7 +1243,7 @@
       "title": "UI Dialog: Add Description, modal context, and misc improvements",
       "url": "https://github.com/WordPress/gutenberg/pull/77194",
       "author": "ciampo",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "copilot"
       ],
@@ -1255,7 +1255,7 @@
       "title": "Guidelines: Add e2e tests based on the Settings page testing instructions",
       "url": "https://github.com/WordPress/gutenberg/pull/77192",
       "author": "gziolo",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1267,7 +1267,7 @@
       "title": "Connectors: Replace speak() with notice store for state changes",
       "url": "https://github.com/WordPress/gutenberg/pull/77174",
       "author": "t-hamano",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1279,7 +1279,7 @@
       "title": "MediaEdit: handle '*' wildcard in validateMimeType",
       "url": "https://github.com/WordPress/gutenberg/pull/77168",
       "author": "dinhtungdu",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1291,7 +1291,7 @@
       "title": "Writing Flow: Fix format toolbar not appearing when selecting text from block edge",
       "url": "https://github.com/WordPress/gutenberg/pull/77136",
       "author": "tyxla",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1303,7 +1303,7 @@
       "title": "Editor: Improve revisions diff pairing performance",
       "url": "https://github.com/WordPress/gutenberg/pull/77126",
       "author": "ellatrix",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1315,7 +1315,7 @@
       "title": "Connectors: don't clobber third-party custom render in registerDefaultConnectors",
       "url": "https://github.com/WordPress/gutenberg/pull/77116",
       "author": "superdav42",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1327,7 +1327,7 @@
       "title": "Add iteration issue template",
       "url": "https://github.com/WordPress/gutenberg/pull/77113",
       "author": "annezazu",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1339,7 +1339,7 @@
       "title": "E2E Tests: Ensure artifacts generate correctly and remove unnecessary artifacts",
       "url": "https://github.com/WordPress/gutenberg/pull/77093",
       "author": "t-hamano",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1351,7 +1351,7 @@
       "title": "RTC: Respect WP_ALLOW_COLLABORATION in Gutenberg for activation hook",
       "url": "https://github.com/WordPress/gutenberg/pull/77084",
       "author": "ingeniumed",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1363,7 +1363,7 @@
       "title": "DataViews: Fix wrapper height resolution in flex layouts",
       "url": "https://github.com/WordPress/gutenberg/pull/76945",
       "author": "allilevine",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1375,7 +1375,7 @@
       "title": "Icon: Fix center alignment in the editor for classic themes",
       "url": "https://github.com/WordPress/gutenberg/pull/76878",
       "author": "t-hamano",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1387,7 +1387,7 @@
       "title": "Latest Comments: Fix v1 deprecated block missing supports",
       "url": "https://github.com/WordPress/gutenberg/pull/76877",
       "author": "t-hamano",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1399,7 +1399,7 @@
       "title": "Admin UI: Update Page background color to surface-neutral",
       "url": "https://github.com/WordPress/gutenberg/pull/76869",
       "author": "CGastrell",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1411,7 +1411,7 @@
       "title": "docs: Fix markdown links and PHP code block in client-side navigation compatibility guide",
       "url": "https://github.com/WordPress/gutenberg/pull/76856",
       "author": "Copilot",
-      "mode": "autonomous",
+      "mode": "agent",
       "tools": [
         "copilot"
       ],
@@ -1423,7 +1423,7 @@
       "title": "RTC: Change SyncConnectionModal to isSyncConnectionErrorHandled filter and drop IS_GUTENBERG_PLUGIN check",
       "url": "https://github.com/WordPress/gutenberg/pull/76853",
       "author": "ingeniumed",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1435,7 +1435,7 @@
       "title": "Style Book: Fix missing styles for classic themes in stylebook route",
       "url": "https://github.com/WordPress/gutenberg/pull/76843",
       "author": "t-hamano",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1447,7 +1447,7 @@
       "title": "docs(create-block-interactive-template): document available variants in README",
       "url": "https://github.com/WordPress/gutenberg/pull/76831",
       "author": "juanmaguitar",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1459,7 +1459,7 @@
       "title": "Abilities: improve JSDoc for public API",
       "url": "https://github.com/WordPress/gutenberg/pull/76824",
       "author": "gziolo",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1471,7 +1471,7 @@
       "title": "Commands: Fix unstable `useSelect` return value for `recentlyUsedNames`",
       "url": "https://github.com/WordPress/gutenberg/pull/76822",
       "author": "t-hamano",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1483,7 +1483,7 @@
       "title": "Site Tagline: Fix block error when migrating deprecated textAlign attribute",
       "url": "https://github.com/WordPress/gutenberg/pull/76821",
       "author": "t-hamano",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1495,7 +1495,7 @@
       "title": "Preferences: Hide collaboration options when RTC is not enabled",
       "url": "https://github.com/WordPress/gutenberg/pull/76819",
       "author": "t-hamano",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1507,7 +1507,7 @@
       "title": "Site Editor v2: Add missing menu items to navigation leaf more menu",
       "url": "https://github.com/WordPress/gutenberg/pull/76804",
       "author": "scruffian",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1519,7 +1519,7 @@
       "title": "List View: Place caret at end of block when selecting",
       "url": "https://github.com/WordPress/gutenberg/pull/76797",
       "author": "scruffian",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1531,7 +1531,7 @@
       "title": "Revisions: Fix template revisions retrieval and sorting",
       "url": "https://github.com/WordPress/gutenberg/pull/76760",
       "author": "t-hamano",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1543,7 +1543,7 @@
       "title": "wp-build: Hash transformed CSS for `data-wp-hash` dedupe key",
       "url": "https://github.com/WordPress/gutenberg/pull/76743",
       "author": "mirka",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "cursor"
       ],
@@ -1555,7 +1555,7 @@
       "title": "Connectors: Support non-AI provider types and add JS extensibility e2e test",
       "url": "https://github.com/WordPress/gutenberg/pull/76722",
       "author": "gziolo",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1567,7 +1567,7 @@
       "title": "Skip including inactive or experimental routes when building for WordPress Core",
       "url": "https://github.com/WordPress/gutenberg/pull/76715",
       "author": "desrosj",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1579,7 +1579,7 @@
       "title": "Fix image upload crashes",
       "url": "https://github.com/WordPress/gutenberg/pull/76707",
       "author": "adamsilverstein",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1591,7 +1591,7 @@
       "title": "Admin UI: Fix Page Header not rendering with only actions and add stories",
       "url": "https://github.com/WordPress/gutenberg/pull/76695",
       "author": "CGastrell",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1603,7 +1603,7 @@
       "title": "E2E Tests: Enable client-side media processing for site editor image test",
       "url": "https://github.com/WordPress/gutenberg/pull/76648",
       "author": "adamsilverstein",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1615,7 +1615,7 @@
       "title": "Build: Remove unused JXL WASM module from vips worker",
       "url": "https://github.com/WordPress/gutenberg/pull/76639",
       "author": "adamsilverstein",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1627,7 +1627,7 @@
       "title": "iAPI Docs: Fix typos, code errors, and inaccuracies in the documentation",
       "url": "https://github.com/WordPress/gutenberg/pull/76636",
       "author": "DAreRodz",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "copilot",
         "claude-code"
@@ -1640,7 +1640,7 @@
       "title": "Upload Media: Loosen client-side media processing requirements",
       "url": "https://github.com/WordPress/gutenberg/pull/76616",
       "author": "adamsilverstein",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1652,7 +1652,7 @@
       "title": "Build: Skip non-minified build for WASM-inlined workers",
       "url": "https://github.com/WordPress/gutenberg/pull/76615",
       "author": "adamsilverstein",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1664,7 +1664,7 @@
       "title": "Admin UI: Use hasPadding prop in Page stories",
       "url": "https://github.com/WordPress/gutenberg/pull/76601",
       "author": "CGastrell",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1676,7 +1676,7 @@
       "title": "Navigation overlay close button may be displayed twice",
       "url": "https://github.com/WordPress/gutenberg/pull/76585",
       "author": "getdave",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "copilot"
       ],
@@ -1688,7 +1688,7 @@
       "title": "Admin UI: Update Page background color",
       "url": "https://github.com/WordPress/gutenberg/pull/76548",
       "author": "CGastrell",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1700,7 +1700,7 @@
       "title": "Interactivity API: mention `client-side-navigation` scaffold variant in getting-started guide",
       "url": "https://github.com/WordPress/gutenberg/pull/76543",
       "author": "Copilot",
-      "mode": "autonomous",
+      "mode": "agent",
       "tools": [
         "copilot"
       ],
@@ -1712,7 +1712,7 @@
       "title": "Backport: Revisions: use useSubRegistry={false} to fix global store selectors",
       "url": "https://github.com/WordPress/gutenberg/pull/76522",
       "author": "ellatrix",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1724,7 +1724,7 @@
       "title": "Fix HEIC upload error handling and sub-size format",
       "url": "https://github.com/WordPress/gutenberg/pull/76514",
       "author": "adamsilverstein",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1736,7 +1736,7 @@
       "title": "Add supports for pseudo states on single block instances",
       "url": "https://github.com/WordPress/gutenberg/pull/76491",
       "author": "MaggieCabrera",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1748,7 +1748,7 @@
       "title": "Admin UI: Add visual prop to Page header component",
       "url": "https://github.com/WordPress/gutenberg/pull/76469",
       "author": "CGastrell",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1760,7 +1760,7 @@
       "title": "Admin UI: Add Storybook stories for Breadcrumbs and Page components",
       "url": "https://github.com/WordPress/gutenberg/pull/76467",
       "author": "CGastrell",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1772,7 +1772,7 @@
       "title": "Site Editor: Fix unsupported theme flash on direct URL navigation",
       "url": "https://github.com/WordPress/gutenberg/pull/76465",
       "author": "dsas",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1784,7 +1784,7 @@
       "title": "E2E Tests: Add connector setup flow tests with test AI provider",
       "url": "https://github.com/WordPress/gutenberg/pull/76433",
       "author": "gziolo",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1796,7 +1796,7 @@
       "title": "E2E Tests: Add coverage for AI plugin callout banner",
       "url": "https://github.com/WordPress/gutenberg/pull/76432",
       "author": "gziolo",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1808,7 +1808,7 @@
       "title": "Editor: Show own presence in collaborative editing sessions",
       "url": "https://github.com/WordPress/gutenberg/pull/76413",
       "author": "dabowman",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1820,7 +1820,7 @@
       "title": "Connectors: Add connectors registry for extensibility",
       "url": "https://github.com/WordPress/gutenberg/pull/76364",
       "author": "gziolo",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1832,7 +1832,7 @@
       "title": "Fix docblock to reflect POST and PUT support in API key validation",
       "url": "https://github.com/WordPress/gutenberg/pull/76348",
       "author": "Copilot",
-      "mode": "autonomous",
+      "mode": "agent",
       "tools": [
         "copilot"
       ],
@@ -1844,7 +1844,7 @@
       "title": "Tests: Skip connector logo URL tests when AI Client is unavailable",
       "url": "https://github.com/WordPress/gutenberg/pull/76343",
       "author": "gziolo",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1856,7 +1856,7 @@
       "title": "Revisions: Add Meta fields diff panel to document sidebar",
       "url": "https://github.com/WordPress/gutenberg/pull/76341",
       "author": "ellatrix",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1868,7 +1868,7 @@
       "title": "Connectors: Memoize getConnectors selector",
       "url": "https://github.com/WordPress/gutenberg/pull/76339",
       "author": "gziolo",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1880,7 +1880,7 @@
       "title": "Connectors: Move API key validation and masking to REST dispatch level",
       "url": "https://github.com/WordPress/gutenberg/pull/76327",
       "author": "jorgefilipecosta",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "copilot"
       ],
@@ -1892,7 +1892,7 @@
       "title": "RTC: Remove post list lock icon and replace user-specific lock text",
       "url": "https://github.com/WordPress/gutenberg/pull/76322",
       "author": "pkevan",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1904,7 +1904,7 @@
       "title": "Block Visibility: Add `fetchpriority=auto` to `IMG` tags in blocks with conditional viewport visibility to prevent potential erroneous high loading priority",
       "url": "https://github.com/WordPress/gutenberg/pull/76302",
       "author": "westonruter",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "copilot"
       ],
@@ -1916,7 +1916,7 @@
       "title": "@wordpress/ui: add Collapsible component",
       "url": "https://github.com/WordPress/gutenberg/pull/76280",
       "author": "ciampo",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "copilot"
       ],
@@ -1928,7 +1928,7 @@
       "title": "Add `fetchpriority=low` to `IMG` tags in collapsed Details blocks",
       "url": "https://github.com/WordPress/gutenberg/pull/76269",
       "author": "westonruter",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "copilot"
       ],
@@ -1940,7 +1940,7 @@
       "title": "Add Site Tagline and Site Title to Design > Identity panel",
       "url": "https://github.com/WordPress/gutenberg/pull/76264",
       "author": "annezazu",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1952,7 +1952,7 @@
       "title": "Connectors: Improve responsive layout for small viewports",
       "url": "https://github.com/WordPress/gutenberg/pull/76231",
       "author": "gziolo",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1964,7 +1964,7 @@
       "title": "Connectors: Add logo URL support for custom AI providers",
       "url": "https://github.com/WordPress/gutenberg/pull/76190",
       "author": "gziolo",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1976,7 +1976,7 @@
       "title": "Connectors: Improve responsive layout on small screens",
       "url": "https://github.com/WordPress/gutenberg/pull/76186",
       "author": "gziolo",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -1988,7 +1988,7 @@
       "title": "Fix script module dequeue race condition",
       "url": "https://github.com/WordPress/gutenberg/pull/76170",
       "author": "adamsilverstein",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -2000,7 +2000,7 @@
       "title": "Guidelines: Add actions for Import, Export and Revisions of guidelines",
       "url": "https://github.com/WordPress/gutenberg/pull/76155",
       "author": "iamchughmayank",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -2012,7 +2012,7 @@
       "title": "Revisions: use useSubRegistry={false} to fix global store selectors",
       "url": "https://github.com/WordPress/gutenberg/pull/76152",
       "author": "ellatrix",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -2024,7 +2024,7 @@
       "title": "Interactivity: Fix crypto.randomUUID crash in non-secure contexts",
       "url": "https://github.com/WordPress/gutenberg/pull/76151",
       "author": "scruffian",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -2036,7 +2036,7 @@
       "title": "Playlist Block: Add visualization style selector",
       "url": "https://github.com/WordPress/gutenberg/pull/76147",
       "author": "scruffian",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -2048,7 +2048,7 @@
       "title": "Playlist: Clip content to respect border-radius",
       "url": "https://github.com/WordPress/gutenberg/pull/76146",
       "author": "scruffian",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -2060,7 +2060,7 @@
       "title": "Add Site Logo & Icon screen to Design panel",
       "url": "https://github.com/WordPress/gutenberg/pull/76116",
       "author": "annezazu",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -2072,7 +2072,7 @@
       "title": "Core Data: Support reading revision data in useEntityProp (fixes footnotes in revisions UI)",
       "url": "https://github.com/WordPress/gutenberg/pull/76106",
       "author": "ellatrix",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -2084,7 +2084,7 @@
       "title": "Add motion design tokens (duration and easing) to @wordpress/theme",
       "url": "https://github.com/WordPress/gutenberg/pull/76097",
       "author": "jameskoster",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "cursor"
       ],
@@ -2096,7 +2096,7 @@
       "title": "Playlist: Move getTrackAttributes to utils",
       "url": "https://github.com/WordPress/gutenberg/pull/76096",
       "author": "scruffian",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -2108,7 +2108,7 @@
       "title": "Extract inserter-toggle mixin from duplicated button styles",
       "url": "https://github.com/WordPress/gutenberg/pull/76087",
       "author": "scruffian",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -2120,7 +2120,7 @@
       "title": "Auto Cherry-Pick: Fix race condition in workflow trigger",
       "url": "https://github.com/WordPress/gutenberg/pull/76083",
       "author": "ellatrix",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -2132,7 +2132,7 @@
       "title": "Remove Core's full-page render interceptors for boot-based pages",
       "url": "https://github.com/WordPress/gutenberg/pull/76036",
       "author": "youknowriad",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -2144,7 +2144,7 @@
       "title": "Fix: Set quality and strip metadata in client-side image resize",
       "url": "https://github.com/WordPress/gutenberg/pull/76029",
       "author": "adamsilverstein",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -2156,7 +2156,7 @@
       "title": "Connectors: Dynamically register providers from WP AI Client registry",
       "url": "https://github.com/WordPress/gutenberg/pull/76014",
       "author": "gziolo",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -2168,7 +2168,7 @@
       "title": "Build: Skip sourcemaps for WASM-inlined script module workers",
       "url": "https://github.com/WordPress/gutenberg/pull/75993",
       "author": "adamsilverstein",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -2180,7 +2180,7 @@
       "title": "RTC: Auto-register custom taxonomy rest_base values for CRDT sync",
       "url": "https://github.com/WordPress/gutenberg/pull/75983",
       "author": "smithjw1",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -2192,7 +2192,7 @@
       "title": "Unify block settings dropdown menu items across list views",
       "url": "https://github.com/WordPress/gutenberg/pull/75979",
       "author": "scruffian",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -2204,7 +2204,7 @@
       "title": "Real-time collaboration: Improve disconnect dialog",
       "url": "https://github.com/WordPress/gutenberg/pull/75970",
       "author": "alecgeatches",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -2216,7 +2216,7 @@
       "title": "Fix: Template revisions infinite spinner",
       "url": "https://github.com/WordPress/gutenberg/pull/75953",
       "author": "ellatrix",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -2228,7 +2228,7 @@
       "title": "Editor: Remove View dropdown and pinned items from revisions header",
       "url": "https://github.com/WordPress/gutenberg/pull/75951",
       "author": "ellatrix",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -2240,7 +2240,7 @@
       "title": "Fill in E2E tests for client-side media processing",
       "url": "https://github.com/WordPress/gutenberg/pull/75949",
       "author": "adamsilverstein",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -2252,7 +2252,7 @@
       "title": "wp-build: Deregister script modules before re-registering",
       "url": "https://github.com/WordPress/gutenberg/pull/75909",
       "author": "scruffian",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -2264,7 +2264,7 @@
       "title": "Add primitive Text component to @wordpress/ui",
       "url": "https://github.com/WordPress/gutenberg/pull/75870",
       "author": "jameskoster",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "cursor"
       ],
@@ -2276,7 +2276,7 @@
       "title": "Navigation: Extract NavigationLinkUI and NavigationListViewHeader into separate files",
       "url": "https://github.com/WordPress/gutenberg/pull/75865",
       "author": "scruffian",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -2288,7 +2288,7 @@
       "title": "Client Side Media: Add device/browser capability detection",
       "url": "https://github.com/WordPress/gutenberg/pull/75863",
       "author": "adamsilverstein",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -2300,7 +2300,7 @@
       "title": "Post Date: Migrate to textAlign block support",
       "url": "https://github.com/WordPress/gutenberg/pull/75856",
       "author": "huzaifaalmesbah",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -2312,7 +2312,7 @@
       "title": "Re-enable client-side media processing",
       "url": "https://github.com/WordPress/gutenberg/pull/75848",
       "author": "adamsilverstein",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -2324,7 +2324,7 @@
       "title": "Fix client-side media file naming",
       "url": "https://github.com/WordPress/gutenberg/pull/75817",
       "author": "adamsilverstein",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -2336,7 +2336,7 @@
       "title": "Media: Move image output format filtering to upload response",
       "url": "https://github.com/WordPress/gutenberg/pull/75793",
       "author": "adamsilverstein",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -2348,7 +2348,7 @@
       "title": "REST API: Make filter_wp_unique_filename() static to match core, plus avoid duplicate routes",
       "url": "https://github.com/WordPress/gutenberg/pull/75782",
       "author": "adamsilverstein",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -2360,7 +2360,7 @@
       "title": "Workflows: Use pull_request_target for cherry-pick workflow",
       "url": "https://github.com/WordPress/gutenberg/pull/75775",
       "author": "ellatrix",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -2372,7 +2372,7 @@
       "title": "Commands: Add sections to command palette and introduce Recently used functionality",
       "url": "https://github.com/WordPress/gutenberg/pull/75691",
       "author": "senadir",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -2384,7 +2384,7 @@
       "title": "wp-env: Enable pretty permalinks by default in Docker runtime",
       "url": "https://github.com/WordPress/gutenberg/pull/75688",
       "author": "youknowriad",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -2396,7 +2396,7 @@
       "title": "Commands: Display category labels and enforce category icons",
       "url": "https://github.com/WordPress/gutenberg/pull/75669",
       "author": "senadir",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -2408,7 +2408,7 @@
       "title": "Editor: Polish real-time collaboration presence UI and move Avatar to editor package",
       "url": "https://github.com/WordPress/gutenberg/pull/75652",
       "author": "dabowman",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -2420,7 +2420,7 @@
       "title": "Fix: Hide link controls in sidebar when submenus open on click",
       "url": "https://github.com/WordPress/gutenberg/pull/75637",
       "author": "Copilot",
-      "mode": "autonomous",
+      "mode": "agent",
       "tools": [
         "copilot"
       ],
@@ -2432,7 +2432,7 @@
       "title": "ESLint: Add no-i18n-in-save rule",
       "url": "https://github.com/WordPress/gutenberg/pull/75617",
       "author": "mikachan",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "copilot"
       ],
@@ -2444,7 +2444,7 @@
       "title": "Block Editor: Display custom block labels in Block Inspector and List View",
       "url": "https://github.com/WordPress/gutenberg/pull/75607",
       "author": "Copilot",
-      "mode": "autonomous",
+      "mode": "agent",
       "tools": [
         "copilot",
         "claude-code"
@@ -2457,7 +2457,7 @@
       "title": "[Real-time collaboration] Refine collaborator overlay with Avatar component integration",
       "url": "https://github.com/WordPress/gutenberg/pull/75595",
       "author": "dabowman",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -2469,7 +2469,7 @@
       "title": "Fix Navigation block button showing \"View custom\" instead of \"View link\" for external URLs",
       "url": "https://github.com/WordPress/gutenberg/pull/75571",
       "author": "Copilot",
-      "mode": "autonomous",
+      "mode": "agent",
       "tools": [
         "copilot"
       ],
@@ -2481,7 +2481,7 @@
       "title": "Fix: Show and hook up submenu visibility for Page Lists within Navigation Blocks",
       "url": "https://github.com/WordPress/gutenberg/pull/75531",
       "author": "jeryj",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "copilot"
       ],
@@ -2493,7 +2493,7 @@
       "title": "wp-env Playground: improve mapping and core source handling",
       "url": "https://github.com/WordPress/gutenberg/pull/75527",
       "author": "youknowriad",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -2505,7 +2505,7 @@
       "title": "Update manifest.json and toc.json for renamed state/context guide",
       "url": "https://github.com/WordPress/gutenberg/pull/75512",
       "author": "Copilot",
-      "mode": "autonomous",
+      "mode": "agent",
       "tools": [
         "copilot"
       ],
@@ -2517,7 +2517,7 @@
       "title": "AGENTS.md: Add CLAUDE.md symlinks, architecture decisions, and common pitfalls",
       "url": "https://github.com/WordPress/gutenberg/pull/75507",
       "author": "youknowriad",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -2529,7 +2529,7 @@
       "title": "Components: Refactor ColorPicker to preserve hue/saturation at achromatic colors",
       "url": "https://github.com/WordPress/gutenberg/pull/75493",
       "author": "JosVelasco",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "copilot"
       ],
@@ -2541,7 +2541,7 @@
       "title": "Tabs: Add text and background color support",
       "url": "https://github.com/WordPress/gutenberg/pull/75482",
       "author": "scruffian",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -2553,7 +2553,7 @@
       "title": "Rename state/context guide to include config in title and filename",
       "url": "https://github.com/WordPress/gutenberg/pull/75473",
       "author": "Copilot",
-      "mode": "autonomous",
+      "mode": "agent",
       "tools": [
         "copilot"
       ],
@@ -2565,7 +2565,7 @@
       "title": "Block Editor: Allow disabling content-only editing for unsynced patterns",
       "url": "https://github.com/WordPress/gutenberg/pull/75457",
       "author": "fabiankaegy",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -2577,7 +2577,7 @@
       "title": "Add `clearEntityRecordEdits` action to core-data",
       "url": "https://github.com/WordPress/gutenberg/pull/75397",
       "author": "Copilot",
-      "mode": "autonomous",
+      "mode": "agent",
       "tools": [
         "copilot"
       ],
@@ -2589,7 +2589,7 @@
       "title": "iAPI Docs: Introduce reactive vs non-reactive distinction early in the state/context guide",
       "url": "https://github.com/WordPress/gutenberg/pull/75357",
       "author": "luisherranz",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "copilot"
       ],
@@ -2601,7 +2601,7 @@
       "title": "Set snackbar position to center",
       "url": "https://github.com/WordPress/gutenberg/pull/75294",
       "author": "gigitux",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "copilot"
       ],
@@ -2613,7 +2613,7 @@
       "title": "DataViews: Adopt `@wordpress/theme` design tokens",
       "url": "https://github.com/WordPress/gutenberg/pull/75204",
       "author": "jameskoster",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "cursor"
       ],
@@ -2625,7 +2625,7 @@
       "title": "Playlist Block: Add WaveformPlayer visualization",
       "url": "https://github.com/WordPress/gutenberg/pull/75203",
       "author": "scruffian",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code",
         "copilot"
@@ -2638,7 +2638,7 @@
       "title": "@wordpress/ui: add Dialog component",
       "url": "https://github.com/WordPress/gutenberg/pull/75183",
       "author": "ciampo",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "cursor"
       ],
@@ -2650,7 +2650,7 @@
       "title": "ui/Tabs: add runtime validation for tab/panel mismatches",
       "url": "https://github.com/WordPress/gutenberg/pull/75170",
       "author": "ciampo",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "cursor"
       ],
@@ -2662,7 +2662,7 @@
       "title": "Support zip theme sources in Playground runtime",
       "url": "https://github.com/WordPress/gutenberg/pull/75155",
       "author": "youknowriad",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -2674,7 +2674,7 @@
       "title": "Notes: Support multiple note threads per block",
       "url": "https://github.com/WordPress/gutenberg/pull/75147",
       "author": "adamsilverstein",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -2686,7 +2686,7 @@
       "title": "Pullquote: Fix deprecated block validation when anchor/id attribute is present",
       "url": "https://github.com/WordPress/gutenberg/pull/75132",
       "author": "ellatrix",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -2698,7 +2698,7 @@
       "title": "Build: Fix glob ignore patterns in dot-prefixed directories",
       "url": "https://github.com/WordPress/gutenberg/pull/75114",
       "author": "adamsilverstein",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -2710,7 +2710,7 @@
       "title": "DataViews: Add onReset prop for view persistence reset",
       "url": "https://github.com/WordPress/gutenberg/pull/75093",
       "author": "youknowriad",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -2722,7 +2722,7 @@
       "title": "Add AVIF, WebP and MozJPEG output encoding support ",
       "url": "https://github.com/WordPress/gutenberg/pull/75081",
       "author": "adamsilverstein",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -2734,7 +2734,7 @@
       "title": "Add AVIF, WebP and MozJPEG output encoding support",
       "url": "https://github.com/WordPress/gutenberg/pull/75079",
       "author": "adamsilverstein",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -2746,7 +2746,7 @@
       "title": "wp-env: Fix mixed runtime detection issues",
       "url": "https://github.com/WordPress/gutenberg/pull/75057",
       "author": "youknowriad",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -2758,7 +2758,7 @@
       "title": "wp-env: Add cleanup command and force flag",
       "url": "https://github.com/WordPress/gutenberg/pull/75045",
       "author": "youknowriad",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -2770,7 +2770,7 @@
       "title": "Post Content Block: Improve removal confirmation modal",
       "url": "https://github.com/WordPress/gutenberg/pull/75001",
       "author": "annezazu",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -2782,7 +2782,7 @@
       "title": "Replace unsafe delete operations in WebAssembly feature detection tests",
       "url": "https://github.com/WordPress/gutenberg/pull/74993",
       "author": "Copilot",
-      "mode": "autonomous",
+      "mode": "agent",
       "tools": [
         "copilot"
       ],
@@ -2794,7 +2794,7 @@
       "title": "Lock save button during Client Side Media processing and uploading",
       "url": "https://github.com/WordPress/gutenberg/pull/74951",
       "author": "adamsilverstein",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -2806,7 +2806,7 @@
       "title": "Add tests for SyncManager#update receiving merged/un-cleaned edits",
       "url": "https://github.com/WordPress/gutenberg/pull/74932",
       "author": "Copilot",
-      "mode": "autonomous",
+      "mode": "agent",
       "tools": [
         "copilot"
       ],
@@ -2818,7 +2818,7 @@
       "title": "Media: Add hooks and extension points for client-side media processing",
       "url": "https://github.com/WordPress/gutenberg/pull/74913",
       "author": "adamsilverstein",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -2830,7 +2830,7 @@
       "title": "Real-time collaboration: Pass non-cleaned (but merged) edits to `SyncManager#update`",
       "url": "https://github.com/WordPress/gutenberg/pull/74912",
       "author": "chriszarate",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "copilot"
       ],
@@ -2842,7 +2842,7 @@
       "title": "Pass unsupported formats directly to the server",
       "url": "https://github.com/WordPress/gutenberg/pull/74910",
       "author": "adamsilverstein",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -2854,7 +2854,7 @@
       "title": "Add EXIF metadata tests for Client Side Media",
       "url": "https://github.com/WordPress/gutenberg/pull/74909",
       "author": "adamsilverstein",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code",
         "copilot"
@@ -2867,7 +2867,7 @@
       "title": "Add dimension validation to sideload endpoint",
       "url": "https://github.com/WordPress/gutenberg/pull/74903",
       "author": "adamsilverstein",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -2879,7 +2879,7 @@
       "title": "MediaReplaceFlow: Move Reset option to bottom of menu",
       "url": "https://github.com/WordPress/gutenberg/pull/74882",
       "author": "annezazu",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -2891,7 +2891,7 @@
       "title": "Media: Add UltraHDR (ISO 21496-1) gain map support",
       "url": "https://github.com/WordPress/gutenberg/pull/74873",
       "author": "adamsilverstein",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -2903,7 +2903,7 @@
       "title": "Route: Add notFound to public API and add route validation",
       "url": "https://github.com/WordPress/gutenberg/pull/74867",
       "author": "youknowriad",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -2915,7 +2915,7 @@
       "title": "Navigation: Add a shared helper for font sizes in Navigation Link and Navigation Submenu blocks",
       "url": "https://github.com/WordPress/gutenberg/pull/74855",
       "author": "scruffian",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -2927,7 +2927,7 @@
       "title": "Fix linting errors in wordpress-externals-plugin.mjs",
       "url": "https://github.com/WordPress/gutenberg/pull/74834",
       "author": "Copilot",
-      "mode": "autonomous",
+      "mode": "agent",
       "tools": [
         "copilot"
       ],
@@ -2939,7 +2939,7 @@
       "title": "Implement WebAssembly support detection and fallbacks",
       "url": "https://github.com/WordPress/gutenberg/pull/74827",
       "author": "adamsilverstein",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -2951,7 +2951,7 @@
       "title": "Load vips library with new wordpress/worker-threads",
       "url": "https://github.com/WordPress/gutenberg/pull/74785",
       "author": "adamsilverstein",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "copilot"
       ],
@@ -2963,7 +2963,7 @@
       "title": "Fix wp-theme dependencies in the build.",
       "url": "https://github.com/WordPress/gutenberg/pull/74743",
       "author": "scruffian",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -2975,7 +2975,7 @@
       "title": "Paragraph: Add text column support",
       "url": "https://github.com/WordPress/gutenberg/pull/74656",
       "author": "scruffian",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -2987,7 +2987,7 @@
       "title": "Navigation: Add a new option that toggles submenus always open",
       "url": "https://github.com/WordPress/gutenberg/pull/74653",
       "author": "scruffian",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code",
         "copilot"
@@ -3000,7 +3000,7 @@
       "title": "Remove unnecessary async keywords from WASM inlining test callbacks",
       "url": "https://github.com/WordPress/gutenberg/pull/74636",
       "author": "Copilot",
-      "mode": "autonomous",
+      "mode": "agent",
       "tools": [
         "copilot"
       ],
@@ -3012,7 +3012,7 @@
       "title": "Optimize transferables duplicate detection with Set for O(1) lookups",
       "url": "https://github.com/WordPress/gutenberg/pull/74635",
       "author": "Copilot",
-      "mode": "autonomous",
+      "mode": "agent",
       "tools": [
         "copilot"
       ],
@@ -3024,7 +3024,7 @@
       "title": "wp-env: Add experimental WordPress Playground runtime support",
       "url": "https://github.com/WordPress/gutenberg/pull/74609",
       "author": "youknowriad",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -3036,7 +3036,7 @@
       "title": "Create sub-sized images",
       "url": "https://github.com/WordPress/gutenberg/pull/74566",
       "author": "adamsilverstein",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -3048,7 +3048,7 @@
       "title": "Client side media: enhance queue system",
       "url": "https://github.com/WordPress/gutenberg/pull/74501",
       "author": "adamsilverstein",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -3060,7 +3060,7 @@
       "title": "Improve wp-build generated PHP files with proper prefixing and naming",
       "url": "https://github.com/WordPress/gutenberg/pull/74490",
       "author": "youknowriad",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -3072,7 +3072,7 @@
       "title": "Navigation Submenu: Show (Invalid) indicator when parent page is deleted",
       "url": "https://github.com/WordPress/gutenberg/pull/74461",
       "author": "scruffian",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -3084,7 +3084,7 @@
       "title": "Migrate `EditorSnackbar` and `EditorNotices` components to the `@wordpress/notices` package",
       "url": "https://github.com/WordPress/gutenberg/pull/74384",
       "author": "gigitux",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "copilot"
       ],
@@ -3096,7 +3096,7 @@
       "title": "Build: Add vendorScripts config to build packages from node_modules",
       "url": "https://github.com/WordPress/gutenberg/pull/74343",
       "author": "youknowriad",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -3108,7 +3108,7 @@
       "title": "Fix misleading test description for filesize field 0 bytes behavior",
       "url": "https://github.com/WordPress/gutenberg/pull/74023",
       "author": "Copilot",
-      "mode": "autonomous",
+      "mode": "agent",
       "tools": [
         "copilot"
       ],
@@ -3120,7 +3120,7 @@
       "title": "Add missing test case for isVisible when media_details is undefined",
       "url": "https://github.com/WordPress/gutenberg/pull/74022",
       "author": "Copilot",
-      "mode": "autonomous",
+      "mode": "agent",
       "tools": [
         "copilot"
       ],
@@ -3132,7 +3132,7 @@
       "title": "Add missing test case for isVisible when media_details is undefined",
       "url": "https://github.com/WordPress/gutenberg/pull/74021",
       "author": "Copilot",
-      "mode": "autonomous",
+      "mode": "agent",
       "tools": [
         "copilot"
       ],
@@ -3144,7 +3144,7 @@
       "title": "Add edge case tests for zero-value dimensions in media fields",
       "url": "https://github.com/WordPress/gutenberg/pull/74019",
       "author": "Copilot",
-      "mode": "autonomous",
+      "mode": "agent",
       "tools": [
         "copilot"
       ],
@@ -3156,7 +3156,7 @@
       "title": "Add edge case tests for 0-valued dimensions in media_dimensions field",
       "url": "https://github.com/WordPress/gutenberg/pull/74018",
       "author": "Copilot",
-      "mode": "autonomous",
+      "mode": "agent",
       "tools": [
         "copilot"
       ],
@@ -3168,7 +3168,7 @@
       "title": "Add edge case tests for filename field getValue",
       "url": "https://github.com/WordPress/gutenberg/pull/74017",
       "author": "Copilot",
-      "mode": "autonomous",
+      "mode": "agent",
       "tools": [
         "copilot"
       ],
@@ -3180,7 +3180,7 @@
       "title": "Fix misleading test description for 0 bytes filesize handling",
       "url": "https://github.com/WordPress/gutenberg/pull/74016",
       "author": "Copilot",
-      "mode": "autonomous",
+      "mode": "agent",
       "tools": [
         "copilot"
       ],
@@ -3192,7 +3192,7 @@
       "title": "Media fields: Add tests for fields with unique logic",
       "url": "https://github.com/WordPress/gutenberg/pull/74015",
       "author": "ramonjd",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "copilot"
       ],
@@ -3204,7 +3204,7 @@
       "title": "Revert caption handling changes to maintain consistent image block behavior",
       "url": "https://github.com/WordPress/gutenberg/pull/73914",
       "author": "Copilot",
-      "mode": "autonomous",
+      "mode": "agent",
       "tools": [
         "copilot"
       ],
@@ -3216,7 +3216,7 @@
       "title": "Embed: Fix Flickr double-padding with responsive wrapper",
       "url": "https://github.com/WordPress/gutenberg/pull/73902",
       "author": "annezazu",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -3228,7 +3228,7 @@
       "title": "Fix unit tests expecting console logging in pasteHandler",
       "url": "https://github.com/WordPress/gutenberg/pull/73886",
       "author": "Copilot",
-      "mode": "autonomous",
+      "mode": "agent",
       "tools": [
         "copilot"
       ],
@@ -3240,7 +3240,7 @@
       "title": "Add paste logging to writing flow",
       "url": "https://github.com/WordPress/gutenberg/pull/73885",
       "author": "ellatrix",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "copilot"
       ],
@@ -3252,7 +3252,7 @@
       "title": "Fix HTML Block: Hide CSS/JS tabs and show warning for users without unfiltered_html capability",
       "url": "https://github.com/WordPress/gutenberg/pull/73749",
       "author": "Copilot",
-      "mode": "autonomous",
+      "mode": "agent",
       "tools": [
         "copilot"
       ],
@@ -3264,7 +3264,7 @@
       "title": "Fix gallery shortcode transform to retain size attribute",
       "url": "https://github.com/WordPress/gutenberg/pull/73668",
       "author": "Copilot",
-      "mode": "autonomous",
+      "mode": "agent",
       "tools": [
         "copilot"
       ],
@@ -3276,7 +3276,7 @@
       "title": "Private APIs: remove re-registration check",
       "url": "https://github.com/WordPress/gutenberg/pull/73613",
       "author": "Copilot",
-      "mode": "autonomous",
+      "mode": "agent",
       "tools": [
         "copilot"
       ],
@@ -3288,7 +3288,7 @@
       "title": "Private APIs: remove re-registration check",
       "url": "https://github.com/WordPress/gutenberg/pull/73610",
       "author": "ellatrix",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "copilot"
       ],
@@ -3300,7 +3300,7 @@
       "title": "Block Bindings: Remove caption from edit on `EditWithGeneratedProps`.",
       "url": "https://github.com/WordPress/gutenberg/pull/73552",
       "author": "cbravobernal",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "copilot"
       ],
@@ -3312,7 +3312,7 @@
       "title": "Fix external link arrow direction for RTL languages",
       "url": "https://github.com/WordPress/gutenberg/pull/73400",
       "author": "Copilot",
-      "mode": "autonomous",
+      "mode": "agent",
       "tools": [
         "copilot"
       ],
@@ -3324,7 +3324,7 @@
       "title": "Blocks: Fix schema merging for classes and attributes in raw transforms",
       "url": "https://github.com/WordPress/gutenberg/pull/73354",
       "author": "Copilot",
-      "mode": "autonomous",
+      "mode": "agent",
       "tools": [
         "copilot"
       ],
@@ -3336,7 +3336,7 @@
       "title": "Pages DataView: Add date filter",
       "url": "https://github.com/WordPress/gutenberg/pull/73319",
       "author": "Copilot",
-      "mode": "autonomous",
+      "mode": "agent",
       "tools": [
         "copilot"
       ],
@@ -3348,7 +3348,7 @@
       "title": "Icons: Add arrow-up-right and arrow-down-left",
       "url": "https://github.com/WordPress/gutenberg/pull/73318",
       "author": "Copilot",
-      "mode": "autonomous",
+      "mode": "agent",
       "tools": [
         "copilot"
       ],
@@ -3360,7 +3360,7 @@
       "title": "Add test coverage for bash ANSI-C quoting corruption in code blocks (investigation in progress)",
       "url": "https://github.com/WordPress/gutenberg/pull/73247",
       "author": "Copilot",
-      "mode": "autonomous",
+      "mode": "agent",
       "tools": [
         "copilot"
       ],
@@ -3372,7 +3372,7 @@
       "title": "Update synced pattern language from \"Detach\" to \"Disconnect pattern\"",
       "url": "https://github.com/WordPress/gutenberg/pull/73105",
       "author": "annezazu",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -3384,7 +3384,7 @@
       "title": "Add block transforms between Verse and Quote blocks",
       "url": "https://github.com/WordPress/gutenberg/pull/73068",
       "author": "annezazu",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -3396,7 +3396,7 @@
       "title": "Dataforms: Add  icons to email  and telephone controls",
       "url": "https://github.com/WordPress/gutenberg/pull/71514",
       "author": "jorgefilipecosta",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code"
       ],
@@ -3408,7 +3408,7 @@
       "title": "Enhance block appender labels to reflect default block type",
       "url": "https://github.com/WordPress/gutenberg/pull/71502",
       "author": "getdave",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "cursor"
       ],
@@ -3420,7 +3420,7 @@
       "title": "Writing Flow: Remove empty blocks when the merge target doesn't support merging",
       "url": "https://github.com/WordPress/gutenberg/pull/70741",
       "author": "megane9988",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "copilot"
       ],
@@ -3432,7 +3432,7 @@
       "title": "Add wp-env SPX profiler option",
       "url": "https://github.com/WordPress/gutenberg/pull/70693",
       "author": "nerrad",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "cursor"
       ],
@@ -3444,7 +3444,7 @@
       "title": "Docs: Add README for DatePicker and TimePicker Components",
       "url": "https://github.com/WordPress/gutenberg/pull/70365",
       "author": "shrivastavanolo",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "copilot"
       ],
@@ -3456,7 +3456,7 @@
       "title": "ESLint: Replace `eslint-plugin-react-compiler` with `eslint-plugin-react-hooks`",
       "url": "https://github.com/WordPress/gutenberg/pull/69962",
       "author": "t-hamano",
-      "mode": "assisted",
+      "mode": "non-agent",
       "tools": [
         "claude-code",
         "copilot"

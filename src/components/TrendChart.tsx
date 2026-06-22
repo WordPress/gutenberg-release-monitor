@@ -20,7 +20,7 @@ import { loadCategoryConfig, aggregateCategories, type CategoryConfig } from '..
 interface TrendChartProps {
   viewMode: ViewMode;
   chartType: ChartType;
-  /** Metric type: PRs or Contributors */
+  /** Top-level dashboard section */
   metric: MetricType;
   /** Category IDs to display (default: all default categories) */
   visibleCategories?: string[];
@@ -40,6 +40,10 @@ const RELEASES_COLOR = '#757575';
 const CONTRIBUTORS_COLOR = '#4CAF50';
 const NEW_CONTRIBUTORS_COLOR = '#FF9800';
 const RETURNING_CONTRIBUTORS_COLOR = '#2196F3';
+const AI_NON_AGENT_COLOR = '#3858e9';
+const AI_AGENT_COLOR = '#d63638';
+const AI_NOT_DETECTED_COLOR = '#949494';
+const ALL_PRS_REFERENCE_COLOR = '#757575';
 
 // Color palette for sponsor/country breakdown charts
 // Note: Blue shades excluded since Automattic uses blue (#3499CD)
@@ -58,13 +62,41 @@ const SPONSOR_COLORS: Record<string, string> = {
 const OTHER_COLOR = '#9E9E9E'; // Same as "Other" category
 const MAX_BREAKDOWN_ITEMS = 10;
 
+type LegendItem = {
+  id: string;
+  label: string;
+  color: string;
+  dashed?: boolean;
+  isVisible: boolean;
+  isCategory: boolean;
+  isBreakdown: boolean;
+  isAllPRs?: boolean;
+  isAISeries?: boolean;
+};
+
+const AI_USAGE_SERIES = [
+  { id: 'aiDetected', label: 'Detected AI', color: AI_NON_AGENT_COLOR },
+  { id: 'aiNotDetected', label: 'Not detected', color: AI_NOT_DETECTED_COLOR },
+];
+
+const AI_AGENT_SERIES = [
+  { id: 'aiNonAgent', label: 'Other detected AI', color: AI_NON_AGENT_COLOR },
+  { id: 'aiAgent', label: 'Known agent account', color: AI_AGENT_COLOR },
+];
+
 export function TrendChart(props: TrendChartProps) {
   const { viewMode, chartType, data, visibleCategories, onCategoryToggle, metric, releaseCount, tabConfig } = props;
   const config = useConfig();
   const isContributorMetric = metric === 'contributors';
-  const isSponsorBreakdown = viewMode === 'sponsors';
-  const isCountryBreakdown = viewMode === 'countries';
-  const isBreakdownMode = isSponsorBreakdown || isCountryBreakdown;
+  const isAIMetric = metric === 'ai';
+  const isSponsorBreakdown = isContributorMetric && viewMode === 'sponsors';
+  const isCountryBreakdown = isContributorMetric && viewMode === 'countries';
+  const isAIAgentMode = isAIMetric && viewMode === 'ai-agents';
+  const isAIUsageMode = isAIMetric && !isAIAgentMode && viewMode !== 'ai-tools' && viewMode !== 'distribution';
+  const isAIToolBreakdown = isAIMetric && (viewMode === 'distribution' || viewMode === 'ai-tools');
+  const isBreakdownMode = isSponsorBreakdown || isCountryBreakdown || isAIToolBreakdown;
+  const showAllPRsReference = isAIMetric && chartType !== 'stacked';
+  const activeAISeries = isAIAgentMode ? AI_AGENT_SERIES : AI_USAGE_SERIES;
 
   // Get labels from config (no domain-specific inference)
   const versionPrefix = tabConfig?.versionPrefix ?? config.project.projectLabel;
@@ -74,24 +106,27 @@ export function TrendChart(props: TrendChartProps) {
   const [categoryConfig, setCategoryConfig] = useState<CategoryConfig | null>(null);
   // Local state for hidden breakdown items (resets when view mode changes)
   const [hiddenBreakdownItems, setHiddenBreakdownItems] = useState<Set<string>>(new Set());
-  // Local state for hiding "All PRs" line (off by default for bar/line charts)
+  const [hiddenAIUsageItems, setHiddenAIUsageItems] = useState<Set<string>>(new Set());
+  // Local state for showing "All PRs" comparison (off by default)
   const [showAllPRs, setShowAllPRs] = useState(false);
-  const prevViewModeRef = useRef(viewMode);
+  const prevChartContextRef = useRef({ metric, viewMode });
 
   useEffect(() => {
     loadCategoryConfig().then(setCategoryConfig);
   }, []);
 
-  // Reset hidden items when view mode changes
+  // Reset hidden items when the chart context changes
   useEffect(() => {
-    if (prevViewModeRef.current !== viewMode) {
-      prevViewModeRef.current = viewMode;
+    const previous = prevChartContextRef.current;
+    if (previous.metric !== metric || previous.viewMode !== viewMode) {
+      prevChartContextRef.current = { metric, viewMode };
       /* eslint-disable react-hooks/set-state-in-effect -- Intentional reset on prop change, safe with ref guard */
       setHiddenBreakdownItems(new Set());
+      setHiddenAIUsageItems(new Set());
       setShowAllPRs(false);
       /* eslint-enable react-hooks/set-state-in-effect */
     }
-  }, [viewMode]);
+  }, [metric, viewMode]);
 
   // Get categories to render (filtered by visibleCategories if provided)
   const defaultCategories = useMemo(() => {
@@ -110,11 +145,12 @@ export function TrendChart(props: TrendChartProps) {
 
     // Aggregate totals across all data points
     const totals: Record<string, number> = {};
-    const breakdownKey = isSponsorBreakdown ? 'sponsorBreakdown' : 'countryBreakdown';
 
     const displayedData = releaseCount ? data.slice(0, releaseCount) : data;
     displayedData.forEach((item) => {
-      const breakdown = item.contributorAggregates?.[breakdownKey];
+      const breakdown = isAIToolBreakdown
+        ? item.aiBreakdown?.byTool
+        : item.contributorAggregates?.[isSponsorBreakdown ? 'sponsorBreakdown' : 'countryBreakdown'];
       if (breakdown) {
         Object.entries(breakdown).forEach(([key, value]) => {
           totals[key] = (totals[key] || 0) + value;
@@ -172,7 +208,7 @@ export function TrendChart(props: TrendChartProps) {
     }
 
     return result;
-  }, [isBreakdownMode, isSponsorBreakdown, data, releaseCount]);
+  }, [isBreakdownMode, isSponsorBreakdown, isAIToolBreakdown, data, releaseCount]);
 
   // Configuration based on tabConfig (no isAggregated checks)
   // eslint-disable-next-line react-hooks/preserve-manual-memoization -- All deps are used: viewMode for showReleasesLine, versionPrefix for labels, childItemLabel and chartSecondaryLabel for childReleasesLabel
@@ -200,6 +236,9 @@ export function TrendChart(props: TrendChartProps) {
 
     // Filter items that don't have data for the current mode
     const filteredData = data.filter((item) => {
+      if (isAIMetric) {
+        return true;
+      }
       if (isSponsorBreakdown) {
         return item.contributorAggregates?.sponsorBreakdown &&
           Object.keys(item.contributorAggregates.sponsorBreakdown).length > 0;
@@ -232,11 +271,23 @@ export function TrendChart(props: TrendChartProps) {
       if (item.groupedCount !== undefined) {
         baseData.releaseCount = item.groupedCount;
       }
+      if (isAIMetric) {
+        const divisor = item.isAggregated && viewMode === 'averages' && item.groupedCount
+          ? item.groupedCount
+          : 1;
+        const aiPRsForMode = (item.aiPRs ?? 0) / divisor;
+        const allPRsForMode = viewMode === 'averages' ? item.avgPRs : item.totalPRs;
+        baseData.aiPRs = aiPRsForMode;
+        baseData.aiDetected = aiPRsForMode;
+        baseData.allPRs = allPRsForMode;
+        baseData.aiNotDetected = Math.max(0, allPRsForMode - aiPRsForMode);
+      }
 
       if (isBreakdownMode) {
-        // Sponsor/country breakdown
-        const breakdownKey = isSponsorBreakdown ? 'sponsorBreakdown' : 'countryBreakdown';
-        const breakdown = item.contributorAggregates?.[breakdownKey] || {};
+        // Sponsor/country/tool breakdown
+        const breakdown = isAIToolBreakdown
+          ? item.aiBreakdown?.byTool || {}
+          : item.contributorAggregates?.[isSponsorBreakdown ? 'sponsorBreakdown' : 'countryBreakdown'] || {};
         const topLabels = topBreakdownItems.filter((i) => i.label !== 'Other' && i.label !== 'Unknown').map((i) => i.label);
         let othersTotal = 0;
 
@@ -254,6 +305,14 @@ export function TrendChart(props: TrendChartProps) {
             baseData[breakdownItem.id] = breakdown[breakdownItem.label] || 0;
           }
         });
+      } else if (isAIMetric) {
+        const divisor = item.isAggregated && viewMode === 'averages' && item.groupedCount
+          ? item.groupedCount
+          : 1;
+        baseData.aiPRs = (item.aiPRs ?? 0) / divisor;
+        baseData.aiDetected = baseData.aiPRs;
+        baseData.aiNonAgent = (item.aiBreakdown?.nonAgent ?? 0) / divisor;
+        baseData.aiAgent = (item.aiBreakdown?.agent ?? 0) / divisor;
       } else if (isContributorMetric) {
         // Contributor metrics - use pre-computed fields from normalization layer
         const contributors = viewMode === 'totals' ? item.contributors : item.avgContributors;
@@ -296,7 +355,7 @@ export function TrendChart(props: TrendChartProps) {
 
       return baseData;
     });
-  }, [data, categoryConfig, viewMode, defaultCategories, releaseCount, isContributorMetric, isBreakdownMode, isSponsorBreakdown, topBreakdownItems, chartConfig.xKey]);
+  }, [data, categoryConfig, viewMode, defaultCategories, releaseCount, isContributorMetric, isAIMetric, isBreakdownMode, isSponsorBreakdown, isAIToolBreakdown, topBreakdownItems, chartConfig.xKey]);
 
   // Automatically filter X-axis to show only X.0 versions when there are many data points
   const XAXIS_DENSITY_THRESHOLD = 15;
@@ -314,13 +373,23 @@ export function TrendChart(props: TrendChartProps) {
 
   // Build legend items - include ALL categories for clickable legend
   const legendItems = useMemo(() => {
-    const items: Array<{ id: string; label: string; color: string; dashed?: boolean; isVisible: boolean; isCategory: boolean; isBreakdown: boolean; isAllPRs?: boolean }> = [];
+    const items: LegendItem[] = [];
 
     if (isBreakdownMode) {
       // Sponsor/country breakdown: show top items as legend (toggleable)
       topBreakdownItems.forEach((item) => {
         const isVisible = !hiddenBreakdownItems.has(item.id);
         items.push({ id: item.id, label: item.label, color: item.color, isVisible, isCategory: false, isBreakdown: true });
+      });
+    } else if (isAIMetric) {
+      activeAISeries.forEach((item) => {
+        items.push({
+          ...item,
+          isVisible: !hiddenAIUsageItems.has(item.id),
+          isCategory: false,
+          isBreakdown: false,
+          isAISeries: true,
+        });
       });
     } else if (isContributorMetric) {
       // Contributor mode: show contributor legend items
@@ -351,11 +420,14 @@ export function TrendChart(props: TrendChartProps) {
     }
 
     // Show releases count for aggregated totals mode
-    if (chartConfig.showReleasesLine) {
+    if (chartConfig.showReleasesLine && !isAIMetric) {
       items.push({ id: 'releases', label: chartConfig.childReleasesLabel, color: RELEASES_COLOR, dashed: true, isVisible: true, isCategory: false, isBreakdown: false });
     }
+    if (showAllPRsReference) {
+      items.push({ id: 'allPRs', label: 'All PRs', color: ALL_PRS_REFERENCE_COLOR, dashed: true, isVisible: showAllPRs, isCategory: false, isBreakdown: false, isAllPRs: true });
+    }
     return items;
-  }, [categoryConfig, visibleCategories, chartType, viewMode, chartConfig.showReleasesLine, chartConfig.childReleasesLabel, isContributorMetric, isBreakdownMode, topBreakdownItems, hiddenBreakdownItems, showAllPRs]);
+  }, [categoryConfig, visibleCategories, chartType, viewMode, chartConfig.showReleasesLine, chartConfig.childReleasesLabel, isContributorMetric, isAIMetric, isBreakdownMode, topBreakdownItems, hiddenBreakdownItems, hiddenAIUsageItems, showAllPRs, activeAISeries, showAllPRsReference]);
 
   const handleLegendClick = useCallback(
     (itemId: string) => {
@@ -371,6 +443,22 @@ export function TrendChart(props: TrendChartProps) {
       // Handle "All PRs" toggle (local state)
       if (item.isAllPRs) {
         setShowAllPRs((prev) => !prev);
+        return;
+      }
+
+      if (item.isAISeries) {
+        setHiddenAIUsageItems((prev) => {
+          const next = new Set(prev);
+          if (next.has(itemId)) {
+            next.delete(itemId);
+          } else {
+            const visibleCount = activeAISeries.filter((series) => !prev.has(series.id)).length;
+            if (visibleCount > 1) {
+              next.add(itemId);
+            }
+          }
+          return next;
+        });
         return;
       }
 
@@ -391,12 +479,13 @@ export function TrendChart(props: TrendChartProps) {
         });
       }
     },
-    [onCategoryToggle, legendItems, topBreakdownItems]
+    [onCategoryToggle, legendItems, topBreakdownItems, activeAISeries]
   );
 
   // Legend items are clickable when there's a category toggle callback, breakdown mode, or All PRs is shown
   const hasAllPRsToggle = legendItems.some((item) => item.isAllPRs);
-  const isClickable = !!onCategoryToggle || isBreakdownMode || hasAllPRsToggle;
+  const hasAISeriesToggle = legendItems.some((item) => item.isAISeries);
+  const isClickable = !!onCategoryToggle || isBreakdownMode || hasAllPRsToggle || hasAISeriesToggle;
 
   // Get marked versions for reference lines (controlled by config)
   // Must be before early return to maintain consistent hook order
@@ -424,7 +513,7 @@ export function TrendChart(props: TrendChartProps) {
       content={() => (
         <div className={`trend-chart-legend${isClickable ? ' trend-chart-legend--clickable' : ''}`}>
           {legendItems.map((item) => {
-            const isToggleable = item.isCategory || item.isBreakdown || item.isAllPRs;
+            const isToggleable = item.isCategory || item.isBreakdown || item.isAllPRs || item.isAISeries;
             const isItemClickable = isClickable && isToggleable;
             return (
               <button
@@ -455,6 +544,18 @@ export function TrendChart(props: TrendChartProps) {
   const renderDataSeries = () => {
     // Always use 'left' yAxisId for consistent DOM structure (prevents remounting)
     const yAxisId = 'left' as const;
+    const allPRsLine = showAllPRsReference && showAllPRs && (
+      <Line
+        yAxisId={yAxisId}
+        type="linear"
+        dataKey="allPRs"
+        name="All PRs"
+        stroke={ALL_PRS_REFERENCE_COLOR}
+        strokeWidth={2}
+        strokeDasharray="4 4"
+        dot={{ r: 3, fill: ALL_PRS_REFERENCE_COLOR }}
+      />
+    );
 
     // Sponsor/country breakdown mode
     if (isBreakdownMode) {
@@ -481,6 +582,7 @@ export function TrendChart(props: TrendChartProps) {
               <Bar key={item.id} yAxisId={yAxisId} dataKey={item.id} name={item.label} fill={item.color} opacity={0.8} />
             ))}
             {releasesLine}
+            {allPRsLine}
           </>
         );
       }
@@ -491,6 +593,7 @@ export function TrendChart(props: TrendChartProps) {
               <Bar key={item.id} yAxisId={yAxisId} dataKey={item.id} name={item.label} fill={item.color} stackId="breakdown" />
             ))}
             {releasesLine}
+            {allPRsLine}
           </>
         );
       }
@@ -501,6 +604,7 @@ export function TrendChart(props: TrendChartProps) {
               <Area key={item.id} yAxisId={yAxisId} type="monotone" dataKey={item.id} name={item.label} stroke={item.color} fill={item.color} fillOpacity={0.6} strokeWidth={2} stackId="breakdown" />
             ))}
             {releasesLine}
+            {allPRsLine}
           </>
         );
       }
@@ -521,6 +625,152 @@ export function TrendChart(props: TrendChartProps) {
             />
           ))}
           {releasesLine}
+          {allPRsLine}
+        </>
+      );
+    }
+
+    // AI metrics - render detected usage and agent/non-agent split
+    if (isAIMetric) {
+      const showAIUsageSeries = (seriesId: string) => !hiddenAIUsageItems.has(seriesId);
+
+      if (isAIAgentMode) {
+        if (chartType === 'bar') {
+          return (
+            <>
+              {showAIUsageSeries('aiNonAgent') && (
+                <Bar yAxisId={yAxisId} dataKey="aiNonAgent" name="Other detected AI" fill={AI_NON_AGENT_COLOR} opacity={0.8} />
+              )}
+              {showAIUsageSeries('aiAgent') && (
+                <Bar yAxisId={yAxisId} dataKey="aiAgent" name="Known agent account" fill={AI_AGENT_COLOR} opacity={0.8} />
+              )}
+              {allPRsLine}
+            </>
+          );
+        }
+        if (chartType === 'stacked') {
+          return (
+            <>
+              {showAIUsageSeries('aiNonAgent') && (
+                <Bar yAxisId={yAxisId} dataKey="aiNonAgent" name="Other detected AI" fill={AI_NON_AGENT_COLOR} stackId="ai-agent" />
+              )}
+              {showAIUsageSeries('aiAgent') && (
+                <Bar yAxisId={yAxisId} dataKey="aiAgent" name="Known agent account" fill={AI_AGENT_COLOR} stackId="ai-agent" />
+              )}
+              {allPRsLine}
+            </>
+          );
+        }
+        if (chartType === 'area') {
+          return (
+            <>
+              {showAIUsageSeries('aiNonAgent') && (
+                <Area yAxisId={yAxisId} type="monotone" dataKey="aiNonAgent" name="Other detected AI" stroke={AI_NON_AGENT_COLOR} fill={AI_NON_AGENT_COLOR} fillOpacity={0.6} strokeWidth={2} stackId="ai-agent" />
+              )}
+              {showAIUsageSeries('aiAgent') && (
+                <Area yAxisId={yAxisId} type="monotone" dataKey="aiAgent" name="Known agent account" stroke={AI_AGENT_COLOR} fill={AI_AGENT_COLOR} fillOpacity={0.6} strokeWidth={2} stackId="ai-agent" />
+              )}
+              {allPRsLine}
+            </>
+          );
+        }
+        return (
+          <>
+            {showAIUsageSeries('aiNonAgent') && (
+              <Line
+                yAxisId={yAxisId}
+                type="monotone"
+                dataKey="aiNonAgent"
+                name="Other detected AI"
+                stroke={AI_NON_AGENT_COLOR}
+                strokeWidth={2}
+                dot={{ r: 3, fill: AI_NON_AGENT_COLOR }}
+                activeDot={{ r: 5, fill: AI_NON_AGENT_COLOR }}
+              />
+            )}
+            {showAIUsageSeries('aiAgent') && (
+              <Line
+                yAxisId={yAxisId}
+                type="monotone"
+                dataKey="aiAgent"
+                name="Known agent account"
+                stroke={AI_AGENT_COLOR}
+                strokeWidth={2}
+                dot={{ r: 3, fill: AI_AGENT_COLOR }}
+                activeDot={{ r: 5, fill: AI_AGENT_COLOR }}
+              />
+            )}
+            {allPRsLine}
+          </>
+        );
+      }
+
+      if (chartType === 'bar') {
+        return (
+          <>
+            {showAIUsageSeries('aiDetected') && (
+              <Bar yAxisId={yAxisId} dataKey="aiDetected" name="Detected AI" fill={AI_NON_AGENT_COLOR} opacity={0.8} />
+            )}
+            {showAIUsageSeries('aiNotDetected') && (
+              <Bar yAxisId={yAxisId} dataKey="aiNotDetected" name="Not detected" fill={AI_NOT_DETECTED_COLOR} opacity={0.55} />
+            )}
+            {allPRsLine}
+          </>
+        );
+      }
+      if (chartType === 'stacked') {
+        return (
+          <>
+            {showAIUsageSeries('aiDetected') && (
+              <Bar yAxisId={yAxisId} dataKey="aiDetected" name="Detected AI" fill={AI_NON_AGENT_COLOR} stackId="ai" />
+            )}
+            {showAIUsageSeries('aiNotDetected') && (
+              <Bar yAxisId={yAxisId} dataKey="aiNotDetected" name="Not detected" fill={AI_NOT_DETECTED_COLOR} stackId="ai" />
+            )}
+            {allPRsLine}
+          </>
+        );
+      }
+      if (chartType === 'area') {
+        return (
+          <>
+            {showAIUsageSeries('aiDetected') && (
+              <Area yAxisId={yAxisId} type="monotone" dataKey="aiDetected" name="Detected AI" stroke={AI_NON_AGENT_COLOR} fill={AI_NON_AGENT_COLOR} fillOpacity={0.6} strokeWidth={2} stackId="ai" />
+            )}
+            {showAIUsageSeries('aiNotDetected') && (
+              <Area yAxisId={yAxisId} type="monotone" dataKey="aiNotDetected" name="Not detected" stroke={AI_NOT_DETECTED_COLOR} fill={AI_NOT_DETECTED_COLOR} fillOpacity={0.35} strokeWidth={2} stackId="ai" />
+            )}
+            {allPRsLine}
+          </>
+        );
+      }
+      return (
+        <>
+          {showAIUsageSeries('aiDetected') && (
+            <Line
+              yAxisId={yAxisId}
+              type="monotone"
+              dataKey="aiDetected"
+              name="Detected AI"
+              stroke={AI_NON_AGENT_COLOR}
+              strokeWidth={2}
+              dot={{ r: 3, fill: AI_NON_AGENT_COLOR }}
+              activeDot={{ r: 5, fill: AI_NON_AGENT_COLOR }}
+            />
+          )}
+          {showAIUsageSeries('aiNotDetected') && (
+            <Line
+              yAxisId={yAxisId}
+              type="monotone"
+              dataKey="aiNotDetected"
+              name="Not detected"
+              stroke={AI_NOT_DETECTED_COLOR}
+              strokeWidth={2}
+              dot={{ r: 3, fill: AI_NOT_DETECTED_COLOR }}
+              activeDot={{ r: 5, fill: AI_NOT_DETECTED_COLOR }}
+            />
+          )}
+          {allPRsLine}
         </>
       );
     }
@@ -731,8 +981,10 @@ export function TrendChart(props: TrendChartProps) {
     );
   };
 
-  // Show total in tooltip for stacked/area charts
-  const showTotalInTooltip = chartType === 'stacked' || chartType === 'area';
+  // Show total in tooltip for stacked/area charts, except AI Usage stacked
+  // where the stack already represents the full PR count.
+  const showTotalInTooltip = (chartType === 'stacked' || chartType === 'area') &&
+    !(isAIUsageMode && chartType === 'stacked');
 
   const renderTooltipContent = ({
     active,
@@ -756,6 +1008,12 @@ export function TrendChart(props: TrendChartProps) {
     );
     const allPRsEntry = payload.find((entry) => entry.name === 'All PRs');
     const releasesEntry = payload.find((entry) => entry.name === chartConfig.childReleasesLabel);
+    const aiModeDetails = isAIUsageMode
+      ? [
+          { name: 'Other detected AI', value: Number(dataPoint?.aiNonAgent ?? 0), color: AI_NON_AGENT_COLOR },
+          { name: 'Known agent account', value: Number(dataPoint?.aiAgent ?? 0), color: AI_AGENT_COLOR },
+        ]
+      : [];
 
     // For breakdown mode, sort by value descending; otherwise keep original order
     const displayPayload = isBreakdownMode
@@ -763,12 +1021,14 @@ export function TrendChart(props: TrendChartProps) {
       : categoryPayload;
 
     // Calculate total for stacked charts or breakdown mode
-    const total = (showTotalInTooltip || isBreakdownMode)
-      ? categoryPayload.reduce((sum, entry) => sum + entry.value, 0)
+    const total = (showTotalInTooltip || isBreakdownMode || isAIAgentMode)
+      ? isAIToolBreakdown
+        ? Number(dataPoint?.aiPRs ?? 0)
+        : categoryPayload.reduce((sum, entry) => sum + entry.value, 0)
       : null;
 
     const formatValue = (value: number, showPercentage = false) => {
-      if (viewMode === 'distribution') {
+      if (viewMode === 'distribution' && !isAIToolBreakdown) {
         return `${value.toFixed(1)}%`;
       }
       if (showPercentage && total && total > 0) {
@@ -791,10 +1051,20 @@ export function TrendChart(props: TrendChartProps) {
               style={{ backgroundColor: entry.color }}
             />
             <span className="trend-chart-tooltip-name">{entry.name}</span>
-            <span className="trend-chart-tooltip-value">{formatValue(entry.value, isBreakdownMode)}</span>
+            <span className="trend-chart-tooltip-value">{formatValue(entry.value, isBreakdownMode || isAIAgentMode)}</span>
           </div>
         ))}
-        {!showTotalInTooltip && allPRsEntry && (
+        {aiModeDetails.map((entry) => (
+          <div key={entry.name} className="trend-chart-tooltip-item trend-chart-tooltip-item--secondary">
+            <span
+              className="trend-chart-tooltip-color"
+              style={{ backgroundColor: entry.color }}
+            />
+            <span className="trend-chart-tooltip-name">{entry.name}</span>
+            <span className="trend-chart-tooltip-value">{formatValue(entry.value)}</span>
+          </div>
+        ))}
+        {allPRsEntry && (!showTotalInTooltip || isAIMetric) && (
           <div className="trend-chart-tooltip-item">
             <span
               className="trend-chart-tooltip-color"
@@ -808,7 +1078,7 @@ export function TrendChart(props: TrendChartProps) {
           <div className="trend-chart-tooltip-total">
             <span className="trend-chart-tooltip-name">Total</span>
             <span className="trend-chart-tooltip-value">
-              {viewMode === 'distribution' ? `${total.toFixed(0)}%` : total.toLocaleString()}
+              {viewMode === 'distribution' && !isAIToolBreakdown ? `${total.toFixed(0)}%` : total.toLocaleString()}
             </span>
           </div>
         )}
@@ -827,10 +1097,18 @@ export function TrendChart(props: TrendChartProps) {
   };
 
   // Y-axis configuration based on view mode and metric
-  const yAxisProps = isBreakdownMode
+  const yAxisProps = isAIToolBreakdown
+    ? {
+        label: { value: 'PRs', angle: -90, position: 'insideLeft' as const, fontSize: 12 },
+      }
+    : isBreakdownMode
     ? {
         label: { value: 'Contributors', angle: -90, position: 'insideLeft' as const, fontSize: 12 },
       }
+    : isAIMetric
+      ? {
+          label: { value: 'PRs', angle: -90, position: 'insideLeft' as const, fontSize: 12 },
+        }
     : isContributorMetric
       ? {
           label: { value: 'Contributors', angle: -90, position: 'insideLeft' as const, fontSize: 12 },

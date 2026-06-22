@@ -1,9 +1,10 @@
 /**
  * Configuration of AI tool "markers" used to detect disclosed AI involvement in PRs.
  *
- * Two detection channels:
+ * Detection channels:
  *  - bodyMarkers: phrases a tool writes into the PR title/body, found via the Search API.
- *  - botAuthors: GitHub login of an autonomous coding agent that opens PRs directly.
+ *  - commitTrailers: tool-specific co-author markers in squash-merge commit messages.
+ *  - botAuthors: GitHub login of a known agent account that opens PRs directly.
  *
  * Markers and bot accounts change often and new agents keep appearing, so this list
  * is meant to be edited as they show up in the repository.
@@ -23,7 +24,7 @@ export interface AIMarker {
    * co-author, including humans we must not count.
    */
   commitTrailers: RegExp[];
-  /** Author logins of autonomous agents. PRs they open count as "autonomous". */
+  /** Author logins of known agent accounts. PRs they open count as "agent". */
   botAuthors: string[];
 }
 

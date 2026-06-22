@@ -24,8 +24,8 @@ function pr(overrides: Partial<AIPullRequest>): AIPullRequest {
     number: 1,
     title: 'Some PR',
     url: 'https://example.test/1',
-    author: 'human',
-    mode: 'assisted',
+    author: 'contributor',
+    mode: 'non-agent',
     tools: ['claude-code'],
     detectedVia: 'body',
     mergedAt: '2026-01-15',
@@ -34,32 +34,32 @@ function pr(overrides: Partial<AIPullRequest>): AIPullRequest {
 }
 
 describe('classifyMode', () => {
-  it('marks PRs from a known agent bot as autonomous', () => {
-    expect(classifyMode('copilot-swe-agent[bot]', BOTS)).toBe('autonomous');
+  it('marks PRs from a known agent account as agent', () => {
+    expect(classifyMode('copilot-swe-agent[bot]', BOTS)).toBe('agent');
   });
 
   it('is case-insensitive on the login', () => {
-    expect(classifyMode('Copilot-SWE-Agent[bot]', BOTS)).toBe('autonomous');
+    expect(classifyMode('Copilot-SWE-Agent[bot]', BOTS)).toBe('agent');
   });
 
-  it('marks everyone else as assisted', () => {
-    expect(classifyMode('tyxla', BOTS)).toBe('assisted');
+  it('marks everyone else as non-agent', () => {
+    expect(classifyMode('tyxla', BOTS)).toBe('non-agent');
   });
 });
 
 describe('resolveMode', () => {
-  it('treats the bot-author channel as autonomous regardless of the display login', () => {
+  it('treats the bot-author channel as agent regardless of the display login', () => {
     // The Search API returns "Copilot" as the login, not the search qualifier.
-    expect(resolveMode('author', 'Copilot', BOTS)).toBe('autonomous');
+    expect(resolveMode('author', 'Copilot', BOTS)).toBe('agent');
   });
 
   it('falls back to the author login for body-channel detections', () => {
-    expect(resolveMode('body', 'tyxla', BOTS)).toBe('assisted');
-    expect(resolveMode('body', 'copilot-swe-agent[bot]', BOTS)).toBe('autonomous');
+    expect(resolveMode('body', 'tyxla', BOTS)).toBe('non-agent');
+    expect(resolveMode('body', 'copilot-swe-agent[bot]', BOTS)).toBe('agent');
   });
 
-  it('treats a commit-trailer detection as assisted for a human author', () => {
-    expect(resolveMode('commit', 'tyxla', BOTS)).toBe('assisted');
+  it('treats a commit-trailer detection as non-agent for a non-agent author', () => {
+    expect(resolveMode('commit', 'tyxla', BOTS)).toBe('non-agent');
   });
 });
 
@@ -107,23 +107,23 @@ describe('attributeToRelease', () => {
 describe('rollupByRelease', () => {
   it('counts PRs, modes, and tools per release', () => {
     const prs: AIPullRequest[] = [
-      pr({ number: 1, mergedAt: '2026-01-15', mode: 'assisted', tools: ['claude-code'] }),
-      pr({ number: 2, mergedAt: '2026-01-16', mode: 'autonomous', tools: ['copilot'] }),
-      pr({ number: 3, mergedAt: '2026-01-30', mode: 'assisted', tools: ['claude-code', 'copilot'] }),
+      pr({ number: 1, mergedAt: '2026-01-15', mode: 'non-agent', tools: ['claude-code'] }),
+      pr({ number: 2, mergedAt: '2026-01-16', mode: 'agent', tools: ['copilot'] }),
+      pr({ number: 3, mergedAt: '2026-01-30', mode: 'non-agent', tools: ['claude-code', 'copilot'] }),
     ];
     const map = rollupByRelease(prs, RELEASES);
 
     expect(map.get('22.1')).toEqual({
       aiPRs: 2,
-      assisted: 1,
-      autonomous: 1,
+      nonAgent: 1,
+      agent: 1,
       byTool: { 'claude-code': 1, copilot: 1 },
     });
     // PR #3 uses two tools, so byTool sums to more than aiPRs for that release.
     expect(map.get('22.2')).toEqual({
       aiPRs: 1,
-      assisted: 1,
-      autonomous: 0,
+      nonAgent: 1,
+      agent: 0,
       byTool: { 'claude-code': 1, copilot: 1 },
     });
   });
@@ -137,18 +137,18 @@ describe('rollupByRelease', () => {
 describe('sumBreakdowns', () => {
   it('adds counts and merges tool maps across parts', () => {
     const summed = sumBreakdowns([
-      { aiPRs: 2, assisted: 1, autonomous: 1, byTool: { 'claude-code': 1, copilot: 1 } },
-      { aiPRs: 1, assisted: 1, autonomous: 0, byTool: { 'claude-code': 1 } },
+      { aiPRs: 2, nonAgent: 1, agent: 1, byTool: { 'claude-code': 1, copilot: 1 } },
+      { aiPRs: 1, nonAgent: 1, agent: 0, byTool: { 'claude-code': 1 } },
     ]);
     expect(summed).toEqual({
       aiPRs: 3,
-      assisted: 2,
-      autonomous: 1,
+      nonAgent: 2,
+      agent: 1,
       byTool: { 'claude-code': 2, copilot: 1 },
     });
   });
 
   it('returns an empty breakdown for no parts', () => {
-    expect(sumBreakdowns([])).toEqual({ aiPRs: 0, assisted: 0, autonomous: 0, byTool: {} });
+    expect(sumBreakdowns([])).toEqual({ aiPRs: 0, nonAgent: 0, agent: 0, byTool: {} });
   });
 });

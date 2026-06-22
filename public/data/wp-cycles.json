@@ -96,8 +96,8 @@
         "cursor": 7,
         "copilot": 30
       },
-      "assisted": 193,
-      "autonomous": 4
+      "nonAgent": 193,
+      "agent": 4
     }
   },
   {
@@ -208,8 +208,8 @@
         "copilot": 40,
         "cursor": 2
       },
-      "assisted": 53,
-      "autonomous": 27
+      "nonAgent": 53,
+      "agent": 27
     }
   },
   {
@@ -317,8 +317,8 @@
         "cursor": 1,
         "copilot": 1
       },
-      "assisted": 3,
-      "autonomous": 0
+      "nonAgent": 3,
+      "agent": 0
     }
   },
   {
