@@ -1,11 +1,17 @@
 [
   {
+    "wpVersion": "7.1",
+    "beta1Date": "2026-07-15",
+    "stableDate": "2026-08-19",
+    "lastGBVersion": "23.6",
+    "gbVersionRange": "22.7-23.6"
+  },
+  {
     "wpVersion": "7.0",
-    "beta1Date": "2026-03-01",
-    "stableDate": "2026-04-15",
-    "lastGBVersion": null,
-    "gbVersionRange": "22.0-99.9",
-    "note": "Estimated - WP 7.0 postponed to 2026"
+    "beta1Date": "2026-02-20",
+    "stableDate": "2026-05-20",
+    "lastGBVersion": "22.6",
+    "gbVersionRange": "22.0-22.6"
   },
   {
     "wpVersion": "6.9",
