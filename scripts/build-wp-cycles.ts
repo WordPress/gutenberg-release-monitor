@@ -285,13 +285,7 @@ function generateSummary(
     releasesWithContributors.reduce((sum, r) => sum + r.newContributors, 0) / contributorCount
   );
 
-  // Check if data actually changed
-  const dataChanged =
-    !existingSummary ||
-    existingSummary.totalReleases !== totalReleases ||
-    existingSummary.latestRelease !== latestRelease;
-
-  return {
+  const summaryValues = {
     currentPeriod: currentWPCycle,
     lastCutoffVersion,
     releasesSinceCutoff,
@@ -307,6 +301,17 @@ function generateSummary(
     latestRelease,
     oldestRelease: getMinorVersion(sortedReleases[sortedReleases.length - 1]?.gbVersion ?? ''),
     totalReleases,
+  };
+
+  // Check if any summary value changed, including schedule-driven cutoff changes.
+  const dataChanged =
+    !existingSummary ||
+    Object.entries(summaryValues).some(
+      ([key, value]) => existingSummary[key as keyof typeof summaryValues] !== value
+    );
+
+  return {
+    ...summaryValues,
     lastUpdated: dataChanged ? new Date().toISOString() : existingSummary.lastUpdated,
   };
 }
