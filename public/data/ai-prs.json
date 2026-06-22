@@ -1,7 +1,7 @@
 {
   "totals": {
-    "aiPRs": 281,
-    "assisted": 250,
+    "aiPRs": 287,
+    "assisted": 256,
     "autonomous": 31,
     "byTool": {
       "claude-code": 209,
@@ -10,6 +10,42 @@
     }
   },
   "prs": [
+    {
+      "number": 79370,
+      "title": "Components: Make ResizableBox children prop optional",
+      "url": "https://github.com/WordPress/gutenberg/pull/79370",
+      "author": "t-hamano",
+      "mode": "assisted",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-06-22"
+    },
+    {
+      "number": 79360,
+      "title": "Storybook: Reorganize design system introduction for first touch-point usefulness",
+      "url": "https://github.com/WordPress/gutenberg/pull/79360",
+      "author": "aduth",
+      "mode": "assisted",
+      "tools": [
+        "copilot"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-06-22"
+    },
+    {
+      "number": 79322,
+      "title": "Widget Primitives: decouple discovery from a hardcoded endpoint",
+      "url": "https://github.com/WordPress/gutenberg/pull/79322",
+      "author": "retrofox",
+      "mode": "assisted",
+      "tools": [
+        "copilot"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-06-19"
+    },
     {
       "number": 79260,
       "title": "CI: Run PHP unit tests on PHP 8.4 and 8.5",
@@ -23,6 +59,18 @@
       "mergedAt": "2026-06-17"
     },
     {
+      "number": 79255,
+      "title": "Grid overlays: Use canvas iframe window for viewport visibility detection",
+      "url": "https://github.com/WordPress/gutenberg/pull/79255",
+      "author": "t-hamano",
+      "mode": "assisted",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-06-22"
+    },
+    {
       "number": 79196,
       "title": "Plugin: Bump minimum required WordPress version to 6.9",
       "url": "https://github.com/WordPress/gutenberg/pull/79196",
@@ -33,6 +81,30 @@
       ],
       "detectedVia": "commit",
       "mergedAt": "2026-06-16"
+    },
+    {
+      "number": 79172,
+      "title": "KSES: Allow SVG-specific presentation attributes in safe_style_css",
+      "url": "https://github.com/WordPress/gutenberg/pull/79172",
+      "author": "t-hamano",
+      "mode": "assisted",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-06-19"
+    },
+    {
+      "number": 79100,
+      "title": "Icons: Use snake_case `file_path` key in icon registry",
+      "url": "https://github.com/WordPress/gutenberg/pull/79100",
+      "author": "t-hamano",
+      "mode": "assisted",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-06-22"
     },
     {
       "number": 79092,
