@@ -27,9 +27,9 @@ import type { ViewMode, ChartType, MetricType } from './config/types';
 // Re-export types for backward compatibility
 export type { ViewMode, ChartType, MetricType } from './config/types';
 
-const VIEW_MODES: ViewMode[] = ['averages', 'totals', 'distribution', 'sponsors', 'countries'];
+const VIEW_MODES: ViewMode[] = ['averages', 'totals', 'distribution', 'sponsors', 'countries', 'ai-usage', 'ai-tools', 'ai-agents'];
 const CHART_TYPES: ChartType[] = ['stacked', 'area', 'bar', 'line'];
-const METRIC_TYPES: MetricType[] = ['prs', 'contributors'];
+const METRIC_TYPES: MetricType[] = ['prs', 'contributors', 'ai'];
 
 const SunIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -217,19 +217,25 @@ function App() {
               {() => {
                 // Use config to determine supported modes
                 const supportsTotals = tabConfig.supportedViewModes.includes('totals');
-                const isContributorMetric = metric === 'contributors';
+                const selectedMetric = metric;
                 // Adjust viewMode when switching metrics or tabs
                 let effectiveViewMode = viewMode;
-                // Handle unsupported view modes based on tab config
-                if (!supportsTotals && viewMode === 'totals') {
-                  effectiveViewMode = 'averages';
+                if (selectedMetric === 'prs') {
+                  if (effectiveViewMode !== 'totals' && effectiveViewMode !== 'distribution') {
+                    effectiveViewMode = 'totals';
+                  }
+                } else if (selectedMetric === 'contributors') {
+                  // Contributor mode keeps its existing views; PR type/AI subviews map back to contributor defaults.
+                  if (!supportsTotals && effectiveViewMode === 'totals') {
+                    effectiveViewMode = 'averages';
+                  } else if (effectiveViewMode === 'distribution' || effectiveViewMode === 'ai-usage' || effectiveViewMode === 'ai-tools' || effectiveViewMode === 'ai-agents') {
+                    effectiveViewMode = 'sponsors';
+                  }
+                } else if (effectiveViewMode !== 'ai-usage' && effectiveViewMode !== 'ai-tools' && effectiveViewMode !== 'ai-agents') {
+                  effectiveViewMode = 'ai-usage';
                 }
-                // Contributor mode doesn't have category distribution, PR mode doesn't have sponsors/countries
-                if (isContributorMetric && viewMode === 'distribution') {
-                  effectiveViewMode = 'sponsors';
-                } else if (!isContributorMetric && (viewMode === 'sponsors' || viewMode === 'countries')) {
-                  effectiveViewMode = 'distribution';
-                }
+                const effectiveMetric = selectedMetric;
+                const isAIMetric = effectiveMetric === 'ai';
 
                 // Filter normalized data for items that have data for the current mode
                 // This ensures the range slider max matches what TrendChart will display
@@ -243,8 +249,11 @@ function App() {
                     return item.contributorAggregates?.countryBreakdown &&
                       Object.keys(item.contributorAggregates.countryBreakdown).length > 0;
                   }
+                  if (isAIMetric) {
+                    return true;
+                  }
                   // For PR modes, check category data (normalized uses categoryTotals or rawCategories)
-                  if (metric === 'prs') {
+                  if (effectiveMetric === 'prs') {
                     const categoryData = item.categoryTotals || item.rawCategories;
                     return categoryData && Object.values(categoryData).some(v => v > 0);
                   }
@@ -257,7 +266,7 @@ function App() {
                 const trendChartProps = {
                   data: normalizedData ?? [],
                   releaseCount,
-                  metric,
+                  metric: effectiveMetric,
                   tabConfig,
                 };
 
@@ -265,7 +274,7 @@ function App() {
                 const dataTableProps = {
                   data: normalizedData ?? [],
                   viewMode: effectiveViewMode,
-                  metric,
+                  metric: effectiveMetric,
                   tabConfig,
                 };
 
@@ -280,7 +289,7 @@ function App() {
                         visibleCategories={visibleCategories}
                         onCategoryToggle={handleCategoryToggle}
                         viewMode={effectiveViewMode}
-                        metric={metric}
+                        metric={selectedMetric === 'ai' ? 'prs' : selectedMetric}
                       />
                     </section>
 
@@ -290,13 +299,30 @@ function App() {
                         <ToggleGroupControl
                           __nextHasNoMarginBottom
                           isBlock
-                          label="Metric"
+                          label="Section"
                           hideLabelFromVision
-                          value={metric}
-                          onChange={(value) => setMetric(value as MetricType)}
+                          value={selectedMetric}
+                          onChange={(value) => {
+                            const nextMetric = value as MetricType;
+                            setMetric(nextMetric);
+                            if (nextMetric === 'prs') {
+                              if (viewMode !== 'totals' && viewMode !== 'distribution') {
+                                setViewMode('totals');
+                              }
+                            } else if (nextMetric === 'contributors') {
+                              if (viewMode === 'distribution' || viewMode === 'ai-usage' || viewMode === 'ai-tools' || viewMode === 'ai-agents') {
+                                setViewMode('sponsors');
+                              } else if (!supportsTotals && viewMode === 'totals') {
+                                setViewMode('averages');
+                              }
+                            } else if (viewMode !== 'ai-usage' && viewMode !== 'ai-tools' && viewMode !== 'ai-agents') {
+                              setViewMode('ai-usage');
+                            }
+                          }}
                         >
-                          <ToggleGroupControlOption value="prs" label="PRs" />
+                          <ToggleGroupControlOption value="prs" label="PR Types" />
                           <ToggleGroupControlOption value="contributors" label="Contributors" />
+                          <ToggleGroupControlOption value="ai" label="AI Usage" />
                         </ToggleGroupControl>
                       </div>
                       <div className="view-mode-toggle">
@@ -305,15 +331,29 @@ function App() {
                           isBlock
                           label="View mode"
                           hideLabelFromVision
-                          value={supportsTotals ? viewMode : effectiveViewMode}
-                          onChange={(value) => setViewMode(value as ViewMode)}
+                          value={effectiveViewMode}
+                          onChange={(value) => {
+                            setViewMode(value as ViewMode);
+                          }}
                         >
-                          <ToggleGroupControlOption value="averages" label={tabConfig.labels.averagesToggle ?? (metric === 'prs' ? 'PRs' : 'Contributors')} />
-                          {supportsTotals && <ToggleGroupControlOption value="totals" label="Totals" />}
-                          {metric === 'prs' ? (
-                            <ToggleGroupControlOption value="distribution" label="Distribution" />
+                          {selectedMetric === 'prs' ? (
+                            <>
+                              <ToggleGroupControlOption value="totals" label="Totals" />
+                              <ToggleGroupControlOption value="distribution" label="Distribution" />
+                            </>
+                          ) : selectedMetric === 'ai' ? (
+                            <>
+                              <ToggleGroupControlOption value="ai-usage" label="Detected usage" />
+                              <ToggleGroupControlOption value="ai-agents" label="Author source" />
+                              <ToggleGroupControlOption value="ai-tools" label="Tools" />
+                            </>
                           ) : (
                             <>
+                              <ToggleGroupControlOption
+                                value="averages"
+                                label={tabConfig.labels.averagesToggle ?? 'Contributors'}
+                              />
+                              {supportsTotals && <ToggleGroupControlOption value="totals" label="Totals" />}
                               <ToggleGroupControlOption value="sponsors" label="Sponsors" />
                               <ToggleGroupControlOption value="countries" label="Countries" />
                             </>
@@ -325,6 +365,24 @@ function App() {
                     {/* Chart - single instance, props switch */}
                     <Card id="trend-chart" className="trend-chart-card">
                       <CardBody>
+                        {isAIMetric && (
+                          <div className="chart-context">
+                            <Text className="chart-context-title">
+                              {effectiveViewMode === 'ai-tools'
+                                ? 'Detected AI tool mentions by release'
+                                : effectiveViewMode === 'ai-agents'
+                                  ? 'Detected AI PRs by author source'
+                                  : 'Detected AI PRs by release'}
+                            </Text>
+                            <Text className="chart-context-copy">
+                              {effectiveViewMode === 'ai-tools'
+                                ? 'Bars count AI tool detections from PR text, commit trailers, or known agent authors; a PR can count under more than one tool. Tooltip totals use unique detected AI PRs.'
+                                : effectiveViewMode === 'ai-agents'
+                                  ? 'Author source splits detected AI PRs by whether the PR author is a known agent account. Other detected AI means no known agent author matched.'
+                                  : 'Usage stacks detected AI PRs with PRs where no marker was found. Agent and non-agent details are shown separately, not as extra buckets.'}
+                            </Text>
+                          </div>
+                        )}
                         <div className="chart-controls">
                           <div className="chart-type-toggle">
                             <ToggleGroupControl

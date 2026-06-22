@@ -16,15 +16,16 @@ export interface ContributorAggregates {
 
 /**
  * AI involvement breakdown for a release or cycle.
- * Counts only *disclosed* AI use (body markers / agent authors), so it is a lower bound.
+ * Counts only AI use detected through PR text, commit trailers, or known agent authors.
+ * This is a lower bound.
  */
 export interface AIBreakdown {
   /** PRs per tool. A PR using two tools counts in both, so this can exceed aiPRs. */
   byTool: Record<string, number>;
-  /** PRs where a human author disclosed AI use. */
-  assisted: number;
-  /** PRs opened directly by an autonomous agent. */
-  autonomous: number;
+  /** Detected AI PRs not opened by a known agent account. */
+  nonAgent: number;
+  /** Detected AI PRs opened directly by a known agent account. */
+  agent: number;
 }
 
 /**

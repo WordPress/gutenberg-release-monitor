@@ -33,6 +33,15 @@
         "Unknown": 8
       }
     },
+    "aiPRs": 4,
+    "aiBreakdown": {
+      "byTool": {
+        "claude-code": 3,
+        "copilot": 1
+      },
+      "nonAgent": 3,
+      "agent": 1
+    },
     "date": "2024-12-01",
     "memberOf": "B",
     "changelogUrl": "https://example.com/changelog/3.0"
@@ -69,6 +78,15 @@
         "France": 6,
         "Unknown": 9
       }
+    },
+    "aiPRs": 3,
+    "aiBreakdown": {
+      "byTool": {
+        "copilot": 2,
+        "cursor": 1
+      },
+      "nonAgent": 3,
+      "agent": 0
     },
     "date": "2024-11-15",
     "memberOf": "B",
@@ -110,6 +128,16 @@
         "Unknown": 0
       }
     },
+    "aiPRs": 2,
+    "aiBreakdown": {
+      "byTool": {
+        "claude-code": 1,
+        "copilot": 1,
+        "cursor": 1
+      },
+      "nonAgent": 1,
+      "agent": 1
+    },
     "date": "2024-10-20",
     "memberOf": "A",
     "changelogUrl": "https://example.com/changelog/2.0"
@@ -146,6 +174,7 @@
         "Unknown": 13
       }
     },
+    "aiPRs": 0,
     "date": "2024-09-30",
     "memberOf": "A",
     "isSpecialMarker": true,
@@ -182,6 +211,14 @@
         "United Kingdom": 5,
         "Unknown": 18
       }
+    },
+    "aiPRs": 1,
+    "aiBreakdown": {
+      "byTool": {
+        "claude-code": 1
+      },
+      "nonAgent": 1,
+      "agent": 0
     },
     "date": "2024-09-01",
     "memberOf": "A",

@@ -5,13 +5,13 @@
  */
 
 /** View mode options for the dashboard */
-export type ViewMode = 'averages' | 'totals' | 'distribution' | 'sponsors' | 'countries';
+export type ViewMode = 'averages' | 'totals' | 'distribution' | 'sponsors' | 'countries' | 'ai-usage' | 'ai-tools' | 'ai-agents';
 
 /** Chart type options */
 export type ChartType = 'line' | 'bar' | 'area' | 'stacked';
 
-/** Metric type options */
-export type MetricType = 'prs' | 'contributors';
+/** Top-level dashboard section options. */
+export type MetricType = 'prs' | 'contributors' | 'ai';
 
 /**
  * Labels configuration for a tab.

@@ -132,8 +132,8 @@
         "cursor": 1,
         "copilot": 1
       },
-      "assisted": 24,
-      "autonomous": 0
+      "nonAgent": 24,
+      "agent": 0
     }
   },
   {
@@ -270,8 +270,8 @@
         "copilot": 4,
         "cursor": 1
       },
-      "assisted": 25,
-      "autonomous": 0
+      "nonAgent": 25,
+      "agent": 0
     }
   },
   {
@@ -391,8 +391,8 @@
         "copilot": 6,
         "cursor": 2
       },
-      "assisted": 27,
-      "autonomous": 0
+      "nonAgent": 27,
+      "agent": 0
     }
   },
   {
@@ -517,8 +517,8 @@
         "copilot": 5,
         "claude-code": 21
       },
-      "assisted": 25,
-      "autonomous": 0
+      "nonAgent": 25,
+      "agent": 0
     }
   },
   {
@@ -641,8 +641,8 @@
         "claude-code": 20,
         "copilot": 3
       },
-      "assisted": 22,
-      "autonomous": 0
+      "nonAgent": 22,
+      "agent": 0
     }
   },
   {
@@ -747,8 +747,8 @@
         "claude-code": 19,
         "copilot": 2
       },
-      "assisted": 19,
-      "autonomous": 2
+      "nonAgent": 19,
+      "agent": 2
     }
   },
   {
@@ -887,8 +887,8 @@
         "claude-code": 19,
         "copilot": 2
       },
-      "assisted": 23,
-      "autonomous": 0
+      "nonAgent": 23,
+      "agent": 0
     }
   },
   {
@@ -1000,8 +1000,8 @@
         "copilot": 7,
         "cursor": 1
       },
-      "assisted": 28,
-      "autonomous": 2
+      "nonAgent": 28,
+      "agent": 2
     }
   },
   {
@@ -1146,8 +1146,8 @@
         "copilot": 13,
         "cursor": 2
       },
-      "assisted": 29,
-      "autonomous": 6
+      "nonAgent": 29,
+      "agent": 6
     }
   },
   {
@@ -1290,8 +1290,8 @@
         "claude-code": 11,
         "copilot": 6
       },
-      "assisted": 13,
-      "autonomous": 3
+      "nonAgent": 13,
+      "agent": 3
     }
   },
   {
@@ -1472,8 +1472,8 @@
         "claude-code": 7,
         "copilot": 3
       },
-      "assisted": 8,
-      "autonomous": 2
+      "nonAgent": 8,
+      "agent": 2
     }
   },
   {
@@ -1593,8 +1593,8 @@
       "byTool": {
         "copilot": 10
       },
-      "assisted": 1,
-      "autonomous": 9
+      "nonAgent": 1,
+      "agent": 9
     }
   },
   {
@@ -1722,8 +1722,8 @@
       "byTool": {
         "copilot": 3
       },
-      "assisted": 1,
-      "autonomous": 2
+      "nonAgent": 1,
+      "agent": 2
     }
   },
   {
@@ -1852,8 +1852,8 @@
         "copilot": 5,
         "claude-code": 1
       },
-      "assisted": 1,
-      "autonomous": 5
+      "nonAgent": 1,
+      "agent": 5
     }
   },
   {
@@ -2419,8 +2419,8 @@
       "byTool": {
         "claude-code": 1
       },
-      "assisted": 1,
-      "autonomous": 0
+      "nonAgent": 1,
+      "agent": 0
     }
   },
   {
@@ -2510,8 +2510,8 @@
       "byTool": {
         "cursor": 1
       },
-      "assisted": 1,
-      "autonomous": 0
+      "nonAgent": 1,
+      "agent": 0
     }
   },
   {
@@ -2725,8 +2725,8 @@
       "byTool": {
         "copilot": 1
       },
-      "assisted": 1,
-      "autonomous": 0
+      "nonAgent": 1,
+      "agent": 0
     }
   },
   {

@@ -64,4 +64,18 @@ test.describe('Responsive Design', () => {
     // Verify chart is still visible
     await expect(page.locator('.recharts-wrapper').first()).toBeVisible();
   });
+
+  test('should render AI tool chart on mobile viewport', async ({ page }) => {
+    await page.setViewportSize({ width: 375, height: 667 });
+
+    await page.goto('/');
+
+    await expect(page.locator('#releases-table').getByText('Cycle B')).toBeVisible();
+
+    await page.locator('.metric-toggle').getByRole('radio', { name: 'AI Usage' }).click();
+    await page.locator('.view-mode-toggle').getByRole('radio', { name: 'Tools' }).click();
+
+    await expect(page.locator('#trend-chart').getByText('Detected AI tool mentions by release')).toBeVisible();
+    await expect(page.locator('.trend-chart-legend').first().getByText('claude-code')).toBeVisible();
+  });
 });

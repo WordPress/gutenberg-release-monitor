@@ -4,7 +4,7 @@
  * @module scripts/utils/ai-prs-utils
  */
 
-export type AIMode = 'assisted' | 'autonomous';
+export type AIMode = 'non-agent' | 'agent';
 
 /** A single detected PR with disclosed AI involvement. */
 export interface AIPullRequest {
@@ -12,7 +12,7 @@ export interface AIPullRequest {
   title: string;
   url: string;
   author: string;
-  /** "autonomous" when opened by an agent bot, otherwise "assisted". */
+  /** "agent" when opened by a known agent account, otherwise "non-agent". */
   mode: AIMode;
   /** Marker ids that matched (a PR can use more than one tool). */
   tools: string[];
@@ -26,8 +26,8 @@ export interface AIPullRequest {
 export interface AIBreakdown {
   /** PRs per tool. A PR using two tools counts in both, so this can exceed aiPRs. */
   byTool: Record<string, number>;
-  assisted: number;
-  autonomous: number;
+  nonAgent: number;
+  agent: number;
 }
 
 /** A release reduced to what attribution needs. */
@@ -37,17 +37,17 @@ export interface ReleaseWindow {
   date: string;
 }
 
-/** "autonomous" when the author is a known agent bot, otherwise "assisted". */
+/** "agent" when the author is a known agent account, otherwise "non-agent". */
 export function classifyMode(
   authorLogin: string,
   botLogins: Set<string>
 ): AIMode {
-  return botLogins.has(authorLogin.toLowerCase()) ? 'autonomous' : 'assisted';
+  return botLogins.has(authorLogin.toLowerCase()) ? 'agent' : 'non-agent';
 }
 
 /**
  * Resolve the mode for a detection. A PR surfaced through the bot-author channel is
- * autonomous by definition, since GitHub exposes a different display login (e.g.
+ * agent-authored by definition, since GitHub exposes a different display login (e.g.
  * "Copilot") than the `author:` search qualifier (`copilot-swe-agent[bot]`), so the
  * login alone can't be trusted. Otherwise fall back to the author login.
  */
@@ -56,7 +56,7 @@ export function resolveMode(
   authorLogin: string,
   botLogins: Set<string>
 ): AIMode {
-  if (via === 'author') return 'autonomous';
+  if (via === 'author') return 'agent';
   return classifyMode(authorLogin, botLogins);
 }
 
@@ -112,15 +112,15 @@ export function rollupByRelease(
 
     let agg = map.get(version);
     if (!agg) {
-      agg = { aiPRs: 0, byTool: {}, assisted: 0, autonomous: 0 };
+      agg = { aiPRs: 0, byTool: {}, nonAgent: 0, agent: 0 };
       map.set(version, agg);
     }
 
     agg.aiPRs += 1;
-    if (pr.mode === 'autonomous') {
-      agg.autonomous += 1;
+    if (pr.mode === 'agent') {
+      agg.agent += 1;
     } else {
-      agg.assisted += 1;
+      agg.nonAgent += 1;
     }
     for (const tool of pr.tools) {
       agg.byTool[tool] = (agg.byTool[tool] || 0) + 1;
@@ -134,11 +134,11 @@ export function rollupByRelease(
 export function sumBreakdowns(
   parts: Array<{ aiPRs: number } & AIBreakdown>
 ): { aiPRs: number } & AIBreakdown {
-  const total = { aiPRs: 0, byTool: {} as Record<string, number>, assisted: 0, autonomous: 0 };
+  const total = { aiPRs: 0, byTool: {} as Record<string, number>, nonAgent: 0, agent: 0 };
   for (const part of parts) {
     total.aiPRs += part.aiPRs;
-    total.assisted += part.assisted;
-    total.autonomous += part.autonomous;
+    total.nonAgent += part.nonAgent;
+    total.agent += part.agent;
     for (const [tool, count] of Object.entries(part.byTool)) {
       total.byTool[tool] = (total.byTool[tool] || 0) + count;
     }
