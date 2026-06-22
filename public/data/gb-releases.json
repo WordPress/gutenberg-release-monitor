@@ -124,7 +124,17 @@
       "macayu17",
       "n8finch",
       "simondud"
-    ]
+    ],
+    "aiPRs": 24,
+    "aiBreakdown": {
+      "byTool": {
+        "claude-code": 23,
+        "cursor": 1,
+        "copilot": 1
+      },
+      "assisted": 24,
+      "autonomous": 0
+    }
   },
   {
     "id": "23.3",
@@ -252,7 +262,17 @@
       "stevejonesdev",
       "taipeicoder",
       "yyppsk"
-    ]
+    ],
+    "aiPRs": 25,
+    "aiBreakdown": {
+      "byTool": {
+        "claude-code": 22,
+        "copilot": 4,
+        "cursor": 1
+      },
+      "assisted": 25,
+      "autonomous": 0
+    }
   },
   {
     "id": "23.2",
@@ -363,7 +383,17 @@
       "andrea-sdl",
       "danluu",
       "vishnucmsminds"
-    ]
+    ],
+    "aiPRs": 27,
+    "aiBreakdown": {
+      "byTool": {
+        "claude-code": 20,
+        "copilot": 6,
+        "cursor": 2
+      },
+      "assisted": 27,
+      "autonomous": 0
+    }
   },
   {
     "id": "23.1",
@@ -480,7 +510,16 @@
       "rajanarahul93",
       "vishnupprajapat",
       "wwahammy"
-    ]
+    ],
+    "aiPRs": 25,
+    "aiBreakdown": {
+      "byTool": {
+        "copilot": 5,
+        "claude-code": 21
+      },
+      "assisted": 25,
+      "autonomous": 0
+    }
   },
   {
     "id": "23.0",
@@ -595,7 +634,16 @@
       "samvaidya",
       "sandipr942",
       "superdav42"
-    ]
+    ],
+    "aiPRs": 22,
+    "aiBreakdown": {
+      "byTool": {
+        "claude-code": 20,
+        "copilot": 3
+      },
+      "assisted": 22,
+      "autonomous": 0
+    }
   },
   {
     "id": "22.9",
@@ -692,7 +740,16 @@
       "rodrigoprimo",
       "sandipmaurya2611",
       "vedant-gandhi"
-    ]
+    ],
+    "aiPRs": 21,
+    "aiBreakdown": {
+      "byTool": {
+        "claude-code": 19,
+        "copilot": 2
+      },
+      "assisted": 19,
+      "autonomous": 2
+    }
   },
   {
     "id": "22.8",
@@ -822,7 +879,17 @@
       "sagarjadhav",
       "smithjw1",
       "wwahammy"
-    ]
+    ],
+    "aiPRs": 23,
+    "aiBreakdown": {
+      "byTool": {
+        "cursor": 2,
+        "claude-code": 19,
+        "copilot": 2
+      },
+      "assisted": 23,
+      "autonomous": 0
+    }
   },
   {
     "id": "22.7",
@@ -925,7 +992,17 @@
       "aagam-shah",
       "dlind1",
       "namankhare"
-    ]
+    ],
+    "aiPRs": 30,
+    "aiBreakdown": {
+      "byTool": {
+        "claude-code": 24,
+        "copilot": 7,
+        "cursor": 1
+      },
+      "assisted": 28,
+      "autonomous": 2
+    }
   },
   {
     "id": "22.6",
@@ -1060,7 +1137,17 @@
       "liamsarsfield",
       "marianne380",
       "swoyamjeetcodes"
-    ]
+    ],
+    "aiPRs": 35,
+    "aiBreakdown": {
+      "byTool": {
+        "claude-code": 21,
+        "copilot": 13,
+        "cursor": 2
+      },
+      "assisted": 29,
+      "autonomous": 6
+    }
   },
   {
     "id": "22.5",
@@ -1195,7 +1282,16 @@
       "shekharnwagh",
       "swanand01",
       "swoyamjeetcodes"
-    ]
+    ],
+    "aiPRs": 16,
+    "aiBreakdown": {
+      "byTool": {
+        "claude-code": 11,
+        "copilot": 6
+      },
+      "assisted": 13,
+      "autonomous": 3
+    }
   },
   {
     "id": "22.4",
@@ -1368,7 +1464,16 @@
       "rutviksavsani",
       "saranshsinhaa",
       "umeraghori"
-    ]
+    ],
+    "aiPRs": 10,
+    "aiBreakdown": {
+      "byTool": {
+        "claude-code": 7,
+        "copilot": 3
+      },
+      "assisted": 8,
+      "autonomous": 2
+    }
   },
   {
     "id": "22.3",
@@ -1481,7 +1586,15 @@
       "dhasilva",
       "manhphuc",
       "metodiew"
-    ]
+    ],
+    "aiPRs": 10,
+    "aiBreakdown": {
+      "byTool": {
+        "copilot": 10
+      },
+      "assisted": 1,
+      "autonomous": 9
+    }
   },
   {
     "id": "22.2",
@@ -1602,7 +1715,15 @@
       "royhridoy",
       "triple0t",
       "xristos3490"
-    ]
+    ],
+    "aiPRs": 3,
+    "aiBreakdown": {
+      "byTool": {
+        "copilot": 3
+      },
+      "assisted": 1,
+      "autonomous": 2
+    }
   },
   {
     "id": "22.1",
@@ -1723,7 +1844,16 @@
       "okawayasuno",
       "paulrenglish",
       "pranvinit"
-    ]
+    ],
+    "aiPRs": 6,
+    "aiBreakdown": {
+      "byTool": {
+        "copilot": 5,
+        "claude-code": 1
+      },
+      "assisted": 1,
+      "autonomous": 5
+    }
   },
   {
     "id": "22.0",
@@ -1827,7 +1957,8 @@
       "harshbhonsle",
       "itsroy69",
       "joshualip-plaudit"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "21.9",
@@ -1956,7 +2087,8 @@
       "dilirity",
       "mathiscode",
       "sidharthpandita1"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "21.8",
@@ -2075,7 +2207,8 @@
       "ritoban23",
       "theaminuli",
       "utsav-ladani"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "21.7",
@@ -2180,7 +2313,8 @@
       "codergtm",
       "straku",
       "xavier-lc"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "21.6",
@@ -2278,7 +2412,15 @@
     ],
     "newContributorsList": [
       "levinbaria"
-    ]
+    ],
+    "aiPRs": 1,
+    "aiBreakdown": {
+      "byTool": {
+        "claude-code": 1
+      },
+      "assisted": 1,
+      "autonomous": 0
+    }
   },
   {
     "id": "21.5",
@@ -2361,7 +2503,15 @@
     ],
     "newContributorsList": [
       "elazzabi"
-    ]
+    ],
+    "aiPRs": 1,
+    "aiBreakdown": {
+      "byTool": {
+        "cursor": 1
+      },
+      "assisted": 1,
+      "autonomous": 0
+    }
   },
   {
     "id": "21.4",
@@ -2477,7 +2627,8 @@
       "lalitkumawat1m",
       "rcrdortiz",
       "sahil1617"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "21.3",
@@ -2567,7 +2718,15 @@
       "yogeshbhutkar",
       "youknowriad"
     ],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 1,
+    "aiBreakdown": {
+      "byTool": {
+        "copilot": 1
+      },
+      "assisted": 1,
+      "autonomous": 0
+    }
   },
   {
     "id": "21.2",
@@ -2651,7 +2810,8 @@
       "mecskyverse",
       "r1shabh-gupta",
       "usersatoshi"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "21.1",
@@ -2742,7 +2902,8 @@
       "shrivastavanolo",
       "usersatoshi",
       "yashjawale"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "21.0",
@@ -2823,7 +2984,8 @@
       "nani-samireddy",
       "opurockey",
       "ravigadhiya007"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "20.9",
@@ -2896,7 +3058,8 @@
     ],
     "newContributorsList": [
       "jasalt"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "20.8",
@@ -2968,7 +3131,8 @@
     "newContributorsList": [
       "jrmd",
       "maikuolan"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "20.7",
@@ -3039,7 +3203,8 @@
     "newContributorsList": [
       "debarghya-banerjee",
       "karthikeya-io"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "20.6",
@@ -3110,7 +3275,8 @@
     "newContributorsList": [
       "gmovr",
       "im3dabasia"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "20.5",
@@ -3193,7 +3359,8 @@
       "dontfeedthecode",
       "sabbir1991",
       "sirlouen"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "20.4",
@@ -3290,7 +3457,8 @@
       "alexchrysovergis",
       "andreawetzel",
       "kellymears"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "20.3",
@@ -3386,7 +3554,8 @@
       "juzar10",
       "singhakanshu00",
       "srtfisher"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "20.2",
@@ -3455,7 +3624,8 @@
       "t-hamano",
       "yogeshbhutkar"
     ],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "20.1",
@@ -3550,7 +3720,8 @@
       "himanipanchal",
       "im3dabasia",
       "szepeviktor"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "20.0",
@@ -3712,7 +3883,8 @@
       "sarthaknagoshe2002",
       "timse201",
       "vampdroid"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "19.9",
@@ -3848,7 +4020,8 @@
       "mayank-tripathi32",
       "subodhr258",
       "wwdes"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "19.8",
@@ -3976,7 +4149,8 @@
       "sainathpoojary",
       "sarthaknagoshe2002",
       "sukhendu2002"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "19.7",
@@ -4103,7 +4277,8 @@
       "karthick-murugan",
       "rinkalpagdar",
       "yogeshbhutkar"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "19.6",
@@ -4236,7 +4411,8 @@
       "rinkalpagdar",
       "rudrakshi-gupta",
       "sh4lin"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "19.5",
@@ -4354,7 +4530,8 @@
       "mediaformat",
       "vk17-starlord",
       "vrishabhsk"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "19.4",
@@ -4485,7 +4662,8 @@
       "dhruvang21",
       "parthvataliya",
       "spadeshoe"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "19.3",
@@ -4610,7 +4788,8 @@
       "greenworld",
       "louwie17",
       "rahulharpal1603"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "19.2",
@@ -4741,7 +4920,8 @@
       "lezama",
       "rithik56",
       "rohitmathur-7"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "19.1",
@@ -4855,7 +5035,8 @@
       "janpfeil",
       "rishit30g",
       "ssang"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "19.0",
@@ -4979,7 +5160,8 @@
       "meteorlxy",
       "rishit30g",
       "wzieba"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "18.9",
@@ -5111,7 +5293,8 @@
       "sourav61",
       "tomllobet",
       "troychaplin"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "18.8",
@@ -5254,7 +5437,8 @@
       "roygbyte",
       "shreya0204",
       "sejas"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "18.7",
@@ -5377,7 +5561,8 @@
       "michakrapp",
       "saulyz",
       "snehapatil2001"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "18.6",
@@ -5502,7 +5687,8 @@
       "brianhenryie",
       "carstingaxion",
       "up1512001"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "18.5",
@@ -5655,7 +5841,8 @@
       "paolopiaggio",
       "sanjucta",
       "vipul0425"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "18.4",
@@ -5789,7 +5976,8 @@
       "wordpress",
       "styleshit",
       "vipul0425"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "18.3",
@@ -5903,7 +6091,8 @@
       "huubl",
       "itzmekhokan",
       "lanresmith"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "18.2",
@@ -6035,7 +6224,8 @@
       "daniguardiola",
       "garridinsi",
       "xhemals"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "18.1",
@@ -6161,7 +6351,8 @@
       "mikeybinns",
       "nirav7707",
       "steveariss"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "18.0",
@@ -6330,7 +6521,8 @@
       "strangehill",
       "teresagobble",
       "tomepajk"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "17.9",
@@ -6467,7 +6659,8 @@
       "shail-mehta",
       "global",
       "teresagobble"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "17.8",
@@ -6577,7 +6770,8 @@
       "tyxla",
       "youknowriad"
     ],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "17.7",
@@ -6726,7 +6920,8 @@
       "at-benni",
       "krupal-panchal",
       "shreyash3087"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "17.6",
@@ -6872,7 +7067,8 @@
       "kt-12",
       "leomuniz",
       "wordpress"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "17.5",
@@ -6985,7 +7181,8 @@
     "newContributorsList": [
       "hrithikdalal",
       "muhme"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "17.4",
@@ -7110,7 +7307,8 @@
       "dotslashbit",
       "koen12344",
       "kurudrive"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "17.3",
@@ -7245,7 +7443,8 @@
       "nk-o",
       "taylorgorman",
       "valerogarte"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "17.2",
@@ -7365,7 +7564,8 @@
       "youknowriad",
       "zaguiini"
     ],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "17.1",
@@ -7496,7 +7696,8 @@
       "joanrodas",
       "jorgevilchez95",
       "sacerro"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "17.0",
@@ -7614,7 +7815,8 @@
       "iamsadi22",
       "parikshit-adhikari",
       "strarsis"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "16.9",
@@ -7746,7 +7948,8 @@
     ],
     "newContributorsList": [
       "unscripted"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "16.8",
@@ -7891,7 +8094,8 @@
     ],
     "newContributorsList": [
       "leemyongpakvn"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "16.7",
@@ -8076,7 +8280,8 @@
       "piyush-deshmukh",
       "rajinsharwar",
       "toolstack"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "16.6",
@@ -8195,7 +8400,8 @@
       "jeverhart383",
       "krokodok",
       "mklute101"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "16.5",
@@ -8331,7 +8537,8 @@
       "doughamlin",
       "ducksblock",
       "rtro92"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "16.4",
@@ -8464,7 +8671,8 @@
     "newContributorsList": [
       "armondal",
       "lunaluna"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "16.3",
@@ -8595,7 +8803,8 @@
       "andrewhayward",
       "ghorivipul97",
       "sethrubenstein"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "16.2",
@@ -8706,7 +8915,8 @@
       "wunderbart",
       "youknowriad"
     ],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "16.1",
@@ -8853,7 +9063,8 @@
       "bangank36",
       "samnajian",
       "xerpa43"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "16.0",
@@ -8976,7 +9187,8 @@
       "saxonf",
       "takshil-kunadia",
       "wayheming"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "15.9",
@@ -9113,7 +9325,8 @@
       "megane9988",
       "saxonf",
       "worldomonation"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "15.8",
@@ -9146,7 +9359,8 @@
     "memberOf": "6.3",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v15.8.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "15.7",
@@ -9287,7 +9501,8 @@
       "sque89",
       "tyrann0us",
       "wtower"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "15.6",
@@ -9407,7 +9622,8 @@
       "mokagio",
       "nefeline",
       "thealexandrelara"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "15.5",
@@ -9535,7 +9751,8 @@
       "renintw",
       "richiecarey",
       "sque89"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "15.4",
@@ -9670,7 +9887,8 @@
       "mike-day",
       "shvlv",
       "tylerb24890"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "15.3",
@@ -9786,7 +10004,8 @@
       "shreyasikhar",
       "suvrodattamitu",
       "tomdevisser"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "15.2",
@@ -9920,7 +10139,8 @@
       "dpellenwood",
       "griffinjohndavid",
       "mike-day"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "15.1",
@@ -10049,7 +10269,8 @@
       "kozer",
       "renatoagds",
       "rodage"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "15.0",
@@ -10167,7 +10388,8 @@
       "mhkuu",
       "tekapo",
       "tonygravagno"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "14.9",
@@ -10281,7 +10503,8 @@
       "viralsampat-multidots",
       "vykes-mac",
       "websitegenii"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "14.8",
@@ -10377,7 +10600,8 @@
       "corentin-gautier",
       "ingeniumed",
       "janusqa"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "14.7",
@@ -10504,7 +10728,8 @@
       "marissa-makes",
       "mpkelly",
       "tobiasbg"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "14.6",
@@ -10632,7 +10857,8 @@
       "edanzer",
       "timbroddin",
       "wojtekn"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "14.5",
@@ -10747,7 +10973,8 @@
       "initsogar",
       "jornp",
       "pkorzelius"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "14.4",
@@ -10882,7 +11109,8 @@
       "jeremylind",
       "poosham",
       "thelovekesh"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "14.3",
@@ -11012,7 +11240,8 @@
       "loxk",
       "lucisu",
       "philwp"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "14.2",
@@ -11111,7 +11340,8 @@
     "newContributorsList": [
       "kkoppenhaver",
       "pagelab"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "14.1",
@@ -11256,7 +11486,8 @@
       "madhusudhand",
       "mrobit",
       "rahidroid"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "14.0",
@@ -11384,7 +11615,8 @@
       "randhirexpresstech",
       "rink9",
       "titusdmoore"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "13.9",
@@ -11506,7 +11738,8 @@
       "merkys7",
       "smit2808",
       "theminaldiwan"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "13.8",
@@ -11620,7 +11853,8 @@
     "newContributorsList": [
       "kkmuffme",
       "paulopmt1"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "13.7",
@@ -11754,7 +11988,8 @@
       "rflw",
       "schutzsmith",
       "welenofsky"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "13.6",
@@ -11893,7 +12128,8 @@
       "vasartam",
       "xylocone",
       "zaerl"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "13.5",
@@ -12002,7 +12238,8 @@
       "msurdi",
       "sebastienserre",
       "tharsheblows"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "13.4",
@@ -12121,7 +12358,8 @@
       "obliviousharmony",
       "pooja-muchandikar",
       "xconsau"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "13.3",
@@ -12253,7 +12491,8 @@
       "savphill",
       "shanjidah",
       "tomjdv"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "13.2",
@@ -12299,7 +12538,8 @@
       "iansvo",
       "juhi123",
       "trapsta"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "13.1",
@@ -12417,7 +12657,8 @@
       "mauriac",
       "roseg43",
       "zutigrm"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "13.0",
@@ -12564,7 +12805,8 @@
       "zaguiini",
       "zebulanstanphill"
     ],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "12.9",
@@ -12699,7 +12941,8 @@
       "paraskp7",
       "santosguillamot",
       "stefanolissa"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "12.8",
@@ -12830,7 +13073,8 @@
       "mashikag",
       "tomasztunik",
       "tumas2"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "12.7",
@@ -12955,7 +13199,8 @@
       "razwan",
       "sanzeeb3",
       "sisanu"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "12.6",
@@ -12991,7 +13236,8 @@
       "jeffmatsonpagely",
       "angelistudio",
       "sunyatasattva"
-    ]
+    ],
+    "aiPRs": 0
   },
   {
     "id": "12.5",
@@ -13023,7 +13269,8 @@
     "memberOf": "6.0",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v12.5.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "12.4",
@@ -13052,7 +13299,8 @@
     "memberOf": "6.0",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v12.4.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "12.3",
@@ -13082,7 +13330,8 @@
     "memberOf": "6.0",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v12.3.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "12.2",
@@ -13111,7 +13360,8 @@
     "memberOf": "6.0",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v12.2.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "12.1",
@@ -13141,7 +13391,8 @@
     "memberOf": "6.0",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v12.1.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "12.0",
@@ -13172,7 +13423,8 @@
     "memberOf": "6.0",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v12.0.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "11.9",
@@ -13206,7 +13458,8 @@
     "isSpecialMarker": true,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v11.9.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "11.8",
@@ -13239,7 +13492,8 @@
     "memberOf": "5.9",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v11.8.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "11.7",
@@ -13270,7 +13524,8 @@
     "memberOf": "5.9",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v11.7.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "11.6",
@@ -13303,7 +13558,8 @@
     "memberOf": "5.9",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v11.6.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "11.5",
@@ -13337,7 +13593,8 @@
     "memberOf": "5.9",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v11.5.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "11.4",
@@ -13368,7 +13625,8 @@
     "memberOf": "5.9",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v11.4.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "11.3",
@@ -13399,7 +13657,8 @@
     "memberOf": "5.9",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v11.3.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "11.2",
@@ -13431,7 +13690,8 @@
     "memberOf": "5.9",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v11.2.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "11.1",
@@ -13464,7 +13724,8 @@
     "memberOf": "5.9",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v11.1.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "11.0",
@@ -13497,7 +13758,8 @@
     "memberOf": "5.9",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v11.0.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "10.9",
@@ -13528,7 +13790,8 @@
     "memberOf": "5.9",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v10.9.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "10.8",
@@ -13560,7 +13823,8 @@
     "memberOf": "5.9",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v10.8.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "10.7",
@@ -13594,7 +13858,8 @@
     "isSpecialMarker": true,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v10.7.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "10.6",
@@ -13627,7 +13892,8 @@
     "memberOf": "5.8",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v10.6.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "10.5",
@@ -13657,7 +13923,8 @@
     "memberOf": "5.8",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v10.5.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "10.4",
@@ -13688,7 +13955,8 @@
     "memberOf": "5.8",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v10.4.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "10.3",
@@ -13720,7 +13988,8 @@
     "memberOf": "5.8",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v10.3.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "10.2",
@@ -13754,7 +14023,8 @@
     "memberOf": "5.8",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v10.2.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "10.1",
@@ -13787,7 +14057,8 @@
     "memberOf": "5.8",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v10.1.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "10.0",
@@ -13820,7 +14091,8 @@
     "memberOf": "5.8",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v10.0.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "9.9",
@@ -13855,7 +14127,8 @@
     "isSpecialMarker": true,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v9.9.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "9.8",
@@ -13888,7 +14161,8 @@
     "memberOf": "5.7",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v9.8.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "9.7",
@@ -13921,7 +14195,8 @@
     "memberOf": "5.7",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v9.7.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "9.6",
@@ -13956,7 +14231,8 @@
     "memberOf": "5.7",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v9.6.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "9.5",
@@ -13991,7 +14267,8 @@
     "memberOf": "5.7",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v9.5.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "9.4",
@@ -14026,7 +14303,8 @@
     "memberOf": "5.7",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v9.4.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "9.3",
@@ -14058,7 +14336,8 @@
     "memberOf": "5.7",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v9.3.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "9.2",
@@ -14094,7 +14373,8 @@
     "isSpecialMarker": true,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v9.2.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "9.1",
@@ -14127,7 +14407,8 @@
     "memberOf": "5.6",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v9.1.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "9.0",
@@ -14159,7 +14440,8 @@
     "memberOf": "5.6",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v9.0.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "8.9",
@@ -14193,7 +14475,8 @@
     "memberOf": "5.6",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v8.9.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "8.8",
@@ -14224,7 +14507,8 @@
     "memberOf": "5.6",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v8.8.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "8.7",
@@ -14256,7 +14540,8 @@
     "memberOf": "5.6",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v8.7.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "8.6",
@@ -14291,7 +14576,8 @@
     "memberOf": "5.6",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v8.6.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "8.5",
@@ -14326,7 +14612,8 @@
     "isSpecialMarker": true,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v8.5.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "8.4",
@@ -14361,7 +14648,8 @@
     "memberOf": "5.5",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v8.4.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "8.3",
@@ -14396,7 +14684,8 @@
     "memberOf": "5.5",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v8.3.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "8.2",
@@ -14430,7 +14719,8 @@
     "memberOf": "5.5",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v8.2.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "8.1",
@@ -14465,7 +14755,8 @@
     "memberOf": "5.5",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v8.1.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "8.0",
@@ -14499,7 +14790,8 @@
     "memberOf": "5.5",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v8.0.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "7.9",
@@ -14532,7 +14824,8 @@
     "memberOf": "5.5",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v7.9.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "7.8",
@@ -14563,7 +14856,8 @@
     "memberOf": "5.5",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v7.8.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "7.7",
@@ -14595,7 +14889,8 @@
     "memberOf": "5.5",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v7.7.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "7.6",
@@ -14626,7 +14921,8 @@
     "memberOf": "5.5",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v7.6.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "7.5",
@@ -14658,7 +14954,8 @@
     "isSpecialMarker": true,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v7.5.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "7.4",
@@ -14689,7 +14986,8 @@
     "memberOf": "5.4",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v7.4.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "7.3",
@@ -14720,7 +15018,8 @@
     "memberOf": "5.4",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v7.3.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "7.2",
@@ -14752,7 +15051,8 @@
     "memberOf": "5.4",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v7.2.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "7.1",
@@ -14784,7 +15084,8 @@
     "memberOf": "5.4",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v7.1.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "7.0",
@@ -14815,7 +15116,8 @@
     "memberOf": "5.4",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v7.0.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "6.9",
@@ -14846,7 +15148,8 @@
     "memberOf": "5.4",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v6.9.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "6.8",
@@ -14877,7 +15180,8 @@
     "memberOf": "5.4",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v6.8.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "6.7",
@@ -14908,7 +15212,8 @@
     "memberOf": "5.4",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v6.7.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "6.6",
@@ -14940,7 +15245,8 @@
     "memberOf": "5.4",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v6.6.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "6.5",
@@ -14972,7 +15278,8 @@
     "isSpecialMarker": true,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v6.5.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "6.4",
@@ -15004,7 +15311,8 @@
     "memberOf": "5.3",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v6.4.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "6.3",
@@ -15036,7 +15344,8 @@
     "memberOf": "5.3",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v6.3.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "6.2",
@@ -15065,7 +15374,8 @@
     "memberOf": "5.3",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v6.2.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "6.1",
@@ -15096,7 +15406,8 @@
     "memberOf": "5.3",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v6.1.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "6.0",
@@ -15126,7 +15437,8 @@
     "memberOf": "5.3",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v6.0.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "5.9",
@@ -15156,7 +15468,8 @@
     "memberOf": "5.3",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v5.9.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "5.8",
@@ -15186,7 +15499,8 @@
     "memberOf": "5.3",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v5.8.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "5.7",
@@ -15216,7 +15530,8 @@
     "memberOf": "5.3",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v5.7.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "5.6",
@@ -15246,7 +15561,8 @@
     "memberOf": "5.3",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v5.6.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "5.5",
@@ -15276,7 +15592,8 @@
     "memberOf": "5.3",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v5.5.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "5.4",
@@ -15306,7 +15623,8 @@
     "isSpecialMarker": true,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v5.4.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "5.3",
@@ -15335,7 +15653,8 @@
     "memberOf": "5.2",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v5.3.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "5.2",
@@ -15365,7 +15684,8 @@
     "memberOf": "5.2",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v5.2.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "5.1",
@@ -15396,7 +15716,8 @@
     "memberOf": "5.2",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v5.1.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "5.0",
@@ -15427,7 +15748,8 @@
     "memberOf": "5.2",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v5.0.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "4.9",
@@ -15458,7 +15780,8 @@
     "memberOf": "5.2",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v4.9.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "4.8",
@@ -15490,7 +15813,8 @@
     "isSpecialMarker": true,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v4.8.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "4.7",
@@ -15518,7 +15842,8 @@
     "isSpecialMarker": true,
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v4.7.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "4.6",
@@ -15543,7 +15868,8 @@
     "memberOf": "5.0",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v4.6.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "4.5",
@@ -15568,7 +15894,8 @@
     "memberOf": "5.0",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v4.5.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "4.4",
@@ -15593,7 +15920,8 @@
     "memberOf": "5.0",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v4.4.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "4.3",
@@ -15618,7 +15946,8 @@
     "memberOf": "5.0",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v4.3.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "4.2",
@@ -15643,7 +15972,8 @@
     "memberOf": "5.0",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v4.2.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "4.1",
@@ -15668,7 +15998,8 @@
     "memberOf": "5.0",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v4.1.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "4.0",
@@ -15697,7 +16028,8 @@
     "memberOf": "5.0",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v4.0.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "3.9",
@@ -15721,7 +16053,8 @@
     "date": "2018-09-21",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v3.9.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "3.8",
@@ -15745,7 +16078,8 @@
     "date": "2018-09-12",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v3.8.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "3.7",
@@ -15769,7 +16103,8 @@
     "date": "2018-11-01",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v3.7.1",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "3.6",
@@ -15793,7 +16128,8 @@
     "date": "2018-11-01",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v3.6.3",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "3.5",
@@ -15817,7 +16153,8 @@
     "date": "2018-08-15",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v3.5.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "3.4",
@@ -15841,7 +16178,8 @@
     "date": "2018-07-31",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v3.4.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "3.3",
@@ -15865,7 +16203,8 @@
     "date": "2018-07-20",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v3.3.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "3.1",
@@ -15889,7 +16228,8 @@
     "date": "2018-06-28",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v3.1.1",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   },
   {
     "id": "1.0",
@@ -15911,6 +16251,7 @@
     "date": "2017-08-29",
     "changelogUrl": "https://github.com/WordPress/gutenberg/releases/tag/v1.0.0",
     "contributorsList": [],
-    "newContributorsList": []
+    "newContributorsList": [],
+    "aiPRs": 0
   }
 ]

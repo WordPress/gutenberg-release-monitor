@@ -122,7 +122,17 @@
       }
     },
     "groupedCount": 15,
-    "groupedRange": "22.0-23.4"
+    "groupedRange": "22.0-23.4",
+    "aiPRs": 277,
+    "aiBreakdown": {
+      "byTool": {
+        "claude-code": 208,
+        "cursor": 9,
+        "copilot": 70
+      },
+      "assisted": 246,
+      "autonomous": 31
+    }
   },
   {
     "id": "6.9",
@@ -221,7 +231,17 @@
       }
     },
     "groupedCount": 15,
-    "groupedRange": "20.5-21.9"
+    "groupedRange": "20.5-21.9",
+    "aiPRs": 3,
+    "aiBreakdown": {
+      "byTool": {
+        "claude-code": 1,
+        "cursor": 1,
+        "copilot": 1
+      },
+      "assisted": 3,
+      "autonomous": 0
+    }
   },
   {
     "id": "6.8",
@@ -326,7 +346,8 @@
       }
     },
     "groupedCount": 11,
-    "groupedRange": "19.4-20.4"
+    "groupedRange": "19.4-20.4",
+    "aiPRs": 0
   },
   {
     "id": "6.7",
@@ -415,7 +436,8 @@
       }
     },
     "groupedCount": 8,
-    "groupedRange": "18.6-19.3"
+    "groupedRange": "18.6-19.3",
+    "aiPRs": 0
   },
   {
     "id": "6.6",
@@ -513,7 +535,8 @@
       }
     },
     "groupedCount": 8,
-    "groupedRange": "17.8-18.5"
+    "groupedRange": "17.8-18.5",
+    "aiPRs": 0
   },
   {
     "id": "6.5",
@@ -622,7 +645,8 @@
       }
     },
     "groupedCount": 10,
-    "groupedRange": "16.8-17.7"
+    "groupedRange": "16.8-17.7",
+    "aiPRs": 0
   },
   {
     "id": "6.4",
@@ -720,7 +744,8 @@
       }
     },
     "groupedCount": 6,
-    "groupedRange": "16.2-16.7"
+    "groupedRange": "16.2-16.7",
+    "aiPRs": 0
   },
   {
     "id": "6.3",
@@ -816,7 +841,8 @@
       }
     },
     "groupedCount": 10,
-    "groupedRange": "15.2-16.1"
+    "groupedRange": "15.2-16.1",
+    "aiPRs": 0
   },
   {
     "id": "6.2",
@@ -921,7 +947,8 @@
       }
     },
     "groupedCount": 10,
-    "groupedRange": "14.2-15.1"
+    "groupedRange": "14.2-15.1",
+    "aiPRs": 0
   },
   {
     "id": "6.1",
@@ -1029,7 +1056,8 @@
       }
     },
     "groupedCount": 11,
-    "groupedRange": "13.1-14.1"
+    "groupedRange": "13.1-14.1",
+    "aiPRs": 0
   },
   {
     "id": "6.0",
@@ -1110,7 +1138,8 @@
       }
     },
     "groupedCount": 11,
-    "groupedRange": "12.0-13.0"
+    "groupedRange": "12.0-13.0",
+    "aiPRs": 0
   },
   {
     "id": "5.9",
@@ -1138,7 +1167,8 @@
       "countryBreakdown": {}
     },
     "groupedCount": 12,
-    "groupedRange": "10.8-11.9"
+    "groupedRange": "10.8-11.9",
+    "aiPRs": 0
   },
   {
     "id": "5.8",
@@ -1166,7 +1196,8 @@
       "countryBreakdown": {}
     },
     "groupedCount": 8,
-    "groupedRange": "10.0-10.7"
+    "groupedRange": "10.0-10.7",
+    "aiPRs": 0
   },
   {
     "id": "5.7",
@@ -1194,7 +1225,8 @@
       "countryBreakdown": {}
     },
     "groupedCount": 7,
-    "groupedRange": "9.3-9.9"
+    "groupedRange": "9.3-9.9",
+    "aiPRs": 0
   },
   {
     "id": "5.6",
@@ -1222,7 +1254,8 @@
       "countryBreakdown": {}
     },
     "groupedCount": 7,
-    "groupedRange": "8.6-9.2"
+    "groupedRange": "8.6-9.2",
+    "aiPRs": 0
   },
   {
     "id": "5.5",
@@ -1250,7 +1283,8 @@
       "countryBreakdown": {}
     },
     "groupedCount": 10,
-    "groupedRange": "7.6-8.5"
+    "groupedRange": "7.6-8.5",
+    "aiPRs": 0
   },
   {
     "id": "5.4",
@@ -1278,7 +1312,8 @@
       "countryBreakdown": {}
     },
     "groupedCount": 10,
-    "groupedRange": "6.6-7.5"
+    "groupedRange": "6.6-7.5",
+    "aiPRs": 0
   },
   {
     "id": "5.3",
@@ -1306,7 +1341,8 @@
       "countryBreakdown": {}
     },
     "groupedCount": 11,
-    "groupedRange": "5.5-6.5"
+    "groupedRange": "5.5-6.5",
+    "aiPRs": 0
   },
   {
     "id": "5.2",
@@ -1334,7 +1370,8 @@
       "countryBreakdown": {}
     },
     "groupedCount": 6,
-    "groupedRange": "4.9-5.4"
+    "groupedRange": "4.9-5.4",
+    "aiPRs": 0
   },
   {
     "id": "5.1",
@@ -1362,7 +1399,8 @@
       "countryBreakdown": {}
     },
     "groupedCount": 1,
-    "groupedRange": "4.8-4.8"
+    "groupedRange": "4.8-4.8",
+    "aiPRs": 0
   },
   {
     "id": "5.0",
@@ -1390,6 +1428,7 @@
       "countryBreakdown": {}
     },
     "groupedCount": 8,
-    "groupedRange": "4.0-4.7"
+    "groupedRange": "4.0-4.7",
+    "aiPRs": 0
   }
 ]
