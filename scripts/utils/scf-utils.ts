@@ -38,6 +38,59 @@ export function isValidVersion(title: string): boolean {
   return /^\d+\.\d+(\.\d+)?$/.test(title);
 }
 
+const MONTH_INDEX: Record<string, number> = {
+  jan: 0,
+  january: 0,
+  feb: 1,
+  february: 1,
+  mar: 2,
+  march: 2,
+  apr: 3,
+  april: 3,
+  may: 4,
+  jun: 5,
+  june: 5,
+  jul: 6,
+  july: 6,
+  aug: 7,
+  august: 7,
+  sep: 8,
+  sept: 8,
+  september: 8,
+  oct: 9,
+  october: 9,
+  nov: 10,
+  november: 10,
+  dec: 11,
+  december: 11,
+};
+
+/**
+ * Parse WordPress.org dates like "30 Dec 2025" without depending on the
+ * machine's local timezone. Returns YYYY-MM-DD, or null for invalid input.
+ */
+export function parseWPOrgReleaseDate(dateStr: string): string | null {
+  const match = dateStr.trim().match(/^(\d{1,2})\s+([A-Za-z]+)\s+(\d{4})$/);
+  if (!match) return null;
+
+  const day = Number(match[1]);
+  const month = MONTH_INDEX[match[2].toLowerCase()];
+  const year = Number(match[3]);
+
+  if (month === undefined) return null;
+
+  const date = new Date(Date.UTC(year, month, day));
+  if (
+    date.getUTCFullYear() !== year ||
+    date.getUTCMonth() !== month ||
+    date.getUTCDate() !== day
+  ) {
+    return null;
+  }
+
+  return date.toISOString().split('T')[0];
+}
+
 /**
  * Group releases by minor version.
  * E.g., 6.7.0, 6.7.1, 6.7.2 → 6.7

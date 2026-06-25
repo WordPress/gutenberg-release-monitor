@@ -17,6 +17,7 @@ import {
   filterMergedPRs,
 } from './utils/github-api.js';
 import { toNormalizedRelease, compareVersions } from './utils/release-utils.js';
+import { parseWPOrgReleaseDate } from './utils/scf-utils.js';
 import type { GitHubMilestone, GitHubIssue, RepoIdentifier } from './utils/types.js';
 import type { Release } from './types.js';
 
@@ -76,20 +77,15 @@ async function fetchWPOrgReleaseDates(): Promise<Record<string, string>> {
       const version = versionMatch[1];
       const versionEndPos = versionMatch.index + versionMatch[0].length;
 
-      // Look for release date after this version header
+      // Find the release date that belongs to this version heading.
       datePattern.lastIndex = versionEndPos;
       const dateMatch = datePattern.exec(changelog);
 
       if (dateMatch && dateMatch.index < versionEndPos + 200) {
         const dateStr = dateMatch[1];
-        // Parse "30 Dec 2025" to ISO date
-        try {
-          const date = new Date(dateStr);
-          if (!isNaN(date.getTime())) {
-            dates[version] = date.toISOString().split('T')[0];
-          }
-        } catch {
-          // Skip invalid dates
+        const date = parseWPOrgReleaseDate(dateStr);
+        if (date) {
+          dates[version] = date;
         }
       }
     }
