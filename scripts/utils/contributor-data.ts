@@ -19,6 +19,7 @@ export interface UsernameMapping {
 		totalScanned: number;
 		withLinkedGithub: number;
 		differentUsernames: number;
+		skippedProfiles?: number;
 		builtAt: string;
 	};
 }
@@ -103,11 +104,19 @@ export async function fetchContributorData(
 	mapping: UsernameMapping | null,
 	delayMs: number,
 	verbose: boolean
-): Promise< ContributorData > {
+): Promise< ContributorData | null > {
 	const wporgUsername = resolveWporgUsername( githubUsername, mapping );
 
 	// Fetch WP.org profile
 	const wpProfile = await fetchWPOrgProfile( wporgUsername );
+	if ( ! wpProfile ) {
+		if ( verbose ) {
+			console.warn(
+				`\n   Warning: Could not fetch the WP.org profile for ${ wporgUsername }; leaving this contributor out of the fetched profile data`
+			);
+		}
+		return null;
+	}
 
 	let sponsor = isUnavailableSponsorValue( wpProfile.employer )
 		? null
@@ -177,7 +186,9 @@ export async function fetchContributorProfiles(
 			delayMs,
 			verbose
 		);
-		contributorDataMap.set( username.toLowerCase(), data );
+		if ( data ) {
+			contributorDataMap.set( username.toLowerCase(), data );
+		}
 
 		if ( onProgress ) {
 			onProgress( i + 1, toFetch.length );

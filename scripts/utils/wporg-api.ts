@@ -7,12 +7,75 @@
 import type { ContributorProfile } from './types.js';
 
 const WPORG_PROFILE_BASE = 'https://profiles.wordpress.org';
+const DEFAULT_MAX_ATTEMPTS = 3;
+const DEFAULT_INITIAL_RETRY_DELAY_MS = 1000;
+const DEFAULT_BACKOFF_FACTOR = 2;
+
+export interface FetchWPOrgProfileOptions {
+	maxAttempts?: number;
+	initialRetryDelayMs?: number;
+	backoffFactor?: number;
+}
 
 /**
  * Delay helper for rate limiting.
  */
 function delay( ms: number ): Promise< void > {
 	return new Promise( ( resolve ) => setTimeout( resolve, ms ) );
+}
+
+function createMissingProfile( username: string ): ContributorProfile {
+	return {
+		username,
+		wpProfileExists: false,
+		employer: null,
+		location: null,
+		memberSince: null,
+		badges: [],
+		wporgLinkedGitHubUsername: null,
+		githubCompany: null,
+		githubLocation: null,
+		employerSource: null,
+		fetchedAt: new Date().toISOString(),
+	};
+}
+
+function shouldRetryStatus( status: number ): boolean {
+	return status === 429 || status >= 500;
+}
+
+function parseRetryAfterMs( response: Response ): number | null {
+	const retryAfter = response.headers.get( 'retry-after' );
+	if ( ! retryAfter ) {
+		return null;
+	}
+
+	const seconds = Number.parseFloat( retryAfter );
+	if ( Number.isFinite( seconds ) ) {
+		return Math.max( 0, seconds * 1000 );
+	}
+
+	const retryDate = Date.parse( retryAfter );
+	if ( Number.isNaN( retryDate ) ) {
+		return null;
+	}
+
+	return Math.max( 0, retryDate - Date.now() );
+}
+
+function getRetryDelayMs(
+	attemptIndex: number,
+	response: Response | null,
+	options: Required< FetchWPOrgProfileOptions >
+): number {
+	if ( response ) {
+		const retryAfterMs = parseRetryAfterMs( response );
+		if ( retryAfterMs !== null ) {
+			return retryAfterMs;
+		}
+	}
+
+	return options.initialRetryDelayMs * options.backoffFactor ** attemptIndex;
 }
 
 /**
@@ -124,82 +187,84 @@ function parseMemberSinceDate( dateStr: string ): string | null {
  * Fetch and parse a single WordPress.org profile.
  */
 export async function fetchWPOrgProfile(
-	username: string
-): Promise< ContributorProfile > {
+	username: string,
+	options?: FetchWPOrgProfileOptions
+): Promise< ContributorProfile | null > {
 	const url = `${ WPORG_PROFILE_BASE }/${ username }`;
-	const now = new Date().toISOString();
+	const retryOptions: Required< FetchWPOrgProfileOptions > = {
+		maxAttempts: Math.max( 1, options?.maxAttempts ?? DEFAULT_MAX_ATTEMPTS ),
+		initialRetryDelayMs: Math.max(
+			0,
+			options?.initialRetryDelayMs ?? DEFAULT_INITIAL_RETRY_DELAY_MS
+		),
+		backoffFactor: Math.max(
+			1,
+			options?.backoffFactor ?? DEFAULT_BACKOFF_FACTOR
+		),
+	};
 
-	try {
-		const response = await fetch( url );
+	for ( let attempt = 0; attempt < retryOptions.maxAttempts; attempt++ ) {
+		try {
+			const response = await fetch( url );
 
-		if ( ! response.ok ) {
+			if ( response.status === 404 ) {
+				return createMissingProfile( username );
+			}
+
+			if ( ! response.ok ) {
+				if (
+					shouldRetryStatus( response.status ) &&
+					attempt < retryOptions.maxAttempts - 1
+				) {
+					await delay( getRetryDelayMs( attempt, response, retryOptions ) );
+					continue;
+				}
+
+				console.warn(
+					`Could not fetch WP.org profile for ${ username }; leaving it out: ${ response.status } ${ response.statusText }`
+				);
+				return null;
+			}
+
+			const html = await response.text();
+
+			// Treat a 200 response without the profile marker as a missing profile.
+			if ( ! html.includes( 'id="user-member-since"' ) ) {
+				return createMissingProfile( username );
+			}
+
+			const memberSinceRaw = extractFieldById( html, 'user-member-since' );
+			const employer = extractFieldById( html, 'user-company' );
+			const linkedGitHub = extractGitHubUsername( html );
+
 			return {
 				username,
-				wpProfileExists: false,
-				employer: null,
-				location: null,
-				memberSince: null,
-				badges: [],
-				wporgLinkedGitHubUsername: null,
+				wpProfileExists: true,
+				employer,
+				location: extractFieldById( html, 'user-location' ),
+				memberSince: parseMemberSinceDate( memberSinceRaw || '' ),
+				badges: extractBadges( html ),
+				wporgLinkedGitHubUsername: linkedGitHub,
 				githubCompany: null,
 				githubLocation: null,
-				employerSource: null,
-				fetchedAt: now,
+				employerSource: employer ? 'wporg' : null,
+				fetchedAt: new Date().toISOString(),
 			};
+		} catch ( error ) {
+			if ( attempt < retryOptions.maxAttempts - 1 ) {
+				await delay( getRetryDelayMs( attempt, null, retryOptions ) );
+				continue;
+			}
+
+			console.warn(
+				`Could not fetch WP.org profile for ${ username }; leaving it out:`,
+				error
+			);
+			return null;
 		}
-
-		const html = await response.text();
-
-		// Check if this is actually a valid profile (not a 404 page that returned 200)
-		if ( ! html.includes( 'id="user-member-since"' ) ) {
-			return {
-				username,
-				wpProfileExists: false,
-				employer: null,
-				location: null,
-				memberSince: null,
-				badges: [],
-				wporgLinkedGitHubUsername: null,
-				githubCompany: null,
-				githubLocation: null,
-				employerSource: null,
-				fetchedAt: now,
-			};
-		}
-
-		const memberSinceRaw = extractFieldById( html, 'user-member-since' );
-		const employer = extractFieldById( html, 'user-company' );
-		const linkedGitHub = extractGitHubUsername( html );
-
-		return {
-			username,
-			wpProfileExists: true,
-			employer,
-			location: extractFieldById( html, 'user-location' ),
-			memberSince: parseMemberSinceDate( memberSinceRaw || '' ),
-			badges: extractBadges( html ),
-			wporgLinkedGitHubUsername: linkedGitHub,
-			githubCompany: null,
-			githubLocation: null,
-			employerSource: employer ? 'wporg' : null,
-			fetchedAt: now,
-		};
-	} catch ( error ) {
-		console.error( `Error fetching profile for ${ username }:`, error );
-		return {
-			username,
-			wpProfileExists: false,
-			employer: null,
-			location: null,
-			memberSince: null,
-			badges: [],
-			wporgLinkedGitHubUsername: null,
-			githubCompany: null,
-			githubLocation: null,
-			employerSource: null,
-			fetchedAt: now,
-		};
 	}
+
+	return null;
 }
 
 /**
@@ -218,7 +283,9 @@ export async function fetchContributorProfiles(
 	for ( let i = 0; i < usernames.length; i++ ) {
 		const username = usernames[ i ];
 		const profile = await fetchWPOrgProfile( username );
-		profiles.push( profile );
+		if ( profile ) {
+			profiles.push( profile );
+		}
 
 		if ( options?.onProgress ) {
 			options.onProgress( i + 1, usernames.length );

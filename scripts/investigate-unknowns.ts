@@ -134,8 +134,8 @@ async function main(): Promise<void> {
 		await delay(delayMs);
 
 		// Determine final values (simulating current logic)
-		let finalSponsor = wpProfile.employer || null;
-		let finalLocation = wpProfile.location || null;
+		let finalSponsor = wpProfile?.employer || null;
+		let finalLocation = wpProfile?.location || null;
 
 		// Current buggy logic: only check GitHub if no WP.org sponsor
 		if (!finalSponsor && ghProfile) {
@@ -161,8 +161,8 @@ async function main(): Promise<void> {
 		results.push({
 			github: githubUsername,
 			wporg: wporgUsername !== githubUsername ? wporgUsername : null,
-			wporgSponsor: wpProfile.employer || null,
-			wporgLocation: wpProfile.location || null,
+			wporgSponsor: wpProfile?.employer || null,
+			wporgLocation: wpProfile?.location || null,
 			githubCompany: ghProfile?.company || null,
 			githubLocation: ghProfile?.location || null,
 			normalizedSponsor,

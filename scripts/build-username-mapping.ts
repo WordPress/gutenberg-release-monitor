@@ -88,6 +88,7 @@ interface UsernameMapping {
 		totalScanned: number;
 		withLinkedGithub: number;
 		differentUsernames: number;
+		skippedProfiles: number;
 		builtAt: string;
 	};
 }
@@ -110,12 +111,15 @@ async function main(): Promise< void > {
 	const githubToWporg: Record< string, string > = {};
 	let withLinkedGithub = 0;
 	let differentUsernames = 0;
+	let skippedProfiles = 0;
 
 	for ( let i = 0; i < wporgUsernames.length; i++ ) {
 		const wporgUsername = wporgUsernames[ i ];
 		const profile = await fetchWPOrgProfile( wporgUsername );
 
-		if ( profile.wpProfileExists && profile.wporgLinkedGitHubUsername ) {
+		if ( ! profile ) {
+			skippedProfiles++;
+		} else if ( profile.wpProfileExists && profile.wporgLinkedGitHubUsername ) {
 			const githubUsername = profile.wporgLinkedGitHubUsername;
 			const githubLower = githubUsername.toLowerCase();
 			const wporgLower = wporgUsername.toLowerCase();
@@ -133,7 +137,7 @@ async function main(): Promise< void > {
 		const pct = ( ( ( i + 1 ) / wporgUsernames.length ) * 100 ).toFixed( 0 );
 		const elapsed = Math.floor( ( i + 1 ) * args.delay / 1000 / 60 );
 		process.stdout.write(
-			`\r   Progress: ${ i + 1 }/${ wporgUsernames.length } (${ pct }%) - ${ withLinkedGithub } with GitHub - ~${ elapsed }m elapsed`
+			`\r   Progress: ${ i + 1 }/${ wporgUsernames.length } (${ pct }%) - ${ withLinkedGithub } with GitHub - skipped: ${ skippedProfiles } - ~${ elapsed }m elapsed`
 		);
 
 		if ( i < wporgUsernames.length - 1 ) {
@@ -151,6 +155,7 @@ async function main(): Promise< void > {
 			totalScanned: wporgUsernames.length,
 			withLinkedGithub,
 			differentUsernames,
+			skippedProfiles,
 			builtAt: new Date().toISOString(),
 		},
 	};
@@ -169,6 +174,7 @@ async function main(): Promise< void > {
 	console.log( `With linked GitHub account:    ${ withLinkedGithub } (${ ( withLinkedGithub / wporgUsernames.length * 100 ).toFixed( 1 ) }%)` );
 	console.log( `Different usernames (stored):  ${ differentUsernames }` );
 	console.log( `Identical (not stored):        ${ withLinkedGithub - differentUsernames }` );
+	console.log( `Skipped because WP.org failed: ${ skippedProfiles }` );
 	console.log( written ? `\n✅ Wrote ${ args.output }` : `\n✅ No changes to ${ args.output }` );
 }
 

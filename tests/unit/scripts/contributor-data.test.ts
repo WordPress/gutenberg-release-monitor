@@ -1,7 +1,24 @@
-import { describe, expect, it } from 'vitest';
-import { isUnavailableSponsorValue } from '../../../scripts/utils/contributor-data.js';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+import {
+	fetchContributorProfiles,
+	isUnavailableSponsorValue,
+} from '../../../scripts/utils/contributor-data.js';
+import { fetchGitHubUserProfile } from '../../../scripts/utils/github-api.js';
+import { fetchWPOrgProfile } from '../../../scripts/utils/wporg-api.js';
+
+vi.mock( '../../../scripts/utils/wporg-api.js', () => ( {
+	fetchWPOrgProfile: vi.fn(),
+} ) );
+
+vi.mock( '../../../scripts/utils/github-api.js', () => ( {
+	fetchGitHubUserProfile: vi.fn(),
+} ) );
 
 describe('contributor data utilities', () => {
+	beforeEach( () => {
+		vi.clearAllMocks();
+	} );
+
 	describe('isUnavailableSponsorValue', () => {
 		it('treats empty and placeholder values as missing', () => {
 			expect(isUnavailableSponsorValue(null)).toBe(true);
@@ -17,4 +34,18 @@ describe('contributor data utilities', () => {
 			expect(isUnavailableSponsorValue('Self-employed')).toBe(false);
 		});
 	});
+
+	describe( 'fetchContributorProfiles', () => {
+		it( 'leaves a contributor out when WP.org profile fetch is skipped', async () => {
+			vi.mocked( fetchWPOrgProfile ).mockResolvedValueOnce( null );
+
+			const profiles = await fetchContributorProfiles( [ 'example-user' ], null, {
+				delayMs: 0,
+				verbose: false,
+			} );
+
+			expect( profiles.has( 'example-user' ) ).toBe( false );
+			expect( fetchGitHubUserProfile ).not.toHaveBeenCalled();
+		} );
+	} );
 });
