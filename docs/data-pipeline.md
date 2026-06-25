@@ -102,6 +102,7 @@ npm run data-sync:contributor-stats
 - `public/data/gb-releases.json` - For contributor lists
 - WP.org API - For contributor profiles
 - GitHub API - For fallback profile data
+- `scripts/data/geocode-cache.json` - Country cache keyed by hashed location
 
 **Output**: Updates `gb-releases.json` and `wp-cycles.json` with `contributorAggregates`
 
@@ -110,9 +111,15 @@ npm run data-sync:contributor-stats
 1. Load contributor list from release changelog
 1. Fetch WP.org profile for each contributor
 1. Extract company/sponsor from profile
-1. Geocode location to country
+1. Resolve country from location, checking local aliases and the cache before Nominatim
 1. Aggregate counts (no individual data stored)
 1. Write aggregates back to release data
+
+**Geocoding reliability**:
+
+Geocoding checks local aliases first, then the persisted cache. It calls OpenStreetMap Nominatim only when neither can answer. The cache keeps a SHA-256 hash of the cleaned location with the resolved country and status, never the raw profile location.
+
+Temporary Nominatim problems such as 403, 429, 5xx, timeouts, and network errors are retried with backoff. If they still fail, the contributor aggregate script stops before writing release data. A bad API day should not turn real countries into `"Unknown"` in committed data.
 
 **Privacy Model**:
 

@@ -351,6 +351,7 @@ async function main(): Promise< void > {
 		console.log( `🌍 Geocoding ${ allLocations.length } locations...` );
 		await batchGeocodeLocations( allLocations, {
 			delayMs: 1100, // Nominatim rate limit (1 req/sec)
+			writeCache: ! args.dryRun,
 			onProgress: ( done, total ) => {
 				const pct = ( ( done / total ) * 100 ).toFixed( 0 );
 				process.stdout.write( `\r   Progress: ${ done }/${ total } (${ pct }%)` );
