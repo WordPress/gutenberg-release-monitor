@@ -16,7 +16,7 @@ const PR_LINK_REGEX = /\(\[(\d+)\]\([^)]+\)\)/g;
  * Regex to match inline GitHub PR links (v6-v7 format).
  * Matches patterns like: [description](https://github.com/WordPress/gutenberg/pull/12345)
  */
-const INLINE_PR_LINK_REGEX = /\[[^\]]+\]\(https:\/\/github\.com\/[^)]*\/pull\/\d+[^)]*\)/g;
+const INLINE_PR_LINK_REGEX = /\[[^\]]+\]\(https:\/\/github\.com\/[^)]*\/pull\/(\d+)[^)]*\)/g;
 
 /**
  * Regex to match bullet points for old changelog format (v5 and earlier).
@@ -59,6 +59,7 @@ function parseHtmlChangelog(body: string): {
   totalPRs: number;
 } {
   const categories: Record<string, number> = {};
+  const seenPRs = new Set<string>();
 
   // Split by <h2> headers to find sections
   const sections = body.split(/<h2>/i);
@@ -71,9 +72,9 @@ function parseHtmlChangelog(body: string): {
     const category = headerMatch[1].trim();
 
     // Count PR links in this section (pull/12345 format)
-    const prMatches = section.match(HTML_PR_LINK_REGEX) || [];
-    if (prMatches.length > 0) {
-      categories[category] = prMatches.length;
+    const count = countPRs(section, seenPRs);
+    if (count > 0) {
+      categories[category] = count;
     }
   }
 
@@ -88,17 +89,39 @@ function parseHtmlChangelog(body: string): {
  * - Mid-era (v6-v7): [description](url) inline links
  * - Legacy (v5-): Just bullet points with no PR links
  */
-function countPRs(text: string): number {
-  // Try modern format first: ([12345](url))
-  const modernMatches = text.match(PR_LINK_REGEX);
-  if (modernMatches && modernMatches.length > 0) {
-    return modernMatches.length;
+function countPRs(text: string, seenPRs = new Set<string>()): number {
+  let count = 0;
+  let foundPRLink = false;
+
+  for (const match of text.matchAll(PR_LINK_REGEX)) {
+    foundPRLink = true;
+    const prNumber = match[1];
+    if (!seenPRs.has(prNumber)) {
+      seenPRs.add(prNumber);
+      count++;
+    }
   }
 
-  // Try inline PR links: [text](github.com/.../pull/123)
-  const inlineMatches = text.match(INLINE_PR_LINK_REGEX);
-  if (inlineMatches && inlineMatches.length > 0) {
-    return inlineMatches.length;
+  for (const match of text.matchAll(INLINE_PR_LINK_REGEX)) {
+    foundPRLink = true;
+    const prNumber = match[1];
+    if (!seenPRs.has(prNumber)) {
+      seenPRs.add(prNumber);
+      count++;
+    }
+  }
+
+  for (const match of text.matchAll(HTML_PR_LINK_REGEX)) {
+    foundPRLink = true;
+    const prNumber = match[1];
+    if (!seenPRs.has(prNumber)) {
+      seenPRs.add(prNumber);
+      count++;
+    }
+  }
+
+  if (foundPRLink) {
+    return count;
   }
 
   // Fall back to counting bullet points for old format
@@ -112,36 +135,49 @@ function countPRs(text: string): number {
   return bulletCount;
 }
 
-/**
- * Parse changelog format (supports both modern v12+ and legacy formats).
- * Uses ### Category and #### Subcategory headers.
- * Returns raw categories as the source of truth - no computed fields.
- */
-export function parseModernChangelog(body: string): {
-  categories: Record<string, number>;
-  totalPRs: number;
-} {
-  // Normalize line endings (GitHub API returns \r\n)
-  const normalizedBody = body.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+function addCategoryCount(
+  categories: Record<string, number>,
+  category: string,
+  content: string,
+  seenPRs: Set<string>
+): boolean {
+  if (!category || !content) return false;
 
-  // Detect HTML format (v5.x releases) - delegate to specialized parser
-  if (normalizedBody.includes('<h2>') && normalizedBody.includes('<ul>')) {
-    return parseHtmlChangelog(normalizedBody);
+  const count = countPRs(content, seenPRs);
+  if (count > 0) {
+    categories[category] = (categories[category] || 0) + count;
+    return true;
   }
 
-  const lines = normalizedBody.split('\n');
-  const categories: Record<string, number> = {};
+  return false;
+}
 
+function isChangelogCategoryHeader(line: string): boolean {
+  return (
+    CATEGORY_HEADER_REGEX.test(line) &&
+    !line.match(/^##\s+Changelog/i) &&
+    !CONTRIBUTORS_SECTION_REGEX.test(line) &&
+    !FIRST_TIME_CONTRIBUTORS_REGEX.test(line)
+  );
+}
+
+function parseChangelogSection(
+  body: string,
+  categories: Record<string, number>,
+  seenPRs: Set<string>
+): void {
+  const lines = body.split('\n');
   let currentCategory = '';
   let currentCategoryContent = '';
+  let hasParsedCategory = false;
   let uncategorizedContent = ''; // For changelogs without category headers
 
   // Check if there's a "## Changelog" header - if not, assume whole body is changelog (legacy format)
-  const hasChangelogHeader = normalizedBody.includes('## Changelog');
+  const hasChangelogHeader = body.includes('## Changelog');
   let inChangelog = !hasChangelogHeader; // Start in changelog mode for legacy format
 
   // Check if there are any category headers (## or ###)
-  const hasCategoryHeaders = normalizedBody.match(CATEGORY_HEADER_REGEX);
+  const hasCategoryHeaders = lines.some((line) => isChangelogCategoryHeader(line));
 
   for (const line of lines) {
     // Check for changelog section start (modern format)
@@ -153,13 +189,15 @@ export function parseModernChangelog(body: string): {
     // Stop at contributors section - but only if we've already parsed changelog content
     // This handles cases where Contributors appears before Changelog (e.g., 15.8.0)
     if (CONTRIBUTORS_SECTION_REGEX.test(line) || FIRST_TIME_CONTRIBUTORS_REGEX.test(line)) {
-      const hasContent = Object.keys(categories).length > 0 || (currentCategory && currentCategoryContent);
+      const hasContent =
+        hasParsedCategory ||
+        (currentCategory && currentCategoryContent) ||
+        uncategorizedContent;
       if (hasContent) {
         // Save last category before exiting
-        if (currentCategory && currentCategoryContent) {
-          const count = countPRs(currentCategoryContent);
-          categories[currentCategory] = count;
-        }
+        hasParsedCategory =
+          addCategoryCount(categories, currentCategory, currentCategoryContent, seenPRs) ||
+          hasParsedCategory;
         break;
       }
       // Otherwise, Contributors is before Changelog - skip it
@@ -172,10 +210,9 @@ export function parseModernChangelog(body: string): {
     const categoryMatch = line.match(CATEGORY_HEADER_REGEX);
     if (categoryMatch) {
       // Save previous category
-      if (currentCategory && currentCategoryContent) {
-        const count = countPRs(currentCategoryContent);
-        categories[currentCategory] = count;
-      }
+      hasParsedCategory =
+        addCategoryCount(categories, currentCategory, currentCategoryContent, seenPRs) ||
+        hasParsedCategory;
 
       currentCategory = categoryMatch[1].trim();
       currentCategoryContent = '';
@@ -197,81 +234,54 @@ export function parseModernChangelog(body: string): {
   }
 
   // Handle last category if we didn't hit contributors section
-  if (currentCategory && currentCategoryContent) {
-    const count = countPRs(currentCategoryContent);
-    if (!categories[currentCategory]) {
-      categories[currentCategory] = count;
-    }
-  }
+  addCategoryCount(categories, currentCategory, currentCategoryContent, seenPRs);
 
   // Handle changelogs without category headers (very old format)
   if (uncategorizedContent) {
-    const uncategorizedPRs = countPRs(uncategorizedContent);
+    const uncategorizedPRs = countPRs(uncategorizedContent, seenPRs);
     if (uncategorizedPRs > 0) {
-      categories['Uncategorized'] = uncategorizedPRs;
+      categories['Uncategorized'] = (categories['Uncategorized'] || 0) + uncategorizedPRs;
     }
   }
+}
+
+/**
+ * Parse changelog format (supports both modern v12+ and legacy formats).
+ * Uses ### Category and #### Subcategory headers.
+ * Returns raw categories as the source of truth - no computed fields.
+ */
+export function parseModernChangelog(body: string): {
+  categories: Record<string, number>;
+  totalPRs: number;
+} {
+  // Normalize line endings (GitHub API returns \r\n)
+  const normalizedBody = body.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+
+  // Detect HTML format (v5.x releases) - delegate to specialized parser
+  if (normalizedBody.includes('<h2>') && normalizedBody.includes('<ul>')) {
+    return parseHtmlChangelog(normalizedBody);
+  }
+
+  const categories: Record<string, number> = {};
+  const seenPRs = new Set<string>();
 
   // Check for RC sections (format: = X.Y.Z-rc.N =) - these contain the main changelog
   // This handles releases like 16.8.0, 17.2.0, 17.3.0 where the main changelog is in RC sections
   // Some releases have multiple RC sections (e.g., 16.8.0 has rc.2 and rc.1)
   const rcMatches = [...normalizedBody.matchAll(/^= \d+\.\d+\.\d+-rc\.\d+ =/gm)];
-  for (const rcMatch of rcMatches) {
-    const rcStart = rcMatch.index!;
-    // Find the end of this RC section (next RC section or end of body)
-    const nextRcIndex = rcMatches.find((m) => m.index! > rcStart)?.index;
-    const rcBody = nextRcIndex
-      ? normalizedBody.slice(rcStart, nextRcIndex)
-      : normalizedBody.slice(rcStart);
+  if (rcMatches.length > 0) {
+    for (const rcMatch of rcMatches) {
+      const rcStart = rcMatch.index!;
+      // Find the end of this RC section (next RC section or end of body)
+      const nextRcIndex = rcMatches.find((m) => m.index! > rcStart)?.index;
+      const rcBody = nextRcIndex
+        ? normalizedBody.slice(rcStart, nextRcIndex)
+        : normalizedBody.slice(rcStart);
 
-    // Parse this RC section
-    const rcLines = rcBody.split('\n');
-    let rcInChangelog = false;
-    let rcCurrentCategory = '';
-    let rcCurrentCategoryContent = '';
-
-    for (const line of rcLines) {
-      if (line.match(/^##\s+Changelog/i)) {
-        rcInChangelog = true;
-        continue;
-      }
-
-      // Stop at contributors section in RC
-      if (CONTRIBUTORS_SECTION_REGEX.test(line) || FIRST_TIME_CONTRIBUTORS_REGEX.test(line)) {
-        if (rcCurrentCategory && rcCurrentCategoryContent) {
-          const count = countPRs(rcCurrentCategoryContent);
-          categories[rcCurrentCategory] = (categories[rcCurrentCategory] || 0) + count;
-        }
-        break;
-      }
-
-      if (!rcInChangelog) continue;
-
-      const categoryMatch = line.match(CATEGORY_HEADER_REGEX);
-      if (categoryMatch) {
-        if (rcCurrentCategory && rcCurrentCategoryContent) {
-          const count = countPRs(rcCurrentCategoryContent);
-          categories[rcCurrentCategory] = (categories[rcCurrentCategory] || 0) + count;
-        }
-        rcCurrentCategory = categoryMatch[1].trim();
-        rcCurrentCategoryContent = '';
-        continue;
-      }
-
-      if (SUBCATEGORY_HEADER_REGEX.test(line)) {
-        continue;
-      }
-
-      if (rcCurrentCategory) {
-        rcCurrentCategoryContent += line + '\n';
-      }
+      parseChangelogSection(rcBody, categories, seenPRs);
     }
-
-    // Handle last category from this RC section
-    if (rcCurrentCategory && rcCurrentCategoryContent) {
-      const count = countPRs(rcCurrentCategoryContent);
-      categories[rcCurrentCategory] = (categories[rcCurrentCategory] || 0) + count;
-    }
+  } else {
+    parseChangelogSection(normalizedBody, categories, seenPRs);
   }
 
   const totalPRs = Object.values(categories).reduce((sum, count) => sum + count, 0);
