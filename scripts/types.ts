@@ -3,6 +3,8 @@
  * These are internal to scripts - UI uses types from src/data/normalized.ts
  */
 
+import type { AIBreakdown } from '../src/data/normalized.js';
+
 /** Contributor aggregate statistics */
 export interface ReleaseContributorAggregates {
   stats: {
@@ -30,6 +32,8 @@ export interface Release {
   changelogUrl: string;
   parsedAt: string;
   parserVersion: string;
+  aiPRs?: number;
+  aiBreakdown?: AIBreakdown;
 }
 
 /** WordPress release schedule entry */
@@ -40,4 +44,3 @@ export interface WPRelease {
   lastGBVersion: string;
   gbVersionRange: string;
 }
-

@@ -162,6 +162,40 @@ describe('aggregatePatchReleases', () => {
     });
   });
 
+  it('should aggregate AI metrics across patch releases', () => {
+    const releases = [
+      createMockRelease('21.1.0', {
+        aiPRs: 5,
+        aiBreakdown: { byTool: { 'claude-code': 4, copilot: 1 }, nonAgent: 5, agent: 0 },
+      }),
+      createMockRelease('21.1.1', {
+        aiPRs: 2,
+        aiBreakdown: { byTool: { copilot: 2 }, nonAgent: 1, agent: 1 },
+      }),
+    ];
+
+    const result = aggregatePatchReleases(releases);
+
+    expect(result[0].aiPRs).toBe(7); // 5 + 2
+    expect(result[0].aiBreakdown).toEqual({
+      byTool: { 'claude-code': 4, copilot: 3 }, // 1 + 2
+      nonAgent: 6,
+      agent: 1,
+    });
+  });
+
+  it('should leave AI metrics undefined when no patch release has them', () => {
+    const releases = [
+      createMockRelease('21.1.0'),
+      createMockRelease('21.1.1'),
+    ];
+
+    const result = aggregatePatchReleases(releases);
+
+    expect(result[0].aiPRs).toBeUndefined();
+    expect(result[0].aiBreakdown).toBeUndefined();
+  });
+
   it('should deduplicate contributors across patch releases', () => {
     const releases = [
       createMockRelease('21.1.0', {
@@ -382,6 +416,33 @@ describe('toNormalizedRelease', () => {
 
     expect(result.contributorsList).toEqual(['user1', 'user2', 'user3']);
     expect(result.newContributorsList).toEqual(['newuser1', 'newuser2']);
+  });
+
+  it('keeps AI metrics when contributor stats are recomputed', () => {
+    const releaseWithAI: Release = {
+      ...mockRelease,
+      aiPRs: 3,
+      aiBreakdown: {
+        byTool: {
+          'claude-code': 2,
+          copilot: 1,
+        },
+        nonAgent: 3,
+        agent: 0,
+      },
+    };
+
+    const result = toNormalizedRelease(releaseWithAI);
+
+    expect(result.aiPRs).toBe(3);
+    expect(result.aiBreakdown).toEqual({
+      byTool: {
+        'claude-code': 2,
+        copilot: 1,
+      },
+      nonAgent: 3,
+      agent: 0,
+    });
   });
 
   it('should handle release without WP version', () => {

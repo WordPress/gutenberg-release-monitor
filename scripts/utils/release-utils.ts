@@ -57,6 +57,28 @@ export function isPatchRelease(version: string): boolean {
 }
 
 /**
+ * Merge AI breakdowns from several releases, summing per-tool, nonAgent, and
+ * agent counts. Returns undefined when none of the releases carry AI data.
+ */
+function mergeAIBreakdowns(releases: Release[]): Release['aiBreakdown'] {
+  const byTool: Record<string, number> = {};
+  let nonAgent = 0;
+  let agent = 0;
+  let found = false;
+  for (const release of releases) {
+    const breakdown = release.aiBreakdown;
+    if (!breakdown) continue;
+    found = true;
+    for (const [tool, count] of Object.entries(breakdown.byTool)) {
+      byTool[tool] = (byTool[tool] || 0) + count;
+    }
+    nonAgent += breakdown.nonAgent;
+    agent += breakdown.agent;
+  }
+  return found ? { byTool, nonAgent, agent } : undefined;
+}
+
+/**
  * Aggregate patch releases into their minor version.
  * e.g., 20.1.0, 20.1.1, 20.1.2 -> single 20.1 with combined PRs and contributors
  *
@@ -122,6 +144,12 @@ export function aggregatePatchReleases(releases: Release[]): Release[] {
     const contributorsList = Array.from(allContributors);
     const newContributorsList = Array.from(allNewContributors);
 
+    // Aggregate AI metrics (present only once build-ai-prs has injected them)
+    const aiReleases = [baseRelease, ...patchReleases];
+    const aiPRs = aiReleases.some((r) => r.aiPRs !== undefined)
+      ? aiReleases.reduce((sum, r) => sum + (r.aiPRs ?? 0), 0)
+      : undefined;
+
     aggregated.push({
       ...baseRelease,
       gbVersion: minorVersion, // Normalize to x.y format
@@ -131,6 +159,8 @@ export function aggregatePatchReleases(releases: Release[]): Release[] {
       newContributors: newContributorsList.length,
       contributorsList,
       newContributorsList,
+      aiPRs,
+      aiBreakdown: mergeAIBreakdowns(aiReleases),
     });
   }
 
@@ -170,6 +200,8 @@ export function loadReleases(releasesPath: string): Release[] {
     changelogUrl: r.changelogUrl as string,
     parsedAt: (r.parsedAt as string) || '',
     parserVersion: (r.parserVersion as string) || '',
+    aiPRs: r.aiPRs as number | undefined,
+    aiBreakdown: r.aiBreakdown as Release['aiBreakdown'],
   }));
 }
 
@@ -227,6 +259,8 @@ export function toNormalizedRelease(
     memberOf: release.wpVersion || undefined,
     isSpecialMarker: release.isLastBeforeWPBeta || undefined,
     changelogUrl: release.changelogUrl,
+    aiPRs: release.aiPRs,
+    aiBreakdown: release.aiBreakdown,
     // Include for internal script use
     contributorsList: release.contributorsList,
     newContributorsList: release.newContributorsList,
