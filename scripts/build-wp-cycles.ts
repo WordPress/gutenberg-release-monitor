@@ -9,6 +9,7 @@
  */
 
 import { readFileSync, existsSync } from 'node:fs';
+import { pathToFileURL } from 'node:url';
 import type { Release, WPRelease } from './types.js';
 import type { NormalizedRelease, SourceSummary } from '../src/data/normalized.js';
 import { loadCategoryConfig, getAggregatedPRs } from './utils/category-utils.js';
@@ -43,7 +44,7 @@ function loadWPSchedule(): WPRelease[] {
 /**
  * Find which WP version a GB release belongs to.
  */
-function findWPVersion(gbVersion: string, wpSchedule: WPRelease[]): string | null {
+export function findWPVersion(gbVersion: string, wpSchedule: WPRelease[]): string | null {
   const minorVersion = getMinorVersion(gbVersion);
 
   for (const wpRelease of wpSchedule) {
@@ -62,7 +63,7 @@ function findWPVersion(gbVersion: string, wpSchedule: WPRelease[]): string | nul
 /**
  * Map GB releases to WP versions and mark beta cutoffs.
  */
-function enrichReleases(releases: Release[], wpSchedule: WPRelease[]): Release[] {
+export function enrichReleases(releases: Release[], wpSchedule: WPRelease[]): Release[] {
   return releases.map((release) => {
     const minorVersion = getMinorVersion(release.gbVersion);
     const wpVersion = findWPVersion(release.gbVersion, wpSchedule);
@@ -80,7 +81,7 @@ function enrichReleases(releases: Release[], wpSchedule: WPRelease[]): Release[]
 /**
  * Generate per-WP-version aggregated statistics in NormalizedRelease format.
  */
-function generateWPVersionStats(releases: Release[]): NormalizedRelease[] {
+export function generateWPVersionStats(releases: Release[]): NormalizedRelease[] {
   const categoryConfig = loadCategoryConfig();
   const wpVersionPrefix = getVersionPrefixForEndpoint('wp-cycles.json');
   const byWPVersion = new Map<string, Release[]>();
@@ -131,27 +132,6 @@ function generateWPVersionStats(releases: Release[]): NormalizedRelease[] {
       wpReleases.reduce((sum, r) => sum + r.newContributors, 0) / releaseCount
     );
 
-    // Aggregate sponsor and country breakdowns from all releases
-    const sponsorBreakdown: Record<string, number> = {};
-    const countryBreakdown: Record<string, number> = {};
-    let hasAggregates = false;
-
-    for (const release of wpReleases) {
-      if (release.contributorAggregates) {
-        hasAggregates = true;
-        for (const [sponsor, count] of Object.entries(release.contributorAggregates.sponsorBreakdown || {})) {
-          sponsorBreakdown[sponsor] = (sponsorBreakdown[sponsor] || 0) + count;
-        }
-        for (const [country, count] of Object.entries(release.contributorAggregates.countryBreakdown || {})) {
-          countryBreakdown[country] = (countryBreakdown[country] || 0) + count;
-        }
-      }
-    }
-
-    // Sort breakdowns by count (descending)
-    const sortByValue = (obj: Record<string, number>) =>
-      Object.fromEntries(Object.entries(obj).sort((a, b) => b[1] - a[1]));
-
     stats.push({
       id: wpVersion,
       version: wpVersion,
@@ -165,10 +145,6 @@ function generateWPVersionStats(releases: Release[]): NormalizedRelease[] {
       avgContributors: avgContributorsPerRelease,
       avgNewContributors: avgNewContributorsPerRelease,
       categoryTotals,
-      contributorAggregates: hasAggregates ? {
-        sponsorBreakdown: sortByValue(sponsorBreakdown),
-        countryBreakdown: sortByValue(countryBreakdown),
-      } : undefined,
       groupedCount: releaseCount,
       groupedRange: gbVersionRange,
     });
@@ -192,6 +168,22 @@ function loadExistingWPCycles(): NormalizedRelease[] {
   } catch {
     return [];
   }
+}
+
+export function preserveContributorAggregates(
+  wpVersionStats: NormalizedRelease[],
+  existingWPCycles: NormalizedRelease[]
+): NormalizedRelease[] {
+  const existingAggregatesMap = new Map(
+    existingWPCycles
+      .filter((c) => c.contributorAggregates)
+      .map((c) => [c.version, c.contributorAggregates])
+  );
+
+  return wpVersionStats.map((stat) => ({
+    ...stat,
+    contributorAggregates: existingAggregatesMap.get(stat.version),
+  }));
 }
 
 /**
@@ -345,22 +337,11 @@ async function main() {
   // Generate aggregated stats
   console.log('\nGenerating aggregated statistics...');
 
-  // Load existing WP cycles to preserve contributorAggregates
   const existingWPCycles = loadExistingWPCycles();
-  const existingAggregatesMap = new Map(
+  const wpVersionStats = preserveContributorAggregates(
+    generateWPVersionStats(enrichedReleases),
     existingWPCycles
-      .filter((c) => c.contributorAggregates)
-      .map((c) => [c.version, c.contributorAggregates])
   );
-
-  const wpVersionStats = generateWPVersionStats(enrichedReleases);
-
-  // Merge existing contributorAggregates into new stats where missing
-  for (const stat of wpVersionStats) {
-    if (!stat.contributorAggregates && existingAggregatesMap.has(stat.version)) {
-      stat.contributorAggregates = existingAggregatesMap.get(stat.version);
-    }
-  }
 
   const wpVersionWritten = writeJsonIfChanged(`${OUTPUT_DIR}/wp-cycles.json`, wpVersionStats);
   const preservedCount = wpVersionStats.filter((s) => s.contributorAggregates).length;
@@ -378,4 +359,6 @@ async function main() {
   console.log('\nAggregation complete!');
 }
 
-main();
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  main();
+}
