@@ -11,6 +11,7 @@ import { fetchWPOrgProfile } from './utils/wporg-api.js';
 import { fetchGitHubUserProfile } from './utils/github-api.js';
 import { SponsorNormalizer } from './utils/sponsor-normalization.js';
 import { extractCountryAsync } from './utils/geocoding.js';
+import { loadReleases, compareVersions } from './utils/release-utils.js';
 import type { Release, WPRelease } from './types.js';
 
 interface UsernameMapping {
@@ -41,13 +42,6 @@ function loadWPSchedule(): WPRelease[] {
 	}
 }
 
-function compareGbVersions(a: string, b: string): number {
-	const [aMajor, aMinor] = a.split('.').map(Number);
-	const [bMajor, bMinor] = b.split('.').map(Number);
-	if (aMajor !== bMajor) return aMajor - bMajor;
-	return (aMinor || 0) - (bMinor || 0);
-}
-
 async function main(): Promise<void> {
 	const { values } = parseArgs({
 		options: {
@@ -64,7 +58,7 @@ async function main(): Promise<void> {
 	console.log('');
 
 	// Load data
-	const releases: Release[] = JSON.parse(readFileSync('public/data/gb-releases.json', 'utf-8'));
+	const releases: Release[] = loadReleases('public/data/gb-releases.json');
 	const mapping = loadUsernameMapping();
 	const wpSchedule = loadWPSchedule();
 	const sponsorNormalizer = new SponsorNormalizer();
@@ -83,8 +77,8 @@ async function main(): Promise<void> {
 	// Get unique contributors for this WP version
 	const wpReleases = releases.filter(
 		(r) =>
-			compareGbVersions(r.gbVersion, fromGb) >= 0 &&
-			compareGbVersions(r.gbVersion, toGb) <= 0
+			compareVersions(r.gbVersion, fromGb) >= 0 &&
+			compareVersions(r.gbVersion, toGb) <= 0
 	);
 
 	const uniqueContributors = new Set<string>();
