@@ -104,28 +104,26 @@ export async function fetchContributorData(
 	mapping: UsernameMapping | null,
 	delayMs: number,
 	verbose: boolean
-): Promise< ContributorData | null > {
+): Promise< ContributorData > {
 	const wporgUsername = resolveWporgUsername( githubUsername, mapping );
 
-	// Fetch WP.org profile
+	// Fetch WP.org profile. A null result means the fetch failed after retries;
+	// fall back to GitHub rather than dropping the contributor entirely.
 	const wpProfile = await fetchWPOrgProfile( wporgUsername );
-	if ( ! wpProfile ) {
-		if ( verbose ) {
-			console.warn(
-				`\n   Warning: Could not fetch the WP.org profile for ${ wporgUsername }; leaving this contributor out of the fetched profile data`
-			);
-		}
-		return null;
+	if ( ! wpProfile && verbose ) {
+		console.warn(
+			`\n   Warning: Could not fetch the WP.org profile for ${ wporgUsername }; relying on the GitHub fallback`
+		);
 	}
 
-	let sponsor = isUnavailableSponsorValue( wpProfile.employer )
+	let sponsor = isUnavailableSponsorValue( wpProfile?.employer ?? null )
 		? null
-		: wpProfile.employer || null;
-	let location = wpProfile.location || null;
+		: wpProfile?.employer || null;
+	let location = wpProfile?.location || null;
 
 	// Use GitHub to fill whichever profile field WP.org did not provide.
 	if ( ! sponsor || ! location ) {
-		const ghUsername = wpProfile.wporgLinkedGitHubUsername || githubUsername;
+		const ghUsername = wpProfile?.wporgLinkedGitHubUsername || githubUsername;
 		try {
 			const ghProfile = await fetchGitHubUserProfile( ghUsername );
 			if ( ! sponsor && ghProfile?.company ) {
@@ -186,9 +184,7 @@ export async function fetchContributorProfiles(
 			delayMs,
 			verbose
 		);
-		if ( data ) {
-			contributorDataMap.set( username.toLowerCase(), data );
-		}
+		contributorDataMap.set( username.toLowerCase(), data );
 
 		if ( onProgress ) {
 			onProgress( i + 1, toFetch.length );

@@ -36,16 +36,26 @@ describe('contributor data utilities', () => {
 	});
 
 	describe( 'fetchContributorProfiles', () => {
-		it( 'leaves a contributor out when WP.org profile fetch is skipped', async () => {
+		it( 'falls back to GitHub when the WP.org profile fetch fails', async () => {
 			vi.mocked( fetchWPOrgProfile ).mockResolvedValueOnce( null );
+			vi.mocked( fetchGitHubUserProfile ).mockResolvedValueOnce( {
+				login: 'example-user',
+				name: 'Example User',
+				company: '@Acme',
+				location: 'Berlin, Germany',
+				bio: null,
+			} );
 
 			const profiles = await fetchContributorProfiles( [ 'example-user' ], null, {
 				delayMs: 0,
 				verbose: false,
 			} );
 
-			expect( profiles.has( 'example-user' ) ).toBe( false );
-			expect( fetchGitHubUserProfile ).not.toHaveBeenCalled();
+			expect( fetchGitHubUserProfile ).toHaveBeenCalledWith( 'example-user' );
+			expect( profiles.get( 'example-user' ) ).toEqual( {
+				sponsor: 'Acme',
+				location: 'Berlin, Germany',
+			} );
 		} );
 	} );
 });
