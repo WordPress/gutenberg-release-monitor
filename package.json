@@ -16,7 +16,7 @@
     "data-sync:scf": "tsx scripts/build-scf-milestones.ts && tsx scripts/build-scf-aggregates.ts",
     "data-sync:scf-contributor-stats": "tsx scripts/compute-scf-contributor-stats.ts",
     "build-mapping": "tsx scripts/build-username-mapping.ts",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsc -b",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
