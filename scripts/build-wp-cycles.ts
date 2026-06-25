@@ -145,8 +145,11 @@ export function generateWPVersionStats(releases: Release[]): NormalizedRelease[]
       avgContributors: avgContributorsPerRelease,
       avgNewContributors: avgNewContributorsPerRelease,
       categoryTotals,
+      contributorAggregates: undefined,
       groupedCount: releaseCount,
       groupedRange: gbVersionRange,
+      aiPRs: undefined,
+      aiBreakdown: undefined,
     });
   }
 
@@ -155,7 +158,7 @@ export function generateWPVersionStats(releases: Release[]): NormalizedRelease[]
 }
 
 /**
- * Load existing WP cycles if they exist (to preserve contributorAggregates).
+ * Load existing WP cycles if they exist.
  */
 function loadExistingWPCycles(): NormalizedRelease[] {
   const wpCyclesPath = `${OUTPUT_DIR}/wp-cycles.json`;
@@ -174,16 +177,17 @@ export function preserveContributorAggregates(
   wpVersionStats: NormalizedRelease[],
   existingWPCycles: NormalizedRelease[]
 ): NormalizedRelease[] {
-  const existingAggregatesMap = new Map(
-    existingWPCycles
-      .filter((c) => c.contributorAggregates)
-      .map((c) => [c.version, c.contributorAggregates])
-  );
+  const existingCyclesMap = new Map(existingWPCycles.map((cycle) => [cycle.version, cycle]));
 
-  return wpVersionStats.map((stat) => ({
-    ...stat,
-    contributorAggregates: existingAggregatesMap.get(stat.version),
-  }));
+  return wpVersionStats.map((stat) => {
+    const existingCycle = existingCyclesMap.get(stat.version);
+    return {
+      ...stat,
+      contributorAggregates: existingCycle?.contributorAggregates,
+      aiPRs: existingCycle?.aiPRs,
+      aiBreakdown: existingCycle?.aiBreakdown,
+    };
+  });
 }
 
 /**
