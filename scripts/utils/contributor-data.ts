@@ -31,6 +31,26 @@ export interface ContributorData {
 	location: string | null;
 }
 
+let didWarnGitHubRateLimit = false;
+
+/**
+ * Profile values that should not count as an employer.
+ */
+export function isUnavailableSponsorValue( value: string | null ): boolean {
+	if ( ! value ) {
+		return true;
+	}
+
+	const normalized = value.toLowerCase().trim();
+	return [
+		'n/a',
+		'na',
+		'none',
+		'-',
+		'not applicable',
+	].includes( normalized );
+}
+
 /**
  * Delay helper for rate limiting.
  */
@@ -64,12 +84,12 @@ export function resolveWporgUsername(
 ): string {
 	const githubLower = githubUsername.toLowerCase();
 
-	// Check if we have a mapping for this GitHub username
+	// Use the mapping when GitHub and WP.org usernames differ.
 	if ( mapping && mapping.githubToWporg[ githubLower ] ) {
 		return mapping.githubToWporg[ githubLower ];
 	}
 
-	// No mapping found - assume GitHub username = WP.org username
+	// Most contributors use the same username on both sites.
 	return githubUsername;
 }
 
@@ -89,22 +109,33 @@ export async function fetchContributorData(
 	// Fetch WP.org profile
 	const wpProfile = await fetchWPOrgProfile( wporgUsername );
 
-	let sponsor = wpProfile.employer || null;
+	let sponsor = isUnavailableSponsorValue( wpProfile.employer )
+		? null
+		: wpProfile.employer || null;
 	let location = wpProfile.location || null;
 
-	// Check GitHub for missing sponsor OR missing location
+	// Use GitHub to fill whichever profile field WP.org did not provide.
 	if ( ! sponsor || ! location ) {
 		const ghUsername = wpProfile.wporgLinkedGitHubUsername || githubUsername;
 		try {
 			const ghProfile = await fetchGitHubUserProfile( ghUsername );
 			if ( ! sponsor && ghProfile?.company ) {
-				sponsor = ghProfile.company.replace( /^@/, '' ).trim() || null;
+				const company = ghProfile.company.replace( /^@/, '' ).trim();
+				sponsor = isUnavailableSponsorValue( company ) ? null : company;
 			}
 			if ( ! location && ghProfile?.location ) {
 				location = ghProfile.location;
 			}
-		} catch {
-			if ( verbose ) {
+		} catch ( error ) {
+			const message = error instanceof Error ? error.message : String( error );
+			if ( message.includes( 'rate limit exceeded' ) ) {
+				if ( ! didWarnGitHubRateLimit ) {
+					console.warn(
+						`\n   ⚠️  GitHub profile fallback hit the rate limit. Set GITHUB_TOKEN and rerun if you want fewer Unknown contributors. ${ message }`
+					);
+					didWarnGitHubRateLimit = true;
+				}
+			} else if ( verbose ) {
 				console.error( `\n   Warning: GitHub fetch failed for ${ ghUsername }` );
 			}
 		}
@@ -133,7 +164,7 @@ export async function fetchContributorProfiles(
 		existingData || []
 	);
 
-	// Filter to usernames we don't already have
+	// Skip profiles already fetched in this run.
 	const toFetch = usernames.filter(
 		( u ) => ! contributorDataMap.has( u.toLowerCase() )
 	);
