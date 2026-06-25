@@ -3,6 +3,7 @@ import {
   LABEL_CATEGORY_MAP,
   getCategoryFromLabels,
   isValidVersion,
+  parseWPOrgReleaseDate,
   groupByMinorVersion,
   aggregateRawCategories,
   aggregateBreakdown,
@@ -128,6 +129,22 @@ describe('isValidVersion', () => {
     it('should reject version with spaces', () => {
       expect(isValidVersion('6. 7')).toBe(false);
     });
+  });
+});
+
+describe('parseWPOrgReleaseDate', () => {
+  it('parses abbreviated WordPress.org dates', () => {
+    expect(parseWPOrgReleaseDate('30 Dec 2025')).toBe('2025-12-30');
+  });
+
+  it('parses full month names', () => {
+    expect(parseWPOrgReleaseDate('5 September 2025')).toBe('2025-09-05');
+  });
+
+  it('returns null for invalid dates', () => {
+    expect(parseWPOrgReleaseDate('31 Feb 2025')).toBeNull();
+    expect(parseWPOrgReleaseDate('30 Nope 2025')).toBeNull();
+    expect(parseWPOrgReleaseDate('2025-12-30')).toBeNull();
   });
 });
 
