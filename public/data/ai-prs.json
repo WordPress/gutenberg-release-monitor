@@ -1,7 +1,7 @@
 {
   "totals": {
-    "aiPRs": 287,
-    "nonAgent": 256,
+    "aiPRs": 291,
+    "nonAgent": 260,
     "agent": 31,
     "byTool": {
       "claude-code": 209,
@@ -10,6 +10,30 @@
     }
   },
   "prs": [
+    {
+      "number": 79522,
+      "title": "Block editor: use core/registered-block in reducer tests",
+      "url": "https://github.com/WordPress/gutenberg/pull/79522",
+      "author": "tyxla",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "body",
+      "mergedAt": "2026-06-25"
+    },
+    {
+      "number": 79416,
+      "title": "Clarify Core-specific steps when bumping support",
+      "url": "https://github.com/WordPress/gutenberg/pull/79416",
+      "author": "desrosj",
+      "mode": "non-agent",
+      "tools": [
+        "copilot"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-06-23"
+    },
     {
       "number": 79370,
       "title": "Components: Make ResizableBox children prop optional",
@@ -33,6 +57,18 @@
       ],
       "detectedVia": "commit",
       "mergedAt": "2026-06-22"
+    },
+    {
+      "number": 79337,
+      "title": "Tabs: Pre-stabilization API cleanup and refactoring",
+      "url": "https://github.com/WordPress/gutenberg/pull/79337",
+      "author": "t-hamano",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-06-24"
     },
     {
       "number": 79322,
@@ -3330,6 +3366,18 @@
       ],
       "detectedVia": "author",
       "mergedAt": "2025-11-17"
+    },
+    {
+      "number": 73320,
+      "title": "Global Styles: Add textShadow style support",
+      "url": "https://github.com/WordPress/gutenberg/pull/73320",
+      "author": "t-hamano",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-06-24"
     },
     {
       "number": 73319,
