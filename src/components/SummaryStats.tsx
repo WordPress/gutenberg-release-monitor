@@ -154,7 +154,7 @@ export function SummaryStats(props: SummaryStatsProps) {
 
     const defaultCategories = categoryConfig.aggregations.filter((agg) => agg.includeByDefault);
 
-    // Category stat items with comparison to global average
+    // Categories have no summary-level averages to compare against.
     const buildCategoryStats = (useAverage: boolean): StatItem[] => {
       return defaultCategories.map((agg) => {
         const total = categoryTotals[agg.id] || 0;
@@ -162,14 +162,9 @@ export function SummaryStats(props: SummaryStatsProps) {
           ? Math.round(total / selectedItem.groupedCount)
           : total;
         const hasData = total > 0;
-        const summaryFieldSuffix = agg.labels.short;
-        const summaryTotal = summaryFieldSuffix
-          ? (summary[`avg${summaryFieldSuffix}Total` as keyof SourceSummary] as number | undefined)
-          : undefined;
         return {
           label: agg.labels.full,
           value,
-          total: useAverage ? summaryTotal : undefined,
           unavailable: !hasData,
         };
       });
