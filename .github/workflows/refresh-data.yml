@@ -73,6 +73,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npm run data-sync:ai-prs
 
+      - name: Check data
+        if: ${{ github.event.inputs.contributor_aggregates != 'skip' }}
+        run: npm run validate:data
+
       - name: Check for changes
         id: changes
         run: |

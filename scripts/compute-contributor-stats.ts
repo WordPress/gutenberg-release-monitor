@@ -39,6 +39,8 @@ import {
 import type { Release } from './types.js';
 import type { NormalizedRelease } from '../src/data/normalized.js';
 
+const WP_STATS_PATH = 'public/data/wp-cycles.json';
+
 interface ComputeArgs {
 	wpVersion?: string[];
 	gbVersion?: string;
@@ -80,6 +82,22 @@ function getArgs(): ComputeArgs {
 		dryRun: values[ 'dry-run' ] as boolean,
 		verbose: values.verbose as boolean,
 	};
+}
+
+function sumBreakdownValues( breakdown: Record< string, number > | undefined ): number {
+	return Object.values( breakdown || {} ).reduce( ( sum, count ) => sum + count, 0 );
+}
+
+function cycleNeedsContributorAggregateRefresh( cycle: NormalizedRelease ): boolean {
+	const aggregates = cycle.contributorAggregates;
+	if ( ! aggregates ) {
+		return false;
+	}
+
+	return (
+		sumBreakdownValues( aggregates.sponsorBreakdown ) !== cycle.contributors ||
+		sumBreakdownValues( aggregates.countryBreakdown ) !== cycle.contributors
+	);
 }
 
 async function main(): Promise< void > {
@@ -165,6 +183,14 @@ async function main(): Promise< void > {
 	const targetWPVersions = new Set< string >( explicitWPVersions );
 	for ( const wpVersion of getAffectedWPVersions( needsGBAggregation, wpSchedule ) ) {
 		targetWPVersions.add( wpVersion );
+	}
+	if ( existsSync( WP_STATS_PATH ) ) {
+		const wpVersionData = JSON.parse( readFileSync( WP_STATS_PATH, 'utf-8' ) ) as NormalizedRelease[];
+		for ( const cycle of wpVersionData ) {
+			if ( cycleNeedsContributorAggregateRefresh( cycle ) ) {
+				targetWPVersions.add( cycle.version );
+			}
+		}
 	}
 
 	const wpReleasesByVersion = new Map< string, Release[] >();
@@ -275,13 +301,12 @@ async function main(): Promise< void > {
 
 	// Compute WP-level aggregates
 	let wpVersionData: NormalizedRelease[] = [];
-	const wpStatsPath = 'public/data/wp-cycles.json';
 	if ( wpReleasesByVersion.size > 0 ) {
 		console.log( '🔄 Computing WP version aggregates...' );
 
 		// Load existing WP version data (normalized format)
-		if ( existsSync( wpStatsPath ) ) {
-			wpVersionData = JSON.parse( readFileSync( wpStatsPath, 'utf-8' ) );
+		if ( existsSync( WP_STATS_PATH ) ) {
+			wpVersionData = JSON.parse( readFileSync( WP_STATS_PATH, 'utf-8' ) );
 		}
 
 		for ( const [ wpVersion, wpReleases ] of wpReleasesByVersion ) {
@@ -342,8 +367,8 @@ async function main(): Promise< void > {
 
 		// Write wp-cycles.json (already in normalized format)
 		if ( wpReleasesByVersion.size > 0 && wpVersionData.length > 0 ) {
-			const written = writeJsonIfChanged( wpStatsPath, wpVersionData );
-			console.log( written ? `✅ Updated ${ wpStatsPath }` : `✅ No changes to ${ wpStatsPath }` );
+			const written = writeJsonIfChanged( WP_STATS_PATH, wpVersionData );
+			console.log( written ? `✅ Updated ${ WP_STATS_PATH }` : `✅ No changes to ${ WP_STATS_PATH }` );
 		}
 	}
 

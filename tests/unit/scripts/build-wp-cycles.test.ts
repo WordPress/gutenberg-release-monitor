@@ -61,7 +61,7 @@ describe('generateWPVersionStats', () => {
 });
 
 describe('preserveContributorAggregates', () => {
-  it('preserves existing unique cycle contributorAggregates after rebuilding core stats', () => {
+  it('preserves existing cycle enrichments after rebuilding core stats', () => {
     const stats = generateWPVersionStats([
       createRelease('22.0', {
         contributors: 2,
@@ -80,11 +80,23 @@ describe('preserveContributorAggregates', () => {
       {
         ...stats[0],
         contributorAggregates: existingAggregate,
+        aiPRs: 3,
+        aiBreakdown: {
+          byTool: { 'claude-code': 2, copilot: 1 },
+          nonAgent: 3,
+          agent: 0,
+        },
       },
     ];
 
     const preserved = preserveContributorAggregates(stats, existingCycles);
 
     expect(preserved[0].contributorAggregates).toEqual(existingAggregate);
+    expect(preserved[0].aiPRs).toBe(3);
+    expect(preserved[0].aiBreakdown).toEqual({
+      byTool: { 'claude-code': 2, copilot: 1 },
+      nonAgent: 3,
+      agent: 0,
+    });
   });
 });
