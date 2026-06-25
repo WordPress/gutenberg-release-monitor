@@ -9,6 +9,7 @@ import {
   CHANGELOG_WITH_SUBCATEGORIES,
   UNCATEGORIZED_CHANGELOG,
   CHANGELOG_WITH_RC,
+  GUTENBERG_16_8_CHANGELOG,
   EMPTY_CHANGELOG,
   MALFORMED_CHANGELOG,
   CONTRIBUTORS_BEFORE_CHANGELOG,
@@ -112,14 +113,20 @@ describe('parseModernChangelog', () => {
       expect(result.totalPRs).toBe(3);
     });
 
-    it('should handle changelog with RC sections', () => {
+    it('does not count the same PR twice across RC changelog sections', () => {
       const result = parseModernChangelog(CHANGELOG_WITH_RC);
 
-      // Should aggregate from both RC sections
-      expect(result.categories).toHaveProperty('Enhancements');
-      expect(result.categories).toHaveProperty('Bug Fixes');
-      // RC sections should be aggregated together
-      expect(result.totalPRs).toBeGreaterThan(0);
+      expect(result.categories).toEqual({
+        'Enhancements': 2,
+        'Bug Fixes': 3,
+      });
+      expect(result.totalPRs).toBe(5);
+    });
+
+    it('pins the Gutenberg 16.8.0 RC changelog count', () => {
+      const result = parseModernChangelog(GUTENBERG_16_8_CHANGELOG);
+
+      expect(result.totalPRs).toBe(144);
     });
 
     it('should normalize line endings', () => {
