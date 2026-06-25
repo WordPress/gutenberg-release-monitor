@@ -17,8 +17,8 @@ GitHub API ─────► build-gb-releases.ts ─────► gb-release
                         compute-contributor-stats.ts
                                     │
                                     ▼
-                      (updates gb-releases.json and wp-cycles.json
-                       with contributorAggregates)
+                      (adds contributorAggregates to both JSON files;
+                       WP-cycle breakdowns use unique contributors)
 ```
 
 ## Scripts
@@ -83,6 +83,10 @@ npm run data-sync:wp-cycles
 - Current WP cycle progress
 - Since-cutoff vs all-time comparisons
 
+Sponsor/country breakdowns live in `compute-contributor-stats.ts`. When this
+script rebuilds cycle totals, it carries existing `contributorAggregates` forward
+instead of deriving them from release-level counts.
+
 ---
 
 ### compute-contributor-stats.ts
@@ -113,6 +117,11 @@ npm run data-sync:contributor-stats
 1. Geocode location to country
 1. Aggregate counts (no individual data stored)
 1. Write aggregates back to release data
+1. Refresh affected WP-cycle breakdowns using every release in each touched cycle
+
+For a Gutenberg release, sponsor/country counts cover that release. For a WP
+cycle, they count unique contributors across the cycle, so their totals line up
+with `contributors`.
 
 **Privacy Model**:
 
@@ -159,6 +168,9 @@ Runs `data-sync:gb-releases` + `data-sync:wp-cycles` in sequence.
 npm run data-sync:all
 npm run data-sync:contributor-stats
 ```
+
+The contributor-stats step updates `gb-releases.json`, then refreshes the
+WP-cycle breakdowns for cycles touched by newly aggregated Gutenberg releases.
 
 ## Data Files
 
