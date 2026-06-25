@@ -134,6 +134,7 @@ test.describe('Chart Controls', () => {
       }
 
       await expect(aiUsageTooltip).toContainText('Known agent account');
+      await expect(aiUsageTooltip).toContainText('%');
 
       await viewModeToggle.getByRole('radio', { name: 'Author source' }).click();
       await expect(viewModeToggle.getByRole('radio', { name: 'Author source' })).toBeChecked();

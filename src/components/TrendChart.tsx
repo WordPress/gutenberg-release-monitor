@@ -1008,6 +1008,7 @@ export function TrendChart(props: TrendChartProps) {
     );
     const allPRsEntry = payload.find((entry) => entry.name === 'All PRs');
     const releasesEntry = payload.find((entry) => entry.name === chartConfig.childReleasesLabel);
+    const allPRsValue = Number(dataPoint?.allPRs ?? 0);
     const aiModeDetails = isAIUsageMode
       ? [
           { name: 'Other detected AI', value: Number(dataPoint?.aiNonAgent ?? 0), color: AI_NON_AGENT_COLOR },
@@ -1027,12 +1028,12 @@ export function TrendChart(props: TrendChartProps) {
         : categoryPayload.reduce((sum, entry) => sum + entry.value, 0)
       : null;
 
-    const formatValue = (value: number, showPercentage = false) => {
+    const formatValue = (value: number, showPercentage = false, percentageTotal = total) => {
       if (viewMode === 'distribution' && !isAIToolBreakdown) {
         return `${value.toFixed(1)}%`;
       }
-      if (showPercentage && total && total > 0) {
-        const pct = Math.round((value / total) * 1000) / 10;
+      if (showPercentage && percentageTotal && percentageTotal > 0) {
+        const pct = Math.round((value / percentageTotal) * 1000) / 10;
         return `${value.toLocaleString()} (${pct}%)`;
       }
       return value.toLocaleString();
@@ -1051,7 +1052,13 @@ export function TrendChart(props: TrendChartProps) {
               style={{ backgroundColor: entry.color }}
             />
             <span className="trend-chart-tooltip-name">{entry.name}</span>
-            <span className="trend-chart-tooltip-value">{formatValue(entry.value, isBreakdownMode || isAIAgentMode)}</span>
+            <span className="trend-chart-tooltip-value">
+              {formatValue(
+                entry.value,
+                isBreakdownMode || isAIAgentMode || isAIUsageMode,
+                isAIUsageMode ? allPRsValue : total
+              )}
+            </span>
           </div>
         ))}
         {aiModeDetails.map((entry) => (
@@ -1061,7 +1068,7 @@ export function TrendChart(props: TrendChartProps) {
               style={{ backgroundColor: entry.color }}
             />
             <span className="trend-chart-tooltip-name">{entry.name}</span>
-            <span className="trend-chart-tooltip-value">{formatValue(entry.value)}</span>
+            <span className="trend-chart-tooltip-value">{formatValue(entry.value, true, allPRsValue)}</span>
           </div>
         ))}
         {allPRsEntry && (!showTotalInTooltip || isAIMetric) && (
