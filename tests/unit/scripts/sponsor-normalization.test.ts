@@ -71,12 +71,8 @@ describe('SponsorNormalizer', () => {
       it('should handle @mentions with hyphens and underscores', () => {
         const result1 = normalizer.normalize('Engineer @big-bite');
         const result2 = normalizer.normalize('Engineer @big_bite');
-        // Both should extract the @mention (implementation may normalize further)
-        expect(result1).toBeTruthy();
-        expect(result2).toBeTruthy();
-        // Verify @mentions are processed (not returned as Unknown)
-        expect(['big-bite', 'Unknown']).toContain(result1);
-        expect(['big_bite', 'Unknown']).toContain(result2);
+        expect(result1).toBe('big-bite');
+        expect(result2).toBe('big-bite');
       });
 
       it('should recursively normalize extracted @mentions', () => {
@@ -143,6 +139,12 @@ describe('SponsorNormalizer', () => {
 
       it('should return "Unknown" for hyphen', () => {
         expect(normalizer.normalize('-')).toBe('Unknown');
+      });
+
+      it('should preserve hyphenated sponsor names', () => {
+        expect(normalizer.normalize('X-Team')).toBe('X-Team');
+        expect(normalizer.normalize('Foo-Bar Inc')).toBe('Foo-Bar Inc');
+        expect(normalizer.normalize('Foo Bar LLC')).toBe('Foo-Bar Inc');
       });
 
       it('should return "Unknown" for null or empty', () => {

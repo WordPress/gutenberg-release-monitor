@@ -105,6 +105,17 @@ describe('geocoding utilities', () => {
 				status: 'not_found',
 			});
 		});
+
+		it('keeps loopback and localhost values unresolved', () => {
+			for ( const location of [ '127.0.0.1', 'localhost', '::1' ] ) {
+				expect(extractCountry(location)).toEqual({
+					country: null,
+					confidence: 'low',
+					method: 'none',
+					status: 'not_found',
+				});
+			}
+		});
 	});
 
 	describe('batchGeocodeLocations', () => {

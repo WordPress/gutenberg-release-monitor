@@ -1,5 +1,6 @@
 import { createHash } from 'node:crypto';
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { isIP } from 'node:net';
 import { dirname } from 'node:path';
 
 /**
@@ -210,6 +211,10 @@ const GENERIC_LOCATIONS = new Set( [
 	'internet',
 ] );
 
+const NON_GEOGRAPHIC_HOSTNAMES = new Set( [
+	'localhost',
+] );
+
 function resolvedResult(
 	country: string,
 	confidence: GeocodingResult[ 'confidence' ],
@@ -412,6 +417,11 @@ function hasWholePhrase( normalizedLocation: string, alias: string ): boolean {
 function resolveCountryLocally( location: string ): GeocodingResult | null {
 	const cleaned = cleanLocation( location );
 	if ( ! cleaned ) {
+		return notFoundResult();
+	}
+
+	const lowerLocation = cleaned.toLowerCase();
+	if ( NON_GEOGRAPHIC_HOSTNAMES.has( lowerLocation ) || isIP( cleaned ) ) {
 		return notFoundResult();
 	}
 
