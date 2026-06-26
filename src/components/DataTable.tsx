@@ -71,6 +71,11 @@ interface View {
   layout: Record<string, unknown>;
 }
 
+interface SortableField {
+  id: string;
+  getValue?: ({ item }: { item: TableRow }) => number | string | undefined;
+}
+
 const defaultLayouts = {
   table: {},
 };
@@ -573,9 +578,10 @@ export function DataTable(props: DataTableProps) {
     }
 
     if (view.sort.field) {
-      result.sort((a, b) => {
-        const field = view.sort.field;
+      const field = view.sort.field;
+      const activeField = (fields as SortableField[]).find(({ id }) => id === field);
 
+      result.sort((a, b) => {
         if (field === 'version') {
           // Version comparison (semantic versioning)
           if (!a.version || !b.version) return 0;
@@ -597,18 +603,22 @@ export function DataTable(props: DataTableProps) {
           return view.sort.direction === 'asc' ? dateA - dateB : dateB - dateA;
         }
 
-        // Get values - handle direct properties and category fields
-        let aVal: number | string | undefined;
-        let bVal: number | string | undefined;
+        const getSortValue = (item: TableRow): number | string | undefined => {
+          if (activeField?.getValue) {
+            return activeField.getValue({ item });
+          }
 
-        if (field.startsWith('cat_')) {
-          const catId = field.replace('cat_', '');
-          aVal = a.categoryTotals[catId] || 0;
-          bVal = b.categoryTotals[catId] || 0;
-        } else {
-          aVal = a[field as keyof TableRow] as number | string | undefined;
-          bVal = b[field as keyof TableRow] as number | string | undefined;
-        }
+          // Keep the old path for fields that do not provide getValue.
+          if (field.startsWith('cat_')) {
+            const catId = field.replace('cat_', '');
+            return item.categoryTotals[catId] || 0;
+          }
+
+          return item[field as keyof TableRow] as number | string | undefined;
+        };
+
+        const aVal = getSortValue(a);
+        const bVal = getSortValue(b);
 
         if (typeof aVal === 'number' && typeof bVal === 'number') {
           return view.sort.direction === 'asc' ? aVal - bVal : bVal - aVal;
@@ -623,7 +633,7 @@ export function DataTable(props: DataTableProps) {
     }
 
     return result;
-  }, [tableData, view.search, view.filters, view.sort]);
+  }, [tableData, fields, view.search, view.filters, view.sort]);
 
   // Paginate
   const paginatedData = useMemo(() => {
