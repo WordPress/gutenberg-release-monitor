@@ -49,6 +49,8 @@ export interface TabConfig {
   title: string;
   /** Path to the data file relative to /data/ */
   dataEndpoint: string;
+  /** Optional summary data file path relative to /data/ (falls back to dataSources.summary) */
+  summaryEndpoint?: string;
   /** Whether this tab shows aggregated data (AggregatedStats vs SourceRelease) */
   isAggregated: boolean;
   /** Whether this tab is hidden by default (only visible when explicitly requested via URL) */

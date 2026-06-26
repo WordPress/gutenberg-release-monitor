@@ -154,7 +154,7 @@ function App() {
     data: summary,
     isLoading: summaryLoading,
     error: summaryError,
-  } = useSummary();
+  } = useSummary(activeTab);
   const { isDark, toggle } = useDarkMode();
 
   const isLoading = tabDataLoading || summaryLoading;

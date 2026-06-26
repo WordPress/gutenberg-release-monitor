@@ -81,6 +81,7 @@ Each tab represents a different view of the data:
 | `id` | string | Unique identifier, used in URL |
 | `title` | string | Tab button text |
 | `dataEndpoint` | string | JSON file in `public/data/` |
+| `summaryEndpoint` | string (optional) | Summary JSON file in `public/data/`. If omitted, the app uses `dataSources.summary`. |
 | `isAggregated` | boolean | True for grouped data (e.g., WP versions containing multiple GB releases) |
 | `versionPrefix` | string | Prefix for version display ("WordPress 6.9") |
 | `supportedViewModes` | string[] | Available modes: `averages`, `totals`, `distribution`, `sponsors`, `countries` |
@@ -133,6 +134,8 @@ Customize all UI text for a tab:
   }
 }
 ```
+
+Set `summaryEndpoint` on a tab when that tab needs its own comparison summary.
 
 ### Defaults
 

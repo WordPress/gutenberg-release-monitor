@@ -118,7 +118,7 @@ Custom hooks fetch and cache JSON data:
 | Hook | Data Source | Purpose |
 |------|-------------|---------|
 | `useTabData(tabId)` | `{tab.dataEndpoint}` | Tab-specific release data |
-| `useSummary()` | `summary.json` | Overall statistics for comparisons |
+| `useSummary(tabId)` | `{tab.summaryEndpoint ?? dataSources.summary}` | Summary stats for the selected tab |
 
 ### State Management
 
@@ -166,6 +166,7 @@ interface TabConfig {
   id: string;                    // URL identifier
   title: string;                 // Display title
   dataEndpoint: string;          // JSON file path
+  summaryEndpoint?: string;      // Optional summary JSON path
   isAggregated: boolean;         // Multiple releases per item?
   versionPrefix: string;         // "WordPress" or "Gutenberg"
   supportedViewModes: string[];  // Available view modes
@@ -309,7 +310,8 @@ public/
 └── data/
     ├── gb-releases.json     # Individual Gutenberg releases
     ├── wp-cycles.json       # WP version aggregates
-    └── summary.json         # Overall statistics
+    ├── summary.json         # Default summary stats
+    └── scf/scf-summary.json # SCF summary stats
 ```
 
 ## Extending the System
