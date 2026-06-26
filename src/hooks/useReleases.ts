@@ -8,6 +8,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { useConfig, useTabConfig } from '../config';
 import type { NormalizedRelease, SourceSummary } from '../data/normalized';
+import type { ProjectConfig } from '../config/types';
 
 /**
  * Generic data fetcher for JSON endpoints.
@@ -21,6 +22,14 @@ async function fetchData<T>(path: string, errorMessage: string): Promise<T> {
     throw new Error(errorMessage);
   }
   return response.json();
+}
+
+/**
+ * Resolve the summary endpoint for a tab, falling back to the global summary path.
+ */
+export function resolveSummaryEndpoint(config: ProjectConfig, tabId: string): string {
+  const tabConfig = config.tabs.find((tab) => tab.id === tabId);
+  return tabConfig?.summaryEndpoint ?? config.dataSources.summary;
 }
 
 /**
@@ -45,15 +54,16 @@ export function useTabData(tabId: string) {
 
 /**
  * Fetches and caches summary statistics.
- * Path is read from dataSources.summary in config.
+ * Path is read from the active tab's summaryEndpoint, falling back to dataSources.summary.
+ * @param tabId - The active tab identifier from config
  * @returns Query result with SourceSummary data
  */
-export function useSummary() {
+export function useSummary(tabId: string) {
   const config = useConfig();
-  const summaryPath = config.dataSources.summary;
+  const summaryPath = resolveSummaryEndpoint(config, tabId);
 
   return useQuery({
-    queryKey: ['summary'],
+    queryKey: ['summary', summaryPath],
     queryFn: () => fetchData<SourceSummary>(summaryPath, 'Failed to fetch summary'),
   });
 }

@@ -113,7 +113,7 @@ interface SourceSummary {
 }
 ```
 
-**Source**: `public/data/summary.json`
+**Source**: Most tabs use `public/data/summary.json`. A tab can point to its own summary file, such as `public/data/scf/scf-summary.json`.
 
 ## Configuration Types
 
@@ -138,6 +138,7 @@ interface TabConfig {
   id: string;
   title: string;
   dataEndpoint: string;
+  summaryEndpoint?: string;
   isAggregated: boolean;
   versionPrefix: string;
   supportedViewModes: ViewMode[];

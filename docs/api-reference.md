@@ -183,7 +183,7 @@ Fetches and caches summary statistics.
 **Signature**:
 
 ```typescript
-function useSummary(): UseQueryResult<SourceSummary, Error>
+function useSummary(tabId: string): UseQueryResult<SourceSummary, Error>
 ```
 
 **Returns**:
@@ -192,8 +192,8 @@ React Query result object with `SourceSummary` data.
 
 **Behavior**:
 
-- Reads summary endpoint from `config.dataSources.summary`
-- Caches with query key: `['summary']`
+- Uses the active tab's `summaryEndpoint` when it has one; otherwise uses `config.dataSources.summary`
+- Caches with query key: `['summary', summaryPath]`
 - Always enabled (no conditional dependencies)
 
 **Example**:
@@ -201,8 +201,8 @@ React Query result object with `SourceSummary` data.
 ```typescript
 import { useSummary } from '@/hooks/useReleases';
 
-function ComparisonStats({ currentPRs }: { currentPRs: number }) {
-  const { data: summary } = useSummary();
+function ComparisonStats({ currentPRs, activeTab }: { currentPRs: number; activeTab: string }) {
+  const { data: summary } = useSummary(activeTab);
 
   if (!summary) return null;
 
