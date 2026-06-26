@@ -5,6 +5,7 @@
  * Usage:
  *   npm run data-sync:gb-releases                    # Parse all releases
  *   npm run data-sync:gb-releases -- --version 20.0  # Parse specific version
+ *   npm run data-sync:gb-releases -- --version 20.0.1  # Refresh the 20.0 aggregate
  *   npm run data-sync:gb-releases -- --from 19.0 --to 20.0  # Parse range
  *
  * @module scripts/build-gb-releases
@@ -13,11 +14,12 @@
 import { parseArgs } from 'node:util';
 import { existsSync, mkdirSync } from 'node:fs';
 import { dirname, basename } from 'node:path';
+import { pathToFileURL } from 'node:url';
 import { writeJsonIfChanged } from './utils/file-utils.js';
 import {
   fetchAllReleases,
-  fetchReleaseByTag,
   filterReleasesByVersion,
+  isReleaseCandidate,
 } from './utils/github-api.js';
 import { parseRelease } from './utils/changelog-parser.js';
 import {
@@ -26,7 +28,7 @@ import {
   getMinorVersion,
   aggregatePatchReleases,
 } from './utils/release-utils.js';
-import type { ParseArgs } from './utils/types.js';
+import type { GitHubRelease, ParseArgs } from './utils/types.js';
 import type { Release } from './types.js';
 
 const PARSER_VERSION = '1.0.0';
@@ -86,11 +88,60 @@ function loadExistingReleases(outputPath: string): Release[] {
   }
 }
 
+function getReleaseVersion(release: GitHubRelease): string {
+  return release.tag_name.replace(/^v/, '');
+}
+
+function getRequestedVersion(version: string): string {
+  return version.replace(/^v/, '');
+}
+
+function hasStableReleaseTag(releases: GitHubRelease[], version: string): boolean {
+  const requestedVersion = getRequestedVersion(version);
+
+  return releases.some((release) => {
+    const releaseVersion = getReleaseVersion(release);
+    return releaseVersion === requestedVersion && !isReleaseCandidate(releaseVersion);
+  });
+}
+
+function shouldRequireExactStableTag(version: string): boolean {
+  return getRequestedVersion(version).split('.').length !== 2;
+}
+
+/**
+ * Select stable releases for a requested version.
+ *
+ * Two-part versions return every stable release for that minor. Three-part
+ * versions prove the requested tag exists first, then still return the whole
+ * minor line because gb-releases.json only stores minor aggregates.
+ */
+export function selectStableReleasesForVersion(
+  releases: GitHubRelease[],
+  version: string
+): GitHubRelease[] {
+  if (shouldRequireExactStableTag(version) && !hasStableReleaseTag(releases, version)) {
+    return [];
+  }
+
+  const targetMinorVersion = getMinorVersion(getRequestedVersion(version));
+
+  return releases.filter((release) => {
+    const releaseVersion = getReleaseVersion(release);
+
+    if (isReleaseCandidate(releaseVersion)) {
+      return false;
+    }
+
+    return getMinorVersion(releaseVersion) === targetMinorVersion;
+  });
+}
+
 /**
  * Merge new releases with existing ones.
  * New data takes precedence, but preserves contributorAggregates from existing.
  */
-function mergeReleases(existing: Release[], newReleases: Release[]): Release[] {
+export function mergeReleases(existing: Release[], newReleases: Release[]): Release[] {
   const releaseMap = new Map<string, Release>();
 
   // Add existing releases (keyed by minor version)
@@ -136,14 +187,20 @@ async function main() {
   console.log('Gutenberg Release Parser');
   console.log('========================');
 
+  const requestedVersion = args.version ? getRequestedVersion(args.version) : undefined;
   // Check if --version is a minor version (e.g., "20.0") or patch version (e.g., "20.0.1")
-  const isMinorVersion = args.version && args.version.split('.').length === 2;
+  const isMinorVersion = requestedVersion && requestedVersion.split('.').length === 2;
+  const requestedMinorVersion = requestedVersion
+    ? getMinorVersion(requestedVersion)
+    : undefined;
 
   if (args.version) {
     if (isMinorVersion) {
-      console.log(`Parsing minor version: ${args.version} (all patch releases)`);
+      console.log(`Parsing minor version: ${requestedMinorVersion} (stable releases only)`);
     } else {
-      console.log(`Parsing single version: ${args.version}`);
+      console.log(
+        `Parsing version: ${requestedVersion} (refreshing the ${requestedMinorVersion} aggregate)`
+      );
     }
   } else if (args.from || args.to) {
     console.log(`Parsing version range: ${args.from ?? 'earliest'} to ${args.to ?? 'latest'}`);
@@ -155,29 +212,17 @@ async function main() {
 
   try {
     // Fetch releases
-    let releases;
-    if (args.version && !isMinorVersion) {
-      // Exact patch version lookup (e.g., "20.0.1")
-      const release = await fetchReleaseByTag(args.version);
-      releases = release ? [release] : [];
-      if (releases.length === 0) {
-        console.error(`Release not found: ${args.version}`);
-        process.exit(1);
-      }
-    } else if (args.version && isMinorVersion) {
-      // Minor version: fetch all and filter by matching minor version
+    let releases: GitHubRelease[];
+    if (args.version) {
       const allReleases = await fetchAllReleases();
-      releases = allReleases.filter((r) => {
-        const releaseVersion = r.tag_name.replace(/^v/, '');
-        // Skip release candidates
-        if (releaseVersion.includes('-rc') || releaseVersion.includes('-RC')) {
-          return false;
-        }
-        // Match by minor version (e.g., "20.0" matches "20.0.0", "20.0.1", etc.)
-        return getMinorVersion(releaseVersion) === args.version;
-      });
+      releases = selectStableReleasesForVersion(allReleases, args.version);
+
       if (releases.length === 0) {
-        console.error(`No releases found for minor version: ${args.version}`);
+        if (isMinorVersion) {
+          console.error(`No stable releases found for minor version: ${requestedMinorVersion}`);
+        } else {
+          console.error(`Stable release not found: ${requestedVersion}`);
+        }
         process.exit(1);
       }
     } else {
@@ -271,4 +316,6 @@ async function main() {
   }
 }
 
-main();
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  main();
+}
