@@ -49,14 +49,13 @@
     },
     "contributorAggregates": {
       "sponsorBreakdown": {
-        "Automattic": 2,
-        "ib3 Limited": 1,
-        "Unknown": 1
+        "Automattic": 1,
+        "WordPress": 1,
+        "Unknown": 2
       },
       "countryBreakdown": {
         "Spain": 2,
-        "Finland": 1,
-        "Unknown": 1
+        "Unknown": 2
       }
     },
     "date": "2025-12-29",
@@ -119,7 +118,8 @@
     },
     "contributorAggregates": {
       "sponsorBreakdown": {
-        "Automattic": 2
+        "WordPress": 1,
+        "Automattic": 1
       },
       "countryBreakdown": {
         "Spain": 2
@@ -153,7 +153,8 @@
     },
     "contributorAggregates": {
       "sponsorBreakdown": {
-        "Automattic": 2,
+        "WordPress": 1,
+        "Automattic": 1,
         "Unknown": 1
       },
       "countryBreakdown": {
@@ -191,7 +192,8 @@
     },
     "contributorAggregates": {
       "sponsorBreakdown": {
-        "Automattic": 2,
+        "Automattic": 1,
+        "WordPress": 1,
         "Unknown": 3
       },
       "countryBreakdown": {
@@ -228,7 +230,8 @@
     },
     "contributorAggregates": {
       "sponsorBreakdown": {
-        "Automattic": 2
+        "WordPress": 1,
+        "Automattic": 1
       },
       "countryBreakdown": {
         "Spain": 2
@@ -259,7 +262,7 @@
     },
     "contributorAggregates": {
       "sponsorBreakdown": {
-        "Automattic": 1
+        "WordPress": 1
       },
       "countryBreakdown": {
         "Spain": 1
@@ -290,7 +293,8 @@
     },
     "contributorAggregates": {
       "sponsorBreakdown": {
-        "Automattic": 2
+        "WordPress": 1,
+        "Automattic": 1
       },
       "countryBreakdown": {
         "Spain": 2
@@ -354,13 +358,15 @@
     },
     "contributorAggregates": {
       "sponsorBreakdown": {
-        "Automattic": 5,
+        "Automattic": 3,
+        "WordPress": 1,
+        "WebOptics": 1,
         "Unknown": 2
       },
       "countryBreakdown": {
         "Spain": 2,
+        "Germany": 1,
         "United States": 1,
-        "Pakistan": 1,
         "Unknown": 3
       }
     },
@@ -395,8 +401,9 @@
     },
     "contributorAggregates": {
       "sponsorBreakdown": {
-        "Automattic": 3,
-        "Unknown": 1
+        "Automattic": 1,
+        "WordPress": 1,
+        "Unknown": 2
       },
       "countryBreakdown": {
         "Spain": 2,
@@ -433,13 +440,14 @@
     },
     "contributorAggregates": {
       "sponsorBreakdown": {
-        "Automattic": 2,
+        "Automattic": 1,
+        "WordPress": 1,
         "Unknown": 1
       },
       "countryBreakdown": {
         "United States": 1,
-        "India": 1,
-        "Spain": 1
+        "Spain": 1,
+        "Unknown": 1
       }
     },
     "date": "2025-03-06",

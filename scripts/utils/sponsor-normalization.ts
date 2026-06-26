@@ -94,9 +94,7 @@ export class SponsorNormalizer {
 	 */
 	private isNotASponsor( value: string ): boolean {
 		const lower = value.toLowerCase().trim();
-		return NOT_A_SPONSOR.some( pattern =>
-			lower === pattern || lower.includes( pattern )
-		) || KNOWN_USERNAMES.includes( lower );
+		return NOT_A_SPONSOR.includes( lower ) || KNOWN_USERNAMES.includes( lower );
 	}
 
 	/**
