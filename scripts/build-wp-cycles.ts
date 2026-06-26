@@ -173,6 +173,25 @@ function loadExistingWPCycles(): NormalizedRelease[] {
   }
 }
 
+function sumBreakdownValues(breakdown: Record<string, number> | undefined): number {
+  return Object.values(breakdown || {}).reduce((sum, count) => sum + count, 0);
+}
+
+function hasContributorAggregatesForContributorCount(
+  cycle: NormalizedRelease,
+  contributors: number
+): boolean {
+  const aggregates = cycle.contributorAggregates;
+  if (!aggregates) {
+    return false;
+  }
+
+  return (
+    sumBreakdownValues(aggregates.sponsorBreakdown) === contributors &&
+    sumBreakdownValues(aggregates.countryBreakdown) === contributors
+  );
+}
+
 export function preserveContributorAggregates(
   wpVersionStats: NormalizedRelease[],
   existingWPCycles: NormalizedRelease[]
@@ -183,7 +202,10 @@ export function preserveContributorAggregates(
     const existingCycle = existingCyclesMap.get(stat.version);
     return {
       ...stat,
-      contributorAggregates: existingCycle?.contributorAggregates,
+      contributorAggregates:
+        existingCycle && hasContributorAggregatesForContributorCount(existingCycle, stat.contributors)
+          ? existingCycle.contributorAggregates
+          : undefined,
       aiPRs: existingCycle?.aiPRs,
       aiBreakdown: existingCycle?.aiBreakdown,
     };

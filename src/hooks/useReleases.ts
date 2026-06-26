@@ -54,7 +54,7 @@ export function useTabData(tabId: string) {
 
 /**
  * Fetches and caches summary statistics.
- * Path is read from the active tab's summaryEndpoint, falling back to dataSources.summary.
+ * Uses the tab summary when one is configured; otherwise uses the global summary.
  * @param tabId - The active tab identifier from config
  * @returns Query result with SourceSummary data
  */

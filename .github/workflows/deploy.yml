@@ -30,6 +30,7 @@ jobs:
           node-version: '20'
           cache: 'npm'
       - run: npm ci
+      - run: npm run data:validate
       - run: npm run lint
       - run: npm run typecheck
 

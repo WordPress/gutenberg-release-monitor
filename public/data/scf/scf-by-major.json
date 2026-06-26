@@ -3,7 +3,7 @@
     "id": "6.9",
     "version": "6.9",
     "displayLabel": "SCF 6.9",
-    "isAggregated": false,
+    "isAggregated": true,
     "totalPRs": 2,
     "contributors": 1,
     "newContributors": 0,
@@ -24,6 +24,8 @@
       "other": 0
     },
     "date": "2025-12-31",
+    "groupedCount": 1,
+    "groupedRange": "6.9.0-6.9.0",
     "contributorAggregates": {
       "sponsorBreakdown": {
         "Automattic": 1
@@ -37,7 +39,7 @@
     "id": "6.8",
     "version": "6.8",
     "displayLabel": "SCF 6.8",
-    "isAggregated": false,
+    "isAggregated": true,
     "totalPRs": 40,
     "contributors": 4,
     "newContributors": 0,
@@ -61,6 +63,8 @@
       "other": 5
     },
     "date": "2025-12-29",
+    "groupedCount": 1,
+    "groupedRange": "6.8.0-6.8.0",
     "contributorAggregates": {
       "sponsorBreakdown": {
         "Automattic": 1,
@@ -77,13 +81,13 @@
     "id": "6.7",
     "version": "6.7",
     "displayLabel": "SCF 6.7",
-    "isAggregated": false,
+    "isAggregated": true,
     "totalPRs": 23,
     "contributors": 3,
     "newContributors": 0,
     "hasContributorData": true,
-    "avgPRs": 23,
-    "avgContributors": 3,
+    "avgPRs": 8,
+    "avgContributors": 2,
     "avgNewContributors": 0,
     "rawCategories": {
       "Bug Fixes": 6,
@@ -101,6 +105,8 @@
       "other": 5
     },
     "date": "2025-12-31",
+    "groupedCount": 3,
+    "groupedRange": "6.7.0-6.7.2",
     "contributorAggregates": {
       "sponsorBreakdown": {
         "Automattic": 1,
@@ -117,7 +123,7 @@
     "id": "6.6",
     "version": "6.6",
     "displayLabel": "SCF 6.6",
-    "isAggregated": false,
+    "isAggregated": true,
     "totalPRs": 20,
     "contributors": 5,
     "newContributors": 0,
@@ -142,6 +148,8 @@
       "other": 7
     },
     "date": "2025-11-18",
+    "groupedCount": 1,
+    "groupedRange": "6.6.0-6.6.0",
     "contributorAggregates": {
       "sponsorBreakdown": {
         "Automattic": 1,
@@ -158,13 +166,13 @@
     "id": "6.5",
     "version": "6.5",
     "displayLabel": "SCF 6.5",
-    "isAggregated": false,
+    "isAggregated": true,
     "totalPRs": 63,
     "contributors": 7,
     "newContributors": 0,
     "hasContributorData": true,
-    "avgPRs": 63,
-    "avgContributors": 7,
+    "avgPRs": 13,
+    "avgContributors": 3,
     "avgNewContributors": 0,
     "rawCategories": {
       "Other": 23,
@@ -182,6 +190,8 @@
       "other": 23
     },
     "date": "2025-07-30",
+    "groupedCount": 5,
+    "groupedRange": "6.5.0-6.5.6",
     "contributorAggregates": {
       "sponsorBreakdown": {
         "Automattic": 3,
@@ -201,13 +211,13 @@
     "id": "6.4",
     "version": "6.4",
     "displayLabel": "SCF 6.4",
-    "isAggregated": false,
+    "isAggregated": true,
     "totalPRs": 34,
     "contributors": 6,
     "newContributors": 0,
     "hasContributorData": true,
-    "avgPRs": 34,
-    "avgContributors": 6,
+    "avgPRs": 17,
+    "avgContributors": 4,
     "avgNewContributors": 0,
     "rawCategories": {
       "Other": 29,
@@ -225,6 +235,8 @@
       "other": 29
     },
     "date": "2025-04-13",
+    "groupedCount": 2,
+    "groupedRange": "6.4.1-6.4.2",
     "contributorAggregates": {
       "sponsorBreakdown": {
         "Automattic": 2,

@@ -74,8 +74,7 @@ jobs:
         run: npm run data-sync:ai-prs
 
       - name: Check data
-        if: ${{ github.event.inputs.contributor_aggregates != 'skip' }}
-        run: npm run validate:data
+        run: npm run data:validate
 
       - name: Check for changes
         id: changes

@@ -63,6 +63,7 @@ Each tab represents a different view of the data:
       "id": "by-wp-version",
       "title": "By WP Version",
       "dataEndpoint": "wp-cycles.json",
+      "summaryEndpoint": "summary.json",
       "isAggregated": true,
       "versionPrefix": "WordPress",
       "supportedViewModes": ["averages", "totals", "distribution", "sponsors", "countries"],

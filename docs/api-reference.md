@@ -193,6 +193,7 @@ React Query result object with `SourceSummary` data.
 **Behavior**:
 
 - Uses the active tab's `summaryEndpoint` when it has one; otherwise uses `config.dataSources.summary`
+- Uses the active tab's `summaryEndpoint` when it has one; otherwise uses `config.dataSources.summary`
 - Caches with query key: `['summary', summaryPath]`
 - Always enabled (no conditional dependencies)
 
