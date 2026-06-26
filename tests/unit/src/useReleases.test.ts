@@ -44,7 +44,7 @@ const config: ProjectConfig = {
       title: 'SCF Releases',
       dataEndpoint: 'scf/scf-by-major.json',
       summaryEndpoint: 'scf/scf-summary.json',
-      isAggregated: false,
+      isAggregated: true,
       hidden: true,
       versionPrefix: 'SCF',
       supportedViewModes: ['averages'],

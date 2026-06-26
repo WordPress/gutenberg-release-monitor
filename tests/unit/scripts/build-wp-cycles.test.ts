@@ -99,4 +99,44 @@ describe('preserveContributorAggregates', () => {
       agent: 0,
     });
   });
+
+  it('drops stale cycle contributorAggregates when contributor totals change', () => {
+    const stats = generateWPVersionStats([
+      createRelease('22.0', {
+        contributors: 2,
+        contributorsList: ['alice', 'bob'],
+      }),
+      createRelease('22.1', {
+        contributors: 2,
+        contributorsList: ['alice', 'charlie'],
+      }),
+    ]);
+    const existingCycles: NormalizedRelease[] = [
+      {
+        ...stats[0],
+        contributors: 2,
+        contributorAggregates: {
+          sponsorBreakdown: { Automattic: 2 },
+          countryBreakdown: { 'United States': 2 },
+        },
+        aiPRs: 3,
+        aiBreakdown: {
+          byTool: { 'claude-code': 3 },
+          nonAgent: 3,
+          agent: 0,
+        },
+      },
+    ];
+
+    const preserved = preserveContributorAggregates(stats, existingCycles);
+
+    expect(stats[0].contributors).toBe(3);
+    expect(preserved[0].contributorAggregates).toBeUndefined();
+    expect(preserved[0].aiPRs).toBe(3);
+    expect(preserved[0].aiBreakdown).toEqual({
+      byTool: { 'claude-code': 3 },
+      nonAgent: 3,
+      agent: 0,
+    });
+  });
 });

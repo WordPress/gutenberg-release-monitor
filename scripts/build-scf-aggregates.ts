@@ -9,6 +9,7 @@
  */
 
 import { readFileSync, existsSync } from 'node:fs';
+import { pathToFileURL } from 'node:url';
 import type { NormalizedRelease, SourceSummary } from '../src/data/normalized.js';
 import { loadCategoryConfig, getAggregatedPRs } from './utils/category-utils.js';
 import { writeJsonIfChanged } from './utils/file-utils.js';
@@ -21,6 +22,22 @@ import type { Release } from './types.js';
 
 const RELEASES_PATH = 'public/data/scf/scf-releases.json';
 const OUTPUT_DIR = 'public/data/scf';
+
+function sumBreakdownValues(breakdown: Record<string, number> | undefined): number {
+  return Object.values(breakdown || {}).reduce((sum, count) => sum + count, 0);
+}
+
+function hasValidContributorAggregates(release: NormalizedRelease): boolean {
+  const aggregates = release.contributorAggregates;
+  if (!aggregates) {
+    return false;
+  }
+
+  return (
+    sumBreakdownValues(aggregates.sponsorBreakdown) === release.contributors &&
+    sumBreakdownValues(aggregates.countryBreakdown) === release.contributors
+  );
+}
 
 /**
  * Load SCF releases from the JSON file.
@@ -37,7 +54,7 @@ function loadReleases(): Release[] {
  * Generate per-minor-version aggregated statistics.
  * Groups patch releases (6.7.0, 6.7.1, 6.7.2) into minor versions (6.7).
  */
-function generateMinorVersionStats(releases: Release[]): NormalizedRelease[] {
+export function generateMinorVersionStats(releases: Release[]): NormalizedRelease[] {
   const categoryConfig = loadCategoryConfig();
   const byMinorVersion = new Map<string, Release[]>();
 
@@ -53,6 +70,7 @@ function generateMinorVersionStats(releases: Release[]): NormalizedRelease[] {
   const stats: NormalizedRelease[] = [];
   for (const [minorVersion, minorReleases] of byMinorVersion) {
     const totalPRs = minorReleases.reduce((sum, r) => sum + r.totalPRs, 0);
+    const releaseCount = minorReleases.length;
 
     // Deduplicate contributors across all releases in this minor version
     const allContributors = new Set<string>();
@@ -88,52 +106,31 @@ function generateMinorVersionStats(releases: Release[]): NormalizedRelease[] {
       .sort()
       .pop() || '';
 
-    // Aggregate sponsor and country breakdowns from all releases
-    const sponsorBreakdown: Record<string, number> = {};
-    const countryBreakdown: Record<string, number> = {};
-    let hasAggregates = false;
-
-    for (const release of minorReleases) {
-      if (release.contributorAggregates) {
-        hasAggregates = true;
-        for (const [sponsor, count] of Object.entries(
-          release.contributorAggregates.sponsorBreakdown || {}
-        )) {
-          sponsorBreakdown[sponsor] = (sponsorBreakdown[sponsor] || 0) + count;
-        }
-        for (const [country, count] of Object.entries(
-          release.contributorAggregates.countryBreakdown || {}
-        )) {
-          countryBreakdown[country] = (countryBreakdown[country] || 0) + count;
-        }
-      }
-    }
-
-    // Sort breakdowns by count (descending)
-    const sortByValue = (obj: Record<string, number>) =>
-      Object.fromEntries(Object.entries(obj).sort((a, b) => b[1] - a[1]));
+    const versions = minorReleases
+      .map((release) => release.gbVersion)
+      .sort((a, b) => compareVersions(a, b));
 
     stats.push({
       id: minorVersion,
       version: minorVersion,
       displayLabel: `SCF ${minorVersion}`,
-      isAggregated: false,
+      isAggregated: true,
       totalPRs,
       contributors: totalContributors,
       newContributors: totalNewContributors,
       hasContributorData: totalContributors > 0,
-      avgPRs: totalPRs, // Same as total since each major version is one release
-      avgContributors: totalContributors,
-      avgNewContributors: totalNewContributors,
+      avgPRs: Math.round(totalPRs / releaseCount),
+      avgContributors: Math.round(
+        minorReleases.reduce((sum, r) => sum + r.contributors, 0) / releaseCount
+      ),
+      avgNewContributors: Math.round(
+        minorReleases.reduce((sum, r) => sum + r.newContributors, 0) / releaseCount
+      ),
       rawCategories,
       categoryTotals,
       date: latestDate,
-      contributorAggregates: hasAggregates
-        ? {
-            sponsorBreakdown: sortByValue(sponsorBreakdown),
-            countryBreakdown: sortByValue(countryBreakdown),
-          }
-        : undefined,
+      groupedCount: releaseCount,
+      groupedRange: `${versions[0]}-${versions[versions.length - 1]}`,
     });
   }
 
@@ -256,7 +253,7 @@ async function main() {
   const existingCycles = loadExistingCycles();
   const existingAggregatesMap = new Map(
     existingCycles
-      .filter((c) => c.contributorAggregates)
+      .filter(hasValidContributorAggregates)
       .map((c) => [c.version, c.contributorAggregates])
   );
 
@@ -288,4 +285,6 @@ async function main() {
   console.log('\nAggregation complete!');
 }
 
-main();
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  main();
+}
