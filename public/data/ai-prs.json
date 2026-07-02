@@ -1,20 +1,116 @@
 {
   "totals": {
-    "aiPRs": 291,
-    "nonAgent": 260,
+    "aiPRs": 305,
+    "nonAgent": 274,
     "agent": 31,
     "byTool": {
-      "claude-code": 209,
-      "cursor": 10,
-      "copilot": 71
+      "claude-code": 229,
+      "cursor": 11,
+      "copilot": 74
     }
   },
   "prs": [
+    {
+      "number": 79738,
+      "title": "Guidelines: Render block icons like the editor so every icon displays correctly",
+      "url": "https://github.com/WordPress/gutenberg/pull/79738",
+      "author": "aagam-shah",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-07-02"
+    },
+    {
+      "number": 79736,
+      "title": "Build: Support --skip-types in npm run dev",
+      "url": "https://github.com/WordPress/gutenberg/pull/79736",
+      "author": "youknowriad",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "body",
+      "mergedAt": "2026-07-01"
+    },
+    {
+      "number": 79686,
+      "title": "Icons: Add an icon collections REST endpoint and tighten name rules",
+      "url": "https://github.com/WordPress/gutenberg/pull/79686",
+      "author": "t-hamano",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-07-01"
+    },
+    {
+      "number": 79623,
+      "title": "Icons Registry: Allow digits and underscores in icon slugs",
+      "url": "https://github.com/WordPress/gutenberg/pull/79623",
+      "author": "t-hamano",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-06-29"
+    },
+    {
+      "number": 79616,
+      "title": "Navigation Link: Fix \"[object Object]\" in link preview for untitled entities",
+      "url": "https://github.com/WordPress/gutenberg/pull/79616",
+      "author": "taipeicoder",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "body",
+      "mergedAt": "2026-06-30"
+    },
+    {
+      "number": 79574,
+      "title": "Docs: Add image hosting guidance to the documentation contributors guide",
+      "url": "https://github.com/WordPress/gutenberg/pull/79574",
+      "author": "juanmaguitar",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-06-26"
+    },
     {
       "number": 79522,
       "title": "Block editor: use core/registered-block in reducer tests",
       "url": "https://github.com/WordPress/gutenberg/pull/79522",
       "author": "tyxla",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "body",
+      "mergedAt": "2026-06-25"
+    },
+    {
+      "number": 79484,
+      "title": "CODEOWNERS: assign widget dashboard areas to @retrofox",
+      "url": "https://github.com/WordPress/gutenberg/pull/79484",
+      "author": "retrofox",
+      "mode": "non-agent",
+      "tools": [
+        "cursor"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-06-26"
+    },
+    {
+      "number": 79456,
+      "title": "Experiments: Move screen under Settings, drop top-level Gutenberg menu and Demo page",
+      "url": "https://github.com/WordPress/gutenberg/pull/79456",
+      "author": "youknowriad",
       "mode": "non-agent",
       "tools": [
         "claude-code"
@@ -83,6 +179,18 @@
       "mergedAt": "2026-06-19"
     },
     {
+      "number": 79263,
+      "title": "Knowledge: Dissolve the Guidelines singleton into per-scope rows",
+      "url": "https://github.com/WordPress/gutenberg/pull/79263",
+      "author": "aagam-shah",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-06-29"
+    },
+    {
       "number": 79260,
       "title": "CI: Run PHP unit tests on PHP 8.4 and 8.5",
       "url": "https://github.com/WordPress/gutenberg/pull/79260",
@@ -129,6 +237,30 @@
       ],
       "detectedVia": "commit",
       "mergedAt": "2026-06-19"
+    },
+    {
+      "number": 79149,
+      "title": "Knowledge: Rename the Guidelines CPT storage primitive to Knowledge",
+      "url": "https://github.com/WordPress/gutenberg/pull/79149",
+      "author": "gziolo",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-06-29"
+    },
+    {
+      "number": 79115,
+      "title": "Blocks: Add innerContent support for static inner blocks, adopt it in the HTML block",
+      "url": "https://github.com/WordPress/gutenberg/pull/79115",
+      "author": "youknowriad",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "body",
+      "mergedAt": "2026-06-29"
     },
     {
       "number": 79100,
@@ -659,6 +791,18 @@
       ],
       "detectedVia": "commit",
       "mergedAt": "2026-05-18"
+    },
+    {
+      "number": 78332,
+      "title": "Icons: Add PHP method(s) for rendering inline SVG icons from the registry",
+      "url": "https://github.com/WordPress/gutenberg/pull/78332",
+      "author": "jasmussen",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-06-26"
     },
     {
       "number": 78318,
@@ -1249,6 +1393,18 @@
       ],
       "detectedVia": "commit",
       "mergedAt": "2026-04-15"
+    },
+    {
+      "number": 77260,
+      "title": "Icons: Add APIs for collection and icon registration",
+      "url": "https://github.com/WordPress/gutenberg/pull/77260",
+      "author": "t-hamano",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-06-27"
     },
     {
       "number": 77254,
@@ -2728,6 +2884,18 @@
       ],
       "detectedVia": "body",
       "mergedAt": "2026-02-02"
+    },
+    {
+      "number": 75121,
+      "title": "Integrate Resizable Editor with Device Preview and add Responsive editing",
+      "url": "https://github.com/WordPress/gutenberg/pull/75121",
+      "author": "t-hamano",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-06-26"
     },
     {
       "number": 75114,
