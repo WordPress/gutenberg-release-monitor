@@ -4,7 +4,7 @@
     "version": "7.1",
     "displayLabel": "WordPress 7.1",
     "isAggregated": true,
-    "totalPRs": 1760,
+    "totalPRs": 1761,
     "contributors": 177,
     "newContributors": 53,
     "hasContributorData": true,
@@ -13,24 +13,12 @@
     "avgNewContributors": 6,
     "categoryTotals": {
       "features": 615,
-      "bugs": 495,
+      "bugs": 496,
       "codeQuality": 491,
       "a11y": 30,
       "performance": 30,
       "documentation": 90,
       "other": 6
-    },
-    "groupedCount": 9,
-    "groupedRange": "22.7-23.5",
-    "aiPRs": 221,
-    "aiBreakdown": {
-      "byTool": {
-        "claude-code": 188,
-        "cursor": 8,
-        "copilot": 33
-      },
-      "nonAgent": 217,
-      "agent": 4
     },
     "contributorAggregates": {
       "sponsorBreakdown": {
@@ -97,6 +85,18 @@
         "Mexico": 1,
         "Unknown": 61
       }
+    },
+    "groupedCount": 9,
+    "groupedRange": "22.7-23.5",
+    "aiPRs": 221,
+    "aiBreakdown": {
+      "byTool": {
+        "claude-code": 188,
+        "cursor": 8,
+        "copilot": 33
+      },
+      "nonAgent": 217,
+      "agent": 4
     }
   },
   {

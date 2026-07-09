@@ -1,7 +1,7 @@
 {
   "totals": {
-    "aiPRs": 305,
-    "nonAgent": 274,
+    "aiPRs": 319,
+    "nonAgent": 288,
     "agent": 31,
     "byTool": {
       "claude-code": 229,
@@ -10,6 +10,114 @@
     }
   },
   "prs": [
+    {
+      "number": 80007,
+      "title": "Document widget relevance, help",
+      "url": "https://github.com/WordPress/gutenberg/pull/80007",
+      "author": "retrofox",
+      "mode": "non-agent",
+      "tools": [
+        "cursor"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-07-09"
+    },
+    {
+      "number": 79990,
+      "title": "Widget Dashboard: reserve paint space for tile focus rings",
+      "url": "https://github.com/WordPress/gutenberg/pull/79990",
+      "author": "retrofox",
+      "mode": "non-agent",
+      "tools": [
+        "cursor"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-07-08"
+    },
+    {
+      "number": 79981,
+      "title": "Tabs: Fix active tab switching from a stale inner-block selection",
+      "url": "https://github.com/WordPress/gutenberg/pull/79981",
+      "author": "t-hamano",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-07-09"
+    },
+    {
+      "number": 79894,
+      "title": "Classic block: Remove migration notice and restore inserter availability",
+      "url": "https://github.com/WordPress/gutenberg/pull/79894",
+      "author": "tyxla",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-07-06"
+    },
+    {
+      "number": 79863,
+      "title": "Move real-time collaboration compat code to wordpress-7.1",
+      "url": "https://github.com/WordPress/gutenberg/pull/79863",
+      "author": "t-hamano",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-07-07"
+    },
+    {
+      "number": 79855,
+      "title": "Block Editor: Share block-bindings context assembly between call sites",
+      "url": "https://github.com/WordPress/gutenberg/pull/79855",
+      "author": "cbravobernal",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-07-07"
+    },
+    {
+      "number": 79848,
+      "title": "Tabs: Remove editor-only block context",
+      "url": "https://github.com/WordPress/gutenberg/pull/79848",
+      "author": "t-hamano",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-07-08"
+    },
+    {
+      "number": 79837,
+      "title": "Button: Fix focus ring for link",
+      "url": "https://github.com/WordPress/gutenberg/pull/79837",
+      "author": "t-hamano",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-07-07"
+    },
+    {
+      "number": 79834,
+      "title": "Playlist: seek value text localization",
+      "url": "https://github.com/WordPress/gutenberg/pull/79834",
+      "author": "jeryj",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-07-07"
+    },
     {
       "number": 79738,
       "title": "Guidelines: Render block icons like the editor so every icon displays correctly",
@@ -35,6 +143,18 @@
       "mergedAt": "2026-07-01"
     },
     {
+      "number": 79735,
+      "title": "Widgets: add attribute `relevance` and inline editing in the tile toolbar",
+      "url": "https://github.com/WordPress/gutenberg/pull/79735",
+      "author": "retrofox",
+      "mode": "non-agent",
+      "tools": [
+        "copilot"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-07-02"
+    },
+    {
       "number": 79686,
       "title": "Icons: Add an icon collections REST endpoint and tighten name rules",
       "url": "https://github.com/WordPress/gutenberg/pull/79686",
@@ -45,6 +165,18 @@
       ],
       "detectedVia": "commit",
       "mergedAt": "2026-07-01"
+    },
+    {
+      "number": 79659,
+      "title": "Block variations: Support innerContent for the Custom HTML block",
+      "url": "https://github.com/WordPress/gutenberg/pull/79659",
+      "author": "youknowriad",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "body",
+      "mergedAt": "2026-07-02"
     },
     {
       "number": 79623,
@@ -81,6 +213,18 @@
       ],
       "detectedVia": "commit",
       "mergedAt": "2026-06-26"
+    },
+    {
+      "number": 79546,
+      "title": "DataViews: Fix infinite-scroll jump on async page loads",
+      "url": "https://github.com/WordPress/gutenberg/pull/79546",
+      "author": "arthur791004",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-07-06"
     },
     {
       "number": 79522,
@@ -465,6 +609,18 @@
       ],
       "detectedVia": "body",
       "mergedAt": "2026-06-03"
+    },
+    {
+      "number": 78909,
+      "title": "PHP-Only blocks: forward current post ID to server render",
+      "url": "https://github.com/WordPress/gutenberg/pull/78909",
+      "author": "t-hamano",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-07-08"
     },
     {
       "number": 78901,
@@ -3113,6 +3269,19 @@
       ],
       "detectedVia": "body",
       "mergedAt": "2026-01-23"
+    },
+    {
+      "number": 74866,
+      "title": "Latest Posts: Parse blocks in full content display",
+      "url": "https://github.com/WordPress/gutenberg/pull/74866",
+      "author": "getdave",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code",
+        "copilot"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-07-07"
     },
     {
       "number": 74855,
