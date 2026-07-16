@@ -5,7 +5,7 @@
   "avgPRsSinceCutoff": 196,
   "avgContributorsSinceCutoff": 55,
   "avgNewContributorsSinceCutoff": 6,
-  "totalPRsSinceCutoff": 1761,
+  "totalPRsSinceCutoff": 1764,
   "uniqueContributorsSinceCutoff": 177,
   "uniqueNewContributorsSinceCutoff": 53,
   "avgPRsTotal": 140,
@@ -14,5 +14,5 @@
   "latestRelease": "23.5",
   "oldestRelease": "1.0",
   "totalReleases": 205,
-  "lastUpdated": "2026-07-09T10:13:45.401Z"
+  "lastUpdated": "2026-07-16T09:47:59.889Z"
 }

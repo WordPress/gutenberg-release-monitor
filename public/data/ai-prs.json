@@ -1,7 +1,7 @@
 {
   "totals": {
-    "aiPRs": 319,
-    "nonAgent": 288,
+    "aiPRs": 343,
+    "nonAgent": 312,
     "agent": 31,
     "byTool": {
       "claude-code": 229,
@@ -10,6 +10,222 @@
     }
   },
   "prs": [
+    {
+      "number": 80292,
+      "title": "Icons: Fix collection unregister not removing icons after core added its own registry",
+      "url": "https://github.com/WordPress/gutenberg/pull/80292",
+      "author": "t-hamano",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-07-15"
+    },
+    {
+      "number": 80257,
+      "title": "Social Link: Fix stray closing tag in Tumblr icon markup",
+      "url": "https://github.com/WordPress/gutenberg/pull/80257",
+      "author": "obenland",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "body",
+      "mergedAt": "2026-07-14"
+    },
+    {
+      "number": 80225,
+      "title": "Blocks: Rename _wp_apply_content_filters() to _wp_apply_block_content_filters()",
+      "url": "https://github.com/WordPress/gutenberg/pull/80225",
+      "author": "t-hamano",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-07-14"
+    },
+    {
+      "number": 80191,
+      "title": "Blocks: Rename _gutenberg_apply_content_filters() to _wp_apply_content_filters()",
+      "url": "https://github.com/WordPress/gutenberg/pull/80191",
+      "author": "t-hamano",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-07-13"
+    },
+    {
+      "number": 80163,
+      "title": "Stabilize Tabs block",
+      "url": "https://github.com/WordPress/gutenberg/pull/80163",
+      "author": "t-hamano",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-07-14"
+    },
+    {
+      "number": 80155,
+      "title": "Rich text: cut through the record instead of execCommand",
+      "url": "https://github.com/WordPress/gutenberg/pull/80155",
+      "author": "ellatrix",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "body",
+      "mergedAt": "2026-07-13"
+    },
+    {
+      "number": 80151,
+      "title": "Rich text: synchronize the selection before events that consume it",
+      "url": "https://github.com/WordPress/gutenberg/pull/80151",
+      "author": "ellatrix",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "body",
+      "mergedAt": "2026-07-13"
+    },
+    {
+      "number": 80133,
+      "title": "useMergeRefs: apply ref changes after out-of-render attachment",
+      "url": "https://github.com/WordPress/gutenberg/pull/80133",
+      "author": "ellatrix",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "body",
+      "mergedAt": "2026-07-11"
+    },
+    {
+      "number": 80131,
+      "title": "Observe typing on the writing flow node",
+      "url": "https://github.com/WordPress/gutenberg/pull/80131",
+      "author": "ellatrix",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "body",
+      "mergedAt": "2026-07-11"
+    },
+    {
+      "number": 80130,
+      "title": "Typewriter: remove the block selection gate",
+      "url": "https://github.com/WordPress/gutenberg/pull/80130",
+      "author": "ellatrix",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "body",
+      "mergedAt": "2026-07-10"
+    },
+    {
+      "number": 80126,
+      "title": "Writing flow: fix selection end mapping at block boundaries",
+      "url": "https://github.com/WordPress/gutenberg/pull/80126",
+      "author": "ellatrix",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "body",
+      "mergedAt": "2026-07-10"
+    },
+    {
+      "number": 80113,
+      "title": "Icons: Unify collection-scoping route param on `collection` and validate description",
+      "url": "https://github.com/WordPress/gutenberg/pull/80113",
+      "author": "t-hamano",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-07-10"
+    },
+    {
+      "number": 80107,
+      "title": "Tab List: Add toolbar buttons to reorder tabs",
+      "url": "https://github.com/WordPress/gutenberg/pull/80107",
+      "author": "t-hamano",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-07-15"
+    },
+    {
+      "number": 80092,
+      "title": "Cover: allow restricting video embed providers",
+      "url": "https://github.com/WordPress/gutenberg/pull/80092",
+      "author": "t-hamano",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-07-13"
+    },
+    {
+      "number": 80066,
+      "title": "Second click or space/enter keypress on playing track pauses it",
+      "url": "https://github.com/WordPress/gutenberg/pull/80066",
+      "author": "jeryj",
+      "mode": "non-agent",
+      "tools": [
+        "copilot"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-07-10"
+    },
+    {
+      "number": 80064,
+      "title": "Panel: fix focus style for toggle button",
+      "url": "https://github.com/WordPress/gutenberg/pull/80064",
+      "author": "t-hamano",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-07-10"
+    },
+    {
+      "number": 80062,
+      "title": "Block Supports: Ensure that custom CSS is output after the block library styles",
+      "url": "https://github.com/WordPress/gutenberg/pull/80062",
+      "author": "t-hamano",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-07-13"
+    },
+    {
+      "number": 80028,
+      "title": "Cover: Create the initial paragraph when the block gains a background",
+      "url": "https://github.com/WordPress/gutenberg/pull/80028",
+      "author": "ellatrix",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "body",
+      "mergedAt": "2026-07-15"
+    },
     {
       "number": 80007,
       "title": "Document widget relevance, help",
@@ -33,6 +249,18 @@
       ],
       "detectedVia": "commit",
       "mergedAt": "2026-07-08"
+    },
+    {
+      "number": 79982,
+      "title": "Components/Button: Don't use box-shadow for secondary buttons",
+      "url": "https://github.com/WordPress/gutenberg/pull/79982",
+      "author": "t-hamano",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-07-11"
     },
     {
       "number": 79981,
@@ -155,6 +383,18 @@
       "mergedAt": "2026-07-02"
     },
     {
+      "number": 79709,
+      "title": "Guidelines: Add Blocks as a registry scope",
+      "url": "https://github.com/WordPress/gutenberg/pull/79709",
+      "author": "gziolo",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-07-10"
+    },
+    {
       "number": 79686,
       "title": "Icons: Add an icon collections REST endpoint and tighten name rules",
       "url": "https://github.com/WordPress/gutenberg/pull/79686",
@@ -165,6 +405,18 @@
       ],
       "detectedVia": "commit",
       "mergedAt": "2026-07-01"
+    },
+    {
+      "number": 79681,
+      "title": "Icons: Filter the icon library picker by collection",
+      "url": "https://github.com/WordPress/gutenberg/pull/79681",
+      "author": "t-hamano",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-07-10"
     },
     {
       "number": 79659,
@@ -297,6 +549,18 @@
       ],
       "detectedVia": "commit",
       "mergedAt": "2026-06-22"
+    },
+    {
+      "number": 79338,
+      "title": "Only include icon library SVGs listed as `public` in the Zip file published to GitHub Container Registry for `wordpress-develop`",
+      "url": "https://github.com/WordPress/gutenberg/pull/79338",
+      "author": "desrosj",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-07-14"
     },
     {
       "number": 79337,
@@ -816,7 +1080,7 @@
     },
     {
       "number": 78565,
-      "title": "Edit Post Preload: Cover remaining bound GET/OPTIONS requests on load",
+      "title": "Edit Post: Preload the remaining REST requests the editor fires on load",
       "url": "https://github.com/WordPress/gutenberg/pull/78565",
       "author": "ellatrix",
       "mode": "non-agent",
@@ -3477,6 +3741,18 @@
       "mergedAt": "2026-02-03"
     },
     {
+      "number": 74042,
+      "title": "Post editor: always iframe",
+      "url": "https://github.com/WordPress/gutenberg/pull/74042",
+      "author": "ellatrix",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-07-10"
+    },
+    {
       "number": 74023,
       "title": "Fix misleading test description for filesize field 0 bytes behavior",
       "url": "https://github.com/WordPress/gutenberg/pull/74023",
@@ -3848,6 +4124,18 @@
       ],
       "detectedVia": "commit",
       "mergedAt": "2026-05-01"
+    },
+    {
+      "number": 64916,
+      "title": "Add option to exclude current post from query block",
+      "url": "https://github.com/WordPress/gutenberg/pull/64916",
+      "author": "g-elwell",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-07-13"
     }
   ]
 }
