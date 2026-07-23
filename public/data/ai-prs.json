@@ -1,15 +1,111 @@
 {
   "totals": {
-    "aiPRs": 343,
-    "nonAgent": 312,
+    "aiPRs": 357,
+    "nonAgent": 326,
     "agent": 31,
     "byTool": {
-      "claude-code": 229,
-      "cursor": 11,
-      "copilot": 74
+      "claude-code": 277,
+      "cursor": 14,
+      "copilot": 77
     }
   },
   "prs": [
+    {
+      "number": 80568,
+      "title": "Release: Require a working GitHub CLI for cherry-picking",
+      "url": "https://github.com/WordPress/gutenberg/pull/80568",
+      "author": "t-hamano",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-07-22"
+    },
+    {
+      "number": 80555,
+      "title": "Global Styles: Limit the inherited value treatment to the Gutenberg plugin",
+      "url": "https://github.com/WordPress/gutenberg/pull/80555",
+      "author": "t-hamano",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-07-22"
+    },
+    {
+      "number": 80510,
+      "title": "Dashboard Widgets: harden action `href` sanitization",
+      "url": "https://github.com/WordPress/gutenberg/pull/80510",
+      "author": "retrofox",
+      "mode": "non-agent",
+      "tools": [
+        "cursor"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-07-22"
+    },
+    {
+      "number": 80508,
+      "title": "Icons: Store the sanitized SVG content when registering an icon",
+      "url": "https://github.com/WordPress/gutenberg/pull/80508",
+      "author": "t-hamano",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-07-21"
+    },
+    {
+      "number": 80495,
+      "title": "Global Styles: Resolve per-level heading element styles in block inspector controls",
+      "url": "https://github.com/WordPress/gutenberg/pull/80495",
+      "author": "andrewserong",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-07-22"
+    },
+    {
+      "number": 80474,
+      "title": "Components: migrate SearchControl to SCSS module",
+      "url": "https://github.com/WordPress/gutenberg/pull/80474",
+      "author": "im3dabasia",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "body",
+      "mergedAt": "2026-07-21"
+    },
+    {
+      "number": 80472,
+      "title": "Components: migrate FormTokenField to SCSS module",
+      "url": "https://github.com/WordPress/gutenberg/pull/80472",
+      "author": "im3dabasia",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "body",
+      "mergedAt": "2026-07-22"
+    },
+    {
+      "number": 80469,
+      "title": "Move real-time collaboration code to lib/experimental/collaboration",
+      "url": "https://github.com/WordPress/gutenberg/pull/80469",
+      "author": "t-hamano",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-07-20"
+    },
     {
       "number": 80292,
       "title": "Icons: Fix collection unregister not removing icons after core added its own registry",
@@ -225,6 +321,18 @@
       ],
       "detectedVia": "body",
       "mergedAt": "2026-07-15"
+    },
+    {
+      "number": 80026,
+      "title": "Post Content: Use the default block appender for empty content",
+      "url": "https://github.com/WordPress/gutenberg/pull/80026",
+      "author": "ellatrix",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "body",
+      "mergedAt": "2026-07-16"
     },
     {
       "number": 80007,
@@ -477,6 +585,18 @@
       ],
       "detectedVia": "commit",
       "mergedAt": "2026-07-06"
+    },
+    {
+      "number": 79523,
+      "title": "Wrap notices in ThemeProvider with 0 corner radius",
+      "url": "https://github.com/WordPress/gutenberg/pull/79523",
+      "author": "CookieDarb",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-07-22"
     },
     {
       "number": 79522,
@@ -1548,6 +1668,18 @@
       ],
       "detectedVia": "commit",
       "mergedAt": "2026-04-29"
+    },
+    {
+      "number": 77779,
+      "title": "Revisions: Specify block level diff status via aria-label",
+      "url": "https://github.com/WordPress/gutenberg/pull/77779",
+      "author": "himanshupathak95",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-07-22"
     },
     {
       "number": 77734,
@@ -2786,6 +2918,18 @@
       ],
       "detectedVia": "commit",
       "mergedAt": "2026-04-24"
+    },
+    {
+      "number": 75985,
+      "title": "Misc fixes for WordPress-Develop 7.0 merges",
+      "url": "https://github.com/WordPress/gutenberg/pull/75985",
+      "author": "peterwilsoncc",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-07-18"
     },
     {
       "number": 75983,
@@ -4113,6 +4257,18 @@
       "mergedAt": "2026-04-14"
     },
     {
+      "number": 70217,
+      "title": "Fix post excerpt rendering to conditionally include space before more…",
+      "url": "https://github.com/WordPress/gutenberg/pull/70217",
+      "author": "juliennoel9",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-07-17"
+    },
+    {
       "number": 69962,
       "title": "ESLint: Replace `eslint-plugin-react-compiler` with `eslint-plugin-react-hooks`",
       "url": "https://github.com/WordPress/gutenberg/pull/69962",
@@ -4136,6 +4292,18 @@
       ],
       "detectedVia": "commit",
       "mergedAt": "2026-07-13"
+    },
+    {
+      "number": 63696,
+      "title": "Improve the various Alignment controls props handling",
+      "url": "https://github.com/WordPress/gutenberg/pull/63696",
+      "author": "dhananjaykuber",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-07-22"
     }
   ]
 }
