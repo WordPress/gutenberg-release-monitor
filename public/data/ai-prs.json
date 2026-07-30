@@ -1,7 +1,7 @@
 {
   "totals": {
-    "aiPRs": 357,
-    "nonAgent": 326,
+    "aiPRs": 365,
+    "nonAgent": 334,
     "agent": 31,
     "byTool": {
       "claude-code": 277,
@@ -10,6 +10,102 @@
     }
   },
   "prs": [
+    {
+      "number": 80817,
+      "title": "Ensure static checks can run for private mirrors",
+      "url": "https://github.com/WordPress/gutenberg/pull/80817",
+      "author": "desrosj",
+      "mode": "non-agent",
+      "tools": [
+        "copilot"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-07-29"
+    },
+    {
+      "number": 80814,
+      "title": "Add a responsiveEditingEnabled editor setting to hide the Responsive styles option",
+      "url": "https://github.com/WordPress/gutenberg/pull/80814",
+      "author": "t-hamano",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-07-29"
+    },
+    {
+      "number": 80768,
+      "title": "Editor: leave undo to the browser in fields that handle their own undo",
+      "url": "https://github.com/WordPress/gutenberg/pull/80768",
+      "author": "ellatrix",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-07-29"
+    },
+    {
+      "number": 80737,
+      "title": "Jest: Fix ignore pattern for TypeScript declaration files",
+      "url": "https://github.com/WordPress/gutenberg/pull/80737",
+      "author": "sirreal",
+      "mode": "non-agent",
+      "tools": [
+        "copilot"
+      ],
+      "detectedVia": "body",
+      "mergedAt": "2026-07-27"
+    },
+    {
+      "number": 80670,
+      "title": "Meta boxes: Match heading styles with Gutenberg panels",
+      "url": "https://github.com/WordPress/gutenberg/pull/80670",
+      "author": "dilipom13",
+      "mode": "non-agent",
+      "tools": [
+        "cursor"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-07-27"
+    },
+    {
+      "number": 80650,
+      "title": "Add progressive-discovery pattern for agent instructions and skills",
+      "url": "https://github.com/WordPress/gutenberg/pull/80650",
+      "author": "jeryj",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-07-24"
+    },
+    {
+      "number": 80618,
+      "title": "createInterpolateElement: handle unmatched closing tags gracefully",
+      "url": "https://github.com/WordPress/gutenberg/pull/80618",
+      "author": "Kgupta62",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "body",
+      "mergedAt": "2026-07-28"
+    },
+    {
+      "number": 80593,
+      "title": "Docs: Expand the back-porting to WP Core guide",
+      "url": "https://github.com/WordPress/gutenberg/pull/80593",
+      "author": "scruffian",
+      "mode": "non-agent",
+      "tools": [
+        "copilot"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-07-27"
+    },
     {
       "number": 80568,
       "title": "Release: Require a working GitHub CLI for cherry-picking",
