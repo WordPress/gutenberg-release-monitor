@@ -1,15 +1,51 @@
 {
   "totals": {
-    "aiPRs": 365,
-    "nonAgent": 334,
+    "aiPRs": 373,
+    "nonAgent": 342,
     "agent": 31,
     "byTool": {
-      "claude-code": 277,
-      "cursor": 14,
-      "copilot": 77
+      "claude-code": 287,
+      "copilot": 81,
+      "cursor": 15
     }
   },
   "prs": [
+    {
+      "number": 81250,
+      "title": "Block editor: unify what a new sibling block inherits",
+      "url": "https://github.com/WordPress/gutenberg/pull/81250",
+      "author": "ellatrix",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "body",
+      "mergedAt": "2026-08-06"
+    },
+    {
+      "number": 81145,
+      "title": "Interface: Increase footer breadcrumb height to prevent focus ring clipping",
+      "url": "https://github.com/WordPress/gutenberg/pull/81145",
+      "author": "t-hamano",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-08-04"
+    },
+    {
+      "number": 81083,
+      "title": "Link Control: Restore the preview title underline",
+      "url": "https://github.com/WordPress/gutenberg/pull/81083",
+      "author": "t-hamano",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-08-04"
+    },
     {
       "number": 80817,
       "title": "Ensure static checks can run for private mirrors",
@@ -107,6 +143,18 @@
       "mergedAt": "2026-07-27"
     },
     {
+      "number": 80570,
+      "title": "Widget Dashboard: preserve widget chrome flex layout",
+      "url": "https://github.com/WordPress/gutenberg/pull/80570",
+      "author": "dognose24",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-07-31"
+    },
+    {
       "number": 80568,
       "title": "Release: Require a working GitHub CLI for cherry-picking",
       "url": "https://github.com/WordPress/gutenberg/pull/80568",
@@ -201,6 +249,18 @@
       ],
       "detectedVia": "commit",
       "mergedAt": "2026-07-20"
+    },
+    {
+      "number": 80368,
+      "title": "Pass Playlist controls to track blocks",
+      "url": "https://github.com/WordPress/gutenberg/pull/80368",
+      "author": "scruffian",
+      "mode": "non-agent",
+      "tools": [
+        "copilot"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-07-31"
     },
     {
       "number": 80292,
@@ -419,6 +479,18 @@
       "mergedAt": "2026-07-15"
     },
     {
+      "number": 80027,
+      "title": "Blocks: Support static block templates in block type settings",
+      "url": "https://github.com/WordPress/gutenberg/pull/80027",
+      "author": "ellatrix",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "body",
+      "mergedAt": "2026-08-05"
+    },
+    {
       "number": 80026,
       "title": "Post Content: Use the default block appender for empty content",
       "url": "https://github.com/WordPress/gutenberg/pull/80026",
@@ -549,6 +621,18 @@
       ],
       "detectedVia": "commit",
       "mergedAt": "2026-07-07"
+    },
+    {
+      "number": 79792,
+      "title": "Build: Wrap script bundles in an IIFE to contain 'use strict'",
+      "url": "https://github.com/WordPress/gutenberg/pull/79792",
+      "author": "westonruter",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-08-04"
     },
     {
       "number": 79738,
@@ -2582,6 +2666,18 @@
       ],
       "detectedVia": "commit",
       "mergedAt": "2026-05-14"
+    },
+    {
+      "number": 76471,
+      "title": "Components: Add allowForms prop to SandBox component",
+      "url": "https://github.com/WordPress/gutenberg/pull/76471",
+      "author": "dhasilva",
+      "mode": "non-agent",
+      "tools": [
+        "claude-code"
+      ],
+      "detectedVia": "commit",
+      "mergedAt": "2026-08-05"
     },
     {
       "number": 76469,
